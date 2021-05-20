@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>STAT 234: Data Science</title>
+  <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="STAT 234: Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="STAT 234: Data Science" />
+  
+  <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  
+
+<meta name="author" content="Matt Higham" />
+
+
+<meta name="date" content="2021-05-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="intro.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 234: Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-information"><i class="fa fa-check"></i><b>1.2</b> Course Information</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#general-course-outcomes"><i class="fa fa-check"></i><b>1.3</b> General Course Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#use-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Use of <code>R</code> and <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#how-you-will-be-assessed"><i class="fa fa-check"></i><b>1.4</b> How You Will Be Assessed</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#breakdown"><i class="fa fa-check"></i><b>1.4.1</b> Breakdown</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#grading-scale"><i class="fa fa-check"></i><b>1.4.2</b> Grading Scale</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#rules-for-collaboration"><i class="fa fa-check"></i><b>1.4.3</b> Rules for Collaboration</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#diversity-statement"><i class="fa fa-check"></i><b>1.4.4</b> Diversity Statement</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#accessibility-statement"><i class="fa fa-check"></i><b>1.4.5</b> Accessibility Statement</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#academic-dishonesty"><i class="fa fa-check"></i><b>1.4.6</b> Academic Dishonesty</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tentative-schedule"><i class="fa fa-check"></i><b>1.5</b> Tentative Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Getting Started with <code>R</code> and <code>R Studio</code></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#intro-to-r-and-r-studio"><i class="fa fa-check"></i><b>2.1</b> Intro to <code>R</code> and <code>R Studio</code></a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-are-r-r-studio-and-r-markdown"><i class="fa fa-check"></i><b>2.2</b> What are <code>R</code>, <code>R Studio</code>, and <code>R Markdown</code>?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#r-packages-and-the-tidyverse"><i class="fa fa-check"></i><b>2.2.1</b> <code>R</code> Packages and the <code>tidyverse</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#putting-code-in-a-.rmd-file"><i class="fa fa-check"></i><b>2.3</b> Putting Code in a <code>.Rmd</code> File</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#alcohol-data-example"><i class="fa fa-check"></i><b>2.4</b> Alcohol Data Example</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#exercise-1-1"><i class="fa fa-check"></i><b>2.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#athlete-data-example"><i class="fa fa-check"></i><b>2.5</b> Athlete Data Example</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#exercise-1-2"><i class="fa fa-check"></i><b>2.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#finishing-up-common-errors-in-r"><i class="fa fa-check"></i><b>2.6</b> Finishing Up: Common Errors in <code>R</code></a></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#chapexercise-1"><i class="fa fa-check"></i><b>2.7</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#solutions-1"><i class="fa fa-check"></i><b>2.8</b> Exercise Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>3</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-and-basic-terminology"><i class="fa fa-check"></i><b>3.1</b> Introduction and Basic Terminology</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure"><i class="fa fa-check"></i><b>3.2</b> Basic Plot Structure</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable"><i class="fa fa-check"></i><b>3.3</b> Graphing a Single Variable</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2.html"><a href="ggplot2.html#histograms-and-frequency-plots-for-a-quantitative-variable"><i class="fa fa-check"></i><b>3.3.1</b> Histograms and Frequency Plots for a Quantitative Variable</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2.html"><a href="ggplot2.html#r-code-style"><i class="fa fa-check"></i><b>3.3.2</b> <code>R</code> Code Style</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2.html"><a href="ggplot2.html#bar-plots-for-a-categorical-variable"><i class="fa fa-check"></i><b>3.3.3</b> Bar Plots for a Categorical Variable</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quantitative-variables-faceting-and-aes-options"><i class="fa fa-check"></i><b>3.4</b> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2.html"><a href="ggplot2.html#scatterplots"><i class="fa fa-check"></i><b>3.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2.html"><a href="ggplot2.html#aesthetics-in-aes"><i class="fa fa-check"></i><b>3.4.2</b> Aesthetics in <code>aes()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2.html"><a href="ggplot2.html#using-more-than-one-geom"><i class="fa fa-check"></i><b>3.4.3</b> Using More Than One <code>geom()</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2.html"><a href="ggplot2.html#line-plots-with-geom_line"><i class="fa fa-check"></i><b>3.4.4</b> Line Plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2.html"><a href="ggplot2.html#faceting"><i class="fa fa-check"></i><b>3.4.5</b> Faceting</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-2"><i class="fa fa-check"></i><b>3.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-barplots-and-others"><i class="fa fa-check"></i><b>3.5</b> Boxplots, Stacked Barplots and Others</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-quant.-variable-vs.-a-cat.-variable"><i class="fa fa-check"></i><b>3.5.1</b> Graphing a Quant. Variable vs. a Cat. Variable</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-categorical-variables"><i class="fa fa-check"></i><b>3.5.2</b> Graphing Two Categorical Variables</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2"><i class="fa fa-check"></i><b>3.6</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2.html"><a href="ggplot2.html#solutions-2"><i class="fa fa-check"></i><b>3.7</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-etc.-s"><i class="fa fa-check"></i><b>3.7.1</b> Introduction etc. S</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure-s"><i class="fa fa-check"></i><b>3.7.2</b> Basic Plot Structure S</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable-s"><i class="fa fa-check"></i><b>3.7.3</b> Graphing a Single Variable S</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quant.-etc.-s"><i class="fa fa-check"></i><b>3.7.4</b> Graphing Two Quant. etc. S</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-etc.-s"><i class="fa fa-check"></i><b>3.7.5</b> Boxplots, Stacked, etc. S</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2.html"><a href="ggplot2.html#chapter-exercises-2-s"><i class="fa fa-check"></i><b>3.7.6</b> Chapter Exercises 2 S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dplyr.html"><a href="dplyr.html#mutate-create-variables"><i class="fa fa-check"></i><b>4.1</b> <code>mutate()</code>: Create Variables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="dplyr.html"><a href="dplyr.html#a-little-more-on-piping"><i class="fa fa-check"></i><b>4.1.1</b> A Little More on Piping</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dplyr.html"><a href="dplyr.html#if_else-and-case_when"><i class="fa fa-check"></i><b>4.1.2</b> <code>if_else()</code> and <code>case_when()</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="dplyr.html"><a href="dplyr.html#exercise-3-1"><i class="fa fa-check"></i><b>4.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-and-slice-and-filter"><i class="fa fa-check"></i><b>4.2</b> <code>arrange()</code>, <code>select()</code>, and <code>slice()</code>, and <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dplyr.html"><a href="dplyr.html#arrange-ordering-rows"><i class="fa fa-check"></i><b>4.2.1</b> <code>arrange()</code>: Ordering Rows</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dplyr.html"><a href="dplyr.html#select-choose-columns"><i class="fa fa-check"></i><b>4.2.2</b> <code>select()</code> Choose Columns</a></li>
+<li class="chapter" data-level="4.2.3" data-path="dplyr.html"><a href="dplyr.html#slice-and-filter-choose-rows"><i class="fa fa-check"></i><b>4.2.3</b> <code>slice()</code> and <code>filter()</code>: Choose Rows</a></li>
+<li class="chapter" data-level="4.2.4" data-path="dplyr.html"><a href="dplyr.html#exercise-3-2"><i class="fa fa-check"></i><b>4.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-create-summaries"><i class="fa fa-check"></i><b>4.3</b> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dplyr.html"><a href="dplyr.html#group_by-groups"><i class="fa fa-check"></i><b>4.3.1</b> <code>group_by()</code>: Groups</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dplyr.html"><a href="dplyr.html#exercise-3-3"><i class="fa fa-check"></i><b>4.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dplyr.html"><a href="dplyr.html#missing-values"><i class="fa fa-check"></i><b>4.4</b> Missing Values</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dplyr.html"><a href="dplyr.html#exercise-3-4"><i class="fa fa-check"></i><b>4.4.1</b> Exercises</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dplyr.html"><a href="dplyr.html#removing-missing-values"><i class="fa fa-check"></i><b>4.4.2</b> Removing Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3"><i class="fa fa-check"></i><b>4.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="dplyr.html"><a href="dplyr.html#solutions-3"><i class="fa fa-check"></i><b>4.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="dplyr.html"><a href="dplyr.html#mutate-s"><i class="fa fa-check"></i><b>4.6.1</b> <code>mutate()</code> S</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-.-s"><i class="fa fa-check"></i><b>4.6.2</b> <code>arrange()</code>, <code>select()</code>, …. S</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-s"><i class="fa fa-check"></i><b>4.6.3</b> <code>summarise()</code> and <code>group_by()</code> S</a></li>
+<li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#missing-values-s"><i class="fa fa-check"></i><b>4.6.4</b> Missing Values S</a></li>
+<li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#chapter-exercises-3-s"><i class="fa fa-check"></i><b>4.6.5</b> Chapter Exercises 3 S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> What is Tidy Data?</a></li>
+<li class="chapter" data-level="5.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-columns"><i class="fa fa-check"></i><b>5.2</b> <code>separate()</code> and <code>unite()</code> Columns</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-a-column"><i class="fa fa-check"></i><b>5.2.1</b> <code>separate()</code> a Column</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#unite-columns"><i class="fa fa-check"></i><b>5.2.2</b> <code>unite()</code> Columns</a></li>
+<li class="chapter" data-level="5.2.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#column-names-and-rename"><i class="fa fa-check"></i><b>5.2.3</b> Column Names and <code>rename()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-1"><i class="fa fa-check"></i><b>5.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#reshaping-with-pivot_"><i class="fa fa-check"></i><b>5.3</b> Reshaping with <code>pivot_()</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_longer-to-gather-columns"><i class="fa fa-check"></i><b>5.3.1</b> <code>pivot_longer()</code> to Gather Columns</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_wider-to-spread-to-multiple-columns"><i class="fa fa-check"></i><b>5.3.2</b> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-2"><i class="fa fa-check"></i><b>5.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr"><i class="fa fa-check"></i><b>5.4</b> Skimming Data with <code>skimr</code></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercises-exercise-4-3"><i class="fa fa-check"></i><b>5.4.1</b> Exercises {exercise-4-3}</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4"><i class="fa fa-check"></i><b>5.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#solutions-4"><i class="fa fa-check"></i><b>5.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data-s"><i class="fa fa-check"></i><b>5.6.1</b> What is Tidy Data? S</a></li>
+<li class="chapter" data-level="5.6.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-s"><i class="fa fa-check"></i><b>5.6.2</b> <code>separate()</code> and <code>unite()</code> S</a></li>
+<li class="chapter" data-level="5.6.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_-s"><i class="fa fa-check"></i><b>5.6.3</b> <code>pivot_()</code> S</a></li>
+<li class="chapter" data-level="5.6.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr-s"><i class="fa fa-check"></i><b>5.6.4</b> Skimming Data with <code>skimr()</code> S</a></li>
+<li class="chapter" data-level="5.6.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapter-exercises-4-s"><i class="fa fa-check"></i><b>5.6.5</b> Chapter Exercises 4 S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#reproducbility"><i class="fa fa-check"></i><b>6.1</b> Reproducbility</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-scripts-vs.-r-markdown"><i class="fa fa-check"></i><b>6.1.1</b> <code>R</code> Scripts vs. <code>R Markdown</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#spell-checking"><i class="fa fa-check"></i><b>6.1.2</b> Spell-Checking</a></li>
+<li class="chapter" data-level="6.1.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-1"><i class="fa fa-check"></i><b>6.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-markdown-files"><i class="fa fa-check"></i><b>6.2</b> <code>R Markdown</code> Files</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#code-chunk-options"><i class="fa fa-check"></i><b>6.2.1</b> Code Chunk Options</a></li>
+<li class="chapter" data-level="6.2.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#figures-and-tables"><i class="fa fa-check"></i><b>6.2.2</b> Figures and Tables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#non-code-options"><i class="fa fa-check"></i><b>6.2.3</b> Non-Code Options</a></li>
+<li class="chapter" data-level="6.2.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#yaml"><i class="fa fa-check"></i><b>6.2.4</b> YAML</a></li>
+<li class="chapter" data-level="6.2.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-2"><i class="fa fa-check"></i><b>6.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication"><i class="fa fa-check"></i><b>6.3</b> <code>ggplot2</code> Communication</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#change-labels-and-titles"><i class="fa fa-check"></i><b>6.3.1</b> Change Labels and Titles</a></li>
+<li class="chapter" data-level="6.3.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#changing-x-and-y-axis-limits"><i class="fa fa-check"></i><b>6.3.2</b> Changing x and y axis Limits</a></li>
+<li class="chapter" data-level="6.3.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#changing-a-colour-scale"><i class="fa fa-check"></i><b>6.3.3</b> Changing A Colour Scale</a></li>
+<li class="chapter" data-level="6.3.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#labeling-points-or-lines-of-interest"><i class="fa fa-check"></i><b>6.3.4</b> Labeling Points or Lines of Interest</a></li>
+<li class="chapter" data-level="6.3.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#plot-themes"><i class="fa fa-check"></i><b>6.3.5</b> Plot Themes</a></li>
+<li class="chapter" data-level="6.3.6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-3"><i class="fa fa-check"></i><b>6.3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5"><i class="fa fa-check"></i><b>6.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#solutions-5"><i class="fa fa-check"></i><b>6.5</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#reproducibility-s"><i class="fa fa-check"></i><b>6.5.1</b> Reproducibility S</a></li>
+<li class="chapter" data-level="6.5.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-markdown-files-s"><i class="fa fa-check"></i><b>6.5.2</b> <code>R Markdown</code> Files S</a></li>
+<li class="chapter" data-level="6.5.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication-s"><i class="fa fa-check"></i><b>6.5.3</b> <code>ggplot2</code> Communication S</a></li>
+<li class="chapter" data-level="6.5.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapter-exercises-5-s"><i class="fa fa-check"></i><b>6.5.4</b> Chapter Exercises 5 S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-in-r"><i class="fa fa-check"></i><b>7.1</b> Variable Classes in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-basics.html"><a href="r-basics.html#referencing-variables-and-using-str"><i class="fa fa-check"></i><b>7.1.1</b> Referencing Variables and Using <code>str()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail"><i class="fa fa-check"></i><b>7.2</b> Classes in Detail</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="r-basics.html"><a href="r-basics.html#chr-and-fct-class"><i class="fa fa-check"></i><b>7.2.1</b> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
+<li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
+<li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-s"><i class="fa fa-check"></i><b>7.7.1</b> Variable Classes S</a></li>
+<li class="chapter" data-level="7.7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail-s"><i class="fa fa-check"></i><b>7.7.2</b> Classes in Detail S</a></li>
+<li class="chapter" data-level="7.7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-s"><i class="fa fa-check"></i><b>7.7.3</b> Object Types S</a></li>
+<li class="chapter" data-level="7.7.4" data-path="r-basics.html"><a href="r-basics.html#piping-s"><i class="fa fa-check"></i><b>7.7.4</b> Piping S</a></li>
+<li class="chapter" data-level="7.7.5" data-path="r-basics.html"><a href="r-basics.html#other-r-topics-s"><i class="fa fa-check"></i><b>7.7.5</b> Other R Topics S</a></li>
+<li class="chapter" data-level="7.7.6" data-path="r-basics.html"><a href="r-basics.html#chapter-exercises-6-s"><i class="fa fa-check"></i><b>7.7.6</b> Chapter Exercises 6 S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html"><i class="fa fa-check"></i><b>8</b> Factors with <code>forcats</code></a></li>
+<li class="chapter" data-level="9" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html"><i class="fa fa-check"></i><b>9</b> Reprexes and Import</a></li>
+<li class="chapter" data-level="10" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>10</b> Data Ethics</a></li>
+<li class="chapter" data-level="11" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html"><i class="fa fa-check"></i><b>11</b> Merging with <code>dplyr</code></a></li>
+<li class="chapter" data-level="12" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html"><i class="fa fa-check"></i><b>12</b> Dates with <code>lubridate</code></a></li>
+<li class="chapter" data-level="13" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html"><i class="fa fa-check"></i><b>13</b> Strings with <code>stringr</code></a></li>
+<li class="chapter" data-level="14" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html"><i class="fa fa-check"></i><b>14</b> Predictive Modeling with knn</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 234: Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">STAT 234: Data Science</h1>
+<p class="author"><em>Matt Higham</em></p>
+<p class="date"><em>2021-05-20</em></p>
+</div>
+<div id="syllabus-and-course-information" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Syllabus and Course Information</h1>
+<div id="general-information" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> General Information</h2>
+<p><strong>Instructor Information</strong></p>
+<ul>
+<li>Professor: Matt Higham</li>
+<li>Office: Bewkes 121</li>
+<li>Email: <a href="mailto:mhigham@stlawu.edu" class="email">mhigham@stlawu.edu</a></li>
+<li>Semester: Fall 2020</li>
+<li>Office Hours:
+<ul>
+<li>Tuesday 12:00 - 2:00 (in Zoom)</li>
+<li>Friday 10:50 - 11:50 (in JHS 224 or in Zoom)</li>
+<li>Friday 1:30 - 2:30 (in JHS 224 or in Zoom)</li>
+<li>other times by appointment</li>
+</ul></li>
+<li>Zoom Link: <a href="https://stlawu.zoom.us/j/98496966102" class="uri">https://stlawu.zoom.us/j/98496966102</a></li>
+<li>Sections:
+<ul>
+<li>MW 3:20 - 4:50</li>
+</ul></li>
+</ul>
+<p><strong>Course Materials</strong></p>
+<ul>
+<li>Textbook: R for Data Science by Garrett Grolemund and Hadley Wickham
+<ul>
+<li>free online version: <a href="https://r4ds.had.co.nz/">R for Data Science (r4ds)</a></li>
+<li>we will use this only as a reference</li>
+</ul></li>
+<li>Computer with Internet access</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="course-information" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Course Information</h2>
+<p>Welcome to STAT 234! The overall purpose of this course is learn the data science skills necessary to complete large-scale data analysis projects. The tool that we will be using to achieve this goal is the statistical software language <code>R</code>. We will work with a wide variety of interesting data sets throughout the semester to build our <code>R</code> skills. In particular, we will focus on the Data Analysis Life Cycle (Grolemund and Wickham 2020):</p>
+<p><img src="other/data-science.png" /></p>
+<p>We will put more emphasis on the <em>Import, Tidy, Transform, Visaulize, and Communicate</em> parts of the cycle, as much of the <em>Modeling</em> part is covered in STAT 213.</p>
+<hr />
+<hr />
+</div>
+<div id="general-course-outcomes" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> General Course Outcomes</h2>
+<ol style="list-style-type: decimal">
+<li><p><em>Import</em> data of a few different types into <code>R</code> for analysis.</p></li>
+<li><p><em>Tidy</em> data into a form that can be more easily visualized, summarised, and modeled.</p></li>
+<li><p><em>Transform</em> and <em>Visualize</em> variables in a data set to assess patterns in the data.</p></li>
+<li><p><em>Communicate</em> the results of your analysis to a target audience with a written report, or, possibly an oral presentation.</p></li>
+<li><p>Practice reproducible statistical practices through the use of <code>R Markdown</code> for data anlaysis projects.</p></li>
+<li><p><em>Generally</em>: develop the necessary skills to be able to answer future data analysis questions on your own, either using <code>R</code> or another program, such as Python.</p></li>
+</ol>
+<p>To paraphrase our textbook, about 80% of the skills necessary to do a complete data analysis project can be learned through coursework in classes like this one. But, 20% of any particular project will involve learning new things that are specific to that project. Achieving Goal # 6 will allow you to learn this extra 20% on your own.</p>
+<div id="use-of-r-and-rstudio" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Use of <code>R</code> and <code>RStudio</code></h3>
+<p>We will use the statistical software <code>R</code> to construct graphs and analyze data. A few notes:</p>
+<ul>
+<li><code>R</code> and <code>RStudio</code> are both free to use.</li>
+<li>We will primarily be using the SLU <code>R Studio</code> server at first: <a href="http://rstudio-u18-01.stlawu.local:8787/" class="uri">http://rstudio-u18-01.stlawu.local:8787/</a></li>
+<li>Additionally, we will be using <code>RMarkdown</code> for data analysis reports.
+<em>Note</em>: It’s always nice to start assignments and projects as early as possible, but this is particularly important to do for assignments and projects involving <code>R</code>. It’s no fun to try and figure out why code is not working at the last minute. If you start early enough though, you will have plenty of time to seek help and therefore won’t waste a lot of time on a coding error.</li>
+</ul>
+<hr />
+<hr />
+</div>
+</div>
+<div id="how-you-will-be-assessed" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> How You Will Be Assessed</h2>
+<p>There are 5 components to your grade, each described below.</p>
+<ul>
+<li>Tutorials, Exercises, and Classes</li>
+</ul>
+<p>There are 14 sets of tutorials, exercises, and class that are graded for completion only. Tutorials are worth 2 points each, exercise sets are worth 4 points each, and each week of class is worth 4 points for a total of 140 points.</p>
+<p><strong>Note</strong>: To get class credit, you can either come to class or zoom in. If you miss class, then you can still get “class” credit by completing the class exercises given within 2 days.</p>
+<ul>
+<li>Quizzes</li>
+</ul>
+<p>There will be 10 Quizzes, each worth 20 points for a total of 180 points with one dropped quiz. The purpose of the quizzes are for you to practice what you’ve learned for the week in a short, concise format. Quizzes, for the most part, will assess basic understanding of the functions that we’ve used for that particular week.</p>
+<p>If you need to miss class on the day of the quiz, a make-up will be given during the first Friday office hours that you are available. The make-up quiz will be oral.</p>
+<ul>
+<li>Mini Projects</li>
+</ul>
+<p>There are 3 mini-projects scattered throughout the semester that are worth 50 points each (~ one every 3 weeks). Each mini-project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.</p>
+<p>In order to get experience with oral presentations of results, each student will give a short oral presentation on <strong>1</strong> mini-project. Use of <code>R Markdown</code> is required for this presentation (as opposed to PowerPoint or Prezi). More details will be given later in the semester.</p>
+<ul>
+<li>Midterm Exams</li>
+</ul>
+<p>There will be two midterm exams, each worth 165 points. Exams will have both an in-class and take-home component. The purpose of the in-class portion is to assess “the basics.” The purpose of the take-home portion is to assess your ability to put the basics together to form a cohesive data analysis. More information will be given about these later.</p>
+<ul>
+<li>Final Project</li>
+</ul>
+<p>There is one final project, worth 200 points. The purpose of the final project is to give you an opportunity to assemble topics throughout the course into one coherent data analysis. More information about the final project will be given later.</p>
+<p>There will be no Final Exam.</p>
+<div id="breakdown" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Breakdown</h3>
+<p><strong>Note</strong>: Points were updated on November 24 to reflect a 20 points increase in the Final Project points</p>
+<ul>
+<li>120 points for Tutorials, Exercises, and Class</li>
+<li>180 points for Quizzes</li>
+<li>150 points for Mini-Projects + 20 points for Presentation</li>
+<li>165 points for each of two Midterm Exams</li>
+<li>200 points for Final Project</li>
+</ul>
+<p>Points add up to 1000 so your grade at the end of the semester will be the number of points you’ve earned across all categories divided by 1000.</p>
+<ul>
+<li>The tutorials should help you complete the exercises sets, which should
+<ul>
+<li>help you to do well on the quizzes, which should
+<ul>
+<li>help you complete the mini-projects, which should
+<ul>
+<li>help you to do well on the midterm exams.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Then, everything together should help you create an awesome final project!</p>
+</div>
+<div id="grading-scale" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Grading Scale</h3>
+<p>The following is a <em>rough</em> grading scale. I reserve the right to make any changes to the scale if necessary.</p>
+<table style="width:100%;">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Grade</th>
+<th>4.0</th>
+<th>3.75</th>
+<th>3.5</th>
+<th>3.25</th>
+<th>3.0</th>
+<th>2.75</th>
+<th>2.5</th>
+<th>2.25</th>
+<th>2.0</th>
+<th>1.75</th>
+<th>1.5</th>
+<th>1.25</th>
+<th>1.0</th>
+<th>0.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Points</td>
+<td>950-1000</td>
+<td>920-949</td>
+<td>890-919</td>
+<td>860-889</td>
+<td>830-859</td>
+<td>810-829</td>
+<td>770-809</td>
+<td>750-769</td>
+<td>720-749</td>
+<td>700-719</td>
+<td>670-699</td>
+<td>640-669</td>
+<td>600-639</td>
+<td>0-599</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+<div id="rules-for-collaboration" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Rules for Collaboration</h3>
+<p>Collaboration with your classmates on handouts, tutorials, and projects is encouraged, but you must follow these guidelines:</p>
+<ul>
+<li>you must state the name(s) of who you collaborated with at the top of each assessment.</li>
+<li>all work must be your own. This means that you should <strong>never</strong> send someone your code via email or let someone directly type code off of your screen. Instead, you can talk about strategies for solving problems and help or ask someone about a coding error.</li>
+<li>you may use the Internet and StackExchange, but you also should not copy paste code directly from the website, without citing that you did so.</li>
+<li>this isn’t a rule, but keep in mind that collaboration is not permitted on quizzes, exams, and very limited collaboration will be permitted on the final project. Therefore, when working with someone, make sure that you are both really learning so that you both can have success on the non-collaborative assessments.</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="diversity-statement" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Diversity Statement</h3>
+<p>Diversity encompasses differences in age, colour, ethnicity, national origin, gender, physical or mental ability, religion, socioeconomic background, veteran status, sexual orientation, and marginalized groups. The interaction of different human characteristics brings about a positive learning environment. Diversity is both respected and valued in this classroom.</p>
+<hr />
+<hr />
+</div>
+<div id="accessibility-statement" class="section level3" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> Accessibility Statement</h3>
+<p>If you have a learning difference/disability or other health impairment and need accommodations please be sure to contact the Student Accessibility Services Office right away so they can help you get the accommodations you require. If you need to use any accommodations in this class, please meet with your instructor early and provide them with your Individualized Educational Accommodation Plan (IEAP) letter so you can have the best possible experience this semester.</p>
+<p>Although not required, your instructor would like to know of any accommodations that are needed at least 10 days before a quiz or test. Please be proactive and set up an appointment to meet with someone from the Student Accessibility Services Office.</p>
+<p><strong>Color-Vision Deficiency:</strong> If you are Color-Vision Deficient, the Student Accessibility Services office has on loan glasses for students who are color vision deficient. Please contact the office to make an appointment.</p>
+<p>For more specific information about setting up an appointment with Student Accessibility Services please see the listed options below:</p>
+<ul>
+<li>Telephone: 315.229.5537</li>
+<li>Email: <a href="mailto:studentaccessibility@stlawu.edu" class="email">studentaccessibility@stlawu.edu</a></li>
+</ul>
+<p>For further information about Student Accessibility Services you can check the website at: <a href="https://www.stlawu.edu/student-accessibility-services" class="uri">https://www.stlawu.edu/student-accessibility-services</a></p>
+<hr />
+<hr />
+</div>
+<div id="academic-dishonesty" class="section level3" number="1.4.6">
+<h3><span class="header-section-number">1.4.6</span> Academic Dishonesty</h3>
+<p>Academic dishonesty will not be tolerated. Any specific policies for this course are supplementary to the</p>
+<p>Honor Code. According to the St. Lawrence University Academic Honor Policy,</p>
+<ol style="list-style-type: decimal">
+<li>It is assumed that all work is done by the student unless the instructor/mentor/employer gives specific permission for collaboration.</li>
+<li>Cheating on examinations and tests consists of knowingly giving or using or attempting to use unauthorized assistance during examinations or tests.</li>
+<li>Dishonesty in work outside of examinations and tests consists of handing in or presenting as original work which is not original, where originality is required.</li>
+</ol>
+<p><em>Claims of ignorance and academic or personal pressure are unacceptable as excuses for academic dishonesty.</em> Students must learn what constitutes one's own work and how the work of others must be acknowledged.</p>
+<p>For more information, refer to <a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf">www.stlawu.edu/acadaffairs/</a><a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf"><strong>academic</strong></a><a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf">_</a><a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf"><strong>honor</strong></a><a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf">_policy.pdf</a>.</p>
+<p>To avoid academic dishonesty, it is important that you follow all directions and collaboration rules and ask for clarification if you have any questions about what is acceptable for a particular assignment or exam. If I suspect academic dishonesty, a score of zero will be given for the entire assignment in which the academic dishonesty occurred <strong>for all individuals involved</strong> and Academic Honor Council will be notified. If a pattern of academic dishonesty is found to have occurred, a grade of 0.0 for the entire course can be given.</p>
+<p>It is important to work in a way that maximizes your learning. Be aware that students who rely too much on others for the homework and projects tend to do poorly on the quizzes and exams.</p>
+<p><em>Please note that in addition the above, any assignments in which your score is reduced due to academic dishonesty will not be dropped according to the quiz policy e.g., if you receive a zero on a quiz because of academic dishonesty, it will not be dropped from your grade. Additionally, academic honesty on the homework will result in a 0 for that week’s quiz (since the homework is not worth points on its own)</em></p>
+<hr />
+<hr />
+</div>
+</div>
+<div id="tentative-schedule" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Tentative Schedule</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Date</th>
+<th>Topics</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>8/26</td>
+<td>Introduction to <code>R</code>, <code>R Studio</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>8/31</td>
+<td>Graphics with <code>ggplot2</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>9/7</td>
+<td>Data Wrangling and Transformation with <code>dplyr</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>9/14</td>
+<td>Data Tidying with <code>tidyr</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>9/21</td>
+<td>Communication with <code>R Markdown</code> and <code>ggplot2</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>9/28</td>
+<td>Basic Coding in <code>R</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>10/5</td>
+<td>Catch-up and Midterm 1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>10/12</td>
+<td>Factors with <code>forcats</code> and Data Ethics</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>10/19</td>
+<td>Data Import with <code>readr</code>, <code>jsonlite</code>, <code>rvest</code>, and <code>tibble</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>10/26</td>
+<td>Data Merging with <code>dplyr</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>11/2</td>
+<td>Dates and Times with <code>lubridate</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>11/9</td>
+<td>Strings with <code>stringr</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>11/16</td>
+<td>Catch-up and Midterm 2</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>11/23</td>
+<td>Predictive Modeling</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>11/30</td>
+<td>Final Project</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>There will be no Final Exam, but keep your schedule open at our Final Exam time in case we decide to use it for something.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false,
+"whatsapp": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>

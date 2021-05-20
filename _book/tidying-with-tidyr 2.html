@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Tidying with tidyr | STAT 234: Data Science</title>
+  <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Tidying with tidyr | STAT 234: Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Tidying with tidyr | STAT 234: Data Science" />
+  
+  <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  
+
+<meta name="author" content="Matt Higham" />
+
+
+<meta name="date" content="2021-05-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dplyr.html"/>
+<link rel="next" href="communication-with-rmarkdown-and-ggplot2.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-information"><i class="fa fa-check"></i><b>1.2</b> Course Information</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#general-course-outcomes"><i class="fa fa-check"></i><b>1.3</b> General Course Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#use-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Use of <code>R</code> and <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#how-you-will-be-assessed"><i class="fa fa-check"></i><b>1.4</b> How You Will Be Assessed</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#breakdown"><i class="fa fa-check"></i><b>1.4.1</b> Breakdown</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#grading-scale"><i class="fa fa-check"></i><b>1.4.2</b> Grading Scale</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#rules-for-collaboration"><i class="fa fa-check"></i><b>1.4.3</b> Rules for Collaboration</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#diversity-statement"><i class="fa fa-check"></i><b>1.4.4</b> Diversity Statement</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#accessibility-statement"><i class="fa fa-check"></i><b>1.4.5</b> Accessibility Statement</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#academic-dishonesty"><i class="fa fa-check"></i><b>1.4.6</b> Academic Dishonesty</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tentative-schedule"><i class="fa fa-check"></i><b>1.5</b> Tentative Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Getting Started with <code>R</code> and <code>R Studio</code></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#intro-to-r-and-r-studio"><i class="fa fa-check"></i><b>2.1</b> Intro to <code>R</code> and <code>R Studio</code></a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-are-r-r-studio-and-r-markdown"><i class="fa fa-check"></i><b>2.2</b> What are <code>R</code>, <code>R Studio</code>, and <code>R Markdown</code>?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#r-packages-and-the-tidyverse"><i class="fa fa-check"></i><b>2.2.1</b> <code>R</code> Packages and the <code>tidyverse</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#putting-code-in-a-.rmd-file"><i class="fa fa-check"></i><b>2.3</b> Putting Code in a <code>.Rmd</code> File</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#alcohol-data-example"><i class="fa fa-check"></i><b>2.4</b> Alcohol Data Example</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#exercise-1-1"><i class="fa fa-check"></i><b>2.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#athlete-data-example"><i class="fa fa-check"></i><b>2.5</b> Athlete Data Example</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#exercise-1-2"><i class="fa fa-check"></i><b>2.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#finishing-up-common-errors-in-r"><i class="fa fa-check"></i><b>2.6</b> Finishing Up: Common Errors in <code>R</code></a></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#chapexercise-1"><i class="fa fa-check"></i><b>2.7</b> Chapter Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>3</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-and-basic-terminology"><i class="fa fa-check"></i><b>3.1</b> Introduction and Basic Terminology</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure"><i class="fa fa-check"></i><b>3.2</b> Basic Plot Structure</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable"><i class="fa fa-check"></i><b>3.3</b> Graphing a Single Variable</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2.html"><a href="ggplot2.html#histograms-and-frequency-plots-for-a-quantitative-variable"><i class="fa fa-check"></i><b>3.3.1</b> Histograms and Frequency Plots for a Quantitative Variable</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2.html"><a href="ggplot2.html#r-code-style"><i class="fa fa-check"></i><b>3.3.2</b> <code>R</code> Code Style</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2.html"><a href="ggplot2.html#bar-plots-for-a-categorical-variable"><i class="fa fa-check"></i><b>3.3.3</b> Bar Plots for a Categorical Variable</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quantitative-variables-faceting-and-aes-options"><i class="fa fa-check"></i><b>3.4</b> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2.html"><a href="ggplot2.html#scatterplots"><i class="fa fa-check"></i><b>3.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2.html"><a href="ggplot2.html#aesthetics-in-aes"><i class="fa fa-check"></i><b>3.4.2</b> Aesthetics in <code>aes()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2.html"><a href="ggplot2.html#using-more-than-one-geom"><i class="fa fa-check"></i><b>3.4.3</b> Using More Than One <code>geom()</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2.html"><a href="ggplot2.html#line-plots-with-geom_line"><i class="fa fa-check"></i><b>3.4.4</b> Line Plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2.html"><a href="ggplot2.html#faceting"><i class="fa fa-check"></i><b>3.4.5</b> Faceting</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-2"><i class="fa fa-check"></i><b>3.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-barplots-and-others"><i class="fa fa-check"></i><b>3.5</b> Boxplots, Stacked Barplots and Others</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-quant.-variable-vs.-a-cat.-variable"><i class="fa fa-check"></i><b>3.5.1</b> Graphing a Quant. Variable vs. a Cat. Variable</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-categorical-variables"><i class="fa fa-check"></i><b>3.5.2</b> Graphing Two Categorical Variables</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2"><i class="fa fa-check"></i><b>3.6</b> Chapter Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dplyr.html"><a href="dplyr.html#mutate-create-variables"><i class="fa fa-check"></i><b>4.1</b> <code>mutate()</code>: Create Variables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="dplyr.html"><a href="dplyr.html#a-little-more-on-piping"><i class="fa fa-check"></i><b>4.1.1</b> A Little More on Piping</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dplyr.html"><a href="dplyr.html#if_else-and-case_when"><i class="fa fa-check"></i><b>4.1.2</b> <code>if_else()</code> and <code>case_when()</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="dplyr.html"><a href="dplyr.html#exercise-3-1"><i class="fa fa-check"></i><b>4.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-and-slice-and-filter"><i class="fa fa-check"></i><b>4.2</b> <code>arrange()</code>, <code>select()</code>, and <code>slice()</code>, and <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dplyr.html"><a href="dplyr.html#arrange-ordering-rows"><i class="fa fa-check"></i><b>4.2.1</b> <code>arrange()</code>: Ordering Rows</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dplyr.html"><a href="dplyr.html#select-choose-columns"><i class="fa fa-check"></i><b>4.2.2</b> <code>select()</code> Choose Columns</a></li>
+<li class="chapter" data-level="4.2.3" data-path="dplyr.html"><a href="dplyr.html#slice-and-filter-choose-rows"><i class="fa fa-check"></i><b>4.2.3</b> <code>slice()</code> and <code>filter()</code>: Choose Rows</a></li>
+<li class="chapter" data-level="4.2.4" data-path="dplyr.html"><a href="dplyr.html#exercise-3-2"><i class="fa fa-check"></i><b>4.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-create-summaries"><i class="fa fa-check"></i><b>4.3</b> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dplyr.html"><a href="dplyr.html#group_by-groups"><i class="fa fa-check"></i><b>4.3.1</b> <code>group_by()</code>: Groups</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dplyr.html"><a href="dplyr.html#exercise-3-3"><i class="fa fa-check"></i><b>4.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dplyr.html"><a href="dplyr.html#missing-values"><i class="fa fa-check"></i><b>4.4</b> Missing Values</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dplyr.html"><a href="dplyr.html#exercise-3-4"><i class="fa fa-check"></i><b>4.4.1</b> Exercises</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dplyr.html"><a href="dplyr.html#removing-missing-values"><i class="fa fa-check"></i><b>4.4.2</b> Removing Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3"><i class="fa fa-check"></i><b>4.5</b> Chapter Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> What is Tidy Data?</a></li>
+<li class="chapter" data-level="5.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-columns"><i class="fa fa-check"></i><b>5.2</b> <code>separate()</code> and <code>unite()</code> Columns</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-a-column"><i class="fa fa-check"></i><b>5.2.1</b> <code>separate()</code> a Column</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#unite-columns"><i class="fa fa-check"></i><b>5.2.2</b> <code>unite()</code> Columns</a></li>
+<li class="chapter" data-level="5.2.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#column-names-and-rename"><i class="fa fa-check"></i><b>5.2.3</b> Column Names and <code>rename()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-1"><i class="fa fa-check"></i><b>5.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#reshaping-with-pivot_"><i class="fa fa-check"></i><b>5.3</b> Reshaping with <code>pivot_()</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_longer-to-gather-columns"><i class="fa fa-check"></i><b>5.3.1</b> <code>pivot_longer()</code> to Gather Columns</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_wider-to-spread-to-multiple-columns"><i class="fa fa-check"></i><b>5.3.2</b> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-2"><i class="fa fa-check"></i><b>5.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr"><i class="fa fa-check"></i><b>5.4</b> Skimming Data with <code>skimr</code></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercises-exercise-4-3"><i class="fa fa-check"></i><b>5.4.1</b> Exercises {exercise-4-3}</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4"><i class="fa fa-check"></i><b>5.5</b> Chapter Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code> and <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#reproducbility"><i class="fa fa-check"></i><b>6.1</b> Reproducbility</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#r-scripts-vs.-r-markdown"><i class="fa fa-check"></i><b>6.1.1</b> <code>R</code> Scripts vs. <code>R Markdown</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#spell-checking"><i class="fa fa-check"></i><b>6.1.2</b> Spell-Checking</a></li>
+<li class="chapter" data-level="6.1.3" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#exercise-5-1"><i class="fa fa-check"></i><b>6.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#r-markdown-files"><i class="fa fa-check"></i><b>6.2</b> <code>R Markdown</code> Files</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#code-chunk-options"><i class="fa fa-check"></i><b>6.2.1</b> Code Chunk Options</a></li>
+<li class="chapter" data-level="6.2.2" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#figures-and-tables"><i class="fa fa-check"></i><b>6.2.2</b> Figures and Tables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#non-code-options"><i class="fa fa-check"></i><b>6.2.3</b> Non-Code Options</a></li>
+<li class="chapter" data-level="6.2.4" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#yaml"><i class="fa fa-check"></i><b>6.2.4</b> YAML</a></li>
+<li class="chapter" data-level="6.2.5" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#exercise-5-2"><i class="fa fa-check"></i><b>6.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#ggplot2-communication"><i class="fa fa-check"></i><b>6.3</b> <code>ggplot2</code> Communication</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#change-labels-and-titles"><i class="fa fa-check"></i><b>6.3.1</b> Change Labels and Titles</a></li>
+<li class="chapter" data-level="6.3.2" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#changing-x-and-y-axis-limits"><i class="fa fa-check"></i><b>6.3.2</b> Changing x and y axis Limits</a></li>
+<li class="chapter" data-level="6.3.3" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#changing-a-colour-scale"><i class="fa fa-check"></i><b>6.3.3</b> Changing A Colour Scale</a></li>
+<li class="chapter" data-level="6.3.4" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#labeling-points-or-lines-of-interest"><i class="fa fa-check"></i><b>6.3.4</b> Labeling Points or Lines of Interest</a></li>
+<li class="chapter" data-level="6.3.5" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#plot-themes"><i class="fa fa-check"></i><b>6.3.5</b> Plot Themes</a></li>
+<li class="chapter" data-level="6.3.6" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#exercise-5-3"><i class="fa fa-check"></i><b>6.3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="communication-with-rmarkdown-and-ggplot2.html"><a href="communication-with-rmarkdown-and-ggplot2.html#chapexercise-5"><i class="fa fa-check"></i><b>6.4</b> Chapter Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-in-r"><i class="fa fa-check"></i><b>7.1</b> Variable Classes in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-basics.html"><a href="r-basics.html#referencing-variables-and-using-str"><i class="fa fa-check"></i><b>7.1.1</b> Referencing Variables and Using <code>str()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail"><i class="fa fa-check"></i><b>7.2</b> Classes in Detail</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="r-basics.html"><a href="r-basics.html#chr-and-fct-class"><i class="fa fa-check"></i><b>7.2.1</b> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types"><i class="fa fa-check"></i><b>7.3</b> Object Types</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercises-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
+<li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
+<li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercises-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 234: Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidying-with-tidyr" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Tidying with <code>tidyr</code></h1>
+<p><strong>Goals:</strong></p>
+<ul>
+<li><p>describe what it means for a data set to be <strong>tidy</strong>.</p></li>
+<li><p>use <code>separate()</code> and <code>unite()</code> to transform a data set into tidy form.</p></li>
+<li><p>use <code>pivot_longer()</code> and <code>pivot_wider()</code> to transform a data set into tidy form.</p></li>
+<li><p>combine <code>tidyr</code> functions with <code>dplyr</code> and <code>ggplot2</code> functions to form a more complete workflow.</p></li>
+</ul>
+<p><strong>The Data</strong>: We will first use a polling data set that contains variables collected from a few different polls in July 2016 for the U.S. presidential election. The data set was scraped from RealClear politics <a href="https://www.realclearpolitics.com/epolls/latest_polls/president/" class="uri">https://www.realclearpolitics.com/epolls/latest_polls/president/</a> by Dr. Ramler. The variables are:</p>
+<ul>
+<li><code>Poll</code>, the name of the poll</li>
+<li><code>Date</code>, the date range that the poll was conducted</li>
+<li><code>Sample</code>, contains the sample size of the poll and whether the poll was of Likely Voters or Registered Voters</li>
+<li><code>MoE</code>, the margin of error of the poll (recall this term from IntroStat)</li>
+<li><code>Clinton (D)</code>, the percentage of people in the poll voting for Clinton</li>
+<li><code>Trump (R)</code>, the percentage of people in the poll voting for Trump</li>
+<li><code>Johnson (L)</code>, the percentage of people in the poll voting for Johnson</li>
+<li><code>Steing (G)</code>, the percentage of people in the poll voting for Stein</li>
+</ul>
+<div id="what-is-tidy-data" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> What is Tidy Data?</h2>
+<p><code>R</code> usually (but not always) works best when your data is in tidy form. A tidy data set has a few characteristics. Note that you should already be quite familiar with tidy data because, up to this point, all of the data sets we have used in this class (and probably most of the data sets that you see in STAT 113 an all of the data sets that you may have seen in STAT 213) are tidy. This definition of tidy data is taken from <code>R for Data Science</code>:</p>
+<ol style="list-style-type: decimal">
+<li>every variable in the data set is stored in its own column</li>
+<li>every case in the data set is stored in its own row</li>
+<li>each value of a variable is stored in one cell</li>
+<li>values in the data set should <strong>not</strong> contain units</li>
+<li>there should not be any table headers or footnotes</li>
+</ol>
+<p>We will begin by focusing on the first characteristic: every variable in a the data set should be stored in its own column (and correspondingly, number 3: each value of a variable should be stored in one cell).</p>
+</div>
+<div id="separate-and-unite-columns" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> <code>separate()</code> and <code>unite()</code> Columns</h2>
+<p>In a fresh .Rmd file (File -&gt; New File -&gt; R Markdown) that is in your Notes project, copy and paste the following code into an <code>R</code> chunk:</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tidying-with-tidyr.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.1.1     ✓ dplyr   1.0.4
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="tidying-with-tidyr.html#cb204-1" aria-hidden="true" tabindex="-1"></a>polls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/rcp-polls.csv&quot;</span>, <span class="at">na =</span> <span class="st">&quot;--&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Poll = col_character(),
+##   Date = col_character(),
+##   Sample = col_character(),
+##   MoE = col_double(),
+##   `Clinton (D)` = col_double(),
+##   `Trump (R)` = col_double(),
+##   `Johnson (L)` = col_double(),
+##   `Stein (G)` = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="tidying-with-tidyr.html#cb206-1" aria-hidden="true" tabindex="-1"></a>polls</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 8
+##   Poll    Date  Sample   MoE `Clinton (D)` `Trump (R)` `Johnson (L)` `Stein (G)`
+##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Monmou… 7/14… 688 LV   3.7            45          43             5           1
+## 2 CNN/ORC 7/13… 872 RV   3.5            42          37            13           5
+## 3 ABC Ne… 7/11… 816 RV   4              42          38             8           5
+## 4 NBC Ne… 7/9 … 1000 …   3.1            41          35            11           6
+## 5 Econom… 7/9 … 932 RV   4.5            40          37             5           2
+## 6 Associ… 7/7 … 837 RV  NA              40          36             6           2
+## 7 McClat… 7/5 … 1053 …   3              40          35            10           5</code></pre>
+<p>Suppose that you wanted to know what the average sample size of the polls was. Using <code>dplyr</code> functions,</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="tidying-with-tidyr.html#cb208-1" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">meansample =</span> <span class="fu">mean</span>(Sample))</span></code></pre></div>
+<pre><code>## Warning in mean.default(Sample): argument is not numeric or logical: returning
+## NA</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##   meansample
+##        &lt;dbl&gt;
+## 1         NA</code></pre>
+<p>What warning do you get? Why?</p>
+<p>You would get a similar warning (or sometimes an error) any time that you want to try to use <code>Sample</code> size in plotting or summaries. The issue is that the <code>Sample</code> column actually contains two variables so the data set is not tidy.</p>
+<div id="separate-a-column" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> <code>separate()</code> a Column</h3>
+<p>Let’s <code>separate()</code> the two variables into <code>Sample_size</code> and <code>Sample_type</code>:</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="tidying-with-tidyr.html#cb211-1" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">%&gt;%</span></span>
+<span id="cb211-2"><a href="tidying-with-tidyr.html#cb211-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Sample, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Sample_size&quot;</span>, <span class="st">&quot;Sample_type&quot;</span>), </span>
+<span id="cb211-3"><a href="tidying-with-tidyr.html#cb211-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 9
+##   Poll           Date    Sample_size Sample_type   MoE `Clinton (D)` `Trump (R)`
+##   &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Monmouth       7/14 -… 688         LV            3.7            45          43
+## 2 CNN/ORC        7/13 -… 872         RV            3.5            42          37
+## 3 ABC News/Wash… 7/11 -… 816         RV            4              42          38
+## 4 NBC News/Wall… 7/9 - … 1000        RV            3.1            41          35
+## 5 Economist/You… 7/9 - … 932         RV            4.5            40          37
+## 6 Associated Pr… 7/7 - … 837         RV           NA              40          36
+## 7 McClatchy/Mar… 7/5 - … 1053        RV            3              40          35
+## # … with 2 more variables: Johnson (L) &lt;dbl&gt;, Stein (G) &lt;dbl&gt;</code></pre>
+<p>The arguments to <code>separate()</code> are fairly easy to learn:</p>
+<ul>
+<li><p><code>col</code> is the name of the column in the data set you want to separate.</p></li>
+<li><p><code>into</code> is the name of the new columns. These could be anything you want, and are entered in as a vector (with <code>c()</code> to separate the names)</p></li>
+<li><p><code>sep</code> is the character that you want to separate the column by. In this case, the sample size and sample type were separated by whitespace, so our <code>sep = " "</code>, white space.</p></li>
+</ul>
+<p>The <code>sep</code> argument is the newest piece of information here. Note that even using <code>sep = ""</code> will produce an error (there is not a space now, so <code>R</code> doesn’t know what to separate by).</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="tidying-with-tidyr.html#cb213-1" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">%&gt;%</span></span>
+<span id="cb213-2"><a href="tidying-with-tidyr.html#cb213-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Sample, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Sample_size&quot;</span>, <span class="st">&quot;Sample_type&quot;</span>), </span>
+<span id="cb213-3"><a href="tidying-with-tidyr.html#cb213-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p>Similarly, we would like the <code>Date</code> column to be separated into a poll start date and a poll end date:</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="tidying-with-tidyr.html#cb214-1" aria-hidden="true" tabindex="-1"></a>polls_sep <span class="ot">&lt;-</span> polls <span class="sc">%&gt;%</span></span>
+<span id="cb214-2"><a href="tidying-with-tidyr.html#cb214-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Date, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Start&quot;</span>, <span class="st">&quot;End&quot;</span>),</span>
+<span id="cb214-3"><a href="tidying-with-tidyr.html#cb214-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; - &quot;</span>)</span></code></pre></div>
+<p>Why should you use <code>" - "</code> as the separator instead of <code>"-"</code>? Try using <code>"-"</code> if you aren’t sure: you shouldn’t get an error but something should look off.</p>
+<p>What happened to <code>Sample</code>? Why is it back to its un-separated form?</p>
+</div>
+<div id="unite-columns" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> <code>unite()</code> Columns</h3>
+<p><code>unite()</code> is the “opposite” of <code>separate()</code>: use it when one variable is stored across multiple columns, but each row still represents a single case. The need to use <code>unite()</code> is less common than <code>separate()</code>. In our current data set, there is no need to use it at all. But, for the sake of seeing an example, let’s separate the <code>Start</code> date into <code>month</code> and <code>day</code> and then use <code>unite()</code> to re-unite those columns:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="tidying-with-tidyr.html#cb215-1" aria-hidden="true" tabindex="-1"></a>polls_sillytest <span class="ot">&lt;-</span> polls_sep <span class="sc">%&gt;%</span></span>
+<span id="cb215-2"><a href="tidying-with-tidyr.html#cb215-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Start, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Start_month&quot;</span>, <span class="st">&quot;Start_day&quot;</span>), </span>
+<span id="cb215-3"><a href="tidying-with-tidyr.html#cb215-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb215-4"><a href="tidying-with-tidyr.html#cb215-4" aria-hidden="true" tabindex="-1"></a>polls_sillytest</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 10
+##   Poll        Start_month Start_day End   Sample   MoE `Clinton (D)` `Trump (R)`
+##   &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Monmouth    7           14        7/16  688 LV   3.7            45          43
+## 2 CNN/ORC     7           13        7/16  872 RV   3.5            42          37
+## 3 ABC News/W… 7           11        7/14  816 RV   4              42          38
+## 4 NBC News/W… 7           9         7/13  1000 …   3.1            41          35
+## 5 Economist/… 7           9         7/11  932 RV   4.5            40          37
+## 6 Associated… 7           7         7/11  837 RV  NA              40          36
+## 7 McClatchy/… 7           5         7/9   1053 …   3              40          35
+## # … with 2 more variables: Johnson (L) &lt;dbl&gt;, Stein (G) &lt;dbl&gt;</code></pre>
+<p>This situtation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use <code>unite()</code> to combine these two columns into a single <code>Date</code>, called <code>New_start_date</code>:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="tidying-with-tidyr.html#cb217-1" aria-hidden="true" tabindex="-1"></a>polls_sillytest <span class="sc">%&gt;%</span></span>
+<span id="cb217-2"><a href="tidying-with-tidyr.html#cb217-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">&quot;New_start_date&quot;</span>, <span class="fu">c</span>(Start_month, Start_day),</span>
+<span id="cb217-3"><a href="tidying-with-tidyr.html#cb217-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 9
+##   Poll               New_start_date End   Sample   MoE `Clinton (D)` `Trump (R)`
+##   &lt;chr&gt;              &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Monmouth           7/14           7/16  688 LV   3.7            45          43
+## 2 CNN/ORC            7/13           7/16  872 RV   3.5            42          37
+## 3 ABC News/Wash Post 7/11           7/14  816 RV   4              42          38
+## 4 NBC News/Wall St.… 7/9            7/13  1000 …   3.1            41          35
+## 5 Economist/YouGov   7/9            7/11  932 RV   4.5            40          37
+## 6 Associated Press-… 7/7            7/11  837 RV  NA              40          36
+## 7 McClatchy/Marist   7/5            7/9   1053 …   3              40          35
+## # … with 2 more variables: Johnson (L) &lt;dbl&gt;, Stein (G) &lt;dbl&gt;</code></pre>
+<p>Note how <code>unite()</code> just switches around the first two arguments of <code>separate()</code>. Argument 1 is now the name of the new column and Argument 2 is the names of columns in the data set that you want to combine.</p>
+<p>While <code>c()</code> is a very general <code>R</code> function and isn’t specific to tidy data, this is the first time that we’re seeing it in this course. <code>c()</code> officially stands for concatenate, but, in simpler terms, <code>c()</code> combines two or more “things,” separated by a comma.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="tidying-with-tidyr.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1 4 2</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="tidying-with-tidyr.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;A&quot; &quot;D&quot;</code></pre>
+<p>This is useful if a function argument expects two or more “things”: for example, in <code>separate()</code>, the <code>into</code> argument requires two column names for this example. Those column names must be specified by combining the names together with <code>c()</code>.</p>
+</div>
+<div id="column-names-and-rename" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Column Names and <code>rename()</code></h3>
+<p>You might have noticed that the columns with percentage of votes for Clinton, Trump, etc. are surrounded by backticks <code></code> when you print <code>polls</code> or <code>polls_sep</code>:</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="tidying-with-tidyr.html#cb223-1" aria-hidden="true" tabindex="-1"></a>polls_sep</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 9
+##   Poll          Start End   Sample   MoE `Clinton (D)` `Trump (R)` `Johnson (L)`
+##   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Monmouth      7/14  7/16  688 LV   3.7            45          43             5
+## 2 CNN/ORC       7/13  7/16  872 RV   3.5            42          37            13
+## 3 ABC News/Was… 7/11  7/14  816 RV   4              42          38             8
+## 4 NBC News/Wal… 7/9   7/13  1000 …   3.1            41          35            11
+## 5 Economist/Yo… 7/9   7/11  932 RV   4.5            40          37             5
+## 6 Associated P… 7/7   7/11  837 RV  NA              40          36             6
+## 7 McClatchy/Ma… 7/5   7/9   1053 …   3              40          35            10
+## # … with 1 more variable: Stein (G) &lt;dbl&gt;</code></pre>
+<p>This happens because the column names have a space in them (this also would occur if the columns started with a number or had odd special characters in them). Then, any time you want to reference a variable, you need the include the backticks:</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tidying-with-tidyr.html#cb225-1" aria-hidden="true" tabindex="-1"></a>polls_sep <span class="sc">%&gt;%</span></span>
+<span id="cb225-2"><a href="tidying-with-tidyr.html#cb225-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanclinton =</span> <span class="fu">mean</span>(<span class="fu">Clinton</span> (D))) <span class="do">## throws an error</span></span>
+<span id="cb225-3"><a href="tidying-with-tidyr.html#cb225-3" aria-hidden="true" tabindex="-1"></a>polls_sep <span class="sc">%&gt;%</span></span>
+<span id="cb225-4"><a href="tidying-with-tidyr.html#cb225-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanclinton =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Clinton (D)</span><span class="st">`</span>)) <span class="do">## backticks save the day!</span></span></code></pre></div>
+<p>Having variable names with spaces doesn’t technically violate any principle of tidy data, but it can be quite annoying. Always using backticks can be a huge pain. We can rename variables easily with <code>rename()</code>, which just takes a series of <code>new_name = old_name</code> arguments.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="tidying-with-tidyr.html#cb226-1" aria-hidden="true" tabindex="-1"></a>polls_new <span class="ot">&lt;-</span> polls_sep <span class="sc">%&gt;%</span></span>
+<span id="cb226-2"><a href="tidying-with-tidyr.html#cb226-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Clinton_D =</span> <span class="st">`</span><span class="at">Clinton (D)</span><span class="st">`</span>, <span class="at">Trump_R =</span> <span class="st">`</span><span class="at">Trump (R)</span><span class="st">`</span>,</span>
+<span id="cb226-3"><a href="tidying-with-tidyr.html#cb226-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Johnson_L =</span> <span class="st">`</span><span class="at">Johnson (L)</span><span class="st">`</span>, <span class="at">Stein_G =</span> <span class="st">`</span><span class="at">Stein (G)</span><span class="st">`</span>)</span>
+<span id="cb226-4"><a href="tidying-with-tidyr.html#cb226-4" aria-hidden="true" tabindex="-1"></a>polls_new</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 9
+##   Poll              Start End   Sample   MoE Clinton_D Trump_R Johnson_L Stein_G
+##   &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Monmouth          7/14  7/16  688 LV   3.7        45      43         5       1
+## 2 CNN/ORC           7/13  7/16  872 RV   3.5        42      37        13       5
+## 3 ABC News/Wash Po… 7/11  7/14  816 RV   4          42      38         8       5
+## 4 NBC News/Wall St… 7/9   7/13  1000 …   3.1        41      35        11       6
+## 5 Economist/YouGov  7/9   7/11  932 RV   4.5        40      37         5       2
+## 6 Associated Press… 7/7   7/11  837 RV  NA          40      36         6       2
+## 7 McClatchy/Marist  7/5   7/9   1053 …   3          40      35        10       5</code></pre>
+<p><code>rename()</code> can also be very useful if you have variable names that are very long to type out. <code>rename()</code> is actually from <code>dplyr</code>, not <code>tidyr</code>, but we didn’t have a need for it with any of the <code>dplyr</code> data sets.</p>
+</div>
+<div id="exercise-4-1" class="section level3" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Exercises</h3>
+<p>The MLB salary data set contains salaries on all 862 players in Major League Baseball in 2016. The data set was obtained from <a href="http://www.usatoday.com/sports/mlb/salaries/2016/player/all/" target="_blank">http://www.usatoday.com/sports/mlb/salaries/2016/player/all/</a></p>
+<ol style="list-style-type: decimal">
+<li>Read in the data using the following code chunk and write a sentence or two that explains why the data set is not tidy.</li>
+</ol>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="tidying-with-tidyr.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb228-2"><a href="tidying-with-tidyr.html#cb228-2" aria-hidden="true" tabindex="-1"></a>baseball_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/mlb2016.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Name = col_character(),
+##   Team = col_character(),
+##   POS = col_character(),
+##   Salary = col_character(),
+##   Years = col_character(),
+##   Total.Value = col_character(),
+##   Avg.Annual = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="tidying-with-tidyr.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(baseball_df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##   Name            Team  POS   Salary       Years        Total.Value  Avg.Annual 
+##   &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;      
+## 1 Clayton Kershaw LAD   SP    $ 33,000,000 7 (2014-20)  $ 215,000,0… $ 30,714,2…
+## 2 Zack Greinke    ARI   SP    $ 31,799,030 6 (2016-21)  $ 206,500,0… $ 34,416,6…
+## 3 David Price     BOS   SP    $ 30,000,000 7 (2016-22)  $ 217,000,0… $ 31,000,0…
+## 4 Miguel Cabrera  DET   1B    $ 28,000,000 10 (2014-23) $ 292,000,0… $ 29,200,0…
+## 5 Justin Verland… DET   SP    $ 28,000,000 7 (2013-19)  $ 180,000,0… $ 25,714,2…
+## 6 Yoenis Cespedes NYM   CF    $ 27,328,046 3 (2016-18)  $ 75,000,000 $ 25,000,0…</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Tidy the data set just so that</li>
+</ol>
+<ul>
+<li><code>Duration</code> of the salary contract (currently given in the <code>Year</code> column) is in its own column</li>
+<li>the year range (also currently given in the <code>Year</code> column) is split into a variable called <code>Start</code> and a varible called <code>End</code> year that give the start and end years of the contract. You can still have special characters for now (like <code>(</code> and <code>)</code>) in the start and end year.</li>
+</ul>
+<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 616 rows [48, 59,
+## 60, 61, 62, 76, 84, 101, 106, 114, 115, 117, 118, 119, 121, 125, 127, 128, 131,
+## 134, ...].</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>You should have received a warning message. What does this message mean? See if you can figure it out by typing <code>View(baseball_df)</code> in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc.</p></li>
+<li><p>We won’t learn about <code>parse_number()</code> until <code>readr</code>, but the function is straightforward enough to mention here. It’s useful when you have extra characters in the values of a numeric variable (like a <code>$</code> or a <code>(</code>), but you just want to grab the actual number:</p></li>
+</ol>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="tidying-with-tidyr.html#cb233-1" aria-hidden="true" tabindex="-1"></a>baseball_df <span class="ot">&lt;-</span> baseball_df <span class="sc">%&gt;%</span></span>
+<span id="cb233-2"><a href="tidying-with-tidyr.html#cb233-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Salary =</span> <span class="fu">parse_number</span>(Salary),</span>
+<span id="cb233-3"><a href="tidying-with-tidyr.html#cb233-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Total.Value =</span> <span class="fu">parse_number</span>(Total.Value),</span>
+<span id="cb233-4"><a href="tidying-with-tidyr.html#cb233-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Avg.Annual =</span> <span class="fu">parse_number</span>(Avg.Annual),</span>
+<span id="cb233-5"><a href="tidying-with-tidyr.html#cb233-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Start =</span> <span class="fu">parse_number</span>(Start),</span>
+<span id="cb233-6"><a href="tidying-with-tidyr.html#cb233-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">End =</span> <span class="fu">parse_number</span>(End))</span></code></pre></div>
+<p>Name the data set in the code chunk above something so that the parsing gets saved.</p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Using a function from <code>dplyr</code>. fix the <code>End</code> variable that you created so that, for example, the first observation is <code>2020</code> instead of just <code>20</code>.</p></li>
+<li><p><code>tidyr</code> is extremely useful, but it’s not glamorous. What you end up with is a data set that <code>ggplot2</code> and <code>dplyr</code> can use to do cool things. So, let’s do something with our tidy data set to make all that tidying a little worth it before moving on. Make a graphic that investigates how player <code>Salary</code> compares for different <code>POS</code>.</p></li>
+<li><p>State the reason why making that plot would not have worked before we tidied the data set.</p></li>
+</ol>
+</div>
+</div>
+<div id="reshaping-with-pivot_" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Reshaping with <code>pivot_()</code></h2>
+<p>We will continue to use the polling data set to introduce the pivoting functions and data reshaping. To make sure that we are all working with the same data set, run the following line of code:</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="tidying-with-tidyr.html#cb234-1" aria-hidden="true" tabindex="-1"></a>polls_clean <span class="ot">&lt;-</span> polls <span class="sc">%&gt;%</span></span>
+<span id="cb234-2"><a href="tidying-with-tidyr.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Sample, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Sample_size&quot;</span>, <span class="st">&quot;Sample_type&quot;</span>), </span>
+<span id="cb234-3"><a href="tidying-with-tidyr.html#cb234-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb234-4"><a href="tidying-with-tidyr.html#cb234-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Date, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Start&quot;</span>, <span class="st">&quot;End&quot;</span>),</span>
+<span id="cb234-5"><a href="tidying-with-tidyr.html#cb234-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot; - &quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb234-6"><a href="tidying-with-tidyr.html#cb234-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Clinton_D =</span> <span class="st">`</span><span class="at">Clinton (D)</span><span class="st">`</span>, <span class="at">Trump_R =</span> <span class="st">`</span><span class="at">Trump (R)</span><span class="st">`</span>,</span>
+<span id="cb234-7"><a href="tidying-with-tidyr.html#cb234-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Johnson_L =</span> <span class="st">`</span><span class="at">Johnson (L)</span><span class="st">`</span>, <span class="at">Stein_G =</span> <span class="st">`</span><span class="at">Stein (G)</span><span class="st">`</span>)</span>
+<span id="cb234-8"><a href="tidying-with-tidyr.html#cb234-8" aria-hidden="true" tabindex="-1"></a>polls_clean</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 10
+##   Poll     Start End   Sample_size Sample_type   MoE Clinton_D Trump_R Johnson_L
+##   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Monmouth 7/14  7/16  688         LV            3.7        45      43         5
+## 2 CNN/ORC  7/13  7/16  872         RV            3.5        42      37        13
+## 3 ABC New… 7/11  7/14  816         RV            4          42      38         8
+## 4 NBC New… 7/9   7/13  1000        RV            3.1        41      35        11
+## 5 Economi… 7/9   7/11  932         RV            4.5        40      37         5
+## 6 Associa… 7/7   7/11  837         RV           NA          40      36         6
+## 7 McClatc… 7/5   7/9   1053        RV            3          40      35        10
+## # … with 1 more variable: Stein_G &lt;dbl&gt;</code></pre>
+<p>The data set <code>polls_clean</code> <strong>still</strong> isn’t tidy!! The <code>candidate</code> variable is spread out over 4 different columns and the values in each of these 4 columns actually represent 1 variable: poll percentage.</p>
+<p>Thinking about data “tidyness” using the definitions above can sometimes be a little bit confusing. In practice, oftentimes we will usually realize that a data set is untidy when we go to do something that should be super simple but that something turns out to not be super simple at all when the data is in its current form.</p>
+<p>For example, one thing we might want to do is to make a plot that has poll <code>Start</code> time on the x-axis, polling numbers on the y-axis, and has candidates represented by different colours. For this small data set, we might not see any trends through time, but you could imagine this graph would be quite useful if we had polling numbers through June, July, August, September, etc.</p>
+<p>Take a moment to think about how you would make this graph in <code>ggplot2</code>: what is your x-axis variable? What variable are you specifying for the y-axis? For the colours?</p>
+<p>A first attempt in making a graph would be:</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="tidying-with-tidyr.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> polls_clean, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> Clinton_D)) <span class="sc">+</span> </span>
+<span id="cb236-2"><a href="tidying-with-tidyr.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ....??????????))</span></code></pre></div>
+<p>And we’re stuck. It’s certainly not impossible to make the graph with the data in its current form (keep adding <code>geom_point()</code> and re-specifying the aesthetics, then manually specify colours, then manually specify a legend), but it’s definitely a huge pain.</p>
+<p>This is where <code>pivot_longer()</code> can help! <a href="https://www.youtube.com/watch?v=8w3wmQAMoxQ" target="_blank">https://www.youtube.com/watch?v=8w3wmQAMoxQ</a></p>
+<div id="pivot_longer-to-gather-columns" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> <code>pivot_longer()</code> to Gather Columns</h3>
+<p><code>pivot_longer()</code> “pivots” the data set so that is has more rows (hence the “longer”) by collapsing multiple columns into two columns. One new column is a “key” column, which is the new variable containing the old data set’s column names. The second new column is a “value” column, which is the new variable containing the old data set’s values for each of the old data set’s column names. It’s easier to see this with an example. We know from our plotting exercise above that we’d really like a <code>candidate</code> variable to colour by and a <code>poll_percent</code> variable for the y-axis of our plot. So, we can use <code>pivot_longer()</code> to make these two columns:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="tidying-with-tidyr.html#cb237-1" aria-hidden="true" tabindex="-1"></a>polls_clean <span class="sc">%&gt;%</span></span>
+<span id="cb237-2"><a href="tidying-with-tidyr.html#cb237-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Clinton_D, Trump_R, Johnson_L, Stein_G),</span>
+<span id="cb237-3"><a href="tidying-with-tidyr.html#cb237-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;candidate&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;poll_percent&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 28 x 8
+##    Poll         Start End   Sample_size Sample_type   MoE candidate poll_percent
+##    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Monmouth     7/14  7/16  688         LV            3.7 Clinton_D           45
+##  2 Monmouth     7/14  7/16  688         LV            3.7 Trump_R             43
+##  3 Monmouth     7/14  7/16  688         LV            3.7 Johnson_L            5
+##  4 Monmouth     7/14  7/16  688         LV            3.7 Stein_G              1
+##  5 CNN/ORC      7/13  7/16  872         RV            3.5 Clinton_D           42
+##  6 CNN/ORC      7/13  7/16  872         RV            3.5 Trump_R             37
+##  7 CNN/ORC      7/13  7/16  872         RV            3.5 Johnson_L           13
+##  8 CNN/ORC      7/13  7/16  872         RV            3.5 Stein_G              5
+##  9 ABC News/Wa… 7/11  7/14  816         RV            4   Clinton_D           42
+## 10 ABC News/Wa… 7/11  7/14  816         RV            4   Trump_R             38
+## # … with 18 more rows</code></pre>
+<p><code>pivot_longer()</code> has three important arguments:</p>
+<ul>
+<li><code>cols</code>, the names of the columns that you want to PIVOT!</li>
+<li><code>names_to</code>, the name of the new variable that will have the old column names (anything you want it to be!)</li>
+<li><code>values_to</code>, the name of the new variable that will have the old column values (anything you want it to be!)</li>
+</ul>
+<p>What happens when you omit <code>names_to</code> and <code>values_to</code> arguments? Give it a try!</p>
+<p>Now we can make our plot using Week 1 <code>ggplot</code> functions. But don’t forget to give a name to our new “long” data set first!</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="tidying-with-tidyr.html#cb239-1" aria-hidden="true" tabindex="-1"></a>polls_long <span class="ot">&lt;-</span> polls_clean <span class="sc">%&gt;%</span></span>
+<span id="cb239-2"><a href="tidying-with-tidyr.html#cb239-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Clinton_D, Trump_R, Johnson_L, Stein_G),</span>
+<span id="cb239-3"><a href="tidying-with-tidyr.html#cb239-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;candidate&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;poll_percent&quot;</span>)</span>
+<span id="cb239-4"><a href="tidying-with-tidyr.html#cb239-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb239-5"><a href="tidying-with-tidyr.html#cb239-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ignore as.Date for now....we will get to dates later!</span></span>
+<span id="cb239-6"><a href="tidying-with-tidyr.html#cb239-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> polls_long,</span>
+<span id="cb239-7"><a href="tidying-with-tidyr.html#cb239-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.Date</span>(Start, <span class="st">&quot;%m/%d&quot;</span>), <span class="at">y =</span> poll_percent,</span>
+<span id="cb239-8"><a href="tidying-with-tidyr.html#cb239-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb239-9"><a href="tidying-with-tidyr.html#cb239-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Poll Start Date&quot;</span>)</span></code></pre></div>
+<p><img src="04-tidyr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="pivot_wider-to-spread-to-multiple-columns" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</h3>
+<p>The “opposite” of <code>pivot_longer()</code> is <code>pivot_wider()</code>. We need to use <code>pivot_wider()</code> when one case is actually spread across multiple rows. Again, I typically will realize there is an issue with untidy data when I go to do something that should be simple and it’s not.</p>
+<p>Let’s examine some airline safety data that fivethirtyeight used in their Should Travelers Avoid Flying Airlines that Have Had Crashes in the Past? story: <a href="https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/" target="_blank">https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/</a>
+. The raw data can be found <a href="https://github.com/fivethirtyeight/data/tree/master/airline-safety" target="_blank">here</a>.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="tidying-with-tidyr.html#cb240-1" aria-hidden="true" tabindex="-1"></a>airlines <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/airline-safety.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   airline = col_character(),
+##   avail_seat_km_per_week = col_double(),
+##   `incidents 1985_1999` = col_double(),
+##   `fatal_accidents 1985_1999` = col_double(),
+##   `fatalities 1985_1999` = col_double(),
+##   `incidents 2000_2014` = col_double(),
+##   `fatal_accidents 2000_2014` = col_double(),
+##   `fatalities 2000_2014` = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="tidying-with-tidyr.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airlines)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+##   airline  avail_seat_km_pe… `incidents 1985_… `fatal_accident… `fatalities 198…
+##   &lt;chr&gt;                &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Aer Lin…         320906734                 2                0                0
+## 2 Aeroflo…        1197672318                76               14              128
+## 3 Aerolin…         385803648                 6                0                0
+## 4 Aeromex…         596871813                 3                1               64
+## 5 Air Can…        1865253802                 2                0                0
+## 6 Air Fra…        3004002661                14                4               79
+## # … with 3 more variables: incidents 2000_2014 &lt;dbl&gt;,
+## #   fatal_accidents 2000_2014 &lt;dbl&gt;, fatalities 2000_2014 &lt;dbl&gt;</code></pre>
+<p>The data set contains the following columns:</p>
+<ul>
+<li><code>airline</code>, the name of the airline</li>
+<li><code>avail_seat_km_per_week</code>, the available seat kilometers flown each week</li>
+<li><code>incidents 1985_1999</code>, the number of incidents between 1985 and 1999</li>
+<li><code>fatal_accidents 1985_1999</code>, the number of fatal accidents between 1985 and 1999</li>
+<li><code>fatalities 1985_1999</code>, the number of fatalities between 1985 and 1999</li>
+<li><code>incidents 2000_2014</code></li>
+<li><code>fatal_accidents 2000_2014</code></li>
+<li><code>fatalities 2000_2014</code></li>
+</ul>
+<p>There’s a whole lot of mess in this data set: we really want a variable for year that has two values (1985-1999 and 2000-2014). Sometimes it’s tough to know where to even start, but one strategy is to draw a sketch of a data frame that you’d like to <strong>end</strong> with. For example, we think that we want a data set with the following columns: airline, available seat km, years, incidents, fatal accidents, and fatalities. So, our sketch might look something like:</p>
+<table>
+<thead>
+<tr class="header">
+<th>airline</th>
+<th>avail</th>
+<th>years</th>
+<th>incidents</th>
+<th>fatalacc</th>
+<th>fatalities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>airline1</td>
+<td>1009391</td>
+<td>1985-1999</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>airline1</td>
+<td>1009391</td>
+<td>2000-2014</td>
+<td>9</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>airline2</td>
+<td>2141</td>
+<td>1985-1999</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>etc.</p>
+<p>Let’s start with <code>pivot_longer()</code> to see if we can get year to be its own variable (We know that a year variable, which is what we want, will make more rows so <code>pivot_longer()</code> seems like a good place to start):</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="tidying-with-tidyr.html#cb244-1" aria-hidden="true" tabindex="-1"></a>airlines <span class="sc">%&gt;%</span></span>
+<span id="cb244-2"><a href="tidying-with-tidyr.html#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">&quot;type_year&quot;</span>,</span>
+<span id="cb244-3"><a href="tidying-with-tidyr.html#cb244-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;total_num&quot;</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 336 x 4
+##    airline    avail_seat_km_per_week type_year                 total_num
+##    &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;                         &lt;dbl&gt;
+##  1 Aer Lingus              320906734 incidents 1985_1999               2
+##  2 Aer Lingus              320906734 fatal_accidents 1985_1999         0
+##  3 Aer Lingus              320906734 fatalities 1985_1999              0
+##  4 Aer Lingus              320906734 incidents 2000_2014               0
+##  5 Aer Lingus              320906734 fatal_accidents 2000_2014         0
+##  6 Aer Lingus              320906734 fatalities 2000_2014              0
+##  7 Aeroflot*              1197672318 incidents 1985_1999              76
+##  8 Aeroflot*              1197672318 fatal_accidents 1985_1999        14
+##  9 Aeroflot*              1197672318 fatalities 1985_1999            128
+## 10 Aeroflot*              1197672318 incidents 2000_2014               6
+## # … with 326 more rows</code></pre>
+<p>Instead of giving <code>pivot_longer()</code> names of variables, we gave it the column numbers instead. So <code>c(3, 4, 5, 6, 7, 8)</code> corresponds to the 3rd, 4th, …., 8th columns in the data set. That didn’t quite give us a <code>year</code> variable, but we should be excited to see an opportunity to take advantage of <code>separate()</code>:</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="tidying-with-tidyr.html#cb246-1" aria-hidden="true" tabindex="-1"></a>airlines <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">&quot;type_year&quot;</span>,</span>
+<span id="cb246-2"><a href="tidying-with-tidyr.html#cb246-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values_to =</span> <span class="st">&quot;total_num&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb246-3"><a href="tidying-with-tidyr.html#cb246-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(type_year, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 336 x 5
+##    airline    avail_seat_km_per_week type            year      total_num
+##    &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;         &lt;dbl&gt;
+##  1 Aer Lingus              320906734 incidents       1985_1999         2
+##  2 Aer Lingus              320906734 fatal_accidents 1985_1999         0
+##  3 Aer Lingus              320906734 fatalities      1985_1999         0
+##  4 Aer Lingus              320906734 incidents       2000_2014         0
+##  5 Aer Lingus              320906734 fatal_accidents 2000_2014         0
+##  6 Aer Lingus              320906734 fatalities      2000_2014         0
+##  7 Aeroflot*              1197672318 incidents       1985_1999        76
+##  8 Aeroflot*              1197672318 fatal_accidents 1985_1999        14
+##  9 Aeroflot*              1197672318 fatalities      1985_1999       128
+## 10 Aeroflot*              1197672318 incidents       2000_2014         6
+## # … with 326 more rows</code></pre>
+<p>Is this the format that we want the data set to be in? Depending on the task, it could be. But, we also might want each of the accident <code>type</code>s to be its own variable. That is, we might want to collapse the data set to have a variable for <code>incidents</code>, a variable for <code>fatal_accidents</code>, and a variable for <code>fatalities</code>. If so, we want to add more columns to the data set, so we need to use <code>pivot_wider()</code>.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="tidying-with-tidyr.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="do">## name the long data set</span></span>
+<span id="cb248-2"><a href="tidying-with-tidyr.html#cb248-2" aria-hidden="true" tabindex="-1"></a>airlines_long <span class="ot">&lt;-</span> airlines <span class="sc">%&gt;%</span></span>
+<span id="cb248-3"><a href="tidying-with-tidyr.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">&quot;type_year&quot;</span>,</span>
+<span id="cb248-4"><a href="tidying-with-tidyr.html#cb248-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;total_num&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb248-5"><a href="tidying-with-tidyr.html#cb248-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(type_year, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb248-6"><a href="tidying-with-tidyr.html#cb248-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-7"><a href="tidying-with-tidyr.html#cb248-7" aria-hidden="true" tabindex="-1"></a><span class="do">## use pivot_wider() to create variables for incidents, fatalities, and</span></span>
+<span id="cb248-8"><a href="tidying-with-tidyr.html#cb248-8" aria-hidden="true" tabindex="-1"></a><span class="do">## fatal_accidents:</span></span>
+<span id="cb248-9"><a href="tidying-with-tidyr.html#cb248-9" aria-hidden="true" tabindex="-1"></a>airlines_long <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type,</span>
+<span id="cb248-10"><a href="tidying-with-tidyr.html#cb248-10" aria-hidden="true" tabindex="-1"></a>                              <span class="at">values_from =</span> total_num)</span></code></pre></div>
+<pre><code>## # A tibble: 112 x 6
+##    airline       avail_seat_km_per_… year   incidents fatal_accidents fatalities
+##    &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;           &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Aer Lingus              320906734 1985_…         2               0          0
+##  2 Aer Lingus              320906734 2000_…         0               0          0
+##  3 Aeroflot*              1197672318 1985_…        76              14        128
+##  4 Aeroflot*              1197672318 2000_…         6               1         88
+##  5 Aerolineas A…           385803648 1985_…         6               0          0
+##  6 Aerolineas A…           385803648 2000_…         1               0          0
+##  7 Aeromexico*             596871813 1985_…         3               1         64
+##  8 Aeromexico*             596871813 2000_…         5               0          0
+##  9 Air Canada             1865253802 1985_…         2               0          0
+## 10 Air Canada             1865253802 2000_…         2               0          0
+## # … with 102 more rows</code></pre>
+<p><code>pivot_wider()</code> has two main arguments:</p>
+<ul>
+<li><p><code>names_from</code>, the column in the old data set that will provide the names of the new columns and</p></li>
+<li><p><code>values_from</code>, the column in the old data set that will provide the values that fill in the new columns</p></li>
+</ul>
+<p>We will see more examples of <code>pivot_wider()</code> and <code>pivot_longer()</code> in the Exercises. Note that tidy data isn’t necessarily always better: you might find cases where you need to “untidy” the data by using <code>pivot_longer()</code> or <code>pivot_wider()</code>. However, most functions in <code>R</code> (and in other languages) work best with tidy data.</p>
+</div>
+<div id="exercise-4-2" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Once you have a handle on data science terminology, it’s not too difficult to transfer what you’ve learned to a different language. For example, students in computer science might be more familiar with Python. Google something like “pivot from wide to long in python” to find help on achieving the equivalent of <code>pivot_longer()</code> in Python.</li>
+</ol>
+<p>The <code>UBSprices2</code> data set contains information on prices of common commodities in cities throughout the world in the years 2003 and 2009. The three commodities in the data set are Rice (1 kg worth), Bread (1 kg worth), and a Big Mac <a href="https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif" class="uri">https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif</a></p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="tidying-with-tidyr.html#cb250-1" aria-hidden="true" tabindex="-1"></a>prices_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/UBSprices2.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   city = col_character(),
+##   bigmac2009 = col_double(),
+##   bread2009 = col_double(),
+##   rice2009 = col_double(),
+##   bigmac2003 = col_double(),
+##   bread2003 = col_double(),
+##   rice2003 = col_double()
+## )</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Convert the data set to a tidier form so that there is a <code>year</code> variable and a <code>commodity</code> variable that has 3 values: <code>"bigmac"</code>, <code>"bread"</code>, and <code>"rice"</code></li>
+</ol>
+<p><strong>Hint</strong>: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you’ll notice this is different than our other uses of <code>separate()</code> because there is no “-” or " " or “/” to use as a separating character. Look at the help for <code>separate()</code> and scroll down to the <code>sep</code> argument to see if you can figure out this issue. The first code chunk below shows the solution for this particular issue in case you only get stuck on this part while the second code chunk shows the entire solution.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="tidying-with-tidyr.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">separate</span>(name_of_variable, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;newname1&quot;</span>, <span class="st">&quot;newname2&quot;</span>), <span class="at">sep =</span> <span class="sc">-</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   city      commodity year  price
+##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
+## 1 Amsterdam bigmac    2009     19
+## 2 Amsterdam bread     2009     10
+## 3 Amsterdam rice      2009     11
+## 4 Amsterdam bigmac    2003     16
+## 5 Amsterdam bread     2003      9
+## 6 Amsterdam rice      2003      9</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Convert your data set from the previous exercise so that <code>commodity</code> is split up into 3 variables: <code>bigmac</code> price, <code>rice</code> price and <code>bread</code> price.</li>
+</ol>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="tidying-with-tidyr.html#cb254-1" aria-hidden="true" tabindex="-1"></a>prices_wide <span class="ot">&lt;-</span> prices_long <span class="sc">%&gt;%</span></span>
+<span id="cb254-2"><a href="tidying-with-tidyr.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> commodity, <span class="at">values_from =</span> price)</span>
+<span id="cb254-3"><a href="tidying-with-tidyr.html#cb254-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(prices_wide)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   city      year  bigmac bread  rice
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Amsterdam 2009      19    10    11
+## 2 Amsterdam 2003      16     9     9
+## 3 Athens    2009      30    13    27
+## 4 Athens    2003      21    12    19
+## 5 Auckland  2009      19    19    13
+## 6 Auckland  2003      19    19     9</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>In which data set would it be easiest to make a line plot with <code>year</code> on the x-axis and price of <code>rice</code> on the y-axis with lines for each <code>city</code>?</li>
+</ol>
+<p>In which data set would it be easiest to make a line chart with 3 lines, one for each type of commodity, for the city of Amsterdam?</p>
+<p>If you have time, make these plots!</p>
+</div>
+</div>
+<div id="skimming-data-with-skimr" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Skimming Data with <code>skimr</code></h2>
+<p>We’ve now talked about plotting, wrangling, and tidying data. When you first load a data set, it can be helpful to obtain a quick summary of all of the variables in that data set. Doing so gives you an idea about how many observations are missing, which variables are numeric and which are character, and the basic distribution of each variable.</p>
+<p>A helpful function for this is the <code>skim()</code> function in the <code>skimr</code> package. Load the package with <code>library(skimr)</code> and obtain summaries of the data sets we’ve used so far:</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="tidying-with-tidyr.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb256-2"><a href="tidying-with-tidyr.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(airlines)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-34">Table 5.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">airlines</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">56</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">7</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">airline</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">26</td>
+<td align="right">0</td>
+<td align="right">56</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="18%" />
+<col width="7%" />
+<col width="10%" />
+<col width="9%" />
+<col width="9%" />
+<col width="7%" />
+<col width="7%" />
+<col width="8%" />
+<col width="9%" />
+<col width="7%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">avail_seat_km_per_week</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.384621e+09</td>
+<td align="right">1.465317e+09</td>
+<td align="right">259373346</td>
+<td align="right">474036223</td>
+<td align="right">802908893.0</td>
+<td align="right">1.847239e+09</td>
+<td align="right">7139291291</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">incidents 1985_1999</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7.180000e+00</td>
+<td align="right">1.104000e+01</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">4.0</td>
+<td align="right">8.000000e+00</td>
+<td align="right">76</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">fatal_accidents 1985_1999</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.180000e+00</td>
+<td align="right">2.860000e+00</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">3.000000e+00</td>
+<td align="right">14</td>
+<td align="left">▇▃▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">fatalities 1985_1999</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.124100e+02</td>
+<td align="right">1.466900e+02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">48.5</td>
+<td align="right">1.842500e+02</td>
+<td align="right">535</td>
+<td align="left">▇▁▂▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">incidents 2000_2014</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4.120000e+00</td>
+<td align="right">4.540000e+00</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.0</td>
+<td align="right">5.250000e+00</td>
+<td align="right">24</td>
+<td align="left">▇▃▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">fatal_accidents 2000_2014</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">6.600000e-01</td>
+<td align="right">8.600000e-01</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">1.000000e+00</td>
+<td align="right">3</td>
+<td align="left">▇▃▁▃▁</td>
+</tr>
+<tr class="odd">
+<td align="left">fatalities 2000_2014</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.552000e+01</td>
+<td align="right">1.113300e+02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">8.325000e+01</td>
+<td align="right">537</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="tidying-with-tidyr.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(polls)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-34">Table 5.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">polls</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Poll</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">22</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Date</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">9</td>
+<td align="right">11</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Sample</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">MoE</td>
+<td align="right">1</td>
+<td align="right">0.86</td>
+<td align="right">3.63</td>
+<td align="right">0.56</td>
+<td align="right">3</td>
+<td align="right">3.2</td>
+<td align="right">3.6</td>
+<td align="right">3.92</td>
+<td align="right">4.5</td>
+<td align="left">▇▃▃▃▃</td>
+</tr>
+<tr class="even">
+<td align="left">Clinton (D)</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">41.43</td>
+<td align="right">1.81</td>
+<td align="right">40</td>
+<td align="right">40.0</td>
+<td align="right">41.0</td>
+<td align="right">42.00</td>
+<td align="right">45.0</td>
+<td align="left">▇▃▁▁▂</td>
+</tr>
+<tr class="odd">
+<td align="left">Trump (R)</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">37.29</td>
+<td align="right">2.75</td>
+<td align="right">35</td>
+<td align="right">35.5</td>
+<td align="right">37.0</td>
+<td align="right">37.50</td>
+<td align="right">43.0</td>
+<td align="left">▇▇▁▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">Johnson (L)</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">8.29</td>
+<td align="right">3.15</td>
+<td align="right">5</td>
+<td align="right">5.5</td>
+<td align="right">8.0</td>
+<td align="right">10.50</td>
+<td align="right">13.0</td>
+<td align="left">▇▂▁▅▂</td>
+</tr>
+<tr class="odd">
+<td align="left">Stein (G)</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">3.71</td>
+<td align="right">1.98</td>
+<td align="right">1</td>
+<td align="right">2.0</td>
+<td align="right">5.0</td>
+<td align="right">5.00</td>
+<td align="right">6.0</td>
+<td align="left">▇▁▁▇▂</td>
+</tr>
+</tbody>
+</table>
+<p>Find in the output the following:</p>
+<ul>
+<li>the number of rows in the data set and the number of columns</li>
+<li>the number of misisng values for each variable</li>
+<li>the number of unique values for each character variable</li>
+<li>the completion rate (the proportion of values that are non-missing).</li>
+</ul>
+<p>In the future, we will use <code>skim()</code> to get a brief summary of data sets before we begin working with them.</p>
+<p>There are a few more topics to discuss in tidying data. We have not yet discussed the 4th or 5th characteristics of tidy data (cells should not contain units and there should be no headers or footers), but these are usually dealt with when we read in the data. Therefore, these issues will be covered when we discuss <code>readr</code>.</p>
+<div id="exercises-exercise-4-3" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Exercises {exercise-4-3}</h3>
+<p>The <code>under5mortality.csv</code> file contains data on mortality for people under the age of 5 in countires around the world (mortality in deaths per 1000 people). The data come from <a href="https://www.gapminder.org/data/" class="uri">https://www.gapminder.org/data/</a>. The data set is <strong>extremely</strong> wide in its current form, having a column for each year in the data set. Read in the data set with</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb258-1"><a href="tidying-with-tidyr.html#cb258-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/under5mortality.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   `Under five mortality` = col_character()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb261-1"><a href="tidying-with-tidyr.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mortality_df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 217
+##   `Under five mortality` `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807`
+##   &lt;chr&gt;                   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Abkhazia                  NA     NA     NA     NA     NA     NA     NA     NA 
+## 2 Afghanistan              469.   469.   469.   469.   469.   469.   470.   470.
+## 3 Akrotiri and Dhekelia     NA     NA     NA     NA     NA     NA     NA     NA 
+## 4 Albania                  375.   375.   375.   375.   375.   375.   375.   375.
+## 5 Algeria                  460.   460.   460.   460.   460.   460.   460.   460.
+## 6 American Samoa            NA     NA     NA     NA     NA     NA     NA     NA 
+## # … with 208 more variables: 1808 &lt;dbl&gt;, 1809 &lt;dbl&gt;, 1810 &lt;dbl&gt;, 1811 &lt;dbl&gt;,
+## #   1812 &lt;dbl&gt;, 1813 &lt;dbl&gt;, 1814 &lt;dbl&gt;, 1815 &lt;dbl&gt;, 1816 &lt;dbl&gt;, 1817 &lt;dbl&gt;,
+## #   1818 &lt;dbl&gt;, 1819 &lt;dbl&gt;, 1820 &lt;dbl&gt;, 1821 &lt;dbl&gt;, 1822 &lt;dbl&gt;, 1823 &lt;dbl&gt;,
+## #   1824 &lt;dbl&gt;, 1825 &lt;dbl&gt;, 1826 &lt;dbl&gt;, 1827 &lt;dbl&gt;, 1828 &lt;dbl&gt;, 1829 &lt;dbl&gt;,
+## #   1830 &lt;dbl&gt;, 1831 &lt;dbl&gt;, 1832 &lt;dbl&gt;, 1833 &lt;dbl&gt;, 1834 &lt;dbl&gt;, 1835 &lt;dbl&gt;,
+## #   1836 &lt;dbl&gt;, 1837 &lt;dbl&gt;, 1838 &lt;dbl&gt;, 1839 &lt;dbl&gt;, 1840 &lt;dbl&gt;, 1841 &lt;dbl&gt;,
+## #   1842 &lt;dbl&gt;, 1843 &lt;dbl&gt;, 1844 &lt;dbl&gt;, 1845 &lt;dbl&gt;, 1846 &lt;dbl&gt;, 1847 &lt;dbl&gt;,
+## #   1848 &lt;dbl&gt;, 1849 &lt;dbl&gt;, 1850 &lt;dbl&gt;, 1851 &lt;dbl&gt;, 1852 &lt;dbl&gt;, 1853 &lt;dbl&gt;,
+## #   1854 &lt;dbl&gt;, 1855 &lt;dbl&gt;, 1856 &lt;dbl&gt;, 1857 &lt;dbl&gt;, 1858 &lt;dbl&gt;, 1859 &lt;dbl&gt;,
+## #   1860 &lt;dbl&gt;, 1861 &lt;dbl&gt;, 1862 &lt;dbl&gt;, 1863 &lt;dbl&gt;, 1864 &lt;dbl&gt;, 1865 &lt;dbl&gt;,
+## #   1866 &lt;dbl&gt;, 1867 &lt;dbl&gt;, 1868 &lt;dbl&gt;, 1869 &lt;dbl&gt;, 1870 &lt;dbl&gt;, 1871 &lt;dbl&gt;,
+## #   1872 &lt;dbl&gt;, 1873 &lt;dbl&gt;, 1874 &lt;dbl&gt;, 1875 &lt;dbl&gt;, 1876 &lt;dbl&gt;, 1877 &lt;dbl&gt;,
+## #   1878 &lt;dbl&gt;, 1879 &lt;dbl&gt;, 1880 &lt;dbl&gt;, 1881 &lt;dbl&gt;, 1882 &lt;dbl&gt;, 1883 &lt;dbl&gt;,
+## #   1884 &lt;dbl&gt;, 1885 &lt;dbl&gt;, 1886 &lt;dbl&gt;, 1887 &lt;dbl&gt;, 1888 &lt;dbl&gt;, 1889 &lt;dbl&gt;,
+## #   1890 &lt;dbl&gt;, 1891 &lt;dbl&gt;, 1892 &lt;dbl&gt;, 1893 &lt;dbl&gt;, 1894 &lt;dbl&gt;, 1895 &lt;dbl&gt;,
+## #   1896 &lt;dbl&gt;, 1897 &lt;dbl&gt;, 1898 &lt;dbl&gt;, 1899 &lt;dbl&gt;, 1900 &lt;dbl&gt;, 1901 &lt;dbl&gt;,
+## #   1902 &lt;dbl&gt;, 1903 &lt;dbl&gt;, 1904 &lt;dbl&gt;, 1905 &lt;dbl&gt;, 1906 &lt;dbl&gt;, 1907 &lt;dbl&gt;, …</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Use the <code>skim()</code> function in <code>skimr</code> to obtain some preliminary information about the data set.</p></li>
+<li><p>Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use <code>tidyr</code>, we aren’t going to want to type out <code>c(2, 3, 4, 5, .....)</code> all the way up to <code>217</code>! <code>R</code> has short-hand notation that we can use with <code>:</code>. For example, type in <code>4:9</code> in your console window. Use this notation to tidy the <code>mortality_df</code> data set.</p></li>
+</ol>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="tidying-with-tidyr.html#cb263-1" aria-hidden="true" tabindex="-1"></a>mortality_long <span class="ot">&lt;-</span> mortality_df <span class="sc">%&gt;%</span></span>
+<span id="cb263-2"><a href="tidying-with-tidyr.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">217</span>, <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb263-3"><a href="tidying-with-tidyr.html#cb263-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Mortality&quot;</span>,</span>
+<span id="cb263-4"><a href="tidying-with-tidyr.html#cb263-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">Year =</span> as.numeric))</span></code></pre></div>
+<p>You’ll need to add something to your <code>pivot_longer()</code> function to convert the variable <code>Year</code> to numeric. We haven’t talked too much about variable types yet so, after your <code>values_to = "Mortality"</code> statement, add <code>, names_transform = list(Year = as.numeric)</code>, making sure you have a second <code>)</code> to close the <code>pivot_longer()</code> function.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Make a line plot to look at the overall under 5 mortality trends for each country.</li>
+</ol>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="tidying-with-tidyr.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_long, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Mortality,</span>
+<span id="cb264-2"><a href="tidying-with-tidyr.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">`</span><span class="at">Under five mortality</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb264-3"><a href="tidying-with-tidyr.html#cb264-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb264-4"><a href="tidying-with-tidyr.html#cb264-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> mortality_long <span class="sc">%&gt;%</span></span>
+<span id="cb264-5"><a href="tidying-with-tidyr.html#cb264-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(<span class="st">`</span><span class="at">Under five mortality</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;Germany&quot;</span>),</span>
+<span id="cb264-6"><a href="tidying-with-tidyr.html#cb264-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="do">## can also mess around with colouring the lines</span></span></code></pre></div>
+<pre><code>## Warning: Removed 18644 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="04-tidyr_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tidying-with-tidyr.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="do">## red for specific countries.</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><p>What is the overall trend in under 5 mortality? Does every single country follow this trend? What looks strange about the plot, specifically about the data collected before 1900?</p></li>
+<li><p>Write two short paragraphs about an article found on <a href="https://www.r-bloggers.com/" target="_blank">https://www.r-bloggers.com/</a>. The most important thing for this exercise is to <strong>pick an article that interests you</strong>. There are many to choose from, with multiple posts being put up each day. For the purposes of this assignment though, find an article where the author actually provides code (most have this but there are a few that are more “big-picture” views of certain topics).</p></li>
+</ol>
+<p>In the first paragraph, answer the following: (a) What is the main purpose of the blog post? (b) What data is/are the author(s) using? (c) What are the main findings? (d) Why was it important for the author to have data in their main findings?</p>
+<p>In the second paragraph, discuss (a) Any code that you see that we have explicitly seen in class, (b) Any code that you see that we have not explicitly seen in class, and (c) anything else you find interesting about your article. Then, copy and paste the URL.</p>
+</div>
+</div>
+<div id="chapexercise-4" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Chapter Exercises</h2>
+<p>We will use nfl salary data obtained from FiveThirtyEight that were originally obtained from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-04-09" target="_blank">Spotrac.com</a>.</p>
+<p>The data set has the top 100 paid players for each year for each position from 2011 through 2018, broken down by player position. For those unfamiliar with American football, the positions in the data set are Quarterback, Running Back, Wide Receiver, Tight End, and Offensive Lineman for offense, Cornerback, Defensive Lineman, Linebacker, and Safety for Defense, and a separate category for Special Teams players that incudes punters and kickers. You can review a summary of player positions <a href="https://i.pinimg.com/originals/56/32/87/56328741cb64cd59dafd200c9d06a301.png" target="_blank"> here</a>.</p>
+<p>We are interested in how salaries compare for the top 100 players in each position and on how salaries have changed through time for each position.</p>
+<p>Read in the data set with</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb267-1"><a href="tidying-with-tidyr.html#cb267-1" aria-hidden="true" tabindex="-1"></a>nfl_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/nfl_salary.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   year = col_double(),
+##   Cornerback = col_double(),
+##   `Defensive Lineman` = col_double(),
+##   Linebacker = col_double(),
+##   `Offensive Lineman` = col_double(),
+##   Quarterback = col_double(),
+##   `Running Back` = col_double(),
+##   Safety = col_double(),
+##   `Special Teamer` = col_double(),
+##   `Tight End` = col_double(),
+##   `Wide Receiver` = col_double()
+## )</code></pre>
+<ol style="list-style-type: decimal">
+<li>Use the <code>skim()</code> and <code>head()</code> functions to look at the data, and then explain why this data set is <strong>not</strong> in tidy form.</li>
+</ol>
+<table>
+<caption><span id="tab:unnamed-chunk-40">Table 5.2: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">nfl_df</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">800</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">11</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">11</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="8%" />
+<col width="11%" />
+<col width="8%" />
+<col width="9%" />
+<col width="6%" />
+<col width="9%" />
+<col width="8%" />
+<col width="9%" />
+<col width="7%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">year</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2014.5</td>
+<td align="right">2.29</td>
+<td align="right">2011</td>
+<td align="right">2012.75</td>
+<td align="right">2014.5</td>
+<td align="right">2016.25</td>
+<td align="right">2018</td>
+<td align="left">▇▃▇▃▇</td>
+</tr>
+<tr class="even">
+<td align="left">Cornerback</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">3607020.9</td>
+<td align="right">3407402.13</td>
+<td align="right">600000</td>
+<td align="right">1110750.50</td>
+<td align="right">2235577.0</td>
+<td align="right">5000000.00</td>
+<td align="right">20000000</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Defensive Lineman</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">5277673.0</td>
+<td align="right">3708293.41</td>
+<td align="right">1400000</td>
+<td align="right">2574525.75</td>
+<td align="right">4145908.0</td>
+<td align="right">6729250.00</td>
+<td align="right">26100000</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">Linebacker</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">4488940.4</td>
+<td align="right">3241979.20</td>
+<td align="right">1243687</td>
+<td align="right">2101882.50</td>
+<td align="right">3431139.0</td>
+<td align="right">6000000.00</td>
+<td align="right">22100000</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Offensive Lineman</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">5348529.8</td>
+<td align="right">2862976.05</td>
+<td align="right">1873750</td>
+<td align="right">3022500.00</td>
+<td align="right">4550000.0</td>
+<td align="right">6865977.00</td>
+<td align="right">17545000</td>
+<td align="left">▇▃▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">Quarterback</td>
+<td align="right">55</td>
+<td align="right">0.93</td>
+<td align="right">4522280.6</td>
+<td align="right">6366845.34</td>
+<td align="right">24705</td>
+<td align="right">555000.00</td>
+<td align="right">1300000.0</td>
+<td align="right">5500000.00</td>
+<td align="right">37000000</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Running Back</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1937491.9</td>
+<td align="right">2349191.85</td>
+<td align="right">455125</td>
+<td align="right">604609.00</td>
+<td align="right">834569.5</td>
+<td align="right">2250000.00</td>
+<td align="right">15400000</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">Safety</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2542319.6</td>
+<td align="right">2367423.99</td>
+<td align="right">555000</td>
+<td align="right">850750.00</td>
+<td align="right">1597381.5</td>
+<td align="right">3308333.25</td>
+<td align="right">13000000</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Special Teamer</td>
+<td align="right">1</td>
+<td align="right">1.00</td>
+<td align="right">1354084.5</td>
+<td align="right">1087928.10</td>
+<td align="right">128824</td>
+<td align="right">555000.00</td>
+<td align="right">900000.0</td>
+<td align="right">1850000.00</td>
+<td align="right">5250000</td>
+<td align="left">▇▂▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">Tight End</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">1964607.8</td>
+<td align="right">2185900.10</td>
+<td align="right">371824</td>
+<td align="right">584890.50</td>
+<td align="right">837913.0</td>
+<td align="right">2445312.50</td>
+<td align="right">12262000</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Wide Receiver</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">3904309.2</td>
+<td align="right">3597079.85</td>
+<td align="right">655812</td>
+<td align="right">1414024.25</td>
+<td align="right">2600000.0</td>
+<td align="right">4861595.25</td>
+<td align="right">20558000</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li>Use a function in <code>tidyr</code> to make the data tidy, and give your tidy data set a new name.</li>
+</ol>
+<pre><code>## # A tibble: 8,000 x 3
+##     year position            salary
+##    &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;
+##  1  2011 Cornerback        11265916
+##  2  2011 Defensive Lineman 17818000
+##  3  2011 Linebacker        16420000
+##  4  2011 Offensive Lineman 15960000
+##  5  2011 Quarterback       17228125
+##  6  2011 Running Back      12955000
+##  7  2011 Safety             8871428
+##  8  2011 Special Teamer     4300000
+##  9  2011 Tight End          8734375
+## 10  2011 Wide Receiver     16250000
+## # … with 7,990 more rows</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position so that the highest paid players in each position all receive a <code>1</code>, the second highest paid players receive a <code>2</code>, etc. Compare your results for the default way that <code>R</code> uses to break ties between two salaries that are the same and using <code>ties.method = "first"</code>.</li>
+</ol>
+<p><strong>Hint</strong>: See Exercise 4 in <a href="dplyr.html#exercise-3-3">4.3.2</a> for another example on how to do this.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better?</li>
+</ol>
+<pre><code>## `summarise()` has grouped output by &#39;position&#39;. You can override using the `.groups` argument.</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li><p>The maximum salary is very dependent on one specific player. Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you’re a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years.</p></li>
+<li><p>Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like “inflation rate from 2011 to 2018” and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. Then, make a similar line plot as above but ignore all of the years between 2012 and 2017 (so your line plot will just have 2 points per position).</p></li>
+</ol>
+<p>After adjusting for inflation, how many positions have average higher salaries for the top 20 players in that position?</p>
+<pre><code>## `summarise()` has grouped output by &#39;position&#39;. You can override using the `.groups` argument.</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Construct a graph that shows how much salary decreases moving from higher ranked players to lower ranked players for each position in the year 2018. Why do you think the depreciation is so large for Quarterbacks?</li>
+</ol>
+<pre><code>## Warning: Removed 11 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (geom_point).
+
+## Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="communication-with-rmarkdown-and-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-tidyr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
