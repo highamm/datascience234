@@ -7,8 +7,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">STAT 234: Data Science</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
+        <li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
     download: ["pdf", "epub"]
     sharing:
       facebook: no

@@ -733,7 +733,7 @@ kable(mpg_df, digits = 1, caption = "My First Table Caption!!",
 
 ### `ggplot2` Communication S
 
-### Chapter Exercises 5 S
+### Chapter Exercises S {#chapexercise-5-S}
 
 1. \* Make a line graph that shows the relationship between `lifeExp` and `year` for each of the countries in the data set, faceting the graph by continent and also colouring by continent (though this is redundant). Add an x-axis label, a y-axis label, a legend label, and a title to the graph.
 

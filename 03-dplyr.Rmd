@@ -574,7 +574,7 @@ toy_df %>% mutate(xy = x * y)
 
 `R` puts another `NA` in place of x times y for the observation with the missing x.
 
-### Chapter Exercises 3 S
+### Chapter Exercises S {#chapexercise-3-S}
 
 2. \* a. Choose 5 names that interest you and create a new data set that only has data on those 5 names.
 

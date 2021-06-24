@@ -933,7 +933,7 @@ ggplot(data = stat113_df, aes(x = Sport, fill = Award)) +
 
 As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an olympic medal, compared with students who do not play a sport.
 
-### Chapter Exercises 2 S
+### Chapter Exercises S {#chapexercise-2-S}
 
 1. \* The default of `geom_smooth()` is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.
 

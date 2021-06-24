@@ -659,7 +659,7 @@ fitness_df %>% filter(weekday == 1 | weekday == 7) %>%
 
 If I loaded a package by checking the box, did some analysis, and gave my code to someone else, that person couldn't easily see which packages I loaded in. Therefore, they wouldn't necessarily be able to reproduce my results exactly.
 
-### Chapter Exercises 6 S
+### Chapter Exercises S {#chapexercise-6-S}
 
 1. \* Read in the data set and use `filter()` to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.
 

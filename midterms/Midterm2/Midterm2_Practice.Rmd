@@ -1,0 +1,43 @@
+---
+title: "Midterm 2 Practice"
+author: "Matt Higham"
+output: 
+  rmdformats::readthedown:
+    code_folding: show
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+  collapse = TRUE, fig.height = 3)
+```
+
+## Practice
+
+Solutions to these practice problems will not be provided but I will answer any question about these if you send me a reprex. Alternatively, you can go to our TA Tom's office hours on Tuesday evening if you have any questions. You should make sure to do these before the midterm, as there will be a couple of somewhat similar (but not the same) questions on the midterm.
+
+To answer the following practice questions for the upcoming midterm, use the fitness data set, which includes the following variables:
+
+* `Start`, the date
+* `distance`, distance moved, in miles
+* `steps`, steps taken, in number of steps
+
+```{r}
+library(tidyverse)
+fitness_df <- read_csv("higham_fitness.csv")
+fitness_df
+```
+
+Exercise 1. Remove any rows where the `distance` is less than 0.5 miles. Based on the context of the data, we can assume that these most of these outliers are days where the Apple Watch wasn't worn.
+
+Exercise 2. Create a frequency plot that shows the number of steps taken for Mondays and Tuesdays only, where there are two frequency lines with one colour for Monday and another colour for Tuesday. Use a colour-palette that is CVD-friendly. Finally, change the order that Monday and Tuesday appear on the legend so that "Tuesday" appears first. It doesn't make any sense to do this here, but you should maybe practice it anyway....
+
+Exercise 3. Make a table that shows the average number of steps for each month (so the table will have 12 rows, one for each month). Then, make a point plot so that the month with the highest average number of steps is given first and the month with the fewest average number of steps is given last.
+
+Exercise 4. Instead of ordering the months by highest to lowest as in the previous question, order them chronologically (January to December) and re-make the point plot. What are the advantages and disadvantages of a chronological ordering vs. an ordering by highest number of steps to lowest number of steps?
+
+Exercise 5. Finally, do a quick practice question with `stringr`. Get rid of the word "-est" in the following vector of strings.
+
+```{r}
+lovevec <- c("Data Science is the most awesome-est class because", "it's just like simply the most wonderful-est class",  "that ever existed in the history of the fun-est classes.")
+```

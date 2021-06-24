@@ -1,0 +1,175 @@
+"course_id","prof_id","rank","ethnic_gender","language","age","cls_perc_eval","cls_did_eval","cls_students","cls_level","cls_profs","cls_credits","bty_f1lower","bty_f1upper","bty_f2upper","bty_m1lower","bty_m1upper","bty_m2upper","bty_avg","pic_outfit","pic_color","course_1_score","course_2_score"
+1,1,"tenure track","minority -:- female","english",36,55.81395,24,43,"upper","single","multi credit",5,7,6,2,4,6,5,"not formal","color",4.7,NA
+2,1,"tenure track","minority -:- female","english",36,68.8,86,125,"upper","single","multi credit",5,7,6,2,4,6,5,"not formal","color",NA,4.1
+5,2,"tenured","not minority -:- male","english",59,85,17,20,"upper","multiple","multi credit",4,4,2,2,3,3,3,"not formal","color",4.6,NA
+6,2,"tenured","not minority -:- male","english",59,87.5,35,40,"upper","multiple","multi credit",4,4,2,2,3,3,3,"not formal","color",NA,4.3
+8,3,"tenured","not minority -:- male","english",51,100,55,55,"upper","single","multi credit",5,2,5,2,3,3,3.333,"not formal","color",4.1,NA
+9,3,"tenured","not minority -:- male","english",51,56.92308,111,195,"upper","single","multi credit",5,2,5,2,3,3,3.333,"not formal","color",NA,3.4
+10,4,"tenured","not minority -:- female","english",40,86.95652,40,46,"upper","single","multi credit",2,5,4,3,3,2,3.167,"not formal","color",4.5,NA
+11,4,"tenured","not minority -:- female","english",40,88.88889,24,27,"upper","single","multi credit",2,5,4,3,3,2,3.167,"not formal","color",NA,3.8
+18,5,"tenure track","not minority -:- female","english",31,87.5,42,48,"upper","multiple","multi credit",7,9,9,7,6,6,7.333,"not formal","color",4.8,NA
+19,5,"tenure track","not minority -:- female","english",31,90.90909,40,44,"upper","multiple","multi credit",7,9,9,7,6,6,7.333,"not formal","color",NA,4.6
+24,6,"tenured","not minority -:- male","english",62,64.53901,182,282,"upper","multiple","multi credit",6,6,5,5,5,6,5.5,"formal","color",4.4,NA
+25,6,"tenured","not minority -:- male","english",62,54.79452,160,292,"upper","multiple","multi credit",6,6,5,5,5,6,5.5,"formal","color",NA,4.6
+31,7,"tenure track","not minority -:- female","english",33,80.48781,33,41,"upper","single","multi credit",4,4,5,4,4,4,4.167,"not formal","color",4.4,NA
+32,7,"tenure track","not minority -:- female","english",33,85.29412,29,34,"upper","single","multi credit",4,4,5,4,4,4,4.167,"not formal","color",NA,4.3
+36,8,"tenured","not minority -:- female","english",51,60.97561,25,41,"upper","multiple","multi credit",4,6,6,2,3,3,4,"not formal","color",3.4,NA
+37,8,"tenured","not minority -:- female","english",51,95.45454,21,22,"upper","multiple","multi credit",4,6,6,2,3,3,4,"not formal","color",NA,4.5
+43,9,"tenure track","not minority -:- female","english",33,80,48,60,"upper","multiple","multi credit",3,7,5,5,3,5,4.667,"not formal","color",4.8,NA
+44,9,"tenure track","not minority -:- female","english",33,87.87878,29,33,"upper","single","multi credit",3,7,5,5,3,5,4.667,"not formal","color",NA,4.8
+50,10,"teaching","not minority -:- male","english",47,84.21053,16,19,"upper","single","multi credit",5,7,6,3,6,6,5.5,"not formal","color",4,NA
+51,10,"teaching","not minority -:- male","english",47,75,12,16,"upper","multiple","multi credit",5,7,6,3,6,6,5.5,"not formal","color",NA,4.3
+60,11,"tenure track","minority -:- male","non-english",35,72,18,25,"upper","single","multi credit",5,7,4,2,4,7,4.833,"not formal","color",3.6,NA
+61,11,"tenure track","minority -:- male","non-english",35,90.90909,30,33,"upper","single","multi credit",5,7,4,2,4,7,4.833,"not formal","color",NA,3.7
+63,12,"teaching","not minority -:- male","english",37,88.23529,30,34,"upper","multiple","multi credit",4,5,5,3,5,4,4.333,"not formal","color",4.1,NA
+64,12,"teaching","not minority -:- male","english",37,61.90476,13,21,"upper","single","multi credit",4,5,5,3,5,4,4.333,"not formal","color",NA,4.2
+68,13,"tenured","not minority -:- male","english",42,70,28,40,"upper","multiple","multi credit",4,7,5,4,4,5,4.833,"not formal","color",4.1,NA
+69,13,"tenured","not minority -:- male","english",42,60,18,30,"upper","multiple","multi credit",4,7,5,4,4,5,4.833,"not formal","color",NA,4.2
+75,14,"tenured","not minority -:- male","non-english",49,83.33334,30,36,"upper","multiple","multi credit",3,3,5,1,7,5,4,"not formal","color",3.5,NA
+76,14,"tenured","not minority -:- male","non-english",49,83.78378,31,37,"upper","single","multi credit",3,3,5,1,7,5,4,"not formal","color",NA,4.2
+79,15,"tenure track","not minority -:- female","english",37,82.14286,23,28,"upper","single","multi credit",6,7,7,5,4,4,5.5,"not formal","color",2.9,NA
+80,15,"tenure track","not minority -:- female","english",37,65.38461,34,52,"upper","multiple","multi credit",6,7,7,5,4,4,5.5,"not formal","color",NA,3.3
+83,16,"tenured","not minority -:- male","english",45,69.69697,23,33,"upper","single","multi credit",2,4,3,5,4,7,4.167,"not formal","color",4.6,NA
+84,16,"tenured","not minority -:- male","english",45,25.42373,45,177,"lower","single","multi credit",2,4,3,5,4,7,4.167,"not formal","color",NA,4.2
+89,17,"teaching","not minority -:- female","english",56,65.85366,27,41,"upper","single","multi credit",3,4,1,2,2,3,2.5,"not formal","color",4.4,NA
+90,17,"teaching","not minority -:- female","english",56,88.63636,39,44,"upper","single","multi credit",3,4,1,2,2,3,2.5,"not formal","color",NA,4.8
+94,18,"teaching","not minority -:- male","english",48,74.07407,100,135,"lower","multiple","multi credit",3,5,6,4,4,4,4.333,"not formal","color",4,NA
+95,18,"teaching","not minority -:- male","english",48,60.60606,20,33,"upper","multiple","multi credit",3,5,6,4,4,4,4.333,"not formal","color",NA,4.2
+102,19,"tenured","not minority -:- female","english",46,80.64516,25,31,"upper","multiple","multi credit",4,4,5,2,6,5,4.333,"not formal","black&white",4.9,NA
+103,19,"tenured","not minority -:- female","english",46,93.33334,14,15,"lower","multiple","multi credit",4,4,5,2,6,5,4.333,"not formal","black&white",NA,5
+111,20,"teaching","not minority -:- female","english",57,60.71429,17,28,"upper","multiple","multi credit",5,4,4,5,2,6,4.333,"not formal","color",3.5,NA
+112,20,"teaching","not minority -:- female","english",57,43.47826,10,23,"upper","multiple","multi credit",5,4,4,5,2,6,4.333,"not formal","color",NA,3.9
+121,21,"teaching","not minority -:- female","english",52,86.36364,19,22,"upper","single","multi credit",6,6,4,2,4,7,4.833,"not formal","color",3.7,NA
+122,21,"teaching","not minority -:- female","english",52,87.09677,27,31,"upper","multiple","multi credit",6,6,4,2,4,7,4.833,"not formal","color",NA,4.1
+128,23,"tenured","not minority -:- male","english",62,76.92308,30,39,"upper","single","multi credit",4,3,4,1,2,4,3,"not formal","color",4.3,NA
+129,23,"tenured","not minority -:- male","english",62,51.08696,94,184,"lower","single","multi credit",4,3,4,1,2,4,3,"not formal","color",NA,3.7
+133,24,"tenured","not minority -:- male","english",64,62.5,15,24,"upper","multiple","multi credit",5,4,5,3,3,5,4.167,"not formal","color",4.5,NA
+134,24,"tenured","not minority -:- male","english",64,75,51,68,"upper","multiple","multi credit",5,4,5,3,3,5,4.167,"not formal","color",NA,4.5
+140,25,"tenure track","not minority -:- female","english",34,76.92308,20,26,"upper","multiple","multi credit",8,9,8,6,8,8,7.833,"not formal","color",4.8,NA
+141,25,"tenure track","not minority -:- female","english",34,82.5,33,40,"upper","multiple","multi credit",8,9,8,6,8,8,7.833,"not formal","color",NA,4.1
+142,26,"tenured","not minority -:- male","english",58,52.83019,84,159,"upper","single","multi credit",4,4,5,2,4,4,3.833,"not formal","color",4.4,NA
+143,26,"tenured","not minority -:- male","english",58,47.01987,71,151,"upper","single","multi credit",4,4,5,2,4,4,3.833,"not formal","color",NA,4.3
+147,27,"tenured","minority -:- male","non-english",52,81.25,13,16,"upper","single","multi credit",4,5,7,5,4,4,4.833,"formal","color",4.4,NA
+148,27,"tenured","minority -:- male","non-english",52,100,23,23,"upper","single","multi credit",4,5,7,5,4,4,4.833,"formal","color",NA,4.7
+154,28,"tenured","not minority -:- male","english",73,70.58823,12,17,"upper","single","multi credit",1,3,6,2,1,5,3,"formal","color",3.6,NA
+155,28,"tenured","not minority -:- male","english",73,76.92308,10,13,"upper","single","multi credit",1,3,6,2,1,5,3,"formal","color",NA,4.4
+158,29,"tenured","not minority -:- male","english",70,35.07463,47,134,"upper","single","multi credit",5,3,2,3,3,2,3,"formal","color",4.6,NA
+159,29,"tenured","not minority -:- male","english",70,10.41667,5,48,"upper","single","multi credit",5,3,2,3,3,2,3,"formal","color",NA,4.6
+163,31,"teaching","not minority -:- male","english",63,65.11628,28,43,"upper","single","multi credit",5,4,6,4,2,5,4.333,"not formal","color",4.3,NA
+164,31,"teaching","not minority -:- male","english",63,78.57143,11,14,"upper","multiple","multi credit",5,4,6,4,2,5,4.333,"not formal","color",NA,4.4
+170,32,"tenured","not minority -:- male","english",47,66.66666,10,15,"upper","multiple","multi credit",1,4,3,2,3,3,2.667,"not formal","color",4.9,NA
+171,32,"tenured","not minority -:- male","english",47,71.42857,10,14,"upper","multiple","multi credit",1,4,3,2,3,3,2.667,"not formal","color",NA,4.1
+173,33,"tenured","not minority -:- male","english",39,34.95935,86,246,"lower","multiple","multi credit",5,6,6,6,5,5,5.5,"not formal","color",4.2,NA
+174,33,"tenured","not minority -:- male","english",39,48.73418,154,316,"lower","multiple","multi credit",5,6,6,6,5,5,5.5,"not formal","color",NA,3.9
+178,34,"tenure track","minority -:- female","english",47,100,21,21,"lower","single","multi credit",2,6,6,3,5,4,4.333,"not formal","color",4.2,NA
+179,34,"tenure track","minority -:- female","english",47,100,8,8,"upper","multiple","multi credit",2,6,6,3,5,4,4.333,"not formal","color",NA,4
+191,35,"tenured","not minority -:- male","english",54,100,15,15,"upper","single","multi credit",1,2,4,1,2,4,2.333,"formal","color",4.3,NA
+192,35,"tenured","not minority -:- male","english",54,66.66666,10,15,"upper","single","multi credit",1,2,4,1,2,4,2.333,"formal","color",NA,4.1
+194,36,"tenured","minority -:- female","english",44,54.54546,30,55,"upper","multiple","multi credit",6,8,8,5,7,5,6.5,"not formal","color",3.9,NA
+195,36,"tenured","minority -:- female","english",44,72.91666,35,48,"upper","single","multi credit",6,8,8,5,7,5,6.5,"not formal","color",NA,3.5
+198,37,"tenured","minority -:- male","english",47,74.07407,20,27,"upper","single","multi credit",2,2,2,2,2,4,2.333,"not formal","color",3.9,NA
+199,37,"tenured","minority -:- male","english",47,64.28571,9,14,"upper","single","multi credit",2,2,2,2,2,4,2.333,"not formal","color",NA,3.3
+209,38,"tenured","not minority -:- male","english",60,73.52941,25,34,"upper","multiple","multi credit",4,4,6,2,2,4,3.667,"not formal","color",4.8,NA
+210,38,"tenured","not minority -:- male","english",60,75,12,16,"upper","single","multi credit",4,4,6,2,2,4,3.667,"not formal","color",NA,4.8
+218,40,"tenure track","not minority -:- male","english",42,92.85714,13,14,"upper","multiple","multi credit",3,5,3,3,6,4,4,"not formal","color",4.4,NA
+219,40,"tenure track","not minority -:- male","english",42,100,14,14,"upper","multiple","multi credit",3,5,3,3,6,4,4,"not formal","color",NA,4.3
+223,41,"tenured","not minority -:- male","english",35,82.35294,42,51,"upper","single","multi credit",4,7,2,6,4,6,4.833,"not formal","color",4.3,NA
+224,41,"tenured","not minority -:- male","english",35,91.30434,21,23,"lower","multiple","multi credit",4,7,2,6,4,6,4.833,"not formal","color",NA,4.8
+227,42,"teaching","not minority -:- female","english",39,91.66666,22,24,"lower","single","multi credit",8,8,8,7,9,9,8.167,"not formal","color",3.3,NA
+228,42,"teaching","not minority -:- female","english",39,78.26087,18,23,"upper","multiple","multi credit",8,8,8,7,9,9,8.167,"not formal","color",NA,4.7
+231,43,"tenured","not minority -:- male","english",49,62.22222,28,45,"upper","single","multi credit",6,6,7,6,9,5,6.5,"formal","color",4,NA
+232,43,"tenured","not minority -:- male","english",49,64.28571,27,42,"upper","single","multi credit",6,6,7,6,9,5,6.5,"formal","color",NA,4.1
+234,44,"tenured","not minority -:- male","english",61,81.48148,22,27,"lower","single","multi credit",5,5,4,4,5,6,4.833,"formal","color",4.5,NA
+235,44,"tenured","not minority -:- male","english",61,81.57895,31,38,"upper","multiple","multi credit",5,5,4,4,5,6,4.833,"formal","color",NA,4.6
+238,45,"tenure track","not minority -:- male","english",33,96.77419,30,31,"upper","single","multi credit",7,8,7,6,7,7,7,"formal","color",4.9,NA
+239,45,"tenure track","not minority -:- male","english",33,92.30769,12,13,"upper","single","multi credit",7,8,7,6,7,7,7,"formal","color",NA,3.1
+242,47,"tenured","not minority -:- female","english",56,63.15789,12,19,"upper","single","multi credit",2,4,4,4,3,6,3.833,"formal","color",3.9,NA
+243,47,"tenured","not minority -:- female","english",56,80,16,20,"upper","single","multi credit",2,4,4,4,3,6,3.833,"formal","color",NA,3.9
+245,48,"teaching","not minority -:- female","english",50,81.48148,22,27,"lower","single","multi credit",2,3,5,2,3,4,3.167,"not formal","color",4.4,NA
+246,48,"teaching","not minority -:- female","english",50,75,24,32,"lower","single","one credit",2,3,5,2,3,4,3.167,"not formal","color",NA,4.2
+252,49,"tenured","not minority -:- male","english",52,85.07462,57,67,"upper","multiple","multi credit",4,3,5,2,2,3,3.167,"not formal","color",4.4,NA
+253,49,"tenured","not minority -:- male","english",52,91.01124,81,89,"upper","multiple","multi credit",4,3,5,2,2,3,3.167,"not formal","color",NA,4.1
+265,50,"tenure track","not minority -:- female","english",33,66.66666,10,15,"upper","multiple","multi credit",3,7,9,4,5,7,5.833,"not formal","black&white",4.5,NA
+266,50,"tenure track","not minority -:- female","english",33,100,10,10,"upper","multiple","multi credit",3,7,9,4,5,7,5.833,"not formal","black&white",NA,4.9
+271,51,"tenured","not minority -:- male","english",57,89.61039,69,77,"upper","multiple","multi credit",5,6,6,5,7,5,5.667,"not formal","black&white",4.3,NA
+272,51,"tenured","not minority -:- male","english",57,87.80488,36,41,"upper","single","multi credit",5,6,6,5,7,5,5.667,"not formal","black&white",NA,4.4
+275,52,"tenured","not minority -:- female","english",38,70.76923,46,65,"upper","single","multi credit",6,8,9,4,5,7,6.5,"formal","black&white",4.8,NA
+276,52,"tenured","not minority -:- female","english",38,69.42675,109,157,"lower","multiple","multi credit",6,8,9,4,5,7,6.5,"formal","black&white",NA,4.6
+282,53,"tenure track","not minority -:- female","english",34,59.34066,54,91,"lower","multiple","multi credit",2,1,4,1,1,1,1.667,"not formal","color",4.1,NA
+283,53,"tenure track","not minority -:- female","english",34,57.5,46,80,"lower","multiple","multi credit",2,1,4,1,1,1,1.667,"not formal","color",NA,3.8
+288,54,"tenure track","not minority -:- male","english",34,66.66666,24,36,"upper","multiple","multi credit",6,7,7,6,8,6,6.667,"not formal","color",3.5,NA
+289,54,"tenure track","not minority -:- male","english",34,80,16,20,"upper","single","multi credit",6,7,7,6,8,6,6.667,"not formal","color",NA,4.1
+291,55,"tenure track","not minority -:- male","english",32,34.27419,85,248,"lower","multiple","multi credit",3,7,3,3,3,3,3.667,"formal","black&white",4,NA
+292,55,"tenure track","not minority -:- male","english",32,41.07143,69,168,"lower","multiple","multi credit",3,7,3,3,3,3,3.667,"formal","black&white",NA,3.9
+294,56,"tenure track","not minority -:- male","english",32,90.90909,20,22,"upper","single","multi credit",3,8,3,3,3,3,3.833,"formal","black&white",4.4,NA
+295,56,"tenure track","not minority -:- male","english",32,69.90292,72,103,"upper","multiple","multi credit",3,8,3,3,3,3,3.833,"formal","black&white",NA,4.7
+296,57,"tenured","not minority -:- female","english",42,70.96774,44,62,"lower","multiple","multi credit",5,5,8,6,8,5,6.167,"not formal","color",3.8,NA
+297,57,"tenured","not minority -:- female","english",42,62.19512,51,82,"upper","multiple","multi credit",5,5,8,6,8,5,6.167,"not formal","color",NA,4.1
+298,58,"tenured","not minority -:- female","english",43,68.62745,35,51,"lower","multiple","multi credit",2,3,5,3,3,4,3.333,"not formal","color",4.1,NA
+299,58,"tenured","not minority -:- female","english",43,51.42857,18,35,"upper","multiple","multi credit",2,3,5,3,3,4,3.333,"not formal","color",NA,4.7
+308,59,"tenure track","not minority -:- male","non-english",35,57.89474,11,19,"upper","single","multi credit",4,3,3,4,3,5,3.667,"not formal","black&white",3.7,NA
+309,59,"tenure track","not minority -:- male","non-english",35,52.38095,22,42,"lower","multiple","multi credit",4,3,3,4,3,5,3.667,"not formal","black&white",NA,3.6
+310,60,"tenured","not minority -:- female","english",62,81.48148,22,27,"upper","multiple","multi credit",1,5,5,1,4,5,3.5,"not formal","color",3.2,NA
+311,60,"tenured","not minority -:- female","english",62,56.25,9,16,"upper","multiple","multi credit",1,5,5,1,4,5,3.5,"not formal","color",NA,3.3
+315,63,"tenured","not minority -:- female","english",52,72.72727,64,88,"upper","multiple","multi credit",5,7,7,3,8,6,6,"formal","black&white",3.8,NA
+316,63,"tenured","not minority -:- female","english",52,71.42857,70,98,"upper","multiple","multi credit",5,7,7,3,8,6,6,"formal","black&white",NA,3.7
+317,64,"tenured","not minority -:- female","english",52,70.45454,31,44,"upper","multiple","multi credit",6,7,9,5,6,6,6.5,"not formal","black&white",3.7,NA
+318,64,"tenured","not minority -:- female","english",52,75.38461,49,65,"upper","multiple","multi credit",6,7,9,5,6,6,6.5,"not formal","black&white",NA,4
+320,65,"teaching","not minority -:- female","english",52,78.66666,59,75,"upper","multiple","multi credit",2,3,4,2,1,2,2.333,"not formal","color",4.5,NA
+321,65,"teaching","not minority -:- female","english",52,81.39535,35,43,"upper","multiple","multi credit",2,3,4,2,1,2,2.333,"not formal","color",NA,3.8
+327,66,"tenured","not minority -:- male","english",64,81.81818,9,11,"upper","multiple","multi credit",2,3,3,2,1,3,2.333,"not formal","color",3.8,NA
+328,66,"tenured","not minority -:- male","english",64,50,8,16,"upper","multiple","multi credit",2,3,3,2,1,3,2.333,"not formal","color",NA,3.5
+333,67,"tenured","not minority -:- male","english",50,93.75,15,16,"upper","multiple","multi credit",6,7,9,6,8,7,7.167,"not formal","color",4.5,NA
+334,67,"tenured","not minority -:- male","english",50,90,9,10,"upper","multiple","multi credit",6,7,9,6,8,7,7.167,"not formal","color",NA,3.7
+335,68,"tenured","not minority -:- male","english",60,71.875,23,32,"upper","multiple","multi credit",1,1,2,2,2,2,1.667,"not formal","color",2.4,NA
+336,68,"tenured","not minority -:- male","english",60,70,7,10,"upper","multiple","multi credit",1,1,2,2,2,2,1.667,"not formal","color",NA,3.1
+339,70,"tenure track","not minority -:- male","english",43,86.36364,19,22,"lower","multiple","multi credit",3,4,4,2,4,4,3.5,"not formal","color",4.5,NA
+340,70,"tenure track","not minority -:- male","english",43,53.57143,15,28,"lower","multiple","one credit",3,4,4,2,4,4,3.5,"not formal","color",NA,4.8
+348,71,"teaching","minority -:- male","english",50,70.83334,17,24,"lower","multiple","one credit",1,5,4,1,4,5,3.333,"not formal","color",4.6,NA
+349,71,"teaching","minority -:- male","english",50,90.90909,20,22,"lower","multiple","one credit",1,5,4,1,4,5,3.333,"not formal","color",NA,5
+358,72,"tenured","not minority -:- male","english",52,66.66666,46,69,"upper","multiple","multi credit",7,6,6,5,5,6,5.833,"not formal","color",3.5,NA
+359,72,"tenured","not minority -:- male","english",52,70.76923,46,65,"upper","multiple","multi credit",7,6,6,5,5,6,5.833,"not formal","color",NA,3.8
+364,73,"tenured","not minority -:- male","english",51,60.62718,348,574,"lower","multiple","multi credit",6,7,8,6,6,4,6.167,"formal","color",4.8,NA
+365,73,"tenured","not minority -:- male","english",51,64.2487,372,579,"lower","multiple","multi credit",6,7,8,6,6,4,6.167,"formal","color",NA,4.8
+369,74,"tenured","not minority -:- male","english",38,50.57471,44,87,"lower","multiple","multi credit",3,4,4,2,3,4,3.333,"not formal","color",4.2,NA
+370,74,"tenured","not minority -:- male","english",38,78.57143,66,84,"lower","multiple","multi credit",3,4,4,2,3,4,3.333,"not formal","color",NA,4.5
+373,75,"tenured","not minority -:- female","english",47,79.16666,19,24,"lower","single","multi credit",5,7,6,3,6,4,5.167,"formal","color",4,NA
+374,75,"tenured","not minority -:- female","english",47,56.71642,38,67,"lower","single","multi credit",5,7,6,3,6,4,5.167,"formal","color",NA,3.6
+375,76,"tenured","minority -:- female","english",43,45.63107,47,103,"lower","multiple","multi credit",5,6,4,2,4,4,4.167,"formal","color",3.7,NA
+376,76,"tenured","minority -:- female","english",43,48.94737,93,190,"lower","multiple","multi credit",5,6,4,2,4,4,4.167,"formal","color",NA,2.7
+377,77,"teaching","not minority -:- female","english",38,48.52941,33,68,"lower","multiple","multi credit",3,4,2,1,3,2,2.5,"not formal","color",4.5,NA
+378,77,"teaching","not minority -:- female","english",38,60,36,60,"lower","single","multi credit",3,4,2,1,3,2,2.5,"not formal","color",NA,4.4
+383,78,"tenured","not minority -:- male","english",43,76.92308,10,13,"lower","multiple","multi credit",4,4,5,4,4,5,4.333,"formal","color",4.7,NA
+384,78,"tenured","not minority -:- male","english",43,61.53846,8,13,"lower","multiple","multi credit",4,4,5,4,4,5,4.333,"formal","color",NA,4.5
+387,79,"tenured","not minority -:- male","english",57,53.84615,7,13,"upper","multiple","multi credit",3,4,3,2,3,3,3,"not formal","color",4.3,NA
+388,79,"tenured","not minority -:- male","english",57,54.08163,53,98,"upper","multiple","multi credit",3,4,3,2,3,3,3,"not formal","color",NA,3.5
+390,80,"tenured","not minority -:- female","english",51,81.81818,9,11,"upper","multiple","multi credit",5,8,5,6,8,6,6.333,"not formal","color",4,NA
+391,80,"tenured","not minority -:- female","english",51,85.89744,67,78,"upper","multiple","multi credit",5,8,5,6,8,6,6.333,"not formal","color",NA,4
+394,81,"teaching","not minority -:- male","english",45,70.58823,12,17,"lower","single","one credit",1,4,2,5,4,4,3.333,"not formal","color",4.8,NA
+395,81,"teaching","not minority -:- male","english",45,85,17,20,"lower","multiple","one credit",1,4,2,5,4,4,3.333,"not formal","color",NA,4.2
+398,82,"tenured","not minority -:- male","english",57,92.85714,13,14,"lower","multiple","multi credit",2,3,3,2,1,6,2.833,"not formal","black&white",3.5,NA
+399,82,"tenured","not minority -:- male","english",57,66.66666,12,18,"lower","single","multi credit",2,3,3,2,1,6,2.833,"not formal","black&white",NA,3.6
+409,83,"teaching","not minority -:- female","english",47,76.19048,16,21,"lower","multiple","multi credit",8,6,6,4,9,7,6.667,"not formal","black&white",3.3,NA
+410,83,"teaching","not minority -:- female","english",47,88.23529,15,17,"lower","multiple","one credit",8,6,6,4,9,7,6.667,"not formal","black&white",NA,4.7
+414,84,"tenured","minority -:- female","english",54,100,18,18,"lower","single","multi credit",8,5,8,4,9,7,6.833,"not formal","black&white",4.2,NA
+415,84,"tenured","minority -:- female","english",54,93.75,15,16,"lower","single","multi credit",8,5,8,4,9,7,6.833,"not formal","black&white",NA,4.9
+419,85,"teaching","not minority -:- male","english",58,94.11765,16,17,"lower","single","multi credit",8,8,9,6,8,8,7.833,"not formal","black&white",4.8,NA
+420,85,"teaching","not minority -:- male","english",58,100,21,21,"lower","single","multi credit",8,8,9,6,8,8,7.833,"not formal","black&white",NA,5
+427,86,"tenured","not minority -:- male","english",42,83.33334,15,18,"lower","multiple","multi credit",8,7,10,6,8,8,7.833,"not formal","black&white",4.9,NA
+428,86,"tenured","not minority -:- male","english",42,91.66666,22,24,"lower","multiple","multi credit",8,7,10,6,8,8,7.833,"not formal","black&white",NA,3.9
+430,87,"tenure track","not minority -:- male","english",33,70.83334,85,120,"lower","multiple","multi credit",6,7,6,5,6,5,5.833,"not formal","color",4.5,NA
+431,87,"tenure track","not minority -:- male","english",33,43.22581,67,155,"lower","multiple","multi credit",6,7,6,5,6,5,5.833,"not formal","color",NA,4.5
+432,88,"tenured","not minority -:- male","english",62,28.94737,11,38,"lower","multiple","multi credit",1,1,1,4,1,4,2,"not formal","color",3.3,NA
+433,88,"tenured","not minority -:- male","english",62,40,28,70,"lower","multiple","multi credit",1,1,1,4,1,4,2,"not formal","color",NA,3.1
+439,89,"tenure track","minority -:- female","english",35,62.5,60,96,"lower","multiple","multi credit",7,9,10,6,7,8,7.833,"not formal","color",3.3,NA
+440,89,"tenure track","minority -:- female","english",35,33.33333,20,60,"lower","multiple","multi credit",7,9,10,6,7,8,7.833,"not formal","color",NA,3.6
+442,90,"tenured","not minority -:- male","english",61,69.23077,27,39,"lower","multiple","multi credit",3,2,7,1,3,4,3.333,"not formal","color",3.6,NA
+443,90,"tenured","not minority -:- male","english",61,86.66666,13,15,"lower","multiple","multi credit",3,2,7,1,3,4,3.333,"not formal","color",NA,4.3
+444,91,"tenured","not minority -:- female","english",52,54.95496,61,111,"lower","multiple","multi credit",4,8,5,3,4,3,4.5,"not formal","color",4.1,NA
+445,91,"tenured","not minority -:- female","english",52,82.35294,14,17,"lower","multiple","multi credit",4,8,5,3,4,3,4.5,"not formal","color",NA,4.9
+447,92,"tenure track","not minority -:- female","non-english",60,85.18519,23,27,"upper","multiple","multi credit",4,6,6,2,3,5,4.333,"formal","black&white",3.7,NA
+448,92,"tenure track","not minority -:- female","non-english",60,94.73684,18,19,"upper","multiple","multi credit",4,6,6,2,3,5,4.333,"formal","black&white",NA,3.9
+454,93,"tenure track","not minority -:- male","english",32,74.24242,98,132,"lower","multiple","multi credit",6,6,9,7,8,5,6.833,"not formal","color",4.5,NA
+455,93,"tenure track","not minority -:- male","english",32,87.40157,111,127,"lower","multiple","multi credit",6,6,9,7,8,5,6.833,"not formal","color",NA,4.5
+460,94,"tenure track","minority -:- female","non-english",42,57.14286,48,84,"upper","multiple","multi credit",3,8,7,4,6,4,5.333,"not formal","color",3.5,NA
+461,94,"tenure track","minority -:- female","non-english",42,77.61194,52,67,"upper","multiple","multi credit",3,8,7,4,6,4,5.333,"not formal","color",NA,4.4

@@ -199,7 +199,6 @@ The data set contains the following variables:
 * `Sex`, M or F (for this data set, `Sex` is considered binary).
 * `Hgt`, height, in inches.
 * `Wgt`, weight, in pounds.
-* `Hand`, right, left, or both
 * `Haircut`, how much is paid for a haircut, typically.
 * `GPA`
 * `Exercise`, amount of hours of exercise in a typical week.
@@ -207,7 +206,6 @@ The data set contains the following variables:
 * `TV`, amount of hours spent watching TV in a typical week.
 * `Award`, Award preferred: choices are Olympic Medal, Nobel Prize, or Academy Award.
 * `Pulse`, pulse rate, in beats per minute.
-* `Computer`, whether the student owns a Mac or a PC.
 * `SocialMedia`, most used social media platform (Instagram, SnapChat, FaceBook, Twitter, Other, or None).
 
 4. \* Create a histogram of the `Exercise` variable, change the x-axis label to be "Exercise (hours per typical week)", change the number of `bins` to `14`, and change the `fill` of the bins to be "lightpink2" and the outline `colour` of the bins to be black.
@@ -585,7 +583,7 @@ ggplot(data = stat113_df, aes(x = Sport, fill = Award)) +
 
 As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an olympic medal, compared with students who do not play a sport.
 
-### Chapter Exercises 2 S
+### Chapter Exercises S {#chapexercise-2-S}
 
 1. \* The default of `geom_smooth()` is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.
 

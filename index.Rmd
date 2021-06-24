@@ -14,6 +14,8 @@ description: "This book contains all examples for SLU's Introduction to Data Sci
 
 # Syllabus and Course Information
 
+Needs to be updated for Fall 2021.
+
 ## General Information
 
 __Instructor Information__

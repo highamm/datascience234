@@ -864,7 +864,7 @@ mortality_long <- mortality_df %>%
 
 You'll need to add something to your `pivot_longer()` function to convert the variable `Year` to numeric. We haven't talked too much about variable types yet so, after your `values_to = "Mortality"` statement, add `, names_transform = list(Year = as.numeric)`, making sure you have a second `)` to close the `pivot_longer()` function.
 
-### Chapter Exercises 4 S
+### Chapter Exercises S {#chapexercise-4-S}
 
 2. \* Use a function in `tidyr` to make the data tidy, and give your tidy data set a new name.
 

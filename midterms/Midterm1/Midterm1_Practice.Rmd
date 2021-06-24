@@ -1,0 +1,179 @@
+---
+title: "Week 6: Midterm Practice"
+author: "Matt Higham"
+output: 
+  rmdformats::readthedown:
+    code_folding: hide
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+  results = "hide", fig.keep = "none")
+```
+
+## Midterm Practice Problems
+
+##### Question from Mini-Project
+
+There was a question in Project 1 that asked about what was happening in a certain chunk of code (Exercise 8) and why the results were different than what was calculated in Exercise 7. It might help to break this down into a simpler, but related problem. Consider the following example, which has the class exam averages for two (hypothetical) sections of STAT 113, one with 4, students and one with 28 students. What is the average exam score in STAT 113?
+
+```{r, class.source = "fold-show"}
+library(tidyverse)
+df <- tibble(section = c("STAT113-01", "STAT113-02"), 
+       nstudents = c(4, 28),
+       average_score = c(96, 82))
+head(df)
+```
+
+Exercise 7 in the Project had you do something like:
+
+```{r, class.source = "fold-show"}
+df %>% summarise(meanscore = mean(average_score))
+```
+
+while Exercise 8 gave code that does something similar to:
+
+```{r, class.source = "fold-show"}
+df %>% mutate(total_score = nstudents * average_score) %>%
+  summarise(total_score_all = sum(total_score),
+            total_students = sum(nstudents)) %>%
+  mutate(avg_score = total_score_all / total_students) %>%
+  select(avg_score)
+```
+
+Which makes more sense?
+
+<br>
+
+##### New Data
+
+All of the exercises below, as well as the two from the earlier class exercises are considered to be an appropriate level for our exam, with the tennis question being on the more difficult end of these questions. But, these questions are not comprehensive: there are topics not covered. Use the study guide to help you review any topics you may need a refresher on with previous exercises. My advice would be to complete these exercises __without__ looking at your previous work or at the solutions.
+
+Consider the data set obtained from our class, which have variables that include
+
+* `Grade`, the year of the student (first-year, sophomore, junior, senior)
+* `Major1`, a student's major.
+* `Major2`, a student's second major, if that student has two majors.
+* `STAT213`, whether or not the student has taken STAT 213.
+* `CS 140`, whether or not the student has taken CS 140.
+* `Package`, a student's favorite `tidyverse` package (so far). 
+
+Read in the data set. Then, answer the following questions.
+
+```{r, class.source = "fold-show"}
+library(tidyverse)
+datasci_df <- read_csv("data_science_students.csv")
+```
+
+Exercise 1. Count how many Statistics majors are in this class. To do so, you __must__ tidy the data set first (even though you can actually answer this fairly easily without tidying).
+
+__Recall__: We briefly discussed the `n()` function, which, when in a `summarise()` statement counts the number of observations.
+
+```{r}
+datasci_long <- datasci_df %>% pivot_longer(c(Major1, Major2),
+                            names_to = "Major_Type", 
+                            values_to = "Major")
+datasci_long %>% filter(Major == "Statistics") %>%
+  summarise(countstat = n())
+```
+
+Exercise 2. Create a table that shows each major and the number of students that are in that major, organized from largest count to smallest count. 
+
+```{r}
+datasci_long %>% group_by(Major) %>%
+  summarise(countn = n()) %>%
+  arrange(desc(countn))
+```
+
+Exercise 3. Look carefully at the mathematics majors. What looks wrong? Can you fix the issue? Secondly, what does an `NA` indicate? Should you drop these?
+
+```{r}
+datasci_long <- datasci_long %>% mutate(Major2 = if_else(Major == "Mathematics",
+                                         true = "Math", 
+                                         false = Major)) %>%
+  filter(!is.na(Major2))
+datasci_plot <- datasci_long %>% group_by(Major2) %>%
+  summarise(countn = n()) %>%
+  arrange(desc(countn)) %>%
+  mutate(Major_fct = fct_reorder(Major2, countn))
+ggplot(datasci_plot, aes(x = Major_fct, y = countn)) +
+  geom_col() +
+  coord_flip() +
+  xlab("Number of Majors") + ylab("Major")
+```
+
+Exercise 4. Create a graph to look at the distribution of `Grade`. __Hint__: Which data set should you use to make this graph?
+
+```{r}
+ggplot(data = datasci_df, aes(x = Grade)) +
+  geom_bar()
+```
+
+Exercise 5. Create a graph to look at the relationship between favorite package and whether or not a student has taken STAT 213.
+
+```{r}
+ggplot(data = datasci_df, aes(x = Package)) +
+  geom_bar(aes(fill = STAT213))
+```
+
+##### Questions from Earlier Class Exercises
+
+Guess my favorite female tennis player from the clues below. First, you'll need to filter the data set so that it only has matches from the WTA `tour`.
+
+* her rank was either in the top 10 at one point durin the year or she is was older than 29 at one point in the year.
+* her height is __not__ missing in the data set.
+* she has __exactly__ one match in the data set where she hit 8 or more aces. 
+* the match where she hit 8 or more aces was played on a hard court and she lost that match.
+
+```{r, class.source = "fold-show"}
+tennis_df <- read_csv("tennis.csv")
+head(tennis_df)
+
+tennis_small <- tennis_df %>% select(player, tour, surface, height, age, ace,
+  doublefault, bpsaved, bpfaced, rank, win) %>% mutate(win = case_when(win == "winner_name" ~ "Winner",
+  win == "loser_name" ~ "Loser"))
+```
+
+```{r}
+tennis_ace <- tennis_small %>% filter(tour == "WTA") %>%
+  mutate(ace8 = if_else(ace >= 8, true = 1, false = 0)) %>%
+  group_by(player) %>%
+  summarise(tot8 = sum(ace8)) %>%
+  filter(tot8 == 1)
+
+test <- tennis_small %>% filter(tour == "WTA") %>%
+  filter(rank <= 10 | age > 29) %>%
+  filter(!is.na(height) == TRUE) %>%
+  filter(player %in% tennis_ace$player) %>%
+  filter(ace >= 8 & win == "Loser" & surface == "Hard") %>%
+  select(player)
+```
+
+__NFL Data__: Construct a graph that shows how much salary decreases moving from higher ranked players to lower ranked players for each position in the year 2018. Why do you think the depreciation is so large for Quarterbacks?
+
+```{r, class.source = "fold-show"}
+nfl_df <- read_csv("nfl_salary.csv")
+head(nfl_df)
+```
+
+```{r, class.source = "fold-show"}
+nfl_long <- nfl_df %>% pivot_longer(c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+  names_to = "position", values_to = "salary")
+nfl_long <- nfl_long %>% group_by(position, year) %>%
+  mutate(rank = rank(desc(salary), ties.method = "first"))
+```
+
+```{r}
+nfl_2018 <- nfl_long %>% filter(year == 2018) 
+ggplot(data = nfl_2018, aes(x = rank, y = salary, colour = position)) + 
+  geom_line() + geom_point()
+
+ggplot(data = nfl_2018, aes(x = rank, y = salary)) +
+  geom_line() + geom_point() + 
+  facet_wrap( ~ position)
+## because each team only has 1 starting quarterback. Other positions tend
+## to switch out more (wide receiver, running back) or have more than 
+## one starter (offensive lineman, linebacker)
+```
+

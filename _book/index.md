@@ -1,7 +1,7 @@
 --- 
 title: "STAT 234: Data Science"
 author: "Matt Higham"
-date: "2021-05-20"
+date: "2021-06-24"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -13,6 +13,8 @@ description: "This book contains all examples for SLU's Introduction to Data Sci
 ---
 
 # Syllabus and Course Information
+
+Needs to be updated for Fall 2021.
 
 ## General Information
 

@@ -1,0 +1,205 @@
+---
+title: "Midterm 1: Biases in Course Evaluations?"
+output: 
+  rmdformats::readthedown:
+    code_folding: hide
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results = "hide", fig.keep = "none", message = FALSE, warning = FALSE)
+```
+
+There are __165__ total points for this exam. Good luck!
+
+__Note__:  You can leave tables as is and graphs without labels, titles, without changing colours, etc, unless specifically noted in a problem.
+
+__Note 2__: Problems are roughly organized from easy to difficult so it's recommended to go through them from start to finish (so that you definitely attempt all of the easier problems). Additionally, each problem is completely independent, in that you'll never need something from an earlier problem to complete a later problem.
+
+__Note 3__: Two or three questions ask you to interpret the graph or table. Please don't forget to do this!
+
+__Note 4__: The approximate time is given next to each question. This times assume that the exam is __90__ minutes, so, if you stick with the approximate times throughout the exam, you'll still have an extra __45__ minutes at the end.
+
+Create a new .Rmd file. Then, copy and paste the following statement and type in your name below:
+
+"I affirm that all work on this exam is entirely my own." - 
+
+<br>
+
+<br>
+
+The `openintro` package has a data set called `evals` that is described by the `openintro` authors as:
+
+"The data are gathered from end of semester student evaluations for a large sample of professors from the University of Texas at Austin. In addition, six students rate the professors' physical appearance. The result is a data frame where each row contains a different course and each column has information on either the course or the professor."
+
+In the data set we're working with, `evals_tidy`, each professor has 2 courses for which they are being rated on, and each row corresponds to a course.
+
+Read in the data with
+
+```{r, echo = TRUE, class.source = "fold-show"}
+library(tidyverse)
+evals_tidy <- read_csv("evals_tidy.csv")
+head(evals_tidy)
+```
+
+Variables that we will use include:
+
+* `prof_id`, in identification number assigned to each professor in the study.
+* `score`, the average evaluation score for that course (out of 5)
+* `rank` of the professor, a categorical variable that is either `tenured`, `tenure track`, or `teaching`.
+* `ethnicity` of the professor, either `minority` or `not minority`
+* `gender` of the professor, either `female` or `male`
+* `age` of the professor (years)
+* `cls_students`, the number of registered students in the course
+* `bty_avg`, the attractiveness of the professor, as rated by a separate set of students not in the professor's course
+
+Exercise 1. (~ 5 minutes, 5 points). Change `prof_id` so that it is a character vector. You __must__ change this within the data set (so that the variable `prof_id` is a character vector within the `evals_tidy` `tibble`).
+
+```{r, echo = FALSE}
+evals_tidy2 <- evals_tidy %>%
+  mutate(prof_idchar = as.character(prof_id))
+```
+
+Exercise 2. (~ 5 minutes, 10 points) Change the options in your .Rmd file so that:
+
+* messages and warnings are hidden
+* all of the code in this document is printed, except for the code in the following chunk.
+* the table in the following chunk is printed in the output and is made to look nicer with a function from one of the packages we discussed.
+* the size of the figure made in the following chunk is smaller than the default.
+
+```{r, echo = TRUE, class.source = "fold-show"}
+nothing_df <- tibble(xvar = 1:10, yvar = 10:1)
+
+## make this table look nicer
+head(nothing_df)
+
+## make this figure appear smaller in output
+ggplot(data = nothing_df, aes(x = xvar, y = yvar)) +
+  geom_point()
+```
+
+Exercise 3. (~ 10 minutes, 15 points) Create a frequency plot of the `score` variable that is coloured by the `ethnicity` of the professor. Change the y-axis to correspond to density (not count) and change the number of bins so that the frequencies are smoother than the default. 
+
+Do minority professors seem to have different scores, on average, than non-minority professors?
+
+```{r}
+ggplot(evals_tidy, aes(x = score, y = ..density.., colour = ethnicity)) +
+  geom_freqpoly(bins = 10)
+```
+
+Exercise 4 (~ 5 minutes, 10 points). Make a table that shows the number of tenured, tenure track, and teaching faculty in this data set. (Those three categories correspond to the three levels of the `rank` variable).
+
+```{r}
+evals_tidy %>% group_by(rank) %>%
+  summarise(nrank = n() / 2)
+```
+
+Exercise 5. (~ 15 minutes, 25 points) Create a scatterplot of `score` vs. attractiveness (`bty_avg`) that is 
+
+* faceted by `rank` and 
+* has different coloured points for each `gender` and 
+* __one__ blue smoother for each facet
+* Finally, change the colour scale so that it is CVD-friendly.
+
+What do you notice about `tenured` faculty, compared to `tenure track` and `teaching` faculty?
+
+```{r}
+ggplot(data = evals_tidy, aes(x = bty_avg, y = score)) +
+  geom_point(aes(colour = gender)) +
+  geom_smooth(se = FALSE) +
+  facet_wrap( ~ rank) +
+  scale_colour_viridis_d()
+```
+
+Exercise 6. (~ 5 minutes, 10 points) Make a new `class_size` variable that is equal to "large" if the number of students (`cls_students`) is 100 or larger, equal to "medium" if the number of students is between 30 and 100 (not inclusive of 30 and 100), and equal to "small" if the number of students is less than or equal to 30.
+
+```{r}
+evals_tidy %>%
+  mutate(class_size = case_when(cls_students >= 100 ~ "large",
+                                cls_students < 100 & cls_students > 30 ~ "medium",
+                                cls_students <= 30 ~ "small"))
+```
+
+Exercise 7. (~ 10 minutes, 20 points) Compute the average score for each professor (identified by `prof_id`) in the data set. Then, display the professor ids and scores of the __3__ highest rated professors (and __only__ the 3 highest rated). 
+
+```{r}
+evals_tidy %>% group_by(prof_id) %>%
+  summarise(meanscore = mean(score)) %>%
+  arrange(desc(meanscore)) %>%
+  slice(1:3)
+```
+
+Exercise 8 (~ 10 minutes, 20 points). Examine the following plot, which is a plot of `age` on the x-axis and `score` on the y-axis, coloured by whether or not the professor's native language is English.
+
+```{r, fig.keep = "last", echo = TRUE, class.source = "fold-show"}
+ggplot(data = evals_tidy, aes(x = age, y = score, colour = language)) +
+  geom_point()
+```
+
+Label the points with the three lowest course scores with the `bty_avg` for each of those professors. Don't worry about strange things that might happen with the legend.
+
+```{r}
+evals_small <- evals_tidy %>% filter(score <= 3)
+ggplot(data = evals_tidy, aes(x = age, y = score, colour = language)) +
+  geom_point() +
+  geom_label(data = evals_small, aes(label = bty_avg))
+```
+
+Exercsie 9. (~ 15 minutes, 30 points). Find the professor with the following characteristics:
+
+* the professor is either female or is tenured
+* the __average__ number of students (`cls_students`) for the professor's courses is greater than or equal to 200
+* the professor is younger than 50 years
+
+Make sure that, in your final data set, you __only__ print out the column with the professor's id (and no other columns). If you can't complete all of the steps, complete as many as you can (so still print only the professor's id column, even if you still have multiple candidate professors, for example).
+
+```{r}
+mean_class_size <- evals_tidy %>% group_by(prof_id) %>%
+  summarise(avg_class_size = mean(cls_students)) %>%
+  filter(avg_class_size >= 200)
+evals_tidy %>%
+  filter(rank == "tenured" | gender == "female") %>%
+  filter(prof_id %in% mean_class_size$prof_id) %>%
+  filter(age < 50) %>%
+  select(prof_id)
+```
+
+Exercise 10. (~ 10 minutes, 20 points). Thus far, you have worked with a tidy data set. Now, read in the following data set, called `evals_untidy.csv`, and notice that it is not in a tidy format. First, each professor's scores for their first class are given in a column called `course_1_score` and each professor's scores for their second class are in a column called `course_2_score`. Second, the ethnicity and gender variables are in one column. 
+
+Make the data set tidy. Don't worry about changing column names for this exercise.
+
+```{r, echo = TRUE, class.source = "fold-show"}
+evals_untidy <- read_csv("untidy_evals.csv")
+```
+
+```{r}
+evals_untidy %>% pivot_longer(c(course_1_score, course_2_score),
+                              values_to = "score",
+                              names_to = "course_type") %>%
+  separate(ethnic_gender, into = c("ethnicity", "gender"), sep = " -:- ") %>%
+  select(score, everything())
+```
+
+```{r, echo = FALSE, eval = FALSE}
+evals2 <- evals %>% unite("ethnic_gender", c(ethnicity, gender), sep = " -:- ") %>%
+  group_by(prof_id) %>%
+  slice(1:2) %>%
+  ungroup() %>%
+  filter(!(prof_id %in% c(22, 30, 39, 46, 61, 62, 69))) %>%
+  group_by(prof_id) %>%
+  mutate(course_num =  row_number()) %>%
+  pivot_wider(names_from = course_num, values_from = score) %>%
+  rename("course_1_score" = `1`, "course_2_score" = `2`)
+## write.csv(evals2, "untidy_evals.csv", row.names = FALSE)
+```
+
+__Extra Credit__ (5 points): I untidied the `evals_tidy` data sest into `evals_untidy`. Perform the necessary operations to untidy `evals_tidy` into `evals_untidy`. __Hint__: you'll actually need to create a new variable before you proceed with pivoting. Don't worry about changing the column names for this exercise.
+
+```{r, echo = FALSE}
+evals_tidy %>%
+  group_by(prof_id) %>%
+  mutate(course_num = row_number()) %>%
+  pivot_wider(names_from = course_num,
+                           values_from = score) %>%
+  unite(col = "ethnic_gender", c(ethnicity, gender), sep = " :-: ")
+```
