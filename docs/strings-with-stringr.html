@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 13 Strings with stringr | STAT 234: Data Science</title>
+  <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 13 Strings with stringr | STAT 234: Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 Strings with stringr | STAT 234: Data Science" />
+  
+  <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  
+
+<meta name="author" content="Matt Higham" />
+
+
+<meta name="date" content="2021-06-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dates-with-lubridate.html"/>
+<link rel="next" href="predictive-modeling-with-knn.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 234: Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-information"><i class="fa fa-check"></i><b>1.2</b> Course Information</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#general-course-outcomes"><i class="fa fa-check"></i><b>1.3</b> General Course Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#use-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Use of <code>R</code> and <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#how-you-will-be-assessed"><i class="fa fa-check"></i><b>1.4</b> How You Will Be Assessed</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#breakdown"><i class="fa fa-check"></i><b>1.4.1</b> Breakdown</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#grading-scale"><i class="fa fa-check"></i><b>1.4.2</b> Grading Scale</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#rules-for-collaboration"><i class="fa fa-check"></i><b>1.4.3</b> Rules for Collaboration</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#diversity-statement"><i class="fa fa-check"></i><b>1.4.4</b> Diversity Statement</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#accessibility-statement"><i class="fa fa-check"></i><b>1.4.5</b> Accessibility Statement</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#academic-dishonesty"><i class="fa fa-check"></i><b>1.4.6</b> Academic Dishonesty</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tentative-schedule"><i class="fa fa-check"></i><b>1.5</b> Tentative Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Getting Started with <code>R</code> and <code>R Studio</code></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#intro-to-r-and-r-studio"><i class="fa fa-check"></i><b>2.1</b> Intro to <code>R</code> and <code>R Studio</code></a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-are-r-r-studio-and-r-markdown"><i class="fa fa-check"></i><b>2.2</b> What are <code>R</code>, <code>R Studio</code>, and <code>R Markdown</code>?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#r-packages-and-the-tidyverse"><i class="fa fa-check"></i><b>2.2.1</b> <code>R</code> Packages and the <code>tidyverse</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#putting-code-in-a-.rmd-file"><i class="fa fa-check"></i><b>2.3</b> Putting Code in a <code>.Rmd</code> File</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#alcohol-data-example"><i class="fa fa-check"></i><b>2.4</b> Alcohol Data Example</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#exercise-1-1"><i class="fa fa-check"></i><b>2.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#athlete-data-example"><i class="fa fa-check"></i><b>2.5</b> Athlete Data Example</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#exercise-1-2"><i class="fa fa-check"></i><b>2.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#finishing-up-common-errors-in-r"><i class="fa fa-check"></i><b>2.6</b> Finishing Up: Common Errors in <code>R</code></a></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#chapexercise-1"><i class="fa fa-check"></i><b>2.7</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#solutions-1"><i class="fa fa-check"></i><b>2.8</b> Exercise Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>3</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-and-basic-terminology"><i class="fa fa-check"></i><b>3.1</b> Introduction and Basic Terminology</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure"><i class="fa fa-check"></i><b>3.2</b> Basic Plot Structure</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable"><i class="fa fa-check"></i><b>3.3</b> Graphing a Single Variable</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2.html"><a href="ggplot2.html#histograms-and-frequency-plots-for-a-quantitative-variable"><i class="fa fa-check"></i><b>3.3.1</b> Histograms and Frequency Plots for a Quantitative Variable</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2.html"><a href="ggplot2.html#r-code-style"><i class="fa fa-check"></i><b>3.3.2</b> <code>R</code> Code Style</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2.html"><a href="ggplot2.html#bar-plots-for-a-categorical-variable"><i class="fa fa-check"></i><b>3.3.3</b> Bar Plots for a Categorical Variable</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quantitative-variables-faceting-and-aes-options"><i class="fa fa-check"></i><b>3.4</b> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2.html"><a href="ggplot2.html#scatterplots"><i class="fa fa-check"></i><b>3.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2.html"><a href="ggplot2.html#aesthetics-in-aes"><i class="fa fa-check"></i><b>3.4.2</b> Aesthetics in <code>aes()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2.html"><a href="ggplot2.html#using-more-than-one-geom"><i class="fa fa-check"></i><b>3.4.3</b> Using More Than One <code>geom()</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2.html"><a href="ggplot2.html#line-plots-with-geom_line"><i class="fa fa-check"></i><b>3.4.4</b> Line Plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2.html"><a href="ggplot2.html#faceting"><i class="fa fa-check"></i><b>3.4.5</b> Faceting</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-2"><i class="fa fa-check"></i><b>3.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-barplots-and-others"><i class="fa fa-check"></i><b>3.5</b> Boxplots, Stacked Barplots and Others</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-quant.-variable-vs.-a-cat.-variable"><i class="fa fa-check"></i><b>3.5.1</b> Graphing a Quant. Variable vs. a Cat. Variable</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-categorical-variables"><i class="fa fa-check"></i><b>3.5.2</b> Graphing Two Categorical Variables</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2"><i class="fa fa-check"></i><b>3.6</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2.html"><a href="ggplot2.html#solutions-2"><i class="fa fa-check"></i><b>3.7</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-etc.-s"><i class="fa fa-check"></i><b>3.7.1</b> Introduction etc. S</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure-s"><i class="fa fa-check"></i><b>3.7.2</b> Basic Plot Structure S</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable-s"><i class="fa fa-check"></i><b>3.7.3</b> Graphing a Single Variable S</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quant.-etc.-s"><i class="fa fa-check"></i><b>3.7.4</b> Graphing Two Quant. etc. S</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-etc.-s"><i class="fa fa-check"></i><b>3.7.5</b> Boxplots, Stacked, etc. S</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2-S"><i class="fa fa-check"></i><b>3.7.6</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dplyr.html"><a href="dplyr.html#mutate-create-variables"><i class="fa fa-check"></i><b>4.1</b> <code>mutate()</code>: Create Variables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="dplyr.html"><a href="dplyr.html#a-little-more-on-piping"><i class="fa fa-check"></i><b>4.1.1</b> A Little More on Piping</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dplyr.html"><a href="dplyr.html#if_else-and-case_when"><i class="fa fa-check"></i><b>4.1.2</b> <code>if_else()</code> and <code>case_when()</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="dplyr.html"><a href="dplyr.html#exercise-3-1"><i class="fa fa-check"></i><b>4.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-and-slice-and-filter"><i class="fa fa-check"></i><b>4.2</b> <code>arrange()</code>, <code>select()</code>, and <code>slice()</code>, and <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dplyr.html"><a href="dplyr.html#arrange-ordering-rows"><i class="fa fa-check"></i><b>4.2.1</b> <code>arrange()</code>: Ordering Rows</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dplyr.html"><a href="dplyr.html#select-choose-columns"><i class="fa fa-check"></i><b>4.2.2</b> <code>select()</code> Choose Columns</a></li>
+<li class="chapter" data-level="4.2.3" data-path="dplyr.html"><a href="dplyr.html#slice-and-filter-choose-rows"><i class="fa fa-check"></i><b>4.2.3</b> <code>slice()</code> and <code>filter()</code>: Choose Rows</a></li>
+<li class="chapter" data-level="4.2.4" data-path="dplyr.html"><a href="dplyr.html#exercise-3-2"><i class="fa fa-check"></i><b>4.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-create-summaries"><i class="fa fa-check"></i><b>4.3</b> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dplyr.html"><a href="dplyr.html#group_by-groups"><i class="fa fa-check"></i><b>4.3.1</b> <code>group_by()</code>: Groups</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dplyr.html"><a href="dplyr.html#exercise-3-3"><i class="fa fa-check"></i><b>4.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dplyr.html"><a href="dplyr.html#missing-values"><i class="fa fa-check"></i><b>4.4</b> Missing Values</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dplyr.html"><a href="dplyr.html#exercise-3-4"><i class="fa fa-check"></i><b>4.4.1</b> Exercises</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dplyr.html"><a href="dplyr.html#removing-missing-values"><i class="fa fa-check"></i><b>4.4.2</b> Removing Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3"><i class="fa fa-check"></i><b>4.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="dplyr.html"><a href="dplyr.html#solutions-3"><i class="fa fa-check"></i><b>4.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="dplyr.html"><a href="dplyr.html#mutate-s"><i class="fa fa-check"></i><b>4.6.1</b> <code>mutate()</code> S</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-.-s"><i class="fa fa-check"></i><b>4.6.2</b> <code>arrange()</code>, <code>select()</code>, …. S</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-s"><i class="fa fa-check"></i><b>4.6.3</b> <code>summarise()</code> and <code>group_by()</code> S</a></li>
+<li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#missing-values-s"><i class="fa fa-check"></i><b>4.6.4</b> Missing Values S</a></li>
+<li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3-S"><i class="fa fa-check"></i><b>4.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> What is Tidy Data?</a></li>
+<li class="chapter" data-level="5.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-columns"><i class="fa fa-check"></i><b>5.2</b> <code>separate()</code> and <code>unite()</code> Columns</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-a-column"><i class="fa fa-check"></i><b>5.2.1</b> <code>separate()</code> a Column</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#unite-columns"><i class="fa fa-check"></i><b>5.2.2</b> <code>unite()</code> Columns</a></li>
+<li class="chapter" data-level="5.2.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#column-names-and-rename"><i class="fa fa-check"></i><b>5.2.3</b> Column Names and <code>rename()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-1"><i class="fa fa-check"></i><b>5.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#reshaping-with-pivot_"><i class="fa fa-check"></i><b>5.3</b> Reshaping with <code>pivot_()</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_longer-to-gather-columns"><i class="fa fa-check"></i><b>5.3.1</b> <code>pivot_longer()</code> to Gather Columns</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_wider-to-spread-to-multiple-columns"><i class="fa fa-check"></i><b>5.3.2</b> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-2"><i class="fa fa-check"></i><b>5.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr"><i class="fa fa-check"></i><b>5.4</b> Skimming Data with <code>skimr</code></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercises-exercise-4-3"><i class="fa fa-check"></i><b>5.4.1</b> Exercises {exercise-4-3}</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4"><i class="fa fa-check"></i><b>5.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#solutions-4"><i class="fa fa-check"></i><b>5.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data-s"><i class="fa fa-check"></i><b>5.6.1</b> What is Tidy Data? S</a></li>
+<li class="chapter" data-level="5.6.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-s"><i class="fa fa-check"></i><b>5.6.2</b> <code>separate()</code> and <code>unite()</code> S</a></li>
+<li class="chapter" data-level="5.6.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_-s"><i class="fa fa-check"></i><b>5.6.3</b> <code>pivot_()</code> S</a></li>
+<li class="chapter" data-level="5.6.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr-s"><i class="fa fa-check"></i><b>5.6.4</b> Skimming Data with <code>skimr()</code> S</a></li>
+<li class="chapter" data-level="5.6.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4-S"><i class="fa fa-check"></i><b>5.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#reproducbility"><i class="fa fa-check"></i><b>6.1</b> Reproducbility</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-scripts-vs.-r-markdown"><i class="fa fa-check"></i><b>6.1.1</b> <code>R</code> Scripts vs. <code>R Markdown</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#spell-checking"><i class="fa fa-check"></i><b>6.1.2</b> Spell-Checking</a></li>
+<li class="chapter" data-level="6.1.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-1"><i class="fa fa-check"></i><b>6.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-markdown-files"><i class="fa fa-check"></i><b>6.2</b> <code>R Markdown</code> Files</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#code-chunk-options"><i class="fa fa-check"></i><b>6.2.1</b> Code Chunk Options</a></li>
+<li class="chapter" data-level="6.2.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#figures-and-tables"><i class="fa fa-check"></i><b>6.2.2</b> Figures and Tables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#non-code-options"><i class="fa fa-check"></i><b>6.2.3</b> Non-Code Options</a></li>
+<li class="chapter" data-level="6.2.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#yaml"><i class="fa fa-check"></i><b>6.2.4</b> YAML</a></li>
+<li class="chapter" data-level="6.2.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-2"><i class="fa fa-check"></i><b>6.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication"><i class="fa fa-check"></i><b>6.3</b> <code>ggplot2</code> Communication</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#change-labels-and-titles"><i class="fa fa-check"></i><b>6.3.1</b> Change Labels and Titles</a></li>
+<li class="chapter" data-level="6.3.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#changing-x-and-y-axis-limits"><i class="fa fa-check"></i><b>6.3.2</b> Changing x and y axis Limits</a></li>
+<li class="chapter" data-level="6.3.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#changing-a-colour-scale"><i class="fa fa-check"></i><b>6.3.3</b> Changing A Colour Scale</a></li>
+<li class="chapter" data-level="6.3.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#labeling-points-or-lines-of-interest"><i class="fa fa-check"></i><b>6.3.4</b> Labeling Points or Lines of Interest</a></li>
+<li class="chapter" data-level="6.3.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#plot-themes"><i class="fa fa-check"></i><b>6.3.5</b> Plot Themes</a></li>
+<li class="chapter" data-level="6.3.6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-3"><i class="fa fa-check"></i><b>6.3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5"><i class="fa fa-check"></i><b>6.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#solutions-5"><i class="fa fa-check"></i><b>6.5</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#reproducibility-s"><i class="fa fa-check"></i><b>6.5.1</b> Reproducibility S</a></li>
+<li class="chapter" data-level="6.5.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-markdown-files-s"><i class="fa fa-check"></i><b>6.5.2</b> <code>R Markdown</code> Files S</a></li>
+<li class="chapter" data-level="6.5.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication-s"><i class="fa fa-check"></i><b>6.5.3</b> <code>ggplot2</code> Communication S</a></li>
+<li class="chapter" data-level="6.5.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5-S"><i class="fa fa-check"></i><b>6.5.4</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-in-r"><i class="fa fa-check"></i><b>7.1</b> Variable Classes in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-basics.html"><a href="r-basics.html#referencing-variables-and-using-str"><i class="fa fa-check"></i><b>7.1.1</b> Referencing Variables and Using <code>str()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail"><i class="fa fa-check"></i><b>7.2</b> Classes in Detail</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="r-basics.html"><a href="r-basics.html#chr-and-fct-class"><i class="fa fa-check"></i><b>7.2.1</b> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
+<li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
+<li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-s"><i class="fa fa-check"></i><b>7.7.1</b> Variable Classes S</a></li>
+<li class="chapter" data-level="7.7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail-s"><i class="fa fa-check"></i><b>7.7.2</b> Classes in Detail S</a></li>
+<li class="chapter" data-level="7.7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-s"><i class="fa fa-check"></i><b>7.7.3</b> Object Types S</a></li>
+<li class="chapter" data-level="7.7.4" data-path="r-basics.html"><a href="r-basics.html#piping-s"><i class="fa fa-check"></i><b>7.7.4</b> Piping S</a></li>
+<li class="chapter" data-level="7.7.5" data-path="r-basics.html"><a href="r-basics.html#other-r-topics-s"><i class="fa fa-check"></i><b>7.7.5</b> Other R Topics S</a></li>
+<li class="chapter" data-level="7.7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6-S"><i class="fa fa-check"></i><b>7.7.6</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html"><i class="fa fa-check"></i><b>8</b> Factors with <code>forcats</code></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-factor-levels"><i class="fa fa-check"></i><b>8.1</b> Change Factor Levels</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#fct_recode-to-rename-levels"><i class="fa fa-check"></i><b>8.1.1</b> <code>fct_recode()</code> to Rename Levels</a></li>
+<li class="chapter" data-level="8.1.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#collapsing-many-levels-into-fewer-levels-with-fct_collapse"><i class="fa fa-check"></i><b>8.1.2</b> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></a></li>
+<li class="chapter" data-level="8.1.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#exercise-7-1"><i class="fa fa-check"></i><b>8.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels"><i class="fa fa-check"></i><b>8.2</b> Reorder Factor Levels</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"><i class="fa fa-check"></i><b>8.2.1</b> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></a></li>
+<li class="chapter" data-level="8.2.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#re-leveling-by-two-quantitative-variables-with-fct_reorder2"><i class="fa fa-check"></i><b>8.2.2</b> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></a></li>
+<li class="chapter" data-level="8.2.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reordering-levels-manually-with-fct_relevel"><i class="fa fa-check"></i><b>8.2.3</b> Reordering Levels Manually with <code>fct_relevel()</code></a></li>
+<li class="chapter" data-level="8.2.4" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#exercise-7-2"><i class="fa fa-check"></i><b>8.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7"><i class="fa fa-check"></i><b>8.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="8.4" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#solutions-7"><i class="fa fa-check"></i><b>8.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-factor-levels-s"><i class="fa fa-check"></i><b>8.4.1</b> Change Factor Levels S</a></li>
+<li class="chapter" data-level="8.4.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels-s"><i class="fa fa-check"></i><b>8.4.2</b> Reorder Factor Levels S</a></li>
+<li class="chapter" data-level="8.4.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7-S"><i class="fa fa-check"></i><b>8.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html"><i class="fa fa-check"></i><b>9</b> Reprexes and Import</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#reprexes-and-tibble"><i class="fa fa-check"></i><b>9.1</b> Reprexes and <code>tibble</code></a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-1"><i class="fa fa-check"></i><b>9.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#readr-to-read-in-data"><i class="fa fa-check"></i><b>9.2</b> <code>readr</code> to Read in Data</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#read_csv-options"><i class="fa fa-check"></i><b>9.2.1</b> <code>read_csv()</code> Options</a></li>
+<li class="chapter" data-level="9.2.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-2"><i class="fa fa-check"></i><b>9.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#data-scraping-with-rvest"><i class="fa fa-check"></i><b>9.3</b> Data Scraping with <code>rvest</code></a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-3"><i class="fa fa-check"></i><b>9.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-files-with-jsonlite"><i class="fa fa-check"></i><b>9.4</b> JSON Files with <code>jsonlite</code></a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#everything-working-well"><i class="fa fa-check"></i><b>9.4.1</b> Everything Working Well</a></li>
+<li class="chapter" data-level="9.4.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#things-arent-always-so-easy"><i class="fa fa-check"></i><b>9.4.2</b> Things Aren’t Always So Easy</a></li>
+<li class="chapter" data-level="9.4.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-4"><i class="fa fa-check"></i><b>9.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8"><i class="fa fa-check"></i><b>9.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#solutions-8"><i class="fa fa-check"></i><b>9.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#reprexes-and-tibble-s"><i class="fa fa-check"></i><b>9.6.1</b> Reprexes and <code>tibble</code> S</a></li>
+<li class="chapter" data-level="9.6.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#readr-s"><i class="fa fa-check"></i><b>9.6.2</b> <code>readr</code> S</a></li>
+<li class="chapter" data-level="9.6.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#rvest-and-data-scraping-s"><i class="fa fa-check"></i><b>9.6.3</b> <code>rvest</code> and Data Scraping S</a></li>
+<li class="chapter" data-level="9.6.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-with-jsonlite-s"><i class="fa fa-check"></i><b>9.6.4</b> JSON with <code>jsonlite</code> S</a></li>
+<li class="chapter" data-level="9.6.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8-S"><i class="fa fa-check"></i><b>9.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>10</b> Data Ethics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-ethics.html"><a href="data-ethics.html#ethical-examples"><i class="fa fa-check"></i><b>10.1</b> Ethical Examples</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-1"><i class="fa fa-check"></i><b>10.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-ethics.html"><a href="data-ethics.html#data-privacy"><i class="fa fa-check"></i><b>10.2</b> Data Privacy</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-2"><i class="fa fa-check"></i><b>10.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-ethics.html"><a href="data-ethics.html#hypothesis-generation-vs.-confirmation"><i class="fa fa-check"></i><b>10.3</b> Hypothesis Generation vs. Confirmation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-3"><i class="fa fa-check"></i><b>10.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="data-ethics.html"><a href="data-ethics.html#chapexercise-9"><i class="fa fa-check"></i><b>10.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="10.5" data-path="data-ethics.html"><a href="data-ethics.html#solutions-9"><i class="fa fa-check"></i><b>10.5</b> Exercise Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html"><i class="fa fa-check"></i><b>11</b> Merging with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#stacking-rows-and-appending-columns"><i class="fa fa-check"></i><b>11.1</b> Stacking Rows and Appending Columns</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#stacking-with-bind_rows"><i class="fa fa-check"></i><b>11.1.1</b> Stacking with <code>bind_rows()</code></a></li>
+<li class="chapter" data-level="11.1.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#binding-columns-with-bind_cols"><i class="fa fa-check"></i><b>11.1.2</b> Binding Columns with <code>bind_cols()</code></a></li>
+<li class="chapter" data-level="11.1.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-1"><i class="fa fa-check"></i><b>11.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#mutating-joins"><i class="fa fa-check"></i><b>11.2</b> Mutating Joins</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-data-set-1-with-left_join"><i class="fa fa-check"></i><b>11.2.1</b> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
+<li class="chapter" data-level="11.2.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-data-set-2-with-right_join"><i class="fa fa-check"></i><b>11.2.2</b> Keep All Rows of Data Set 2 with <code>right_join()</code></a></li>
+<li class="chapter" data-level="11.2.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-both-data-sets-with-full_join"><i class="fa fa-check"></i><b>11.2.3</b> Keep All Rows of Both Data Sets with <code>full_join()</code></a></li>
+<li class="chapter" data-level="11.2.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-only-rows-with-matching-keys-with-inner_join"><i class="fa fa-check"></i><b>11.2.4</b> Keep Only Rows with Matching Keys with <code>inner_join()</code></a></li>
+<li class="chapter" data-level="11.2.5" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#which-xxxx_join"><i class="fa fa-check"></i><b>11.2.5</b> Which <code>xxxx_join()</code>?</a></li>
+<li class="chapter" data-level="11.2.6" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#the-importance-of-a-good-key"><i class="fa fa-check"></i><b>11.2.6</b> The Importance of a Good Key</a></li>
+<li class="chapter" data-level="11.2.7" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-2"><i class="fa fa-check"></i><b>11.2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins"><i class="fa fa-check"></i><b>11.3</b> Filtering Joins</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-with-anti_join"><i class="fa fa-check"></i><b>11.3.1</b> Filtering with <code>anti_join()</code></a></li>
+<li class="chapter" data-level="11.3.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-3"><i class="fa fa-check"></i><b>11.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#a-note-on-sql"><i class="fa fa-check"></i><b>11.4</b> A Note on SQL</a></li>
+<li class="chapter" data-level="11.5" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10"><i class="fa fa-check"></i><b>11.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="11.6" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#solutions-10"><i class="fa fa-check"></i><b>11.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#bind_rows-and-bind_cols-s"><i class="fa fa-check"></i><b>11.6.1</b> <code>bind_rows()</code> and <code>bind_cols()</code> S</a></li>
+<li class="chapter" data-level="11.6.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#mutating-joins-s"><i class="fa fa-check"></i><b>11.6.2</b> Mutating Joins S</a></li>
+<li class="chapter" data-level="11.6.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins-s"><i class="fa fa-check"></i><b>11.6.3</b> Filtering Joins S</a></li>
+<li class="chapter" data-level="11.6.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10-S"><i class="fa fa-check"></i><b>11.6.4</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html"><i class="fa fa-check"></i><b>12</b> Dates with <code>lubridate</code></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#converting-variables-to-date"><i class="fa fa-check"></i><b>12.1</b> Converting Variables to <code>&lt;date&gt;</code></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#from-chr-to-date"><i class="fa fa-check"></i><b>12.1.1</b> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code></a></li>
+<li class="chapter" data-level="12.1.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#making-a-date-variable-from-date-components"><i class="fa fa-check"></i><b>12.1.2</b> Making a <code>&lt;date&gt;</code> variable from Date Components</a></li>
+<li class="chapter" data-level="12.1.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#exercise-11-1"><i class="fa fa-check"></i><b>12.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables"><i class="fa fa-check"></i><b>12.2</b> Functions for <code>&lt;date&gt;</code> Variables</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#year-month-and-mday"><i class="fa fa-check"></i><b>12.2.1</b> <code>year()</code>, <code>month()</code>, and <code>mday()</code></a></li>
+<li class="chapter" data-level="12.2.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#yday-and-wday"><i class="fa fa-check"></i><b>12.2.2</b> <code>yday()</code> and <code>wday()</code></a></li>
+<li class="chapter" data-level="12.2.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#exercise-11-2"><i class="fa fa-check"></i><b>12.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11"><i class="fa fa-check"></i><b>12.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="12.4" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#solutions-11"><i class="fa fa-check"></i><b>12.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#converting-variables-to-date-s"><i class="fa fa-check"></i><b>12.4.1</b> Converting Variables to <code>&lt;date&gt;</code> S</a></li>
+<li class="chapter" data-level="12.4.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables-s"><i class="fa fa-check"></i><b>12.4.2</b> Functions for <code>&lt;date&gt;</code> Variables S</a></li>
+<li class="chapter" data-level="12.4.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11-S"><i class="fa fa-check"></i><b>12.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html"><i class="fa fa-check"></i><b>13</b> Strings with <code>stringr</code></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#friday-friday"><i class="fa fa-check"></i><b>13.1</b> Friday, Friday</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#exercise-12-1"><i class="fa fa-check"></i><b>13.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#add-second-example-here"><i class="fa fa-check"></i><b>13.2</b> Add Second Example Here</a></li>
+<li class="chapter" data-level="13.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12"><i class="fa fa-check"></i><b>13.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="13.4" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#solutions-12"><i class="fa fa-check"></i><b>13.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#friday-friday-s"><i class="fa fa-check"></i><b>13.4.1</b> Friday, Friday S</a></li>
+<li class="chapter" data-level="13.4.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#second-example-s"><i class="fa fa-check"></i><b>13.4.2</b> Second Example S</a></li>
+<li class="chapter" data-level="13.4.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12-S"><i class="fa fa-check"></i><b>13.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html"><i class="fa fa-check"></i><b>14</b> Predictive Modeling with knn</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#introduction-to-classification"><i class="fa fa-check"></i><b>14.1</b> Introduction to Classification</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#training-and-test-data"><i class="fa fa-check"></i><b>14.1.1</b> Training and Test Data</a></li>
+<li class="chapter" data-level="14.1.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-1"><i class="fa fa-check"></i><b>14.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction"><i class="fa fa-check"></i><b>14.2</b> knn Introduction</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-1-predictor"><i class="fa fa-check"></i><b>14.2.1</b> knn with k = 1 and 1 Predictor</a></li>
+<li class="chapter" data-level="14.2.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-one-predictor"><i class="fa fa-check"></i><b>14.2.2</b> knn with k &gt; 1 and One Predictor</a></li>
+<li class="chapter" data-level="14.2.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-more-than-one-predictor"><i class="fa fa-check"></i><b>14.2.3</b> knn with k &gt; 1 and More Than One Predictor</a></li>
+<li class="chapter" data-level="14.2.4" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#scaling-predictor-variables-before-using-knn"><i class="fa fa-check"></i><b>14.2.4</b> Scaling Predictor Variables before Using knn</a></li>
+<li class="chapter" data-level="14.2.5" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-2"><i class="fa fa-check"></i><b>14.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k"><i class="fa fa-check"></i><b>14.3</b> Choosing Predictors and k</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#the-confusion-matrix"><i class="fa fa-check"></i><b>14.3.1</b> The Confusion Matrix</a></li>
+<li class="chapter" data-level="14.3.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#using-knn-in-r"><i class="fa fa-check"></i><b>14.3.2</b> Using knn in <code>R</code></a></li>
+<li class="chapter" data-level="14.3.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-3"><i class="fa fa-check"></i><b>14.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#chapexercise-13"><i class="fa fa-check"></i><b>14.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="14.5" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#solutions-13"><i class="fa fa-check"></i><b>14.5</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#introduction-to-classification-s"><i class="fa fa-check"></i><b>14.5.1</b> Introduction to Classification S</a></li>
+<li class="chapter" data-level="14.5.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction-s"><i class="fa fa-check"></i><b>14.5.2</b> knn Introduction S</a></li>
+<li class="chapter" data-level="14.5.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k-s"><i class="fa fa-check"></i><b>14.5.3</b> Choosing Predictors and k S</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 234: Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="strings-with-stringr" class="section level1" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Strings with <code>stringr</code></h1>
+<p>Incomplete Chapter (Section 13.2).</p>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li>use functions in the <code>stringr</code> package to analyze text data.</li>
+<li>introduce some of the issues with manipulating strings that don’t pertain to numeric or factor data.</li>
+</ul>
+<div id="friday-friday" class="section level2" number="13.1">
+<h2><span class="header-section-number">13.1</span> Friday, Friday</h2>
+<p>The string below has lyrics to Rebecca Black’s critically reviewed song <em>Friday</em>: <a href="https://www.youtube.com/watch?v=kfVsfOSbJY0" target="_blank">https://www.youtube.com/watch?v=kfVsfOSbJY0</a>. In particular, we will answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>how many times does Rebecca Black say the word “Friday” in her song?</li>
+<li>how many times does she say any word involving “day” in her song?</li>
+<li>what are the most popular words in the song?</li>
+</ol>
+<p>These questions may seem simple, but they can actually still be somewhat challenging to answer. Issues like punctuation, filler words, and parsing the long string will give us some challenges to work through.</p>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="strings-with-stringr.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb654-2"><a href="strings-with-stringr.html#cb654-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb654-3"><a href="strings-with-stringr.html#cb654-3" aria-hidden="true" tabindex="-1"></a>rblack <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Oo-ooh-ooh, hoo yeah, yeah (Yeah, ah-ah-ah-ah-ah-ark)</span></span>
+<span id="cb654-4"><a href="strings-with-stringr.html#cb654-4" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah, yeah</span></span>
+<span id="cb654-5"><a href="strings-with-stringr.html#cb654-5" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah-ah-ah, yeah-ah-ah</span></span>
+<span id="cb654-6"><a href="strings-with-stringr.html#cb654-6" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah-ah-ah</span></span>
+<span id="cb654-7"><a href="strings-with-stringr.html#cb654-7" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah, yeah, yeah</span></span>
+<span id="cb654-8"><a href="strings-with-stringr.html#cb654-8" aria-hidden="true" tabindex="-1"></a><span class="st">Seven a.m., waking up in the morning</span></span>
+<span id="cb654-9"><a href="strings-with-stringr.html#cb654-9" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta be fresh, gotta go downstairs</span></span>
+<span id="cb654-10"><a href="strings-with-stringr.html#cb654-10" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta have my bowl, gotta have cereal</span></span>
+<span id="cb654-11"><a href="strings-with-stringr.html#cb654-11" aria-hidden="true" tabindex="-1"></a><span class="st">Seein&#39; everything, the time is goin&#39;</span></span>
+<span id="cb654-12"><a href="strings-with-stringr.html#cb654-12" aria-hidden="true" tabindex="-1"></a><span class="st">Tickin&#39; on and on, everybody&#39;s rushin&#39;</span></span>
+<span id="cb654-13"><a href="strings-with-stringr.html#cb654-13" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down to the bus stop</span></span>
+<span id="cb654-14"><a href="strings-with-stringr.html#cb654-14" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta catch my bus, I see my friends (my friends)</span></span>
+<span id="cb654-15"><a href="strings-with-stringr.html#cb654-15" aria-hidden="true" tabindex="-1"></a><span class="st">Kickin&#39; in the front seat</span></span>
+<span id="cb654-16"><a href="strings-with-stringr.html#cb654-16" aria-hidden="true" tabindex="-1"></a><span class="st">Sittin&#39; in the back seat</span></span>
+<span id="cb654-17"><a href="strings-with-stringr.html#cb654-17" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta make my mind up</span></span>
+<span id="cb654-18"><a href="strings-with-stringr.html#cb654-18" aria-hidden="true" tabindex="-1"></a><span class="st">Which seat can I take?</span></span>
+<span id="cb654-19"><a href="strings-with-stringr.html#cb654-19" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb654-20"><a href="strings-with-stringr.html#cb654-20" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb654-21"><a href="strings-with-stringr.html#cb654-21" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb654-22"><a href="strings-with-stringr.html#cb654-22" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb654-23"><a href="strings-with-stringr.html#cb654-23" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb654-24"><a href="strings-with-stringr.html#cb654-24" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb654-25"><a href="strings-with-stringr.html#cb654-25" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb654-26"><a href="strings-with-stringr.html#cb654-26" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb654-27"><a href="strings-with-stringr.html#cb654-27" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb654-28"><a href="strings-with-stringr.html#cb654-28" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb654-29"><a href="strings-with-stringr.html#cb654-29" aria-hidden="true" tabindex="-1"></a><span class="st">Seven, forty five, we&#39;re drivin&#39; on the highway</span></span>
+<span id="cb654-30"><a href="strings-with-stringr.html#cb654-30" aria-hidden="true" tabindex="-1"></a><span class="st">Cruisin&#39; so fast, I want time to fly</span></span>
+<span id="cb654-31"><a href="strings-with-stringr.html#cb654-31" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, think about fun</span></span>
+<span id="cb654-32"><a href="strings-with-stringr.html#cb654-32" aria-hidden="true" tabindex="-1"></a><span class="st">You know what it is</span></span>
+<span id="cb654-33"><a href="strings-with-stringr.html#cb654-33" aria-hidden="true" tabindex="-1"></a><span class="st">I got this, you got this</span></span>
+<span id="cb654-34"><a href="strings-with-stringr.html#cb654-34" aria-hidden="true" tabindex="-1"></a><span class="st">My friend is by my right, aye</span></span>
+<span id="cb654-35"><a href="strings-with-stringr.html#cb654-35" aria-hidden="true" tabindex="-1"></a><span class="st">I got this, you got this</span></span>
+<span id="cb654-36"><a href="strings-with-stringr.html#cb654-36" aria-hidden="true" tabindex="-1"></a><span class="st">Now you know it</span></span>
+<span id="cb654-37"><a href="strings-with-stringr.html#cb654-37" aria-hidden="true" tabindex="-1"></a><span class="st">Kickin&#39; in the front seat</span></span>
+<span id="cb654-38"><a href="strings-with-stringr.html#cb654-38" aria-hidden="true" tabindex="-1"></a><span class="st">Sittin&#39; in the back seat</span></span>
+<span id="cb654-39"><a href="strings-with-stringr.html#cb654-39" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta make my mind up</span></span>
+<span id="cb654-40"><a href="strings-with-stringr.html#cb654-40" aria-hidden="true" tabindex="-1"></a><span class="st">Which seat can I take?</span></span>
+<span id="cb654-41"><a href="strings-with-stringr.html#cb654-41" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb654-42"><a href="strings-with-stringr.html#cb654-42" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb654-43"><a href="strings-with-stringr.html#cb654-43" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb654-44"><a href="strings-with-stringr.html#cb654-44" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb654-45"><a href="strings-with-stringr.html#cb654-45" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb654-46"><a href="strings-with-stringr.html#cb654-46" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb654-47"><a href="strings-with-stringr.html#cb654-47" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb654-48"><a href="strings-with-stringr.html#cb654-48" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb654-49"><a href="strings-with-stringr.html#cb654-49" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb654-50"><a href="strings-with-stringr.html#cb654-50" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb654-51"><a href="strings-with-stringr.html#cb654-51" aria-hidden="true" tabindex="-1"></a><span class="st">Yesterday was Thursday, Thursday</span></span>
+<span id="cb654-52"><a href="strings-with-stringr.html#cb654-52" aria-hidden="true" tabindex="-1"></a><span class="st">Today it is Friday, Friday (partyin&#39;)</span></span>
+<span id="cb654-53"><a href="strings-with-stringr.html#cb654-53" aria-hidden="true" tabindex="-1"></a><span class="st">We-we-we so excited</span></span>
+<span id="cb654-54"><a href="strings-with-stringr.html#cb654-54" aria-hidden="true" tabindex="-1"></a><span class="st">We so excited</span></span>
+<span id="cb654-55"><a href="strings-with-stringr.html#cb654-55" aria-hidden="true" tabindex="-1"></a><span class="st">We gonna have a ball today</span></span>
+<span id="cb654-56"><a href="strings-with-stringr.html#cb654-56" aria-hidden="true" tabindex="-1"></a><span class="st">Tomorrow is Saturday</span></span>
+<span id="cb654-57"><a href="strings-with-stringr.html#cb654-57" aria-hidden="true" tabindex="-1"></a><span class="st">And Sunday comes afterwards</span></span>
+<span id="cb654-58"><a href="strings-with-stringr.html#cb654-58" aria-hidden="true" tabindex="-1"></a><span class="st">I don&#39;t want this weekend to end</span></span>
+<span id="cb654-59"><a href="strings-with-stringr.html#cb654-59" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb654-60"><a href="strings-with-stringr.html#cb654-60" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb654-61"><a href="strings-with-stringr.html#cb654-61" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend (we gotta get down)</span></span>
+<span id="cb654-62"><a href="strings-with-stringr.html#cb654-62" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb654-63"><a href="strings-with-stringr.html#cb654-63" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb654-64"><a href="strings-with-stringr.html#cb654-64" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb654-65"><a href="strings-with-stringr.html#cb654-65" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb654-66"><a href="strings-with-stringr.html#cb654-66" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb654-67"><a href="strings-with-stringr.html#cb654-67" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb654-68"><a href="strings-with-stringr.html#cb654-68" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb654-69"><a href="strings-with-stringr.html#cb654-69" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb654-70"><a href="strings-with-stringr.html#cb654-70" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb654-71"><a href="strings-with-stringr.html#cb654-71" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb654-72"><a href="strings-with-stringr.html#cb654-72" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb654-73"><a href="strings-with-stringr.html#cb654-73" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb654-74"><a href="strings-with-stringr.html#cb654-74" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb654-75"><a href="strings-with-stringr.html#cb654-75" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb654-76"><a href="strings-with-stringr.html#cb654-76" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb654-77"><a href="strings-with-stringr.html#cb654-77" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb654-78"><a href="strings-with-stringr.html#cb654-78" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend&quot;</span>)</span></code></pre></div>
+<p>Our first goal is to parse out every word so that we have an object. Run the following to examine the <code>rblack</code> object. The <code>\n</code> denotes a line break in the string.</p>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="strings-with-stringr.html#cb655-1" aria-hidden="true" tabindex="-1"></a>rblack</span></code></pre></div>
+<p>Our first step will be to use the <code>\n</code> as a separator and split the lyric strings by that character using the <code>str_split()</code> function. <code>str_split()</code> takes a string as its first argument and what we want to split the string by (<code>\n</code> in this case) as its second argument. <code>simplify = TRUE</code> puts the results into a matrix instead of a list.</p>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="strings-with-stringr.html#cb656-1" aria-hidden="true" tabindex="-1"></a>rblack2 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(rblack, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb656-2"><a href="strings-with-stringr.html#cb656-2" aria-hidden="true" tabindex="-1"></a>rblack2</span></code></pre></div>
+<p>That’s much better to look at! Look at the structure of <code>rblack2</code> with:</p>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="strings-with-stringr.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rblack2)</span></code></pre></div>
+<p>We see that <code>rblack2</code> is a matrix with 1 row and 76 colmns. But, we now want each word to be its own separate string. We can do this by using <code>str_split()</code> again, but, this time getting rid of the spaces.</p>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="strings-with-stringr.html#cb658-1" aria-hidden="true" tabindex="-1"></a>rblack3 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(rblack2, <span class="fu">c</span>(<span class="st">&quot; &quot;</span>))</span>
+<span id="cb658-2"><a href="strings-with-stringr.html#cb658-2" aria-hidden="true" tabindex="-1"></a>rblack3</span></code></pre></div>
+<p>Look carefully between <code>rblack2</code> and <code>rblack3</code>: what’s the difference? In <code>rblack2</code>, there’s quotes surrounding each line while in <code>rblack3</code>, there’s quotes surrounding each word.</p>
+<p>We can use the <code>unlist()</code> function to convert the list into a regular vector:</p>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="strings-with-stringr.html#cb659-1" aria-hidden="true" tabindex="-1"></a>rblack4 <span class="ot">&lt;-</span> <span class="fu">unlist</span>(rblack3)</span>
+<span id="cb659-2"><a href="strings-with-stringr.html#cb659-2" aria-hidden="true" tabindex="-1"></a>rblack4</span></code></pre></div>
+<p>What would happen if we tried to count the number of times Rebecca Black says Friday from the words below? Let’s try and see!</p>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="strings-with-stringr.html#cb660-1" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">words =</span> rblack4)</span>
+<span id="cb660-2"><a href="strings-with-stringr.html#cb660-2" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb660-3"><a href="strings-with-stringr.html#cb660-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb660-4"><a href="strings-with-stringr.html#cb660-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span></code></pre></div>
+<pre><code>## # A tibble: 126 x 2
+##    words   word_count
+##    &lt;chr&gt;        &lt;int&gt;
+##  1 the             20
+##  2 Friday          17
+##  3 to              15
+##  4 weekend         13
+##  5 forward         12
+##  6 Gotta           10
+##  7 on              10
+##  8 down             9
+##  9 Friday,          9
+## 10 fun,             9
+## # … with 116 more rows</code></pre>
+<p>The issue with this approach is that there are some instances of Friday with a <code>,</code> and some without. Based on this issue, let’s go back to our vector of words <code>rblack4</code> and see if we can fix it using <code>str_remove()</code>, which removes given patterns in a string. For example,</p>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="strings-with-stringr.html#cb662-1" aria-hidden="true" tabindex="-1"></a>rblack5 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack4, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;,&quot;</span>))</span>
+<span id="cb662-2"><a href="strings-with-stringr.html#cb662-2" aria-hidden="true" tabindex="-1"></a>rblack5</span></code></pre></div>
+<p>removes all of the commas.</p>
+<p>Another issue is that, if a word starts a sentence, it’s capitalized so <code>R</code> thinks <code>Partyin'</code> is a completely different word than <code>partyin'</code>. The <code>str_to_lower()</code> function converts all characters to lowercase:</p>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="strings-with-stringr.html#cb663-1" aria-hidden="true" tabindex="-1"></a>rblack6 <span class="ot">&lt;-</span> <span class="fu">str_to_lower</span>(rblack5)</span>
+<span id="cb663-2"><a href="strings-with-stringr.html#cb663-2" aria-hidden="true" tabindex="-1"></a>rblack6</span></code></pre></div>
+<p>Finally, we might want to get rid of “non-interesting” words, commonly known as “stop words.” These are words like “the,” “on,” “a,” “I,” etc. that don’t really provide meaning about the song. The <code>tidytext</code> package has a data set that has a list of stop words prepackaged. Install the package, load the <code>tidytext</code> library, and examine the stop words with:</p>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="strings-with-stringr.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="do">##install.packages(&quot;tidytext&quot;)</span></span>
+<span id="cb664-2"><a href="strings-with-stringr.html#cb664-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb664-3"><a href="strings-with-stringr.html#cb664-3" aria-hidden="true" tabindex="-1"></a>stop_words</span></code></pre></div>
+<p>Next, let’s make the Friday words into a <code>tibble</code> with the <code>tibble()</code> function:</p>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="strings-with-stringr.html#cb665-1" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">words =</span> rblack6)</span>
+<span id="cb665-2"><a href="strings-with-stringr.html#cb665-2" aria-hidden="true" tabindex="-1"></a>rblack_df</span></code></pre></div>
+<pre><code>## # A tibble: 360 x 1
+##    words              
+##    &lt;chr&gt;              
+##  1 oo-ooh-ooh         
+##  2 hoo                
+##  3 yeah               
+##  4 yeah               
+##  5 (yeah              
+##  6 ah-ah-ah-ah-ah-ark)
+##  7 yeah               
+##  8 yeah               
+##  9 yeah-ah-ah         
+## 10 yeah-ah-ah         
+## # … with 350 more rows</code></pre>
+<p>And we can now use the <code>anti_join()</code> function to get rid of the stop words in the Rebecca Black data set.</p>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="strings-with-stringr.html#cb667-1" aria-hidden="true" tabindex="-1"></a>rblack_small <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(rblack_df, stop_words,</span>
+<span id="cb667-2"><a href="strings-with-stringr.html#cb667-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;words&quot;</span> <span class="ot">=</span> <span class="st">&quot;word&quot;</span>))</span>
+<span id="cb667-3"><a href="strings-with-stringr.html#cb667-3" aria-hidden="true" tabindex="-1"></a>rblack_small</span></code></pre></div>
+<pre><code>## # A tibble: 208 x 1
+##    words              
+##    &lt;chr&gt;              
+##  1 oo-ooh-ooh         
+##  2 hoo                
+##  3 yeah               
+##  4 yeah               
+##  5 (yeah              
+##  6 ah-ah-ah-ah-ah-ark)
+##  7 yeah               
+##  8 yeah               
+##  9 yeah-ah-ah         
+## 10 yeah-ah-ah         
+## # … with 198 more rows</code></pre>
+<p>We see that 98 words were dropped from the data set, but that some words weren’t picked up (like <code>yeah-ah-ah</code>). We will leave these for now, but, we could remove them with <code>filter(words != "yeah-ah-ah")</code> Finally, we can get some counts of words in the song Friday that aren’t “stop words.”</p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="strings-with-stringr.html#cb669-1" aria-hidden="true" tabindex="-1"></a>rblack_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb669-2"><a href="strings-with-stringr.html#cb669-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb669-3"><a href="strings-with-stringr.html#cb669-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span></code></pre></div>
+<pre><code>## # A tibble: 60 x 2
+##    words       word_count
+##    &lt;chr&gt;            &lt;int&gt;
+##  1 friday              26
+##  2 fun                 19
+##  3 weekend             17
+##  4 partyin&#39;            16
+##  5 gotta               13
+##  6 forward             12
+##  7 lookin&#39;             12
+##  8 everybody&#39;s          9
+##  9 (yeah)               8
+## 10 yeah                 7
+## # … with 50 more rows</code></pre>
+<div id="exercise-12-1" class="section level3" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> Exercises</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="strings-with-stringr.html#solutions-12">13.4</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>* Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the <code>tidytext</code> package? Create a tibble with a couple of stop words not picked up by the <code>tidytext</code> package, and use a join function to drop these words from <code>rblack_small</code>.</p></li>
+<li><p>* Ignore the parentheses for now. Make a point plot that shows the 10 most common words in Rebecca Black’s Friday, where the words are ordered from the most common to the least common on your graph.</p></li>
+<li><p>We can also make a wordcloud (though word clouds have some issues). <code>R</code> has a wordcloud package called <code>wordcloud</code>. Run the following code to make a word cloud of the words in the song <em>Friday</em>.</p></li>
+</ol>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="strings-with-stringr.html#cb671-1" aria-hidden="true" tabindex="-1"></a>rblack_sum <span class="ot">&lt;-</span> rblack_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb671-2"><a href="strings-with-stringr.html#cb671-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb671-3"><a href="strings-with-stringr.html#cb671-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span>
+<span id="cb671-4"><a href="strings-with-stringr.html#cb671-4" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;wordcloud&quot;)</span></span>
+<span id="cb671-5"><a href="strings-with-stringr.html#cb671-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
+<span id="cb671-6"><a href="strings-with-stringr.html#cb671-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(rblack_sum<span class="sc">$</span>words, rblack_sum<span class="sc">$</span>word_count, </span>
+<span id="cb671-7"><a href="strings-with-stringr.html#cb671-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Dark2&quot;</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">5</span>, .<span class="dv">2</span>),</span>
+<span id="cb671-8"><a href="strings-with-stringr.html#cb671-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">random.color =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Then, type <code>?wordcloud</code> to explore some of the options. In particular, try to increase the number of words plotted in the cloud.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Finally, what about those pesky parentheses? Certain characters in <code>R</code> are treated as special: <code>$</code>, <code>(</code>, <code>.</code>, and <code>)</code> are all examples. Dealing with these are fairly annoying: we need to “escape” them with a backslash and then “escape” that backslash with another backslash. If that’s confusing, no worries: we won’t focus too much on these special characters in this class.</li>
+</ol>
+<p>To remove the front parenthesis, use</p>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="strings-with-stringr.html#cb672-1" aria-hidden="true" tabindex="-1"></a>rblack7 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack6, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>))</span>
+<span id="cb672-2"><a href="strings-with-stringr.html#cb672-2" aria-hidden="true" tabindex="-1"></a>rblack7</span></code></pre></div>
+<p>and then to remove the back parenthesis, use</p>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="strings-with-stringr.html#cb673-1" aria-hidden="true" tabindex="-1"></a>rblack8 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack7, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>))</span>
+<span id="cb673-2"><a href="strings-with-stringr.html#cb673-2" aria-hidden="true" tabindex="-1"></a>rblack8</span></code></pre></div>
+<p>These are “regular expressions:” if interested, you can read more in the <a href="https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions" target="_blank">R4DS textbook</a>.</p>
+<p>We analyzed a short text data set, but, you can imagine extending this type of analysis to things like:</p>
+<ul>
+<li>song lyrics, if you have the lyrics to all of the songs from an artist <a href="https://rpubs.com/RosieB/taylorswiftlyricanalysis" class="uri">https://rpubs.com/RosieB/taylorswiftlyricanalysis</a></li>
+<li>book analysis, if you have the text of an entire book or series of books</li>
+<li>tv analysis, if you have the scripts to all episodes of a tv show</li>
+</ul>
+<p>If you were doing one of these analyses, there are lots of cool functions in <code>tidytext</code> to help you out!</p>
+</div>
+</div>
+<div id="add-second-example-here" class="section level2" number="13.2">
+<h2><span class="header-section-number">13.2</span> Add Second Example Here</h2>
+<p>maybe the office package? maybe the friends package?</p>
+</div>
+<div id="chapexercise-12" class="section level2" number="13.3">
+<h2><span class="header-section-number">13.3</span> Chapter Exercises</h2>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="strings-with-stringr.html#solutions-12">13.4</a>.</p>
+<ol style="list-style-type: decimal">
+<li>* Read in the <code>beyonce_lyrics.csv</code> file, which has the lyrics to all of beyonce’s songs and construct either a word cloud or a point plot that shows the most common non-stop words in either all of Beyonce’s songs. Do the best you can here (you might have some minor errors, like the parentheses in Friday’s “yeah” that we don’t have the tools to fix).</li>
+</ol>
+<p><strong>Hint</strong>: You can actually skip a couple of the steps from the Friday analysis, as, for example, there is no “<code>\n</code>” character to remove in Beyonce’s lyrics.</p>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="strings-with-stringr.html#cb674-1" aria-hidden="true" tabindex="-1"></a>beyonce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/beyonce_lyrics.csv&quot;</span>)</span>
+<span id="cb674-2"><a href="strings-with-stringr.html#cb674-2" aria-hidden="true" tabindex="-1"></a>beyonce_lyrics <span class="ot">&lt;-</span> beyonce<span class="sc">$</span>line</span></code></pre></div>
+</div>
+<div id="solutions-12" class="section level2" number="13.4">
+<h2><span class="header-section-number">13.4</span> Exercise Solutions</h2>
+<div id="friday-friday-s" class="section level3" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> Friday, Friday S</h3>
+<ol style="list-style-type: decimal">
+<li>* Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the <code>tidytext</code> package? Create a tibble with a couple of stop words not picked up by the <code>tidytext</code> package, and use a join function to drop these words from <code>rblack_small</code>.</li>
+</ol>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="strings-with-stringr.html#cb675-1" aria-hidden="true" tabindex="-1"></a>extra_stops <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">other_stop_words =</span> <span class="fu">c</span>(<span class="st">&quot;gonna&quot;</span>, <span class="st">&quot;yeah&quot;</span>))</span>
+<span id="cb675-2"><a href="strings-with-stringr.html#cb675-2" aria-hidden="true" tabindex="-1"></a>rblack_small2 <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(rblack_small, extra_stops, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;words&quot;</span> <span class="ot">=</span> <span class="st">&quot;other_stop_words&quot;</span>))</span>
+<span id="cb675-3"><a href="strings-with-stringr.html#cb675-3" aria-hidden="true" tabindex="-1"></a>rblack_wordcounts <span class="ot">&lt;-</span> rblack_small2 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb675-4"><a href="strings-with-stringr.html#cb675-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb675-5"><a href="strings-with-stringr.html#cb675-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span>
+<span id="cb675-6"><a href="strings-with-stringr.html#cb675-6" aria-hidden="true" tabindex="-1"></a>rblack10 <span class="ot">&lt;-</span> rblack_wordcounts <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>* Ignore the parentheses for now. Make a point plot that shows the 10 most common words in Rebecca Black’s Friday, where the words are ordered from the most common to the least common on your graph.</li>
+</ol>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="strings-with-stringr.html#cb676-1" aria-hidden="true" tabindex="-1"></a>rblack10 <span class="ot">&lt;-</span> rblack10 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">words_ord =</span> <span class="fu">fct_reorder</span>(words, <span class="at">.x =</span> word_count))</span>
+<span id="cb676-2"><a href="strings-with-stringr.html#cb676-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> rblack10, <span class="fu">aes</span>(<span class="at">x =</span> words_ord, <span class="at">y =</span> word_count)) <span class="sc">+</span></span>
+<span id="cb676-3"><a href="strings-with-stringr.html#cb676-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb676-4"><a href="strings-with-stringr.html#cb676-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="12-stringr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="second-example-s" class="section level3" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> Second Example S</h3>
+</div>
+<div id="chapexercise-12-S" class="section level3" number="13.4.3">
+<h3><span class="header-section-number">13.4.3</span> Chapter Exercises S</h3>
+<ol style="list-style-type: decimal">
+<li>* Read in the <code>beyonce_lyrics.csv</code> file, which has the lyrics to all of beyonce’s songs and construct either a word cloud or a point plot that shows the most common non-stop words in either all of Beyonce’s songs. Do the best you can here (you might have some minor errors, like the parentheses in Friday’s “yeah” that we don’t have the tools to fix).</li>
+</ol>
+<p><strong>Hint</strong>: You can actually skip a couple of the steps from the Friday analysis, as, for example, there is no “<code>\n</code>” character to remove in Beyonce’s lyrics.</p>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="strings-with-stringr.html#cb677-1" aria-hidden="true" tabindex="-1"></a>beyonce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/beyonce_lyrics.csv&quot;</span>)</span>
+<span id="cb677-2"><a href="strings-with-stringr.html#cb677-2" aria-hidden="true" tabindex="-1"></a>beyonce_lyrics <span class="ot">&lt;-</span> beyonce<span class="sc">$</span>line</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="strings-with-stringr.html#cb678-1" aria-hidden="true" tabindex="-1"></a>beyonce_lines <span class="ot">&lt;-</span> <span class="fu">str_split</span>(beyonce<span class="sc">$</span>line, <span class="fu">c</span>(<span class="st">&quot; &quot;</span>))</span>
+<span id="cb678-2"><a href="strings-with-stringr.html#cb678-2" aria-hidden="true" tabindex="-1"></a>words_only <span class="ot">&lt;-</span> <span class="fu">unlist</span>(beyonce_lines)</span>
+<span id="cb678-3"><a href="strings-with-stringr.html#cb678-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb678-4"><a href="strings-with-stringr.html#cb678-4" aria-hidden="true" tabindex="-1"></a>beyonce_lines2 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(words_only, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;,&quot;</span>))</span>
+<span id="cb678-5"><a href="strings-with-stringr.html#cb678-5" aria-hidden="true" tabindex="-1"></a>beyonce_lines2</span>
+<span id="cb678-6"><a href="strings-with-stringr.html#cb678-6" aria-hidden="true" tabindex="-1"></a>beyonce_lines3 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(beyonce_lines2, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;;&quot;</span>))</span>
+<span id="cb678-7"><a href="strings-with-stringr.html#cb678-7" aria-hidden="true" tabindex="-1"></a>beyonce_lines3</span>
+<span id="cb678-8"><a href="strings-with-stringr.html#cb678-8" aria-hidden="true" tabindex="-1"></a>beyonce_lines4 <span class="ot">&lt;-</span> <span class="fu">str_to_lower</span>(beyonce_lines3)</span>
+<span id="cb678-9"><a href="strings-with-stringr.html#cb678-9" aria-hidden="true" tabindex="-1"></a>beyonce_lines4</span>
+<span id="cb678-10"><a href="strings-with-stringr.html#cb678-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb678-11"><a href="strings-with-stringr.html#cb678-11" aria-hidden="true" tabindex="-1"></a>beyonce_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">b_words =</span> beyonce_lines4)</span></code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="strings-with-stringr.html#cb679-1" aria-hidden="true" tabindex="-1"></a>beyonce_small <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(beyonce_df, stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;b_words&quot;</span> <span class="ot">=</span> <span class="st">&quot;word&quot;</span>))</span>
+<span id="cb679-2"><a href="strings-with-stringr.html#cb679-2" aria-hidden="true" tabindex="-1"></a>beyonce_small</span>
+<span id="cb679-3"><a href="strings-with-stringr.html#cb679-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb679-4"><a href="strings-with-stringr.html#cb679-4" aria-hidden="true" tabindex="-1"></a>beyonce_sum <span class="ot">&lt;-</span> beyonce_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(b_words) <span class="sc">%&gt;%</span></span>
+<span id="cb679-5"><a href="strings-with-stringr.html#cb679-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb679-6"><a href="strings-with-stringr.html#cb679-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count)) <span class="sc">%&gt;%</span></span>
+<span id="cb679-7"><a href="strings-with-stringr.html#cb679-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(word_count <span class="sc">&gt;</span> <span class="dv">100</span>)</span>
+<span id="cb679-8"><a href="strings-with-stringr.html#cb679-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb679-9"><a href="strings-with-stringr.html#cb679-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
+<span id="cb679-10"><a href="strings-with-stringr.html#cb679-10" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(beyonce_sum<span class="sc">$</span>b_words, beyonce_sum<span class="sc">$</span>word_count, </span>
+<span id="cb679-11"><a href="strings-with-stringr.html#cb679-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Dark2&quot;</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">5</span>, .<span class="dv">2</span>),</span>
+<span id="cb679-12"><a href="strings-with-stringr.html#cb679-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">random.color =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb679-13"><a href="strings-with-stringr.html#cb679-13" aria-hidden="true" tabindex="-1"></a>beyonce_bigwords <span class="ot">&lt;-</span> beyonce_sum <span class="sc">%&gt;%</span> <span class="fu">filter</span>(word_count <span class="sc">&gt;</span> <span class="dv">250</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb679-14"><a href="strings-with-stringr.html#cb679-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">b_words =</span> <span class="fu">fct_reorder</span>(b_words, <span class="at">.x =</span> word_count))</span>
+<span id="cb679-15"><a href="strings-with-stringr.html#cb679-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beyonce_bigwords, <span class="fu">aes</span>(<span class="at">x =</span> word_count, <span class="at">y =</span> b_words)) <span class="sc">+</span></span>
+<span id="cb679-16"><a href="strings-with-stringr.html#cb679-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb679-17"><a href="strings-with-stringr.html#cb679-17" aria-hidden="true" tabindex="-1"></a><span class="do">## there&#39;s still some stopwords in there (yeah, ya, wanna, &#39;cause)</span></span>
+<span id="cb679-18"><a href="strings-with-stringr.html#cb679-18" aria-hidden="true" tabindex="-1"></a><span class="do">## but these can be removed with dplyr.</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dates-with-lubridate.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="predictive-modeling-with-knn.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false,
+"whatsapp": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

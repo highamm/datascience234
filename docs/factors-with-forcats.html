@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Factors with forcats | STAT 234: Data Science</title>
+  <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Factors with forcats | STAT 234: Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Factors with forcats | STAT 234: Data Science" />
+  
+  <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  
+
+<meta name="author" content="Matt Higham" />
+
+
+<meta name="date" content="2021-06-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-basics.html"/>
+<link rel="next" href="reprexes-and-import.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 234: Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-information"><i class="fa fa-check"></i><b>1.2</b> Course Information</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#general-course-outcomes"><i class="fa fa-check"></i><b>1.3</b> General Course Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#use-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Use of <code>R</code> and <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#how-you-will-be-assessed"><i class="fa fa-check"></i><b>1.4</b> How You Will Be Assessed</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#breakdown"><i class="fa fa-check"></i><b>1.4.1</b> Breakdown</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#grading-scale"><i class="fa fa-check"></i><b>1.4.2</b> Grading Scale</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#rules-for-collaboration"><i class="fa fa-check"></i><b>1.4.3</b> Rules for Collaboration</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#diversity-statement"><i class="fa fa-check"></i><b>1.4.4</b> Diversity Statement</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#accessibility-statement"><i class="fa fa-check"></i><b>1.4.5</b> Accessibility Statement</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#academic-dishonesty"><i class="fa fa-check"></i><b>1.4.6</b> Academic Dishonesty</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tentative-schedule"><i class="fa fa-check"></i><b>1.5</b> Tentative Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Getting Started with <code>R</code> and <code>R Studio</code></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#intro-to-r-and-r-studio"><i class="fa fa-check"></i><b>2.1</b> Intro to <code>R</code> and <code>R Studio</code></a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-are-r-r-studio-and-r-markdown"><i class="fa fa-check"></i><b>2.2</b> What are <code>R</code>, <code>R Studio</code>, and <code>R Markdown</code>?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#r-packages-and-the-tidyverse"><i class="fa fa-check"></i><b>2.2.1</b> <code>R</code> Packages and the <code>tidyverse</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#putting-code-in-a-.rmd-file"><i class="fa fa-check"></i><b>2.3</b> Putting Code in a <code>.Rmd</code> File</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#alcohol-data-example"><i class="fa fa-check"></i><b>2.4</b> Alcohol Data Example</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#exercise-1-1"><i class="fa fa-check"></i><b>2.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#athlete-data-example"><i class="fa fa-check"></i><b>2.5</b> Athlete Data Example</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#exercise-1-2"><i class="fa fa-check"></i><b>2.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#finishing-up-common-errors-in-r"><i class="fa fa-check"></i><b>2.6</b> Finishing Up: Common Errors in <code>R</code></a></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#chapexercise-1"><i class="fa fa-check"></i><b>2.7</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#solutions-1"><i class="fa fa-check"></i><b>2.8</b> Exercise Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>3</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-and-basic-terminology"><i class="fa fa-check"></i><b>3.1</b> Introduction and Basic Terminology</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure"><i class="fa fa-check"></i><b>3.2</b> Basic Plot Structure</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable"><i class="fa fa-check"></i><b>3.3</b> Graphing a Single Variable</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2.html"><a href="ggplot2.html#histograms-and-frequency-plots-for-a-quantitative-variable"><i class="fa fa-check"></i><b>3.3.1</b> Histograms and Frequency Plots for a Quantitative Variable</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2.html"><a href="ggplot2.html#r-code-style"><i class="fa fa-check"></i><b>3.3.2</b> <code>R</code> Code Style</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2.html"><a href="ggplot2.html#bar-plots-for-a-categorical-variable"><i class="fa fa-check"></i><b>3.3.3</b> Bar Plots for a Categorical Variable</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quantitative-variables-faceting-and-aes-options"><i class="fa fa-check"></i><b>3.4</b> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2.html"><a href="ggplot2.html#scatterplots"><i class="fa fa-check"></i><b>3.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2.html"><a href="ggplot2.html#aesthetics-in-aes"><i class="fa fa-check"></i><b>3.4.2</b> Aesthetics in <code>aes()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2.html"><a href="ggplot2.html#using-more-than-one-geom"><i class="fa fa-check"></i><b>3.4.3</b> Using More Than One <code>geom()</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2.html"><a href="ggplot2.html#line-plots-with-geom_line"><i class="fa fa-check"></i><b>3.4.4</b> Line Plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2.html"><a href="ggplot2.html#faceting"><i class="fa fa-check"></i><b>3.4.5</b> Faceting</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-2"><i class="fa fa-check"></i><b>3.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-barplots-and-others"><i class="fa fa-check"></i><b>3.5</b> Boxplots, Stacked Barplots and Others</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-quant.-variable-vs.-a-cat.-variable"><i class="fa fa-check"></i><b>3.5.1</b> Graphing a Quant. Variable vs. a Cat. Variable</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-categorical-variables"><i class="fa fa-check"></i><b>3.5.2</b> Graphing Two Categorical Variables</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2"><i class="fa fa-check"></i><b>3.6</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2.html"><a href="ggplot2.html#solutions-2"><i class="fa fa-check"></i><b>3.7</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-etc.-s"><i class="fa fa-check"></i><b>3.7.1</b> Introduction etc. S</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure-s"><i class="fa fa-check"></i><b>3.7.2</b> Basic Plot Structure S</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable-s"><i class="fa fa-check"></i><b>3.7.3</b> Graphing a Single Variable S</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quant.-etc.-s"><i class="fa fa-check"></i><b>3.7.4</b> Graphing Two Quant. etc. S</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-etc.-s"><i class="fa fa-check"></i><b>3.7.5</b> Boxplots, Stacked, etc. S</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2-S"><i class="fa fa-check"></i><b>3.7.6</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dplyr.html"><a href="dplyr.html#mutate-create-variables"><i class="fa fa-check"></i><b>4.1</b> <code>mutate()</code>: Create Variables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="dplyr.html"><a href="dplyr.html#a-little-more-on-piping"><i class="fa fa-check"></i><b>4.1.1</b> A Little More on Piping</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dplyr.html"><a href="dplyr.html#if_else-and-case_when"><i class="fa fa-check"></i><b>4.1.2</b> <code>if_else()</code> and <code>case_when()</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="dplyr.html"><a href="dplyr.html#exercise-3-1"><i class="fa fa-check"></i><b>4.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-and-slice-and-filter"><i class="fa fa-check"></i><b>4.2</b> <code>arrange()</code>, <code>select()</code>, and <code>slice()</code>, and <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dplyr.html"><a href="dplyr.html#arrange-ordering-rows"><i class="fa fa-check"></i><b>4.2.1</b> <code>arrange()</code>: Ordering Rows</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dplyr.html"><a href="dplyr.html#select-choose-columns"><i class="fa fa-check"></i><b>4.2.2</b> <code>select()</code> Choose Columns</a></li>
+<li class="chapter" data-level="4.2.3" data-path="dplyr.html"><a href="dplyr.html#slice-and-filter-choose-rows"><i class="fa fa-check"></i><b>4.2.3</b> <code>slice()</code> and <code>filter()</code>: Choose Rows</a></li>
+<li class="chapter" data-level="4.2.4" data-path="dplyr.html"><a href="dplyr.html#exercise-3-2"><i class="fa fa-check"></i><b>4.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-create-summaries"><i class="fa fa-check"></i><b>4.3</b> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dplyr.html"><a href="dplyr.html#group_by-groups"><i class="fa fa-check"></i><b>4.3.1</b> <code>group_by()</code>: Groups</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dplyr.html"><a href="dplyr.html#exercise-3-3"><i class="fa fa-check"></i><b>4.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dplyr.html"><a href="dplyr.html#missing-values"><i class="fa fa-check"></i><b>4.4</b> Missing Values</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dplyr.html"><a href="dplyr.html#exercise-3-4"><i class="fa fa-check"></i><b>4.4.1</b> Exercises</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dplyr.html"><a href="dplyr.html#removing-missing-values"><i class="fa fa-check"></i><b>4.4.2</b> Removing Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3"><i class="fa fa-check"></i><b>4.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="dplyr.html"><a href="dplyr.html#solutions-3"><i class="fa fa-check"></i><b>4.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="dplyr.html"><a href="dplyr.html#mutate-s"><i class="fa fa-check"></i><b>4.6.1</b> <code>mutate()</code> S</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-.-s"><i class="fa fa-check"></i><b>4.6.2</b> <code>arrange()</code>, <code>select()</code>, …. S</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-s"><i class="fa fa-check"></i><b>4.6.3</b> <code>summarise()</code> and <code>group_by()</code> S</a></li>
+<li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#missing-values-s"><i class="fa fa-check"></i><b>4.6.4</b> Missing Values S</a></li>
+<li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3-S"><i class="fa fa-check"></i><b>4.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> What is Tidy Data?</a></li>
+<li class="chapter" data-level="5.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-columns"><i class="fa fa-check"></i><b>5.2</b> <code>separate()</code> and <code>unite()</code> Columns</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-a-column"><i class="fa fa-check"></i><b>5.2.1</b> <code>separate()</code> a Column</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#unite-columns"><i class="fa fa-check"></i><b>5.2.2</b> <code>unite()</code> Columns</a></li>
+<li class="chapter" data-level="5.2.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#column-names-and-rename"><i class="fa fa-check"></i><b>5.2.3</b> Column Names and <code>rename()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-1"><i class="fa fa-check"></i><b>5.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#reshaping-with-pivot_"><i class="fa fa-check"></i><b>5.3</b> Reshaping with <code>pivot_()</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_longer-to-gather-columns"><i class="fa fa-check"></i><b>5.3.1</b> <code>pivot_longer()</code> to Gather Columns</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_wider-to-spread-to-multiple-columns"><i class="fa fa-check"></i><b>5.3.2</b> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-2"><i class="fa fa-check"></i><b>5.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr"><i class="fa fa-check"></i><b>5.4</b> Skimming Data with <code>skimr</code></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercises-exercise-4-3"><i class="fa fa-check"></i><b>5.4.1</b> Exercises {exercise-4-3}</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4"><i class="fa fa-check"></i><b>5.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#solutions-4"><i class="fa fa-check"></i><b>5.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data-s"><i class="fa fa-check"></i><b>5.6.1</b> What is Tidy Data? S</a></li>
+<li class="chapter" data-level="5.6.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-s"><i class="fa fa-check"></i><b>5.6.2</b> <code>separate()</code> and <code>unite()</code> S</a></li>
+<li class="chapter" data-level="5.6.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_-s"><i class="fa fa-check"></i><b>5.6.3</b> <code>pivot_()</code> S</a></li>
+<li class="chapter" data-level="5.6.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr-s"><i class="fa fa-check"></i><b>5.6.4</b> Skimming Data with <code>skimr()</code> S</a></li>
+<li class="chapter" data-level="5.6.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4-S"><i class="fa fa-check"></i><b>5.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#reproducbility"><i class="fa fa-check"></i><b>6.1</b> Reproducbility</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-scripts-vs.-r-markdown"><i class="fa fa-check"></i><b>6.1.1</b> <code>R</code> Scripts vs. <code>R Markdown</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#spell-checking"><i class="fa fa-check"></i><b>6.1.2</b> Spell-Checking</a></li>
+<li class="chapter" data-level="6.1.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-1"><i class="fa fa-check"></i><b>6.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-markdown-files"><i class="fa fa-check"></i><b>6.2</b> <code>R Markdown</code> Files</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#code-chunk-options"><i class="fa fa-check"></i><b>6.2.1</b> Code Chunk Options</a></li>
+<li class="chapter" data-level="6.2.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#figures-and-tables"><i class="fa fa-check"></i><b>6.2.2</b> Figures and Tables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#non-code-options"><i class="fa fa-check"></i><b>6.2.3</b> Non-Code Options</a></li>
+<li class="chapter" data-level="6.2.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#yaml"><i class="fa fa-check"></i><b>6.2.4</b> YAML</a></li>
+<li class="chapter" data-level="6.2.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-2"><i class="fa fa-check"></i><b>6.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication"><i class="fa fa-check"></i><b>6.3</b> <code>ggplot2</code> Communication</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#change-labels-and-titles"><i class="fa fa-check"></i><b>6.3.1</b> Change Labels and Titles</a></li>
+<li class="chapter" data-level="6.3.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#changing-x-and-y-axis-limits"><i class="fa fa-check"></i><b>6.3.2</b> Changing x and y axis Limits</a></li>
+<li class="chapter" data-level="6.3.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#changing-a-colour-scale"><i class="fa fa-check"></i><b>6.3.3</b> Changing A Colour Scale</a></li>
+<li class="chapter" data-level="6.3.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#labeling-points-or-lines-of-interest"><i class="fa fa-check"></i><b>6.3.4</b> Labeling Points or Lines of Interest</a></li>
+<li class="chapter" data-level="6.3.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#plot-themes"><i class="fa fa-check"></i><b>6.3.5</b> Plot Themes</a></li>
+<li class="chapter" data-level="6.3.6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-3"><i class="fa fa-check"></i><b>6.3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5"><i class="fa fa-check"></i><b>6.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#solutions-5"><i class="fa fa-check"></i><b>6.5</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#reproducibility-s"><i class="fa fa-check"></i><b>6.5.1</b> Reproducibility S</a></li>
+<li class="chapter" data-level="6.5.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-markdown-files-s"><i class="fa fa-check"></i><b>6.5.2</b> <code>R Markdown</code> Files S</a></li>
+<li class="chapter" data-level="6.5.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication-s"><i class="fa fa-check"></i><b>6.5.3</b> <code>ggplot2</code> Communication S</a></li>
+<li class="chapter" data-level="6.5.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5-S"><i class="fa fa-check"></i><b>6.5.4</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-in-r"><i class="fa fa-check"></i><b>7.1</b> Variable Classes in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-basics.html"><a href="r-basics.html#referencing-variables-and-using-str"><i class="fa fa-check"></i><b>7.1.1</b> Referencing Variables and Using <code>str()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail"><i class="fa fa-check"></i><b>7.2</b> Classes in Detail</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="r-basics.html"><a href="r-basics.html#chr-and-fct-class"><i class="fa fa-check"></i><b>7.2.1</b> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
+<li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
+<li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-s"><i class="fa fa-check"></i><b>7.7.1</b> Variable Classes S</a></li>
+<li class="chapter" data-level="7.7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail-s"><i class="fa fa-check"></i><b>7.7.2</b> Classes in Detail S</a></li>
+<li class="chapter" data-level="7.7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-s"><i class="fa fa-check"></i><b>7.7.3</b> Object Types S</a></li>
+<li class="chapter" data-level="7.7.4" data-path="r-basics.html"><a href="r-basics.html#piping-s"><i class="fa fa-check"></i><b>7.7.4</b> Piping S</a></li>
+<li class="chapter" data-level="7.7.5" data-path="r-basics.html"><a href="r-basics.html#other-r-topics-s"><i class="fa fa-check"></i><b>7.7.5</b> Other R Topics S</a></li>
+<li class="chapter" data-level="7.7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6-S"><i class="fa fa-check"></i><b>7.7.6</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html"><i class="fa fa-check"></i><b>8</b> Factors with <code>forcats</code></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-factor-levels"><i class="fa fa-check"></i><b>8.1</b> Change Factor Levels</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#fct_recode-to-rename-levels"><i class="fa fa-check"></i><b>8.1.1</b> <code>fct_recode()</code> to Rename Levels</a></li>
+<li class="chapter" data-level="8.1.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#collapsing-many-levels-into-fewer-levels-with-fct_collapse"><i class="fa fa-check"></i><b>8.1.2</b> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></a></li>
+<li class="chapter" data-level="8.1.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#exercise-7-1"><i class="fa fa-check"></i><b>8.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels"><i class="fa fa-check"></i><b>8.2</b> Reorder Factor Levels</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"><i class="fa fa-check"></i><b>8.2.1</b> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></a></li>
+<li class="chapter" data-level="8.2.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#re-leveling-by-two-quantitative-variables-with-fct_reorder2"><i class="fa fa-check"></i><b>8.2.2</b> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></a></li>
+<li class="chapter" data-level="8.2.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reordering-levels-manually-with-fct_relevel"><i class="fa fa-check"></i><b>8.2.3</b> Reordering Levels Manually with <code>fct_relevel()</code></a></li>
+<li class="chapter" data-level="8.2.4" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#exercise-7-2"><i class="fa fa-check"></i><b>8.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7"><i class="fa fa-check"></i><b>8.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="8.4" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#solutions-7"><i class="fa fa-check"></i><b>8.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-factor-levels-s"><i class="fa fa-check"></i><b>8.4.1</b> Change Factor Levels S</a></li>
+<li class="chapter" data-level="8.4.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels-s"><i class="fa fa-check"></i><b>8.4.2</b> Reorder Factor Levels S</a></li>
+<li class="chapter" data-level="8.4.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7-S"><i class="fa fa-check"></i><b>8.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html"><i class="fa fa-check"></i><b>9</b> Reprexes and Import</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#reprexes-and-tibble"><i class="fa fa-check"></i><b>9.1</b> Reprexes and <code>tibble</code></a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-1"><i class="fa fa-check"></i><b>9.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#readr-to-read-in-data"><i class="fa fa-check"></i><b>9.2</b> <code>readr</code> to Read in Data</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#read_csv-options"><i class="fa fa-check"></i><b>9.2.1</b> <code>read_csv()</code> Options</a></li>
+<li class="chapter" data-level="9.2.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-2"><i class="fa fa-check"></i><b>9.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#data-scraping-with-rvest"><i class="fa fa-check"></i><b>9.3</b> Data Scraping with <code>rvest</code></a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-3"><i class="fa fa-check"></i><b>9.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-files-with-jsonlite"><i class="fa fa-check"></i><b>9.4</b> JSON Files with <code>jsonlite</code></a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#everything-working-well"><i class="fa fa-check"></i><b>9.4.1</b> Everything Working Well</a></li>
+<li class="chapter" data-level="9.4.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#things-arent-always-so-easy"><i class="fa fa-check"></i><b>9.4.2</b> Things Aren’t Always So Easy</a></li>
+<li class="chapter" data-level="9.4.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-4"><i class="fa fa-check"></i><b>9.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8"><i class="fa fa-check"></i><b>9.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#solutions-8"><i class="fa fa-check"></i><b>9.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#reprexes-and-tibble-s"><i class="fa fa-check"></i><b>9.6.1</b> Reprexes and <code>tibble</code> S</a></li>
+<li class="chapter" data-level="9.6.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#readr-s"><i class="fa fa-check"></i><b>9.6.2</b> <code>readr</code> S</a></li>
+<li class="chapter" data-level="9.6.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#rvest-and-data-scraping-s"><i class="fa fa-check"></i><b>9.6.3</b> <code>rvest</code> and Data Scraping S</a></li>
+<li class="chapter" data-level="9.6.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-with-jsonlite-s"><i class="fa fa-check"></i><b>9.6.4</b> JSON with <code>jsonlite</code> S</a></li>
+<li class="chapter" data-level="9.6.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8-S"><i class="fa fa-check"></i><b>9.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>10</b> Data Ethics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-ethics.html"><a href="data-ethics.html#ethical-examples"><i class="fa fa-check"></i><b>10.1</b> Ethical Examples</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-1"><i class="fa fa-check"></i><b>10.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-ethics.html"><a href="data-ethics.html#data-privacy"><i class="fa fa-check"></i><b>10.2</b> Data Privacy</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-2"><i class="fa fa-check"></i><b>10.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-ethics.html"><a href="data-ethics.html#hypothesis-generation-vs.-confirmation"><i class="fa fa-check"></i><b>10.3</b> Hypothesis Generation vs. Confirmation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-3"><i class="fa fa-check"></i><b>10.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="data-ethics.html"><a href="data-ethics.html#chapexercise-9"><i class="fa fa-check"></i><b>10.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="10.5" data-path="data-ethics.html"><a href="data-ethics.html#solutions-9"><i class="fa fa-check"></i><b>10.5</b> Exercise Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html"><i class="fa fa-check"></i><b>11</b> Merging with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#stacking-rows-and-appending-columns"><i class="fa fa-check"></i><b>11.1</b> Stacking Rows and Appending Columns</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#stacking-with-bind_rows"><i class="fa fa-check"></i><b>11.1.1</b> Stacking with <code>bind_rows()</code></a></li>
+<li class="chapter" data-level="11.1.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#binding-columns-with-bind_cols"><i class="fa fa-check"></i><b>11.1.2</b> Binding Columns with <code>bind_cols()</code></a></li>
+<li class="chapter" data-level="11.1.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-1"><i class="fa fa-check"></i><b>11.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#mutating-joins"><i class="fa fa-check"></i><b>11.2</b> Mutating Joins</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-data-set-1-with-left_join"><i class="fa fa-check"></i><b>11.2.1</b> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
+<li class="chapter" data-level="11.2.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-data-set-2-with-right_join"><i class="fa fa-check"></i><b>11.2.2</b> Keep All Rows of Data Set 2 with <code>right_join()</code></a></li>
+<li class="chapter" data-level="11.2.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-both-data-sets-with-full_join"><i class="fa fa-check"></i><b>11.2.3</b> Keep All Rows of Both Data Sets with <code>full_join()</code></a></li>
+<li class="chapter" data-level="11.2.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-only-rows-with-matching-keys-with-inner_join"><i class="fa fa-check"></i><b>11.2.4</b> Keep Only Rows with Matching Keys with <code>inner_join()</code></a></li>
+<li class="chapter" data-level="11.2.5" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#which-xxxx_join"><i class="fa fa-check"></i><b>11.2.5</b> Which <code>xxxx_join()</code>?</a></li>
+<li class="chapter" data-level="11.2.6" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#the-importance-of-a-good-key"><i class="fa fa-check"></i><b>11.2.6</b> The Importance of a Good Key</a></li>
+<li class="chapter" data-level="11.2.7" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-2"><i class="fa fa-check"></i><b>11.2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins"><i class="fa fa-check"></i><b>11.3</b> Filtering Joins</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-with-anti_join"><i class="fa fa-check"></i><b>11.3.1</b> Filtering with <code>anti_join()</code></a></li>
+<li class="chapter" data-level="11.3.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-3"><i class="fa fa-check"></i><b>11.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#a-note-on-sql"><i class="fa fa-check"></i><b>11.4</b> A Note on SQL</a></li>
+<li class="chapter" data-level="11.5" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10"><i class="fa fa-check"></i><b>11.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="11.6" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#solutions-10"><i class="fa fa-check"></i><b>11.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#bind_rows-and-bind_cols-s"><i class="fa fa-check"></i><b>11.6.1</b> <code>bind_rows()</code> and <code>bind_cols()</code> S</a></li>
+<li class="chapter" data-level="11.6.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#mutating-joins-s"><i class="fa fa-check"></i><b>11.6.2</b> Mutating Joins S</a></li>
+<li class="chapter" data-level="11.6.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins-s"><i class="fa fa-check"></i><b>11.6.3</b> Filtering Joins S</a></li>
+<li class="chapter" data-level="11.6.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10-S"><i class="fa fa-check"></i><b>11.6.4</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html"><i class="fa fa-check"></i><b>12</b> Dates with <code>lubridate</code></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#converting-variables-to-date"><i class="fa fa-check"></i><b>12.1</b> Converting Variables to <code>&lt;date&gt;</code></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#from-chr-to-date"><i class="fa fa-check"></i><b>12.1.1</b> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code></a></li>
+<li class="chapter" data-level="12.1.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#making-a-date-variable-from-date-components"><i class="fa fa-check"></i><b>12.1.2</b> Making a <code>&lt;date&gt;</code> variable from Date Components</a></li>
+<li class="chapter" data-level="12.1.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#exercise-11-1"><i class="fa fa-check"></i><b>12.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables"><i class="fa fa-check"></i><b>12.2</b> Functions for <code>&lt;date&gt;</code> Variables</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#year-month-and-mday"><i class="fa fa-check"></i><b>12.2.1</b> <code>year()</code>, <code>month()</code>, and <code>mday()</code></a></li>
+<li class="chapter" data-level="12.2.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#yday-and-wday"><i class="fa fa-check"></i><b>12.2.2</b> <code>yday()</code> and <code>wday()</code></a></li>
+<li class="chapter" data-level="12.2.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#exercise-11-2"><i class="fa fa-check"></i><b>12.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11"><i class="fa fa-check"></i><b>12.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="12.4" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#solutions-11"><i class="fa fa-check"></i><b>12.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#converting-variables-to-date-s"><i class="fa fa-check"></i><b>12.4.1</b> Converting Variables to <code>&lt;date&gt;</code> S</a></li>
+<li class="chapter" data-level="12.4.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables-s"><i class="fa fa-check"></i><b>12.4.2</b> Functions for <code>&lt;date&gt;</code> Variables S</a></li>
+<li class="chapter" data-level="12.4.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11-S"><i class="fa fa-check"></i><b>12.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html"><i class="fa fa-check"></i><b>13</b> Strings with <code>stringr</code></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#friday-friday"><i class="fa fa-check"></i><b>13.1</b> Friday, Friday</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#exercise-12-1"><i class="fa fa-check"></i><b>13.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#add-second-example-here"><i class="fa fa-check"></i><b>13.2</b> Add Second Example Here</a></li>
+<li class="chapter" data-level="13.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12"><i class="fa fa-check"></i><b>13.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="13.4" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#solutions-12"><i class="fa fa-check"></i><b>13.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#friday-friday-s"><i class="fa fa-check"></i><b>13.4.1</b> Friday, Friday S</a></li>
+<li class="chapter" data-level="13.4.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#second-example-s"><i class="fa fa-check"></i><b>13.4.2</b> Second Example S</a></li>
+<li class="chapter" data-level="13.4.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12-S"><i class="fa fa-check"></i><b>13.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html"><i class="fa fa-check"></i><b>14</b> Predictive Modeling with knn</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#introduction-to-classification"><i class="fa fa-check"></i><b>14.1</b> Introduction to Classification</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#training-and-test-data"><i class="fa fa-check"></i><b>14.1.1</b> Training and Test Data</a></li>
+<li class="chapter" data-level="14.1.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-1"><i class="fa fa-check"></i><b>14.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction"><i class="fa fa-check"></i><b>14.2</b> knn Introduction</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-1-predictor"><i class="fa fa-check"></i><b>14.2.1</b> knn with k = 1 and 1 Predictor</a></li>
+<li class="chapter" data-level="14.2.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-one-predictor"><i class="fa fa-check"></i><b>14.2.2</b> knn with k &gt; 1 and One Predictor</a></li>
+<li class="chapter" data-level="14.2.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-more-than-one-predictor"><i class="fa fa-check"></i><b>14.2.3</b> knn with k &gt; 1 and More Than One Predictor</a></li>
+<li class="chapter" data-level="14.2.4" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#scaling-predictor-variables-before-using-knn"><i class="fa fa-check"></i><b>14.2.4</b> Scaling Predictor Variables before Using knn</a></li>
+<li class="chapter" data-level="14.2.5" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-2"><i class="fa fa-check"></i><b>14.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k"><i class="fa fa-check"></i><b>14.3</b> Choosing Predictors and k</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#the-confusion-matrix"><i class="fa fa-check"></i><b>14.3.1</b> The Confusion Matrix</a></li>
+<li class="chapter" data-level="14.3.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#using-knn-in-r"><i class="fa fa-check"></i><b>14.3.2</b> Using knn in <code>R</code></a></li>
+<li class="chapter" data-level="14.3.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-3"><i class="fa fa-check"></i><b>14.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#chapexercise-13"><i class="fa fa-check"></i><b>14.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="14.5" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#solutions-13"><i class="fa fa-check"></i><b>14.5</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#introduction-to-classification-s"><i class="fa fa-check"></i><b>14.5.1</b> Introduction to Classification S</a></li>
+<li class="chapter" data-level="14.5.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction-s"><i class="fa fa-check"></i><b>14.5.2</b> knn Introduction S</a></li>
+<li class="chapter" data-level="14.5.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k-s"><i class="fa fa-check"></i><b>14.5.3</b> Choosing Predictors and k S</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 234: Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="factors-with-forcats" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Factors with <code>forcats</code></h1>
+<p><strong>Goals:</strong></p>
+<ul>
+<li>Use the <code>forcats</code> package to change the levels of factors, or to re-order levels of factors in a way that makes tables and graphs easier to read.</li>
+</ul>
+<div id="change-factor-levels" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Change Factor Levels</h2>
+<p><strong>The Data</strong>: The <code>pokemon_allgen.csv</code> data set contains observations on Pokemon from the first 6 Generations (the first 6 games). There are 20 variable in this data set, but, of particular interest for this chapter are</p>
+<ul>
+<li><code>Type 1</code>, the first Type characteristic of the Pokemon (a factor with 13 levels)</li>
+<li><code>Type 2</code>, the second Type characteristic of the Pokemon (a factor with 13 levels, <code>NA</code> if the Pokemon only has one type)</li>
+<li><code>Generation</code>, the generation the Pokemon first appeared in (a factor with 6 levels)</li>
+</ul>
+<p>Read in the data set with <code>read_csv()</code>. Then, use a <code>mutate()</code> statement to make a <code>Generation_cat</code> variable that is a factor.</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="factors-with-forcats.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb422-2"><a href="factors-with-forcats.html#cb422-2" aria-hidden="true" tabindex="-1"></a>pokemon_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/pokemon_allgen.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb422-3"><a href="factors-with-forcats.html#cb422-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Generation_cat =</span> <span class="fu">factor</span>(Generation))</span></code></pre></div>
+<p>One easy way to get a quick summary of a <code>factor</code> variable is to use <code>group_by()</code> and <code>n()</code> within a <code>summarise()</code> statement:</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="factors-with-forcats.html#cb423-1" aria-hidden="true" tabindex="-1"></a>pokemon_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb423-2"><a href="factors-with-forcats.html#cb423-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">counttype =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 18 x 2
+##    `Type 1` counttype
+##  * &lt;chr&gt;        &lt;int&gt;
+##  1 Bug             75
+##  2 Dark            31
+##  3 Dragon          41
+##  4 Electric        90
+##  5 Fairy           18
+##  6 Fighting        27
+##  7 Fire            56
+##  8 Flying           6
+##  9 Ghost           58
+## 10 Grass           73
+## 11 Ground          42
+## 12 Ice             24
+## 13 Normal         108
+## 14 Poison          30
+## 15 Psychic         73
+## 16 Rock            47
+## 17 Steel           29
+## 18 Water          119</code></pre>
+<p><br></p>
+<div id="fct_recode-to-rename-levels" class="section level3" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> <code>fct_recode()</code> to Rename Levels</h3>
+<p>Now, let’s make a bar plot that examines how many <code>Legendary</code> Pokemon first appear in each generation, using <code>dplyr</code> commands that we’ve used and a simple <code>geom_col()</code>:</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="factors-with-forcats.html#cb425-1" aria-hidden="true" tabindex="-1"></a>pokemon_legend <span class="ot">&lt;-</span> pokemon_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Legendary <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb425-2"><a href="factors-with-forcats.html#cb425-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Generation_cat) <span class="sc">%&gt;%</span></span>
+<span id="cb425-3"><a href="factors-with-forcats.html#cb425-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nlegend =</span> <span class="fu">n</span>())</span>
+<span id="cb425-4"><a href="factors-with-forcats.html#cb425-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_legend, <span class="fu">aes</span>(<span class="at">x =</span> Generation_cat, <span class="at">y =</span> nlegend)) <span class="sc">+</span></span>
+<span id="cb425-5"><a href="factors-with-forcats.html#cb425-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>We’ve discussed how to change many aspects of <code>ggplot2</code> graphs, but we haven’t discussed how to rename the labels of levels of a categorical variable, whether those appear in the x-axis or in a separate legend. The easiest way to do this is to rename the levels in the factor itself using <code>fct_recode()</code>. Suppose, for example, that we want to relabel the Generation number with the actual region corresponding to each game (Kanto, Johto, Hoenn, Sinnoh, Unova, and Kalos). The function <code>fct_recode()</code> takes the name of a factor already present in the data set as its first argument and then a series of renaming schemes (new_name = “old_name”) as its remaining arguments.</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="factors-with-forcats.html#cb426-1" aria-hidden="true" tabindex="-1"></a>pokemon_legend <span class="ot">&lt;-</span> pokemon_legend <span class="sc">%&gt;%</span></span>
+<span id="cb426-2"><a href="factors-with-forcats.html#cb426-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Generation_cat2 =</span> <span class="fu">fct_recode</span>(Generation_cat, <span class="at">Kanto =</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb426-3"><a href="factors-with-forcats.html#cb426-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Johto =</span> <span class="st">&quot;2&quot;</span>, <span class="at">Hoenn =</span> <span class="st">&quot;3&quot;</span>,</span>
+<span id="cb426-4"><a href="factors-with-forcats.html#cb426-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Sinnoh =</span> <span class="st">&quot;4&quot;</span>, <span class="at">Unova =</span> <span class="st">&quot;5&quot;</span>,</span>
+<span id="cb426-5"><a href="factors-with-forcats.html#cb426-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Kalos =</span> <span class="st">&quot;6&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb426-6"><a href="factors-with-forcats.html#cb426-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Generation_cat2, <span class="fu">everything</span>())</span>
+<span id="cb426-7"><a href="factors-with-forcats.html#cb426-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pokemon_legend)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   Generation_cat2 Generation_cat nlegend
+##   &lt;fct&gt;           &lt;fct&gt;            &lt;int&gt;
+## 1 Kanto           1                    6
+## 2 Johto           2                    5
+## 3 Hoenn           3                   34
+## 4 Sinnoh          4                   17
+## 5 Unova           5                   27
+## 6 Kalos           6                   13</code></pre>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="factors-with-forcats.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_legend,</span>
+<span id="cb428-2"><a href="factors-with-forcats.html#cb428-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Generation_cat2, <span class="at">y =</span> nlegend)) <span class="sc">+</span></span>
+<span id="cb428-3"><a href="factors-with-forcats.html#cb428-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="collapsing-many-levels-into-fewer-levels-with-fct_collapse" class="section level3" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></h3>
+<p>Sometimes, you might want to collapse the levels of two or more factors into a single level. With the Pokemon data set, there isn’t an example where this really makes sense, but, in the exercises, you’ll see a good use for this function with the social survey data set. For practice, we can collapse the <code>Ice</code> and <code>Dark</code> type Pokemon into a new level called <code>Coolest</code> and we can collapse the <code>Poison</code>, <code>Fighting</code>, and <code>Fire</code> type Pokemon into a new level called <code>Least_Cool</code>.</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="factors-with-forcats.html#cb429-1" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
+<span id="cb429-2"><a href="factors-with-forcats.html#cb429-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_to =</span> <span class="st">&quot;Number&quot;</span>,</span>
+<span id="cb429-3"><a href="factors-with-forcats.html#cb429-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">values_to =</span> <span class="st">&quot;Type&quot;</span>)</span>
+<span id="cb429-4"><a href="factors-with-forcats.html#cb429-4" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="sc">%&gt;%</span></span>
+<span id="cb429-5"><a href="factors-with-forcats.html#cb429-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_type =</span> <span class="fu">fct_collapse</span>(Type, <span class="at">Coolest =</span> <span class="fu">c</span>(<span class="st">&quot;Ice&quot;</span>, <span class="st">&quot;Dark&quot;</span>),</span>
+<span id="cb429-6"><a href="factors-with-forcats.html#cb429-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Least_Cool =</span> <span class="fu">c</span>(<span class="st">&quot;Fire&quot;</span>, <span class="st">&quot;Fighting&quot;</span>, <span class="st">&quot;Poison&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb429-7"><a href="factors-with-forcats.html#cb429-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(new_type, Type, <span class="fu">everything</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 1,894 x 22
+##    new_type  Type     `#` Name    Total    HP Attack Defense `Sp. Atk` `Sp. Def`
+##    &lt;fct&gt;     &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Grass     Grass      1 Bulbas…   318    45     49      49        65        65
+##  2 Least_Co… Poison     1 Bulbas…   318    45     49      49        65        65
+##  3 Grass     Grass      2 Ivysaur   405    60     62      63        80        80
+##  4 Least_Co… Poison     2 Ivysaur   405    60     62      63        80        80
+##  5 Grass     Grass      3 Venusa…   525    80     82      83       100       100
+##  6 Least_Co… Poison     3 Venusa…   525    80     82      83       100       100
+##  7 Grass     Grass      3 Venusa…   525    80     82      83       100       100
+##  8 Least_Co… Poison     3 Venusa…   525    80     82      83       100       100
+##  9 Least_Co… Fire       4 Charma…   309    39     52      43        60        50
+## 10 &lt;NA&gt;      &lt;NA&gt;       4 Charma…   309    39     52      43        60        50
+## # … with 1,884 more rows, and 12 more variables: Speed &lt;dbl&gt;, Generation &lt;dbl&gt;,
+## #   Legendary &lt;lgl&gt;, id &lt;chr&gt;, identifier &lt;chr&gt;, height &lt;dbl&gt;, weight &lt;dbl&gt;,
+## #   base_experience &lt;dbl&gt;, order &lt;dbl&gt;, is_default &lt;dbl&gt;, Generation_cat &lt;fct&gt;,
+## #   Number &lt;chr&gt;</code></pre>
+<p>What happens to the levels that aren’t being re-specified?</p>
+<p><br></p>
+</div>
+<div id="exercise-7-1" class="section level3" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Exercises</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="factors-with-forcats.html#solutions-7">8.4</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>What <code>dplyr</code> function(s) could you also use to create the new levels that were created with <code>fct_collapse()</code>? Why might it be a little easier to use <code>fct_collapse()</code>?</p></li>
+<li><p>* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you’re working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6).</p></li>
+</ol>
+<p>Figure out why some Pokemon are double counted. Then, create a new data set that only keeps one observation per Pokemon <code>#</code>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Create the bar plot with your non-duplicated data set. Are your results significantly changed?</li>
+</ol>
+<p><br></p>
+</div>
+</div>
+<div id="reorder-factor-levels" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Reorder Factor Levels</h2>
+<div id="change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" class="section level3" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></h3>
+<p>You might also be interested in re-ordering the x or y-axis of a particular graph so that the order of the factors correspond to, for example, the median of a quantitative variable for each level. The reason you would want to do this is easiest to see with an example. For example, suppose you want to look at the most common Pokemon types across the first 6 generations. We use the non-duplicated data set from the previous section’s exercises, we pivot the data so that type is in one column, and we remove observations with missing <code>Type</code>, which correspond to the second <code>Type</code> of Pokemon that only have a single <code>Type</code>:</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="factors-with-forcats.html#cb431-1" aria-hidden="true" tabindex="-1"></a>pokemon_nodup <span class="ot">&lt;-</span> pokemon_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">#</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb431-2"><a href="factors-with-forcats.html#cb431-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb431-3"><a href="factors-with-forcats.html#cb431-3" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_nodup <span class="sc">%&gt;%</span></span>
+<span id="cb431-4"><a href="factors-with-forcats.html#cb431-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
+<span id="cb431-5"><a href="factors-with-forcats.html#cb431-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Number&quot;</span>,</span>
+<span id="cb431-6"><a href="factors-with-forcats.html#cb431-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Type&quot;</span>)</span>
+<span id="cb431-7"><a href="factors-with-forcats.html#cb431-7" aria-hidden="true" tabindex="-1"></a>pokemon_sum <span class="ot">&lt;-</span> pokemon_long <span class="sc">%&gt;%</span></span>
+<span id="cb431-8"><a href="factors-with-forcats.html#cb431-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Type) <span class="sc">%&gt;%</span></span>
+<span id="cb431-9"><a href="factors-with-forcats.html#cb431-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_type =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb431-10"><a href="factors-with-forcats.html#cb431-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Type))</span>
+<span id="cb431-11"><a href="factors-with-forcats.html#cb431-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type,</span>
+<span id="cb431-12"><a href="factors-with-forcats.html#cb431-12" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb431-13"><a href="factors-with-forcats.html#cb431-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb431-14"><a href="factors-with-forcats.html#cb431-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()  <span class="do">## flips the x and y axes</span></span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>How does <code>R</code> order the levels of the <code>Type</code> factor, by default? How might you like them to be ordered to make the graph more readable?</p>
+<p><br></p>
+<p>The following code creates a new factor variable called <code>Type_ordered</code> that orders type by the <code>count_type</code> variable. <code>fct_reorder()</code> takes a factor as its first argument and a numeric variable to re-order that factor by as its second argument. The bar plot is then reconstructed with this new variable.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="factors-with-forcats.html#cb432-1" aria-hidden="true" tabindex="-1"></a>pokemon_sum <span class="ot">&lt;-</span> pokemon_sum <span class="sc">%&gt;%</span> </span>
+<span id="cb432-2"><a href="factors-with-forcats.html#cb432-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_ordered =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type, <span class="at">.x =</span> count_type))</span>
+<span id="cb432-3"><a href="factors-with-forcats.html#cb432-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type_ordered,</span>
+<span id="cb432-4"><a href="factors-with-forcats.html#cb432-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb432-5"><a href="factors-with-forcats.html#cb432-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb432-6"><a href="factors-with-forcats.html#cb432-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><code>fct_reorder()</code> also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the <code>Defense</code> stat changes for different Pokemon types</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="factors-with-forcats.html#cb433-1" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_long <span class="sc">%&gt;%</span></span>
+<span id="cb433-2"><a href="factors-with-forcats.html#cb433-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Type)) <span class="sc">%&gt;%</span></span>
+<span id="cb433-3"><a href="factors-with-forcats.html#cb433-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_Deford =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type, <span class="at">.x =</span> Defense,</span>
+<span id="cb433-4"><a href="factors-with-forcats.html#cb433-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> median))</span>
+<span id="cb433-5"><a href="factors-with-forcats.html#cb433-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_long, <span class="fu">aes</span>(<span class="at">x =</span> Type_Deford,</span>
+<span id="cb433-6"><a href="factors-with-forcats.html#cb433-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> Defense)) <span class="sc">+</span></span>
+<span id="cb433-7"><a href="factors-with-forcats.html#cb433-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb433-8"><a href="factors-with-forcats.html#cb433-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>The following code makes a point plot that shows the median defense for each type instead of boxplots.</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="factors-with-forcats.html#cb434-1" aria-hidden="true" tabindex="-1"></a>pokemon_med <span class="ot">&lt;-</span> pokemon_long <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Type_Deford) <span class="sc">%&gt;%</span></span>
+<span id="cb434-2"><a href="factors-with-forcats.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">med_def =</span> <span class="fu">median</span>(Defense)) <span class="sc">%&gt;%</span></span>
+<span id="cb434-3"><a href="factors-with-forcats.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_Deford =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type_Deford, <span class="at">.x =</span> med_def,</span>
+<span id="cb434-4"><a href="factors-with-forcats.html#cb434-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> median))</span>
+<span id="cb434-5"><a href="factors-with-forcats.html#cb434-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb434-6"><a href="factors-with-forcats.html#cb434-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_med, <span class="fu">aes</span>(<span class="at">x =</span> med_def, <span class="at">y =</span> Type_Deford)) <span class="sc">+</span></span>
+<span id="cb434-7"><a href="factors-with-forcats.html#cb434-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Do you have a preference between the boxplot graph and the point plot?</p>
+<p><br></p>
+<p><strong>New Data</strong>. The <code>gun_violence_us.csv</code> data set was obtained from <a href="https://www.openintro.org/book/statdata/index.php?data=gun_violence_us" target="_blank">https://www.openintro.org/book/statdata/index.php?data=gun_violence_us</a> and contains the following variables on gun violence in 2014:</p>
+<ul>
+<li><code>state</code>, the name of the U.S. state</li>
+<li><code>mortality_rate</code>, number of deaths from gun violence per 100,000 people</li>
+<li><code>ownership_rate</code>, the proportion of adults who own a gun</li>
+<li><code>region</code>, region of the U.S. (<code>South</code>, <code>West</code>, <code>NE</code>, and <code>MW</code>)</li>
+</ul>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="factors-with-forcats.html#cb435-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gun_violence_us.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb435-2"><a href="factors-with-forcats.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">factor</span>(region))</span></code></pre></div>
+</div>
+<div id="re-leveling-by-two-quantitative-variables-with-fct_reorder2" class="section level3" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></h3>
+<p>Suppose that we want to investigate the relationship between <code>mortality_rate</code> and <code>ownership_rate</code> using this data set. Run the following code to create a scatterplot of <code>mortality_rate</code> vs. <code>ownership_rate</code> with fitted linear regression lines for each <code>region</code> of the United States:</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="factors-with-forcats.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb436-2"><a href="factors-with-forcats.html#cb436-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region)) <span class="sc">+</span></span>
+<span id="cb436-3"><a href="factors-with-forcats.html#cb436-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb436-4"><a href="factors-with-forcats.html#cb436-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Notice the order of the levels in the legend. Most people would prefer the order to actually match up with where the lines in the plot end, not for the order to be alphabetical. To achieve this, we can use <code>fct_reorder2()</code> to change the order of the factor levels:</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="factors-with-forcats.html#cb437-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> mortality_df <span class="sc">%&gt;%</span></span>
+<span id="cb437-2"><a href="factors-with-forcats.html#cb437-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region_2 =</span> <span class="fu">fct_reorder2</span>(region,</span>
+<span id="cb437-3"><a href="factors-with-forcats.html#cb437-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.x =</span> ownership_rate,</span>
+<span id="cb437-4"><a href="factors-with-forcats.html#cb437-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.y =</span> mortality_rate))</span>
+<span id="cb437-5"><a href="factors-with-forcats.html#cb437-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb437-6"><a href="factors-with-forcats.html#cb437-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region_2)) <span class="sc">+</span></span>
+<span id="cb437-7"><a href="factors-with-forcats.html#cb437-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb437-8"><a href="factors-with-forcats.html#cb437-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Did it change the order of the levels how you would expect? <code>fct_reorder2()</code> actually looks at <strong>points</strong>, not lines, when determining the ordering. If you want the levels to match up exactly, then we’ll have to reorder the levels manually with <code>fct_relevel()</code>:</p>
+</div>
+<div id="reordering-levels-manually-with-fct_relevel" class="section level3" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Reordering Levels Manually with <code>fct_relevel()</code></h3>
+<p>Factors are ordered alphabetically by default. If we want precise control over the order of the levels of a factor, we can use <code>fct_relevel()</code>, which takes a factor and a vector of the new levels as inputs:</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="factors-with-forcats.html#cb438-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> mortality_df <span class="sc">%&gt;%</span></span>
+<span id="cb438-2"><a href="factors-with-forcats.html#cb438-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region_3 =</span> <span class="fu">fct_relevel</span>(region, <span class="fu">c</span>(<span class="st">&quot;South&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;MW&quot;</span>, <span class="st">&quot;NE&quot;</span>)))</span>
+<span id="cb438-3"><a href="factors-with-forcats.html#cb438-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb438-4"><a href="factors-with-forcats.html#cb438-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region_3)) <span class="sc">+</span></span>
+<span id="cb438-5"><a href="factors-with-forcats.html#cb438-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb438-6"><a href="factors-with-forcats.html#cb438-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Reordering the levels of a factor manually might also be useful in fitting linear models. Recall that, by default, <code>R</code> makes the <strong>reference group</strong> in a linear model the first level alphabetically. If you’d like a different reference group, you can reorder the levels of the factor:</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="factors-with-forcats.html#cb439-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region, <span class="at">data =</span> mortality_df)</span>
+<span id="cb439-2"><a href="factors-with-forcats.html#cb439-2" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region_2, <span class="at">data =</span> mortality_df)</span>
+<span id="cb439-3"><a href="factors-with-forcats.html#cb439-3" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region_3, <span class="at">data =</span> mortality_df)</span>
+<span id="cb439-4"><a href="factors-with-forcats.html#cb439-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span>
+<span id="cb439-5"><a href="factors-with-forcats.html#cb439-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span>
+<span id="cb439-6"><a href="factors-with-forcats.html#cb439-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code></pre></div>
+</div>
+<div id="exercise-7-2" class="section level3" number="8.2.4">
+<h3><span class="header-section-number">8.2.4</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Make the side-by-side boxplots again with the pokemon data but do not use <code>ungroup()</code> by running the following code.</li>
+</ol>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="factors-with-forcats.html#cb440-1" aria-hidden="true" tabindex="-1"></a>pokemon_nodup <span class="ot">&lt;-</span> pokemon_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">#</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="do">## %&gt;%</span></span>
+<span id="cb440-2"><a href="factors-with-forcats.html#cb440-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## ungroup()</span></span>
+<span id="cb440-3"><a href="factors-with-forcats.html#cb440-3" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_nodup <span class="sc">%&gt;%</span></span>
+<span id="cb440-4"><a href="factors-with-forcats.html#cb440-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
+<span id="cb440-5"><a href="factors-with-forcats.html#cb440-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Number&quot;</span>,</span>
+<span id="cb440-6"><a href="factors-with-forcats.html#cb440-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Type&quot;</span>)</span>
+<span id="cb440-7"><a href="factors-with-forcats.html#cb440-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb440-8"><a href="factors-with-forcats.html#cb440-8" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_long <span class="sc">%&gt;%</span></span>
+<span id="cb440-9"><a href="factors-with-forcats.html#cb440-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Type)) <span class="sc">%&gt;%</span></span>
+<span id="cb440-10"><a href="factors-with-forcats.html#cb440-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_Deford =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type, <span class="at">.x =</span> Defense,</span>
+<span id="cb440-11"><a href="factors-with-forcats.html#cb440-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> median))</span>
+<span id="cb440-12"><a href="factors-with-forcats.html#cb440-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_long, <span class="fu">aes</span>(<span class="at">x =</span> Type_Deford,</span>
+<span id="cb440-13"><a href="factors-with-forcats.html#cb440-13" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> Defense)) <span class="sc">+</span></span>
+<span id="cb440-14"><a href="factors-with-forcats.html#cb440-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb440-15"><a href="factors-with-forcats.html#cb440-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Why aren’t the types ordered by median defense anymore?</p>
+<ol start="2" style="list-style-type: decimal">
+<li>The <code>.fun</code> argument in <code>fct_reorder()</code> controls how the <code>Type</code> factor is ordered. Change this to specify ordering by the <code>mean</code>, <code>max</code>, and <code>min</code>. What ordering makes the most sense? Why?</li>
+</ol>
+</div>
+</div>
+<div id="chapexercise-7" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Chapter Exercises</h2>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="factors-with-forcats.html#solutions-7">8.4</a>.</p>
+<p>We will use the general social survey data set, which is in the <code>forcats</code> library in <code>R</code>. You should some of this Wikipedia page to better understand where this data comes from <a href="https://en.wikipedia.org/wiki/General_Social_Survey" target="_blank">Wikipedia</a>.</p>
+<p>Most variables are self-explanatory, but a couple that aren’t are:</p>
+<ul>
+<li><code>partyid</code>, political leaning and</li>
+<li><code>denom</code>, religious denomination (if unfamiliar with this, you can think of it as a “more specific” subset of a particular relgion).</li>
+</ul>
+<p>Note that some of these exercises are from the R for Data Science textbook.</p>
+<p>Load in the data set with</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="factors-with-forcats.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb441-2"><a href="factors-with-forcats.html#cb441-2" aria-hidden="true" tabindex="-1"></a>gss_cat</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>* Using a <code>forcats</code> function, change the name of the level <code>Not str republican</code> to be <code>Weak republican</code> and change the name of the level <code>Not str democrat</code> to be <code>Weak democrat</code>. These names more closely match the levels <code>Strong republican</code> and <code>Strong democrat</code>. Then, create a table of counts that shows the number of respondents in each political party <code>partyid</code>.</li>
+</ol>
+<p><strong>Note</strong>: Levels that aren’t specified in your <code>forcats</code> function do not change.</p>
+<p><strong>Note 2</strong>: In naming something <code>Weak republican</code>, you’ll need to use backticks since there is a space in the level name.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>* Use a <code>forcats</code> function so that <code>partyid</code> just has 4 categories: Other (corresponding to No answer, Don’t know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).</p></li>
+<li><p>* Run the code to create the following plot that shows the average number of hours of television people watch from various religions.</p></li>
+</ol>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="factors-with-forcats.html#cb442-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span></span>
+<span id="cb442-2"><a href="factors-with-forcats.html#cb442-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">%&gt;%</span></span>
+<span id="cb442-3"><a href="factors-with-forcats.html#cb442-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb442-4"><a href="factors-with-forcats.html#cb442-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb442-5"><a href="factors-with-forcats.html#cb442-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb442-6"><a href="factors-with-forcats.html#cb442-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb442-7"><a href="factors-with-forcats.html#cb442-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb442-8"><a href="factors-with-forcats.html#cb442-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb442-9"><a href="factors-with-forcats.html#cb442-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> relig_summary, <span class="fu">aes</span>(tvhours, relig)) <span class="sc">+</span></span>
+<span id="cb442-10"><a href="factors-with-forcats.html#cb442-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p>Then, use a <code>forcats</code> function create a new variable in the data set that reorders the religion factor levels and remake the barplot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):</li>
+</ol>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="factors-with-forcats.html#cb443-1" aria-hidden="true" tabindex="-1"></a>by_age <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span></span>
+<span id="cb443-2"><a href="factors-with-forcats.html#cb443-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age)) <span class="sc">%&gt;%</span></span>
+<span id="cb443-3"><a href="factors-with-forcats.html#cb443-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age, marital) <span class="sc">%&gt;%</span></span>
+<span id="cb443-4"><a href="factors-with-forcats.html#cb443-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age) <span class="sc">%&gt;%</span></span>
+<span id="cb443-5"><a href="factors-with-forcats.html#cb443-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb443-6"><a href="factors-with-forcats.html#cb443-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb443-7"><a href="factors-with-forcats.html#cb443-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(by_age, <span class="fu">aes</span>(age, prop,</span>
+<span id="cb443-8"><a href="factors-with-forcats.html#cb443-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colour =</span> marital)) <span class="sc">+</span></span>
+<span id="cb443-9"><a href="factors-with-forcats.html#cb443-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb443-10"><a href="factors-with-forcats.html#cb443-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;marital&quot;</span>)</span></code></pre></div>
+<p>Then, use a <code>forcats</code> function to make the plot so that the legend labels line up better with the different coloured marital status lines (e.g. so that the label for widowed is the first that appears in the legend, the label for married is second, etc.).</p>
+<ol start="5" style="list-style-type: decimal">
+<li>We haven’t talked much about creating two-way tables (or contingency tables). These are generally quite difficult to make with the <code>tidyverse</code> functions, but you can use the base <code>R</code> <code>table()</code> and <code>prop.table()</code> functions to make these.</li>
+</ol>
+<p>Using data only from the year 2014, run the following code to make 4 two-way tables with the <code>party_small</code> variable that was constructed earlier and <code>race</code>:</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="factors-with-forcats.html#cb444-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">party_small =</span> <span class="fu">fct_collapse</span>(partyid,</span>
+<span id="cb444-2"><a href="factors-with-forcats.html#cb444-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Other =</span> <span class="fu">c</span>(<span class="st">&quot;No answer&quot;</span>, <span class="st">&quot;Don&#39;t know&quot;</span>, <span class="st">&quot;Other party&quot;</span>),</span>
+<span id="cb444-3"><a href="factors-with-forcats.html#cb444-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Ind =</span> <span class="fu">c</span>(<span class="st">&quot;Ind,near rep&quot;</span>, <span class="st">&quot;Independent&quot;</span>, <span class="st">&quot;Ind,near dem&quot;</span>),</span>
+<span id="cb444-4"><a href="factors-with-forcats.html#cb444-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Rep =</span> <span class="fu">c</span>(<span class="st">&quot;Strong republican&quot;</span>, <span class="st">&quot;Not str republican&quot;</span>),</span>
+<span id="cb444-5"><a href="factors-with-forcats.html#cb444-5" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Dem =</span> <span class="fu">c</span>(<span class="st">&quot;Not str democrat&quot;</span>, <span class="st">&quot;Strong democrat&quot;</span>)))</span>
+<span id="cb444-6"><a href="factors-with-forcats.html#cb444-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb444-7"><a href="factors-with-forcats.html#cb444-7" aria-hidden="true" tabindex="-1"></a>gss_recent <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">!=</span> <span class="dv">2014</span>)</span>
+<span id="cb444-8"><a href="factors-with-forcats.html#cb444-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb444-9"><a href="factors-with-forcats.html#cb444-9" aria-hidden="true" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">table</span>(gss_recent<span class="sc">$</span>party_small, gss_recent<span class="sc">$</span>race)</span>
+<span id="cb444-10"><a href="factors-with-forcats.html#cb444-10" aria-hidden="true" tabindex="-1"></a>tab1</span></code></pre></div>
+<pre><code>##        
+##         Other Black White Not applicable
+##   Other    39    46   375              0
+##   Rep     215   127  4467              0
+##   Ind     863   827  5631              0
+##   Dem     580  1743  4032              0</code></pre>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="factors-with-forcats.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tab1)</span></code></pre></div>
+<pre><code>##        
+##               Other       Black       White Not applicable
+##   Other 0.002058591 0.002428081 0.019794141    0.000000000
+##   Rep   0.011348641 0.006703616 0.235787807    0.000000000
+##   Ind   0.045552916 0.043652679 0.297228820    0.000000000
+##   Dem   0.030614938 0.092003167 0.212826603    0.000000000</code></pre>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="factors-with-forcats.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tab1, <span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##        
+##              Other      Black      White Not applicable
+##   Other 0.08478261 0.10000000 0.81521739     0.00000000
+##   Rep   0.04470784 0.02640882 0.92888334     0.00000000
+##   Ind   0.11788007 0.11296271 0.76915722     0.00000000
+##   Dem   0.09126672 0.27427223 0.63446105     0.00000000</code></pre>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="factors-with-forcats.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tab1, <span class="at">margin =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##        
+##              Other      Black      White Not applicable
+##   Other 0.02298173 0.01676996 0.02585315               
+##   Rep   0.12669417 0.04629967 0.30796277               
+##   Ind   0.50854449 0.30149471 0.38821096               
+##   Dem   0.34177961 0.63543565 0.27797311</code></pre>
+<p>Use the help on <code>?prop.table</code> to figure out how each of these three tables are constructed.</p>
+<p>Which table do you think is most informative? What conclusions does it help you to draw?</p>
+</div>
+<div id="solutions-7" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Exercise Solutions</h2>
+<div id="change-factor-levels-s" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Change Factor Levels S</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you’re working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6).</li>
+</ol>
+<p>Figure out why some Pokemon are double counted. Then, create a new data set that only keeps one observation per Pokemon <code>#</code>.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="factors-with-forcats.html#cb452-1" aria-hidden="true" tabindex="-1"></a>pokemon_nodup <span class="ot">&lt;-</span> pokemon_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">#</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb452-2"><a href="factors-with-forcats.html#cb452-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+</div>
+<div id="reorder-factor-levels-s" class="section level3" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Reorder Factor Levels S</h3>
+</div>
+<div id="chapexercise-7-S" class="section level3" number="8.4.3">
+<h3><span class="header-section-number">8.4.3</span> Chapter Exercises S</h3>
+<ol style="list-style-type: decimal">
+<li>* Using a <code>forcats</code> function, change the name of the level <code>Not str republican</code> to be <code>Weak republican</code> and change the name of the level <code>Not str democrat</code> to be <code>Weak democrat</code>. These names more closely match the levels <code>Strong republican</code> and <code>Strong democrat</code>. Then, create a table of counts that shows the number of respondents in each political party <code>partyid</code>.</li>
+</ol>
+<p><strong>Note</strong>: Levels that aren’t specified in your <code>forcats</code> function do not change.</p>
+<p><strong>Note 2</strong>: In naming something <code>Weak republican</code>, you’ll need to use backticks since there is a space in the level name.</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="factors-with-forcats.html#cb453-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">%&gt;%</span></span>
+<span id="cb453-2"><a href="factors-with-forcats.html#cb453-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partyid_new =</span> <span class="fu">fct_recode</span>(partyid,</span>
+<span id="cb453-3"><a href="factors-with-forcats.html#cb453-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">`</span><span class="at">Weak republican</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Not str republican&quot;</span>,</span>
+<span id="cb453-4"><a href="factors-with-forcats.html#cb453-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">`</span><span class="at">Weak democrat</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Not str democrat&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(partyid_new) <span class="sc">%&gt;%</span></span>
+<span id="cb453-5"><a href="factors-with-forcats.html#cb453-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ncount =</span> <span class="fu">n</span>())</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>* Use a <code>forcats</code> function so that <code>partyid</code> just has 4 categories: Other (corresponding to No answer, Don’t know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).</li>
+</ol>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="factors-with-forcats.html#cb454-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">party_small =</span> <span class="fu">fct_collapse</span>(partyid,</span>
+<span id="cb454-2"><a href="factors-with-forcats.html#cb454-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Other =</span> <span class="fu">c</span>(<span class="st">&quot;No answer&quot;</span>, <span class="st">&quot;Don&#39;t know&quot;</span>, <span class="st">&quot;Other party&quot;</span>),</span>
+<span id="cb454-3"><a href="factors-with-forcats.html#cb454-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Ind =</span> <span class="fu">c</span>(<span class="st">&quot;Ind,near rep&quot;</span>, <span class="st">&quot;Independent&quot;</span>, <span class="st">&quot;Ind,near dem&quot;</span>),</span>
+<span id="cb454-4"><a href="factors-with-forcats.html#cb454-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Rep =</span> <span class="fu">c</span>(<span class="st">&quot;Strong republican&quot;</span>, <span class="st">&quot;Not str republican&quot;</span>),</span>
+<span id="cb454-5"><a href="factors-with-forcats.html#cb454-5" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Dem =</span> <span class="fu">c</span>(<span class="st">&quot;Not str democrat&quot;</span>, <span class="st">&quot;Strong democrat&quot;</span>)))</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>* Run the code to create the following plot that shows the average number of hours of television people watch from various religions.</li>
+</ol>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="factors-with-forcats.html#cb455-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span></span>
+<span id="cb455-2"><a href="factors-with-forcats.html#cb455-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">%&gt;%</span></span>
+<span id="cb455-3"><a href="factors-with-forcats.html#cb455-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb455-4"><a href="factors-with-forcats.html#cb455-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb455-5"><a href="factors-with-forcats.html#cb455-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb455-6"><a href="factors-with-forcats.html#cb455-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb455-7"><a href="factors-with-forcats.html#cb455-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb455-8"><a href="factors-with-forcats.html#cb455-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb455-9"><a href="factors-with-forcats.html#cb455-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> relig_summary, <span class="fu">aes</span>(tvhours, relig)) <span class="sc">+</span></span>
+<span id="cb455-10"><a href="factors-with-forcats.html#cb455-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p>Then, use a <code>forcats</code> function create a new variable in the data set that reorders the religion factor levels and remake the barplot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="factors-with-forcats.html#cb456-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> relig_summary <span class="sc">%&gt;%</span></span>
+<span id="cb456-2"><a href="factors-with-forcats.html#cb456-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relig =</span> <span class="fu">fct_reorder</span>(relig, tvhours))</span>
+<span id="cb456-3"><a href="factors-with-forcats.html#cb456-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> relig_summary, <span class="fu">aes</span>(tvhours, relig)) <span class="sc">+</span></span>
+<span id="cb456-4"><a href="factors-with-forcats.html#cb456-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):</li>
+</ol>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="factors-with-forcats.html#cb457-1" aria-hidden="true" tabindex="-1"></a>by_age <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span></span>
+<span id="cb457-2"><a href="factors-with-forcats.html#cb457-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age)) <span class="sc">%&gt;%</span></span>
+<span id="cb457-3"><a href="factors-with-forcats.html#cb457-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age, marital) <span class="sc">%&gt;%</span></span>
+<span id="cb457-4"><a href="factors-with-forcats.html#cb457-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age) <span class="sc">%&gt;%</span></span>
+<span id="cb457-5"><a href="factors-with-forcats.html#cb457-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb457-6"><a href="factors-with-forcats.html#cb457-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb457-7"><a href="factors-with-forcats.html#cb457-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(by_age, <span class="fu">aes</span>(age, prop,</span>
+<span id="cb457-8"><a href="factors-with-forcats.html#cb457-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colour =</span> marital)) <span class="sc">+</span></span>
+<span id="cb457-9"><a href="factors-with-forcats.html#cb457-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb457-10"><a href="factors-with-forcats.html#cb457-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;marital&quot;</span>)</span></code></pre></div>
+<p>Then, use a <code>forcats</code> function to make the plot so that the legend labels line up better with the different coloured marital status lines (e.g. so that the label for widowed is the first that appears in the legend, the label for married is second, etc.).</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="factors-with-forcats.html#cb458-1" aria-hidden="true" tabindex="-1"></a>by_age2 <span class="ot">&lt;-</span> by_age <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb458-2"><a href="factors-with-forcats.html#cb458-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">marital2 =</span> <span class="fu">fct_reorder2</span>(marital, <span class="at">.x =</span> age, <span class="at">.y =</span> prop))</span>
+<span id="cb458-3"><a href="factors-with-forcats.html#cb458-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(by_age2, <span class="fu">aes</span>(age, prop,</span>
+<span id="cb458-4"><a href="factors-with-forcats.html#cb458-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colour =</span> marital2)) <span class="sc">+</span></span>
+<span id="cb458-5"><a href="factors-with-forcats.html#cb458-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb458-6"><a href="factors-with-forcats.html#cb458-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;marital&quot;</span>) <span class="sc">+</span></span>
+<span id="cb458-7"><a href="factors-with-forcats.html#cb458-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>()</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reprexes-and-import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false,
+"whatsapp": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

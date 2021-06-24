@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science</title>
+  <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science" />
+  
+  <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
+  
+
+<meta name="author" content="Matt Higham" />
+
+
+<meta name="date" content="2021-06-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ggplot2.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 234: Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-information"><i class="fa fa-check"></i><b>1.2</b> Course Information</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#general-course-outcomes"><i class="fa fa-check"></i><b>1.3</b> General Course Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#use-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> Use of <code>R</code> and <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#how-you-will-be-assessed"><i class="fa fa-check"></i><b>1.4</b> How You Will Be Assessed</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#breakdown"><i class="fa fa-check"></i><b>1.4.1</b> Breakdown</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#grading-scale"><i class="fa fa-check"></i><b>1.4.2</b> Grading Scale</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#rules-for-collaboration"><i class="fa fa-check"></i><b>1.4.3</b> Rules for Collaboration</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#diversity-statement"><i class="fa fa-check"></i><b>1.4.4</b> Diversity Statement</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#accessibility-statement"><i class="fa fa-check"></i><b>1.4.5</b> Accessibility Statement</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#academic-dishonesty"><i class="fa fa-check"></i><b>1.4.6</b> Academic Dishonesty</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tentative-schedule"><i class="fa fa-check"></i><b>1.5</b> Tentative Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Getting Started with <code>R</code> and <code>R Studio</code></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#intro-to-r-and-r-studio"><i class="fa fa-check"></i><b>2.1</b> Intro to <code>R</code> and <code>R Studio</code></a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-are-r-r-studio-and-r-markdown"><i class="fa fa-check"></i><b>2.2</b> What are <code>R</code>, <code>R Studio</code>, and <code>R Markdown</code>?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#r-packages-and-the-tidyverse"><i class="fa fa-check"></i><b>2.2.1</b> <code>R</code> Packages and the <code>tidyverse</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#putting-code-in-a-.rmd-file"><i class="fa fa-check"></i><b>2.3</b> Putting Code in a <code>.Rmd</code> File</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#alcohol-data-example"><i class="fa fa-check"></i><b>2.4</b> Alcohol Data Example</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#exercise-1-1"><i class="fa fa-check"></i><b>2.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#athlete-data-example"><i class="fa fa-check"></i><b>2.5</b> Athlete Data Example</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#exercise-1-2"><i class="fa fa-check"></i><b>2.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#finishing-up-common-errors-in-r"><i class="fa fa-check"></i><b>2.6</b> Finishing Up: Common Errors in <code>R</code></a></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#chapexercise-1"><i class="fa fa-check"></i><b>2.7</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#solutions-1"><i class="fa fa-check"></i><b>2.8</b> Exercise Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>3</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-and-basic-terminology"><i class="fa fa-check"></i><b>3.1</b> Introduction and Basic Terminology</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure"><i class="fa fa-check"></i><b>3.2</b> Basic Plot Structure</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable"><i class="fa fa-check"></i><b>3.3</b> Graphing a Single Variable</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2.html"><a href="ggplot2.html#histograms-and-frequency-plots-for-a-quantitative-variable"><i class="fa fa-check"></i><b>3.3.1</b> Histograms and Frequency Plots for a Quantitative Variable</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2.html"><a href="ggplot2.html#r-code-style"><i class="fa fa-check"></i><b>3.3.2</b> <code>R</code> Code Style</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2.html"><a href="ggplot2.html#bar-plots-for-a-categorical-variable"><i class="fa fa-check"></i><b>3.3.3</b> Bar Plots for a Categorical Variable</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quantitative-variables-faceting-and-aes-options"><i class="fa fa-check"></i><b>3.4</b> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2.html"><a href="ggplot2.html#scatterplots"><i class="fa fa-check"></i><b>3.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2.html"><a href="ggplot2.html#aesthetics-in-aes"><i class="fa fa-check"></i><b>3.4.2</b> Aesthetics in <code>aes()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2.html"><a href="ggplot2.html#using-more-than-one-geom"><i class="fa fa-check"></i><b>3.4.3</b> Using More Than One <code>geom()</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2.html"><a href="ggplot2.html#line-plots-with-geom_line"><i class="fa fa-check"></i><b>3.4.4</b> Line Plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2.html"><a href="ggplot2.html#faceting"><i class="fa fa-check"></i><b>3.4.5</b> Faceting</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-2"><i class="fa fa-check"></i><b>3.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-barplots-and-others"><i class="fa fa-check"></i><b>3.5</b> Boxplots, Stacked Barplots and Others</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-quant.-variable-vs.-a-cat.-variable"><i class="fa fa-check"></i><b>3.5.1</b> Graphing a Quant. Variable vs. a Cat. Variable</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-categorical-variables"><i class="fa fa-check"></i><b>3.5.2</b> Graphing Two Categorical Variables</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2.html"><a href="ggplot2.html#exercise-2-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2"><i class="fa fa-check"></i><b>3.6</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2.html"><a href="ggplot2.html#solutions-2"><i class="fa fa-check"></i><b>3.7</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-etc.-s"><i class="fa fa-check"></i><b>3.7.1</b> Introduction etc. S</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plot-structure-s"><i class="fa fa-check"></i><b>3.7.2</b> Basic Plot Structure S</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2.html"><a href="ggplot2.html#graphing-a-single-variable-s"><i class="fa fa-check"></i><b>3.7.3</b> Graphing a Single Variable S</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2.html"><a href="ggplot2.html#graphing-two-quant.-etc.-s"><i class="fa fa-check"></i><b>3.7.4</b> Graphing Two Quant. etc. S</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-etc.-s"><i class="fa fa-check"></i><b>3.7.5</b> Boxplots, Stacked, etc. S</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2-S"><i class="fa fa-check"></i><b>3.7.6</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dplyr.html"><a href="dplyr.html#mutate-create-variables"><i class="fa fa-check"></i><b>4.1</b> <code>mutate()</code>: Create Variables</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="dplyr.html"><a href="dplyr.html#a-little-more-on-piping"><i class="fa fa-check"></i><b>4.1.1</b> A Little More on Piping</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dplyr.html"><a href="dplyr.html#if_else-and-case_when"><i class="fa fa-check"></i><b>4.1.2</b> <code>if_else()</code> and <code>case_when()</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="dplyr.html"><a href="dplyr.html#exercise-3-1"><i class="fa fa-check"></i><b>4.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-and-slice-and-filter"><i class="fa fa-check"></i><b>4.2</b> <code>arrange()</code>, <code>select()</code>, and <code>slice()</code>, and <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dplyr.html"><a href="dplyr.html#arrange-ordering-rows"><i class="fa fa-check"></i><b>4.2.1</b> <code>arrange()</code>: Ordering Rows</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dplyr.html"><a href="dplyr.html#select-choose-columns"><i class="fa fa-check"></i><b>4.2.2</b> <code>select()</code> Choose Columns</a></li>
+<li class="chapter" data-level="4.2.3" data-path="dplyr.html"><a href="dplyr.html#slice-and-filter-choose-rows"><i class="fa fa-check"></i><b>4.2.3</b> <code>slice()</code> and <code>filter()</code>: Choose Rows</a></li>
+<li class="chapter" data-level="4.2.4" data-path="dplyr.html"><a href="dplyr.html#exercise-3-2"><i class="fa fa-check"></i><b>4.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-create-summaries"><i class="fa fa-check"></i><b>4.3</b> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dplyr.html"><a href="dplyr.html#group_by-groups"><i class="fa fa-check"></i><b>4.3.1</b> <code>group_by()</code>: Groups</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dplyr.html"><a href="dplyr.html#exercise-3-3"><i class="fa fa-check"></i><b>4.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dplyr.html"><a href="dplyr.html#missing-values"><i class="fa fa-check"></i><b>4.4</b> Missing Values</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dplyr.html"><a href="dplyr.html#exercise-3-4"><i class="fa fa-check"></i><b>4.4.1</b> Exercises</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dplyr.html"><a href="dplyr.html#removing-missing-values"><i class="fa fa-check"></i><b>4.4.2</b> Removing Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3"><i class="fa fa-check"></i><b>4.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="dplyr.html"><a href="dplyr.html#solutions-3"><i class="fa fa-check"></i><b>4.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="dplyr.html"><a href="dplyr.html#mutate-s"><i class="fa fa-check"></i><b>4.6.1</b> <code>mutate()</code> S</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dplyr.html"><a href="dplyr.html#arrange-select-.-s"><i class="fa fa-check"></i><b>4.6.2</b> <code>arrange()</code>, <code>select()</code>, …. S</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dplyr.html"><a href="dplyr.html#summarise-and-group_by-s"><i class="fa fa-check"></i><b>4.6.3</b> <code>summarise()</code> and <code>group_by()</code> S</a></li>
+<li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#missing-values-s"><i class="fa fa-check"></i><b>4.6.4</b> Missing Values S</a></li>
+<li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3-S"><i class="fa fa-check"></i><b>4.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.1</b> What is Tidy Data?</a></li>
+<li class="chapter" data-level="5.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-columns"><i class="fa fa-check"></i><b>5.2</b> <code>separate()</code> and <code>unite()</code> Columns</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-a-column"><i class="fa fa-check"></i><b>5.2.1</b> <code>separate()</code> a Column</a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#unite-columns"><i class="fa fa-check"></i><b>5.2.2</b> <code>unite()</code> Columns</a></li>
+<li class="chapter" data-level="5.2.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#column-names-and-rename"><i class="fa fa-check"></i><b>5.2.3</b> Column Names and <code>rename()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-1"><i class="fa fa-check"></i><b>5.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#reshaping-with-pivot_"><i class="fa fa-check"></i><b>5.3</b> Reshaping with <code>pivot_()</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_longer-to-gather-columns"><i class="fa fa-check"></i><b>5.3.1</b> <code>pivot_longer()</code> to Gather Columns</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_wider-to-spread-to-multiple-columns"><i class="fa fa-check"></i><b>5.3.2</b> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercise-4-2"><i class="fa fa-check"></i><b>5.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr"><i class="fa fa-check"></i><b>5.4</b> Skimming Data with <code>skimr</code></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#exercises-exercise-4-3"><i class="fa fa-check"></i><b>5.4.1</b> Exercises {exercise-4-3}</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4"><i class="fa fa-check"></i><b>5.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#solutions-4"><i class="fa fa-check"></i><b>5.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#what-is-tidy-data-s"><i class="fa fa-check"></i><b>5.6.1</b> What is Tidy Data? S</a></li>
+<li class="chapter" data-level="5.6.2" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#separate-and-unite-s"><i class="fa fa-check"></i><b>5.6.2</b> <code>separate()</code> and <code>unite()</code> S</a></li>
+<li class="chapter" data-level="5.6.3" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#pivot_-s"><i class="fa fa-check"></i><b>5.6.3</b> <code>pivot_()</code> S</a></li>
+<li class="chapter" data-level="5.6.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr-s"><i class="fa fa-check"></i><b>5.6.4</b> Skimming Data with <code>skimr()</code> S</a></li>
+<li class="chapter" data-level="5.6.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4-S"><i class="fa fa-check"></i><b>5.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#reproducbility"><i class="fa fa-check"></i><b>6.1</b> Reproducbility</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-scripts-vs.-r-markdown"><i class="fa fa-check"></i><b>6.1.1</b> <code>R</code> Scripts vs. <code>R Markdown</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#spell-checking"><i class="fa fa-check"></i><b>6.1.2</b> Spell-Checking</a></li>
+<li class="chapter" data-level="6.1.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-1"><i class="fa fa-check"></i><b>6.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-markdown-files"><i class="fa fa-check"></i><b>6.2</b> <code>R Markdown</code> Files</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#code-chunk-options"><i class="fa fa-check"></i><b>6.2.1</b> Code Chunk Options</a></li>
+<li class="chapter" data-level="6.2.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#figures-and-tables"><i class="fa fa-check"></i><b>6.2.2</b> Figures and Tables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#non-code-options"><i class="fa fa-check"></i><b>6.2.3</b> Non-Code Options</a></li>
+<li class="chapter" data-level="6.2.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#yaml"><i class="fa fa-check"></i><b>6.2.4</b> YAML</a></li>
+<li class="chapter" data-level="6.2.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-2"><i class="fa fa-check"></i><b>6.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication"><i class="fa fa-check"></i><b>6.3</b> <code>ggplot2</code> Communication</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#change-labels-and-titles"><i class="fa fa-check"></i><b>6.3.1</b> Change Labels and Titles</a></li>
+<li class="chapter" data-level="6.3.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#changing-x-and-y-axis-limits"><i class="fa fa-check"></i><b>6.3.2</b> Changing x and y axis Limits</a></li>
+<li class="chapter" data-level="6.3.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#changing-a-colour-scale"><i class="fa fa-check"></i><b>6.3.3</b> Changing A Colour Scale</a></li>
+<li class="chapter" data-level="6.3.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#labeling-points-or-lines-of-interest"><i class="fa fa-check"></i><b>6.3.4</b> Labeling Points or Lines of Interest</a></li>
+<li class="chapter" data-level="6.3.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#plot-themes"><i class="fa fa-check"></i><b>6.3.5</b> Plot Themes</a></li>
+<li class="chapter" data-level="6.3.6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#exercise-5-3"><i class="fa fa-check"></i><b>6.3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5"><i class="fa fa-check"></i><b>6.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#solutions-5"><i class="fa fa-check"></i><b>6.5</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#reproducibility-s"><i class="fa fa-check"></i><b>6.5.1</b> Reproducibility S</a></li>
+<li class="chapter" data-level="6.5.2" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#r-markdown-files-s"><i class="fa fa-check"></i><b>6.5.2</b> <code>R Markdown</code> Files S</a></li>
+<li class="chapter" data-level="6.5.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication-s"><i class="fa fa-check"></i><b>6.5.3</b> <code>ggplot2</code> Communication S</a></li>
+<li class="chapter" data-level="6.5.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5-S"><i class="fa fa-check"></i><b>6.5.4</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-in-r"><i class="fa fa-check"></i><b>7.1</b> Variable Classes in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-basics.html"><a href="r-basics.html#referencing-variables-and-using-str"><i class="fa fa-check"></i><b>7.1.1</b> Referencing Variables and Using <code>str()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail"><i class="fa fa-check"></i><b>7.2</b> Classes in Detail</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="r-basics.html"><a href="r-basics.html#chr-and-fct-class"><i class="fa fa-check"></i><b>7.2.1</b> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
+<li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
+<li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="r-basics.html"><a href="r-basics.html#variable-classes-s"><i class="fa fa-check"></i><b>7.7.1</b> Variable Classes S</a></li>
+<li class="chapter" data-level="7.7.2" data-path="r-basics.html"><a href="r-basics.html#classes-in-detail-s"><i class="fa fa-check"></i><b>7.7.2</b> Classes in Detail S</a></li>
+<li class="chapter" data-level="7.7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-s"><i class="fa fa-check"></i><b>7.7.3</b> Object Types S</a></li>
+<li class="chapter" data-level="7.7.4" data-path="r-basics.html"><a href="r-basics.html#piping-s"><i class="fa fa-check"></i><b>7.7.4</b> Piping S</a></li>
+<li class="chapter" data-level="7.7.5" data-path="r-basics.html"><a href="r-basics.html#other-r-topics-s"><i class="fa fa-check"></i><b>7.7.5</b> Other R Topics S</a></li>
+<li class="chapter" data-level="7.7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6-S"><i class="fa fa-check"></i><b>7.7.6</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html"><i class="fa fa-check"></i><b>8</b> Factors with <code>forcats</code></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-factor-levels"><i class="fa fa-check"></i><b>8.1</b> Change Factor Levels</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#fct_recode-to-rename-levels"><i class="fa fa-check"></i><b>8.1.1</b> <code>fct_recode()</code> to Rename Levels</a></li>
+<li class="chapter" data-level="8.1.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#collapsing-many-levels-into-fewer-levels-with-fct_collapse"><i class="fa fa-check"></i><b>8.1.2</b> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></a></li>
+<li class="chapter" data-level="8.1.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#exercise-7-1"><i class="fa fa-check"></i><b>8.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels"><i class="fa fa-check"></i><b>8.2</b> Reorder Factor Levels</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"><i class="fa fa-check"></i><b>8.2.1</b> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></a></li>
+<li class="chapter" data-level="8.2.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#re-leveling-by-two-quantitative-variables-with-fct_reorder2"><i class="fa fa-check"></i><b>8.2.2</b> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></a></li>
+<li class="chapter" data-level="8.2.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reordering-levels-manually-with-fct_relevel"><i class="fa fa-check"></i><b>8.2.3</b> Reordering Levels Manually with <code>fct_relevel()</code></a></li>
+<li class="chapter" data-level="8.2.4" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#exercise-7-2"><i class="fa fa-check"></i><b>8.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7"><i class="fa fa-check"></i><b>8.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="8.4" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#solutions-7"><i class="fa fa-check"></i><b>8.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#change-factor-levels-s"><i class="fa fa-check"></i><b>8.4.1</b> Change Factor Levels S</a></li>
+<li class="chapter" data-level="8.4.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels-s"><i class="fa fa-check"></i><b>8.4.2</b> Reorder Factor Levels S</a></li>
+<li class="chapter" data-level="8.4.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7-S"><i class="fa fa-check"></i><b>8.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html"><i class="fa fa-check"></i><b>9</b> Reprexes and Import</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#reprexes-and-tibble"><i class="fa fa-check"></i><b>9.1</b> Reprexes and <code>tibble</code></a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-1"><i class="fa fa-check"></i><b>9.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#readr-to-read-in-data"><i class="fa fa-check"></i><b>9.2</b> <code>readr</code> to Read in Data</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#read_csv-options"><i class="fa fa-check"></i><b>9.2.1</b> <code>read_csv()</code> Options</a></li>
+<li class="chapter" data-level="9.2.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-2"><i class="fa fa-check"></i><b>9.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#data-scraping-with-rvest"><i class="fa fa-check"></i><b>9.3</b> Data Scraping with <code>rvest</code></a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-3"><i class="fa fa-check"></i><b>9.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-files-with-jsonlite"><i class="fa fa-check"></i><b>9.4</b> JSON Files with <code>jsonlite</code></a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#everything-working-well"><i class="fa fa-check"></i><b>9.4.1</b> Everything Working Well</a></li>
+<li class="chapter" data-level="9.4.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#things-arent-always-so-easy"><i class="fa fa-check"></i><b>9.4.2</b> Things Aren’t Always So Easy</a></li>
+<li class="chapter" data-level="9.4.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#exercise-8-4"><i class="fa fa-check"></i><b>9.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8"><i class="fa fa-check"></i><b>9.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#solutions-8"><i class="fa fa-check"></i><b>9.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#reprexes-and-tibble-s"><i class="fa fa-check"></i><b>9.6.1</b> Reprexes and <code>tibble</code> S</a></li>
+<li class="chapter" data-level="9.6.2" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#readr-s"><i class="fa fa-check"></i><b>9.6.2</b> <code>readr</code> S</a></li>
+<li class="chapter" data-level="9.6.3" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#rvest-and-data-scraping-s"><i class="fa fa-check"></i><b>9.6.3</b> <code>rvest</code> and Data Scraping S</a></li>
+<li class="chapter" data-level="9.6.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-with-jsonlite-s"><i class="fa fa-check"></i><b>9.6.4</b> JSON with <code>jsonlite</code> S</a></li>
+<li class="chapter" data-level="9.6.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8-S"><i class="fa fa-check"></i><b>9.6.5</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>10</b> Data Ethics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-ethics.html"><a href="data-ethics.html#ethical-examples"><i class="fa fa-check"></i><b>10.1</b> Ethical Examples</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-1"><i class="fa fa-check"></i><b>10.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-ethics.html"><a href="data-ethics.html#data-privacy"><i class="fa fa-check"></i><b>10.2</b> Data Privacy</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-2"><i class="fa fa-check"></i><b>10.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-ethics.html"><a href="data-ethics.html#hypothesis-generation-vs.-confirmation"><i class="fa fa-check"></i><b>10.3</b> Hypothesis Generation vs. Confirmation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="data-ethics.html"><a href="data-ethics.html#exercise-9-3"><i class="fa fa-check"></i><b>10.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="data-ethics.html"><a href="data-ethics.html#chapexercise-9"><i class="fa fa-check"></i><b>10.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="10.5" data-path="data-ethics.html"><a href="data-ethics.html#solutions-9"><i class="fa fa-check"></i><b>10.5</b> Exercise Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html"><i class="fa fa-check"></i><b>11</b> Merging with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#stacking-rows-and-appending-columns"><i class="fa fa-check"></i><b>11.1</b> Stacking Rows and Appending Columns</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#stacking-with-bind_rows"><i class="fa fa-check"></i><b>11.1.1</b> Stacking with <code>bind_rows()</code></a></li>
+<li class="chapter" data-level="11.1.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#binding-columns-with-bind_cols"><i class="fa fa-check"></i><b>11.1.2</b> Binding Columns with <code>bind_cols()</code></a></li>
+<li class="chapter" data-level="11.1.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-1"><i class="fa fa-check"></i><b>11.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#mutating-joins"><i class="fa fa-check"></i><b>11.2</b> Mutating Joins</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-data-set-1-with-left_join"><i class="fa fa-check"></i><b>11.2.1</b> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
+<li class="chapter" data-level="11.2.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-data-set-2-with-right_join"><i class="fa fa-check"></i><b>11.2.2</b> Keep All Rows of Data Set 2 with <code>right_join()</code></a></li>
+<li class="chapter" data-level="11.2.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-all-rows-of-both-data-sets-with-full_join"><i class="fa fa-check"></i><b>11.2.3</b> Keep All Rows of Both Data Sets with <code>full_join()</code></a></li>
+<li class="chapter" data-level="11.2.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#keep-only-rows-with-matching-keys-with-inner_join"><i class="fa fa-check"></i><b>11.2.4</b> Keep Only Rows with Matching Keys with <code>inner_join()</code></a></li>
+<li class="chapter" data-level="11.2.5" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#which-xxxx_join"><i class="fa fa-check"></i><b>11.2.5</b> Which <code>xxxx_join()</code>?</a></li>
+<li class="chapter" data-level="11.2.6" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#the-importance-of-a-good-key"><i class="fa fa-check"></i><b>11.2.6</b> The Importance of a Good Key</a></li>
+<li class="chapter" data-level="11.2.7" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-2"><i class="fa fa-check"></i><b>11.2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins"><i class="fa fa-check"></i><b>11.3</b> Filtering Joins</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-with-anti_join"><i class="fa fa-check"></i><b>11.3.1</b> Filtering with <code>anti_join()</code></a></li>
+<li class="chapter" data-level="11.3.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#exercise-10-3"><i class="fa fa-check"></i><b>11.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#a-note-on-sql"><i class="fa fa-check"></i><b>11.4</b> A Note on SQL</a></li>
+<li class="chapter" data-level="11.5" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10"><i class="fa fa-check"></i><b>11.5</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="11.6" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#solutions-10"><i class="fa fa-check"></i><b>11.6</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#bind_rows-and-bind_cols-s"><i class="fa fa-check"></i><b>11.6.1</b> <code>bind_rows()</code> and <code>bind_cols()</code> S</a></li>
+<li class="chapter" data-level="11.6.2" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#mutating-joins-s"><i class="fa fa-check"></i><b>11.6.2</b> Mutating Joins S</a></li>
+<li class="chapter" data-level="11.6.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins-s"><i class="fa fa-check"></i><b>11.6.3</b> Filtering Joins S</a></li>
+<li class="chapter" data-level="11.6.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10-S"><i class="fa fa-check"></i><b>11.6.4</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html"><i class="fa fa-check"></i><b>12</b> Dates with <code>lubridate</code></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#converting-variables-to-date"><i class="fa fa-check"></i><b>12.1</b> Converting Variables to <code>&lt;date&gt;</code></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#from-chr-to-date"><i class="fa fa-check"></i><b>12.1.1</b> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code></a></li>
+<li class="chapter" data-level="12.1.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#making-a-date-variable-from-date-components"><i class="fa fa-check"></i><b>12.1.2</b> Making a <code>&lt;date&gt;</code> variable from Date Components</a></li>
+<li class="chapter" data-level="12.1.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#exercise-11-1"><i class="fa fa-check"></i><b>12.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables"><i class="fa fa-check"></i><b>12.2</b> Functions for <code>&lt;date&gt;</code> Variables</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#year-month-and-mday"><i class="fa fa-check"></i><b>12.2.1</b> <code>year()</code>, <code>month()</code>, and <code>mday()</code></a></li>
+<li class="chapter" data-level="12.2.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#yday-and-wday"><i class="fa fa-check"></i><b>12.2.2</b> <code>yday()</code> and <code>wday()</code></a></li>
+<li class="chapter" data-level="12.2.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#exercise-11-2"><i class="fa fa-check"></i><b>12.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11"><i class="fa fa-check"></i><b>12.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="12.4" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#solutions-11"><i class="fa fa-check"></i><b>12.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#converting-variables-to-date-s"><i class="fa fa-check"></i><b>12.4.1</b> Converting Variables to <code>&lt;date&gt;</code> S</a></li>
+<li class="chapter" data-level="12.4.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables-s"><i class="fa fa-check"></i><b>12.4.2</b> Functions for <code>&lt;date&gt;</code> Variables S</a></li>
+<li class="chapter" data-level="12.4.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11-S"><i class="fa fa-check"></i><b>12.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html"><i class="fa fa-check"></i><b>13</b> Strings with <code>stringr</code></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#friday-friday"><i class="fa fa-check"></i><b>13.1</b> Friday, Friday</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#exercise-12-1"><i class="fa fa-check"></i><b>13.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#add-second-example-here"><i class="fa fa-check"></i><b>13.2</b> Add Second Example Here</a></li>
+<li class="chapter" data-level="13.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12"><i class="fa fa-check"></i><b>13.3</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="13.4" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#solutions-12"><i class="fa fa-check"></i><b>13.4</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#friday-friday-s"><i class="fa fa-check"></i><b>13.4.1</b> Friday, Friday S</a></li>
+<li class="chapter" data-level="13.4.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#second-example-s"><i class="fa fa-check"></i><b>13.4.2</b> Second Example S</a></li>
+<li class="chapter" data-level="13.4.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12-S"><i class="fa fa-check"></i><b>13.4.3</b> Chapter Exercises S</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html"><i class="fa fa-check"></i><b>14</b> Predictive Modeling with knn</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#introduction-to-classification"><i class="fa fa-check"></i><b>14.1</b> Introduction to Classification</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#training-and-test-data"><i class="fa fa-check"></i><b>14.1.1</b> Training and Test Data</a></li>
+<li class="chapter" data-level="14.1.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-1"><i class="fa fa-check"></i><b>14.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction"><i class="fa fa-check"></i><b>14.2</b> knn Introduction</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-1-predictor"><i class="fa fa-check"></i><b>14.2.1</b> knn with k = 1 and 1 Predictor</a></li>
+<li class="chapter" data-level="14.2.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-one-predictor"><i class="fa fa-check"></i><b>14.2.2</b> knn with k &gt; 1 and One Predictor</a></li>
+<li class="chapter" data-level="14.2.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-with-k-1-and-more-than-one-predictor"><i class="fa fa-check"></i><b>14.2.3</b> knn with k &gt; 1 and More Than One Predictor</a></li>
+<li class="chapter" data-level="14.2.4" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#scaling-predictor-variables-before-using-knn"><i class="fa fa-check"></i><b>14.2.4</b> Scaling Predictor Variables before Using knn</a></li>
+<li class="chapter" data-level="14.2.5" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-2"><i class="fa fa-check"></i><b>14.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k"><i class="fa fa-check"></i><b>14.3</b> Choosing Predictors and k</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#the-confusion-matrix"><i class="fa fa-check"></i><b>14.3.1</b> The Confusion Matrix</a></li>
+<li class="chapter" data-level="14.3.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#using-knn-in-r"><i class="fa fa-check"></i><b>14.3.2</b> Using knn in <code>R</code></a></li>
+<li class="chapter" data-level="14.3.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#exercise-13-3"><i class="fa fa-check"></i><b>14.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#chapexercise-13"><i class="fa fa-check"></i><b>14.4</b> Chapter Exercises</a></li>
+<li class="chapter" data-level="14.5" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#solutions-13"><i class="fa fa-check"></i><b>14.5</b> Exercise Solutions</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#introduction-to-classification-s"><i class="fa fa-check"></i><b>14.5.1</b> Introduction to Classification S</a></li>
+<li class="chapter" data-level="14.5.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction-s"><i class="fa fa-check"></i><b>14.5.2</b> knn Introduction S</a></li>
+<li class="chapter" data-level="14.5.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k-s"><i class="fa fa-check"></i><b>14.5.3</b> Choosing Predictors and k S</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 234: Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Getting Started with <code>R</code> and <code>R Studio</code></h1>
+<p><strong>Goals</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Use <code>R Studio</code> on the server</p></li>
+<li><p>Use <code>R Markdown</code> and code chunks</p></li>
+<li><p>Load in data to <code>R Studio</code></p></li>
+<li><p>Run code and change a few things within that code</p></li>
+<li><p>Correct some common errors when running code in <code>R</code></p></li>
+</ol>
+<div id="intro-to-r-and-r-studio" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Intro to <code>R</code> and <code>R Studio</code></h2>
+<p><code>R</code> is a statistical computing software used by many statisticians as well as professionals in other fields, such as biology, ecology, business, and psychology. The goal of Week 0 is to provide basic familiarity with <code>R</code> and <code>R Markdown</code>, which we will be using for the entire semester.</p>
+<p>Open <code>R Studio</code> on the SLU <code>R Studio</code> server at
+<a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a> and create a folder called STAT_234 or some other meaningful title to you. Note that you must be on campus to use the <code>R Studio</code> server, unless you use a VPN. Directions on how to set-up VPN are
+<a href="https://infotech.stlawu.edu/support/content/11269" target="_blank">https://infotech.stlawu.edu/support/content/11269 </a>
+&lt;&gt; for Macs and <a href="https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118" target="_blank">https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118 </a> for Windows.</p>
+<p>Next, create a subfolder within your STAT_234 folder. Title it <em>Notes</em> (or whatever you want really).</p>
+<p>Then, create an <code>R Project</code> by Clicking File -&gt; New Project -&gt; Existing Directory, navigate to the <em>Notes</em> folder, and click <em>Create Project</em>.</p>
+<p>Within this folder, click the <em>New Folder</em> button in your bottom-left window and name a new folder <em>data</em>. Then, download the data.zip file from Sakai (in Resources). Upload that file in to the server by clicking “Upload” in the bottom right panel. In the dialog box that appears, you can click “Choose File” and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.</p>
+<p>Finally, we want to create a new <code>R Markdown</code> file by clicking File -&gt; New File -&gt; <code>R Markdown</code>. You can give your new <code>R Markdown</code> file a title if you want, and then click okay.</p>
+<p>Before moving on, click the <strong>Knit</strong> button in the top-left window at the top of the menu bar (look for the knitting needle icon). Make sure that the file knits to a pretty-looking .html file. The newly knitted .html file can now be found in your folder with your <code>R</code> project.</p>
+</div>
+<div id="what-are-r-r-studio-and-r-markdown" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> What are <code>R</code>, <code>R Studio</code>, and <code>R Markdown</code>?</h2>
+<p>The distinction between the 3 will become more clear later on. For now,
+* <code>R</code> is a statistical coding software used heavily for data analysis and statistical procedures.</p>
+<ul>
+<li><p><code>R Studio</code> is a nice IDE (Integrated Development Environment) for <code>R</code> that has a lot of convenient features. Think of this as just a convenient User Interface.</p></li>
+<li><p><code>R Mardkown</code> allows users to mix regular Microsoft-Word-style text with code. The <code>.Rmd</code> file ending denotes an <code>R Mardkown</code> file. <code>R Markdown</code> has many options that we will use heavily throughout the semester, but there’s no need to worry about these now.</p></li>
+</ul>
+<div id="r-packages-and-the-tidyverse" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> <code>R</code> Packages and the <code>tidyverse</code></h3>
+<p>You can think of <code>R</code> packages as add-ons to <code>R</code> that let you do things that <code>R</code> on its own would not be able to do. If you’re in to video games, you can think of <code>R</code> packages as extra Downloadable Content (DLC). But, unlike most gaming DLC, <code>R</code> packages are always free and we will make very heavy use of <code>R</code> packages.</p>
+<p>The <code>tidyverse</code> is a series of <code>R</code> packages that are useful for data science. In the order that we will encounter them in this class, the core <code>tidyverse</code> packages are:</p>
+<ol style="list-style-type: decimal">
+<li><code>ggplot2</code> for plotting data</li>
+<li><code>dplyr</code> for data wrangling and summarizing</li>
+<li><code>tidyr</code> for data tidying and reshaping</li>
+<li><code>readr</code> for data import</li>
+<li><code>tibble</code> for how data is stored</li>
+<li><code>stringr</code> for text data</li>
+<li><code>forcats</code> for factor (categorical) data</li>
+<li><code>purrr</code>, for functional programming, the only one of these core 8 that we won’t get to use</li>
+</ol>
+<p>We will use packages outside of the core <code>tidyverse</code> as well, but the <code>tidyverse</code> is the main focus.</p>
+<p>We are going to change one option before proceeding. In the top file menu, click Tools -&gt; Global Options -&gt; R Markdown and then uncheck the box that says “Show output inline for all R Markdown documents.” Don’t worry about this for now, but changing this option just means that code results will appear in the bottom-left window and graphs will appear in the bottom-right window of <code>R Studio</code>.</p>
+</div>
+</div>
+<div id="putting-code-in-a-.rmd-file" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Putting Code in a <code>.Rmd</code> File</h2>
+<p>The first thing that we will do that involves code is to load a package into <code>R</code> with the <code>library()</code> function. A package is just an <code>R</code> add-on that lets you do more than you could with just <code>R</code> on its own. Load the <code>tidyverse</code> package into <code>R</code> by typing and running the <code>library(tidyverse)</code> line. To create a code chunk, click <em>Insert</em> -&gt; <code>R</code>. Within this code chunk, type in <code>library(tidyverse)</code> and run the code by either</p>
+<ol style="list-style-type: decimal">
+<li><p>Clicking the “Run” button in the menu bar of the top-left window of <code>R Studio</code> or</p></li>
+<li><p>(Recommended) Clicking “Command + Enter” on a Mac or “Control + Enter” on a PC.</p></li>
+</ol>
+<p>Note that all code appears in grey boxes surrounded by three backticks while normal text has a different colour background with no backticks.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>When you run the previous line, some text will appear in the bottom-left window. We won’t worry too much about what this text means now, but we also won’t ignore it completely. You should be able to spot the 8 core <code>tidyverse</code> packages listed above as well as some numbers that follow each package. The numbers correspond to the package version. There’s some other things too, but as long as this text does not start with “Error:” you’re good to go!</p>
+<p>Congrats on running your first line of code for this class! This particular code isn’t particularly exciting because it doesn’t really do anything that we can see.</p>
+<p>We have run <code>R</code> code using an <code>R</code> chunk. In your <code>R</code> chunk, on a new line, try typing in a basic calculation, like <code>71 + 9</code> or <code>4 / 3</code>, them run the line and observe the result.</p>
+<p>So, that still wasn’t super exciting. <code>R</code> can perform basic calculations, but you could just use a calculator or Excel for that. In order to look at things that are a bit more interesting, we need some data.</p>
+</div>
+<div id="alcohol-data-example" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Alcohol Data Example</h2>
+<p>We will be looking at two data sets just to get a little bit of a preview of things we will be working on for the rest of the semester. <strong>Important</strong>: Do not worry about understanding what the following code is doing at this point. There will be plenty of time to understand this in the weeks ahead. The purpose of this section is just to get used to using <code>R</code>: there will be more detailed explanations and exercises about the functions used and various options in the coming weeks. In particular, the following code uses the <code>ggplot2</code>, <code>dplyr</code>, and <code>tidyr</code> packages, which we will cover in detail throughout the first ~ 3-4 weeks of this course.</p>
+<p>Data for this first part was obtained from fivethirtyeight at <a href="https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption" target="_blank">Five Thirty Eight GitHub page</a>.</p>
+<p>The first step is to read the data set into <code>R</code>. Though you have already downloaded alcohol.csv in the data zip, we still need to load it into <code>R</code>. Check to make sure the alcohol.csv is in the data folder in your bottom-right hand window. The following code can be copied to an <code>R</code> code chunk to read in the data:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/alcohol.csv&quot;</span>)</span></code></pre></div>
+<p>Note that we do not need the full file extension <strong>if</strong> we have the data set in an <code>R</code> project.</p>
+<p>Did something show up in your console window? If so, great! If not, make sure that the data set is in the data folder and that you have an <code>R</code> project set up.</p>
+<p>We would like to name our data set something so that we could easily reference it later, so name your data set using the <code>&lt;-</code> operator, as in</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1" aria-hidden="true" tabindex="-1"></a>alcohol_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/alcohol.csv&quot;</span>)</span></code></pre></div>
+<p>You can name your data set whatever you want to (with a few restrictions). I’ve named it <code>alcohol_data</code>. Now, if you run the line of code above where you name the data set, and run <code>alcohol_data</code>, you should see the data set appear:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1" aria-hidden="true" tabindex="-1"></a>alcohol_data</span></code></pre></div>
+<pre><code>## # A tibble: 193 x 5
+##    country      beer_servings spirit_servings wine_servings total_litres_of_pur…
+##    &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Afghanistan              0               0             0                  0  
+##  2 Albania                 89             132            54                  4.9
+##  3 Algeria                 25               0            14                  0.7
+##  4 Andorra                245             138           312                 12.4
+##  5 Angola                 217              57            45                  5.9
+##  6 Antigua &amp; B…           102             128            45                  4.9
+##  7 Argentina              193              25           221                  8.3
+##  8 Armenia                 21             179            11                  3.8
+##  9 Australia              261              72           212                 10.4
+## 10 Austria                279              75           191                  9.7
+## # … with 183 more rows</code></pre>
+<p>What’s in this data set? We see a few <em>variables</em> on the columns:</p>
+<ul>
+<li><code>country</code>: the name of the country</li>
+<li><code>beer_servings</code>: the average number of beer servings per person per year</li>
+<li><code>spirit_servings</code>: the average number of spirit (hard alcohol) servings per person per year</li>
+<li><code>wine_servings</code>: the average number of wine servings per person per year</li>
+<li><code>total_litres_of_pure_alcohol</code>: the average total litres of pure alcohol consumed per person per year.</li>
+</ul>
+<p>One goal of this class is for you to be able to pose questions about a data set and then use the tools we will learn to answer those questions. For example, we might want to know what the distribution of total litres of alcohol consumed per person looks like across countries. To do this, we can make a plot with the <code>ggplot2</code> package, one of the packages that automatically loads with <code>tidyverse</code>. We might start by constructing the following plot. <strong>Reminder</strong>: the goal of this is not for everyone to understand the code in this plot, so don’t worry too much about that.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> alcohol_data,</span>
+<span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(total_litres_of_pure_alcohol)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="intro.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
+<p><img src="01-intro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>I now want to see where the United States (<code>USA</code>) falls on this distribution by drawing a red vertical line for the total litres of alcohol consumed in the United States. To do so, I’ll first use the <code>filter()</code> function in the <code>dplyr</code> package (again, we will learn about that function in detail later). Copy and paste the following lines of code into a new <code>R</code> chunk. Then, run the lines.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true" tabindex="-1"></a>small_df <span class="ot">&lt;-</span> alcohol_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">&quot;USA&quot;</span>)</span>
+<span id="cb7-2"><a href="intro.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> alcohol_data,</span>
+<span id="cb7-3"><a href="intro.html#cb7-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(total_litres_of_pure_alcohol)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="intro.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="intro.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">data =</span> small_df,</span>
+<span id="cb7-6"><a href="intro.html#cb7-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">xintercept =</span> total_litres_of_pure_alcohol),</span>
+<span id="cb7-7"><a href="intro.html#cb7-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p>It looks like there are some countries that consume little to no alcohol. We might want to know what these countries are:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a>alcohol_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(total_litres_of_pure_alcohol <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 13 x 5
+##    country     beer_servings spirit_servings wine_servings total_litres_of_pure…
+##    &lt;chr&gt;               &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;                 &lt;dbl&gt;
+##  1 Afghanistan             0               0             0                     0
+##  2 Bangladesh              0               0             0                     0
+##  3 North Korea             0               0             0                     0
+##  4 Iran                    0               0             0                     0
+##  5 Kuwait                  0               0             0                     0
+##  6 Libya                   0               0             0                     0
+##  7 Maldives                0               0             0                     0
+##  8 Marshall I…             0               0             0                     0
+##  9 Mauritania              0               0             0                     0
+## 10 Monaco                  0               0             0                     0
+## 11 Pakistan                0               0             0                     0
+## 12 San Marino              0               0             0                     0
+## 13 Somalia                 0               0             0                     0</code></pre>
+<p>It looks like there are 13 countries in the data set that consume no alcohol. Note that, in the chunk above, we have to use in <code>total_litres_of_pure_alcohol</code> as the variable name because this is the name of the variable in the data set. Even something like spelling litres in the American English liters (<code>total_liters_of_pure_alcohol</code>) would throw an error because this isn’t the exact name of the variable in the data set. This is something that can be very aggravating when you are first learning any coding language.</p>
+<p>Now suppose that we want to know the 3 countries that consume the most beer, the 3 countries that consume the most spirits, and the 3 countries that consume the most wine per person. If you’re a trivia person, you can form some guesses. Without cheating, I am going to guess (Germany, USA, and UK) for beer, (Spain, Italy, and USA) for wine, and (Russia, Poland, and Lithuania) for spirits. Let’s do beer first!</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1" aria-hidden="true" tabindex="-1"></a>alcohol_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">rankbeer =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(beer_servings))) <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="intro.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rankbeer) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="intro.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rankbeer <span class="sc">&lt;=</span> <span class="dv">3</span>)</span></code></pre></div>
+<p>Let’s do the same thing for Wine and Spirits:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1" aria-hidden="true" tabindex="-1"></a>alcohol_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">rankwine =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(wine_servings))) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="intro.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rankwine) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="intro.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rankwine <span class="sc">&lt;=</span> <span class="dv">3</span>)</span>
+<span id="cb11-4"><a href="intro.html#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="intro.html#cb11-5" aria-hidden="true" tabindex="-1"></a>alcohol_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">rankspirits =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(spirit_servings))) <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="intro.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rankspirits) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-7"><a href="intro.html#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rankspirits <span class="sc">&lt;=</span> <span class="dv">3</span>)</span></code></pre></div>
+<p>Finally, suppose that I want to know which country consumes the most wine relative to their beer consumption? Let’s first look at this question graphically. I need to tidy the data first with the <code>pivot_longer()</code> function from the <code>tidyr</code> package:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a>alcohol_long <span class="ot">&lt;-</span> alcohol_data <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(beer_servings, wine_servings),</span>
+<span id="cb12-2"><a href="intro.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;type&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;litres_per_person&quot;</span>)</span>
+<span id="cb12-3"><a href="intro.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="intro.html#cb12-4" aria-hidden="true" tabindex="-1"></a>onecountry_df <span class="ot">&lt;-</span> alcohol_long <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="intro.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">&quot;Denmark&quot;</span>)</span>
+<span id="cb12-6"><a href="intro.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> alcohol_long, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> litres_per_person,</span>
+<span id="cb12-7"><a href="intro.html#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> country)) <span class="sc">+</span> </span>
+<span id="cb12-8"><a href="intro.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="intro.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> onecountry_df,</span>
+<span id="cb12-10"><a href="intro.html#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p><img src="01-intro_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>We could do much better than this fairly ugly plot, and it’s missing a legend telling us that the purple line corresponds to Denmark, the country at the top of my “must visit” list. The left corresponds to beer servings while the right corresponds to wine servings so a line that has a positive slope corresponds to a country that consumes more wine than beer. We will get into that stuff later: for now, copy the code chunk and change the highlighted line so that it corresponds to a country that interests you (other than Denmark).</p>
+<p>We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true" tabindex="-1"></a>alcohol_data <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="intro.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wbratio =</span> wine_servings <span class="sc">/</span> beer_servings) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="intro.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(wbratio)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="intro.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, beer_servings, wine_servings, wbratio)</span></code></pre></div>
+<pre><code>## # A tibble: 193 x 4
+##    country             beer_servings wine_servings wbratio
+##    &lt;chr&gt;                       &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Cook Islands                    0            74  Inf   
+##  2 Qatar                           1             7    7   
+##  3 Montenegro                     31           128    4.13
+##  4 Timor-Leste                     1             4    4   
+##  5 Syria                           5            16    3.2 
+##  6 France                        127           370    2.91
+##  7 Georgia                        52           149    2.87
+##  8 Italy                          85           237    2.79
+##  9 Equatorial Guinea              92           233    2.53
+## 10 Sao Tome &amp; Principe            56           140    2.5 
+## # … with 183 more rows</code></pre>
+<p>Why is one of the ratios <code>Inf</code>?</p>
+<div id="exercise-1-1" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>What is the shape of the distribution of total alcohol consumption? Left-skewed, right-skewed, or approximately symmetric? Unimodal or multimodal?</p></li>
+<li><p>In the histogram of total alcohol consumption, pick a country other than the USA that interests you. See if you can change the code in the chunk that made the histogram so that the red vertical line is drawn for the country that interests you.</p></li>
+</ol>
+<p>Hint: Use the <code>View()</code> function to look at the alcohol data set by typing <code>View(alcohol_data)</code> in your bottom-left window to help you see which countries are in the data set.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(alcohol_data)</span></code></pre></div>
+<p>Note: careful about capitalization: <code>R</code> is case sensitive so USA is different than usa.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>In the histogram of total alcohol consumption, change the <strong>fill</strong> colour of the bins in the histogram above: what should be changed in the code chunk?</p></li>
+<li><p>In the rankings code, what if you wanted to look at the top 5 countries instead of the top 3? See if you could change the code.</p></li>
+<li><p>In the spirit rankings, why do you think only 2 countries showed up instead of 3? Can you do any investigation as to why this is the case?</p></li>
+<li><p>Change the wine to beer ratio code example to find the countries with the highest beer to wine consumption (instead of wine to beer consumption).</p></li>
+</ol>
+</div>
+</div>
+<div id="athlete-data-example" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Athlete Data Example</h2>
+<p>Secondly, we will look at a data set on the top 100 highest paid athletes in 2014. The <code>athletesdata</code> was obtained from <a href="https://github.com/ali-ce/datasets" target="_blank">https://github.com/ali-ce/datasets</a> data set has information on the following variables from the 100 highest paid athletes of 2014, according to Forbes (pay includes <strong>both</strong> salary and endorsements):</p>
+<ul>
+<li><code>Name</code> (name of the athlete)</li>
+<li><code>Rank</code> (where the athlete ranks, with 1 being the highest paid)</li>
+<li><code>Sport</code> (the sport the athlete plays)</li>
+<li><code>endorsements</code> (money from sponsorships from companies)</li>
+<li><code>totalpay</code> (in millions in the year of 2014, salary + endorsements)</li>
+<li><code>salary</code> (money from tournaments or contract salary)</li>
+<li><code>age</code> of athlete in 2014</li>
+<li><code>Gender</code> (Male or Female)</li>
+</ul>
+<p>We will first read in the data set below and name it <code>athletes</code>. We can then use the <code>head()</code> function to look at the first few rows of the data set.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/athletesdata.csv&quot;</span>)</span>
+<span id="cb16-2"><a href="intro.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(athletes)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 9
+##      X1 Name            Rank Sport    endorsements totalpay  salary   age Gender
+##   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+## 1     1 Aaron Rodgers     55 Football      7500000 22000000  1.45e7    31 Male  
+## 2     2 Adam Scott        95 Golf          9000000 17700000  8.7 e6    34 Male  
+## 3     3 Adrian Gonzal…    60 Baseball       400000 21500000  2.11e7    32 Male  
+## 4     4 Alex Rodriguez    48 Baseball       300000 22900000  2.26e7    39 Male  
+## 5     5 Alfonso Soria…    93 Baseball        50000 18050000  1.8 e7    38 Male  
+## 6     6 Amar&#39;e Stoude…    27 Basketb…      5000000 26700000  2.17e7    32 Male</code></pre>
+<p>There are many different interesting questions to answer with this data set. First, we might be interested in the relationship between athlete age and salary for the top 100 athletes. Recall from an earlier stat course that one appropriate graphic to examine this relationship is a scatterplot:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> salary)) <span class="sc">+</span> </span>
+<span id="cb18-2"><a href="intro.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a href="intro.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="01-intro_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Do you see anything strange with the scatterplot? What do you think the y-axis tick labels of 2.5e+07, 5.0e+07, etc. mean?</p>
+<p>Now let’s see if we can count the number of athletes in the Top 100 that are in my personal favourite sport, Tennis:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Sport) <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="intro.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">counts =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="intro.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sport <span class="sc">==</span> <span class="st">&quot;Tennis&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   Sport  counts
+##   &lt;chr&gt;   &lt;int&gt;
+## 1 Tennis      6</code></pre>
+<p>It looks like there are 6 athletes: we can see who they are and sort them by their <code>Rank</code> with:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="intro.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sport <span class="sc">==</span> <span class="st">&quot;Tennis&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="intro.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Rank)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 9
+##      X1 Name             Rank Sport  endorsements totalpay   salary   age Gender
+##   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+## 1    82 Roger Federer       7 Tennis     52000000 56200000  4200000    33 Male  
+## 2    78 Rafael Nadal        9 Tennis     30000000 44500000 14500000    28 Male  
+## 3    72 Novak Djokovic     17 Tennis     21000000 33100000 12100000    27 Male  
+## 4    64 Maria Sharapova    34 Tennis     22000000 24400000  2400000    27 Female
+## 5    60 Li Na              41 Tennis     18000000 23600000  5600000    32 Female
+## 6    89 Serena Williams    55 Tennis     11000000 22000000 11000000    33 Female</code></pre>
+<p>Finally, let’s see if we can compare the ratio of endorsements (from commericals and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sport <span class="sc">==</span> <span class="st">&quot;Football&quot;</span> <span class="sc">|</span> Sport <span class="sc">==</span> <span class="st">&quot;Basketball&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="intro.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> endorsements <span class="sc">/</span> salary)) <span class="sc">+</span> </span>
+<span id="cb23-3"><a href="intro.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="intro.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Endorsements / Salary&quot;</span>)</span></code></pre></div>
+<p><img src="01-intro_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>In the graph an endorsements / salary ratio of 1 indicates that the person makes half of their overall pay from endorsements and half of their overall pay from salary.</p>
+<p>Which sport looks like it tends to receive a larger proportion of their overall pay from endorsements for athletes in the top 100?</p>
+<p><br></p>
+<div id="exercise-1-2" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Instead of looking at the relationship between age and salary in the top 100 athletes of 2014, change the plot to look at the relationship between age and endorsements. What would you change in the code above? Try it!</p></li>
+<li><p>Pick a <code>Sport</code> other than Tennis and see if you can count the number of athletes in the top 100 in that sport as well as sort them by Rank. <strong>Careful</strong>: not all sports will have athletes in the Top 100.</p></li>
+</ol>
+<p>How many athletes are in the top 100 in the sport that you chose?</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Change one of the sports above to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.</p></li>
+<li><p>What qualification might you want to make about your statement in the previous exercise? (Is this a random sample of athletes from each sport? Why does that matter?).</p></li>
+<li><p>In the side-by-side boxplots comparing the endorsements to salary ratio of two different sports, I’ve changed the y-axis label above to be Endorsements / Salary using the <code>labs(y = "Endorsements / Salary")</code> statement. Try changing the x-axis label to something else. What do you think you would need to add to the plot?</p></li>
+</ol>
+</div>
+</div>
+<div id="finishing-up-common-errors-in-r" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Finishing Up: Common Errors in <code>R</code></h2>
+<p>We will now talk a little bit about getting errors in <code>R</code> and what can be done to correct some common errors.</p>
+<p>You may have encountered some errors by this point in the document. Let’s go over a few common errors as well as discuss how to comment your code.</p>
+<ol style="list-style-type: decimal">
+<li>A missing parenthesis: any open parenthesis <code>(</code> <strong>needs</strong> to close <code>)</code>. Try running the following code chunk without fixing anything.</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> salary) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="intro.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p>Notice in your bottom-left window that the <code>&gt;</code> symbol that starts a line changes to a <code>+</code>. This is generally bad!! It means that you forgot to close a parenthesis <code>)</code> or a quote (<code>'</code> or <code>"</code>). No code will run since <code>R</code> thinks you are still trying to type something into a function. To fix this issue, click your cursor into the bottom-left window and press Esc. Then, try to find the error in the code chunk.</p>
+<ul>
+<li>Can you find the missing closing parenthesis above?</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Missing Comma. Try running the following code chunk without fixing anything.</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="intro.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> salary)) <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="intro.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><code>R</code> gives you an “Error: unexpected symbol in ….” Oftentimes, this means that there is a missing comma or that you spelled a variable name incorrectly.</p>
+<ul>
+<li>Can you find the missed comma above?</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Capitalization Issues</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sport <span class="sc">==</span> <span class="st">&quot;Tennis&quot;</span>)</span></code></pre></div>
+<p>In the original data set, the variable <code>Sport</code> is capitalized. Not capitalizing it means that <code>R</code> won’t be able to find it and proclaims that “object sport not found.”</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Forgetting Quotes. Character strings need to have quotation marks around them. We will discuss more of this later, but graph labels and titles need to have quotes around them since they don’t directly refer to columns or rows in our data set:</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="intro.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> endorsements)) <span class="sc">+</span> </span>
+<span id="cb27-2"><a href="intro.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">xlab</span>(Popularity Measure)</span></code></pre></div>
+<p>The error for forgetting quotes is typically an “Unexpected Symbol” though this error is also given for other issues.</p>
+<ul>
+<li>Where are the quotes missing in the code chunk above?</li>
+</ul>
+<p><br></p>
+<p>Finally, you can add a comment to a code chunk with the <code>#</code> symbol (I always use double <code>##</code> for some reason though). This allows you to type a comment into a code chunk that <strong>isn’t</strong> code:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="do">## this is a comment</span></span>
+<span id="cb28-2"><a href="intro.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="do">## this calculation might be useful later</span></span>
+<span id="cb28-3"><a href="intro.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">*</span> <span class="dv">42</span></span></code></pre></div>
+<pre><code>## [1] 294</code></pre>
+<p>Comments are most useful for longer code chunks, as they allow you to remember why you did something. They also tell someone whom you’ve shared your code with why you did something.</p>
+<p>Save this file by clicking File -&gt; Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit buttonin the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!</p>
+</div>
+<div id="chapexercise-1" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Chapter Exercises</h2>
+<p><strong>Note</strong>: It’s entirely up to you whether you’d like to put these exercises in a new .Rmd file or in the .Rmd file that you’ve been working on throughout the other sections of the chapter. I would maybe lean toward having everything in 1 .Rmd file, just so it’s in one spot, but, people are different and a different organizational structure might work better for you!</p>
+<p><strong>Note 2</strong>: Usually, exercises will ask you to write code on your own using the week’s chapter as a reference. However, for this initial chapter, we will do something a little different.</p>
+<p>Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the <code>tidyverse</code>, and answer the questions below in your <code>R Markdown</code> file. I’m imagining this whole exercise should only take you ~ 20-25 minutes.</p>
+<p>Answer the following questions by typing answersin your .Rmd document. You should not need to make any new code chunks, as the questions don’t ask you to do any coding!</p>
+<ol style="list-style-type: decimal">
+<li><p>What are the two major areas that the <code>tidyverse</code> <strong>doesn’t</strong> provide tools for?</p></li>
+<li><p>How do the authors define “tidy?”</p></li>
+<li><p>What does it mean for the <code>tidyverse</code> to be “human-centred?”</p></li>
+<li><p>In about 2 sentences, describe the data science “cycle” given in the diagram at the top of page 3.</p></li>
+</ol>
+<p>Knit your .Rmd file into an .html file and submit your knitted .html file to Sakai. If your file won’t knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Sakai. Use the following steps to do so:</p>
+<ol style="list-style-type: decimal">
+<li><p>Click the checkbox next to your knitted .html file.</p></li>
+<li><p>Click the Gear Icon “More” -&gt; Export</p></li>
+<li><p>If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .Rmd).</p></li>
+<li><p>After you export it, the file should appear in your downloads folder. Now, go to Sakai -&gt; Assignments -&gt; Week 0 Exercises and complete the upload process.</p></li>
+</ol>
+<p>Nice work: we will dive into <code>ggplot()</code> in the <code>ggplot2</code> package next!</p>
+<p><br></p>
+</div>
+<div id="solutions-1" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Exercise Solutions</h2>
+<p>In most sections, some exercise solutions will be posted at the end of the section. However, for the introduction, we will do all of the coding exercises as a class to make sure that we all start off well.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false,
+"whatsapp": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
