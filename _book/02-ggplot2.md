@@ -267,16 +267,16 @@ head(stat113_df)
 ```
 
 ```
-## # A tibble: 6 x 14
-##   Year    Sex     Hgt   Wgt Hand  Haircut   GPA Exercise Sport    TV Award Pulse
-##   <chr>   <chr> <dbl> <dbl> <chr>   <dbl> <dbl>    <dbl> <chr> <dbl> <chr> <dbl>
-## 1 Sophom… M        66   155 right       0  2.9        15 Yes       8 Olym…    72
-## 2 FirstY… F        69   170 right      17  3.87       14 Yes      12 Olym…    51
-## 3 FirstY… F        64   130 right      40  3.3         5 No        5 Olym…    68
-## 4 FirstY… M        68   157 right      35  3.21       10 Yes      15 Olym…    54
-## 5 FirstY… M        72   175 right      20  3.1         2 No        5 Nobel    NA
-## 6 Junior  F        62   150 right      50  3.3         8 Yes       5 Olym…    86
-## # … with 2 more variables: Computer <chr>, SocialMedia <chr>
+## # A tibble: 6 x 12
+##   Year      Sex     Hgt   Wgt Haircut   GPA Exercise Sport    TV Award   Pulse
+##   <chr>     <chr> <dbl> <dbl>   <dbl> <dbl>    <dbl> <chr> <dbl> <chr>   <dbl>
+## 1 Sophomore M        66   155       0  2.9        15 Yes       8 Olympic    72
+## 2 FirstYear F        69   170      17  3.87       14 Yes      12 Olympic    51
+## 3 FirstYear F        64   130      40  3.3         5 No        5 Olympic    68
+## 4 FirstYear M        68   157      35  3.21       10 Yes      15 Olympic    54
+## 5 FirstYear M        72   175      20  3.1         2 No        5 Nobel      NA
+## 6 Junior    F        62   150      50  3.3         8 Yes       5 Olympic    86
+## # … with 1 more variable: SocialMedia <chr>
 ```
 
 The data set contains the following variables:
@@ -285,7 +285,6 @@ The data set contains the following variables:
 * `Sex`, M or F (for this data set, `Sex` is considered binary).
 * `Hgt`, height, in inches.
 * `Wgt`, weight, in pounds.
-* `Hand`, right, left, or both
 * `Haircut`, how much is paid for a haircut, typically.
 * `GPA`
 * `Exercise`, amount of hours of exercise in a typical week.
@@ -293,7 +292,6 @@ The data set contains the following variables:
 * `TV`, amount of hours spent watching TV in a typical week.
 * `Award`, Award preferred: choices are Olympic Medal, Nobel Prize, or Academy Award.
 * `Pulse`, pulse rate, in beats per minute.
-* `Computer`, whether the student owns a Mac or a PC.
 * `SocialMedia`, most used social media platform (Instagram, SnapChat, FaceBook, Twitter, Other, or None).
 
 4. \* Create a histogram of the `Exercise` variable, change the x-axis label to be "Exercise (hours per typical week)", change the number of `bins` to `14`, and change the `fill` of the bins to be "lightpink2" and the outline `colour` of the bins to be black.

@@ -708,23 +708,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ggplot2.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb48-2"><a href="ggplot2.html#cb48-2" aria-hidden="true" tabindex="-1"></a>stat113_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/stat113.csv&quot;</span>)</span>
 <span id="cb48-3"><a href="ggplot2.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stat113_df)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 14
-##   Year    Sex     Hgt   Wgt Hand  Haircut   GPA Exercise Sport    TV Award Pulse
-##   &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
-## 1 Sophom… M        66   155 right       0  2.9        15 Yes       8 Olym…    72
-## 2 FirstY… F        69   170 right      17  3.87       14 Yes      12 Olym…    51
-## 3 FirstY… F        64   130 right      40  3.3         5 No        5 Olym…    68
-## 4 FirstY… M        68   157 right      35  3.21       10 Yes      15 Olym…    54
-## 5 FirstY… M        72   175 right      20  3.1         2 No        5 Nobel    NA
-## 6 Junior  F        62   150 right      50  3.3         8 Yes       5 Olym…    86
-## # … with 2 more variables: Computer &lt;chr&gt;, SocialMedia &lt;chr&gt;</code></pre>
+<pre><code>## # A tibble: 6 x 12
+##   Year      Sex     Hgt   Wgt Haircut   GPA Exercise Sport    TV Award   Pulse
+##   &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 Sophomore M        66   155       0  2.9        15 Yes       8 Olympic    72
+## 2 FirstYear F        69   170      17  3.87       14 Yes      12 Olympic    51
+## 3 FirstYear F        64   130      40  3.3         5 No        5 Olympic    68
+## 4 FirstYear M        68   157      35  3.21       10 Yes      15 Olympic    54
+## 5 FirstYear M        72   175      20  3.1         2 No        5 Nobel      NA
+## 6 Junior    F        62   150      50  3.3         8 Yes       5 Olympic    86
+## # … with 1 more variable: SocialMedia &lt;chr&gt;</code></pre>
 <p>The data set contains the following variables:</p>
 <ul>
 <li><code>Year</code>, FirstYear, Sophomore, Junior, or Senior</li>
 <li><code>Sex</code>, M or F (for this data set, <code>Sex</code> is considered binary).</li>
 <li><code>Hgt</code>, height, in inches.</li>
 <li><code>Wgt</code>, weight, in pounds.</li>
-<li><code>Hand</code>, right, left, or both</li>
 <li><code>Haircut</code>, how much is paid for a haircut, typically.</li>
 <li><code>GPA</code></li>
 <li><code>Exercise</code>, amount of hours of exercise in a typical week.</li>
@@ -732,7 +731,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>TV</code>, amount of hours spent watching TV in a typical week.</li>
 <li><code>Award</code>, Award preferred: choices are Olympic Medal, Nobel Prize, or Academy Award.</li>
 <li><code>Pulse</code>, pulse rate, in beats per minute.</li>
-<li><code>Computer</code>, whether the student owns a Mac or a PC.</li>
 <li><code>SocialMedia</code>, most used social media platform (Instagram, SnapChat, FaceBook, Twitter, Other, or None).</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
