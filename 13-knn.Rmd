@@ -132,7 +132,7 @@ train_sample %>% mutate(weight_s = (weight - min(weight)) /
 
 If we do the same with `height`, then the variables will contribute more "equally" to the distance metric used in knn. 
 
-The code below scales all numeric variables in a data set, using the `across()` function. `across()` applies a tranformation to every column in a data set that satisfies the condition given in the `where` argument.
+The code below scales all numeric variables in a data set, using the `across()` function. `across()` applies a transformation to every column in a data set that satisfies the condition given in the `where` argument.
 
 ```{r, echo = TRUE}
 ## ?across

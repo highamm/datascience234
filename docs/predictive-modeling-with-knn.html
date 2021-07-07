@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Predictive Modeling with knn | STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Predictive Modeling with knn | STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="github-repo" content="highamm/datascience234" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 14 Predictive Modeling with knn | STAT 234: Data Science" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-06-24" />
+<meta name="date" content="2021-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="strings-with-stringr.html"/>
 
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -116,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -320,26 +324,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
-<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
-<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
-<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
 <li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
 <li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
-<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-5"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
 <li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
@@ -556,21 +560,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>k-nearest neighbors</strong> (or <strong>knn</strong>) is an introductory supervised machine learning algorithm, most commonly used as a classification algorithm. Classification refers to prediction of a categorical response variable with two or more categories. For example, for a data set with SLU students, we might be interested in predicting whether or not each student graduates in four years (so the response has two categories: graduates in 4 years or doesn’t). We might want to classify this response based on various student characteristics like anticipated major, GPA, standardized test scores, etc. knn can also be used to predict a quantitative response, but we’ll focus on categorical responses throughout this section.</p>
 <p>If you’ve had STAT 213, you might try to draw some parallels to knn and classification using logistic regression. Note, however, that logistic regression required the response to have <strong>two</strong> levels while knn can classify a response variable that has <strong>two or more</strong> levels.</p>
 <p>To introduce this, we will be using <code>pokemon_full.csv</code> data. Pokemon have different Types: we will use <code>Type</code> as a categorical response that we are interested in predicting. For simplicity, we will only use Pokemon’s primary type and we will only use <strong>4</strong> different types:</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="predictive-modeling-with-knn.html#cb680-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1119</span>)</span>
-<span id="cb680-2"><a href="predictive-modeling-with-knn.html#cb680-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb680-3"><a href="predictive-modeling-with-knn.html#cb680-3" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/pokemon_full.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb680-4"><a href="predictive-modeling-with-knn.html#cb680-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Steel&quot;</span>, <span class="st">&quot;Dark&quot;</span>, <span class="st">&quot;Fire&quot;</span>, <span class="st">&quot;Ice&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="predictive-modeling-with-knn.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1119</span>)</span>
+<span id="cb659-2"><a href="predictive-modeling-with-knn.html#cb659-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb659-3"><a href="predictive-modeling-with-knn.html#cb659-3" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/pokemon_full.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb659-4"><a href="predictive-modeling-with-knn.html#cb659-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Steel&quot;</span>, <span class="st">&quot;Dark&quot;</span>, <span class="st">&quot;Fire&quot;</span>, <span class="st">&quot;Ice&quot;</span>))</span></code></pre></div>
 <p>Our goal is to develop a k-nearest-neighbors model that is able to classify/predict Pokemon <code>Type</code> from a set of predictors, like Pokemon <code>HP</code>, <code>Attack</code>, <code>Defense</code>, etc.</p>
 <div id="training-and-test-data" class="section level3" number="14.1.1">
 <h3><span class="header-section-number">14.1.1</span> Training and Test Data</h3>
 <p>In order to develop our knn model (note that we still haven’t discussed what knn actually is yet!), we first need to discuss terms that applies to almost <strong>all</strong> predictive/classification modeling: training and test data. A <strong>training</strong> data set is a subset of the full data set used to fit various models. For the example below, the training data set will be just 15 observations for pedagogical purposes. More commonly, the training data set will contain 50%-80% of the observations in the full data set.</p>
 <p>A <strong>test</strong> data set consists of the remaining 20%-50% of the observations not in the training data set. A test data set is used to assess different the performances of various models that were fit using the training data set. Why do we need to do this division? Using the full data set for both training a model and testing that model is “cheating:” the model will perform better than it should because we are using each observation twice: once for fitting and once for testing. Having a separate test data set that wasn’t used to fit the model gives the model a more “fair” test, as these observations are supposed to be new data that the model hasn’t yet seen.</p>
 <p>The following code uses that <code>sample_n()</code> function to randomly select 15 observations to be in the training data set. <code>anti_join()</code> then makes a test data set without the 15 pokemon in the training data set.</p>
-<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="predictive-modeling-with-knn.html#cb681-1" aria-hidden="true" tabindex="-1"></a>train_sample <span class="ot">&lt;-</span> pokemon <span class="sc">%&gt;%</span></span>
-<span id="cb681-2"><a href="predictive-modeling-with-knn.html#cb681-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">15</span>)</span>
-<span id="cb681-3"><a href="predictive-modeling-with-knn.html#cb681-3" aria-hidden="true" tabindex="-1"></a>test_sample <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(pokemon, train_sample)</span>
-<span id="cb681-4"><a href="predictive-modeling-with-knn.html#cb681-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb681-5"><a href="predictive-modeling-with-knn.html#cb681-5" aria-hidden="true" tabindex="-1"></a>train_sample <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="predictive-modeling-with-knn.html#cb660-1" aria-hidden="true" tabindex="-1"></a>train_sample <span class="ot">&lt;-</span> pokemon <span class="sc">%&gt;%</span></span>
+<span id="cb660-2"><a href="predictive-modeling-with-knn.html#cb660-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">15</span>)</span>
+<span id="cb660-3"><a href="predictive-modeling-with-knn.html#cb660-3" aria-hidden="true" tabindex="-1"></a>test_sample <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(pokemon, train_sample)</span>
+<span id="cb660-4"><a href="predictive-modeling-with-knn.html#cb660-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb660-5"><a href="predictive-modeling-with-knn.html#cb660-5" aria-hidden="true" tabindex="-1"></a>train_sample <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 14
 ##      X1 Name   Type     HP Attack Defense Speed SpAtk SpDef Generation Legendary
 ##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;    
@@ -581,7 +585,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5   668 Pyroar Fire     86     68      72   106   109    66          6 FALSE    
 ## 6   262 Might… Dark     70     90      70    70    60    60          3 FALSE    
 ## # … with 3 more variables: height &lt;dbl&gt;, weight &lt;dbl&gt;, base_experience &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="predictive-modeling-with-knn.html#cb683-1" aria-hidden="true" tabindex="-1"></a>test_sample <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="predictive-modeling-with-knn.html#cb662-1" aria-hidden="true" tabindex="-1"></a>test_sample <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 14
 ##      X1 Name   Type     HP Attack Defense Speed SpAtk SpDef Generation Legendary
 ##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;    
@@ -607,18 +611,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="knn-with-k-1-and-1-predictor" class="section level3" number="14.2.1">
 <h3><span class="header-section-number">14.2.1</span> knn with k = 1 and 1 Predictor</h3>
 <p>Suppose that we have just those <strong>15</strong> pokemon in our training data set. We want to predict <code>Type</code> from just one predictor, <code>Defense</code>. Below is a plot that shows the defenses of the 15 pokemon in our training data set, and has points coloured by Type and with different shapes for Type.</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="predictive-modeling-with-knn.html#cb685-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
-<span id="cb685-2"><a href="predictive-modeling-with-knn.html#cb685-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb685-3"><a href="predictive-modeling-with-knn.html#cb685-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb685-4"><a href="predictive-modeling-with-knn.html#cb685-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="predictive-modeling-with-knn.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
+<span id="cb664-2"><a href="predictive-modeling-with-knn.html#cb664-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb664-3"><a href="predictive-modeling-with-knn.html#cb664-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb664-4"><a href="predictive-modeling-with-knn.html#cb664-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="13-knn_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>We see from the plot that <code>Steel</code> type Pokemon tend to have pretty high defense values. Now suppose that we want to predict the <code>Type</code> for one of the Pokemon in our test data set, <code>Dialga</code>. We know that Dialga has a <code>Defense</code> stat of 120: the plot below shows Dialga marked with a large black X.</p>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="predictive-modeling-with-knn.html#cb686-1" aria-hidden="true" tabindex="-1"></a>dialga <span class="ot">&lt;-</span> test_sample <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">63</span>)</span>
-<span id="cb686-2"><a href="predictive-modeling-with-knn.html#cb686-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
-<span id="cb686-3"><a href="predictive-modeling-with-knn.html#cb686-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb686-4"><a href="predictive-modeling-with-knn.html#cb686-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb686-5"><a href="predictive-modeling-with-knn.html#cb686-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb686-6"><a href="predictive-modeling-with-knn.html#cb686-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dialga, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="predictive-modeling-with-knn.html#cb665-1" aria-hidden="true" tabindex="-1"></a>dialga <span class="ot">&lt;-</span> test_sample <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">63</span>)</span>
+<span id="cb665-2"><a href="predictive-modeling-with-knn.html#cb665-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
+<span id="cb665-3"><a href="predictive-modeling-with-knn.html#cb665-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb665-4"><a href="predictive-modeling-with-knn.html#cb665-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb665-5"><a href="predictive-modeling-with-knn.html#cb665-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb665-6"><a href="predictive-modeling-with-knn.html#cb665-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dialga, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">7</span>)</span></code></pre></div>
 <p><img src="13-knn_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>What would your prediction for <code>Dialga</code> be? Why? According to knn with <code>k = 1</code>, we would predict <code>Dialga</code> to be <code>Fire</code> type. <code>k = 1</code> means that we are using the <strong>1st</strong> nearest neighbor: in this case the point that is closest to <code>Dialga</code> is a green triangle, corresponding to a <code>Fire</code> type Pokemon.</p>
 </div>
@@ -630,20 +634,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="knn-with-k-1-and-more-than-one-predictor" class="section level3" number="14.2.3">
 <h3><span class="header-section-number">14.2.3</span> knn with k &gt; 1 and More Than One Predictor</h3>
 <p>We can increase the number of predictors in our <code>knn</code> model as well. We can generally include as many predictors as we would like, but visualizing becomes challenging with more than 2 predictors and nearly impossible with more than 3 predictors. For the case of two predictors, suppose that we want to use Defense and Speed as our predictors for Type. <code>Dialga</code>, the Pokemon we want to predict for, is again marked with a large black X.</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="predictive-modeling-with-knn.html#cb687-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> Speed, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
-<span id="cb687-2"><a href="predictive-modeling-with-knn.html#cb687-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb687-3"><a href="predictive-modeling-with-knn.html#cb687-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dialga, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="predictive-modeling-with-knn.html#cb666-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> Speed, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
+<span id="cb666-2"><a href="predictive-modeling-with-knn.html#cb666-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb666-3"><a href="predictive-modeling-with-knn.html#cb666-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dialga, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="13-knn_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>For <span class="math inline">\(k = 1\)</span>, we would predict the <code>Dialga</code> is Steel, as the closest point is the purple <code>+</code> sign in the top-left corner of the graph. For <span class="math inline">\(k = 3\)</span>, what <code>Type</code> would you predict for Dialga? For this question, it’s a little hard to tell which three points are closest to <code>Dialga</code> without computing the distances numerically, which is something we will let <code>R</code> do with the <code>knn()</code> function.</p>
 </div>
 <div id="scaling-predictor-variables-before-using-knn" class="section level3" number="14.2.4">
 <h3><span class="header-section-number">14.2.4</span> Scaling Predictor Variables before Using knn</h3>
 <p>In general, we want to scale any quantitative predictors when using knn because it relies on distances between points in its predictions. This is easiest to see with an example. Suppose, in our Pokemon example, that we want to use <code>height</code> and <code>weight</code> as our predictors in the <code>knn</code> model. We just have 2 observations in our training data set: a Dark Type pokemon with a height of 15 centimeters and a weight of 505 pounds, and a Fire Type Pokemon with a height of 9 centimeters and a weight of 250 pounds.</p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="predictive-modeling-with-knn.html#cb688-1" aria-hidden="true" tabindex="-1"></a>train_tiny <span class="ot">&lt;-</span> train_sample <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb688-2"><a href="predictive-modeling-with-knn.html#cb688-2" aria-hidden="true" tabindex="-1"></a>newobs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height =</span> <span class="dv">15</span>, <span class="at">weight =</span> <span class="dv">350</span>, <span class="at">Type =</span> <span class="st">&quot;Unknown&quot;</span>)</span>
-<span id="cb688-3"><a href="predictive-modeling-with-knn.html#cb688-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_tiny, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
-<span id="cb688-4"><a href="predictive-modeling-with-knn.html#cb688-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="fu">aes</span>(<span class="at">colour =</span> Type)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>)) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">550</span>)) <span class="sc">+</span></span>
-<span id="cb688-5"><a href="predictive-modeling-with-knn.html#cb688-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> newobs, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="predictive-modeling-with-knn.html#cb667-1" aria-hidden="true" tabindex="-1"></a>train_tiny <span class="ot">&lt;-</span> train_sample <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb667-2"><a href="predictive-modeling-with-knn.html#cb667-2" aria-hidden="true" tabindex="-1"></a>newobs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height =</span> <span class="dv">15</span>, <span class="at">weight =</span> <span class="dv">350</span>, <span class="at">Type =</span> <span class="st">&quot;Unknown&quot;</span>)</span>
+<span id="cb667-3"><a href="predictive-modeling-with-knn.html#cb667-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_tiny, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
+<span id="cb667-4"><a href="predictive-modeling-with-knn.html#cb667-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="fu">aes</span>(<span class="at">colour =</span> Type)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>)) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">550</span>)) <span class="sc">+</span></span>
+<span id="cb667-5"><a href="predictive-modeling-with-knn.html#cb667-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> newobs, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div>
 <p><img src="13-knn_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>On the plot is also given a Pokemon in our test data set that we wish to predict the <code>Type</code> of, marked with a black X. Upon visual inspection, with <code>k = 1</code>, it looks like we would classify this pokemon as Dark. However, the units of weight and height are on very different scales. We will compute the actual distances in class to see if the conclusion from the calculation matches with the visual conclusion.</p>
 <p><br></p>
@@ -652,7 +656,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 \]</span></p>
 <p>For example, scaling <code>weight</code> for the 15 original pokemon:</p>
-<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="predictive-modeling-with-knn.html#cb689-1" aria-hidden="true" tabindex="-1"></a>train_sample <span class="sc">%&gt;%</span> <span class="fu">select</span>(weight) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="predictive-modeling-with-knn.html#cb668-1" aria-hidden="true" tabindex="-1"></a>train_sample <span class="sc">%&gt;%</span> <span class="fu">select</span>(weight) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 1
 ##   weight
 ##    &lt;dbl&gt;
@@ -663,10 +667,10 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 ## 5    815
 ## 6    370</code></pre>
 <p>puts all weights between 0 and 1:</p>
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="predictive-modeling-with-knn.html#cb691-1" aria-hidden="true" tabindex="-1"></a>train_sample <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">weight_s =</span> (weight <span class="sc">-</span> <span class="fu">min</span>(weight)) <span class="sc">/</span> </span>
-<span id="cb691-2"><a href="predictive-modeling-with-knn.html#cb691-2" aria-hidden="true" tabindex="-1"></a>                          (<span class="fu">max</span>(weight) <span class="sc">-</span> <span class="fu">min</span>(weight))) <span class="sc">%&gt;%</span></span>
-<span id="cb691-3"><a href="predictive-modeling-with-knn.html#cb691-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(weight_s) <span class="sc">%&gt;%</span></span>
-<span id="cb691-4"><a href="predictive-modeling-with-knn.html#cb691-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="predictive-modeling-with-knn.html#cb670-1" aria-hidden="true" tabindex="-1"></a>train_sample <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">weight_s =</span> (weight <span class="sc">-</span> <span class="fu">min</span>(weight)) <span class="sc">/</span> </span>
+<span id="cb670-2"><a href="predictive-modeling-with-knn.html#cb670-2" aria-hidden="true" tabindex="-1"></a>                          (<span class="fu">max</span>(weight) <span class="sc">-</span> <span class="fu">min</span>(weight))) <span class="sc">%&gt;%</span></span>
+<span id="cb670-3"><a href="predictive-modeling-with-knn.html#cb670-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(weight_s) <span class="sc">%&gt;%</span></span>
+<span id="cb670-4"><a href="predictive-modeling-with-knn.html#cb670-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 1
 ##   weight_s
 ##      &lt;dbl&gt;
@@ -677,13 +681,13 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 ## 5   0.314 
 ## 6   0.132</code></pre>
 <p>If we do the same with <code>height</code>, then the variables will contribute more “equally” to the distance metric used in knn.</p>
-<p>The code below scales all numeric variables in a data set, using the <code>across()</code> function. <code>across()</code> applies a tranformation to every column in a data set that satisfies the condition given in the <code>where</code> argument.</p>
-<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="predictive-modeling-with-knn.html#cb693-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ?across</span></span>
-<span id="cb693-2"><a href="predictive-modeling-with-knn.html#cb693-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
-<span id="cb693-3"><a href="predictive-modeling-with-knn.html#cb693-3" aria-hidden="true" tabindex="-1"></a>train_sample <span class="sc">%&gt;%</span></span>
-<span id="cb693-4"><a href="predictive-modeling-with-knn.html#cb693-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">min</span>(.x)) <span class="sc">/</span></span>
-<span id="cb693-5"><a href="predictive-modeling-with-knn.html#cb693-5" aria-hidden="true" tabindex="-1"></a>                                 (<span class="fu">max</span>(.x) <span class="sc">-</span> <span class="fu">min</span>(.x)))) <span class="sc">%&gt;%</span></span>
-<span id="cb693-6"><a href="predictive-modeling-with-knn.html#cb693-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<p>The code below scales all numeric variables in a data set, using the <code>across()</code> function. <code>across()</code> applies a transformation to every column in a data set that satisfies the condition given in the <code>where</code> argument.</p>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="predictive-modeling-with-knn.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ?across</span></span>
+<span id="cb672-2"><a href="predictive-modeling-with-knn.html#cb672-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb672-3"><a href="predictive-modeling-with-knn.html#cb672-3" aria-hidden="true" tabindex="-1"></a>train_sample <span class="sc">%&gt;%</span></span>
+<span id="cb672-4"><a href="predictive-modeling-with-knn.html#cb672-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">min</span>(.x)) <span class="sc">/</span></span>
+<span id="cb672-5"><a href="predictive-modeling-with-knn.html#cb672-5" aria-hidden="true" tabindex="-1"></a>                                 (<span class="fu">max</span>(.x) <span class="sc">-</span> <span class="fu">min</span>(.x)))) <span class="sc">%&gt;%</span></span>
+<span id="cb672-6"><a href="predictive-modeling-with-knn.html#cb672-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 14
 ##      X1 Name   Type     HP Attack Defense Speed SpAtk SpDef Generation Legendary
 ##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;    
@@ -698,21 +702,21 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <ol style="list-style-type: decimal">
 <li>* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
 </ol>
-<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="predictive-modeling-with-knn.html#cb695-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_tiny, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
-<span id="cb695-2"><a href="predictive-modeling-with-knn.html#cb695-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="fu">aes</span>(<span class="at">colour =</span> Type)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb695-3"><a href="predictive-modeling-with-knn.html#cb695-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">550</span>)) <span class="sc">+</span></span>
-<span id="cb695-4"><a href="predictive-modeling-with-knn.html#cb695-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> newobs, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="predictive-modeling-with-knn.html#cb674-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_tiny, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
+<span id="cb674-2"><a href="predictive-modeling-with-knn.html#cb674-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="fu">aes</span>(<span class="at">colour =</span> Type)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb674-3"><a href="predictive-modeling-with-knn.html#cb674-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">550</span>)) <span class="sc">+</span></span>
+<span id="cb674-4"><a href="predictive-modeling-with-knn.html#cb674-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> newobs, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div>
 <p><img src="13-knn_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks “closer” to the Dark type pokemon. Verify that this is <strong>not</strong> actually the case by computing the actual distances numerically.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>* After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn’t give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is “closer” to the Dark type pokemon by numerically computing distances.</p></li>
 <li><p>Consider again the example with 15 pokemon in the training data set and a single predictor, <code>Defense</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="predictive-modeling-with-knn.html#cb696-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
-<span id="cb696-2"><a href="predictive-modeling-with-knn.html#cb696-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb696-3"><a href="predictive-modeling-with-knn.html#cb696-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb696-4"><a href="predictive-modeling-with-knn.html#cb696-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb696-5"><a href="predictive-modeling-with-knn.html#cb696-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dialga, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="predictive-modeling-with-knn.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
+<span id="cb675-2"><a href="predictive-modeling-with-knn.html#cb675-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb675-3"><a href="predictive-modeling-with-knn.html#cb675-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb675-4"><a href="predictive-modeling-with-knn.html#cb675-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb675-5"><a href="predictive-modeling-with-knn.html#cb675-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dialga, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">7</span>)</span></code></pre></div>
 <p><img src="13-knn_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>With k = 2, there is a tie between Fire and Steel. Come up with a way in which you might break ties in a knn algorithm.</p>
 <ol start="4" style="list-style-type: decimal">
@@ -734,31 +738,31 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <h3><span class="header-section-number">14.3.2</span> Using knn in <code>R</code></h3>
 <p>To make a confusion matrix for a model using the pokemon data set, we first need to obtain predictions from a model. We’ll use the <code>class</code> library to fit a knn model to the pokemon data. Note that, instead of having 15 Pokemon in our training data set, we now have <strong>70</strong> pokemon to give a more reasonable number. The test set has the remaining <strong>50</strong> pokemon.</p>
 <p>The following code chunk sets a seed so that we all get the same training and test samples, scales all numeric variables in the pokemon data set, and then randomly selects 70 pokemon to be in the training sample.</p>
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="predictive-modeling-with-knn.html#cb697-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb697-2"><a href="predictive-modeling-with-knn.html#cb697-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11232020</span>) <span class="do">## run this line so that you get the same </span></span>
-<span id="cb697-3"><a href="predictive-modeling-with-knn.html#cb697-3" aria-hidden="true" tabindex="-1"></a><span class="do">## results as I do!</span></span>
-<span id="cb697-4"><a href="predictive-modeling-with-knn.html#cb697-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb697-5"><a href="predictive-modeling-with-knn.html#cb697-5" aria-hidden="true" tabindex="-1"></a><span class="do">## scale the quantitative predictors</span></span>
-<span id="cb697-6"><a href="predictive-modeling-with-knn.html#cb697-6" aria-hidden="true" tabindex="-1"></a>pokemon_scaled <span class="ot">&lt;-</span> pokemon <span class="sc">%&gt;%</span></span>
-<span id="cb697-7"><a href="predictive-modeling-with-knn.html#cb697-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">min</span>(.x)) <span class="sc">/</span></span>
-<span id="cb697-8"><a href="predictive-modeling-with-knn.html#cb697-8" aria-hidden="true" tabindex="-1"></a>                                 (<span class="fu">max</span>(.x) <span class="sc">-</span> <span class="fu">min</span>(.x)))) </span>
-<span id="cb697-9"><a href="predictive-modeling-with-knn.html#cb697-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb697-10"><a href="predictive-modeling-with-knn.html#cb697-10" aria-hidden="true" tabindex="-1"></a>train_sample_2 <span class="ot">&lt;-</span> pokemon_scaled <span class="sc">%&gt;%</span></span>
-<span id="cb697-11"><a href="predictive-modeling-with-knn.html#cb697-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">70</span>)</span>
-<span id="cb697-12"><a href="predictive-modeling-with-knn.html#cb697-12" aria-hidden="true" tabindex="-1"></a>test_sample_2 <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(pokemon_scaled, train_sample_2)</span></code></pre></div>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="predictive-modeling-with-knn.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb676-2"><a href="predictive-modeling-with-knn.html#cb676-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11232020</span>) <span class="do">## run this line so that you get the same </span></span>
+<span id="cb676-3"><a href="predictive-modeling-with-knn.html#cb676-3" aria-hidden="true" tabindex="-1"></a><span class="do">## results as I do!</span></span>
+<span id="cb676-4"><a href="predictive-modeling-with-knn.html#cb676-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb676-5"><a href="predictive-modeling-with-knn.html#cb676-5" aria-hidden="true" tabindex="-1"></a><span class="do">## scale the quantitative predictors</span></span>
+<span id="cb676-6"><a href="predictive-modeling-with-knn.html#cb676-6" aria-hidden="true" tabindex="-1"></a>pokemon_scaled <span class="ot">&lt;-</span> pokemon <span class="sc">%&gt;%</span></span>
+<span id="cb676-7"><a href="predictive-modeling-with-knn.html#cb676-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">min</span>(.x)) <span class="sc">/</span></span>
+<span id="cb676-8"><a href="predictive-modeling-with-knn.html#cb676-8" aria-hidden="true" tabindex="-1"></a>                                 (<span class="fu">max</span>(.x) <span class="sc">-</span> <span class="fu">min</span>(.x)))) </span>
+<span id="cb676-9"><a href="predictive-modeling-with-knn.html#cb676-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb676-10"><a href="predictive-modeling-with-knn.html#cb676-10" aria-hidden="true" tabindex="-1"></a>train_sample_2 <span class="ot">&lt;-</span> pokemon_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb676-11"><a href="predictive-modeling-with-knn.html#cb676-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">70</span>)</span>
+<span id="cb676-12"><a href="predictive-modeling-with-knn.html#cb676-12" aria-hidden="true" tabindex="-1"></a>test_sample_2 <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(pokemon_scaled, train_sample_2)</span></code></pre></div>
 <pre><code>## Joining, by = c(&quot;X1&quot;, &quot;Name&quot;, &quot;Type&quot;, &quot;HP&quot;, &quot;Attack&quot;, &quot;Defense&quot;, &quot;Speed&quot;, &quot;SpAtk&quot;, &quot;SpDef&quot;, &quot;Generation&quot;, &quot;Legendary&quot;, &quot;height&quot;, &quot;weight&quot;, &quot;base_experience&quot;)</code></pre>
 <p>The first knn model we will investigate will have <code>HP</code>, <code>Attack</code>, <code>Defense</code>, and <code>Speed</code> as predictors. The <code>class</code> library can fit knn models with a <code>knn()</code> function but requires the training and test data sets to have <strong>only</strong> the predictors that we want to use to fit the model. The <code>knn()</code> function also requires the response variable, <code>Type</code>, to be given as a vector.</p>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="predictive-modeling-with-knn.html#cb699-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;class&quot;)</span></span>
-<span id="cb699-2"><a href="predictive-modeling-with-knn.html#cb699-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(class)</span>
-<span id="cb699-3"><a href="predictive-modeling-with-knn.html#cb699-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb699-4"><a href="predictive-modeling-with-knn.html#cb699-4" aria-hidden="true" tabindex="-1"></a><span class="do">## create a data frame that only has the predictors</span></span>
-<span id="cb699-5"><a href="predictive-modeling-with-knn.html#cb699-5" aria-hidden="true" tabindex="-1"></a><span class="do">## that we will use</span></span>
-<span id="cb699-6"><a href="predictive-modeling-with-knn.html#cb699-6" aria-hidden="true" tabindex="-1"></a>train_small <span class="ot">&lt;-</span> train_sample_2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(HP, Attack, Defense, Speed)</span>
-<span id="cb699-7"><a href="predictive-modeling-with-knn.html#cb699-7" aria-hidden="true" tabindex="-1"></a>test_small <span class="ot">&lt;-</span> test_sample_2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(HP, Attack, Defense, Speed)</span>
-<span id="cb699-8"><a href="predictive-modeling-with-knn.html#cb699-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb699-9"><a href="predictive-modeling-with-knn.html#cb699-9" aria-hidden="true" tabindex="-1"></a><span class="do">## put our response variable into a vector</span></span>
-<span id="cb699-10"><a href="predictive-modeling-with-knn.html#cb699-10" aria-hidden="true" tabindex="-1"></a>train_cat <span class="ot">&lt;-</span> train_sample_2<span class="sc">$</span>Type</span>
-<span id="cb699-11"><a href="predictive-modeling-with-knn.html#cb699-11" aria-hidden="true" tabindex="-1"></a>test_cat <span class="ot">&lt;-</span> test_sample_2<span class="sc">$</span>Type</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="predictive-modeling-with-knn.html#cb678-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;class&quot;)</span></span>
+<span id="cb678-2"><a href="predictive-modeling-with-knn.html#cb678-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(class)</span>
+<span id="cb678-3"><a href="predictive-modeling-with-knn.html#cb678-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb678-4"><a href="predictive-modeling-with-knn.html#cb678-4" aria-hidden="true" tabindex="-1"></a><span class="do">## create a data frame that only has the predictors</span></span>
+<span id="cb678-5"><a href="predictive-modeling-with-knn.html#cb678-5" aria-hidden="true" tabindex="-1"></a><span class="do">## that we will use</span></span>
+<span id="cb678-6"><a href="predictive-modeling-with-knn.html#cb678-6" aria-hidden="true" tabindex="-1"></a>train_small <span class="ot">&lt;-</span> train_sample_2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(HP, Attack, Defense, Speed)</span>
+<span id="cb678-7"><a href="predictive-modeling-with-knn.html#cb678-7" aria-hidden="true" tabindex="-1"></a>test_small <span class="ot">&lt;-</span> test_sample_2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(HP, Attack, Defense, Speed)</span>
+<span id="cb678-8"><a href="predictive-modeling-with-knn.html#cb678-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb678-9"><a href="predictive-modeling-with-knn.html#cb678-9" aria-hidden="true" tabindex="-1"></a><span class="do">## put our response variable into a vector</span></span>
+<span id="cb678-10"><a href="predictive-modeling-with-knn.html#cb678-10" aria-hidden="true" tabindex="-1"></a>train_cat <span class="ot">&lt;-</span> train_sample_2<span class="sc">$</span>Type</span>
+<span id="cb678-11"><a href="predictive-modeling-with-knn.html#cb678-11" aria-hidden="true" tabindex="-1"></a>test_cat <span class="ot">&lt;-</span> test_sample_2<span class="sc">$</span>Type</span></code></pre></div>
 <p>Now that the data has been prepared for the <code>knn()</code> function in the <code>class</code> library, we fit the model with 9 nearest neighbors. The arguments to <code>knn()</code> are</p>
 <ul>
 <li><code>train</code>, a data set with the training data that contains only the predictors we want to use (and not other predictors or the response).</li>
@@ -766,10 +770,10 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <li><code>cl</code>, a vector of the response variable for the training data.</li>
 <li><code>k</code>, the number of nearest neighbors.</li>
 </ul>
-<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="predictive-modeling-with-knn.html#cb700-1" aria-hidden="true" tabindex="-1"></a><span class="do">## fit the knn model with 9 nearest neighbors</span></span>
-<span id="cb700-2"><a href="predictive-modeling-with-knn.html#cb700-2" aria-hidden="true" tabindex="-1"></a>knn_mod <span class="ot">&lt;-</span> <span class="fu">knn</span>(<span class="at">train =</span> train_small, <span class="at">test =</span> test_small,</span>
-<span id="cb700-3"><a href="predictive-modeling-with-knn.html#cb700-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">cl =</span> train_cat, <span class="at">k =</span> <span class="dv">9</span>)</span>
-<span id="cb700-4"><a href="predictive-modeling-with-knn.html#cb700-4" aria-hidden="true" tabindex="-1"></a>knn_mod</span></code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="predictive-modeling-with-knn.html#cb679-1" aria-hidden="true" tabindex="-1"></a><span class="do">## fit the knn model with 9 nearest neighbors</span></span>
+<span id="cb679-2"><a href="predictive-modeling-with-knn.html#cb679-2" aria-hidden="true" tabindex="-1"></a>knn_mod <span class="ot">&lt;-</span> <span class="fu">knn</span>(<span class="at">train =</span> train_small, <span class="at">test =</span> test_small,</span>
+<span id="cb679-3"><a href="predictive-modeling-with-knn.html#cb679-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">cl =</span> train_cat, <span class="at">k =</span> <span class="dv">9</span>)</span>
+<span id="cb679-4"><a href="predictive-modeling-with-knn.html#cb679-4" aria-hidden="true" tabindex="-1"></a>knn_mod</span></code></pre></div>
 <pre><code>##  [1] Ice   Fire  Fire  Fire  Fire  Fire  Steel Fire  Ice   Fire  Fire  Fire 
 ## [13] Fire  Ice   Ice   Steel Ice   Dark  Ice   Fire  Steel Fire  Fire  Ice  
 ## [25] Fire  Ice   Steel Fire  Fire  Ice   Dark  Fire  Fire  Fire  Dark  Ice  
@@ -777,7 +781,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 ## [49] Ice   Fire 
 ## Levels: Dark Fire Ice Steel</code></pre>
 <p>The output of <code>knn_mod</code> gives the predicted categories for the <strong>test</strong> sample. We can compare the predictions from the knn model with the actual pokemon <code>Type</code>s in the test sample with <code>table()</code>, which makes a confusion matrix:</p>
-<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="predictive-modeling-with-knn.html#cb702-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(knn_mod, test_cat) </span></code></pre></div>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="predictive-modeling-with-knn.html#cb681-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(knn_mod, test_cat) </span></code></pre></div>
 <pre><code>##        test_cat
 ## knn_mod Dark Fire Ice Steel
 ##   Dark     0    3   0     0
@@ -786,11 +790,11 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 ##   Steel    0    1   0     3</code></pre>
 <p>The columns of the confusion matrix give the actual Pokemon types in the test data while the rows give the predicted types from our knn model. The above table tells us that there were 0 pokemon that were Dark type that our knn model correctly classified as Dark. There were 6 pokemon that were Dark type that our knn model incorrectly classified as Fire. There were 5 pokemon that were Dark type and that our knn model incorrectly classified as Ice. In other words, correct predictions appear on the diagonal, while incorrect predictions appear on the off-diagonal.</p>
 <p>One common metric used to assess overall model performance is the model’s <strong>classification rate</strong>, which is computed as the number of correct classifications divided by the total number of observations in the test data set. In this case, our classification rate is</p>
-<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="predictive-modeling-with-knn.html#cb704-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="sc">+</span> <span class="dv">13</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="dv">50</span></span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="predictive-modeling-with-knn.html#cb683-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="sc">+</span> <span class="dv">13</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="dv">50</span></span></code></pre></div>
 <pre><code>## [1] 0.36</code></pre>
 <p>Code to automatically obtain the classification rate from a confusion matrix is</p>
-<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="predictive-modeling-with-knn.html#cb706-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(knn_mod, test_cat) </span>
-<span id="cb706-2"><a href="predictive-modeling-with-knn.html#cb706-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(tab)) <span class="sc">/</span> <span class="fu">sum</span>(tab)</span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="predictive-modeling-with-knn.html#cb685-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(knn_mod, test_cat) </span>
+<span id="cb685-2"><a href="predictive-modeling-with-knn.html#cb685-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(tab)) <span class="sc">/</span> <span class="fu">sum</span>(tab)</span></code></pre></div>
 <pre><code>## [1] 0.36</code></pre>
 <p>What does <code>diag()</code> seem to do in the code above?</p>
 </div>
@@ -816,10 +820,10 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <ol style="list-style-type: decimal">
 <li>* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
 </ol>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="predictive-modeling-with-knn.html#cb708-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_tiny, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
-<span id="cb708-2"><a href="predictive-modeling-with-knn.html#cb708-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="fu">aes</span>(<span class="at">colour =</span> Type)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb708-3"><a href="predictive-modeling-with-knn.html#cb708-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">550</span>)) <span class="sc">+</span></span>
-<span id="cb708-4"><a href="predictive-modeling-with-knn.html#cb708-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> newobs, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="predictive-modeling-with-knn.html#cb687-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_tiny, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
+<span id="cb687-2"><a href="predictive-modeling-with-knn.html#cb687-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="fu">aes</span>(<span class="at">colour =</span> Type)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb687-3"><a href="predictive-modeling-with-knn.html#cb687-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">550</span>)) <span class="sc">+</span></span>
+<span id="cb687-4"><a href="predictive-modeling-with-knn.html#cb687-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> newobs, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div>
 <p><img src="13-knn_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks “closer” to the Dark type pokemon. Verify that this is <strong>not</strong> the case by computing the actual distances numerically.</p>
 <ol start="2" style="list-style-type: decimal">
@@ -861,8 +865,8 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": false,
-"whatsapp": false
+"whatsapp": false,
+"all": false
 },
 "fontsettings": {
 "theme": "white",

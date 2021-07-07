@@ -292,7 +292,7 @@ ggplot(data = videogame_long, aes(x = date,
 
 5. \* Using your data set that explored a variable or two from 2004 through now, make a table of the __average__ popularity for each year. __Hint__: You'll need a lubridate function to extract the year variable from the date object.
 
-6. \* Clear your search and now enter a search term that you'd like to investigate for the past 90 days. Mine will be "pittsburgh steelers" but, again, yours should be something that interests you.
+6. \* Clear your search and now enter a search term that you'd like to investigate for the past 90 days. Mine will be "Pittsburgh Steelers" but, again, yours should be something that interests you.
 
 Again, click the download button again and read in the data to `R`. Convert the date variable to be in `<date>` format.
 

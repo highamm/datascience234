@@ -387,7 +387,7 @@ left_join(all_df, states_df, by = c("state" = "value"))
 full_join(all_df, states_df, by = c("state" = "value"))
 ```
 
-6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()` ing it out explictly).
+6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()`-ing it out explicitly).
 
 ```{r, echo = FALSE, message = FALSE, results = "hide"}
 inner_join(all_df, states_df, by = c("state" = "value"))

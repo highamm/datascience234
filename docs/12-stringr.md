@@ -121,7 +121,7 @@ That's much better to look at! Look at the structure of `rblack2` with:
 str(rblack2)
 ```
 
-We see that `rblack2` is a matrix with 1 row and 76 colmns. But, we now want each word to be its own separate string. We can do this by using `str_split()` again, but, this time getting rid of the spaces.
+We see that `rblack2` is a matrix with 1 row and 76 columns. But, we now want each word to be its own separate string. We can do this by using `str_split()` again, but, this time getting rid of the spaces.
 
 
 ```r

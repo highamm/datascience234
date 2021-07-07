@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="github-repo" content="highamm/datascience234" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="STAT 234: Data Science" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-06-24" />
+<meta name="date" content="2021-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 
 <link rel="next" href="intro.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -116,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -320,26 +324,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
-<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
-<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
-<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
 <li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
 <li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
-<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-5"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
 <li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
@@ -545,40 +549,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">STAT 234: Data Science</h1>
 <p class="author"><em>Matt Higham</em></p>
-<p class="date"><em>2021-06-24</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-07-07</em></p>
 </div>
 <div id="syllabus-and-course-information" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Syllabus and Course Information</h1>
-<p>Needs to be updated for Fall 2021.</p>
 <div id="general-information" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> General Information</h2>
 <p><strong>Instructor Information</strong></p>
 <ul>
 <li>Professor: Matt Higham</li>
-<li>Office: Bewkes 121</li>
+<li>Office: Bewkes 123</li>
 <li>Email: <a href="mailto:mhigham@stlawu.edu" class="email">mhigham@stlawu.edu</a></li>
-<li>Semester: Fall 2020</li>
+<li>Semester: Fall 2021</li>
 <li>Office Hours:
 <ul>
-<li>Tuesday 12:00 - 2:00 (in Zoom)</li>
-<li>Friday 10:50 - 11:50 (in JHS 224 or in Zoom)</li>
-<li>Friday 1:30 - 2:30 (in JHS 224 or in Zoom)</li>
-<li>other times by appointment</li>
+<li>Tuesday 12:00 - 2:00</li>
+<li>Wednesday 2:30 - 3:30</li>
+<li>Friday 10:30 - 11:30</li>
+<li>other times by appointment
+<!-- * Zoom Link: <https://stlawu.zoom.us/j/98496966102> --></li>
 </ul></li>
-<li>Zoom Link: <a href="https://stlawu.zoom.us/j/98496966102" class="uri">https://stlawu.zoom.us/j/98496966102</a></li>
 <li>Sections:
 <ul>
-<li>MW 3:20 - 4:50</li>
+<li>MW 8:50 - 10:20</li>
 </ul></li>
 </ul>
 <p><strong>Course Materials</strong></p>
 <ul>
-<li>Textbook: R for Data Science by Garrett Grolemund and Hadley Wickham
+<li><a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. This will be our primary source of materials.</li>
+<li>Textbooks (only used as references):
 <ul>
-<li>free online version: <a href="https://r4ds.had.co.nz/">R for Data Science (r4ds)</a></li>
-<li>we will use this only as a reference</li>
+<li>Modern Data Science with <code>R</code> by Baumer, Kaplan, and Horton, found <a href="https://mdsr-book.github.io/mdsr2e/" target="_blank">here</a> in a free online version.</li>
+<li>R for Data Science by Grolemund and Wickham, found <a href="https://r4ds.had.co.nz/" target="_blank">here</a> in a free online version.</li>
 </ul></li>
-<li>Computer with Internet access</li>
+<li>Computer with Internet access.</li>
 </ul>
 <hr />
 <hr />
@@ -587,7 +591,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.2</span> Course Information</h2>
 <p>Welcome to STAT 234! The overall purpose of this course is learn the data science skills necessary to complete large-scale data analysis projects. The tool that we will be using to achieve this goal is the statistical software language <code>R</code>. We will work with a wide variety of interesting data sets throughout the semester to build our <code>R</code> skills. In particular, we will focus on the Data Analysis Life Cycle (Grolemund and Wickham 2020):</p>
 <p><img src="other/data-science.png" /></p>
-<p>We will put more emphasis on the <em>Import, Tidy, Transform, Visaulize, and Communicate</em> parts of the cycle, as much of the <em>Modeling</em> part is covered in STAT 213.</p>
+<p>We will put more emphasis on the <em>Import, Tidy, Transform, Visualize, and Communicate</em> parts of the cycle, as an introduction to <em>Modeling</em> part is covered in STAT 213.</p>
 <hr />
 <hr />
 </div>
@@ -598,8 +602,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><em>Tidy</em> data into a form that can be more easily visualized, summarised, and modeled.</p></li>
 <li><p><em>Transform</em> and <em>Visualize</em> variables in a data set to assess patterns in the data.</p></li>
 <li><p><em>Communicate</em> the results of your analysis to a target audience with a written report, or, possibly an oral presentation.</p></li>
-<li><p>Practice reproducible statistical practices through the use of <code>R Markdown</code> for data anlaysis projects.</p></li>
-<li><p><em>Generally</em>: develop the necessary skills to be able to answer future data analysis questions on your own, either using <code>R</code> or another program, such as Python.</p></li>
+<li><p>Practice reproducible statistical practices through the use of <code>R Markdown</code> for data analysis projects.</p></li>
+<li><p><em>General Objective</em>: develop the necessary skills to be able to ask and answer future data analysis questions on your own, either using <code>R</code> or another program, such as Python.</p></li>
 </ol>
 <p>To paraphrase our textbook, about 80% of the skills necessary to do a complete data analysis project can be learned through coursework in classes like this one. But, 20% of any particular project will involve learning new things that are specific to that project. Achieving Goal # 6 will allow you to learn this extra 20% on your own.</p>
 <div id="use-of-r-and-rstudio" class="section level3" number="1.3.1">
@@ -607,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will use the statistical software <code>R</code> to construct graphs and analyze data. A few notes:</p>
 <ul>
 <li><code>R</code> and <code>RStudio</code> are both free to use.</li>
-<li>We will primarily be using the SLU <code>R Studio</code> server at first: <a href="http://rstudio-u18-01.stlawu.local:8787/" class="uri">http://rstudio-u18-01.stlawu.local:8787/</a></li>
+<li>We will primarily be using the SLU <code>R Studio</code> server at first: <a href="http://rstudio-u18-01.stlawu.local:8787/" target="_blank">Link to R Studio Server</a>.</li>
 <li>Additionally, we will be using <code>RMarkdown</code> for data analysis reports.
 <em>Note</em>: It’s always nice to start assignments and projects as early as possible, but this is particularly important to do for assignments and projects involving <code>R</code>. It’s no fun to try and figure out why code is not working at the last minute. If you start early enough though, you will have plenty of time to seek help and therefore won’t waste a lot of time on a coding error.</li>
 </ul>
@@ -617,11 +621,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="how-you-will-be-assessed" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> How You Will Be Assessed</h2>
-<p>There are 5 components to your grade, each described below.</p>
+<p>The components to your grade are described below:</p>
 <ul>
-<li>Tutorials, Exercises, and Classes</li>
+<li>Class</li>
 </ul>
-<p>There are 14 sets of tutorials, exercises, and class that are graded for completion only. Tutorials are worth 2 points each, exercise sets are worth 4 points each, and each week of class is worth 4 points for a total of 140 points.</p>
+<p>Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. Additionally, there will be a 10-point “share something interesting you found with the class” assignment on very Wednesday, where, two students will volunteer to….share something interesting that they found with the data set we were working with with the rest of the class. The rubric used will be shared on the first day of class, and more information about the Wednesday 10 points will also be given on the first day of class.</p>
+<ul>
+<li>Exercises</li>
+</ul>
+<p>There are 14 sets of weekly exercises that often require you to read some of the sections in the <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a> first. These are worth either 10 or 5 points, depending on the length of the exercises, for a total of 100 points. Most weeks toward the beginning of the semester will be 10 point weeks because we won’t have any projects to work on. Exercises are graded <strong>for completion only</strong>: for many exercises, the solutions are provided in our course materials. Further directions about these exercises will be given in the first set.</p>
+<p>and class that are graded for completion only. Tutorials are worth 2 points each, exercise sets are worth 4 points each, and each week of class is worth 4 points for a total of 140 points.</p>
 <p><strong>Note</strong>: To get class credit, you can either come to class or zoom in. If you miss class, then you can still get “class” credit by completing the class exercises given within 2 days.</p>
 <ul>
 <li>Quizzes</li>
@@ -631,26 +640,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Mini Projects</li>
 </ul>
-<p>There are 3 mini-projects scattered throughout the semester that are worth 50 points each (~ one every 3 weeks). Each mini-project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.</p>
+<p>There are 3 mini-projects scattered throughout the semester that are worth 60 points each. Each mini-project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.</p>
 <p>In order to get experience with oral presentations of results, each student will give a short oral presentation on <strong>1</strong> mini-project. Use of <code>R Markdown</code> is required for this presentation (as opposed to PowerPoint or Prezi). More details will be given later in the semester.</p>
 <ul>
 <li>Midterm Exams</li>
 </ul>
-<p>There will be two midterm exams, each worth 165 points. Exams will have both an in-class and take-home component. The purpose of the in-class portion is to assess “the basics.” The purpose of the take-home portion is to assess your ability to put the basics together to form a cohesive data analysis. More information will be given about these later.</p>
+<p>There will be two midterm exams, each worth 150 points. More information will be given about these later.</p>
 <ul>
 <li>Final Project</li>
 </ul>
-<p>There is one final project, worth 200 points. The purpose of the final project is to give you an opportunity to assemble topics throughout the course into one coherent data analysis. More information about the final project will be given later.</p>
-<p>There will be no Final Exam.</p>
+<p>There is one final project, worth 150 points. The primary purpose of the final project is to give you an opportunity to assemble topics throughout the course into one coherent data analysis. More information about the final project will be given later.</p>
+<p>There will be no Final Exam for this course.</p>
 <div id="breakdown" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Breakdown</h3>
-<p><strong>Note</strong>: Points were updated on November 24 to reflect a 20 points increase in the Final Project points</p>
 <ul>
-<li>120 points for Tutorials, Exercises, and Class</li>
+<li>70 points for Class</li>
+<li>100 points for Exercises</li>
 <li>180 points for Quizzes</li>
-<li>150 points for Mini-Projects + 20 points for Presentation</li>
-<li>165 points for each of two Midterm Exams</li>
-<li>200 points for Final Project</li>
+<li>180 points for Mini-Projects + 20 points for Presentation</li>
+<li>150 points for each of two Midterm Exams</li>
+<li>150 points for Final Project</li>
 </ul>
 <p>Points add up to 1000 so your grade at the end of the semester will be the number of points you’ve earned across all categories divided by 1000.</p>
 <ul>
@@ -775,7 +784,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For more information, refer to <a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf">www.stlawu.edu/acadaffairs/</a><a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf"><strong>academic</strong></a><a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf">_</a><a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf"><strong>honor</strong></a><a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf">_policy.pdf</a>.</p>
 <p>To avoid academic dishonesty, it is important that you follow all directions and collaboration rules and ask for clarification if you have any questions about what is acceptable for a particular assignment or exam. If I suspect academic dishonesty, a score of zero will be given for the entire assignment in which the academic dishonesty occurred <strong>for all individuals involved</strong> and Academic Honor Council will be notified. If a pattern of academic dishonesty is found to have occurred, a grade of 0.0 for the entire course can be given.</p>
 <p>It is important to work in a way that maximizes your learning. Be aware that students who rely too much on others for the homework and projects tend to do poorly on the quizzes and exams.</p>
-<p><em>Please note that in addition the above, any assignments in which your score is reduced due to academic dishonesty will not be dropped according to the quiz policy e.g., if you receive a zero on a quiz because of academic dishonesty, it will not be dropped from your grade. Additionally, academic honesty on the homework will result in a 0 for that week’s quiz (since the homework is not worth points on its own)</em></p>
+<p><em>Please note that in addition the above, any assignments in which your score is reduced due to academic dishonesty will not be dropped according to the quiz policy e.g., if you receive a zero on a quiz because of academic dishonesty, it will not be dropped from your grade.</em></p>
 <hr />
 <hr />
 </div>
@@ -794,43 +803,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>8/26</td>
+<td>8/25</td>
 <td>Introduction to <code>R</code>, <code>R Studio</code></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>8/31</td>
+<td>8/30</td>
 <td>Graphics with <code>ggplot2</code></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>9/7</td>
+<td>9/6</td>
 <td>Data Wrangling and Transformation with <code>dplyr</code></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>9/14</td>
+<td>9/13</td>
 <td>Data Tidying with <code>tidyr</code></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>4</td>
-<td>9/21</td>
+<td>9/20</td>
 <td>Communication with <code>R Markdown</code> and <code>ggplot2</code></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>5</td>
-<td>9/28</td>
+<td>9/27</td>
 <td>Basic Coding in <code>R</code></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>6</td>
-<td>10/5</td>
+<td>10/4</td>
 <td>Catch-up and Midterm 1</td>
 <td></td>
 </tr>
@@ -842,37 +851,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="odd">
 <td>7</td>
-<td>10/12</td>
+<td>10/11</td>
 <td>Factors with <code>forcats</code> and Data Ethics</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>8</td>
-<td>10/19</td>
+<td>10/18</td>
 <td>Data Import with <code>readr</code>, <code>jsonlite</code>, <code>rvest</code>, and <code>tibble</code></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>9</td>
-<td>10/26</td>
+<td>10/25</td>
 <td>Data Merging with <code>dplyr</code></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>10</td>
-<td>11/2</td>
+<td>11/1</td>
 <td>Dates and Times with <code>lubridate</code></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>11</td>
-<td>11/9</td>
+<td>11/8</td>
 <td>Strings with <code>stringr</code></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>12</td>
-<td>11/16</td>
+<td>11/15</td>
 <td>Catch-up and Midterm 2</td>
 <td></td>
 </tr>
@@ -884,19 +893,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td>13</td>
-<td>11/23</td>
-<td>Predictive Modeling</td>
+<td>11/22</td>
+<td>Thanksgiving Break</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>14</td>
-<td>11/30</td>
+<td>11/29</td>
+<td>Predictive Modeling Final Project</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>12/6</td>
 <td>Final Project</td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <ul>
+<li>The three mini-projects are tentatively scheduled to be due on September 27, October 25, and November 8, though these are subject to change.</li>
 <li>There will be no Final Exam, but keep your schedule open at our Final Exam time in case we decide to use it for something.</li>
 </ul>
 
@@ -931,8 +947,8 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": false,
-"whatsapp": false
+"whatsapp": false,
+"all": false
 },
 "fontsettings": {
 "theme": "white",

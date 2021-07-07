@@ -149,7 +149,7 @@ polls_sillytest
 ## # … with 2 more variables: Johnson (L) <dbl>, Stein (G) <dbl>
 ```
 
-This situtation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use `unite()` to combine these two columns into a single `Date`, called `New_start_date`:
+This situation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use `unite()` to combine these two columns into a single `Date`, called `New_start_date`:
 
 
 ```r
@@ -285,7 +285,7 @@ head(baseball_df)
 2. \* Tidy the data set just so that 
 
 * `Duration` of the salary contract (currently given in the `Year` column) is in its own column
-* the year range (also currently given in the `Year` column) is split into a variable called `Start` and a varible called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
+* the year range (also currently given in the `Year` column) is split into a variable called `Start` and a variable called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
 
 
 
@@ -639,7 +639,7 @@ Table: (\#tab:unnamed-chunk-29)Data summary
 Find in the output the following:
 
 * the number of rows in the data set and the number of columns
-* the number of misisng values for each variable
+* the number of missing values for each variable
 * the number of unique values for each character variable
 * the completion rate (the proportion of values that are non-missing).
 
@@ -651,7 +651,7 @@ There are a few more topics to discuss in tidying data. We have not yet discusse
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-4).
 
-The `under5mortality.csv` file contains data on mortality for people under the age of 5 in countires around the world (mortality in deaths per 1000 people). The data come from <https://www.gapminder.org/data/>. The data set is __extremely__ wide in its current form, having a column for each year in the data set. Read in the data set with
+The `under5mortality.csv` file contains data on mortality for people under the age of 5 in countries around the world (mortality in deaths per 1000 people). The data come from <https://www.gapminder.org/data/>. The data set is __extremely__ wide in its current form, having a column for each year in the data set. Read in the data set with
 
 
 ```r
@@ -716,7 +716,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 We will use nfl salary data obtained from FiveThirtyEight that were originally obtained from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-04-09" target="_blank">Spotrac.com</a>.
 
-The data set has the top 100 paid players for each year for each position from 2011 through 2018, broken down by player position. For those unfamiliar with American football, the positions in the data set are Quarterback, Running Back, Wide Receiver, Tight End, and Offensive Lineman for offense, Cornerback, Defensive Lineman, Linebacker, and Safety for Defense, and a separate category for Special Teams players that incudes punters and kickers. You can review a summary of player positions <a href="https://i.pinimg.com/originals/56/32/87/56328741cb64cd59dafd200c9d06a301.png" target="_blank"> here</a>.
+The data set has the top 100 paid players for each year for each position from 2011 through 2018, broken down by player position. For those unfamiliar with American football, the positions in the data set are Quarterback, Running Back, Wide Receiver, Tight End, and Offensive Lineman for offense, Cornerback, Defensive Lineman, Linebacker, and Safety for Defense, and a separate category for Special Teams players that includes punters and kickers. You can review a summary of player positions <a href="https://i.pinimg.com/originals/56/32/87/56328741cb64cd59dafd200c9d06a301.png" target="_blank"> here</a>.
 
 We are interested in how salaries compare for the top 100 players in each position and on how salaries have changed through time for each position.
 
@@ -758,7 +758,7 @@ After adjusting for inflation, how many positions have average higher salaries f
 2. \* Tidy the data set just so that 
 
 * `Duration` of the salary contract (currently given in the `Year` column) is in its own column
-* the year range (also currently given in the `Year` column) is split into a variable called `Start` and a varible called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
+* the year range (also currently given in the `Year` column) is split into a variable called `Start` and a variable called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
 
 
 ```r

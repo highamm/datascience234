@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Merging with dplyr | STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Merging with dplyr | STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="github-repo" content="highamm/datascience234" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 11 Merging with dplyr | STAT 234: Data Science" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-06-24" />
+<meta name="date" content="2021-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="data-ethics.html"/>
 <link rel="next" href="dates-with-lubridate.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -116,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -320,26 +324,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
-<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
-<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
-<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
 <li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
 <li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
-<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-5"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
 <li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
@@ -560,29 +564,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A common instance where this is useful is if two data sets come from the same source and have different locations or years, but the same exact column names.</p>
 <p>For example, examine the following website and notice how there are .csv files given for each year of matches in the ATP (Association of (men’s) Tennis Professionals). <a href="https://github.com/JeffSackmann/tennis_atp" target="_blank">https://github.com/JeffSackmann/tennis_atp</a>.</p>
 <p>Then, read in the data sets, and look at how many columns each has.</p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="merging-with-dplyr.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb506-2"><a href="merging-with-dplyr.html#cb506-2" aria-hidden="true" tabindex="-1"></a>atp_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2019.csv&quot;</span>)</span>
-<span id="cb506-3"><a href="merging-with-dplyr.html#cb506-3" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2018.csv&quot;</span>)</span>
-<span id="cb506-4"><a href="merging-with-dplyr.html#cb506-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atp_2019) </span>
-<span id="cb506-5"><a href="merging-with-dplyr.html#cb506-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atp_2018)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="merging-with-dplyr.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb485-2"><a href="merging-with-dplyr.html#cb485-2" aria-hidden="true" tabindex="-1"></a>atp_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2019.csv&quot;</span>)</span>
+<span id="cb485-3"><a href="merging-with-dplyr.html#cb485-3" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2018.csv&quot;</span>)</span>
+<span id="cb485-4"><a href="merging-with-dplyr.html#cb485-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atp_2019) </span>
+<span id="cb485-5"><a href="merging-with-dplyr.html#cb485-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atp_2018)</span></code></pre></div>
 <p>To combine results from both data sets,</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="merging-with-dplyr.html#cb507-1" aria-hidden="true" tabindex="-1"></a>atp_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(atp_2018, atp_2019)</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="merging-with-dplyr.html#cb486-1" aria-hidden="true" tabindex="-1"></a>atp_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(atp_2018, atp_2019)</span></code></pre></div>
 <pre><code>## Error: Can&#39;t combine `winner_seed` &lt;double&gt; and `winner_seed` &lt;character&gt;.</code></pre>
 <p>What happens? Can you fix the error? <strong>Hint</strong>: run</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="merging-with-dplyr.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(atp_2018)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="merging-with-dplyr.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(atp_2018)</span></code></pre></div>
 <p>to get the full column specifications and use your <code>readr</code> knowledge to change a couple of the column types. We also did not discuss this, but, when using the <code>col_type</code> argument in <code>read_csv()</code>, you don’t need to specify all of the column types. Just specifying the ones that you want to change works too. The following code forces the seed variables in the 2018 data set to be characters.</p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="merging-with-dplyr.html#cb510-1" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2018.csv&quot;</span>,</span>
-<span id="cb510-2"><a href="merging-with-dplyr.html#cb510-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">winner_seed =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb510-3"><a href="merging-with-dplyr.html#cb510-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">loser_seed =</span> <span class="fu">col_character</span>()))</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="merging-with-dplyr.html#cb489-1" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2018.csv&quot;</span>,</span>
+<span id="cb489-2"><a href="merging-with-dplyr.html#cb489-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">winner_seed =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb489-3"><a href="merging-with-dplyr.html#cb489-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">loser_seed =</span> <span class="fu">col_character</span>()))</span></code></pre></div>
 <p>We can try combining the data sets now.</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="merging-with-dplyr.html#cb511-1" aria-hidden="true" tabindex="-1"></a>atp_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(atp_2018, atp_2019)</span>
-<span id="cb511-2"><a href="merging-with-dplyr.html#cb511-2" aria-hidden="true" tabindex="-1"></a>atp_df</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="merging-with-dplyr.html#cb490-1" aria-hidden="true" tabindex="-1"></a>atp_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(atp_2018, atp_2019)</span>
+<span id="cb490-2"><a href="merging-with-dplyr.html#cb490-2" aria-hidden="true" tabindex="-1"></a>atp_df</span></code></pre></div>
 <p>Do a quick check to make sure the number of rows in <code>atp_2018</code> plus the number of rows in <code>atp_2019</code> equals the number of rows in <code>atp_df</code>.</p>
 <p>It might seem a little annoying, but, by default <code>bind_rows()</code> will only combine two data sets by stacking rows if the data sets have <strong>identical</strong> column names and <strong>identical</strong> column classes, as we saw in the previous example.</p>
 <p>Now run the following and look at the output.</p>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="merging-with-dplyr.html#cb512-1" aria-hidden="true" tabindex="-1"></a>df_test2a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb512-2"><a href="merging-with-dplyr.html#cb512-2" aria-hidden="true" tabindex="-1"></a>df_test2b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb512-3"><a href="merging-with-dplyr.html#cb512-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test2a, df_test2b)</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="merging-with-dplyr.html#cb491-1" aria-hidden="true" tabindex="-1"></a>df_test2a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb491-2"><a href="merging-with-dplyr.html#cb491-2" aria-hidden="true" tabindex="-1"></a>df_test2b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb491-3"><a href="merging-with-dplyr.html#cb491-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test2a, df_test2b)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##    xvar     y
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -597,9 +601,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code></h3>
 <p>We won’t spend much time talking about how to bind together columns because it’s generally a little dangerous.</p>
 <p>We will use a couple of test data sets, <code>df_test1a</code> and <code>df_test1b</code>, to see it in action:</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="merging-with-dplyr.html#cb514-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb514-2"><a href="merging-with-dplyr.html#cb514-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb514-3"><a href="merging-with-dplyr.html#cb514-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(df_test1a, df_test1b)</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="merging-with-dplyr.html#cb493-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb493-2"><a href="merging-with-dplyr.html#cb493-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb493-3"><a href="merging-with-dplyr.html#cb493-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(df_test1a, df_test1b)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##    xvar  yvar     x     y
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -613,9 +617,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>* Run the following and explain why <code>R</code> does not simply stack the rows. Then, fix the issue with the <code>rename()</code> function.</li>
 </ol>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="merging-with-dplyr.html#cb516-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb516-2"><a href="merging-with-dplyr.html#cb516-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb516-3"><a href="merging-with-dplyr.html#cb516-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="merging-with-dplyr.html#cb495-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb495-2"><a href="merging-with-dplyr.html#cb495-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb495-3"><a href="merging-with-dplyr.html#cb495-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 4
 ##    xvar  yvar     x     y
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -629,10 +633,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.2</span> Mutating Joins</h2>
 <p>If the goal is to combine two data sets using some common variable(s) that both data sets have, we need different tools than simply stacking rows or appending columns. When merging together two or more data sets, we need to have a matching identification variable in each data set. This variable is commonly called a <strong>key</strong>. A key can be an identification number, a name, a date, etc, but must be present in both data sets.</p>
 <p>As a simple first example, consider</p>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="merging-with-dplyr.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb518-2"><a href="merging-with-dplyr.html#cb518-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Emily&quot;</span>, <span class="st">&quot;Miguel&quot;</span>, <span class="st">&quot;Tonya&quot;</span>), <span class="at">fav_sport =</span> <span class="fu">c</span>(<span class="st">&quot;Swimming&quot;</span>, <span class="st">&quot;Football&quot;</span>, <span class="st">&quot;Tennis&quot;</span>))</span>
-<span id="cb518-3"><a href="merging-with-dplyr.html#cb518-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Tonya&quot;</span>, <span class="st">&quot;Miguel&quot;</span>, <span class="st">&quot;Emily&quot;</span>),</span>
-<span id="cb518-4"><a href="merging-with-dplyr.html#cb518-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">fav_colour =</span> <span class="fu">c</span>(<span class="st">&quot;Robin&#39;s Egg Blue&quot;</span>, <span class="st">&quot;Tickle Me Pink&quot;</span>, <span class="st">&quot;Goldenrod&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="merging-with-dplyr.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb497-2"><a href="merging-with-dplyr.html#cb497-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Emily&quot;</span>, <span class="st">&quot;Miguel&quot;</span>, <span class="st">&quot;Tonya&quot;</span>), <span class="at">fav_sport =</span> <span class="fu">c</span>(<span class="st">&quot;Swimming&quot;</span>, <span class="st">&quot;Football&quot;</span>, <span class="st">&quot;Tennis&quot;</span>))</span>
+<span id="cb497-3"><a href="merging-with-dplyr.html#cb497-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Tonya&quot;</span>, <span class="st">&quot;Miguel&quot;</span>, <span class="st">&quot;Emily&quot;</span>),</span>
+<span id="cb497-4"><a href="merging-with-dplyr.html#cb497-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">fav_colour =</span> <span class="fu">c</span>(<span class="st">&quot;Robin&#39;s Egg Blue&quot;</span>, <span class="st">&quot;Tickle Me Pink&quot;</span>, <span class="st">&quot;Goldenrod&quot;</span>))</span></code></pre></div>
 <p>Our goal is to combine the two data sets so that the people’s favorite sports and favorite colours are in one data set.</p>
 <p>Identify the <code>key</code> in the example above. Why can we no longer use <code>bind_cols()</code> here?</p>
 <div id="keep-all-rows-of-data-set-1-with-left_join" class="section level3" number="11.2.1">
@@ -643,18 +647,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>births</code>: the number of births in the United States in each year, since 1909</li>
 <li><code>babynames</code>: popularity of different baby names per year and sex since the year 1880.</li>
 </ul>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="merging-with-dplyr.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="do">##install.packages(&quot;babynames&quot;)</span></span>
-<span id="cb519-2"><a href="merging-with-dplyr.html#cb519-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
-<span id="cb519-3"><a href="merging-with-dplyr.html#cb519-3" aria-hidden="true" tabindex="-1"></a>life_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>lifetables</span>
-<span id="cb519-4"><a href="merging-with-dplyr.html#cb519-4" aria-hidden="true" tabindex="-1"></a>birth_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>births</span>
-<span id="cb519-5"><a href="merging-with-dplyr.html#cb519-5" aria-hidden="true" tabindex="-1"></a>babynames_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>babynames</span>
-<span id="cb519-6"><a href="merging-with-dplyr.html#cb519-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span>
-<span id="cb519-7"><a href="merging-with-dplyr.html#cb519-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(births)</span>
-<span id="cb519-8"><a href="merging-with-dplyr.html#cb519-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(lifetables)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="merging-with-dplyr.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="do">##install.packages(&quot;babynames&quot;)</span></span>
+<span id="cb498-2"><a href="merging-with-dplyr.html#cb498-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
+<span id="cb498-3"><a href="merging-with-dplyr.html#cb498-3" aria-hidden="true" tabindex="-1"></a>life_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>lifetables</span>
+<span id="cb498-4"><a href="merging-with-dplyr.html#cb498-4" aria-hidden="true" tabindex="-1"></a>birth_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>births</span>
+<span id="cb498-5"><a href="merging-with-dplyr.html#cb498-5" aria-hidden="true" tabindex="-1"></a>babynames_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>babynames</span>
+<span id="cb498-6"><a href="merging-with-dplyr.html#cb498-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span>
+<span id="cb498-7"><a href="merging-with-dplyr.html#cb498-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(births)</span>
+<span id="cb498-8"><a href="merging-with-dplyr.html#cb498-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(lifetables)</span></code></pre></div>
 <p>Read about each data set with <code>?babynames</code>, <code>?births</code> and <code>?lifetables</code>.</p>
 <p>Suppose that you want to combine the <code>births</code> data set with the <code>babynames</code> data set, so that each row of <code>babynames</code> now has the total number of births for that year. We first need to identify the key in each data set that we will use for the joining. In this case, each data set has a <code>year</code> variable, and we can use <code>left_join()</code> to keep all observations in <code>babynames_df</code>, even for years that are not in the <code>births_df</code> data set.</p>
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="merging-with-dplyr.html#cb520-1" aria-hidden="true" tabindex="-1"></a>combined_left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span>
-<span id="cb520-2"><a href="merging-with-dplyr.html#cb520-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(combined_left)</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="merging-with-dplyr.html#cb499-1" aria-hidden="true" tabindex="-1"></a>combined_left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb499-2"><a href="merging-with-dplyr.html#cb499-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(combined_left)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##    year sex   name          n   prop births
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;int&gt;
@@ -664,7 +668,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4  1880 F     Elizabeth  1939 0.0199     NA
 ## 5  1880 F     Minnie     1746 0.0179     NA
 ## 6  1880 F     Margaret   1578 0.0162     NA</code></pre>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="merging-with-dplyr.html#cb522-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(combined_left)</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="merging-with-dplyr.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(combined_left)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##    year sex   name       n       prop  births
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;dbl&gt;   &lt;int&gt;
@@ -679,8 +683,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="keep-all-rows-of-data-set-2-with-right_join" class="section level3" number="11.2.2">
 <h3><span class="header-section-number">11.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></h3>
 <p>Recall from the accompanying handout that there is no need to ever use <code>right_join()</code> because it is the same as using a <code>left_join()</code> with the first two data set arguments switched:</p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="merging-with-dplyr.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="do">## these will always do the same exact thing</span></span>
-<span id="cb524-2"><a href="merging-with-dplyr.html#cb524-2" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="merging-with-dplyr.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="do">## these will always do the same exact thing</span></span>
+<span id="cb503-2"><a href="merging-with-dplyr.html#cb503-2" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,839,952 x 6
 ##     year sex   name          n   prop  births
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;
@@ -695,7 +699,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  1909 F     Marie      4301 0.0117 2718000
 ## 10  1909 F     Alice      4170 0.0113 2718000
 ## # … with 1,839,942 more rows</code></pre>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="merging-with-dplyr.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(birth_df, babynames_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="merging-with-dplyr.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(birth_df, babynames_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,839,952 x 6
 ##     year  births sex   name          n   prop
 ##    &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
@@ -715,12 +719,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="keep-all-rows-of-both-data-sets-with-full_join" class="section level3" number="11.2.3">
 <h3><span class="header-section-number">11.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></h3>
 <p>A <code>full_join()</code> will keep all rows in data set 1 that don’t have a matching key in data set 2, and will also keep all rows in data set 2 that don’t have a matching key in data set 1, filling in <code>NA</code> for missing values when necessary. For our example of merging <code>babynames_df</code> with <code>birth_df</code>,</p>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="merging-with-dplyr.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="merging-with-dplyr.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 </div>
 <div id="keep-only-rows-with-matching-keys-with-inner_join" class="section level3" number="11.2.4">
 <h3><span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></h3>
 <p>We can also keep only rows with matching keys with <code>inner_join()</code>. For this join, any row in data set 1 without a matching key in data set 2 is dropped, and any row in data set 2 without a matching key in data set 1 is also dropped.</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="merging-with-dplyr.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="merging-with-dplyr.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,839,952 x 6
 ##     year sex   name          n   prop  births
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;
@@ -744,9 +748,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-importance-of-a-good-key" class="section level3" number="11.2.6">
 <h3><span class="header-section-number">11.2.6</span> The Importance of a Good Key</h3>
 <p>The key variable is very important for joining and is not always available in a “perfect” form. Recall the college majors data sets we have, called <code>slumajors_df</code>, which information on majors at SLU. Another data set, <code>collegemajors_df</code>, has different statistics on college majors nationwide. There’s lots of interesting variables in these data sets, but we’ll focus on the <code>Major</code> variable here. Read in and examine the two data sets with:</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="merging-with-dplyr.html#cb531-1" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/SLU_Majors_15_19.csv&quot;</span>)</span>
-<span id="cb531-2"><a href="merging-with-dplyr.html#cb531-2" aria-hidden="true" tabindex="-1"></a>collegemajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/college-majors.csv&quot;</span>)</span>
-<span id="cb531-3"><a href="merging-with-dplyr.html#cb531-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(slumajors_df)</span></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="merging-with-dplyr.html#cb510-1" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/SLU_Majors_15_19.csv&quot;</span>)</span>
+<span id="cb510-2"><a href="merging-with-dplyr.html#cb510-2" aria-hidden="true" tabindex="-1"></a>collegemajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/college-majors.csv&quot;</span>)</span>
+<span id="cb510-3"><a href="merging-with-dplyr.html#cb510-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(slumajors_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   Major                        nfemales nmales
 ##   &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;
@@ -756,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Biology                           162     67
 ## 5 Business in the Liberal Arts      135    251
 ## 6 Chemistry                          26     14</code></pre>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="merging-with-dplyr.html#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(collegemajors_df)</span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="merging-with-dplyr.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(collegemajors_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 12
 ##   Major Total   Men Women Major_category Employed Full_time Part_time Unemployed
 ##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -768,7 +772,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 NUCL…  2573  2200   373 Engineering        1857      2038       264        400
 ## # … with 3 more variables: Median &lt;dbl&gt;, P25th &lt;dbl&gt;, P75th &lt;dbl&gt;</code></pre>
 <p>The most logical key for joining these two data sets is <code>Major</code>, but joining the data sets won’t actually work. The following is an attempt at using <code>Major</code> as the key.</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="merging-with-dplyr.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(slumajors_df, collegemajors_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Major&quot;</span> <span class="ot">=</span> <span class="st">&quot;Major&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="merging-with-dplyr.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(slumajors_df, collegemajors_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Major&quot;</span> <span class="ot">=</span> <span class="st">&quot;Major&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 27 x 14
 ##    Major     nfemales nmales Total   Men Women Major_category Employed Full_time
 ##    &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;
@@ -786,9 +790,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   Median &lt;dbl&gt;, P25th &lt;dbl&gt;, P75th &lt;dbl&gt;</code></pre>
 <p>Why did the <code>collegemajors_df</code> give only <code>NA</code> values when we tried to merge by major?</p>
 <p>This example underscores the importance of having a key that matches <strong>exactly</strong>. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the <code>stringr</code> package (discussed in a few weeks). For example, the capitalization issue can be solved with the <code>str_to_title()</code> function, which converts that all-caps majors in <code>collegemajors_df</code> to majors where only the first letter of each word is capitalized:</p>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="merging-with-dplyr.html#cb537-1" aria-hidden="true" tabindex="-1"></a>collegemajors_df <span class="ot">&lt;-</span> collegemajors_df <span class="sc">%&gt;%</span></span>
-<span id="cb537-2"><a href="merging-with-dplyr.html#cb537-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Major =</span> <span class="fu">str_to_title</span>(Major))</span>
-<span id="cb537-3"><a href="merging-with-dplyr.html#cb537-3" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(slumajors_df, collegemajors_df)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="merging-with-dplyr.html#cb516-1" aria-hidden="true" tabindex="-1"></a>collegemajors_df <span class="ot">&lt;-</span> collegemajors_df <span class="sc">%&gt;%</span></span>
+<span id="cb516-2"><a href="merging-with-dplyr.html#cb516-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Major =</span> <span class="fu">str_to_title</span>(Major))</span>
+<span id="cb516-3"><a href="merging-with-dplyr.html#cb516-3" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(slumajors_df, collegemajors_df)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;Major&quot;</code></pre>
 <pre><code>## # A tibble: 27 x 14
 ##    Major  nfemales nmales  Total    Men  Women Major_category Employed Full_time
@@ -813,7 +817,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Examine the following two joins that we’ve done, and explain why one resulting data set has fewer observations (rows) than the other.</li>
 </ol>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="merging-with-dplyr.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="merging-with-dplyr.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,924,665 x 6
 ##     year sex   name          n   prop births
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;int&gt;
@@ -828,7 +832,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  1880 F     Bertha     1320 0.0135     NA
 ## 10  1880 F     Sarah      1288 0.0132     NA
 ## # … with 1,924,655 more rows</code></pre>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="merging-with-dplyr.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(birth_df, babynames_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="merging-with-dplyr.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(birth_df, babynames_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,839,952 x 6
 ##     year  births sex   name          n   prop
 ##    &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
@@ -853,9 +857,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.3</span> Filtering Joins</h2>
 <p>Filtering joins (<code>semi_join()</code> and <code>anti_join()</code>) are useful if you would only like to keep the variables in one data set, but you want to filter out observations by a variable in the second data set.</p>
 <p>Consider again the two data sets on men’s tennis matches in 2018 and in 2019.</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="merging-with-dplyr.html#cb544-1" aria-hidden="true" tabindex="-1"></a>atp_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2019.csv&quot;</span>)</span>
-<span id="cb544-2"><a href="merging-with-dplyr.html#cb544-2" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2018.csv&quot;</span>)</span>
-<span id="cb544-3"><a href="merging-with-dplyr.html#cb544-3" aria-hidden="true" tabindex="-1"></a>atp_2019</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="merging-with-dplyr.html#cb523-1" aria-hidden="true" tabindex="-1"></a>atp_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2019.csv&quot;</span>)</span>
+<span id="cb523-2"><a href="merging-with-dplyr.html#cb523-2" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/atp_matches_2018.csv&quot;</span>)</span>
+<span id="cb523-3"><a href="merging-with-dplyr.html#cb523-3" aria-hidden="true" tabindex="-1"></a>atp_2019</span></code></pre></div>
 <pre><code>## # A tibble: 2,781 x 49
 ##    tourney_id tourney_name surface draw_size tourney_level tourney_date
 ##    &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;
@@ -880,7 +884,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   l_svpt &lt;dbl&gt;, l_1stIn &lt;dbl&gt;, l_1stWon &lt;dbl&gt;, l_2ndWon &lt;dbl&gt;, l_SvGms &lt;dbl&gt;,
 ## #   l_bpSaved &lt;dbl&gt;, l_bpFaced &lt;dbl&gt;, winner_rank &lt;dbl&gt;,
 ## #   winner_rank_points &lt;dbl&gt;, loser_rank &lt;dbl&gt;, loser_rank_points &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="merging-with-dplyr.html#cb546-1" aria-hidden="true" tabindex="-1"></a>atp_2018</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="merging-with-dplyr.html#cb525-1" aria-hidden="true" tabindex="-1"></a>atp_2018</span></code></pre></div>
 <pre><code>## # A tibble: 2,889 x 49
 ##    tourney_id tourney_name surface draw_size tourney_level tourney_date
 ##    &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;
@@ -909,10 +913,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5><span class="header-section-number">11.3.0.0.1</span> Filtering with <code>semi_join()</code></h5>
 <p>Suppose that we only want to keep matches in 2019 where the winning player had 10 or more wins in 2018. This might be useful if we want to not consider players in 2018 that only played in a couple of matches, perhaps because they got injured or perhaps because they received a special wildcard into the draw of only one event.</p>
 <p>To accomplish this, we can first create a data set that has the names of all of the players that won 10 or more matches in 2018, using functions that we learned from <code>dplyr</code> earlier in the semester:</p>
-<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="merging-with-dplyr.html#cb548-1" aria-hidden="true" tabindex="-1"></a>win10 <span class="ot">&lt;-</span> atp_2018 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(winner_name) <span class="sc">%&gt;%</span></span>
-<span id="cb548-2"><a href="merging-with-dplyr.html#cb548-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwin =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb548-3"><a href="merging-with-dplyr.html#cb548-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nwin <span class="sc">&gt;=</span> <span class="dv">10</span>)</span>
-<span id="cb548-4"><a href="merging-with-dplyr.html#cb548-4" aria-hidden="true" tabindex="-1"></a>win10</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="merging-with-dplyr.html#cb527-1" aria-hidden="true" tabindex="-1"></a>win10 <span class="ot">&lt;-</span> atp_2018 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(winner_name) <span class="sc">%&gt;%</span></span>
+<span id="cb527-2"><a href="merging-with-dplyr.html#cb527-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwin =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb527-3"><a href="merging-with-dplyr.html#cb527-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nwin <span class="sc">&gt;=</span> <span class="dv">10</span>)</span>
+<span id="cb527-4"><a href="merging-with-dplyr.html#cb527-4" aria-hidden="true" tabindex="-1"></a>win10</span></code></pre></div>
 <pre><code>## # A tibble: 93 x 2
 ##    winner_name       nwin
 ##    &lt;chr&gt;            &lt;int&gt;
@@ -928,21 +932,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Cameron Norrie      19
 ## # … with 83 more rows</code></pre>
 <p>Next, we apply <code>semi_join()</code>, which takes the names of two data sets (the second is the one that contains information about how the first should be “filtered”). The third argument gives the name of the key (<code>winner_name</code>) in this case.</p>
-<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="merging-with-dplyr.html#cb550-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
-<span id="cb550-2"><a href="merging-with-dplyr.html#cb550-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
-<span id="cb550-3"><a href="merging-with-dplyr.html#cb550-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="merging-with-dplyr.html#cb529-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
+<span id="cb529-2"><a href="merging-with-dplyr.html#cb529-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
+<span id="cb529-3"><a href="merging-with-dplyr.html#cb529-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code></pre></div>
 <p>Note that this only keeps the matches in 2019 where the <strong>winner</strong> had 10 or more match wins in 2018. It drops any matches where the <strong>loser</strong> lost against someone who did not have 10 or more match wins in 2018. So this isn’t yet perfect and would take a little more thought into which matches we actually want to keep for a particular analysis.</p>
 </div>
 <div id="filtering-with-anti_join" class="section level3" number="11.3.1">
 <h3><span class="header-section-number">11.3.1</span> Filtering with <code>anti_join()</code></h3>
 <p>Now suppose that we want to only keep the matches in 2019 where the winning player did not have <strong>any</strong> wins in 2018. We might think of these players as “emerging players” in 2019, players who are coming back from an injury, etc.. To do this, we can use <code>anti_join()</code>, which only keeps the rows in the first data set that do <strong>not</strong> have a match in the second data set.</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="merging-with-dplyr.html#cb551-1" aria-hidden="true" tabindex="-1"></a>new_winners <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(atp_2019, atp_2018,</span>
-<span id="cb551-2"><a href="merging-with-dplyr.html#cb551-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>)) </span>
-<span id="cb551-3"><a href="merging-with-dplyr.html#cb551-3" aria-hidden="true" tabindex="-1"></a>new_winners<span class="sc">$</span>winner_name</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="merging-with-dplyr.html#cb530-1" aria-hidden="true" tabindex="-1"></a>new_winners <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(atp_2019, atp_2018,</span>
+<span id="cb530-2"><a href="merging-with-dplyr.html#cb530-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>)) </span>
+<span id="cb530-3"><a href="merging-with-dplyr.html#cb530-3" aria-hidden="true" tabindex="-1"></a>new_winners<span class="sc">$</span>winner_name</span></code></pre></div>
 <p>We can then examine how many wins each of these “new” (or perhaps previously injured) players had in 2019:</p>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="merging-with-dplyr.html#cb552-1" aria-hidden="true" tabindex="-1"></a>new_winners <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(winner_name) <span class="sc">%&gt;%</span></span>
-<span id="cb552-2"><a href="merging-with-dplyr.html#cb552-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwin =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb552-3"><a href="merging-with-dplyr.html#cb552-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(nwin))</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="merging-with-dplyr.html#cb531-1" aria-hidden="true" tabindex="-1"></a>new_winners <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(winner_name) <span class="sc">%&gt;%</span></span>
+<span id="cb531-2"><a href="merging-with-dplyr.html#cb531-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwin =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb531-3"><a href="merging-with-dplyr.html#cb531-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(nwin))</span></code></pre></div>
 <pre><code>## # A tibble: 59 x 2
 ##    winner_name           nwin
 ##    &lt;chr&gt;                &lt;int&gt;
@@ -965,28 +969,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Take the <code>semi_join()</code> tennis example, but now suppose that we want to keep only the matches in 2019 where <strong>either</strong> the winning player or the losing player had 10 or more match wins in 2018. How can you modify the code to achieve that goal?</li>
 </ol>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="merging-with-dplyr.html#cb554-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
-<span id="cb554-2"><a href="merging-with-dplyr.html#cb554-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
-<span id="cb554-3"><a href="merging-with-dplyr.html#cb554-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="merging-with-dplyr.html#cb533-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
+<span id="cb533-2"><a href="merging-with-dplyr.html#cb533-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
+<span id="cb533-3"><a href="merging-with-dplyr.html#cb533-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>* Take the <code>semi_join()</code> tennis example, but now suppose that we want to keep only the matches in 2019 where <strong>both</strong> the winning player and the losing player had 10 or more match wins in 2018. How can you modify the code to achieve that goal?</li>
 </ol>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="merging-with-dplyr.html#cb555-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
-<span id="cb555-2"><a href="merging-with-dplyr.html#cb555-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
-<span id="cb555-3"><a href="merging-with-dplyr.html#cb555-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="merging-with-dplyr.html#cb534-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
+<span id="cb534-2"><a href="merging-with-dplyr.html#cb534-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
+<span id="cb534-3"><a href="merging-with-dplyr.html#cb534-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code></pre></div>
 </div>
 </div>
 <div id="a-note-on-sql" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> A Note on SQL</h2>
 <p>All of the <code>dplyr</code> functions we’ve used (both the ones from Week 2 and the Joins from this week) have corresponding components in SQL. The <code>dbplyr</code> package is useful if you’re interested in learning about SQL more. Given a <code>dplyr</code> pipe or base <code>R</code> function, <code>dbplyr</code> can show you what the equivalent command would be in SQL. In general, SQL code is much harder to read, as SQL isn’t designed specifically for data analysis like <code>dplyr</code> is.</p>
 <p>Some examples of <code>dbplyr</code>’s <code>translate_sql()</code> function and its translation of <code>R</code> code to SQL is:</p>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="merging-with-dplyr.html#cb556-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
-<span id="cb556-2"><a href="merging-with-dplyr.html#cb556-2" aria-hidden="true" tabindex="-1"></a><span class="fu">translate_sql</span>(<span class="fu">semi_join</span>(atp_2019, win10,</span>
-<span id="cb556-3"><a href="merging-with-dplyr.html#cb556-3" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="merging-with-dplyr.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb535-2"><a href="merging-with-dplyr.html#cb535-2" aria-hidden="true" tabindex="-1"></a><span class="fu">translate_sql</span>(<span class="fu">semi_join</span>(atp_2019, win10,</span>
+<span id="cb535-3"><a href="merging-with-dplyr.html#cb535-3" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>)))</span></code></pre></div>
 <pre><code>## &lt;SQL&gt; semi_join(`atp_2019`, `win10`, &#39;winner_name&#39; AS `winner_name`)</code></pre>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="merging-with-dplyr.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">translate_sql</span>(atp_2018 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(winner_name) <span class="sc">%&gt;%</span></span>
-<span id="cb558-2"><a href="merging-with-dplyr.html#cb558-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb558-3"><a href="merging-with-dplyr.html#cb558-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nwin <span class="sc">&gt;=</span> <span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="merging-with-dplyr.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">translate_sql</span>(atp_2018 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(winner_name) <span class="sc">%&gt;%</span></span>
+<span id="cb537-2"><a href="merging-with-dplyr.html#cb537-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb537-3"><a href="merging-with-dplyr.html#cb537-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nwin <span class="sc">&gt;=</span> <span class="dv">10</span>))</span></code></pre></div>
 <pre><code>## &lt;SQL&gt; filter(summarise(group_by(`atp_2018`, `winner_name`), COUNT(*) OVER ()), `nwin` &gt;= 10.0)</code></pre>
 <p>and a resource for learning more is <a href="https://dbplyr.tidyverse.org/articles/sql-translation.html" target="_blank">https://dbplyr.tidyverse.org/articles/sql-translation.html</a>.</p>
 </div>
@@ -996,30 +1000,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>* Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a <code>tibble()</code> that has a single row representing D.C. and then combine your new <code>tibble</code> with the overall gun violence data set. Name this new data set <code>all_df</code>.</li>
 </ol>
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="merging-with-dplyr.html#cb560-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb560-2"><a href="merging-with-dplyr.html#cb560-2" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gun_violence_us.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="merging-with-dplyr.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb539-2"><a href="merging-with-dplyr.html#cb539-2" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gun_violence_us.csv&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Explain why each attempt at combining the D.C. data with the overall data doesn’t work or is incorrect.</li>
 </ol>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="merging-with-dplyr.html#cb561-1" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">&quot;Washington D.C.&quot;</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
-<span id="cb561-2"><a href="merging-with-dplyr.html#cb561-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">ownership_rate =</span> <span class="fl">8.7</span>, <span class="at">region =</span> <span class="st">&quot;NE&quot;</span>)</span>
-<span id="cb561-3"><a href="merging-with-dplyr.html#cb561-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test1)</span>
-<span id="cb561-4"><a href="merging-with-dplyr.html#cb561-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb561-5"><a href="merging-with-dplyr.html#cb561-5" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">&quot;Washington D.C.&quot;</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
-<span id="cb561-6"><a href="merging-with-dplyr.html#cb561-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="fl">0.087</span>, <span class="at">region =</span> NE)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="merging-with-dplyr.html#cb540-1" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">&quot;Washington D.C.&quot;</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
+<span id="cb540-2"><a href="merging-with-dplyr.html#cb540-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">ownership_rate =</span> <span class="fl">8.7</span>, <span class="at">region =</span> <span class="st">&quot;NE&quot;</span>)</span>
+<span id="cb540-3"><a href="merging-with-dplyr.html#cb540-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test1)</span>
+<span id="cb540-4"><a href="merging-with-dplyr.html#cb540-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb540-5"><a href="merging-with-dplyr.html#cb540-5" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">&quot;Washington D.C.&quot;</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
+<span id="cb540-6"><a href="merging-with-dplyr.html#cb540-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="fl">0.087</span>, <span class="at">region =</span> NE)</span></code></pre></div>
 <pre><code>## Error in eval_tidy(xs[[j]], mask): object &#39;NE&#39; not found</code></pre>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="merging-with-dplyr.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test2)</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="merging-with-dplyr.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test2)</span></code></pre></div>
 <pre><code>## Error in list2(...): object &#39;test2&#39; not found</code></pre>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="merging-with-dplyr.html#cb565-1" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">&quot;Washington D.C.&quot;</span>, <span class="at">mortality_rate =</span> <span class="st">&quot;16.7&quot;</span>,</span>
-<span id="cb565-2"><a href="merging-with-dplyr.html#cb565-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="st">&quot;0.087&quot;</span>, <span class="at">region =</span> <span class="st">&quot;NE&quot;</span>)</span>
-<span id="cb565-3"><a href="merging-with-dplyr.html#cb565-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test3)</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="merging-with-dplyr.html#cb544-1" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">&quot;Washington D.C.&quot;</span>, <span class="at">mortality_rate =</span> <span class="st">&quot;16.7&quot;</span>,</span>
+<span id="cb544-2"><a href="merging-with-dplyr.html#cb544-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="st">&quot;0.087&quot;</span>, <span class="at">region =</span> <span class="st">&quot;NE&quot;</span>)</span>
+<span id="cb544-3"><a href="merging-with-dplyr.html#cb544-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test3)</span></code></pre></div>
 <pre><code>## Error: Can&#39;t combine `mortality_rate` &lt;double&gt; and `mortality_rate` &lt;character&gt;.</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Examine the following data sets that are in <code>R</code>’s base library on demographic statistics about the U.S. states and state abbreviations:</li>
 </ol>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="merging-with-dplyr.html#cb567-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(state.x77)</span>
-<span id="cb567-2"><a href="merging-with-dplyr.html#cb567-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(state.abb)</span>
-<span id="cb567-3"><a href="merging-with-dplyr.html#cb567-3" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="merging-with-dplyr.html#cb546-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(state.x77)</span>
+<span id="cb546-2"><a href="merging-with-dplyr.html#cb546-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(state.abb)</span>
+<span id="cb546-3"><a href="merging-with-dplyr.html#cb546-3" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
 <pre><code>## # A tibble: 50 x 8
 ##    Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost   Area
 ##         &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -1034,7 +1038,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9       8277   4815        1.3       70.7   10.7      52.6    11  54090
 ## 10       4931   4091        2         68.5   13.9      40.6    60  58073
 ## # … with 40 more rows</code></pre>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="merging-with-dplyr.html#cb569-1" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="merging-with-dplyr.html#cb548-1" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
 <pre><code>## # A tibble: 50 x 1
 ##    value
 ##    &lt;chr&gt;
@@ -1053,7 +1057,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="4" style="list-style-type: decimal">
 <li><p>* Combine the columns of the states data set you made in Exercise 3 with the mortality data set <strong>without</strong> Washington D.C.</p></li>
 <li><p>* Use a join function to combine the mortality data set (<code>all_df</code>) <strong>with</strong> D.C. with the states data set from Exercise 3 (<code>states_df</code>). For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</p></li>
-<li><p>* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code>slice()</code> ing it out explictly).</p></li>
+<li><p>* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code>slice()</code>-ing it out explicitly).</p></li>
 <li><p>* Use <code>semi_join()</code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> first to contain only states in the <code>NE</code> region.</p></li>
 <li><p>* Do the same thing as Exercise 7, but this time, use <code>anti_join()</code>. <strong>Hint</strong>: You’ll need to filter <code>all_df</code> in a different way to achieve this.</p></li>
 <li><p>Examine the following data sets (the first is <code>df1</code> and the second is <code>df2</code>) and then, without running any code, answer the following questions.</p></li>
@@ -1146,9 +1150,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>* Run the following and explain why <code>R</code> does not simply stack the rows. Then, fix the issue with the <code>rename()</code> function.</li>
 </ol>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="merging-with-dplyr.html#cb571-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb571-2"><a href="merging-with-dplyr.html#cb571-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb571-3"><a href="merging-with-dplyr.html#cb571-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="merging-with-dplyr.html#cb550-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb550-2"><a href="merging-with-dplyr.html#cb550-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb550-3"><a href="merging-with-dplyr.html#cb550-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 4
 ##    xvar  yvar     x     y
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1156,13 +1160,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2     2     1    NA    NA
 ## 3    NA    NA     1     5
 ## 4    NA    NA     2     1</code></pre>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="merging-with-dplyr.html#cb573-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This doesn&#39;t stack rows because the columns are named differently</span></span>
-<span id="cb573-2"><a href="merging-with-dplyr.html#cb573-2" aria-hidden="true" tabindex="-1"></a><span class="do">## in the two data sets. If xvar is the same variable as x and </span></span>
-<span id="cb573-3"><a href="merging-with-dplyr.html#cb573-3" aria-hidden="true" tabindex="-1"></a><span class="do">## yvar is the same variable as y, then we can rename the columns in</span></span>
-<span id="cb573-4"><a href="merging-with-dplyr.html#cb573-4" aria-hidden="true" tabindex="-1"></a><span class="do">## one of the data sets:</span></span>
-<span id="cb573-5"><a href="merging-with-dplyr.html#cb573-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb573-6"><a href="merging-with-dplyr.html#cb573-6" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> df_test1a <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">x =</span> <span class="st">&quot;xvar&quot;</span>, <span class="at">y =</span> <span class="st">&quot;yvar&quot;</span>)</span>
-<span id="cb573-7"><a href="merging-with-dplyr.html#cb573-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="merging-with-dplyr.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This doesn&#39;t stack rows because the columns are named differently</span></span>
+<span id="cb552-2"><a href="merging-with-dplyr.html#cb552-2" aria-hidden="true" tabindex="-1"></a><span class="do">## in the two data sets. If xvar is the same variable as x and </span></span>
+<span id="cb552-3"><a href="merging-with-dplyr.html#cb552-3" aria-hidden="true" tabindex="-1"></a><span class="do">## yvar is the same variable as y, then we can rename the columns in</span></span>
+<span id="cb552-4"><a href="merging-with-dplyr.html#cb552-4" aria-hidden="true" tabindex="-1"></a><span class="do">## one of the data sets:</span></span>
+<span id="cb552-5"><a href="merging-with-dplyr.html#cb552-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb552-6"><a href="merging-with-dplyr.html#cb552-6" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> df_test1a <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">x =</span> <span class="st">&quot;xvar&quot;</span>, <span class="at">y =</span> <span class="st">&quot;yvar&quot;</span>)</span>
+<span id="cb552-7"><a href="merging-with-dplyr.html#cb552-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##       x     y
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -1179,51 +1183,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" style="list-style-type: decimal">
 <li>* Take the <code>semi_join()</code> tennis example, but now suppose that we want to keep only the matches in 2019 where <strong>both</strong> the winning player and the losing player had 10 or more match wins in 2018. How can you modify the code to achieve that goal?</li>
 </ol>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="merging-with-dplyr.html#cb575-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
-<span id="cb575-2"><a href="merging-with-dplyr.html#cb575-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
-<span id="cb575-3"><a href="merging-with-dplyr.html#cb575-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code></pre></div>
-<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="merging-with-dplyr.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="do">## There are many ways to do this, and this solution gives just one way</span></span>
-<span id="cb576-2"><a href="merging-with-dplyr.html#cb576-2" aria-hidden="true" tabindex="-1"></a><span class="do">## A first step would be to create a data set that keeps only</span></span>
-<span id="cb576-3"><a href="merging-with-dplyr.html#cb576-3" aria-hidden="true" tabindex="-1"></a><span class="do">## the katches with losing players with 10 or more wins in 2018</span></span>
-<span id="cb576-4"><a href="merging-with-dplyr.html#cb576-4" aria-hidden="true" tabindex="-1"></a>tennis_2019_10_lose <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
-<span id="cb576-5"><a href="merging-with-dplyr.html#cb576-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;loser_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
-<span id="cb576-6"><a href="merging-with-dplyr.html#cb576-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb576-7"><a href="merging-with-dplyr.html#cb576-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Using `bind_rows()` would result in many duplicate matches. A way</span></span>
-<span id="cb576-8"><a href="merging-with-dplyr.html#cb576-8" aria-hidden="true" tabindex="-1"></a><span class="do">## to avoid duplicates with joining functions is</span></span>
-<span id="cb576-9"><a href="merging-with-dplyr.html#cb576-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb576-10"><a href="merging-with-dplyr.html#cb576-10" aria-hidden="true" tabindex="-1"></a>tennis_temp <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(tennis_2019_10_lose, tennis_2019_10)</span></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="merging-with-dplyr.html#cb554-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
+<span id="cb554-2"><a href="merging-with-dplyr.html#cb554-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;winner_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
+<span id="cb554-3"><a href="merging-with-dplyr.html#cb554-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="merging-with-dplyr.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="do">## There are many ways to do this, and this solution gives just one way</span></span>
+<span id="cb555-2"><a href="merging-with-dplyr.html#cb555-2" aria-hidden="true" tabindex="-1"></a><span class="do">## A first step would be to create a data set that keeps only</span></span>
+<span id="cb555-3"><a href="merging-with-dplyr.html#cb555-3" aria-hidden="true" tabindex="-1"></a><span class="do">## the katches with losing players with 10 or more wins in 2018</span></span>
+<span id="cb555-4"><a href="merging-with-dplyr.html#cb555-4" aria-hidden="true" tabindex="-1"></a>tennis_2019_10_lose <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
+<span id="cb555-5"><a href="merging-with-dplyr.html#cb555-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;loser_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;winner_name&quot;</span>))</span>
+<span id="cb555-6"><a href="merging-with-dplyr.html#cb555-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb555-7"><a href="merging-with-dplyr.html#cb555-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Using `bind_rows()` would result in many duplicate matches. A way</span></span>
+<span id="cb555-8"><a href="merging-with-dplyr.html#cb555-8" aria-hidden="true" tabindex="-1"></a><span class="do">## to avoid duplicates with joining functions is</span></span>
+<span id="cb555-9"><a href="merging-with-dplyr.html#cb555-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb555-10"><a href="merging-with-dplyr.html#cb555-10" aria-hidden="true" tabindex="-1"></a>tennis_temp <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(tennis_2019_10_lose, tennis_2019_10)</span></code></pre></div>
 <pre><code>## Joining, by = c(&quot;tourney_id&quot;, &quot;tourney_name&quot;, &quot;surface&quot;, &quot;draw_size&quot;, &quot;tourney_level&quot;, &quot;tourney_date&quot;, &quot;match_num&quot;, &quot;winner_id&quot;, &quot;winner_seed&quot;, &quot;winner_entry&quot;, &quot;winner_name&quot;, &quot;winner_hand&quot;, &quot;winner_ht&quot;, &quot;winner_ioc&quot;, &quot;winner_age&quot;, &quot;loser_id&quot;, &quot;loser_seed&quot;, &quot;loser_entry&quot;, &quot;loser_name&quot;, &quot;loser_hand&quot;, &quot;loser_ht&quot;, &quot;loser_ioc&quot;, &quot;loser_age&quot;, &quot;score&quot;, &quot;best_of&quot;, &quot;round&quot;, &quot;minutes&quot;, &quot;w_ace&quot;, &quot;w_df&quot;, &quot;w_svpt&quot;, &quot;w_1stIn&quot;, &quot;w_1stWon&quot;, &quot;w_2ndWon&quot;, &quot;w_SvGms&quot;, &quot;w_bpSaved&quot;, &quot;w_bpFaced&quot;, &quot;l_ace&quot;, &quot;l_df&quot;, &quot;l_svpt&quot;, &quot;l_1stIn&quot;, &quot;l_1stWon&quot;, &quot;l_2ndWon&quot;, &quot;l_SvGms&quot;, &quot;l_bpSaved&quot;, &quot;l_bpFaced&quot;, &quot;winner_rank&quot;, &quot;winner_rank_points&quot;, &quot;loser_rank&quot;, &quot;loser_rank_points&quot;)</code></pre>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="merging-with-dplyr.html#cb578-1" aria-hidden="true" tabindex="-1"></a>tennis_temp</span>
-<span id="cb578-2"><a href="merging-with-dplyr.html#cb578-2" aria-hidden="true" tabindex="-1"></a><span class="do">## there are 383 matches in the lose data set that aren&#39;t in the </span></span>
-<span id="cb578-3"><a href="merging-with-dplyr.html#cb578-3" aria-hidden="true" tabindex="-1"></a><span class="do">## win data set. Now, we can bind_rows():</span></span>
-<span id="cb578-4"><a href="merging-with-dplyr.html#cb578-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb578-5"><a href="merging-with-dplyr.html#cb578-5" aria-hidden="true" tabindex="-1"></a>final_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(tennis_2019_10, tennis_temp)</span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="merging-with-dplyr.html#cb557-1" aria-hidden="true" tabindex="-1"></a>tennis_temp</span>
+<span id="cb557-2"><a href="merging-with-dplyr.html#cb557-2" aria-hidden="true" tabindex="-1"></a><span class="do">## there are 383 matches in the lose data set that aren&#39;t in the </span></span>
+<span id="cb557-3"><a href="merging-with-dplyr.html#cb557-3" aria-hidden="true" tabindex="-1"></a><span class="do">## win data set. Now, we can bind_rows():</span></span>
+<span id="cb557-4"><a href="merging-with-dplyr.html#cb557-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb557-5"><a href="merging-with-dplyr.html#cb557-5" aria-hidden="true" tabindex="-1"></a>final_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(tennis_2019_10, tennis_temp)</span></code></pre></div>
 </div>
 <div id="chapexercise-10-S" class="section level3" number="11.6.4">
 <h3><span class="header-section-number">11.6.4</span> Chapter Exercises S</h3>
 <ol style="list-style-type: decimal">
 <li>* Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a <code>tibble()</code> that has a single row representing D.C. and then combine your new <code>tibble</code> with the overall gun violence data set. Name this new data set <code>all_df</code>.</li>
 </ol>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="merging-with-dplyr.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb579-2"><a href="merging-with-dplyr.html#cb579-2" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gun_violence_us.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="merging-with-dplyr.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb558-2"><a href="merging-with-dplyr.html#cb558-2" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gun_violence_us.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   state = col_character(),
 ##   mortality_rate = col_double(),
 ##   ownership_rate = col_double(),
 ##   region = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="merging-with-dplyr.html#cb581-1" aria-hidden="true" tabindex="-1"></a>dc_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">&quot;Washington D.C.&quot;</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
-<span id="cb581-2"><a href="merging-with-dplyr.html#cb581-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="fl">0.087</span>, <span class="at">region =</span> <span class="st">&quot;NE&quot;</span>)</span>
-<span id="cb581-3"><a href="merging-with-dplyr.html#cb581-3" aria-hidden="true" tabindex="-1"></a>all_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(mortality_df, dc_df)</span></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="merging-with-dplyr.html#cb560-1" aria-hidden="true" tabindex="-1"></a>dc_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">&quot;Washington D.C.&quot;</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
+<span id="cb560-2"><a href="merging-with-dplyr.html#cb560-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="fl">0.087</span>, <span class="at">region =</span> <span class="st">&quot;NE&quot;</span>)</span>
+<span id="cb560-3"><a href="merging-with-dplyr.html#cb560-3" aria-hidden="true" tabindex="-1"></a>all_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(mortality_df, dc_df)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>* Combine the columns of the states data set you made in Section A Exercise 3 with the mortality data set <strong>without</strong> Washington D.C.</li>
 </ol>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="merging-with-dplyr.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(mortality_df, states_df)</span></code></pre></div>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="merging-with-dplyr.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(mortality_df, states_df)</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>* Use a join function to combine the mortality data set <strong>with</strong> D.C. with the states data set from Exercise 3. For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</li>
 </ol>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="merging-with-dplyr.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;state&quot;</span> <span class="ot">=</span> <span class="st">&quot;value&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="merging-with-dplyr.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;state&quot;</span> <span class="ot">=</span> <span class="st">&quot;value&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 51 x 12
 ##    state mortality_rate ownership_rate region Population Income Illiteracy
 ##    &lt;chr&gt;          &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
@@ -1239,8 +1244,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 GA              13.7          0.316 South        4931   4091        2  
 ## # … with 41 more rows, and 5 more variables: Life Exp &lt;dbl&gt;, Murder &lt;dbl&gt;,
 ## #   HS Grad &lt;dbl&gt;, Frost &lt;dbl&gt;, Area &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="merging-with-dplyr.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb585-2"><a href="merging-with-dplyr.html#cb585-2" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;state&quot;</span> <span class="ot">=</span> <span class="st">&quot;value&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="merging-with-dplyr.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
+<span id="cb564-2"><a href="merging-with-dplyr.html#cb564-2" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;state&quot;</span> <span class="ot">=</span> <span class="st">&quot;value&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 51 x 12
 ##    state mortality_rate ownership_rate region Population Income Illiteracy
 ##    &lt;chr&gt;          &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
@@ -1259,7 +1264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="6" style="list-style-type: decimal">
 <li>* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code>slice()</code> ing it out explictly).</li>
 </ol>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="merging-with-dplyr.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;state&quot;</span> <span class="ot">=</span> <span class="st">&quot;value&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="merging-with-dplyr.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;state&quot;</span> <span class="ot">=</span> <span class="st">&quot;value&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 50 x 12
 ##    state mortality_rate ownership_rate region Population Income Illiteracy
 ##    &lt;chr&gt;          &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
@@ -1275,8 +1280,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 GA              13.7          0.316 South        4931   4091        2  
 ## # … with 40 more rows, and 5 more variables: Life Exp &lt;dbl&gt;, Murder &lt;dbl&gt;,
 ## #   HS Grad &lt;dbl&gt;, Frost &lt;dbl&gt;, Area &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="merging-with-dplyr.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb589-2"><a href="merging-with-dplyr.html#cb589-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(states_df, all_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span> <span class="ot">=</span> <span class="st">&quot;state&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="merging-with-dplyr.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
+<span id="cb568-2"><a href="merging-with-dplyr.html#cb568-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(states_df, all_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span> <span class="ot">=</span> <span class="st">&quot;state&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 50 x 12
 ##    Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost   Area value
 ##         &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
@@ -1295,8 +1300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="7" style="list-style-type: decimal">
 <li>* Use <code>semi_join()</code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> first to contain only states in the <code>NE</code> region.</li>
 </ol>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="merging-with-dplyr.html#cb591-1" aria-hidden="true" tabindex="-1"></a>ne_df <span class="ot">&lt;-</span> all_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">&quot;NE&quot;</span>)</span>
-<span id="cb591-2"><a href="merging-with-dplyr.html#cb591-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(states_df, ne_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span> <span class="ot">=</span> <span class="st">&quot;state&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="merging-with-dplyr.html#cb570-1" aria-hidden="true" tabindex="-1"></a>ne_df <span class="ot">&lt;-</span> all_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">&quot;NE&quot;</span>)</span>
+<span id="cb570-2"><a href="merging-with-dplyr.html#cb570-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(states_df, ne_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span> <span class="ot">=</span> <span class="st">&quot;state&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 9
 ##    Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost  Area value
 ##         &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -1313,8 +1318,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="8" style="list-style-type: decimal">
 <li>* Do the same thing as Exercise 7, but this time, use <code>anti_join()</code>. <strong>Hint</strong>: You’ll need to filter <code>all_df</code> in a different way to achieve this.</li>
 </ol>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="merging-with-dplyr.html#cb593-1" aria-hidden="true" tabindex="-1"></a>notne_df <span class="ot">&lt;-</span> all_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(region <span class="sc">!=</span> <span class="st">&quot;NE&quot;</span>)</span>
-<span id="cb593-2"><a href="merging-with-dplyr.html#cb593-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(states_df, notne_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span> <span class="ot">=</span> <span class="st">&quot;state&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="merging-with-dplyr.html#cb572-1" aria-hidden="true" tabindex="-1"></a>notne_df <span class="ot">&lt;-</span> all_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(region <span class="sc">!=</span> <span class="st">&quot;NE&quot;</span>)</span>
+<span id="cb572-2"><a href="merging-with-dplyr.html#cb572-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(states_df, notne_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span> <span class="ot">=</span> <span class="st">&quot;state&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 9
 ##    Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost  Area value
 ##         &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -1361,8 +1366,8 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": false,
-"whatsapp": false
+"whatsapp": false,
+"all": false
 },
 "fontsettings": {
 "theme": "white",

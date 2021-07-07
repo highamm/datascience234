@@ -32,7 +32,7 @@ pokemon_df %>% group_by(`Type 1`) %>%
 ```
 ## # A tibble: 18 x 2
 ##    `Type 1` counttype
-##  * <chr>        <int>
+##    <chr>        <int>
 ##  1 Bug             75
 ##  2 Dark            31
 ##  3 Dragon          41
@@ -346,7 +346,7 @@ We will use the general social survey data set, which is in the `forcats` librar
 Most variables are self-explanatory, but a couple that aren't are:
 
 * `partyid`, political leaning and 
-* `denom`, religious denomination (if unfamiliar with this, you can think of it as a "more specific" subset of a particular relgion).
+* `denom`, religious denomination (if unfamiliar with this, you can think of it as a "more specific" subset of a particular religion).
 
 Note that some of these exercises are from the R for Data Science textbook.
 

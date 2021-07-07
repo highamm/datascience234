@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="github-repo" content="highamm/datascience234" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-06-24" />
+<meta name="date" content="2021-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="ggplot2.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -116,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -320,26 +324,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
-<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
-<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
-<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
 <li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
 <li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
-<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-5"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
 <li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
@@ -684,19 +688,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-6"><a href="intro.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rankspirits) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-7"><a href="intro.html#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rankspirits <span class="sc">&lt;=</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>Finally, suppose that I want to know which country consumes the most wine relative to their beer consumption? Let’s first look at this question graphically. I need to tidy the data first with the <code>pivot_longer()</code> function from the <code>tidyr</code> package:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a>alcohol_long <span class="ot">&lt;-</span> alcohol_data <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(beer_servings, wine_servings),</span>
-<span id="cb12-2"><a href="intro.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;type&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;litres_per_person&quot;</span>)</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a>onecountry_df <span class="ot">&lt;-</span> alcohol_data <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="intro.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">&quot;Denmark&quot;</span>)</span>
 <span id="cb12-3"><a href="intro.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="intro.html#cb12-4" aria-hidden="true" tabindex="-1"></a>onecountry_df <span class="ot">&lt;-</span> alcohol_long <span class="sc">%&gt;%</span> </span>
-<span id="cb12-5"><a href="intro.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">&quot;Denmark&quot;</span>)</span>
-<span id="cb12-6"><a href="intro.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> alcohol_long, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> litres_per_person,</span>
-<span id="cb12-7"><a href="intro.html#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> country)) <span class="sc">+</span> </span>
-<span id="cb12-8"><a href="intro.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb12-9"><a href="intro.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> onecountry_df,</span>
-<span id="cb12-10"><a href="intro.html#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<span id="cb12-4"><a href="intro.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb12-5"><a href="intro.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> alcohol_data,</span>
+<span id="cb12-6"><a href="intro.html#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> beer_servings, <span class="at">y =</span> wine_servings)) <span class="sc">+</span> </span>
+<span id="cb12-7"><a href="intro.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="intro.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> onecountry_df, <span class="fu">aes</span>(<span class="at">label =</span> country),</span>
+<span id="cb12-9"><a href="intro.html#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="intro.html#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> onecountry_df, <span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>,</span>
+<span id="cb12-11"><a href="intro.html#cb12-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="intro.html#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>), <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
 <p><img src="01-intro_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>We could do much better than this fairly ugly plot, and it’s missing a legend telling us that the purple line corresponds to Denmark, the country at the top of my “must visit” list. The left corresponds to beer servings while the right corresponds to wine servings so a line that has a positive slope corresponds to a country that consumes more wine than beer. We will get into that stuff later: for now, copy the code chunk and change the highlighted line so that it corresponds to a country that interests you (other than Denmark).</p>
-<p>We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:</p>
+<p>The x-axis corresponds to beer servings while the y-axis corresponds to wine servings. A reference line is given so with countries above the line consuming more wine than beer. We will get into how to make a plot like this later: for now, copy the code chunk and change the labeled point so that it corresponds to a country that interests you (other than Denmark).
+We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true" tabindex="-1"></a>alcohol_data <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="intro.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wbratio =</span> wine_servings <span class="sc">/</span> beer_servings) <span class="sc">%&gt;%</span></span>
 <span id="cb13-3"><a href="intro.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(wbratio)) <span class="sc">%&gt;%</span></span>
@@ -785,7 +791,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4    64 Maria Sharapova    34 Tennis     22000000 24400000  2400000    27 Female
 ## 5    60 Li Na              41 Tennis     18000000 23600000  5600000    32 Female
 ## 6    89 Serena Williams    55 Tennis     11000000 22000000 11000000    33 Female</code></pre>
-<p>Finally, let’s see if we can compare the ratio of endorsements (from commericals and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).</p>
+<p>Finally, let’s see if we can compare the ratio of endorsements (from commercials and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sport <span class="sc">==</span> <span class="st">&quot;Football&quot;</span> <span class="sc">|</span> Sport <span class="sc">==</span> <span class="st">&quot;Basketball&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="intro.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> endorsements <span class="sc">/</span> salary)) <span class="sc">+</span> </span>
 <span id="cb23-3"><a href="intro.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
@@ -851,14 +857,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-3"><a href="intro.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">*</span> <span class="dv">42</span></span></code></pre></div>
 <pre><code>## [1] 294</code></pre>
 <p>Comments are most useful for longer code chunks, as they allow you to remember why you did something. They also tell someone whom you’ve shared your code with why you did something.</p>
-<p>Save this file by clicking File -&gt; Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit buttonin the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!</p>
+<p>Save this file by clicking File -&gt; Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit button in the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!</p>
 </div>
 <div id="chapexercise-1" class="section level2" number="2.7">
 <h2><span class="header-section-number">2.7</span> Chapter Exercises</h2>
 <p><strong>Note</strong>: It’s entirely up to you whether you’d like to put these exercises in a new .Rmd file or in the .Rmd file that you’ve been working on throughout the other sections of the chapter. I would maybe lean toward having everything in 1 .Rmd file, just so it’s in one spot, but, people are different and a different organizational structure might work better for you!</p>
 <p><strong>Note 2</strong>: Usually, exercises will ask you to write code on your own using the week’s chapter as a reference. However, for this initial chapter, we will do something a little different.</p>
 <p>Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the <code>tidyverse</code>, and answer the questions below in your <code>R Markdown</code> file. I’m imagining this whole exercise should only take you ~ 20-25 minutes.</p>
-<p>Answer the following questions by typing answersin your .Rmd document. You should not need to make any new code chunks, as the questions don’t ask you to do any coding!</p>
+<p>Answer the following questions by typing answers in your .Rmd document. You should not need to make any new code chunks, as the questions don’t ask you to do any coding!</p>
 <ol style="list-style-type: decimal">
 <li><p>What are the two major areas that the <code>tidyverse</code> <strong>doesn’t</strong> provide tools for?</p></li>
 <li><p>How do the authors define “tidy?”</p></li>
@@ -910,8 +916,8 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": false,
-"whatsapp": false
+"whatsapp": false,
+"all": false
 },
 "fontsettings": {
 "theme": "white",

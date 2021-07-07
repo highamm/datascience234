@@ -8,7 +8,7 @@ __Goals:__
 
 ## Ethical Examples
 
-We've tried to interweve issues of ethics throughout many examples used already in this course, but the purpose of this section is to put data ethics in direct focus.
+We've tried to interweave issues of ethics throughout many examples used already in this course, but the purpose of this section is to put data ethics in direct focus.
 
 Some questions to consider for any data collected, especially data collected on human subjects:
 

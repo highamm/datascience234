@@ -459,7 +459,7 @@ Verify that `propfemale` now appears first in the data set. `everything()` tacks
 
 Instead of choosing which columns to keep, we can also choose certain rows to keep using either `slice()` or `filter()`.
 
-`slice()` allows you to specify the __row numbers__ corresponding to rows that you want to keep. For example, suppose that we only want to keep the rows with the five most popopular majors:
+`slice()` allows you to specify the __row numbers__ corresponding to rows that you want to keep. For example, suppose that we only want to keep the rows with the five most popular majors:
 
 
 ```r
@@ -485,7 +485,7 @@ We can alternatively use `slice(1:5)`, which is shorthand for `slice(1, 2, 3, 4,
 We can keep rows based on a categorical variable or a quantitative variable or a combination of any number of categorical and quantitative variables. `R` uses the following symbols to make comparisons. We've already been using the more intuitive symbols (like `<` and `>`):
 
 * `<` and `<=` for less than and less than or equal to, respectively
-* `>` and `>=` for greater than and greather than or equal to, respectively
+* `>` and `>=` for greater than and greater than or equal to, respectively
 * `==` for equal to (careful: equal to is a double equal sign `==`)
 * `!=` for not equal to (in general, `!` denotes "not")
 
@@ -587,7 +587,7 @@ babynames %>% group_by(year) %>%
 ```
 ## # A tibble: 138 x 2
 ##     year totalbirths
-##  * <dbl>       <int>
+##    <dbl>       <int>
 ##  1  1880      201484
 ##  2  1881      192696
 ##  3  1882      221533
@@ -630,7 +630,7 @@ babynames %>% group_by(year) %>%
 ```
 ## # A tibble: 138 x 2
 ##     year ngroup
-##  * <dbl>  <int>
+##    <dbl>  <int>
 ##  1  1880   2000
 ##  2  1881   1935
 ##  3  1882   2127
@@ -672,7 +672,7 @@ babynames %>% group_by(year) %>%
 ```
 ## # A tibble: 138 x 2
 ##     year ngroup
-##  * <dbl>  <int>
+##    <dbl>  <int>
 ##  1  1880   2000
 ##  2  1881   1935
 ##  3  1882   2127
@@ -1014,7 +1014,7 @@ babynames %>% group_by(name) %>%
 ```
 ## # A tibble: 97,310 x 2
 ##    name      totalbirths
-##  * <chr>           <int>
+##    <chr>           <int>
 ##  1 Aaban             107
 ##  2 Aabha              35
 ##  3 Aabid              10

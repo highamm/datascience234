@@ -140,7 +140,7 @@ There are plenty of options for making tables look presentable, which we will di
 
 There are so many `Markdown` options, but most of the time, if you want to do something specific, you can just Google it. The purpose of what follows is just to get us familiar with the very basics and things you will probably use most often.
 
-__Bullet Points and Sub-bullet Popints__: Denoted with a `*` and `-`, respectively. The sub bullets should be indented by 4 spaces. Note that bullet points are not code and should __not__ appear in a code chunk.
+__Bullet Points and Sub-bullet Points__: Denoted with a `*` and `-`, respectively. The sub bullets should be indented by 4 spaces. Note that bullet points are not code and should __not__ appear in a code chunk.
 
 ```
 * Bullet 1
@@ -605,7 +605,7 @@ Explore the data set with `head()`, `skim()`, and `?gapminder` before proceeding
 
 2. \* Change the colour palette to be CVD-friendly using either `scale_colour_brewer()` or `scale_colour_viridis_d()`.
 
-3. \* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expxectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use `filter()` to create a data set that only has these 3 countries. Then, use `geom_label()` to label all three countries on your plot.
+3. \* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use `filter()` to create a data set that only has these 3 countries. Then, use `geom_label()` to label all three countries on your plot.
 
 
 

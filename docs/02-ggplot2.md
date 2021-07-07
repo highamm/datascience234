@@ -61,9 +61,9 @@ Pay special attention to the variable names: we'll need to use these names when 
 
 We are trying to go very light on the technical code terminology to start out with (but we will come back to some things later in the semester). The terminology will make a lot more sense once you've actually worked with data. But, there are three terms that will be thrown around quite a bit in the next few weeks: _function_, _argument_, and _object_. 
 
-* a _function_ in `R` is always* (*always for this class) followed by an open `(` and ended with a closed `)`. In non-technical terms, a _function_ __does__ something to its inputs and is often analagous to an English verb. For example, the `mean()` function calculates the mean, the `rank()` functions ranks a variable from lowest to highest, and the `labs()` is used to add labels to a plot. Every function has a help file that can be accessed by typing in `?name_of_function`. Try typing `?mean` in your lower left window.
+* a _function_ in `R` is always* (*always for this class) followed by an open `(` and ended with a closed `)`. In non-technical terms, a _function_ __does__ something to its inputs and is often analogous to an English verb. For example, the `mean()` function calculates the mean, the `rank()` functions ranks a variable from lowest to highest, and the `labs()` is used to add labels to a plot. Every function has a help file that can be accessed by typing in `?name_of_function`. Try typing `?mean` in your lower left window.
 
-* an _argument_ is something that goes inside the parentheses in a function. Arguments could include _objects_, or they might not. In the bottom-left window, type `?mean` to view the Help file on this `R` function. We see that `mean()` has 3 arguments: `x`, which is an `R` object, `trim`, and `na.rm`. `trim = 0` is the default, which means that, by default, `R` will not trim any of the numbers when commputing the mean.
+* an _argument_ is something that goes inside the parentheses in a function. Arguments could include _objects_, or they might not. In the bottom-left window, type `?mean` to view the Help file on this `R` function. We see that `mean()` has 3 arguments: `x`, which is an `R` object, `trim`, and `na.rm`. `trim = 0` is the default, which means that, by default, `R` will not trim any of the numbers when computing the mean.
 
 * an _object_ is something created in `R`, usually with `<-`. So, looking at the code above where we read in the data, `pres_df` is an `R` object. 
 
@@ -71,7 +71,7 @@ All of this will make more sense as we go through these first couple of weeks.
 
 ## Basic Plot Structure 
 
-We will use the `ggplot()` function in the `ggplot2` package to contruct visualizations of data. the `ggplot()` function has 3 basic components:
+We will use the `ggplot()` function in the `ggplot2` package to construct visualizations of data. the `ggplot()` function has 3 basic components:
 
 * a `data` argument, specifying the name of your data set (`pres_df` above)
 * a `mapping` argument, specifying that specifies the aesthetics of your plot (`aes()`). Common aesthetics are `x` position, `y` position, `colour`, `size`, `shape`, `group`, and `fill`.
@@ -224,7 +224,7 @@ pres_cat2
 ```
 ## # A tibble: 2 x 2
 ##   winner nwins
-## * <chr>  <int>
+##   <chr>  <int>
 ## 1 Bush      51
 ## 2 Gore      16
 ```
@@ -359,7 +359,8 @@ fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Start = col_date(format = ""),
 ##   month = col_character(),
@@ -674,7 +675,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 2. \* Create a side-by-side boxplot that compares the `GPA`s of students who prefer different `Award`s. Then change the fill of the boxplot to be a colour of your choice. What do you notice in the plot?
 
-3. \* When making the previous plot, `R` gives us a warning message that it "Removed 70 rows containing non-finite values". This is `R`'s robotic way of telling us that 70 `GPA` values are missing in the data set. Use what you know about how the data was collected (Fall and Spring semeseter of the 2018-2019 school-year) to guess why these are missing.
+3. \* When making the previous plot, `R` gives us a warning message that it "Removed 70 rows containing non-finite values". This is `R`'s robotic way of telling us that 70 `GPA` values are missing in the data set. Use what you know about how the data was collected (Fall and Spring semester of the 2018-2019 school-year) to guess why these are missing.
 
 4. \* Make a stacked bar plot for two variables of your choosing in the STAT 113 data set. Comment on something that you notice in the plot.
 
@@ -745,117 +746,12 @@ ggplot(data = stat113_df, aes(x = Wgt, y = Hgt, colour = Sport)) +
   geom_smooth()
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-```
-## Warning: Removed 16 rows containing non-finite values (stat_smooth).
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : span too small. fewer data values than degrees of freedom.
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 114.65
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 25.35
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 0
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 2056.6
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : Chernobyl! trL>n 5
-
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : Chernobyl! trL>n 5
-```
-
-```
-## Warning in sqrt(sum.squares/one.delta): NaNs produced
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : span too small. fewer
-## data values than degrees of freedom.
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : pseudoinverse used at
-## 114.65
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : neighborhood radius
-## 25.35
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : reciprocal condition
-## number 0
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : There are other near
-## singularities as well. 2056.6
-```
-
-```
-## Warning in stats::qt(level/2 + 0.5, pred$df): NaNs produced
-```
-
-```
-## Warning: Removed 16 rows containing missing values (geom_point).
-```
-
-```
-## Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning -
-## Inf
-```
-
 <img src="02-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 ```r
 ggplot(data = stat113_df, aes(x = Wgt, y = Hgt)) +
   geom_point(aes(colour = Sport)) +
   geom_smooth()
-```
-
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-```
-## Warning: Removed 16 rows containing non-finite values (stat_smooth).
-```
-
-```
-## Warning: Removed 16 rows containing missing values (geom_point).
 ```
 
 <img src="02-ggplot2_files/figure-html/unnamed-chunk-36-2.png" width="672" />
@@ -871,10 +767,6 @@ Answers will vary:
 ggplot(data = stat113_df, aes(x = GPA)) + 
   geom_histogram(bins = 15) +
   facet_wrap( ~ Sport)
-```
-
-```
-## Warning: Removed 70 rows containing non-finite values (stat_bin).
 ```
 
 <img src="02-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="672" />
@@ -929,7 +821,7 @@ ggplot(data = stat113_df, aes(x = Sport, fill = Award)) +
 
 <img src="02-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
-As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an olympic medal, compared with students who do not play a sport.
+As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an Olympic medal, compared with students who do not play a sport.
 
 ### Chapter Exercises S {#chapexercise-2-S}
 

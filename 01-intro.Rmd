@@ -168,20 +168,21 @@ alcohol_data %>% mutate(rankspirits = rank(desc(spirit_servings))) %>%
 Finally, suppose that I want to know which country consumes the most wine relative to their beer consumption? Let's first look at this question graphically. I need to tidy the data first with the `pivot_longer()` function from the `tidyr` package:
 
 ```{r}
-alcohol_long <- alcohol_data %>% pivot_longer(c(beer_servings, wine_servings),
-  names_to = "type", values_to = "litres_per_person")
-
-onecountry_df <- alcohol_long %>% 
+onecountry_df <- alcohol_data %>% 
   filter(country == "Denmark")
-ggplot(data = alcohol_long, mapping = aes(x = type, y = litres_per_person,
-    group = country)) + 
-  geom_line(alpha = 0.3) +
-  geom_line(data = onecountry_df,
-    colour = "purple", size = 1.5)
+
+library(ggrepel)
+ggplot(data = alcohol_data,
+       mapping = aes(x = beer_servings, y = wine_servings)) + 
+  geom_point(alpha = 0.5) +
+  geom_label_repel(data = onecountry_df, aes(label = country),
+    colour = "purple") +
+  geom_point(data = onecountry_df, colour = "purple",
+             size = 2.5, shape = 1) +
+  geom_abline(aes(slope = 1, intercept = 0), alpha = 0.3)
 ```
 
-We could do much better than this fairly ugly plot, and it's missing a legend telling us that the purple line corresponds to Denmark, the country at the top of my "must visit" list. The left corresponds to beer servings while the right corresponds to wine servings so a line that has a positive slope corresponds to a country that consumes more wine than beer. We will get into that stuff later: for now, copy the code chunk and change the highlighted line so that it corresponds to a country that interests you (other than Denmark). 
-
+The x-axis corresponds to beer servings while the y-axis corresponds to wine servings. A reference line is given so with countries above the line consuming more wine than beer. We will get into how to make a plot like this later: for now, copy the code chunk and change the labeled point so that it corresponds to a country that interests you (other than Denmark). 
 We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:
 
 ```{r}
@@ -262,7 +263,7 @@ athletes %>%
 ```
 
 
-Finally, let's see if we can compare the ratio of endorsements (from commericals and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).
+Finally, let's see if we can compare the ratio of endorsements (from commercials and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).
 
 ```{r}
 athletes %>% filter(Sport == "Football" | Sport == "Basketball") %>%
@@ -350,7 +351,7 @@ Finally, you can add a comment to a code chunk with the `#` symbol (I always use
 
 Comments are most useful for longer code chunks, as they allow you to remember why you did something. They also tell someone whom you've shared your code with why you did something.
 
-Save this file by clicking File -> Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit buttonin the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!
+Save this file by clicking File -> Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit button in the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!
 
 ## Chapter Exercises {#chapexercise-1}
 
@@ -360,7 +361,7 @@ __Note 2__: Usually, exercises will ask you to write code on your own using the 
 
 Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `R Markdown` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
 
-Answer the following questions by typing answersin your .Rmd document. You should not need to make any new code chunks, as the questions don't ask you to do any coding! 
+Answer the following questions by typing answers in your .Rmd document. You should not need to make any new code chunks, as the questions don't ask you to do any coding! 
 
 1. What are the two major areas that the `tidyverse` __doesn't__ provide tools for?
 

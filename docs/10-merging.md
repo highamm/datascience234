@@ -773,7 +773,7 @@ Combine the two data sets with `bind_cols()`. What are you assuming about the da
 
 
 
-6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()` ing it out explictly).
+6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()`-ing it out explicitly).
 
 
 
@@ -937,7 +937,8 @@ mortality_df <- read_csv("data/gun_violence_us.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   state = col_character(),
 ##   mortality_rate = col_double(),

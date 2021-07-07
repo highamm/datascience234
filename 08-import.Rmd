@@ -64,7 +64,7 @@ Up to now, we have mostly worked with data that was "`R` Ready": meaning that it
 
 ### `read_csv()` Options
 
-The `mtcarsex.csv` has observattions on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the `mtcarsex.csv` data set with the following code. Then, examine the data set with `head()`.
+The `mtcarsex.csv` has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the `mtcarsex.csv` data set with the following code. Then, examine the data set with `head()`.
 
 ```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
@@ -163,7 +163,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 1. \* The `birthdays.txt` file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal's Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.
 
-Start with the following code chunk and use the options of `read_delim()` to read in the data (`?read_delim`). The `delim` argument that's already provided specifies that the delimeter (separator) that you'll use is a `-`, as opposed to, for example, a `,` in a .csv file. Arguments that you may need to change include 
+Start with the following code chunk and use the options of `read_delim()` to read in the data (`?read_delim`). The `delim` argument that's already provided specifies that the delimiter (separator) that you'll use is a `-`, as opposed to, for example, a `,` in a .csv file. Arguments that you may need to change include 
 
 * `skip`
 * `col_names`
@@ -396,7 +396,7 @@ new_df <- df %>% separate(Term, sep = 1, into = c("Semester", "Year"))
 
 1. \* The `birthdays.txt` file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal's Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.
 
-Start with the following code chunk and use the options of `read_delim()` to read in the data (`?read_delim`). The `delim` argument that's already provided specifies that the delimeter (separator) that you'll use is a `-`, as opposed to, for example, a `,` in a .csv file. Arguments that you may to change include 
+Start with the following code chunk and use the options of `read_delim()` to read in the data (`?read_delim`). The `delim` argument that's already provided specifies that the delimiter (separator) that you'll use is a `-`, as opposed to, for example, a `,` in a .csv file. Arguments that you may to change include 
 
 * `skip`
 * `col_names`

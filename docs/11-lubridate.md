@@ -19,7 +19,7 @@ today()
 ```
 
 ```
-## [1] "2021-06-24"
+## [1] "2021-07-07"
 ```
 
 ```r
@@ -27,7 +27,7 @@ now()
 ```
 
 ```
-## [1] "2021-06-24 11:36:51 EDT"
+## [1] "2021-07-07 11:59:32 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
@@ -259,11 +259,11 @@ tail(stocks_long)
 ##   start_date Stock_Type  Price
 ##   <date>     <fct>       <dbl>
 ## 1 2021-05-17 Chipotle   1332. 
-## 2 2021-05-17 S & P 500   416. 
+## 2 2021-05-17 S & P 500   414. 
 ## 3 2021-05-18 Apple       125. 
 ## 4 2021-05-18 Nintendo     70.4
 ## 5 2021-05-18 Chipotle   1325. 
-## 6 2021-05-18 S & P 500   412.
+## 6 2021-05-18 S & P 500   411.
 ```
 
 You'll have a chance in the Exercises to choose your own stocks to investigate. For now, I've made a data set with three variables:
@@ -324,11 +324,11 @@ stocks_long %>% mutate(day_in_year = yday(start_date))
 ##  1 2011-01-03 Apple       10.1           3
 ##  2 2011-01-03 Nintendo    36.7           3
 ##  3 2011-01-03 Chipotle   224.            3
-##  4 2011-01-03 S & P 500  104.            3
+##  4 2011-01-03 S & P 500  103.            3
 ##  5 2011-01-04 Apple       10.2           4
 ##  6 2011-01-04 Nintendo    35.5           4
 ##  7 2011-01-04 Chipotle   222.            4
-##  8 2011-01-04 S & P 500  104.            4
+##  8 2011-01-04 S & P 500  103.            4
 ##  9 2011-01-05 Apple       10.3           5
 ## 10 2011-01-05 Nintendo    34.6           5
 ## # … with 10,434 more rows
@@ -459,7 +459,7 @@ In the top-right window of the graph, you should click the down arrow to downloa
 
 5. \* Using your data set that explored a variable or two from 2004 through now, make a table of the __average__ popularity for each year. __Hint__: You'll need a lubridate function to extract the year variable from the date object.
 
-6. \* Clear your search and now enter a search term that you'd like to investigate for the past 90 days. Mine will be "pittsburgh steelers" but, again, yours should be something that interests you.
+6. \* Clear your search and now enter a search term that you'd like to investigate for the past 90 days. Mine will be "Pittsburgh Steelers" but, again, yours should be something that interests you.
 
 Again, click the download button again and read in the data to `R`. Convert the date variable to be in `<date>` format.
 
@@ -599,7 +599,8 @@ videogame_df <- read_csv("data/smash_animal_crossing.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Month = col_character(),
 ##   super_smash = col_double(),
@@ -640,7 +641,8 @@ steelers_df <- read_csv("data/steelers.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Day = col_character(),
 ##   Steelers = col_double()

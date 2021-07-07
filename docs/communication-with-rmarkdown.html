@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Communication with RMarkdown | STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Communication with RMarkdown | STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
-  <meta name="github-repo" content="highamm/datascience234" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Communication with RMarkdown | STAT 234: Data Science" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-06-24" />
+<meta name="date" content="2021-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="tidying-with-tidyr.html"/>
 <link rel="next" href="r-basics.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -116,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -320,26 +324,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.2" data-path="r-basics.html"><a href="r-basics.html#date-class"><i class="fa fa-check"></i><b>7.2.2</b> <code>&lt;date&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.3" data-path="r-basics.html"><a href="r-basics.html#dbl-and-int-class"><i class="fa fa-check"></i><b>7.2.3</b> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
 <li class="chapter" data-level="7.2.4" data-path="r-basics.html"><a href="r-basics.html#lgl-class"><i class="fa fa-check"></i><b>7.2.4</b> <code>&lt;lgl&gt;</code> Class</a></li>
-<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-1"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.2.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="r-basics.html"><a href="r-basics.html#object-types-and-subsetting"><i class="fa fa-check"></i><b>7.3</b> Object Types and Subsetting</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="r-basics.html"><a href="r-basics.html#tibble-and-data.frame"><i class="fa fa-check"></i><b>7.3.1</b> <code>tibble</code> and <code>data.frame</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>7.3.2</b> Vectors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>7.3.3</b> Lists</a></li>
-<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-2"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.3.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="r-basics.html"><a href="r-basics.html#piping-with-magrittr"><i class="fa fa-check"></i><b>7.4</b> Piping with <code>magrittr</code></a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="r-basics.html"><a href="r-basics.html#when-you-cant-use-the-pipe"><i class="fa fa-check"></i><b>7.4.1</b> When You Can’t Use the Pipe</a></li>
-<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-3"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.4.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="r-basics.html"><a href="r-basics.html#r-cleanup-other-topics"><i class="fa fa-check"></i><b>7.5</b> <code>R</code> Cleanup: Other Topics</a>
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="r-basics.html"><a href="r-basics.html#r-projects-and-working-directories"><i class="fa fa-check"></i><b>7.5.1</b> <code>R Projects</code> and Working Directories</a></li>
 <li class="chapter" data-level="7.5.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-server"><i class="fa fa-check"></i><b>7.5.2</b> <code>R Studio</code> Server</a></li>
 <li class="chapter" data-level="7.5.3" data-path="r-basics.html"><a href="r-basics.html#installing-r-packages"><i class="fa fa-check"></i><b>7.5.3</b> Installing <code>R</code> Packages</a></li>
-<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-4"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-basics.html"><a href="r-basics.html#exercise-6-5"><i class="fa fa-check"></i><b>7.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6"><i class="fa fa-check"></i><b>7.6</b> Chapter Exercises</a></li>
 <li class="chapter" data-level="7.7" data-path="r-basics.html"><a href="r-basics.html#solutions-6"><i class="fa fa-check"></i><b>7.7</b> Exercise Solutions</a>
@@ -598,11 +602,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First, open a new <code>R Markdown</code> file by clicking File -&gt; New File -&gt; <code>R Markdown</code> and keep the new file so that it knits to HTML for now.</p>
 <p>The first six lines at the top of the file make up the YAML (Yet Another Markup Language) header. We’ll come back to this at the end, as it’s the more frustrating part to learn.</p>
 <p>Lines 8-10 are the set-up chunk. Again, we’ll come back to this in a bit. For now, just delete lines 12-30 and copy and paste the following code chunks to your clean .Rmd file:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="communication-with-rmarkdown.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb279-2"><a href="communication-with-rmarkdown.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
-<span id="cb279-3"><a href="communication-with-rmarkdown.html#cb279-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cars, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
-<span id="cb279-4"><a href="communication-with-rmarkdown.html#cb279-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="communication-with-rmarkdown.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="communication-with-rmarkdown.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb258-2"><a href="communication-with-rmarkdown.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
+<span id="cb258-3"><a href="communication-with-rmarkdown.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cars, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb258-4"><a href="communication-with-rmarkdown.html#cb258-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="communication-with-rmarkdown.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span></code></pre></div>
 <p>The <code>cars</code> data set is built into <code>R</code> so there’s no need to do anything to read it in (it already exists in <code>R</code> itself).</p>
 <div id="code-chunk-options" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Code Chunk Options</h3>
@@ -635,7 +639,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.2.3</span> Non-Code Options</h3>
 <p><code>R Markdown</code> combines <code>R</code> (in the code chunks, which we’ve already discussed) with the <code>Markdown</code> syntax, which comprises the stuff outside the code chunks, like what you’re reading right now!</p>
 <p>There are so many <code>Markdown</code> options, but most of the time, if you want to do something specific, you can just Google it. The purpose of what follows is just to get us familiar with the very basics and things you will probably use most often.</p>
-<p><strong>Bullet Points and Sub-bullet Popints</strong>: Denoted with a <code>*</code> and <code>-</code>, respectively. The sub bullets should be indented by 4 spaces. Note that bullet points are not code and should <strong>not</strong> appear in a code chunk.</p>
+<p><strong>Bullet Points and Sub-bullet Points</strong>: Denoted with a <code>*</code> and <code>-</code>, respectively. The sub bullets should be indented by 4 spaces. Note that bullet points are not code and should <strong>not</strong> appear in a code chunk.</p>
 <pre><code>* Bullet 1
 * Bullet 2
     - Sub bullet 1
@@ -689,7 +693,7 @@ output:
 <li><code>mpg</code>, the mileage of the car, in miles per gallon</li>
 </ul>
 <p>Because the data set is loaded every time <code>R</code> is started up, there is no need to have a line that reads in the data set. We can examine the first few observations with</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="communication-with-rmarkdown.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="communication-with-rmarkdown.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -704,10 +708,10 @@ output:
 <li><p>Find a table that you plan to use in your first mini-project. Use the column names, caption, and digits options to make this table look nicer with the <code>kable()</code> function.</p></li>
 <li><p>Create a new <code>R</code> chunk and copy and paste the following into your new <code>R</code> chunk. Don’t worry about what <code>factor()</code> is doing: we will cover that next week!</p></li>
 </ol>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="communication-with-rmarkdown.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb287-2"><a href="communication-with-rmarkdown.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span>
-<span id="cb287-3"><a href="communication-with-rmarkdown.html#cb287-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb287-4"><a href="communication-with-rmarkdown.html#cb287-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="communication-with-rmarkdown.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb266-2"><a href="communication-with-rmarkdown.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span>
+<span id="cb266-3"><a href="communication-with-rmarkdown.html#cb266-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb266-4"><a href="communication-with-rmarkdown.html#cb266-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p>Modify the <code>R</code> chunk so that: (a) the figure height is 3, (b) the code from the <code>R</code> chunk shows in the .html file, (c) the results from running <code>head(cars)</code> are hidden in the .html file. Make (b) and (c) a <strong>local</strong> chunk option, but set (a) as a <strong>global</strong> option that applies to all of your <code>R</code> chunks.</p>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Change your global options in your mini-project to (a) hide messages from loading in the <code>tidyverse</code> and (b) show all code.</p></li>
@@ -740,9 +744,9 @@ output:
 <li><code>Footprint</code>, the ecological footprint per person (higher footprint means the average person in the country is less ecologically friendly)</li>
 </ul>
 <p>Read in the data set with</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="communication-with-rmarkdown.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb288-2"><a href="communication-with-rmarkdown.html#cb288-2" aria-hidden="true" tabindex="-1"></a>hpi_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/hpi-tidy.csv&quot;</span>)</span>
-<span id="cb288-3"><a href="communication-with-rmarkdown.html#cb288-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hpi_df)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="communication-with-rmarkdown.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb267-2"><a href="communication-with-rmarkdown.html#cb267-2" aria-hidden="true" tabindex="-1"></a>hpi_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/hpi-tidy.csv&quot;</span>)</span>
+<span id="cb267-3"><a href="communication-with-rmarkdown.html#cb267-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hpi_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 11
 ##   HPIRank Country     LifeExpectancy Wellbeing HappyLifeYears Footprint
 ##     &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;
@@ -755,26 +759,26 @@ output:
 ## # … with 5 more variables: HappyPlanetIndex &lt;dbl&gt;, Population &lt;dbl&gt;,
 ## #   GDPcapita &lt;dbl&gt;, GovernanceRank &lt;chr&gt;, Region &lt;chr&gt;</code></pre>
 <p>Let’s look at the relationship between <code>HappyLifeYears</code> and <code>Footprint</code> for countries of different <code>Region</code>s of the world.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="communication-with-rmarkdown.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb290-2"><a href="communication-with-rmarkdown.html#cb290-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb290-3"><a href="communication-with-rmarkdown.html#cb290-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="communication-with-rmarkdown.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb269-2"><a href="communication-with-rmarkdown.html#cb269-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb269-3"><a href="communication-with-rmarkdown.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Which region seems to have the most variability in their Ecological Footprint?</p>
 <div id="change-labels-and-titles" class="section level3" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Change Labels and Titles</h3>
 <p>We can add <code>+ labs()</code> to change various labels and titles throughout the plot:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="communication-with-rmarkdown.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb291-2"><a href="communication-with-rmarkdown.html#cb291-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb291-3"><a href="communication-with-rmarkdown.html#cb291-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb291-4"><a href="communication-with-rmarkdown.html#cb291-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Countries with a Higher Ecological Footprint Tend to Have Citizens with Longer, Happier Lives&quot;</span>, </span>
-<span id="cb291-5"><a href="communication-with-rmarkdown.html#cb291-5" aria-hidden="true" tabindex="-1"></a>       <span class="do">## add title</span></span>
-<span id="cb291-6"><a href="communication-with-rmarkdown.html#cb291-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;HappyLifeYears is a Combination of Life Expectancy and Citizen Well-Being&quot;</span>, </span>
-<span id="cb291-7"><a href="communication-with-rmarkdown.html#cb291-7" aria-hidden="true" tabindex="-1"></a>       <span class="do">## add subtitle (smaller text size than the title)</span></span>
-<span id="cb291-8"><a href="communication-with-rmarkdown.html#cb291-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Data Source: http://happyplanetindex.org/countries&quot;</span>, </span>
-<span id="cb291-9"><a href="communication-with-rmarkdown.html#cb291-9" aria-hidden="true" tabindex="-1"></a>       <span class="do">## add caption to the bottom of the figure</span></span>
-<span id="cb291-10"><a href="communication-with-rmarkdown.html#cb291-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Ecological Footprint&quot;</span>, <span class="do">## change x axis label</span></span>
-<span id="cb291-11"><a href="communication-with-rmarkdown.html#cb291-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Happy Life Years&quot;</span>, <span class="do">## change y axis label</span></span>
-<span id="cb291-12"><a href="communication-with-rmarkdown.html#cb291-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;World Region&quot;</span>) <span class="do">## change label of colour legend</span></span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="communication-with-rmarkdown.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb270-2"><a href="communication-with-rmarkdown.html#cb270-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb270-3"><a href="communication-with-rmarkdown.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb270-4"><a href="communication-with-rmarkdown.html#cb270-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Countries with a Higher Ecological Footprint Tend to Have Citizens with Longer, Happier Lives&quot;</span>, </span>
+<span id="cb270-5"><a href="communication-with-rmarkdown.html#cb270-5" aria-hidden="true" tabindex="-1"></a>       <span class="do">## add title</span></span>
+<span id="cb270-6"><a href="communication-with-rmarkdown.html#cb270-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;HappyLifeYears is a Combination of Life Expectancy and Citizen Well-Being&quot;</span>, </span>
+<span id="cb270-7"><a href="communication-with-rmarkdown.html#cb270-7" aria-hidden="true" tabindex="-1"></a>       <span class="do">## add subtitle (smaller text size than the title)</span></span>
+<span id="cb270-8"><a href="communication-with-rmarkdown.html#cb270-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Data Source: http://happyplanetindex.org/countries&quot;</span>, </span>
+<span id="cb270-9"><a href="communication-with-rmarkdown.html#cb270-9" aria-hidden="true" tabindex="-1"></a>       <span class="do">## add caption to the bottom of the figure</span></span>
+<span id="cb270-10"><a href="communication-with-rmarkdown.html#cb270-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Ecological Footprint&quot;</span>, <span class="do">## change x axis label</span></span>
+<span id="cb270-11"><a href="communication-with-rmarkdown.html#cb270-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Happy Life Years&quot;</span>, <span class="do">## change y axis label</span></span>
+<span id="cb270-12"><a href="communication-with-rmarkdown.html#cb270-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;World Region&quot;</span>) <span class="do">## change label of colour legend</span></span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Any <code>aes()</code> that you use in your plot gets its own label and can be changed by <code>name_of_aethetic = "Your Label"</code>. In the example above, we changed all three <code>aes()</code> labels: <code>x</code>, <code>y</code>, and <code>colour</code>.</p>
 <p>What is the only text on the plot that we aren’t able to change with <code>labs()</code>?</p>
@@ -782,10 +786,10 @@ output:
 <div id="changing-x-and-y-axis-limits" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Changing x and y axis Limits</h3>
 <p>We can also change the x-axis limits and the y-axis limits to, for example, start at 0 for the y-axis:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="communication-with-rmarkdown.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb292-2"><a href="communication-with-rmarkdown.html#cb292-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb292-3"><a href="communication-with-rmarkdown.html#cb292-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb292-4"><a href="communication-with-rmarkdown.html#cb292-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="communication-with-rmarkdown.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb271-2"><a href="communication-with-rmarkdown.html#cb271-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb271-3"><a href="communication-with-rmarkdown.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb271-4"><a href="communication-with-rmarkdown.html#cb271-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70</span>))</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>In this case, it makes the points on the plot a bit harder to see. You can also change where and how often tick marks appear on the x and y-axes. For special things like this, I think it’s best to just resort to Google (“ggplot how to change x-axis breaks tick marks” should help).</p>
 </div>
@@ -796,17 +800,17 @@ output:
 <p>You would typically use the top scales if the variable you are colouring by is ordered sequentially (called <code>seq</code> for sequential, like grades in a course: A, B, C, D, F), the bottom scales if the variable is diverging (called <code>div</code> for diverging, like Republican / Democrat lean so that the middle is colourless), and the middle set of scales if the variable is not unordered and is categorical (called <code>qual</code> for qualitative like the names of different treatment drugs for a medical experiment).</p>
 <p>In which of those 3 situations are we in for the World Region graph?</p>
 <p>If we want to use one of these colour scales, we just need to add <code>scale_colour_brewer()</code> with the name of the scale we want to use.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="communication-with-rmarkdown.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb293-2"><a href="communication-with-rmarkdown.html#cb293-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb293-3"><a href="communication-with-rmarkdown.html#cb293-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb293-4"><a href="communication-with-rmarkdown.html#cb293-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Accent&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="communication-with-rmarkdown.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb272-2"><a href="communication-with-rmarkdown.html#cb272-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb272-3"><a href="communication-with-rmarkdown.html#cb272-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb272-4"><a href="communication-with-rmarkdown.html#cb272-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Accent&quot;</span>)</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Try changing the palette to something else besides <code>"Accent"</code>. Do you like the new palette better or worse?</p>
 <p>One more option to easily change the colour scale is to use the <code>viridis</code> package. The base <code>viridis</code> functions automatically load with <code>ggplot2</code> so there’s no need to call the package with <code>library(viridis)</code>. The <code>viridis</code> colour scales were made to be both aesthetically pleasing and CVD-friendly.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="communication-with-rmarkdown.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb294-2"><a href="communication-with-rmarkdown.html#cb294-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb294-3"><a href="communication-with-rmarkdown.html#cb294-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb294-4"><a href="communication-with-rmarkdown.html#cb294-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="communication-with-rmarkdown.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb273-2"><a href="communication-with-rmarkdown.html#cb273-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb273-3"><a href="communication-with-rmarkdown.html#cb273-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb273-4"><a href="communication-with-rmarkdown.html#cb273-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>)</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>A drawback of the <code>viridis</code> package is that the yellow can be really hard to see (at least for me).</p>
 <p>Read the examples section of the Help file for <code>?scale_colour_viridis_d</code>. What’s the difference between <code>scale_colour_viridis_d()</code>, <code>?scale_colour_viridis_c()</code>, and <code>scale_colour_viridis_b()</code>?</p>
@@ -816,90 +820,90 @@ output:
 <h3><span class="header-section-number">6.3.4</span> Labeling Points or Lines of Interest</h3>
 <p>One goal we might have with communication is highlighting particular points in a data set that show something interesting. For example, we might want to label the points on the graph corresponding to the countries with the highest HPI in each region: these countries are doing the best in terms of using resources efficiently to maximize citizen happiness. Or, we might want to highlight some “bad” example of countries that are the least efficient in each region. Or, we might want to label the country that we are from on the graph.</p>
 <p>All of this can be done with <code>geom_label()</code>. Let’s start by labeling all of the points. <code>geom_label()</code> needs one aesthetic called <code>label</code> which is the name of the column in the data set with the labels you want to use.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="communication-with-rmarkdown.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb295-2"><a href="communication-with-rmarkdown.html#cb295-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb295-3"><a href="communication-with-rmarkdown.html#cb295-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb295-4"><a href="communication-with-rmarkdown.html#cb295-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb295-5"><a href="communication-with-rmarkdown.html#cb295-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> Country))</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="communication-with-rmarkdown.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb274-2"><a href="communication-with-rmarkdown.html#cb274-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb274-3"><a href="communication-with-rmarkdown.html#cb274-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb274-4"><a href="communication-with-rmarkdown.html#cb274-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb274-5"><a href="communication-with-rmarkdown.html#cb274-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> Country))</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Yikes! It’s quite uncommon to want to label <strong>all</strong> of the points. Let’s see if we can instead label each country with the best HPI in that country’s region. To do so, we first need to use our <code>dplyr</code> skills to create a new data set that has these 7 “best” countries. When we used <code>group_by()</code>, we typically used <code>summarise()</code> afterward. But, <code>group_by()</code> works with <code>filter()</code> as well!</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="communication-with-rmarkdown.html#cb296-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> hpi_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
-<span id="cb296-2"><a href="communication-with-rmarkdown.html#cb296-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(HPIRank <span class="sc">==</span> <span class="fu">min</span>(HPIRank))</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="communication-with-rmarkdown.html#cb275-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> hpi_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
+<span id="cb275-2"><a href="communication-with-rmarkdown.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(HPIRank <span class="sc">==</span> <span class="fu">min</span>(HPIRank))</span></code></pre></div>
 <p>What is the code in the previous chunk doing?</p>
 <p>Now that we have this new data set, we can use it within <code>geom_label()</code>. Recall that the <code>data =</code> argument in <code>ggplot()</code> carries on through <strong>all</strong> <code>geom</code>s <strong>unless</strong> we specify otherwise. Now is our chance to “specify otherwise” by including another <code>data =</code> argument within <code>geom_label()</code>:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="communication-with-rmarkdown.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb297-2"><a href="communication-with-rmarkdown.html#cb297-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb297-3"><a href="communication-with-rmarkdown.html#cb297-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb297-4"><a href="communication-with-rmarkdown.html#cb297-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb297-5"><a href="communication-with-rmarkdown.html#cb297-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(<span class="at">label =</span> Country))</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="communication-with-rmarkdown.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb276-2"><a href="communication-with-rmarkdown.html#cb276-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb276-3"><a href="communication-with-rmarkdown.html#cb276-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb276-4"><a href="communication-with-rmarkdown.html#cb276-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb276-5"><a href="communication-with-rmarkdown.html#cb276-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(<span class="at">label =</span> Country))</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Why do you think the colour legend changed to showing the letter “a” for each region?</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="communication-with-rmarkdown.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb298-2"><a href="communication-with-rmarkdown.html#cb298-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb298-3"><a href="communication-with-rmarkdown.html#cb298-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb298-4"><a href="communication-with-rmarkdown.html#cb298-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb298-5"><a href="communication-with-rmarkdown.html#cb298-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="communication-with-rmarkdown.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb277-2"><a href="communication-with-rmarkdown.html#cb277-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb277-3"><a href="communication-with-rmarkdown.html#cb277-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb277-4"><a href="communication-with-rmarkdown.html#cb277-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb277-5"><a href="communication-with-rmarkdown.html#cb277-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Why does the code chunk above change all of the “a”’s back to points?</p>
 <p>A common issue, even with few labels, is that some of the labels could overlap. The <code>ggrepel</code> package solves this problem by including a <code>geom_label_repel()</code> <code>geom</code> that automatically repels any overlapping labels:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="communication-with-rmarkdown.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb299-2"><a href="communication-with-rmarkdown.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb299-3"><a href="communication-with-rmarkdown.html#cb299-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb299-4"><a href="communication-with-rmarkdown.html#cb299-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb299-5"><a href="communication-with-rmarkdown.html#cb299-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb299-6"><a href="communication-with-rmarkdown.html#cb299-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(<span class="at">label =</span> Country),</span>
-<span id="cb299-7"><a href="communication-with-rmarkdown.html#cb299-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show.legend =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="communication-with-rmarkdown.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb278-2"><a href="communication-with-rmarkdown.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb278-3"><a href="communication-with-rmarkdown.html#cb278-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb278-4"><a href="communication-with-rmarkdown.html#cb278-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb278-5"><a href="communication-with-rmarkdown.html#cb278-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb278-6"><a href="communication-with-rmarkdown.html#cb278-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(<span class="at">label =</span> Country),</span>
+<span id="cb278-7"><a href="communication-with-rmarkdown.html#cb278-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show.legend =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>And a final issue with the plot is that it’s not always very clear which point on the plot is being labeled. A trick used in the <em>R for Data Science</em> book is to surround the points that are being labeled with an open circle using an extra <code>geom_point()</code> function:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="communication-with-rmarkdown.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears, <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb300-2"><a href="communication-with-rmarkdown.html#cb300-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb300-3"><a href="communication-with-rmarkdown.html#cb300-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb300-4"><a href="communication-with-rmarkdown.html#cb300-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb300-5"><a href="communication-with-rmarkdown.html#cb300-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="communication-with-rmarkdown.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears, <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb279-2"><a href="communication-with-rmarkdown.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb279-3"><a href="communication-with-rmarkdown.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb279-4"><a href="communication-with-rmarkdown.html#cb279-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb279-5"><a href="communication-with-rmarkdown.html#cb279-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>In the code above, <code>shape = 1</code> says that the new point should be an open circle and <code>size = 3</code> makes the point bigger, ensuring that it goes around the original point. <code>show.legend = FALSE</code> ensures that the larger open circles don’t become part of the legend.</p>
 <p>You can use this same strategy to label specific countries. I’m interested in where the United States of America falls on this graph because I’m from the U.S. I’m also interested in where Denmark falls because that’s the country I’m most interested in visiting. Feel free to replace those countries with any that you’re interested in!</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="communication-with-rmarkdown.html#cb301-1" aria-hidden="true" tabindex="-1"></a>plot_df_us <span class="ot">&lt;-</span> hpi_df <span class="sc">%&gt;%</span></span>
-<span id="cb301-2"><a href="communication-with-rmarkdown.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;United States of America&quot;</span> <span class="sc">|</span> Country <span class="sc">==</span> <span class="st">&quot;Denmark&quot;</span>)</span>
-<span id="cb301-3"><a href="communication-with-rmarkdown.html#cb301-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-4"><a href="communication-with-rmarkdown.html#cb301-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb301-5"><a href="communication-with-rmarkdown.html#cb301-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb301-6"><a href="communication-with-rmarkdown.html#cb301-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb301-7"><a href="communication-with-rmarkdown.html#cb301-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb301-8"><a href="communication-with-rmarkdown.html#cb301-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df_us, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>,</span>
-<span id="cb301-9"><a href="communication-with-rmarkdown.html#cb301-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb301-10"><a href="communication-with-rmarkdown.html#cb301-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df_us, <span class="fu">aes</span>(<span class="at">label =</span> Country),</span>
-<span id="cb301-11"><a href="communication-with-rmarkdown.html#cb301-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="communication-with-rmarkdown.html#cb280-1" aria-hidden="true" tabindex="-1"></a>plot_df_us <span class="ot">&lt;-</span> hpi_df <span class="sc">%&gt;%</span></span>
+<span id="cb280-2"><a href="communication-with-rmarkdown.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;United States of America&quot;</span> <span class="sc">|</span> Country <span class="sc">==</span> <span class="st">&quot;Denmark&quot;</span>)</span>
+<span id="cb280-3"><a href="communication-with-rmarkdown.html#cb280-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb280-4"><a href="communication-with-rmarkdown.html#cb280-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb280-5"><a href="communication-with-rmarkdown.html#cb280-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb280-6"><a href="communication-with-rmarkdown.html#cb280-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb280-7"><a href="communication-with-rmarkdown.html#cb280-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-8"><a href="communication-with-rmarkdown.html#cb280-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df_us, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>,</span>
+<span id="cb280-9"><a href="communication-with-rmarkdown.html#cb280-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb280-10"><a href="communication-with-rmarkdown.html#cb280-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df_us, <span class="fu">aes</span>(<span class="at">label =</span> Country),</span>
+<span id="cb280-11"><a href="communication-with-rmarkdown.html#cb280-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="plot-themes" class="section level3" number="6.3.5">
 <h3><span class="header-section-number">6.3.5</span> Plot Themes</h3>
 <p>Plot themes are an easy way to change many aspects of your plot with an overall theme that someone developed. The default theme for <code>ggplot2</code> graphs is <code>theme_grey()</code>, which is the graph with the grey background that we’ve been using in the entirety of this class. The 7 other themes are given in <a href="https://r4ds.had.co.nz/graphics-for-communication.html#themes" target="_blank">R for Data Science</a> in Figure 28.3.</p>
 <p>However, there are many more choices in the <code>ggthemes</code> package. Load the package with <code>library(ggthemes)</code> and check out <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/"target="_blank">https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/</a> for a few of the themes in the package. My personal favorites, all given below, are <code>theme_solarized()</code>, <code>theme_fivethirtyeight()</code>, and <code>theme_economist()</code>, but choosing a theme is mostly a matter of personal taste.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="communication-with-rmarkdown.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb302-2"><a href="communication-with-rmarkdown.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb302-3"><a href="communication-with-rmarkdown.html#cb302-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb302-4"><a href="communication-with-rmarkdown.html#cb302-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb302-5"><a href="communication-with-rmarkdown.html#cb302-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb302-6"><a href="communication-with-rmarkdown.html#cb302-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df_us, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb302-7"><a href="communication-with-rmarkdown.html#cb302-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df_us, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb302-8"><a href="communication-with-rmarkdown.html#cb302-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_solarized</span>()</span>
-<span id="cb302-9"><a href="communication-with-rmarkdown.html#cb302-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-10"><a href="communication-with-rmarkdown.html#cb302-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb302-11"><a href="communication-with-rmarkdown.html#cb302-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb302-12"><a href="communication-with-rmarkdown.html#cb302-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb302-13"><a href="communication-with-rmarkdown.html#cb302-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb302-14"><a href="communication-with-rmarkdown.html#cb302-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df_us, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb302-15"><a href="communication-with-rmarkdown.html#cb302-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df_us, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb302-16"><a href="communication-with-rmarkdown.html#cb302-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fivethirtyeight</span>()</span>
-<span id="cb302-17"><a href="communication-with-rmarkdown.html#cb302-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-18"><a href="communication-with-rmarkdown.html#cb302-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb302-19"><a href="communication-with-rmarkdown.html#cb302-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb302-20"><a href="communication-with-rmarkdown.html#cb302-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb302-21"><a href="communication-with-rmarkdown.html#cb302-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb302-22"><a href="communication-with-rmarkdown.html#cb302-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df_us, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb302-23"><a href="communication-with-rmarkdown.html#cb302-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df_us, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb302-24"><a href="communication-with-rmarkdown.html#cb302-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="communication-with-rmarkdown.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb281-2"><a href="communication-with-rmarkdown.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb281-3"><a href="communication-with-rmarkdown.html#cb281-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb281-4"><a href="communication-with-rmarkdown.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb281-5"><a href="communication-with-rmarkdown.html#cb281-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb281-6"><a href="communication-with-rmarkdown.html#cb281-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df_us, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb281-7"><a href="communication-with-rmarkdown.html#cb281-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df_us, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb281-8"><a href="communication-with-rmarkdown.html#cb281-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_solarized</span>()</span>
+<span id="cb281-9"><a href="communication-with-rmarkdown.html#cb281-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-10"><a href="communication-with-rmarkdown.html#cb281-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb281-11"><a href="communication-with-rmarkdown.html#cb281-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb281-12"><a href="communication-with-rmarkdown.html#cb281-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb281-13"><a href="communication-with-rmarkdown.html#cb281-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb281-14"><a href="communication-with-rmarkdown.html#cb281-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df_us, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb281-15"><a href="communication-with-rmarkdown.html#cb281-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df_us, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb281-16"><a href="communication-with-rmarkdown.html#cb281-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fivethirtyeight</span>()</span>
+<span id="cb281-17"><a href="communication-with-rmarkdown.html#cb281-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-18"><a href="communication-with-rmarkdown.html#cb281-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb281-19"><a href="communication-with-rmarkdown.html#cb281-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb281-20"><a href="communication-with-rmarkdown.html#cb281-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb281-21"><a href="communication-with-rmarkdown.html#cb281-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb281-22"><a href="communication-with-rmarkdown.html#cb281-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_df_us, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb281-23"><a href="communication-with-rmarkdown.html#cb281-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> plot_df_us, <span class="fu">aes</span>(<span class="at">label =</span> Country), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb281-24"><a href="communication-with-rmarkdown.html#cb281-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
 <p>There’s still <strong>much</strong> more you can do with <code>ggplot2</code>. In fact, there are entire <a href="http://moderngraphics11.pbworks.com/f/ggplot2-Book09hWickham.pdf" target="_blank">books on it</a>. But, for most other specializations, you can usually use Google to help you!</p>
 </div>
 <div id="exercise-5-3" class="section level3" number="6.3.6">
@@ -909,9 +913,9 @@ output:
 <ol style="list-style-type: decimal">
 <li>Using only options in <code>theme()</code> or options to change colours, shapes, sizes, etc., create the ugliest possible <code>ggplot2</code> graph that you can make. You may not change the underlying data for this graph, but your goal is to investigate some of the options given in <code>theme()</code>.</li>
 </ol>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="communication-with-rmarkdown.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
-<span id="cb303-2"><a href="communication-with-rmarkdown.html#cb303-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
-<span id="cb303-3"><a href="communication-with-rmarkdown.html#cb303-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="communication-with-rmarkdown.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hpi_df, <span class="fu">aes</span>(<span class="at">x =</span> Footprint, <span class="at">y =</span> HappyLifeYears,</span>
+<span id="cb282-2"><a href="communication-with-rmarkdown.html#cb282-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">colour =</span> Region)) <span class="sc">+</span></span>
+<span id="cb282-3"><a href="communication-with-rmarkdown.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>We will practice more with communicating with plots in the chapter exercises.</p>
 </div>
@@ -921,14 +925,14 @@ output:
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="communication-with-rmarkdown.html#solutions-5">6.5</a>.</p>
 <p>Some data sets exist within specific <code>R</code> packages. For example, Jenny Bryan, who is quite famous in the stats/data science community, has put together the <code>gapminder</code> package so that users in <code>R</code> have access to a specific data set on countries throughout the world. <a href="https://github.com/jennybc/gapminder"target="_blank">https://github.com/jennybc/gapminder</a>.</p>
 <p>To load a data set within a specific <code>R</code> package, you first need to load the package itself:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="communication-with-rmarkdown.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="communication-with-rmarkdown.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span></code></pre></div>
 <p>Then, name the data set something. In this case, the name of the data set is <code>gapminder</code>, but it’s not always the same name as the package itself. We will name the data set <code>country_df</code>.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="communication-with-rmarkdown.html#cb305-1" aria-hidden="true" tabindex="-1"></a>country_df <span class="ot">&lt;-</span> gapminder</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="communication-with-rmarkdown.html#cb284-1" aria-hidden="true" tabindex="-1"></a>country_df <span class="ot">&lt;-</span> gapminder</span></code></pre></div>
 <p>Explore the data set with <code>head()</code>, <code>skim()</code>, and <code>?gapminder</code> before proceeding to the following exercises.</p>
 <ol style="list-style-type: decimal">
 <li><p>* Make a line graph that shows the relationship between <code>lifeExp</code> and <code>year</code> for each of the countries in the data set, faceting the graph by continent and also colouring by continent (though this is redundant). Add an x-axis label, a y-axis label, a legend label, and a title to the graph.</p></li>
 <li><p>* Change the colour palette to be CVD-friendly using either <code>scale_colour_brewer()</code> or <code>scale_colour_viridis_d()</code>.</p></li>
-<li><p>* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expxectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use <code>filter()</code> to create a data set that only has these 3 countries. Then, use <code>geom_label()</code> to label all three countries on your plot.</p></li>
+<li><p>* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use <code>filter()</code> to create a data set that only has these 3 countries. Then, use <code>geom_label()</code> to label all three countries on your plot.</p></li>
 <li><p>Google the history of the countries in Africa and Asia that you just labeled. Add a very short description of why each country experienced a dip in life expectancy as a caption in your graph.</p></li>
 <li><p>Read the help file for <code>?annotate</code>. How is this different than <code>geom_label()</code>. Which one allows finer tuning? Which one takes more code to use? One of the functions (<code>annotate()</code> or <code>geom_label()</code>) becomes more of a pain to use when there are many labels. Which one becomes harder to use and why?</p></li>
 <li><p>Suppose that we want the legend to appear on the bottom of the graph. Without using an entirely different theme, use Google to figure out how to move the legend from the right-hand side to the bottom.</p></li>
@@ -957,12 +961,12 @@ output:
 <ol style="list-style-type: decimal">
 <li>* Create a table showing the mean <code>mpg</code> for each <code>cyl</code> group (<code>cyl</code> stands for cylinder and can be 4-cylinder, 6-cylinder, or 8-cylinder) with both <code>kable()</code> and <code>pander()</code>. Hint: remember to call the <code>knitr</code> library and the <code>pander</code> library.</li>
 </ol>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="communication-with-rmarkdown.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb306-2"><a href="communication-with-rmarkdown.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
-<span id="cb306-3"><a href="communication-with-rmarkdown.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb306-4"><a href="communication-with-rmarkdown.html#cb306-4" aria-hidden="true" tabindex="-1"></a>mpg_df <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb306-5"><a href="communication-with-rmarkdown.html#cb306-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanmpg =</span> <span class="fu">mean</span>(mpg))</span>
-<span id="cb306-6"><a href="communication-with-rmarkdown.html#cb306-6" aria-hidden="true" tabindex="-1"></a>mpg_df <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="communication-with-rmarkdown.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb285-2"><a href="communication-with-rmarkdown.html#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb285-3"><a href="communication-with-rmarkdown.html#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb285-4"><a href="communication-with-rmarkdown.html#cb285-4" aria-hidden="true" tabindex="-1"></a>mpg_df <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb285-5"><a href="communication-with-rmarkdown.html#cb285-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanmpg =</span> <span class="fu">mean</span>(mpg))</span>
+<span id="cb285-6"><a href="communication-with-rmarkdown.html#cb285-6" aria-hidden="true" tabindex="-1"></a>mpg_df <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -985,7 +989,7 @@ output:
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="communication-with-rmarkdown.html#cb307-1" aria-hidden="true" tabindex="-1"></a>mpg_df <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="communication-with-rmarkdown.html#cb286-1" aria-hidden="true" tabindex="-1"></a>mpg_df <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code></pre></div>
 <table style="width:22%;">
 <colgroup>
 <col width="8%" />
@@ -1015,7 +1019,7 @@ output:
 <ol start="2" style="list-style-type: decimal">
 <li>* Type <code>?kable</code> into your console window and scroll through the Help file. Change the rounding of the mean so that it only displays one number after the decimal. Then, add a caption to the table that says “My First Table Caption!!”</li>
 </ol>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="communication-with-rmarkdown.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(mpg_df, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">&quot;My First Table Caption!!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="communication-with-rmarkdown.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(mpg_df, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">&quot;My First Table Caption!!&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-35">Table 6.1: </span>My First Table Caption!!</caption>
 <thead>
@@ -1042,8 +1046,8 @@ output:
 <ol start="3" style="list-style-type: decimal">
 <li>* Google “How to Change Column Names in kable” and replace the column names with “Cylinder Numb.” and “Mean Mileage.”</li>
 </ol>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="communication-with-rmarkdown.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(mpg_df, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">&quot;My First Table Caption!!&quot;</span>,</span>
-<span id="cb309-2"><a href="communication-with-rmarkdown.html#cb309-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Cylinder Numb.&quot;</span>, <span class="st">&quot;Mean Mileage&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="communication-with-rmarkdown.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(mpg_df, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">&quot;My First Table Caption!!&quot;</span>,</span>
+<span id="cb288-2"><a href="communication-with-rmarkdown.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Cylinder Numb.&quot;</span>, <span class="st">&quot;Mean Mileage&quot;</span>))</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-36">Table 6.2: </span>My First Table Caption!!</caption>
 <thead>
@@ -1078,19 +1082,19 @@ output:
 <li><p>* Change the colour palette to be CVD-friendly using either <code>scale_colour_brewer()</code> or <code>scale_colour_viridis_d()</code>.</p></li>
 <li><p>* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expxectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use <code>filter()</code> to create a data set that only has these 3 countries. Then, use <code>geom_label()</code> to label all three countries on your plot.</p></li>
 </ol>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="communication-with-rmarkdown.html#cb310-1" aria-hidden="true" tabindex="-1"></a>interest_countries <span class="ot">&lt;-</span> country_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>((year <span class="sc">==</span> <span class="dv">1952</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb310-2"><a href="communication-with-rmarkdown.html#cb310-2" aria-hidden="true" tabindex="-1"></a>    lifeExp <span class="sc">&lt;</span> <span class="dv">50</span>) <span class="sc">|</span> (year <span class="sc">==</span> <span class="dv">1992</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb310-3"><a href="communication-with-rmarkdown.html#cb310-3" aria-hidden="true" tabindex="-1"></a>    lifeExp <span class="sc">&lt;</span> <span class="dv">30</span>) <span class="sc">|</span> (year <span class="sc">==</span> <span class="dv">1977</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">&quot;Asia&quot;</span> <span class="sc">&amp;</span> </span>
-<span id="cb310-4"><a href="communication-with-rmarkdown.html#cb310-4" aria-hidden="true" tabindex="-1"></a>    lifeExp <span class="sc">&lt;</span> <span class="dv">35</span>))</span>
-<span id="cb310-5"><a href="communication-with-rmarkdown.html#cb310-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> country_df, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp, <span class="at">group =</span> country,</span>
-<span id="cb310-6"><a href="communication-with-rmarkdown.html#cb310-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
-<span id="cb310-7"><a href="communication-with-rmarkdown.html#cb310-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb310-8"><a href="communication-with-rmarkdown.html#cb310-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> continent) <span class="sc">+</span></span>
-<span id="cb310-9"><a href="communication-with-rmarkdown.html#cb310-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb310-10"><a href="communication-with-rmarkdown.html#cb310-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Life Expectancy (Years)&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;Continent&quot;</span>,</span>
-<span id="cb310-11"><a href="communication-with-rmarkdown.html#cb310-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Life Expectancy Increases Across time for nearly every country&quot;</span>) <span class="sc">+</span></span>
-<span id="cb310-12"><a href="communication-with-rmarkdown.html#cb310-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> interest_countries, <span class="fu">aes</span>(<span class="at">label =</span> country),</span>
-<span id="cb310-13"><a href="communication-with-rmarkdown.html#cb310-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">nudge_x =</span> <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="communication-with-rmarkdown.html#cb289-1" aria-hidden="true" tabindex="-1"></a>interest_countries <span class="ot">&lt;-</span> country_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>((year <span class="sc">==</span> <span class="dv">1952</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb289-2"><a href="communication-with-rmarkdown.html#cb289-2" aria-hidden="true" tabindex="-1"></a>    lifeExp <span class="sc">&lt;</span> <span class="dv">50</span>) <span class="sc">|</span> (year <span class="sc">==</span> <span class="dv">1992</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb289-3"><a href="communication-with-rmarkdown.html#cb289-3" aria-hidden="true" tabindex="-1"></a>    lifeExp <span class="sc">&lt;</span> <span class="dv">30</span>) <span class="sc">|</span> (year <span class="sc">==</span> <span class="dv">1977</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">&quot;Asia&quot;</span> <span class="sc">&amp;</span> </span>
+<span id="cb289-4"><a href="communication-with-rmarkdown.html#cb289-4" aria-hidden="true" tabindex="-1"></a>    lifeExp <span class="sc">&lt;</span> <span class="dv">35</span>))</span>
+<span id="cb289-5"><a href="communication-with-rmarkdown.html#cb289-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> country_df, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp, <span class="at">group =</span> country,</span>
+<span id="cb289-6"><a href="communication-with-rmarkdown.html#cb289-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb289-7"><a href="communication-with-rmarkdown.html#cb289-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb289-8"><a href="communication-with-rmarkdown.html#cb289-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> continent) <span class="sc">+</span></span>
+<span id="cb289-9"><a href="communication-with-rmarkdown.html#cb289-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb289-10"><a href="communication-with-rmarkdown.html#cb289-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Life Expectancy (Years)&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;Continent&quot;</span>,</span>
+<span id="cb289-11"><a href="communication-with-rmarkdown.html#cb289-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Life Expectancy Increases Across time for nearly every country&quot;</span>) <span class="sc">+</span></span>
+<span id="cb289-12"><a href="communication-with-rmarkdown.html#cb289-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> interest_countries, <span class="fu">aes</span>(<span class="at">label =</span> country),</span>
+<span id="cb289-13"><a href="communication-with-rmarkdown.html#cb289-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">nudge_x =</span> <span class="dv">7</span>)</span></code></pre></div>
 <p><img src="05-comm_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 
 </div>
@@ -1125,8 +1129,8 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": false,
-"whatsapp": false
+"whatsapp": false,
+"all": false
 },
 "fontsettings": {
 "theme": "white",

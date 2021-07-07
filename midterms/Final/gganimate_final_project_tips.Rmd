@@ -1,0 +1,68 @@
+---
+title: "gganimate-Specific Instructions and Tips"
+author: "Matt Higham"
+output: 
+  rmdformats::readthedown:
+    code_folding: show
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+The following are some useful resources about ELO, which most of you will be making your animation on. One resource focuses on football while the other focuses on baseball, but the concepts from both applies to any sport:
+
+* <https://fivethirtyeight.com/features/introducing-nfl-elo-ratings/>
+
+* <https://www.baseballprospectus.com/news/article/5247/lies-damned-lies-we-are-elo/>
+
+For `babynames`, you will want to read a little bit about the survey that the data arises from:
+
+* <https://www.ssa.gov/oact/babynames/limits.html>
+
+Note that, in the example animation, the authors use `year` as the animation part. Some of the ELO data sets will have year already defined while others will not. Additionally, whether you are doing a sports project or using the `babynames`, there will be more than one observation per year. How will you summarise this? Choosing ELO at the end of the season only? At the beginning of the season?
+
+Relatedly, if seasons span multiple years, it will be useful to create a __season__ variable to use in your animation or in your exploratory analysis. 
+
+As an example, the NFL has games in the 2016 season that actually take place in 2017. So, using `year()` directly won't work. But, you can be clever about this and combine `year()` with `month()` some sort of `if_else()` or `case_when()` statement to tell `R` that the games in January 2017 and February 2017 actually belong in the 2016 season.
+
+Finally, you may want to use the data in the format that it's given for certain things, but you may also want to convert the data set into a longer format, with single columns for `team`, `elo`, `result` (win or loss), `win probability`, etc. Feel free to apply the following reprex to your data set, if necessary. It may not be the prettiest but it gets the job done!
+
+__Note__: Some data sets are already in this format while others are not!
+
+```{r}
+library(tidyverse)
+df <- tibble(thing1 = c(1, 3, 2), thing2 = c(5, 1, 3),
+       place1 = c("a", "b", "c"), place2 = c("d", "e", "f"))
+df
+
+df %>% unite("stuffs1", c(thing1, place1), sep = "--") %>%
+  unite("stuffs2", c(thing2, place2), sep = "--") %>%
+  pivot_longer(c(stuffs1, stuffs2), names_to = "names", values_to = "value") %>%
+  separate(value, into = c("thing", "place"), sep = "--", convert = TRUE) 
+```
+
+## General Advice
+
+The following are two general resources on `gganimate` that you may find helpful:
+
+* <https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/>
+* <https://gganimate.com/articles/gganimate.html>
+
+Some general tips include:
+
+* start __static__. Make a static graph for two or three weeks (if you're animation will go through weeks) or for two or three years (if you're animation will go through years). It will be easier to make the animation if you have a static version working first.
+* start __small__. If you want your animation to go through each year for a span of 20 years, start by just trying to make it work for 3 or 4 years.
+* how many teams should you show? Is it too overwhelming to show all teams on the graph? Should you do top 10? top 5? only teams that made the playoffs that year? It's up to you!
+* we focused more on pairing `group_by()` with `summarise()` to get grouped summaries because these are very common. But, for this project it will also be useful to pair `group_by()` with `filter()`, if, for example, you want to extract the rows with the last date that each team appears in for each year:
+
+```{r}
+library(tidyverse); library(lubridate)
+test_df <- tibble(date = c("02/03/2020", "02/05/2020", "01/01/2019", "01/04/2019", "10/19/2019"), othervar1 = c(1, 3, 4, 2, 9)) %>%
+  mutate(date = mdy(date)) %>%
+  mutate(year = year(date))
+test_df %>% group_by(year) %>% filter(date == max(date))
+```
+
+* don't be afraid to send a `reprex`! This project is meant to be a fun way for you to show what you've learned: what you've learned includes how to properly ask for help with a `reprex`. I would say if you're stuck for more than 20 or 30 minutes on something, it's time to put it in a `reprex` and send it to me, your personal version of StackOverflow!

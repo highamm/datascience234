@@ -226,7 +226,7 @@ For most `R` functions, it won't matter whether your variable is in class charac
 
 ### `<date>` Class
 
-The `<date>` class is used for dates, and the `<datetime>` class is used for Dates with times. `R` requries a very specific format for dates and times. Note that, while to the human eye, both of the following variables contain dates, only one is of class `<date>`:
+The `<date>` class is used for dates, and the `<datetime>` class is used for Dates with times. `R` requires a very specific format for dates and times. Note that, while to the human eye, both of the following variables contain dates, only one is of class `<date>`:
 
 
 ```r
@@ -368,7 +368,7 @@ We've actually used the ideas of logical variables for quite some time now, part
 
 The primary purpose of this section is to be able to identify variable classes and be able to convert between the different variable types with `mutate()` to "fix" variables with the incorrect class.
 
-### Exercises {#exercise-6-1}
+### Exercises {#exercise-6-2}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
 
@@ -547,7 +547,7 @@ testlist
 
 `testlist` has four elements: a single character `"a"`, a single number `4`, a vector of `1, 4, 2, 6`, and a `tibble` with a couple of variables. Lists can therefore be used to store complex information that wouldn't be as easily stored in a `vector` or `tibble`.
 
-### Exercises {#exercise-6-2}
+### Exercises {#exercise-6-3}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
 
@@ -661,7 +661,7 @@ lm(videogame_df, metascore ~ price)
 
 which doesn't work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).
 
-### Exercises {#exercise-6-3}
+### Exercises {#exercise-6-4}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
 
@@ -677,7 +677,7 @@ summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
 ```
 ## # A tibble: 12 x 2
 ##    month meanweekend
-##  * <dbl>       <dbl>
+##    <dbl>       <dbl>
 ##  1     1        3.96
 ##  2     2        4.94
 ##  3     3        5.15
@@ -726,7 +726,8 @@ fitness_df <- read_csv("data/higham_fitness_notclean.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Start = col_character(),
 ##   month = col_double(),
@@ -773,11 +774,11 @@ In the lightbulb analogy, what does putting the lightbulb into the socket corres
 
 When you have `R` on your own computer, you'll need to install __all__ packages that you want to use (but, remember that you just need to install each package once). 
 
-### Exercises {#exercise-6-4}
+### Exercises {#exercise-6-5}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
 
-1. \* Click the "Packages" button in the lower-right hand windown to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
+1. \* Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
 
 2. Occasionally, something odd will happen in your `R` session where a "turn it off and turn it back on" strategy is the best fix. Save your current file, and restart `R` by clicking Session -> Restart R. 
 
@@ -978,7 +979,7 @@ summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
 ```
 ## # A tibble: 12 x 2
 ##    month meanweekend
-##  * <dbl>       <dbl>
+##    <dbl>       <dbl>
 ##  1     1        3.96
 ##  2     2        4.94
 ##  3     3        5.15
@@ -1003,7 +1004,7 @@ fitness_df %>% filter(weekday == 1 | weekday == 7) %>%
 ```
 ## # A tibble: 12 x 2
 ##    month meanweekend
-##  * <dbl>       <dbl>
+##    <dbl>       <dbl>
 ##  1     1        3.96
 ##  2     2        4.94
 ##  3     3        5.15
