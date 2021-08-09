@@ -56,7 +56,7 @@ We will put more emphasis on the _Import, Tidy, Transform, Visualize, and Commun
 We will use the statistical software `R` to construct graphs and analyze data. A few notes:
 
 * `R` and `RStudio` are both free to use.
-* We will primarily be using the SLU `R Studio` server at first: <a href="http://rstudio-u18-01.stlawu.local:8787/" target="_blank">Link to R Studio Server</a>.
+* We will primarily be using the SLU `R Studio` server at first: <a href="studio.stlawu.local:8787" target="_blank">studio.stlawu.local:8787</a>.
 * Additionally, we will be using `RMarkdown` for data analysis reports. 
 _Note_: It's always nice to start assignments and projects as early as possible, but this is particularly important to do for assignments and projects involving `R`. It's no fun to try and figure out why code is not working at the last minute. If you start early enough though, you will have plenty of time to seek help and therefore won't waste a lot of time on a coding error.
 

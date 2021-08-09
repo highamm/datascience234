@@ -18,7 +18,7 @@ library(lubridate)
 today()
 #> [1] "2021-08-09"
 now()
-#> [1] "2021-08-09 11:18:14 EDT"
+#> [1] "2021-08-09 11:31:19 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
