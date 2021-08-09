@@ -227,16 +227,20 @@ Because the data set is loaded every time `R` is started up, there is no need to
 
 ```r
 head(mtcars)
-```
-
-```
-##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+#>                    mpg cyl disp  hp drat    wt  qsec vs am
+#> Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1
+#> Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1
+#> Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1
+#> Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0
+#> Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0
+#> Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0
+#>                   gear carb
+#> Mazda RX4            4    4
+#> Mazda RX4 Wag        4    4
+#> Datsun 710           4    1
+#> Hornet 4 Drive       3    1
+#> Hornet Sportabout    3    2
+#> Valiant              3    1
 ```
 
 1. \* Create a table showing the mean `mpg` for each `cyl` group (`cyl` stands for cylinder and can be 4-cylinder, 6-cylinder, or 8-cylinder) with both `kable()` and `pander()`. Hint: remember to call the `knitr` library and the `pander` library.
@@ -307,20 +311,18 @@ Read in the data set with
 library(tidyverse)
 hpi_df <- read_csv("data/hpi-tidy.csv")
 head(hpi_df)
-```
-
-```
-## # A tibble: 6 x 11
-##   HPIRank Country     LifeExpectancy Wellbeing HappyLifeYears Footprint
-##     <dbl> <chr>                <dbl>     <dbl>          <dbl>     <dbl>
-## 1     109 Afghanistan           48.7      4.76           29.0     0.540
-## 2      18 Albania               76.9      5.27           48.8     1.81 
-## 3      26 Algeria               73.1      5.24           46.2     1.65 
-## 4     127 Angola                51.1      4.21           28.2     0.891
-## 5      17 Argentina             75.9      6.44           55.0     2.71 
-## 6      53 Armenia               74.2      4.37           41.9     1.73 
-## # … with 5 more variables: HappyPlanetIndex <dbl>, Population <dbl>,
-## #   GDPcapita <dbl>, GovernanceRank <chr>, Region <chr>
+#> # A tibble: 6 x 11
+#>   HPIRank Country    LifeExpectancy Wellbeing HappyLifeYears
+#>     <dbl> <chr>               <dbl>     <dbl>          <dbl>
+#> 1     109 Afghanist…           48.7      4.76           29.0
+#> 2      18 Albania              76.9      5.27           48.8
+#> 3      26 Algeria              73.1      5.24           46.2
+#> 4     127 Angola               51.1      4.21           28.2
+#> 5      17 Argentina            75.9      6.44           55.0
+#> 6      53 Armenia              74.2      4.37           41.9
+#> # … with 6 more variables: Footprint <dbl>,
+#> #   HappyPlanetIndex <dbl>, Population <dbl>,
+#> #   GDPcapita <dbl>, GovernanceRank <chr>, Region <chr>
 ```
 
 Let's look at the relationship between `HappyLifeYears` and `Footprint` for countries of different `Region`s of the world.
@@ -332,7 +334,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_point()
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-12-1.png)<!-- -->
 
 Which region seems to have the most variability in their Ecological Footprint?
 
@@ -356,7 +358,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
        colour = "World Region") ## change label of colour legend
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-13-1.png)<!-- -->
 
 Any `aes()` that you use in your plot gets its own label and can be changed by `name_of_aethetic = "Your Label"`. In the example above, we changed all three `aes()` labels: `x`, `y`, and `colour`.
 
@@ -374,7 +376,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   ylim(c(0, 70))
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-14-1.png)<!-- -->
 
 In this case, it makes the points on the plot a bit harder to see. You can also change where and how often tick marks appear on the x and y-axes. For special things like this, I think it's best to just resort to Google ("ggplot how to change x-axis breaks tick marks" should help).
 
@@ -398,7 +400,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   scale_colour_brewer(palette = "Accent")
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-15-1.png)<!-- -->
 
 Try changing the palette to something else besides `"Accent"`. Do you like the new palette better or worse?
 
@@ -412,7 +414,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   scale_colour_viridis_d(option = "plasma")
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-16-1.png)<!-- -->
 
 A drawback of the `viridis` package is that the yellow can be really hard to see (at least for me).
 
@@ -435,7 +437,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_label(aes(label = Country))
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-17-1.png)<!-- -->
 
 Yikes! It's quite uncommon to want to label __all__ of the points. Let's see if we can instead label each country with the best HPI in that country's region. To do so, we first need to use our `dplyr` skills to create a new data set that has these 7 "best" countries. When we used `group_by()`, we typically used `summarise()` afterward. But, `group_by()` works with `filter()` as well!
 
@@ -458,7 +460,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_label(data = plot_df, aes(label = Country))
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-19-1.png)<!-- -->
 
 Why do you think the colour legend changed to showing the letter "a" for each region?
 
@@ -471,7 +473,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_label(data = plot_df, aes(label = Country), show.legend = FALSE)
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
 
 Why does the code chunk above change all of the "a"'s back to points?
 
@@ -488,7 +490,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                    show.legend = FALSE) 
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
 
 And a final issue with the plot is that it's not always very clear which point on the plot is being labeled. A trick used in the _R for Data Science_ book is to surround the points that are being labeled with an open circle using an extra `geom_point()` function:
 
@@ -501,7 +503,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears, colour = Region)) +
   geom_point(data = plot_df, size = 3, shape = 1, show.legend = FALSE) 
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-22-1.png)<!-- -->
 
 In the code above, `shape = 1` says that the new point should be an open circle and `size = 3` makes the point bigger, ensuring that it goes around the original point. `show.legend = FALSE` ensures that the larger open circles don't become part of the legend.
 
@@ -522,7 +524,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                    show.legend = FALSE)
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-23-1.png)<!-- -->
 
 ### Plot Themes 
 
@@ -575,7 +577,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_point()
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-25-1.png)<!-- -->
 
 We will practice more with communicating with plots in the chapter exercises.
 
@@ -750,7 +752,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
     nudge_x = 7)
 ```
 
-<img src="05-comm_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+![](05-comm_files/figure-epub3/unnamed-chunk-39-1.png)<!-- -->
 
 ## Non-Exercise `R` Code {#rcode-5}
 

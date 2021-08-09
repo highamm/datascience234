@@ -4,7 +4,7 @@ __Goals:__
 
 *  Use the `mutate()`, `if_else()`, and `case_when()` functions to create new variables.
 
-* Use the `filter()`, `select()`, and `arrange()` functions in `dplyr` to choose certain rows to keep or get rid of, choose certain columns to keep or get rid of, and to sort the data, respectively.
+* Use the `filter()` and `slice()`, `select()`, and `arrange()` functions in `dplyr` to choose certain rows to keep or get rid of, choose certain columns to keep or get rid of, and to sort the data, respectively.
 
 * Use `group_by()` and `summarise()` to create useful summaries of a data set. 
 
@@ -22,18 +22,15 @@ and then typing `?babynames` in your bottom-left window of `R Studio`. We see th
 
 ```r
 head(babynames)
-```
-
-```
-## # A tibble: 6 x 5
-##    year sex   name          n   prop
-##   <dbl> <chr> <chr>     <int>  <dbl>
-## 1  1880 F     Mary       7065 0.0724
-## 2  1880 F     Anna       2604 0.0267
-## 3  1880 F     Emma       2003 0.0205
-## 4  1880 F     Elizabeth  1939 0.0199
-## 5  1880 F     Minnie     1746 0.0179
-## 6  1880 F     Margaret   1578 0.0162
+#> # A tibble: 6 x 5
+#>    year sex   name          n   prop
+#>   <dbl> <chr> <chr>     <int>  <dbl>
+#> 1  1880 F     Mary       7065 0.0724
+#> 2  1880 F     Anna       2604 0.0267
+#> 3  1880 F     Emma       2003 0.0205
+#> 4  1880 F     Elizabeth  1939 0.0199
+#> 5  1880 F     Minnie     1746 0.0179
+#> 6  1880 F     Margaret   1578 0.0162
 ```
 
 The second data set that we will use has 27 observations, one for each of SLU's majors and contains 3 variables:
@@ -49,23 +46,20 @@ The data has kindly been provided by Dr. Ramler. With your Notes `R Project` ope
 library(tidyverse)
 slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
 slumajors_df
-```
-
-```
-## # A tibble: 27 x 3
-##    Major                        nfemales nmales
-##    <chr>                           <dbl>  <dbl>
-##  1 Anthropology                       34     15
-##  2 Art & Art History                  65     11
-##  3 Biochemistry                       14     11
-##  4 Biology                           162     67
-##  5 Business in the Liberal Arts      135    251
-##  6 Chemistry                          26     14
-##  7 Computer Science                   21     47
-##  8 Conservation Biology               38     20
-##  9 Economics                         128    349
-## 10 English                           131     54
-## # … with 17 more rows
+#> # A tibble: 27 x 3
+#>    Major                        nfemales nmales
+#>    <chr>                           <dbl>  <dbl>
+#>  1 Anthropology                       34     15
+#>  2 Art & Art History                  65     11
+#>  3 Biochemistry                       14     11
+#>  4 Biology                           162     67
+#>  5 Business in the Liberal Arts      135    251
+#>  6 Chemistry                          26     14
+#>  7 Computer Science                   21     47
+#>  8 Conservation Biology               38     20
+#>  9 Economics                         128    349
+#> 10 English                           131     54
+#> # … with 17 more rows
 ```
 
 There are many interesting and informative plots that we could make with either data set, but most require some data wrangling first. This chapter will provide the foundation for such wrangling skills.
@@ -87,23 +81,20 @@ For example, suppose that we want to create a variable in `slumajors_df` that ha
 
 ```r
 slumajors_df %>% mutate(ntotal = nfemales + nmales)
-```
-
-```
-## # A tibble: 27 x 4
-##    Major                        nfemales nmales ntotal
-##    <chr>                           <dbl>  <dbl>  <dbl>
-##  1 Anthropology                       34     15     49
-##  2 Art & Art History                  65     11     76
-##  3 Biochemistry                       14     11     25
-##  4 Biology                           162     67    229
-##  5 Business in the Liberal Arts      135    251    386
-##  6 Chemistry                          26     14     40
-##  7 Computer Science                   21     47     68
-##  8 Conservation Biology               38     20     58
-##  9 Economics                         128    349    477
-## 10 English                           131     54    185
-## # … with 17 more rows
+#> # A tibble: 27 x 4
+#>    Major                        nfemales nmales ntotal
+#>    <chr>                           <dbl>  <dbl>  <dbl>
+#>  1 Anthropology                       34     15     49
+#>  2 Art & Art History                  65     11     76
+#>  3 Biochemistry                       14     11     25
+#>  4 Biology                           162     67    229
+#>  5 Business in the Liberal Arts      135    251    386
+#>  6 Chemistry                          26     14     40
+#>  7 Computer Science                   21     47     68
+#>  8 Conservation Biology               38     20     58
+#>  9 Economics                         128    349    477
+#> 10 English                           131     54    185
+#> # … with 17 more rows
 ```
 
 There's a lot to break down in that code chunk: most importantly, we're seeing our first of many, many, many, many, many, many, many instances of using `%>%` to pipe! The `%>%` operator approximately reads take `slumajors_df` "and then" `mutate()` it.
@@ -126,23 +117,20 @@ We might also want to create a variable that is the percentage of students ident
 ```r
 slumajors_df %>%
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
-```
-
-```
-## # A tibble: 27 x 4
-##    Major                        nfemales nmales percfemale
-##    <chr>                           <dbl>  <dbl>      <dbl>
-##  1 Anthropology                       34     15       69.4
-##  2 Art & Art History                  65     11       85.5
-##  3 Biochemistry                       14     11       56  
-##  4 Biology                           162     67       70.7
-##  5 Business in the Liberal Arts      135    251       35.0
-##  6 Chemistry                          26     14       65  
-##  7 Computer Science                   21     47       30.9
-##  8 Conservation Biology               38     20       65.5
-##  9 Economics                         128    349       26.8
-## 10 English                           131     54       70.8
-## # … with 17 more rows
+#> # A tibble: 27 x 4
+#>    Major                        nfemales nmales percfemale
+#>    <chr>                           <dbl>  <dbl>      <dbl>
+#>  1 Anthropology                       34     15       69.4
+#>  2 Art & Art History                  65     11       85.5
+#>  3 Biochemistry                       14     11       56  
+#>  4 Biology                           162     67       70.7
+#>  5 Business in the Liberal Arts      135    251       35.0
+#>  6 Chemistry                          26     14       65  
+#>  7 Computer Science                   21     47       30.9
+#>  8 Conservation Biology               38     20       65.5
+#>  9 Economics                         128    349       26.8
+#> 10 English                           131     54       70.8
+#> # … with 17 more rows
 ```
 
 But what happened to `ntotal`? Is it still in the printout? It's not: when we created the variable `ntotal`, we didn't actually __save__ the new data set as anything. So `R` makes and prints the new variable, but it doesn't get saved to any data set. If we want to save the new data set, then we can use the `<-` operator. Here, we're saving the new data set with the same name as the old data set: `slumajors_df`. Then, we're doing the same thing for the `percfemale` variable. We won't always want to give the new data set the same name as the old one: we'll talk about this more in the chapter exercises.
@@ -188,23 +176,20 @@ Piping really isn't that useful if you just have something that can be done with
 
 ```r
 mutate(mutate(slumajors_df, ntotal = nfemales + nmales), percfemale = 100 * nfemales / (nfemales + nmales))
-```
-
-```
-## # A tibble: 27 x 5
-##    Major                        nfemales nmales percfemale ntotal
-##    <chr>                           <dbl>  <dbl>      <dbl>  <dbl>
-##  1 Anthropology                       34     15       69.4     49
-##  2 Art & Art History                  65     11       85.5     76
-##  3 Biochemistry                       14     11       56       25
-##  4 Biology                           162     67       70.7    229
-##  5 Business in the Liberal Arts      135    251       35.0    386
-##  6 Chemistry                          26     14       65       40
-##  7 Computer Science                   21     47       30.9     68
-##  8 Conservation Biology               38     20       65.5     58
-##  9 Economics                         128    349       26.8    477
-## 10 English                           131     54       70.8    185
-## # … with 17 more rows
+#> # A tibble: 27 x 5
+#>    Major                   nfemales nmales percfemale ntotal
+#>    <chr>                      <dbl>  <dbl>      <dbl>  <dbl>
+#>  1 Anthropology                  34     15       69.4     49
+#>  2 Art & Art History             65     11       85.5     76
+#>  3 Biochemistry                  14     11       56       25
+#>  4 Biology                      162     67       70.7    229
+#>  5 Business in the Libera…      135    251       35.0    386
+#>  6 Chemistry                     26     14       65       40
+#>  7 Computer Science              21     47       30.9     68
+#>  8 Conservation Biology          38     20       65.5     58
+#>  9 Economics                    128    349       26.8    477
+#> 10 English                      131     54       70.8    185
+#> # … with 17 more rows
 ```
 
 It's still not __that__ bad here because we aren't doing __that__ many operations to the data set, but it's already much harder to read. But we will get to examples where you are using 5+ pipes. 
@@ -234,23 +219,20 @@ Suppose we want to create a new variable that tells us whether or not the `Major
 slumajors_df %>% mutate(morewomen = if_else(percfemale > 50,
                                             true = "Yes",
                                             false = "No"))
-```
-
-```
-## # A tibble: 27 x 6
-##    Major                        nfemales nmales percfemale ntotal morewomen
-##    <chr>                           <dbl>  <dbl>      <dbl>  <dbl> <chr>    
-##  1 Anthropology                       34     15       69.4     49 Yes      
-##  2 Art & Art History                  65     11       85.5     76 Yes      
-##  3 Biochemistry                       14     11       56       25 Yes      
-##  4 Biology                           162     67       70.7    229 Yes      
-##  5 Business in the Liberal Arts      135    251       35.0    386 No       
-##  6 Chemistry                          26     14       65       40 Yes      
-##  7 Computer Science                   21     47       30.9     68 No       
-##  8 Conservation Biology               38     20       65.5     58 Yes      
-##  9 Economics                         128    349       26.8    477 No       
-## 10 English                           131     54       70.8    185 Yes      
-## # … with 17 more rows
+#> # A tibble: 27 x 6
+#>    Major         nfemales nmales percfemale ntotal morewomen
+#>    <chr>            <dbl>  <dbl>      <dbl>  <dbl> <chr>    
+#>  1 Anthropology        34     15       69.4     49 Yes      
+#>  2 Art & Art Hi…       65     11       85.5     76 Yes      
+#>  3 Biochemistry        14     11       56       25 Yes      
+#>  4 Biology            162     67       70.7    229 Yes      
+#>  5 Business in …      135    251       35.0    386 No       
+#>  6 Chemistry           26     14       65       40 Yes      
+#>  7 Computer Sci…       21     47       30.9     68 No       
+#>  8 Conservation…       38     20       65.5     58 Yes      
+#>  9 Economics          128    349       26.8    477 No       
+#> 10 English            131     54       70.8    185 Yes      
+#> # … with 17 more rows
 ```
 
 The `mutate()` statement reads: create a new variable called `morewomen` that is equal to `"Yes"` if `percfemale` > `50` is true and is equal to `"No"` if `perfemale` is not > `0.5`. The first argument is the condition, the second is what to name the new variable when the condition holds, and the third is what to name the variable if the condition does not hold.
@@ -267,23 +249,20 @@ slumajors_df %>% mutate(large_majority =
                           case_when(percfemale >= 70 ~ "female",
                                     percfemale <= 30 ~ "male",
                                     percfemale > 30 & percfemale < 70 ~ "none")) 
-```
-
-```
-## # A tibble: 27 x 6
-##    Major                        nfemales nmales percfemale ntotal large_majority
-##    <chr>                           <dbl>  <dbl>      <dbl>  <dbl> <chr>         
-##  1 Anthropology                       34     15       69.4     49 none          
-##  2 Art & Art History                  65     11       85.5     76 female        
-##  3 Biochemistry                       14     11       56       25 none          
-##  4 Biology                           162     67       70.7    229 female        
-##  5 Business in the Liberal Arts      135    251       35.0    386 none          
-##  6 Chemistry                          26     14       65       40 none          
-##  7 Computer Science                   21     47       30.9     68 none          
-##  8 Conservation Biology               38     20       65.5     58 none          
-##  9 Economics                         128    349       26.8    477 male          
-## 10 English                           131     54       70.8    185 female        
-## # … with 17 more rows
+#> # A tibble: 27 x 6
+#>    Major    nfemales nmales percfemale ntotal large_majority
+#>    <chr>       <dbl>  <dbl>      <dbl>  <dbl> <chr>         
+#>  1 Anthrop…       34     15       69.4     49 none          
+#>  2 Art & A…       65     11       85.5     76 female        
+#>  3 Biochem…       14     11       56       25 none          
+#>  4 Biology       162     67       70.7    229 female        
+#>  5 Busines…      135    251       35.0    386 none          
+#>  6 Chemist…       26     14       65       40 none          
+#>  7 Compute…       21     47       30.9     68 none          
+#>  8 Conserv…       38     20       65.5     58 none          
+#>  9 Economi…      128    349       26.8    477 male          
+#> 10 English       131     54       70.8    185 female        
+#> # … with 17 more rows
 ```
 
 The `case_when()` function reads "When the percent female is more than or equal to 70, assign the new variable `large_majority` the value of "female", when it's less or equal to 30, assign the more than 30 and less than 70, assign the variable the value of "none" ." The `&` is a boolean operator: we'll talk more about that later so don't worry too much about that for now.
@@ -318,7 +297,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 6. With one or two of the newly created variables from `mutate()`, create a plot that investigates a question of interest you might have about the data.
 
-## `arrange()`, `select()`, and `slice()`, and `filter()`
+## `arrange()` (Ordering Rows), `select()` (Choosing Columns), and `slice()` and `filter()` (Choosing Rows)
 
 `arrange()` is used to order rows in the data set according to some variable, `select()` is used to choose columns to keep (or get rid of) and `filter()` is used to keep (or get rid of) only some of the observations (rows).
 
@@ -329,23 +308,21 @@ The `arrange()` function allows us to order rows in the data set using one or mo
 
 ```r
 slumajors_df %>% arrange(percfemale)
-```
-
-```
-## # A tibble: 27 x 7
-##    Major              nfemales nmales percfemale ntotal morewomen large_majority
-##    <chr>                 <dbl>  <dbl>      <dbl>  <dbl> <chr>     <chr>         
-##  1 Economics               128    349       26.8    477 No        male          
-##  2 Physics                   6     14       30       20 No        male          
-##  3 Computer Science         21     47       30.9     68 No        none          
-##  4 Business in the L…      135    251       35.0    386 No        none          
-##  5 Music                    13     21       38.2     34 No        none          
-##  6 Geology                  28     41       40.6     69 No        none          
-##  7 History                  62     82       43.1    144 No        none          
-##  8 Philosophy               24     29       45.3     53 No        none          
-##  9 Mathematics              74     83       47.1    157 No        none          
-## 10 Government              127    116       52.3    243 Yes       none          
-## # … with 17 more rows
+#> # A tibble: 27 x 7
+#>    Major         nfemales nmales percfemale ntotal morewomen
+#>    <chr>            <dbl>  <dbl>      <dbl>  <dbl> <chr>    
+#>  1 Economics          128    349       26.8    477 No       
+#>  2 Physics              6     14       30       20 No       
+#>  3 Computer Sci…       21     47       30.9     68 No       
+#>  4 Business in …      135    251       35.0    386 No       
+#>  5 Music               13     21       38.2     34 No       
+#>  6 Geology             28     41       40.6     69 No       
+#>  7 History             62     82       43.1    144 No       
+#>  8 Philosophy          24     29       45.3     53 No       
+#>  9 Mathematics         74     83       47.1    157 No       
+#> 10 Government         127    116       52.3    243 Yes      
+#> # … with 17 more rows, and 1 more variable:
+#> #   large_majority <chr>
 ```
 
 Which major has the lowest percentage of female graduates?
@@ -355,23 +332,21 @@ We see that, by default, `arrange()` orders the rows from low to high. To order 
 
 ```r
 slumajors_df %>% arrange(desc(percfemale))
-```
-
-```
-## # A tibble: 27 x 7
-##    Major              nfemales nmales percfemale ntotal morewomen large_majority
-##    <chr>                 <dbl>  <dbl>      <dbl>  <dbl> <chr>     <chr>         
-##  1 Art & Art History        65     11       85.5     76 Yes       female        
-##  2 Psychology              278     61       82.0    339 Yes       female        
-##  3 French                   27      7       79.4     34 Yes       female        
-##  4 Spanish                  35     10       77.8     45 Yes       female        
-##  5 Statistics               28      9       75.7     37 Yes       female        
-##  6 Global Studies           69     27       71.9     96 Yes       female        
-##  7 Neuroscience             61     24       71.8     85 Yes       female        
-##  8 Performance & Com…      144     57       71.6    201 Yes       female        
-##  9 Religious Studies        10      4       71.4     14 Yes       female        
-## 10 English                 131     54       70.8    185 Yes       female        
-## # … with 17 more rows
+#> # A tibble: 27 x 7
+#>    Major         nfemales nmales percfemale ntotal morewomen
+#>    <chr>            <dbl>  <dbl>      <dbl>  <dbl> <chr>    
+#>  1 Art & Art Hi…       65     11       85.5     76 Yes      
+#>  2 Psychology         278     61       82.0    339 Yes      
+#>  3 French              27      7       79.4     34 Yes      
+#>  4 Spanish             35     10       77.8     45 Yes      
+#>  5 Statistics          28      9       75.7     37 Yes      
+#>  6 Global Studi…       69     27       71.9     96 Yes      
+#>  7 Neuroscience        61     24       71.8     85 Yes      
+#>  8 Performance …      144     57       71.6    201 Yes      
+#>  9 Religious St…       10      4       71.4     14 Yes      
+#> 10 English            131     54       70.8    185 Yes      
+#> # … with 17 more rows, and 1 more variable:
+#> #   large_majority <chr>
 ```
 
 What is the major with the highest percentage of women graduates?
@@ -383,23 +358,20 @@ We might also be interested in getting rid of some of the columns in a data set.
 
 ```r
 slumajors_df %>% select(Major, ntotal)
-```
-
-```
-## # A tibble: 27 x 2
-##    Major                        ntotal
-##    <chr>                         <dbl>
-##  1 Anthropology                     49
-##  2 Art & Art History                76
-##  3 Biochemistry                     25
-##  4 Biology                         229
-##  5 Business in the Liberal Arts    386
-##  6 Chemistry                        40
-##  7 Computer Science                 68
-##  8 Conservation Biology             58
-##  9 Economics                       477
-## 10 English                         185
-## # … with 17 more rows
+#> # A tibble: 27 x 2
+#>    Major                        ntotal
+#>    <chr>                         <dbl>
+#>  1 Anthropology                     49
+#>  2 Art & Art History                76
+#>  3 Biochemistry                     25
+#>  4 Biology                         229
+#>  5 Business in the Liberal Arts    386
+#>  6 Chemistry                        40
+#>  7 Computer Science                 68
+#>  8 Conservation Biology             58
+#>  9 Economics                       477
+#> 10 English                         185
+#> # … with 17 more rows
 ```
 
 If I wanted to use this data set for anything else, I'd also need to name, or rename, it with `<-`. We would probably want to name it something other than `slumajors_df` so as to not overwrite the original data set, in case we want to use those other variables again later!
@@ -409,23 +381,20 @@ We might also want to use `select()` to get rid of one or two columns. If this i
 
 ```r
 slumajors_df %>% select(-ntotal, -nfemales, -nmales)
-```
-
-```
-## # A tibble: 27 x 4
-##    Major                        percfemale morewomen large_majority
-##    <chr>                             <dbl> <chr>     <chr>         
-##  1 Anthropology                       69.4 Yes       none          
-##  2 Art & Art History                  85.5 Yes       female        
-##  3 Biochemistry                       56   Yes       none          
-##  4 Biology                            70.7 Yes       female        
-##  5 Business in the Liberal Arts       35.0 No        none          
-##  6 Chemistry                          65   Yes       none          
-##  7 Computer Science                   30.9 No        none          
-##  8 Conservation Biology               65.5 Yes       none          
-##  9 Economics                          26.8 No        male          
-## 10 English                            70.8 Yes       female        
-## # … with 17 more rows
+#> # A tibble: 27 x 4
+#>    Major                 percfemale morewomen large_majority
+#>    <chr>                      <dbl> <chr>     <chr>         
+#>  1 Anthropology                69.4 Yes       none          
+#>  2 Art & Art History           85.5 Yes       female        
+#>  3 Biochemistry                56   Yes       none          
+#>  4 Biology                     70.7 Yes       female        
+#>  5 Business in the Libe…       35.0 No        none          
+#>  6 Chemistry                   65   Yes       none          
+#>  7 Computer Science            30.9 No        none          
+#>  8 Conservation Biology        65.5 Yes       none          
+#>  9 Economics                   26.8 No        male          
+#> 10 English                     70.8 Yes       female        
+#> # … with 17 more rows
 ```
 
 `select()` comes with many useful helper functions, but these are oftentimes not needed. One of the helper functions that __is__ actually often useful is `everything()`. We can, for example, use this after using `mutate()` to put the variable that was just created at the front of the data set to make sure there weren't any unexpected issues:
@@ -434,23 +403,21 @@ slumajors_df %>% select(-ntotal, -nfemales, -nmales)
 ```r
 slumajors_df %>% mutate(propfemale = percfemale / 100) %>%
   select(propfemale, everything())
-```
-
-```
-## # A tibble: 27 x 8
-##    propfemale Major   nfemales nmales percfemale ntotal morewomen large_majority
-##         <dbl> <chr>      <dbl>  <dbl>      <dbl>  <dbl> <chr>     <chr>         
-##  1      0.694 Anthro…       34     15       69.4     49 Yes       none          
-##  2      0.855 Art & …       65     11       85.5     76 Yes       female        
-##  3      0.56  Bioche…       14     11       56       25 Yes       none          
-##  4      0.707 Biology      162     67       70.7    229 Yes       female        
-##  5      0.350 Busine…      135    251       35.0    386 No        none          
-##  6      0.65  Chemis…       26     14       65       40 Yes       none          
-##  7      0.309 Comput…       21     47       30.9     68 No        none          
-##  8      0.655 Conser…       38     20       65.5     58 Yes       none          
-##  9      0.268 Econom…      128    349       26.8    477 No        male          
-## 10      0.708 English      131     54       70.8    185 Yes       female        
-## # … with 17 more rows
+#> # A tibble: 27 x 8
+#>    propfemale Major        nfemales nmales percfemale ntotal
+#>         <dbl> <chr>           <dbl>  <dbl>      <dbl>  <dbl>
+#>  1      0.694 Anthropology       34     15       69.4     49
+#>  2      0.855 Art & Art H…       65     11       85.5     76
+#>  3      0.56  Biochemistry       14     11       56       25
+#>  4      0.707 Biology           162     67       70.7    229
+#>  5      0.350 Business in…      135    251       35.0    386
+#>  6      0.65  Chemistry          26     14       65       40
+#>  7      0.309 Computer Sc…       21     47       30.9     68
+#>  8      0.655 Conservatio…       38     20       65.5     58
+#>  9      0.268 Economics         128    349       26.8    477
+#> 10      0.708 English           131     54       70.8    185
+#> # … with 17 more rows, and 2 more variables:
+#> #   morewomen <chr>, large_majority <chr>
 ```
 
 Verify that `propfemale` now appears first in the data set. `everything()` tacks on all of the remaining variables after `propfemale`. So, in this case, it's a useful way to re-order the columns so that what you might be most interested in appears first.
@@ -465,17 +432,15 @@ Instead of choosing which columns to keep, we can also choose certain rows to ke
 ```r
 slumajors_df %>% arrange(desc(ntotal)) %>%
   slice(1, 2, 3, 4, 5)
-```
-
-```
-## # A tibble: 5 x 7
-##   Major               nfemales nmales percfemale ntotal morewomen large_majority
-##   <chr>                  <dbl>  <dbl>      <dbl>  <dbl> <chr>     <chr>         
-## 1 Economics                128    349       26.8    477 No        male          
-## 2 Business in the Li…      135    251       35.0    386 No        none          
-## 3 Psychology               278     61       82.0    339 Yes       female        
-## 4 Government               127    116       52.3    243 Yes       none          
-## 5 Biology                  162     67       70.7    229 Yes       female
+#> # A tibble: 5 x 7
+#>   Major          nfemales nmales percfemale ntotal morewomen
+#>   <chr>             <dbl>  <dbl>      <dbl>  <dbl> <chr>    
+#> 1 Economics           128    349       26.8    477 No       
+#> 2 Business in t…      135    251       35.0    386 No       
+#> 3 Psychology          278     61       82.0    339 Yes      
+#> 4 Government          127    116       52.3    243 Yes      
+#> 5 Biology             162     67       70.7    229 Yes      
+#> # … with 1 more variable: large_majority <chr>
 ```
 
 We can alternatively use `slice(1:5)`, which is shorthand for `slice(1, 2, 3, 4, 5)`. While `slice()` is useful, it is relatively simple. We'll come back to it again in a few weeks as well when we discuss subsetting in base `R`.
@@ -495,23 +460,20 @@ It's probably time for a change of data set too! We'll be working with the `baby
 ```r
 library(babynames)
 babynames
-```
-
-```
-## # A tibble: 1,924,665 x 5
-##     year sex   name          n   prop
-##    <dbl> <chr> <chr>     <int>  <dbl>
-##  1  1880 F     Mary       7065 0.0724
-##  2  1880 F     Anna       2604 0.0267
-##  3  1880 F     Emma       2003 0.0205
-##  4  1880 F     Elizabeth  1939 0.0199
-##  5  1880 F     Minnie     1746 0.0179
-##  6  1880 F     Margaret   1578 0.0162
-##  7  1880 F     Ida        1472 0.0151
-##  8  1880 F     Alice      1414 0.0145
-##  9  1880 F     Bertha     1320 0.0135
-## 10  1880 F     Sarah      1288 0.0132
-## # … with 1,924,655 more rows
+#> # A tibble: 1,924,665 x 5
+#>     year sex   name          n   prop
+#>    <dbl> <chr> <chr>     <int>  <dbl>
+#>  1  1880 F     Mary       7065 0.0724
+#>  2  1880 F     Anna       2604 0.0267
+#>  3  1880 F     Emma       2003 0.0205
+#>  4  1880 F     Elizabeth  1939 0.0199
+#>  5  1880 F     Minnie     1746 0.0179
+#>  6  1880 F     Margaret   1578 0.0162
+#>  7  1880 F     Ida        1472 0.0151
+#>  8  1880 F     Alice      1414 0.0145
+#>  9  1880 F     Bertha     1320 0.0135
+#> 10  1880 F     Sarah      1288 0.0132
+#> # … with 1,924,655 more rows
 ```
 
 If needed, we can remind ourselves what is in the `babynames` data set by typing `?babynames` in the console window.
@@ -563,13 +525,10 @@ The `summarise()` function is useful to get summaries from the data. For example
 slumajors_df %>%
   summarise(meantotalmajor = mean(ntotal),
             totalgrad = sum(ntotal))
-```
-
-```
-## # A tibble: 1 x 2
-##   meantotalmajor totalgrad
-##            <dbl>     <dbl>
-## 1           124.      3347
+#> # A tibble: 1 x 2
+#>   meantotalmajor totalgrad
+#>            <dbl>     <dbl>
+#> 1           124.      3347
 ```
 
 ### `group_by()`: Groups
@@ -582,23 +541,20 @@ For example, suppose that you wanted the total number of registered births per y
 ```r
 babynames %>% group_by(year) %>%
   summarise(totalbirths = sum(n))
-```
-
-```
-## # A tibble: 138 x 2
-##     year totalbirths
-##    <dbl>       <int>
-##  1  1880      201484
-##  2  1881      192696
-##  3  1882      221533
-##  4  1883      216946
-##  5  1884      243462
-##  6  1885      240854
-##  7  1886      255317
-##  8  1887      247394
-##  9  1888      299473
-## 10  1889      288946
-## # … with 128 more rows
+#> # A tibble: 138 x 2
+#>     year totalbirths
+#>    <dbl>       <int>
+#>  1  1880      201484
+#>  2  1881      192696
+#>  3  1882      221533
+#>  4  1883      216946
+#>  5  1884      243462
+#>  6  1885      240854
+#>  7  1886      255317
+#>  8  1887      247394
+#>  9  1888      299473
+#> 10  1889      288946
+#> # … with 128 more rows
 ```
 
 `group_by()` takes a grouping variable, and then, using `summarise()` computes the given summary function on each group.
@@ -610,13 +566,10 @@ The `n()` function can be used within `summarise()` to obtain the number of obse
 
 ```r
 babynames %>% summarise(totalobs = n())
-```
-
-```
-## # A tibble: 1 x 1
-##   totalobs
-##      <int>
-## 1  1924665
+#> # A tibble: 1 x 1
+#>   totalobs
+#>      <int>
+#> 1  1924665
 ```
 
 Note that `n()` typically doesn't have any inputs. It's typically more useful when paired with `group_by()`: this allows us to see the number of observations within each `year`, for instance:
@@ -625,23 +578,20 @@ Note that `n()` typically doesn't have any inputs. It's typically more useful wh
 ```r
 babynames %>% group_by(year) %>%
   summarise(ngroup = n())
-```
-
-```
-## # A tibble: 138 x 2
-##     year ngroup
-##    <dbl>  <int>
-##  1  1880   2000
-##  2  1881   1935
-##  3  1882   2127
-##  4  1883   2084
-##  5  1884   2297
-##  6  1885   2294
-##  7  1886   2392
-##  8  1887   2373
-##  9  1888   2651
-## 10  1889   2590
-## # … with 128 more rows
+#> # A tibble: 138 x 2
+#>     year ngroup
+#>    <dbl>  <int>
+#>  1  1880   2000
+#>  2  1881   1935
+#>  3  1882   2127
+#>  4  1883   2084
+#>  5  1884   2297
+#>  6  1885   2294
+#>  7  1886   2392
+#>  8  1887   2373
+#>  9  1888   2651
+#> 10  1889   2590
+#> # … with 128 more rows
 ```
 
 ### Exercises {#exercise-3-3}
@@ -667,23 +617,20 @@ slumajors_df %>%
 ```r
 babynames %>% group_by(year) %>%
   summarise(ngroup = n())
-```
-
-```
-## # A tibble: 138 x 2
-##     year ngroup
-##    <dbl>  <int>
-##  1  1880   2000
-##  2  1881   1935
-##  3  1882   2127
-##  4  1883   2084
-##  5  1884   2297
-##  6  1885   2294
-##  7  1886   2392
-##  8  1887   2373
-##  9  1888   2651
-## 10  1889   2590
-## # … with 128 more rows
+#> # A tibble: 138 x 2
+#>     year ngroup
+#>    <dbl>  <int>
+#>  1  1880   2000
+#>  2  1881   1935
+#>  3  1882   2127
+#>  4  1883   2084
+#>  5  1884   2297
+#>  6  1885   2294
+#>  7  1886   2392
+#>  8  1887   2373
+#>  9  1888   2651
+#> 10  1889   2590
+#> # … with 128 more rows
 ```
 
 make a line plot with `ngroup` on the x-axis and `year` on the y-axis. How would you interpret the plot?
@@ -701,24 +648,21 @@ make a line plot with `ngroup` on the x-axis and `year` on the y-axis. How would
 babynames_test <- babynames %>%
   group_by(year, sex) %>% mutate(ntest = n / prop)
 babynames_test %>% slice(1, 2, 3, 4, 5)
-```
-
-```
-## # A tibble: 1,380 x 6
-## # Groups:   year, sex [276]
-##     year sex   name          n   prop   ntest
-##    <dbl> <chr> <chr>     <int>  <dbl>   <dbl>
-##  1  1880 F     Mary       7065 0.0724  97605.
-##  2  1880 F     Anna       2604 0.0267  97605.
-##  3  1880 F     Emma       2003 0.0205  97605.
-##  4  1880 F     Elizabeth  1939 0.0199  97605.
-##  5  1880 F     Minnie     1746 0.0179  97605.
-##  6  1880 M     John       9655 0.0815 118400.
-##  7  1880 M     William    9532 0.0805 118400.
-##  8  1880 M     James      5927 0.0501 118400.
-##  9  1880 M     Charles    5348 0.0452 118400.
-## 10  1880 M     George     5126 0.0433 118400.
-## # … with 1,370 more rows
+#> # A tibble: 1,380 x 6
+#> # Groups:   year, sex [276]
+#>     year sex   name          n   prop   ntest
+#>    <dbl> <chr> <chr>     <int>  <dbl>   <dbl>
+#>  1  1880 F     Mary       7065 0.0724  97605.
+#>  2  1880 F     Anna       2604 0.0267  97605.
+#>  3  1880 F     Emma       2003 0.0205  97605.
+#>  4  1880 F     Elizabeth  1939 0.0199  97605.
+#>  5  1880 F     Minnie     1746 0.0179  97605.
+#>  6  1880 M     John       9655 0.0815 118400.
+#>  7  1880 M     William    9532 0.0805 118400.
+#>  8  1880 M     James      5927 0.0501 118400.
+#>  9  1880 M     Charles    5348 0.0452 118400.
+#> 10  1880 M     George     5126 0.0433 118400.
+#> # … with 1,370 more rows
 ```
 
 ## Missing Values
@@ -733,16 +677,13 @@ toy_df <- tibble(x = c(NA, 3, 4, 7),
                  y = c(1, 4, 3, 2),
                  z = c("A", "A", "B", NA))
 toy_df
-```
-
-```
-## # A tibble: 4 x 3
-##       x     y z    
-##   <dbl> <dbl> <chr>
-## 1    NA     1 A    
-## 2     3     4 A    
-## 3     4     3 B    
-## 4     7     2 <NA>
+#> # A tibble: 4 x 3
+#>       x     y z    
+#>   <dbl> <dbl> <chr>
+#> 1    NA     1 A    
+#> 2     3     4 A    
+#> 3     4     3 B    
+#> 4     7     2 <NA>
 ```
 
 ### Exercises {#exercise-3-4}
@@ -768,13 +709,10 @@ __If__ we have investigated the missing values and are comfortable with removing
 
 ```r
 toy_df %>% summarise(meanx = mean(x, na.rm = TRUE))
-```
-
-```
-## # A tibble: 1 x 1
-##   meanx
-##   <dbl>
-## 1  4.67
+#> # A tibble: 1 x 1
+#>   meanx
+#>   <dbl>
+#> 1  4.67
 ```
 
 If we want to remove the missing values more directly, we can use the `is.na()` function in combination with `filter()`. If the variable is `NA` (Not Available) for an observation, `is.na()` evaluates to `TRUE`; if not, `is.na()` evaluates to `FALSE`. Test this out using `mutate()` to create a new variable for whether `Median` is missing:
@@ -782,16 +720,13 @@ If we want to remove the missing values more directly, we can use the `is.na()` 
 
 ```r
 toy_df %>% mutate(missingx = is.na(x))
-```
-
-```
-## # A tibble: 4 x 4
-##       x     y z     missingx
-##   <dbl> <dbl> <chr> <lgl>   
-## 1    NA     1 A     TRUE    
-## 2     3     4 A     FALSE   
-## 3     4     3 B     FALSE   
-## 4     7     2 <NA>  FALSE
+#> # A tibble: 4 x 4
+#>       x     y z     missingx
+#>   <dbl> <dbl> <chr> <lgl>   
+#> 1    NA     1 A     TRUE    
+#> 2     3     4 A     FALSE   
+#> 3     4     3 B     FALSE   
+#> 4     7     2 <NA>  FALSE
 ```
 
 `missingx` is `TRUE` only for the the first observation.  We can use this to our advantage with `filter()` to filter it out of the data set, without going through the extra step of actually making a new variable `missingx`:
@@ -799,15 +734,12 @@ toy_df %>% mutate(missingx = is.na(x))
 
 ```r
 toy_df %>% filter(is.na(x) != TRUE)
-```
-
-```
-## # A tibble: 3 x 3
-##       x     y z    
-##   <dbl> <dbl> <chr>
-## 1     3     4 A    
-## 2     4     3 B    
-## 3     7     2 <NA>
+#> # A tibble: 3 x 3
+#>       x     y z    
+#>   <dbl> <dbl> <chr>
+#> 1     3     4 A    
+#> 2     4     3 B    
+#> 3     7     2 <NA>
 ```
 
 You'll commonly see this written as short-hand in people's code you may come across as:
@@ -815,15 +747,12 @@ You'll commonly see this written as short-hand in people's code you may come acr
 
 ```r
 toy_df %>% filter(!is.na(x))
-```
-
-```
-## # A tibble: 3 x 3
-##       x     y z    
-##   <dbl> <dbl> <chr>
-## 1     3     4 A    
-## 2     4     3 B    
-## 3     7     2 <NA>
+#> # A tibble: 3 x 3
+#>       x     y z    
+#>   <dbl> <dbl> <chr>
+#> 1     3     4 A    
+#> 2     4     3 B    
+#> 3     7     2 <NA>
 ```
 
 which says to "keep anything that does not have a missing x value" (recall that the `!` means "not"). 
@@ -883,67 +812,61 @@ e. `select()`
 slumajors_df %>% mutate(major_size = if_else(ntotal >= 100,
                                              true = "large",
                                              false = "small"))
-```
-
-```
-## # A tibble: 27 x 8
-##    Major   nfemales nmales percfemale ntotal morewomen large_majority major_size
-##    <chr>      <dbl>  <dbl>      <dbl>  <dbl> <chr>     <chr>          <chr>     
-##  1 Anthro…       34     15       69.4     49 Yes       none           small     
-##  2 Art & …       65     11       85.5     76 Yes       female         small     
-##  3 Bioche…       14     11       56       25 Yes       none           small     
-##  4 Biology      162     67       70.7    229 Yes       female         large     
-##  5 Busine…      135    251       35.0    386 No        none           large     
-##  6 Chemis…       26     14       65       40 Yes       none           small     
-##  7 Comput…       21     47       30.9     68 No        none           small     
-##  8 Conser…       38     20       65.5     58 Yes       none           small     
-##  9 Econom…      128    349       26.8    477 No        male           large     
-## 10 English      131     54       70.8    185 Yes       female         large     
-## # … with 17 more rows
-```
-
-```r
+#> # A tibble: 27 x 8
+#>    Major         nfemales nmales percfemale ntotal morewomen
+#>    <chr>            <dbl>  <dbl>      <dbl>  <dbl> <chr>    
+#>  1 Anthropology        34     15       69.4     49 Yes      
+#>  2 Art & Art Hi…       65     11       85.5     76 Yes      
+#>  3 Biochemistry        14     11       56       25 Yes      
+#>  4 Biology            162     67       70.7    229 Yes      
+#>  5 Business in …      135    251       35.0    386 No       
+#>  6 Chemistry           26     14       65       40 Yes      
+#>  7 Computer Sci…       21     47       30.9     68 No       
+#>  8 Conservation…       38     20       65.5     58 Yes      
+#>  9 Economics          128    349       26.8    477 No       
+#> 10 English            131     54       70.8    185 Yes      
+#> # … with 17 more rows, and 2 more variables:
+#> #   large_majority <chr>, major_size <chr>
 ## OR
 slumajors_df %>%
   mutate(major_size = case_when(ntotal >= 100 ~ "large",
                                 ntotal < 100 ~ "small"))
-```
-
-```
-## # A tibble: 27 x 8
-##    Major   nfemales nmales percfemale ntotal morewomen large_majority major_size
-##    <chr>      <dbl>  <dbl>      <dbl>  <dbl> <chr>     <chr>          <chr>     
-##  1 Anthro…       34     15       69.4     49 Yes       none           small     
-##  2 Art & …       65     11       85.5     76 Yes       female         small     
-##  3 Bioche…       14     11       56       25 Yes       none           small     
-##  4 Biology      162     67       70.7    229 Yes       female         large     
-##  5 Busine…      135    251       35.0    386 No        none           large     
-##  6 Chemis…       26     14       65       40 Yes       none           small     
-##  7 Comput…       21     47       30.9     68 No        none           small     
-##  8 Conser…       38     20       65.5     58 Yes       none           small     
-##  9 Econom…      128    349       26.8    477 No        male           large     
-## 10 English      131     54       70.8    185 Yes       female         large     
-## # … with 17 more rows
+#> # A tibble: 27 x 8
+#>    Major         nfemales nmales percfemale ntotal morewomen
+#>    <chr>            <dbl>  <dbl>      <dbl>  <dbl> <chr>    
+#>  1 Anthropology        34     15       69.4     49 Yes      
+#>  2 Art & Art Hi…       65     11       85.5     76 Yes      
+#>  3 Biochemistry        14     11       56       25 Yes      
+#>  4 Biology            162     67       70.7    229 Yes      
+#>  5 Business in …      135    251       35.0    386 No       
+#>  6 Chemistry           26     14       65       40 Yes      
+#>  7 Computer Sci…       21     47       30.9     68 No       
+#>  8 Conservation…       38     20       65.5     58 Yes      
+#>  9 Economics          128    349       26.8    477 No       
+#> 10 English            131     54       70.8    185 Yes      
+#> # … with 17 more rows, and 2 more variables:
+#> #   large_majority <chr>, major_size <chr>
 ```
 
 5. \* Investigate what happens with `case_when()` when you give overlapping conditions and when you give conditions that don't cover all observations. For overlapping conditions, create a variable `testcase` that is `"Yes"` when `percfemale` is greater than or equal to 40 and `"No"` when `percfemale` is greater than 60 For conditions that don't cover all observations, create a variable `testcase2` that is `"Yes"` when `percefemale` is greater than or equal to 55 and `"No"` when `percfemale` is less than 35.
 
 
 ```
-## # A tibble: 27 x 9
-##    Major     nfemales nmales percfemale ntotal morewomen large_majority testcase
-##    <chr>        <dbl>  <dbl>      <dbl>  <dbl> <chr>     <chr>          <chr>   
-##  1 Anthropo…       34     15       69.4     49 Yes       none           Yes     
-##  2 Art & Ar…       65     11       85.5     76 Yes       female         Yes     
-##  3 Biochemi…       14     11       56       25 Yes       none           Yes     
-##  4 Biology        162     67       70.7    229 Yes       female         Yes     
-##  5 Business…      135    251       35.0    386 No        none           <NA>    
-##  6 Chemistry       26     14       65       40 Yes       none           Yes     
-##  7 Computer…       21     47       30.9     68 No        none           <NA>    
-##  8 Conserva…       38     20       65.5     58 Yes       none           Yes     
-##  9 Economics      128    349       26.8    477 No        male           <NA>    
-## 10 English        131     54       70.8    185 Yes       female         Yes     
-## # … with 17 more rows, and 1 more variable: testcase2 <chr>
+#> # A tibble: 27 x 9
+#>    Major         nfemales nmales percfemale ntotal morewomen
+#>    <chr>            <dbl>  <dbl>      <dbl>  <dbl> <chr>    
+#>  1 Anthropology        34     15       69.4     49 Yes      
+#>  2 Art & Art Hi…       65     11       85.5     76 Yes      
+#>  3 Biochemistry        14     11       56       25 Yes      
+#>  4 Biology            162     67       70.7    229 Yes      
+#>  5 Business in …      135    251       35.0    386 No       
+#>  6 Chemistry           26     14       65       40 Yes      
+#>  7 Computer Sci…       21     47       30.9     68 No       
+#>  8 Conservation…       38     20       65.5     58 Yes      
+#>  9 Economics          128    349       26.8    477 No       
+#> 10 English            131     54       70.8    185 Yes      
+#> # … with 17 more rows, and 3 more variables:
+#> #   large_majority <chr>, testcase <chr>, testcase2 <chr>
 ```
 
 For overlapping cases, case_when prioritizes the first case given.
@@ -957,23 +880,20 @@ For non-coverage, any observation that is not covered is given an NA.
 
 ```r
 slumajors_df %>% select(large_majority, everything())
-```
-
-```
-## # A tibble: 27 x 7
-##    large_majority Major              nfemales nmales percfemale ntotal morewomen
-##    <chr>          <chr>                 <dbl>  <dbl>      <dbl>  <dbl> <chr>    
-##  1 none           Anthropology             34     15       69.4     49 Yes      
-##  2 female         Art & Art History        65     11       85.5     76 Yes      
-##  3 none           Biochemistry             14     11       56       25 Yes      
-##  4 female         Biology                 162     67       70.7    229 Yes      
-##  5 none           Business in the L…      135    251       35.0    386 No       
-##  6 none           Chemistry                26     14       65       40 Yes      
-##  7 none           Computer Science         21     47       30.9     68 No       
-##  8 none           Conservation Biol…       38     20       65.5     58 Yes      
-##  9 male           Economics               128    349       26.8    477 No       
-## 10 female         English                 131     54       70.8    185 Yes      
-## # … with 17 more rows
+#> # A tibble: 27 x 7
+#>    large_majority Major    nfemales nmales percfemale ntotal
+#>    <chr>          <chr>       <dbl>  <dbl>      <dbl>  <dbl>
+#>  1 none           Anthrop…       34     15       69.4     49
+#>  2 female         Art & A…       65     11       85.5     76
+#>  3 none           Biochem…       14     11       56       25
+#>  4 female         Biology       162     67       70.7    229
+#>  5 none           Busines…      135    251       35.0    386
+#>  6 none           Chemist…       26     14       65       40
+#>  7 none           Compute…       21     47       30.9     68
+#>  8 none           Conserv…       38     20       65.5     58
+#>  9 male           Economi…      128    349       26.8    477
+#> 10 female         English       131     54       70.8    185
+#> # … with 17 more rows, and 1 more variable: morewomen <chr>
 ```
 
 3. \* In the `babynames` data set, use `filter()`, `mutate()` with `rank()`, and `arrange()` to print the 10 most popular Male babynames in 2017.
@@ -983,22 +903,19 @@ slumajors_df %>% select(large_majority, everything())
 babynames %>% filter(sex == "M" & year == 2017) %>%
   mutate(rankname = rank(desc(n))) %>%
   filter(rankname <= 10)
-```
-
-```
-## # A tibble: 10 x 6
-##     year sex   name         n    prop rankname
-##    <dbl> <chr> <chr>    <int>   <dbl>    <dbl>
-##  1  2017 M     Liam     18728 0.00954        1
-##  2  2017 M     Noah     18326 0.00933        2
-##  3  2017 M     William  14904 0.00759        3
-##  4  2017 M     James    14232 0.00725        4
-##  5  2017 M     Logan    13974 0.00712        5
-##  6  2017 M     Benjamin 13733 0.00699        6
-##  7  2017 M     Mason    13502 0.00688        7
-##  8  2017 M     Elijah   13268 0.00676        8
-##  9  2017 M     Oliver   13141 0.00669        9
-## 10  2017 M     Jacob    13106 0.00668       10
+#> # A tibble: 10 x 6
+#>     year sex   name         n    prop rankname
+#>    <dbl> <chr> <chr>    <int>   <dbl>    <dbl>
+#>  1  2017 M     Liam     18728 0.00954        1
+#>  2  2017 M     Noah     18326 0.00933        2
+#>  3  2017 M     William  14904 0.00759        3
+#>  4  2017 M     James    14232 0.00725        4
+#>  5  2017 M     Logan    13974 0.00712        5
+#>  6  2017 M     Benjamin 13733 0.00699        6
+#>  7  2017 M     Mason    13502 0.00688        7
+#>  8  2017 M     Elijah   13268 0.00676        8
+#>  9  2017 M     Oliver   13141 0.00669        9
+#> 10  2017 M     Jacob    13106 0.00668       10
 ```
 
 ### `summarise()` and `group_by()` S
@@ -1009,23 +926,20 @@ babynames %>% filter(sex == "M" & year == 2017) %>%
 ```r
 babynames %>% group_by(name) %>%
   summarise(totalbirths = sum(n))
-```
-
-```
-## # A tibble: 97,310 x 2
-##    name      totalbirths
-##    <chr>           <int>
-##  1 Aaban             107
-##  2 Aabha              35
-##  3 Aabid              10
-##  4 Aabir               5
-##  5 Aabriella          32
-##  6 Aada                5
-##  7 Aadam             254
-##  8 Aadan             130
-##  9 Aadarsh           199
-## 10 Aaden            4658
-## # … with 97,300 more rows
+#> # A tibble: 97,310 x 2
+#>    name      totalbirths
+#>    <chr>           <int>
+#>  1 Aaban             107
+#>  2 Aabha              35
+#>  3 Aabid              10
+#>  4 Aabir               5
+#>  5 Aabriella          32
+#>  6 Aada                5
+#>  7 Aadam             254
+#>  8 Aadan             130
+#>  9 Aadarsh           199
+#> 10 Aaden            4658
+#> # … with 97,300 more rows
 ```
 
 4. \* `group_by()` can also be used with other functions, including `mutate()`. Use `group_by()` and `mutate()` to rank the names from most to least popular in each year-sex combination.
@@ -1044,30 +958,27 @@ ranked_babynames %>% filter(rankname == 1) %>%
   group_by(name) %>%
   summarise(nappear = n()) %>%
   arrange(desc(nappear))
-```
-
-```
-## # A tibble: 18 x 2
-##    name     nappear
-##    <chr>      <int>
-##  1 Mary          76
-##  2 John          44
-##  3 Michael       44
-##  4 Robert        17
-##  5 Jennifer      15
-##  6 Jacob         14
-##  7 James         13
-##  8 Emily         12
-##  9 Jessica        9
-## 10 Lisa           8
-## 11 Linda          6
-## 12 Emma           5
-## 13 Noah           4
-## 14 Sophia         3
-## 15 Ashley         2
-## 16 Isabella       2
-## 17 David          1
-## 18 Liam           1
+#> # A tibble: 18 x 2
+#>    name     nappear
+#>    <chr>      <int>
+#>  1 Mary          76
+#>  2 John          44
+#>  3 Michael       44
+#>  4 Robert        17
+#>  5 Jennifer      15
+#>  6 Jacob         14
+#>  7 James         13
+#>  8 Emily         12
+#>  9 Jessica        9
+#> 10 Lisa           8
+#> 11 Linda          6
+#> 12 Emma           5
+#> 13 Noah           4
+#> 14 Sophia         3
+#> 15 Ashley         2
+#> 16 Isabella       2
+#> 17 David          1
+#> 18 Liam           1
 ```
 
 6. \* Run the following code. Intuitively, a `slice(1, 2, 3, 4, 5)` should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. Try to figure out what the issue is by using Google to search something like "`dplyr` not slicing correctly after using group by." What do you find?
@@ -1077,24 +988,21 @@ ranked_babynames %>% filter(rankname == 1) %>%
 babynames_test <- babynames %>%
   group_by(year, sex) %>% mutate(ntest = n / prop)
 babynames_test %>% slice(1, 2, 3, 4, 5)
-```
-
-```
-## # A tibble: 1,380 x 6
-## # Groups:   year, sex [276]
-##     year sex   name          n   prop   ntest
-##    <dbl> <chr> <chr>     <int>  <dbl>   <dbl>
-##  1  1880 F     Mary       7065 0.0724  97605.
-##  2  1880 F     Anna       2604 0.0267  97605.
-##  3  1880 F     Emma       2003 0.0205  97605.
-##  4  1880 F     Elizabeth  1939 0.0199  97605.
-##  5  1880 F     Minnie     1746 0.0179  97605.
-##  6  1880 M     John       9655 0.0815 118400.
-##  7  1880 M     William    9532 0.0805 118400.
-##  8  1880 M     James      5927 0.0501 118400.
-##  9  1880 M     Charles    5348 0.0452 118400.
-## 10  1880 M     George     5126 0.0433 118400.
-## # … with 1,370 more rows
+#> # A tibble: 1,380 x 6
+#> # Groups:   year, sex [276]
+#>     year sex   name          n   prop   ntest
+#>    <dbl> <chr> <chr>     <int>  <dbl>   <dbl>
+#>  1  1880 F     Mary       7065 0.0724  97605.
+#>  2  1880 F     Anna       2604 0.0267  97605.
+#>  3  1880 F     Emma       2003 0.0205  97605.
+#>  4  1880 F     Elizabeth  1939 0.0199  97605.
+#>  5  1880 F     Minnie     1746 0.0179  97605.
+#>  6  1880 M     John       9655 0.0815 118400.
+#>  7  1880 M     William    9532 0.0805 118400.
+#>  8  1880 M     James      5927 0.0501 118400.
+#>  9  1880 M     Charles    5348 0.0452 118400.
+#> 10  1880 M     George     5126 0.0433 118400.
+#> # … with 1,370 more rows
 ```
 
 Functions like `slice()` and `rank()` operate on defined groups in the data set if using a function like `group_by()` first. Sometimes this feature is quite convenient. But, if we no longer want `slice()` or `rank()` or other functions to account for these groups, we need to add an `ungroup()` pipe, which simply drops the groups that we had formed:
@@ -1102,17 +1010,14 @@ Functions like `slice()` and `rank()` operate on defined groups in the data set 
 
 ```r
 babynames_test %>% ungroup() %>% slice(1:5)
-```
-
-```
-## # A tibble: 5 x 6
-##    year sex   name          n   prop  ntest
-##   <dbl> <chr> <chr>     <int>  <dbl>  <dbl>
-## 1  1880 F     Mary       7065 0.0724 97605.
-## 2  1880 F     Anna       2604 0.0267 97605.
-## 3  1880 F     Emma       2003 0.0205 97605.
-## 4  1880 F     Elizabeth  1939 0.0199 97605.
-## 5  1880 F     Minnie     1746 0.0179 97605.
+#> # A tibble: 5 x 6
+#>    year sex   name          n   prop  ntest
+#>   <dbl> <chr> <chr>     <int>  <dbl>  <dbl>
+#> 1  1880 F     Mary       7065 0.0724 97605.
+#> 2  1880 F     Anna       2604 0.0267 97605.
+#> 3  1880 F     Emma       2003 0.0205 97605.
+#> 4  1880 F     Elizabeth  1939 0.0199 97605.
+#> 5  1880 F     Minnie     1746 0.0179 97605.
 ```
 
 ### Missing Values S
@@ -1122,16 +1027,13 @@ babynames_test %>% ungroup() %>% slice(1:5)
 
 ```r
 toy_df %>% mutate(xy = x * y)
-```
-
-```
-## # A tibble: 4 x 5
-##       x     y z     newvar    xy
-##   <dbl> <dbl> <chr>  <dbl> <dbl>
-## 1    NA     1 A      NA       NA
-## 2     3     4 A       0.75    12
-## 3     4     3 B       1.33    12
-## 4     7     2 <NA>    3.5     14
+#> # A tibble: 4 x 5
+#>       x     y z     newvar    xy
+#>   <dbl> <dbl> <chr>  <dbl> <dbl>
+#> 1    NA     1 A      NA       NA
+#> 2     3     4 A       0.75    12
+#> 3     4     3 B       1.33    12
+#> 4     7     2 <NA>    3.5     14
 ```
 
 `R` puts another `NA` in place of x times y for the observation with the missing x.
@@ -1151,18 +1053,12 @@ baby5 <- babynames %>% filter(name == "Matthew" | name == "Ivan" |
                                 name == "Michael")
 baby5_tot <- baby5 %>% group_by(year, name) %>%
   summarise(ntot = sum(n))
-```
-
-```
-## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
-```
-
-```r
+#> `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 ggplot(data = baby5_tot, aes(x = year, y = ntot, colour = name)) +
   geom_line()
 ```
 
-<img src="03-dplyr_files/figure-html/unnamed-chunk-49-1.png" width="672" />
+![](03-dplyr_files/figure-epub3/unnamed-chunk-49-1.png)<!-- -->
 
 4. \* In some cases throughout this chapter, we've renamed data sets using `<-` with the same name like
 
@@ -1200,13 +1096,10 @@ Usually not the best practice. Again, naming the summarized data set the same as
 ```r
 toy_df <- toy_df %>% summarise(meanx = mean(x))
 toy_df
-```
-
-```
-## # A tibble: 1 x 1
-##   meanx
-##   <dbl>
-## 1    NA
+#> # A tibble: 1 x 1
+#>   meanx
+#>   <dbl>
+#> 1    NA
 ```
 
 means that we now have no way to access the original data in `toy_df`.

@@ -42,21 +42,20 @@ Run the code in the following `R` chunk to read in the data.
 library(tidyverse)
 videogame_df <- read_csv("data/videogame_clean.csv")
 head(videogame_df)
-```
-
-```
-## # A tibble: 6 x 15
-##   game       release_date release_date2 price owners   median_playtime metascore
-##   <chr>      <chr>        <date>        <dbl> <chr>              <dbl>     <dbl>
-## 1 Half-Life… Nov 16, 2004 2004-11-16     9.99 10,000,…              66        96
-## 2 Counter-S… Nov 1, 2004  2004-11-01     9.99 10,000,…             128        88
-## 3 Counter-S… Mar 1, 2004  2004-03-01     9.99 10,000,…               3        65
-## 4 Half-Life… Nov 1, 2004  2004-11-01     4.99 5,000,0…               0        NA
-## 5 Half-Life… Jun 1, 2004  2004-06-01     9.99 2,000,0…               0        NA
-## 6 CS2D       Dec 24, 2004 2004-12-24    NA    1,000,0…              10        NA
-## # … with 8 more variables: price_cat <dbl>, meta_cat <chr>,
-## #   playtime_miss <lgl>, number <dbl>, developer <chr>, publisher <chr>,
-## #   average_playtime <dbl>, meta_cat_factor <chr>
+#> # A tibble: 6 x 15
+#>   game          release_date release_date2 price owners     
+#>   <chr>         <chr>        <date>        <dbl> <chr>      
+#> 1 Half-Life 2   Nov 16, 2004 2004-11-16     9.99 10,000,000…
+#> 2 Counter-Stri… Nov 1, 2004  2004-11-01     9.99 10,000,000…
+#> 3 Counter-Stri… Mar 1, 2004  2004-03-01     9.99 10,000,000…
+#> 4 Half-Life 2:… Nov 1, 2004  2004-11-01     4.99 5,000,000 …
+#> 5 Half-Life: S… Jun 1, 2004  2004-06-01     9.99 2,000,000 …
+#> 6 CS2D          Dec 24, 2004 2004-12-24    NA    1,000,000 …
+#> # … with 10 more variables: median_playtime <dbl>,
+#> #   metascore <dbl>, price_cat <dbl>, meta_cat <chr>,
+#> #   playtime_miss <lgl>, number <dbl>, developer <chr>,
+#> #   publisher <chr>, average_playtime <dbl>,
+#> #   meta_cat_factor <chr>
 ```
 
 A data frame or tibble holds variables that are allowed to be different classes. If a variable is a different class than you would expect, you'll get some strange errors or results when trying to wrangle the data or make graphics. 
@@ -68,24 +67,21 @@ Run the following lines of code. In some cases, we are only using the first 100 
 videogame_small <- videogame_df %>% slice(1:100)
 ggplot(data = videogame_small, aes(x = release_date, y = price)) +
   geom_point() 
+#> Warning: Removed 5 rows containing missing values
+#> (geom_point).
 ```
 
-```
-## Warning: Removed 5 rows containing missing values (geom_point).
-```
-
-<img src="06-basics_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+![](06-basics_files/figure-epub3/unnamed-chunk-2-1.png)<!-- -->
 
 ```r
+
 ggplot(data = videogame_small, aes(x = release_date2, y = metascore)) +
   geom_point(aes(colour = price_cat))
+#> Warning: Removed 43 rows containing missing values
+#> (geom_point).
 ```
 
-```
-## Warning: Removed 43 rows containing missing values (geom_point).
-```
-
-<img src="06-basics_files/figure-html/unnamed-chunk-2-2.png" width="672" />
+![](06-basics_files/figure-epub3/unnamed-chunk-2-2.png)<!-- -->
 
 In the first plot, `release_date` isn't ordered according to how you would expect (by date). Instead, `R` orders it alphabetically.
 
@@ -100,21 +96,20 @@ If you examine the output of the following line of code
 
 ```r
 head(videogame_df)
-```
-
-```
-## # A tibble: 6 x 15
-##   game       release_date release_date2 price owners   median_playtime metascore
-##   <chr>      <chr>        <date>        <dbl> <chr>              <dbl>     <dbl>
-## 1 Half-Life… Nov 16, 2004 2004-11-16     9.99 10,000,…              66        96
-## 2 Counter-S… Nov 1, 2004  2004-11-01     9.99 10,000,…             128        88
-## 3 Counter-S… Mar 1, 2004  2004-03-01     9.99 10,000,…               3        65
-## 4 Half-Life… Nov 1, 2004  2004-11-01     4.99 5,000,0…               0        NA
-## 5 Half-Life… Jun 1, 2004  2004-06-01     9.99 2,000,0…               0        NA
-## 6 CS2D       Dec 24, 2004 2004-12-24    NA    1,000,0…              10        NA
-## # … with 8 more variables: price_cat <dbl>, meta_cat <chr>,
-## #   playtime_miss <lgl>, number <dbl>, developer <chr>, publisher <chr>,
-## #   average_playtime <dbl>, meta_cat_factor <chr>
+#> # A tibble: 6 x 15
+#>   game          release_date release_date2 price owners     
+#>   <chr>         <chr>        <date>        <dbl> <chr>      
+#> 1 Half-Life 2   Nov 16, 2004 2004-11-16     9.99 10,000,000…
+#> 2 Counter-Stri… Nov 1, 2004  2004-11-01     9.99 10,000,000…
+#> 3 Counter-Stri… Mar 1, 2004  2004-03-01     9.99 10,000,000…
+#> 4 Half-Life 2:… Nov 1, 2004  2004-11-01     4.99 5,000,000 …
+#> 5 Half-Life: S… Jun 1, 2004  2004-06-01     9.99 2,000,000 …
+#> 6 CS2D          Dec 24, 2004 2004-12-24    NA    1,000,000 …
+#> # … with 10 more variables: median_playtime <dbl>,
+#> #   metascore <dbl>, price_cat <dbl>, meta_cat <chr>,
+#> #   playtime_miss <lgl>, number <dbl>, developer <chr>,
+#> #   publisher <chr>, average_playtime <dbl>,
+#> #   meta_cat_factor <chr>
 ```
 
 you'll see that, at the very top of the output, right below the variable names, `R` provides you with the classes of variables in the `tibble`. 
@@ -140,10 +135,7 @@ prints the first thousand entries of the variable `game`. There are a few ways t
 
 ```r
 str(videogame_df$game)
-```
-
-```
-##  chr [1:26688] "Half-Life 2" "Counter-Strike: Source" ...
+#>  chr [1:26688] "Half-Life 2" "Counter-Strike: Source" ...
 ```
 
 You can also get a variable's class more directly with `class()`
@@ -151,10 +143,7 @@ You can also get a variable's class more directly with `class()`
 
 ```r
 class(videogame_df$game)
-```
-
-```
-## [1] "character"
+#> [1] "character"
 ```
 
 ## Classes in Detail
@@ -168,26 +157,14 @@ With the character class, `R` will give you a warning and/or a missing value if 
 
 ```r
 mean(videogame_df$game)
-```
-
-```
-## Warning in mean.default(videogame_df$game): argument is not numeric or logical:
-## returning NA
-```
-
-```
-## [1] NA
-```
-
-```r
+#> Warning in mean.default(videogame_df$game): argument is not
+#> numeric or logical: returning NA
+#> [1] NA
 videogame_df %>% summarise(maxgame = max(game))
-```
-
-```
-## # A tibble: 1 x 1
-##   maxgame
-##   <chr>  
-## 1 <NA>
+#> # A tibble: 1 x 1
+#>   maxgame
+#>   <chr>  
+#> 1 <NA>
 ```
 
 You also can't convert a character class to numeric. You can, however, convert a character class to a `<fct>` class, using `as.factor()`. The `<fct>` class will be useful when we discuss the `forcats` package, but isn't particularly useful now.
@@ -195,18 +172,9 @@ You also can't convert a character class to numeric. You can, however, convert a
 
 ```r
 class(videogame_df$meta_cat)
-```
-
-```
-## [1] "character"
-```
-
-```r
+#> [1] "character"
 class(as.factor(videogame_df$meta_cat))
-```
-
-```
-## [1] "factor"
+#> [1] "factor"
 ```
 
 In general, `as._____` will lets you convert between classes. Note, however, that we aren't saving our converted variable anywhere. If we wanted the conversion to the factor to be saved in the data set, we can use `mutate()`:
@@ -216,10 +184,7 @@ In general, `as._____` will lets you convert between classes. Note, however, tha
 videogame_df <- videogame_df %>%
   mutate(meta_cat_factor = as.factor(meta_cat))
 str(videogame_df$meta_cat_factor)
-```
-
-```
-##  Factor w/ 4 levels "Generally Favorable",..: 4 1 3 NA NA NA 4 1 3 NA ...
+#>  Factor w/ 4 levels "Generally Favorable",..: 4 1 3 NA NA NA 4 1 3 NA ...
 ```
 
 For most `R` functions, it won't matter whether your variable is in class character or class factor. In general, though, character classes are for variables that have a ton of different levels, like the name of the videogame, whereas factors are reserved for categorical variables with a finite number of levels.
@@ -231,18 +196,9 @@ The `<date>` class is used for dates, and the `<datetime>` class is used for Dat
 
 ```r
 str(videogame_df$release_date)
-```
-
-```
-##  chr [1:26688] "Nov 16, 2004" "Nov 1, 2004" "Mar 1, 2004" "Nov 1, 2004" ...
-```
-
-```r
+#>  chr [1:26688] "Nov 16, 2004" "Nov 1, 2004" ...
 str(videogame_df$release_date2)
-```
-
-```
-##  Date[1:26688], format: "2004-11-16" "2004-11-01" "2004-03-01" "2004-11-01" "2004-06-01" ...
+#>  Date[1:26688], format: "2004-11-16" "2004-11-01" "2004-03-01" ...
 ```
 
 `release_date` is class character, which is why we had the issue with the odd ordering of the dates earlier. You can try converting it using `as.Date`, but this function doesn't always work:
@@ -250,10 +206,7 @@ str(videogame_df$release_date2)
 
 ```r
 as.Date(videogame_df$release_date)
-```
-
-```
-## Error in charToDate(x): character string is not in a standard unambiguous format
+#> Error in charToDate(x): character string is not in a standard unambiguous format
 ```
 
 Dates and times can be pretty complicated. In fact, we will spend an entire week covering them using the `lubridate` package.
@@ -263,18 +216,9 @@ On variables that are in `Date` format, like `release_date2`, we can use numeric
 
 ```r
 median(videogame_df$release_date2, na.rm = TRUE)
-```
-
-```
-## [1] "2017-06-09"
-```
-
-```r
+#> [1] "2017-06-09"
 mean(videogame_df$release_date2, na.rm = TRUE)
-```
-
-```
-## [1] "2016-09-15"
+#> [1] "2016-09-15"
 ```
 
 What do you think taking the median or taking the mean of a date class means?
@@ -286,10 +230,7 @@ Class `<dbl>` and `<int>` are probably the most self-explanatory classes. `<dbl>
 
 ```r
 str(videogame_df$price)
-```
-
-```
-##  num [1:26688] 9.99 9.99 9.99 4.99 9.99 ...
+#>  num [1:26688] 9.99 9.99 9.99 4.99 9.99 ...
 ```
 
 Problems arise when numeric variables are coded as something non-numeric, or when non-numeric variables are coded as numeric. For example, examine:
@@ -297,10 +238,7 @@ Problems arise when numeric variables are coded as something non-numeric, or whe
 
 ```r
 str(videogame_df$price_cat)
-```
-
-```
-##  num [1:26688] 1 1 1 1 1 NA 2 1 1 1 ...
+#>  num [1:26688] 1 1 1 1 1 NA 2 1 1 1 ...
 ```
 
 `price_cat` is categorical but is coded as `1` for cheap games, `2` for moderately priced games, and `3` for expensive games. Therefore, `R` thinks that the variable is numeric, when, it's actually a factor.
@@ -308,10 +246,7 @@ str(videogame_df$price_cat)
 
 ```r
 str(as.factor(videogame_df$price_cat))
-```
-
-```
-##  Factor w/ 3 levels "1","2","3": 1 1 1 1 1 NA 2 1 1 1 ...
+#>  Factor w/ 3 levels "1","2","3": 1 1 1 1 1 NA 2 1 1 1 ...
 ```
 
 This is the cause of the odd colour scale that we encountered earlier and can be fixed by converting `price_cat` to a factor:
@@ -322,13 +257,11 @@ videogame_df <- videogame_df %>%
   mutate(price_factor = as.factor(price_cat)) 
 ggplot(data = videogame_df, aes(x = release_date2, y = metascore)) +
   geom_point(aes(colour = price_factor))
+#> Warning: Removed 23838 rows containing missing values
+#> (geom_point).
 ```
 
-```
-## Warning: Removed 23838 rows containing missing values (geom_point).
-```
-
-<img src="06-basics_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](06-basics_files/figure-epub3/unnamed-chunk-16-1.png)<!-- -->
 
 ### `<lgl>` Class
 
@@ -337,10 +270,7 @@ Finally, there is a class of variables called logical. These variables can only 
 
 ```r
 str(videogame_df$playtime_miss)
-```
-
-```
-##  logi [1:26688] FALSE FALSE FALSE TRUE TRUE FALSE ...
+#>  logi [1:26688] FALSE FALSE FALSE TRUE TRUE FALSE ...
 ```
 
 It's a little strange at first, but `R` can perform numeric operations on logical classes. All `R` does is treat every `TRUE` as a `1` and every `FALSE` as a `0`. Therefore, `sum()` gives the total number of `TRUE`s and `mean()` gives the proportion of `TRUE`s. So, we can find the number and proportion of games that are missing their `median_playtime` as:
@@ -348,18 +278,9 @@ It's a little strange at first, but `R` can perform numeric operations on logica
 
 ```r
 sum(videogame_df$playtime_miss)
-```
-
-```
-## [1] 25837
-```
-
-```r
+#> [1] 25837
 mean(videogame_df$playtime_miss)
-```
-
-```
-## [1] 0.968113
+#> [1] 0.968113
 ```
 
 There's a lot of games that are missing this information! 
@@ -414,13 +335,10 @@ We will have a small section on `tibble`s in the coming weeks so we won't focus 
 
 ```r
 videogame_df[5, 3]
-```
-
-```
-## # A tibble: 1 x 1
-##   release_date2
-##   <date>       
-## 1 2004-06-01
+#> # A tibble: 1 x 1
+#>   release_date2
+#>   <date>       
+#> 1 2004-06-01
 ```
 
 More often, we'd want to grab an entire row (or range of rows) or an entire column. We can do this by leaving the row number blank (to grab the entire column) or by leaving the column number blank (to grab the entire row):
@@ -464,18 +382,9 @@ vec1 <- c(1, 3, 2)
 vec2 <- c("b", 1, 2)
 vec3 <- c(FALSE, FALSE, TRUE)
 str(vec1); str(vec2); str(vec3)
-```
-
-```
-##  num [1:3] 1 3 2
-```
-
-```
-##  chr [1:3] "b" "1" "2"
-```
-
-```
-##  logi [1:3] FALSE FALSE TRUE
+#>  num [1:3] 1 3 2
+#>  chr [1:3] "b" "1" "2"
+#>  logi [1:3] FALSE FALSE TRUE
 ```
 
 Notice that `vec2` is a character class. `R` requires all elements in a vector to be of one class; since `R` knows `b` can't be numeric, it makes all of the numbers characters as well.
@@ -495,10 +404,7 @@ Just like tibbles, you can save vectors as something for later use:
 ```r
 metavec <- videogame_df$metascore
 mean(metavec, na.rm = TRUE)
-```
-
-```
-## [1] 71.89544
+#> [1] 71.89544
 ```
 
 How would you get the mean `metascore` using `dplyr` functions?
@@ -508,10 +414,7 @@ Vectors are one-dimensional: if we want to grab the 100th element of a vector we
 
 ```r
 metavec[100] ## 100th element is missing
-```
-
-```
-## [1] NA
+#> [1] NA
 ```
 
 Be aware that, if you're coming from a math perspective, a "vector" in `R` doesn't correspond to a "vector" in mathematics or physics.
@@ -525,24 +428,21 @@ Lists are one of the more flexible objects in `R`: you can put objects of differ
 testlist <- list("a", 4, c(1, 4, 2, 6),
                  tibble(x = c(1, 2), y = c(3, 2)))
 testlist
-```
-
-```
-## [[1]]
-## [1] "a"
-## 
-## [[2]]
-## [1] 4
-## 
-## [[3]]
-## [1] 1 4 2 6
-## 
-## [[4]]
-## # A tibble: 2 x 2
-##       x     y
-##   <dbl> <dbl>
-## 1     1     3
-## 2     2     2
+#> [[1]]
+#> [1] "a"
+#> 
+#> [[2]]
+#> [1] 4
+#> 
+#> [[3]]
+#> [1] 1 4 2 6
+#> 
+#> [[4]]
+#> # A tibble: 2 x 2
+#>       x     y
+#>   <dbl> <dbl>
+#> 1     1     3
+#> 2     2     2
 ```
 
 `testlist` has four elements: a single character `"a"`, a single number `4`, a vector of `1, 4, 2, 6`, and a `tibble` with a couple of variables. Lists can therefore be used to store complex information that wouldn't be as easily stored in a `vector` or `tibble`.
@@ -642,10 +542,7 @@ For example, if you have taken STAT 213, you've used `lm()` to fit many differen
 
 ```r
 videogame_df %>% lm(metascore ~ price)
-```
-
-```
-## Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame
+#> Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame
 ```
 
 But it throws us an error. Typing in `?lm` reveals that its first argument is a `formula` to fit the model, not a data set. So the function is trying to run
@@ -653,10 +550,7 @@ But it throws us an error. Typing in `?lm` reveals that its first argument is a 
 
 ```r
 lm(videogame_df, metascore ~ price)
-```
-
-```
-## Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame
+#> Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame
 ```
 
 which doesn't work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).
@@ -672,24 +566,21 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
                    month),
           meanweekend = mean(distance, na.rm = TRUE)) 
-```
-
-```
-## # A tibble: 12 x 2
-##    month meanweekend
-##    <dbl>       <dbl>
-##  1     1        3.96
-##  2     2        4.94
-##  3     3        5.15
-##  4     4        5.48
-##  5     5        4.96
-##  6     6        3.78
-##  7     7        5.81
-##  8     8        5.59
-##  9     9        4.62
-## 10    10        3.98
-## 11    11        2.86
-## 12    12        3.55
+#> # A tibble: 12 x 2
+#>    month meanweekend
+#>    <dbl>       <dbl>
+#>  1     1        3.96
+#>  2     2        4.94
+#>  3     3        5.15
+#>  4     4        5.48
+#>  5     5        4.96
+#>  6     6        3.78
+#>  7     7        5.81
+#>  8     8        5.59
+#>  9     9        4.62
+#> 10    10        3.98
+#> 11    11        2.86
+#> 12    12        3.55
 ```
 
 2. Explain why the following code gives a warning message and returns `NA`. Use the list of Arguments in `?mean` in your explanation.
@@ -697,15 +588,9 @@ summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
 
 ```r
 fitness_df %>% mean(distance, na.rm = TRUE)
-```
-
-```
-## Warning in mean.default(., distance, na.rm = TRUE): argument is not numeric or
-## logical: returning NA
-```
-
-```
-## [1] NA
+#> Warning in mean.default(., distance, na.rm = TRUE): argument
+#> is not numeric or logical: returning NA
+#> [1] NA
 ```
 
 
@@ -723,21 +608,18 @@ Look at the top of your bottom-left terminal window. If you've made an `R projec
 
 ```r
 fitness_df <- read_csv("data/higham_fitness_notclean.csv")
-```
-
-```
-## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Start = col_character(),
-##   month = col_double(),
-##   weekday = col_double(),
-##   dayofyear = col_double(),
-##   distance = col_double(),
-##   steps = col_double(),
-##   flights = col_double(),
-##   active_cals = col_double()
-## )
+#> 
+#> ── Column specification ────────────────────────────────────
+#> cols(
+#>   Start = col_character(),
+#>   month = col_double(),
+#>   weekday = col_double(),
+#>   dayofyear = col_double(),
+#>   distance = col_double(),
+#>   steps = col_double(),
+#>   flights = col_double(),
+#>   active_cals = col_double()
+#> )
 ```
 
 starts at the path given in the console, looks for a folder called `data` in that path and looks for a file called `higham_fitness_notclean.csv` in the data folder. 
@@ -861,13 +743,11 @@ fitness_df <- fitness_df %>% mutate(weekday_cat = as.factor(weekday))
 ggplot(data = fitness_df, aes(x = active_cals)) +
   geom_freqpoly(aes(group = weekday_cat, colour = weekday_cat)) +
   scale_colour_viridis_d()
+#> `stat_bin()` using `bins = 30`. Pick better value with
+#> `binwidth`.
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-<img src="06-basics_files/figure-html/unnamed-chunk-51-1.png" width="672" />
+![](06-basics_files/figure-epub3/unnamed-chunk-51-1.png)<!-- -->
 
 3. \* What is a third variable in the data set that has an incorrect `class`?
 
@@ -894,26 +774,12 @@ b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind`
 
 ```r
 1 %in% c(1, 2, 3, 4)
-```
-
-```
-## [1] TRUE
-```
-
-```r
+#> [1] TRUE
 2 %in% c(1, 2, 3, 4)
-```
+#> [1] TRUE
 
-```
-## [1] TRUE
-```
-
-```r
 2 %in% c(3, 4, 5, 6)
-```
-
-```
-## [1] FALSE
+#> [1] FALSE
 ```
 
 
@@ -922,47 +788,41 @@ fitness_df %>%
   mutate(weekend_ind = case_when(weekday %in% vecweekend ~ "weekend",
                                  weekday %in% vecweekday ~ "weekday")) %>%
   select(weekend_ind, everything())
-```
+#> # A tibble: 584 x 10
+#>    weekend_ind Start month weekday dayofyear distance  steps
+#>    <chr>       <chr> <dbl>   <dbl>     <dbl>    <dbl>  <dbl>
+#>  1 weekday     11/2…    11       4       332    0.930  1885.
+#>  2 weekday     11/2…    11       5       333    4.64   8953.
+#>  3 weekday     11/3…    11       6       334    6.05  11665 
+#>  4 weekend     12/1…    12       7       335    6.80  12117 
+#>  5 weekend     12/2…    12       1       336    4.61   8925.
+#>  6 weekday     12/3…    12       2       337    3.96   7205 
+#>  7 weekday     12/4…    12       3       338    6.60  12483.
+#>  8 weekday     12/5…    12       4       339    4.91   9258.
+#>  9 weekday     12/6…    12       5       340    7.50  14208 
+#> 10 weekday     12/7…    12       6       341    4.27   8269.
+#> # … with 574 more rows, and 3 more variables:
+#> #   flights <dbl>, active_cals <dbl>, weekday_cat <fct>
 
-```
-## # A tibble: 584 x 10
-##    weekend_ind Start month weekday dayofyear distance  steps flights active_cals
-##    <chr>       <chr> <dbl>   <dbl>     <dbl>    <dbl>  <dbl>   <dbl>       <dbl>
-##  1 weekday     11/2…    11       4       332    0.930  1885.       0        57.8
-##  2 weekday     11/2…    11       5       333    4.64   8953.      18       509. 
-##  3 weekday     11/3…    11       6       334    6.05  11665       12       599. 
-##  4 weekend     12/1…    12       7       335    6.80  12117        6       661. 
-##  5 weekend     12/2…    12       1       336    4.61   8925.       1       527. 
-##  6 weekday     12/3…    12       2       337    3.96   7205        2       550. 
-##  7 weekday     12/4…    12       3       338    6.60  12483.       5       670. 
-##  8 weekday     12/5…    12       4       339    4.91   9258.       6       557. 
-##  9 weekday     12/6…    12       5       340    7.50  14208       13       997. 
-## 10 weekday     12/7…    12       6       341    4.27   8269.       8       533. 
-## # … with 574 more rows, and 1 more variable: weekday_cat <fct>
-```
-
-```r
 ## can also use if_else, which is actually a little simpler in this case:
 fitness_df %>% mutate(weekend_ind = if_else(weekday %in% vecweekend,
   true = "weekend", false = "weekday")) %>%
   select(weekend_ind, everything())
-```
-
-```
-## # A tibble: 584 x 10
-##    weekend_ind Start month weekday dayofyear distance  steps flights active_cals
-##    <chr>       <chr> <dbl>   <dbl>     <dbl>    <dbl>  <dbl>   <dbl>       <dbl>
-##  1 weekday     11/2…    11       4       332    0.930  1885.       0        57.8
-##  2 weekday     11/2…    11       5       333    4.64   8953.      18       509. 
-##  3 weekday     11/3…    11       6       334    6.05  11665       12       599. 
-##  4 weekend     12/1…    12       7       335    6.80  12117        6       661. 
-##  5 weekend     12/2…    12       1       336    4.61   8925.       1       527. 
-##  6 weekday     12/3…    12       2       337    3.96   7205        2       550. 
-##  7 weekday     12/4…    12       3       338    6.60  12483.       5       670. 
-##  8 weekday     12/5…    12       4       339    4.91   9258.       6       557. 
-##  9 weekday     12/6…    12       5       340    7.50  14208       13       997. 
-## 10 weekday     12/7…    12       6       341    4.27   8269.       8       533. 
-## # … with 574 more rows, and 1 more variable: weekday_cat <fct>
+#> # A tibble: 584 x 10
+#>    weekend_ind Start month weekday dayofyear distance  steps
+#>    <chr>       <chr> <dbl>   <dbl>     <dbl>    <dbl>  <dbl>
+#>  1 weekday     11/2…    11       4       332    0.930  1885.
+#>  2 weekday     11/2…    11       5       333    4.64   8953.
+#>  3 weekday     11/3…    11       6       334    6.05  11665 
+#>  4 weekend     12/1…    12       7       335    6.80  12117 
+#>  5 weekend     12/2…    12       1       336    4.61   8925.
+#>  6 weekday     12/3…    12       2       337    3.96   7205 
+#>  7 weekday     12/4…    12       3       338    6.60  12483.
+#>  8 weekday     12/5…    12       4       339    4.91   9258.
+#>  9 weekday     12/6…    12       5       340    7.50  14208 
+#> 10 weekday     12/7…    12       6       341    4.27   8269.
+#> # … with 574 more rows, and 3 more variables:
+#> #   flights <dbl>, active_cals <dbl>, weekday_cat <fct>
 ```
 
 ### Piping S
@@ -974,24 +834,21 @@ fitness_df %>% mutate(weekend_ind = if_else(weekday %in% vecweekend,
 summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
                    month),
           meanweekend = mean(distance, na.rm = TRUE)) 
-```
-
-```
-## # A tibble: 12 x 2
-##    month meanweekend
-##    <dbl>       <dbl>
-##  1     1        3.96
-##  2     2        4.94
-##  3     3        5.15
-##  4     4        5.48
-##  5     5        4.96
-##  6     6        3.78
-##  7     7        5.81
-##  8     8        5.59
-##  9     9        4.62
-## 10    10        3.98
-## 11    11        2.86
-## 12    12        3.55
+#> # A tibble: 12 x 2
+#>    month meanweekend
+#>    <dbl>       <dbl>
+#>  1     1        3.96
+#>  2     2        4.94
+#>  3     3        5.15
+#>  4     4        5.48
+#>  5     5        4.96
+#>  6     6        3.78
+#>  7     7        5.81
+#>  8     8        5.59
+#>  9     9        4.62
+#> 10    10        3.98
+#> 11    11        2.86
+#> 12    12        3.55
 ```
 
 
@@ -999,24 +856,21 @@ summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
 fitness_df %>% filter(weekday == 1 | weekday == 7) %>%
   group_by(month) %>%
   summarise(meanweekend = mean(distance, na.rm = TRUE)) 
-```
-
-```
-## # A tibble: 12 x 2
-##    month meanweekend
-##    <dbl>       <dbl>
-##  1     1        3.96
-##  2     2        4.94
-##  3     3        5.15
-##  4     4        5.48
-##  5     5        4.96
-##  6     6        3.78
-##  7     7        5.81
-##  8     8        5.59
-##  9     9        4.62
-## 10    10        3.98
-## 11    11        2.86
-## 12    12        3.55
+#> # A tibble: 12 x 2
+#>    month meanweekend
+#>    <dbl>       <dbl>
+#>  1     1        3.96
+#>  2     2        4.94
+#>  3     3        5.15
+#>  4     4        5.48
+#>  5     5        4.96
+#>  6     6        3.78
+#>  7     7        5.81
+#>  8     8        5.59
+#>  9     9        4.62
+#> 10    10        3.98
+#> 11    11        2.86
+#> 12    12        3.55
 ```
 
 ### Other R Topics S
@@ -1053,7 +907,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_point()
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-59-1.png" width="672" />
+![](06-basics_files/figure-epub3/unnamed-chunk-59-1.png)<!-- -->
 
 3. \* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is _discrete_: `metascore` can only take on integer values in this case. Change `geom_point()` in your previous plot to `geom_jitter()`. Then, use the help to write a sentence about what `geom_jitter()` does.
 
@@ -1064,7 +918,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter()
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-60-1.png" width="672" />
+![](06-basics_files/figure-epub3/unnamed-chunk-60-1.png)<!-- -->
 
 `geom_jitter()` adds a small amount of "noise" to each data point so that points don't overlap quite as much.
 
@@ -1077,7 +931,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter(alpha = 0.4)
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-61-1.png" width="672" />
+![](06-basics_files/figure-epub3/unnamed-chunk-61-1.png)<!-- -->
 
 ```r
 ## can see a lot of ponits have median playtimes close to 0
@@ -1095,7 +949,7 @@ ggplot(data = videogame_nomiss,
   geom_label_repel(data = videogame_long, aes(label = game))
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-62-1.png" width="672" />
+![](06-basics_files/figure-epub3/unnamed-chunk-62-1.png)<!-- -->
 
 ## Non-Exercise `R` Code {#rcode-6}
 

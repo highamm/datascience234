@@ -43,27 +43,24 @@ library(tidyverse)
 pres_df <- read_table("data/PRES2000.txt") 
 ## don't worry about the `read_table` function....yet
 head(pres_df)
-```
-
-```
-## # A tibble: 6 x 6
-##     Gore   Bush Buchanan Nader Other County  
-##    <dbl>  <dbl>    <dbl> <dbl> <dbl> <chr>   
-## 1  47365  34124      263  3226   751 ALACHUA 
-## 2   2392   5610       73    53    26 BAKER   
-## 3  18850  38637      248   828   242 BAY     
-## 4   3075   5414       65    84    35 BRADFORD
-## 5  97318 115185      570  4470   852 BREVARD 
-## 6 386561 177323      788  7101  1623 BROWAR
+#> # A tibble: 6 x 6
+#>     Gore   Bush Buchanan Nader Other County  
+#>    <dbl>  <dbl>    <dbl> <dbl> <dbl> <chr>   
+#> 1  47365  34124      263  3226   751 ALACHUA 
+#> 2   2392   5610       73    53    26 BAKER   
+#> 3  18850  38637      248   828   242 BAY     
+#> 4   3075   5414       65    84    35 BRADFORD
+#> 5  97318 115185      570  4470   852 BREVARD 
+#> 6 386561 177323      788  7101  1623 BROWAR
 ```
 
 Pay special attention to the variable names: we'll need to use these names when we make all of our plots. And, `R` is case-sensitive, meaning that we will, for example, need to use `Gore`, not `gore`.
 
 We are trying to go very light on the technical code terminology to start out with (but we will come back to some things later in the semester). The terminology will make a lot more sense once you've actually worked with data. But, there are three terms that will be thrown around quite a bit in the next few weeks: _function_, _argument_, and _object_. 
 
-* a _function_ in `R` is always* (*always for this class) followed by an open `(` and ended with a closed `)`. In non-technical terms, a _function_ __does__ something to its inputs and is often analagous to an English verb. For example, the `mean()` function calculates the mean, the `rank()` functions ranks a variable from lowest to highest, and the `labs()` is used to add labels to a plot. Every function has a help file that can be accessed by typing in `?name_of_function`. Try typing `?mean` in your lower left window.
+* a _function_ in `R` is always* (*always for this class) followed by an open `(` and ended with a closed `)`. In non-technical terms, a _function_ __does__ something to its inputs and is often analogous to an English verb. For example, the `mean()` function calculates the mean, the `rank()` functions ranks a variable from lowest to highest, and the `labs()` is used to add labels to a plot. Every function has a help file that can be accessed by typing in `?name_of_function`. Try typing `?mean` in your lower left window.
 
-* an _argument_ is something that goes inside the parentheses in a function. Arguments could include _objects_, or they might not. In the bottom-left window, type `?mean` to view the Help file on this `R` function. We see that `mean()` has 3 arguments: `x`, which is an `R` object, `trim`, and `na.rm`. `trim = 0` is the default, which means that, by default, `R` will not trim any of the numbers when commputing the mean.
+* an _argument_ is something that goes inside the parentheses in a function. Arguments could include _objects_, or they might not. In the bottom-left window, type `?mean` to view the Help file on this `R` function. We see that `mean()` has 3 arguments: `x`, which is an `R` object, `trim`, and `na.rm`. `trim = 0` is the default, which means that, by default, `R` will not trim any of the numbers when computing the mean.
 
 * an _object_ is something created in `R`, usually with `<-`. So, looking at the code above where we read in the data, `pres_df` is an `R` object. 
 
@@ -71,7 +68,7 @@ All of this will make more sense as we go through these first couple of weeks.
 
 ## Basic Plot Structure 
 
-We will use the `ggplot()` function in the `ggplot2` package to contruct visualizations of data. the `ggplot()` function has 3 basic components:
+We will use the `ggplot()` function in the `ggplot2` package to construct visualizations of data. the `ggplot()` function has 3 basic components:
 
 * a `data` argument, specifying the name of your data set (`pres_df` above)
 * a `mapping` argument, specifying that specifies the aesthetics of your plot (`aes()`). Common aesthetics are `x` position, `y` position, `colour`, `size`, `shape`, `group`, and `fill`.
@@ -102,13 +99,11 @@ Let's go ahead and begin our exploration of the data by making a histogram of th
 ggplot(data = pres_df, mapping = aes(x = Gore)) +
   geom_histogram(colour = "black", fill = "white") +
   xlab("Votes for Gore in Florida")
+#> `stat_bin()` using `bins = 30`. Pick better value with
+#> `binwidth`.
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
 
 What do the 1e+05, 2e+05, etc. labels on the x-axis mean?
 
@@ -127,13 +122,11 @@ Another graph useful in visualizing a single quantitative variable is a frequenc
 ggplot(data = pres_df, mapping = aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") 
+#> `stat_bin()` using `bins = 30`. Pick better value with
+#> `binwidth`.
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
 
 The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including __both__ a geom_freqpoly() and a geom_histogram() in your plot, though it doesn't make for the prettiest graph:
 
@@ -143,14 +136,13 @@ ggplot(data = pres_df, mapping = aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") +
   geom_histogram() 
+#> `stat_bin()` using `bins = 30`. Pick better value with
+#> `binwidth`.
+#> `stat_bin()` using `bins = 30`. Pick better value with
+#> `binwidth`.
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-5-1.png)<!-- -->
 
 ### `R` Code Style
 
@@ -183,23 +175,20 @@ pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
                                                 true = "Gore",
                                                 false = "Bush"))
 pres_cat
-```
-
-```
-## # A tibble: 67 x 7
-##      Gore   Bush Buchanan Nader Other County    winner
-##     <dbl>  <dbl>    <dbl> <dbl> <dbl> <chr>     <chr> 
-##  1  47365  34124      263  3226   751 ALACHUA   Gore  
-##  2   2392   5610       73    53    26 BAKER     Bush  
-##  3  18850  38637      248   828   242 BAY       Bush  
-##  4   3075   5414       65    84    35 BRADFORD  Bush  
-##  5  97318 115185      570  4470   852 BREVARD   Bush  
-##  6 386561 177323      788  7101  1623 BROWAR    Gore  
-##  7   2155   2873       90    39    17 CALHOUN   Bush  
-##  8  29645  35426      182  1462   181 CHARLOTTE Bush  
-##  9  25525  29765      270  1379   261 CITRUS    Bush  
-## 10  14632  41736      186   562   237 CLAY      Bush  
-## # … with 57 more rows
+#> # A tibble: 67 x 7
+#>      Gore   Bush Buchanan Nader Other County    winner
+#>     <dbl>  <dbl>    <dbl> <dbl> <dbl> <chr>     <chr> 
+#>  1  47365  34124      263  3226   751 ALACHUA   Gore  
+#>  2   2392   5610       73    53    26 BAKER     Bush  
+#>  3  18850  38637      248   828   242 BAY       Bush  
+#>  4   3075   5414       65    84    35 BRADFORD  Bush  
+#>  5  97318 115185      570  4470   852 BREVARD   Bush  
+#>  6 386561 177323      788  7101  1623 BROWAR    Gore  
+#>  7   2155   2873       90    39    17 CALHOUN   Bush  
+#>  8  29645  35426      182  1462   181 CHARLOTTE Bush  
+#>  9  25525  29765      270  1379   261 CITRUS    Bush  
+#> 10  14632  41736      186   562   237 CLAY      Bush  
+#> # … with 57 more rows
 ```
 
 Using this data set, we can make a bar plot with `geom_bar()`. The beauty of `ggplot()` is that the code is super-similar to what we used for histograms and frequency plots!
@@ -210,7 +199,7 @@ ggplot(data = pres_cat, aes(x = winner)) +
   geom_bar()
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-9-1.png)<!-- -->
 
 Note that, sometimes, data are in format such that one column contains the _levels_ of the categorical variable while another column contains the counts directly. For example, we can create such a data set using code that we will learn next week:
 
@@ -219,14 +208,11 @@ Note that, sometimes, data are in format such that one column contains the _leve
 pres_cat2 <- pres_cat %>% group_by(winner) %>%
   summarise(nwins = n())
 pres_cat2
-```
-
-```
-## # A tibble: 2 x 2
-##   winner nwins
-## * <chr>  <int>
-## 1 Bush      51
-## 2 Gore      16
+#> # A tibble: 2 x 2
+#>   winner nwins
+#>   <chr>  <int>
+#> 1 Bush      51
+#> 2 Gore      16
 ```
 
 This data set has just two observations and contains a column for the two major presidential candidates and a column for the number of counties that each candidate won. If we wanted to make a barplot showing the number of wins for each candidate, we can't use `geom_bar()`. Predict what the result will be from running the following code.
@@ -245,7 +231,7 @@ ggplot(pres_cat2, aes(x = winner, y = nwins)) +
   geom_col()
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-12-1.png)<!-- -->
 
 ### Exercises {#exercise-2-1}
 
@@ -264,19 +250,17 @@ We will be using survey data from STAT 113 in the 2018-2019 academic year for ma
 library(tidyverse)
 stat113_df <- read_csv("data/stat113.csv")
 head(stat113_df)
-```
-
-```
-## # A tibble: 6 x 12
-##   Year      Sex     Hgt   Wgt Haircut   GPA Exercise Sport    TV Award   Pulse
-##   <chr>     <chr> <dbl> <dbl>   <dbl> <dbl>    <dbl> <chr> <dbl> <chr>   <dbl>
-## 1 Sophomore M        66   155       0  2.9        15 Yes       8 Olympic    72
-## 2 FirstYear F        69   170      17  3.87       14 Yes      12 Olympic    51
-## 3 FirstYear F        64   130      40  3.3         5 No        5 Olympic    68
-## 4 FirstYear M        68   157      35  3.21       10 Yes      15 Olympic    54
-## 5 FirstYear M        72   175      20  3.1         2 No        5 Nobel      NA
-## 6 Junior    F        62   150      50  3.3         8 Yes       5 Olympic    86
-## # … with 1 more variable: SocialMedia <chr>
+#> # A tibble: 6 x 12
+#>   Year  Sex     Hgt   Wgt Haircut   GPA Exercise Sport    TV
+#>   <chr> <chr> <dbl> <dbl>   <dbl> <dbl>    <dbl> <chr> <dbl>
+#> 1 Soph… M        66   155       0  2.9        15 Yes       8
+#> 2 Firs… F        69   170      17  3.87       14 Yes      12
+#> 3 Firs… F        64   130      40  3.3         5 No        5
+#> 4 Firs… M        68   157      35  3.21       10 Yes      15
+#> 5 Firs… M        72   175      20  3.1         2 No        5
+#> 6 Juni… F        62   150      50  3.3         8 Yes       5
+#> # … with 3 more variables: Award <chr>, Pulse <dbl>,
+#> #   SocialMedia <chr>
 ```
 
 The data set contains the following variables:
@@ -322,7 +306,7 @@ ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
   geom_point()
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-16-1.png)<!-- -->
 
 What patterns do you see in the scatterplot?
 
@@ -356,21 +340,19 @@ For the remainder of this chapter, we will work with some fitness data collected
 library(tidyverse)
 fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
   TRUE ~ "weekday"))
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   Start = col_date(format = ""),
-##   month = col_character(),
-##   weekday = col_character(),
-##   dayofyear = col_double(),
-##   distance = col_double(),
-##   steps = col_double(),
-##   flights = col_double(),
-##   active_cals = col_double(),
-##   stepgoal = col_character()
-## )
+#> 
+#> ── Column specification ────────────────────────────────────
+#> cols(
+#>   Start = col_date(format = ""),
+#>   month = col_character(),
+#>   weekday = col_character(),
+#>   dayofyear = col_double(),
+#>   distance = col_double(),
+#>   steps = col_double(),
+#>   flights = col_double(),
+#>   active_cals = col_double(),
+#>   stepgoal = col_character()
+#> )
 ```
 
 First, let's make a basic scatterplot to illustrate why it's so important to plot your data. I'll use the variable `distance` as the x-variable and `active_cals` as the y-variable.
@@ -381,7 +363,7 @@ ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
   geom_point()
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-18-1.png)<!-- -->
 
 One aspect of the plot that you may notice is that there are observations where I burned 0 or very few active calories, yet walked/jogged/ran/moved some distance. Is it possible to not burn any calories and move ~ 4 miles? Probably not, so let's drop these observations from the data set and make a note of why we dropped those observations. Unfortunately, we don't have the tools to do this yet, so just run the following chunk of code without worrying too much about the syntax.
 
@@ -402,7 +384,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = distance, y = active_cals))
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
 
 Putting the `aes()` in `ggplot()` and putting the `aes()` in `geom_point()` results in the same graph in this case. When you put the `aes()` in `ggplot()`,  `R` perpetuates these `aes()` aesthetics in all `geom_    `s in your plotting command. However, if you put your `aes()` in `geom_point()`, then any future `geom    `s that you use will need you to re-specify different `aes()`. We'll see an example of this in the exercises.
 
@@ -416,7 +398,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, colour = weekend_ind))
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
 
 Is there anything useful that you notice about the plot? Is there anything about the plot that could be improved?
 
@@ -428,7 +410,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, shape = weekend_ind))
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-22-1.png)<!-- -->
 
 Do you prefer the colour or the shape? Why?
 
@@ -440,7 +422,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, size = flights))
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-23-1.png)<!-- -->
 
 I don't think any of the previous three plots are necessarily the "best" and need some work, but, part of the fun of exploratory data analysis is making trying out different plots to see what "works."
 
@@ -454,7 +436,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, colour = "purple"))
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-24-1.png)<!-- -->
 
 What does the graph look like? Did it do what you expected?
 
@@ -472,7 +454,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals), size = 1.5, shape = 19)
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-25-1.png)<!-- -->
 
 ### Using More Than One `geom()`
 
@@ -483,13 +465,10 @@ We might also be interested in fitting a smooth curve to our scatterplot. When w
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
   geom_smooth()
+#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-26-1.png)<!-- -->
 
 Within `geom_smooth()`, you can set `se = FALSE` to get rid of the grey standard errors around each of the lines, and you can set`method = "lm"` to fit straight linear regression lines instead of smooth curves:
 
@@ -498,13 +477,10 @@ Within `geom_smooth()`, you can set `se = FALSE` to get rid of the grey standard
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
   geom_smooth(se = FALSE, method = "lm")
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-27-1.png)<!-- -->
 
 Does it look like there is an increasing overall trend? decreasing? Does it make sense to use a line to model the relationship or did you prefer the smooth curve?
 
@@ -516,24 +492,18 @@ Line plots are often useful when you have a quantitative variable that you'd lik
 ```r
 ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
   geom_point() + geom_smooth() + xlab("Date")
+#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-28-1.png)<!-- -->
 
 ```r
 ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
   geom_line() + geom_smooth() + xlab("Date")
+#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-28-2.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-28-2.png)<!-- -->
 
 Can you spot the start of the pandemic in the graph? What seemed to happen with the step count?
 
@@ -547,21 +517,14 @@ ggplot(data = stat113_df, aes(x = Exercise, y = Pulse,
                            colour = Year)) +
   geom_point() +
   geom_smooth(se = TRUE)
+#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+#> Warning: Removed 40 rows containing non-finite values
+#> (stat_smooth).
+#> Warning: Removed 40 rows containing missing values
+#> (geom_point).
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-```
-## Warning: Removed 40 rows containing non-finite values (stat_smooth).
-```
-
-```
-## Warning: Removed 40 rows containing missing values (geom_point).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-29-1.png)<!-- -->
 
 When there are many different categories for a categorical variable (there are only 4 categories for `Year`, but this particular plot is still a bit difficult to read), it can sometimes be useful to `facet` the plot by that variable instead of trying to use different `colour`s or `shape`s.
 
@@ -571,21 +534,14 @@ ggplot(data = stat113_df, aes(x = Exercise, y = Pulse)) +
   geom_point() +
   geom_smooth(se = TRUE) +
   facet_wrap(~ Year)
+#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+#> Warning: Removed 40 rows containing non-finite values
+#> (stat_smooth).
+#> Warning: Removed 40 rows containing missing values
+#> (geom_point).
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-```
-## Warning: Removed 40 rows containing non-finite values (stat_smooth).
-```
-
-```
-## Warning: Removed 40 rows containing missing values (geom_point).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-30-1.png)<!-- -->
 
 We have eliminated the `colour = ` argument and added `facet_wrap( ~ name_of_facet_variable)`. Doing so creates a different scatterplot and smooth line for each level of `name_of_facet_variable`. 
 
@@ -621,13 +577,11 @@ Another common plot used in Intro Stat courses is a boxplot. Side-by-side boxplo
 ```r
 ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
   geom_boxplot()
+#> Warning: Removed 7 rows containing non-finite values
+#> (stat_boxplot).
 ```
 
-```
-## Warning: Removed 7 rows containing non-finite values (stat_boxplot).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-31-1.png)<!-- -->
 
 What can you conclude from the plot?
 
@@ -639,13 +593,11 @@ An alternative to side-by-side boxplots are violin plots:
 ```r
 ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
   geom_violin()
+#> Warning: Removed 7 rows containing non-finite values
+#> (stat_ydensity).
 ```
 
-```
-## Warning: Removed 7 rows containing non-finite values (stat_ydensity).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-32-1.png)<!-- -->
 
 Read about Violin plots by typing `?geom_violin` into your console (bottom-left window). How are they different than boxplots?
 
@@ -662,7 +614,7 @@ ggplot(data = stat113_df, aes(x = Year, fill = SocialMedia)) +
   ylab("Proportion")
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-33-1.png)<!-- -->
 
 What patterns do you notice from the plot? Is there anything about the plot that could be improved?
 
@@ -674,7 +626,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 2. \* Create a side-by-side boxplot that compares the `GPA`s of students who prefer different `Award`s. Then change the fill of the boxplot to be a colour of your choice. What do you notice in the plot?
 
-3. \* When making the previous plot, `R` gives us a warning message that it "Removed 70 rows containing non-finite values". This is `R`'s robotic way of telling us that 70 `GPA` values are missing in the data set. Use what you know about how the data was collected (Fall and Spring semeseter of the 2018-2019 school-year) to guess why these are missing.
+3. \* When making the previous plot, `R` gives us a warning message that it "Removed 70 rows containing non-finite values". This is `R`'s robotic way of telling us that 70 `GPA` values are missing in the data set. Use what you know about how the data was collected (Fall and Spring semester of the 2018-2019 school-year) to guess why these are missing.
 
 4. \* Make a stacked bar plot for two variables of your choosing in the STAT 113 data set. Comment on something that you notice in the plot.
 
@@ -711,13 +663,11 @@ Give an example of something that you don't know about the fitness data set that
 ggplot(data = stat113_df, aes(x = Exercise)) +
   geom_histogram(bins = 14, fill = "lightpink2", colour = "black") +
   xlab("Exercise (hours per typical week)")
+#> Warning: Removed 7 rows containing non-finite values
+#> (stat_bin).
 ```
 
-```
-## Warning: Removed 7 rows containing non-finite values (stat_bin).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-34-1.png)<!-- -->
 
 5. \* We can change the y-axis of a histogram to be "density" instead of a raw count. This means that each bar shows a __proportion__ of cases instead of a raw count. Google something like "geom_histogram with density" to figure out how to create a y `aes()` to show density instead of count.
 
@@ -726,13 +676,11 @@ ggplot(data = stat113_df, aes(x = Exercise)) +
 ggplot(data = stat113_df, aes(x = Exercise, y = ..density..)) +
   geom_histogram(bins = 14, fill = "lightpink2", colour = "black") +
   xlab("Exercise (hours per typical week)")
+#> Warning: Removed 7 rows containing non-finite values
+#> (stat_bin).
 ```
 
-```
-## Warning: Removed 7 rows containing non-finite values (stat_bin).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-35-1.png)<!-- -->
 
 ### Graphing Two Quant. etc. S
 
@@ -745,120 +693,16 @@ ggplot(data = stat113_df, aes(x = Wgt, y = Hgt, colour = Sport)) +
   geom_smooth()
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-```
-## Warning: Removed 16 rows containing non-finite values (stat_smooth).
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : span too small. fewer data values than degrees of freedom.
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 114.65
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 25.35
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 0
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 2056.6
-```
-
-```
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : Chernobyl! trL>n 5
-
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : Chernobyl! trL>n 5
-```
-
-```
-## Warning in sqrt(sum.squares/one.delta): NaNs produced
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : span too small. fewer
-## data values than degrees of freedom.
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : pseudoinverse used at
-## 114.65
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : neighborhood radius
-## 25.35
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : reciprocal condition
-## number 0
-```
-
-```
-## Warning in predLoess(object$y, object$x, newx = if
-## (is.null(newdata)) object$x else if (is.data.frame(newdata))
-## as.matrix(model.frame(delete.response(terms(object)), : There are other near
-## singularities as well. 2056.6
-```
-
-```
-## Warning in stats::qt(level/2 + 0.5, pred$df): NaNs produced
-```
-
-```
-## Warning: Removed 16 rows containing missing values (geom_point).
-```
-
-```
-## Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning -
-## Inf
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-36-1.png)<!-- -->
 
 ```r
+
 ggplot(data = stat113_df, aes(x = Wgt, y = Hgt)) +
   geom_point(aes(colour = Sport)) +
   geom_smooth()
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-```
-## Warning: Removed 16 rows containing non-finite values (stat_smooth).
-```
-
-```
-## Warning: Removed 16 rows containing missing values (geom_point).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-36-2.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-36-2.png)<!-- -->
 
 The points are now coloured by `Sport` but there is only one smooth fitted line. This makes sense because `geom_point()` now has the two global aesthetics x and y, as well as the colour aesthetic. `geom_smooth()` no longer has the colour aesthetic but still inherits the two global aesthetics, x and y.
 
@@ -873,11 +717,7 @@ ggplot(data = stat113_df, aes(x = GPA)) +
   facet_wrap( ~ Sport)
 ```
 
-```
-## Warning: Removed 70 rows containing non-finite values (stat_bin).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-37-1.png)<!-- -->
 
 ### Boxplots, Stacked, etc. S
 
@@ -887,13 +727,11 @@ ggplot(data = stat113_df, aes(x = GPA)) +
 ```r
 ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
   geom_boxplot(fill = "blue")
+#> Warning: Removed 7 rows containing non-finite values
+#> (stat_boxplot).
 ```
 
-```
-## Warning: Removed 7 rows containing non-finite values (stat_boxplot).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-38-1.png)<!-- -->
 
 `fill` because it's the inside of the boxplots that we want to modify. `colour` will modify the outline colour. 
 
@@ -903,13 +741,11 @@ ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
 ```r
 ggplot(data = stat113_df, aes(x = Award, y = GPA)) +
   geom_boxplot(fill = "lightpink1")
+#> Warning: Removed 70 rows containing non-finite values
+#> (stat_boxplot).
 ```
 
-```
-## Warning: Removed 70 rows containing non-finite values (stat_boxplot).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-39-1.png)<!-- -->
 
 There are a few outlier students, but the three groups overall seem to have similar GPAs.
 
@@ -927,9 +763,9 @@ ggplot(data = stat113_df, aes(x = Sport, fill = Award)) +
   geom_bar(position = "fill")
 ```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-40-1.png)<!-- -->
 
-As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an olympic medal, compared with students who do not play a sport.
+As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an Olympic medal, compared with students who do not play a sport.
 
 ### Chapter Exercises S {#chapexercise-2-S}
 
@@ -945,21 +781,14 @@ ggplot(data = stat113_df %>% filter(!is.na(Sport) & !is.na(Sex)),
   aes(x = Exercise, y = GPA)) + 
   geom_point() + geom_smooth() +
   facet_grid(Sex ~ Sport)
+#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+#> Warning: Removed 71 rows containing non-finite values
+#> (stat_smooth).
+#> Warning: Removed 71 rows containing missing values
+#> (geom_point).
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-```
-## Warning: Removed 71 rows containing non-finite values (stat_smooth).
-```
-
-```
-## Warning: Removed 71 rows containing missing values (geom_point).
-```
-
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-41-1.png)<!-- -->
 
 3. \* In Intro-Stat, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. 
 
@@ -970,19 +799,94 @@ Then, using Google, figure out how to add the mean to each boxplot as a "darkgre
 ggplot(data = stat113_df, aes(x = Sex, y = GPA)) +
   geom_boxplot(fill = "lightpink1", outlier.shape = 8) +
   stat_summary(fun = mean, shape = 18, colour = "darkgreen")
+#> Warning: Removed 70 rows containing non-finite values
+#> (stat_boxplot).
+#> Warning: Removed 70 rows containing non-finite values
+#> (stat_summary).
+#> Warning: Removed 3 rows containing missing values
+#> (geom_segment).
 ```
 
-```
-## Warning: Removed 70 rows containing non-finite values (stat_boxplot).
-```
+![](02-ggplot2_files/figure-epub3/unnamed-chunk-42-1.png)<!-- -->
 
-```
-## Warning: Removed 70 rows containing non-finite values (stat_summary).
-```
+## Non-Exercise `R` Code {#rcode-2}
 
-```
-## Warning: Removed 3 rows containing missing values (geom_segment).
-```
 
-<img src="02-ggplot2_files/figure-html/unnamed-chunk-42-1.png" width="672" />
-
+```r
+library(tidyverse)
+pres_df <- read_table("data/PRES2000.txt") 
+## don't worry about the `read_table` function....yet
+head(pres_df)
+ggplot(data = pres_df, mapping = aes(x = Gore)) +
+  geom_histogram(colour = "black", fill = "white") +
+  xlab("Votes for Gore in Florida")
+ggplot(data = pres_df, mapping = aes(x = Gore)) +
+  geom_freqpoly(colour = "black") +
+  xlab("Votes for Gore in Florida") 
+ggplot(data = pres_df, mapping = aes(x = Gore)) +
+  geom_freqpoly(colour = "black") +
+  xlab("Votes for Gore in Florida") +
+  geom_histogram() 
+pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
+                                                true = "Gore",
+                                                false = "Bush"))
+pres_cat
+ggplot(data = pres_cat, aes(x = winner)) +
+  geom_bar()
+pres_cat2 <- pres_cat %>% group_by(winner) %>%
+  summarise(nwins = n())
+pres_cat2
+ggplot(pres_cat2, aes(x = winner)) +
+  geom_bar()
+ggplot(pres_cat2, aes(x = winner, y = nwins)) +
+  geom_col()
+ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
+  geom_point()
+library(tidyverse)
+fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+  TRUE ~ "weekday"))
+ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
+  geom_point()
+## drop observations that have active calories < 50. 
+## assuming that these are data errors or 
+## days where the Apple Watch wasn't worn.
+fitness <- fitness_full %>%
+  filter(active_cals > 50)
+ggplot(data = fitness) +
+  geom_point(aes(x = distance, y = active_cals))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals, colour = weekend_ind))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals, shape = weekend_ind))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals, size = flights))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals, colour = "purple"))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals), size = 1.5, shape = 19)
+ggplot(data = fitness, aes(x = Start, y = active_cals)) +
+  geom_point() +
+  geom_smooth()
+ggplot(data = fitness, aes(x = Start, y = active_cals)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm")
+ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+  geom_point() + geom_smooth() + xlab("Date")
+ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+  geom_line() + geom_smooth() + xlab("Date")
+ggplot(data = stat113_df, aes(x = Exercise, y = Pulse,
+                           colour = Year)) +
+  geom_point() +
+  geom_smooth(se = TRUE)
+ggplot(data = stat113_df, aes(x = Exercise, y = Pulse)) +
+  geom_point() +
+  geom_smooth(se = TRUE) +
+  facet_wrap(~ Year)
+ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
+  geom_boxplot()
+ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
+  geom_violin()
+ggplot(data = stat113_df, aes(x = Year, fill = SocialMedia)) +
+  geom_bar(position = "fill") +
+  ylab("Proportion")
+```

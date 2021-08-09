@@ -16,18 +16,9 @@ To begin, install the `lubridate` package, and load the package with `library()`
 library(tidyverse)
 library(lubridate)
 today()
-```
-
-```
-## [1] "2021-08-07"
-```
-
-```r
+#> [1] "2021-08-09"
 now()
-```
-
-```
-## [1] "2021-08-07 10:37:25 EDT"
+#> [1] "2021-08-09 11:18:14 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
@@ -41,18 +32,16 @@ Read in the data set with
 ```r
 holiday_df <- read_csv("data/animal_crossing_holidays.csv")
 holiday_df
-```
-
-```
-## # A tibble: 6 x 10
-##   Holiday     Date1   Date2    Date3  Date4    Date5   Month  Year   Day Month2 
-##   <chr>       <chr>   <chr>    <chr>  <chr>    <chr>   <dbl> <dbl> <dbl> <chr>  
-## 1 New Year's… 1-Jan-… Jan-1-2… 1/1/20 1/1/20   2020 0…     1  2020     1 January
-## 2 Groundhog … 2-Feb-… Feb-2-2… 2/2/20 2/2/20   2020 0…     2  2020     2 Februa…
-## 3 Valentine'… 14-Feb… Feb-14-… 2/14/… 2020-14… 2020 0…     2  2020    14 Februa…
-## 4 Shamrock D… 17-Mar… Mar-17-… 3/17/… 2020-17… 2020 0…     3  2020    17 March  
-## 5 Bunny Day   12-Apr… Apr-12-… 4/12/… 12/4/20  2020 0…     4  2020    12 April  
-## 6 Earth Day   22-Apr… Apr-22-… 4/22/… 2020-22… 2020 0…     4  2020    22 April
+#> # A tibble: 6 x 10
+#>   Holiday  Date1  Date2  Date3 Date4 Date5 Month  Year   Day
+#>   <chr>    <chr>  <chr>  <chr> <chr> <chr> <dbl> <dbl> <dbl>
+#> 1 New Yea… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1  2020     1
+#> 2 Groundh… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2  2020     2
+#> 3 Valenti… 14-Fe… Feb-1… 2/14… 2020… 2020…     2  2020    14
+#> 4 Shamroc… 17-Ma… Mar-1… 3/17… 2020… 2020…     3  2020    17
+#> 5 Bunny D… 12-Ap… Apr-1… 4/12… 12/4… 2020…     4  2020    12
+#> 6 Earth D… 22-Ap… Apr-2… 4/22… 2020… 2020…     4  2020    22
+#> # … with 1 more variable: Month2 <chr>
 ```
 
 Which columns were specified as Dates? In this example, none of the columns have the `<date>` specification: all of the date columns are read in as character variables.
@@ -75,35 +64,30 @@ Let's try it out on `Date1` and `Date2`:
 ```r
 holiday_df %>% mutate(Date_test = dmy(Date1)) %>%
   select(Date_test, everything())
-```
-
-```
-## # A tibble: 6 x 11
-##   Date_test  Holiday   Date1  Date2  Date3  Date4 Date5 Month  Year   Day Month2
-##   <date>     <chr>     <chr>  <chr>  <chr>  <chr> <chr> <dbl> <dbl> <dbl> <chr> 
-## 1 2020-01-01 New Year… 1-Jan… Jan-1… 1/1/20 1/1/… 2020…     1  2020     1 Janua…
-## 2 2020-02-02 Groundho… 2-Feb… Feb-2… 2/2/20 2/2/… 2020…     2  2020     2 Febru…
-## 3 2020-02-14 Valentin… 14-Fe… Feb-1… 2/14/… 2020… 2020…     2  2020    14 Febru…
-## 4 2020-03-17 Shamrock… 17-Ma… Mar-1… 3/17/… 2020… 2020…     3  2020    17 March 
-## 5 2020-04-12 Bunny Day 12-Ap… Apr-1… 4/12/… 12/4… 2020…     4  2020    12 April 
-## 6 2020-04-22 Earth Day 22-Ap… Apr-2… 4/22/… 2020… 2020…     4  2020    22 April
-```
-
-```r
+#> # A tibble: 6 x 11
+#>   Date_test  Holiday   Date1  Date2  Date3 Date4 Date5 Month
+#>   <date>     <chr>     <chr>  <chr>  <chr> <chr> <chr> <dbl>
+#> 1 2020-01-01 New Year… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1
+#> 2 2020-02-02 Groundho… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2
+#> 3 2020-02-14 Valentin… 14-Fe… Feb-1… 2/14… 2020… 2020…     2
+#> 4 2020-03-17 Shamrock… 17-Ma… Mar-1… 3/17… 2020… 2020…     3
+#> 5 2020-04-12 Bunny Day 12-Ap… Apr-1… 4/12… 12/4… 2020…     4
+#> 6 2020-04-22 Earth Day 22-Ap… Apr-2… 4/22… 2020… 2020…     4
+#> # … with 3 more variables: Year <dbl>, Day <dbl>,
+#> #   Month2 <chr>
 holiday_df %>% mutate(Date_test = mdy(Date2)) %>%
   select(Date_test, everything())
-```
-
-```
-## # A tibble: 6 x 11
-##   Date_test  Holiday   Date1  Date2  Date3  Date4 Date5 Month  Year   Day Month2
-##   <date>     <chr>     <chr>  <chr>  <chr>  <chr> <chr> <dbl> <dbl> <dbl> <chr> 
-## 1 2020-01-01 New Year… 1-Jan… Jan-1… 1/1/20 1/1/… 2020…     1  2020     1 Janua…
-## 2 2020-02-02 Groundho… 2-Feb… Feb-2… 2/2/20 2/2/… 2020…     2  2020     2 Febru…
-## 3 2020-02-14 Valentin… 14-Fe… Feb-1… 2/14/… 2020… 2020…     2  2020    14 Febru…
-## 4 2020-03-17 Shamrock… 17-Ma… Mar-1… 3/17/… 2020… 2020…     3  2020    17 March 
-## 5 2020-04-12 Bunny Day 12-Ap… Apr-1… 4/12/… 12/4… 2020…     4  2020    12 April 
-## 6 2020-04-22 Earth Day 22-Ap… Apr-2… 4/22/… 2020… 2020…     4  2020    22 April
+#> # A tibble: 6 x 11
+#>   Date_test  Holiday   Date1  Date2  Date3 Date4 Date5 Month
+#>   <date>     <chr>     <chr>  <chr>  <chr> <chr> <chr> <dbl>
+#> 1 2020-01-01 New Year… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1
+#> 2 2020-02-02 Groundho… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2
+#> 3 2020-02-14 Valentin… 14-Fe… Feb-1… 2/14… 2020… 2020…     2
+#> 4 2020-03-17 Shamrock… 17-Ma… Mar-1… 3/17… 2020… 2020…     3
+#> 5 2020-04-12 Bunny Day 12-Ap… Apr-1… 4/12… 12/4… 2020…     4
+#> 6 2020-04-22 Earth Day 22-Ap… Apr-2… 4/22… 2020… 2020…     4
+#> # … with 3 more variables: Year <dbl>, Day <dbl>,
+#> #   Month2 <chr>
 ```
 
 __A Reminder__: Why do `<date>` objects even matter? Compare the following two plots: one made where the date is in `<chr>` form and the other where date is in its appropriate `<date>` form. 
@@ -114,7 +98,7 @@ ggplot(data = holiday_df, aes(x = Date1, y = Holiday)) +
   geom_point()
 ```
 
-<img src="11-lubridate_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](11-lubridate_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
 
 ```r
 holiday_df <- holiday_df %>% mutate(Date_test_plot = dmy(Date1)) %>%
@@ -123,7 +107,7 @@ ggplot(data = holiday_df, aes(x = Date_test_plot, y = Holiday)) +
   geom_point()
 ```
 
-<img src="11-lubridate_files/figure-html/unnamed-chunk-4-2.png" width="672" />
+![](11-lubridate_files/figure-epub3/unnamed-chunk-4-2.png)<!-- -->
 
 In which plot does the ordering on the x-axis make more sense?
 
@@ -137,19 +121,17 @@ holiday_df %>% mutate(Date_test2 = make_date(year = Year,
                                              month = Month,
                                              day = Day)) %>%
   select(Date_test2, everything())
-```
-
-```
-## # A tibble: 6 x 12
-##   Date_test2 Date_test_plot Holiday  Date1  Date2  Date3 Date4 Date5 Month  Year
-##   <date>     <date>         <chr>    <chr>  <chr>  <chr> <chr> <chr> <dbl> <dbl>
-## 1 2020-01-01 2020-01-01     New Yea… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1  2020
-## 2 2020-02-02 2020-02-02     Groundh… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2  2020
-## 3 2020-02-14 2020-02-14     Valenti… 14-Fe… Feb-1… 2/14… 2020… 2020…     2  2020
-## 4 2020-03-17 2020-03-17     Shamroc… 17-Ma… Mar-1… 3/17… 2020… 2020…     3  2020
-## 5 2020-04-12 2020-04-12     Bunny D… 12-Ap… Apr-1… 4/12… 12/4… 2020…     4  2020
-## 6 2020-04-22 2020-04-22     Earth D… 22-Ap… Apr-2… 4/22… 2020… 2020…     4  2020
-## # … with 2 more variables: Day <dbl>, Month2 <chr>
+#> # A tibble: 6 x 12
+#>   Date_test2 Date_test_plot Holiday  Date1 Date2 Date3 Date4
+#>   <date>     <date>         <chr>    <chr> <chr> <chr> <chr>
+#> 1 2020-01-01 2020-01-01     New Yea… 1-Ja… Jan-… 1/1/… 1/1/…
+#> 2 2020-02-02 2020-02-02     Groundh… 2-Fe… Feb-… 2/2/… 2/2/…
+#> 3 2020-02-14 2020-02-14     Valenti… 14-F… Feb-… 2/14… 2020…
+#> 4 2020-03-17 2020-03-17     Shamroc… 17-M… Mar-… 3/17… 2020…
+#> 5 2020-04-12 2020-04-12     Bunny D… 12-A… Apr-… 4/12… 12/4…
+#> 6 2020-04-22 2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
+#> # … with 5 more variables: Date5 <chr>, Month <dbl>,
+#> #   Year <dbl>, Day <dbl>, Month2 <chr>
 ```
 
 But, when `Month` is stored as a character (e.g. `February`) instead of a number (e.g. `2`), problems arise with the `make_date()` function:
@@ -160,24 +142,19 @@ holiday_df %>% mutate(Date_test2 = make_date(year = Year,
                                              month = Month2,
                                              day = Day)) %>%
   select(Date_test2, everything())
-```
-
-```
-## Warning in make_date(year = Year, month = Month2, day = Day): NAs introduced by
-## coercion
-```
-
-```
-## # A tibble: 6 x 12
-##   Date_test2 Date_test_plot Holiday  Date1  Date2  Date3 Date4 Date5 Month  Year
-##   <date>     <date>         <chr>    <chr>  <chr>  <chr> <chr> <chr> <dbl> <dbl>
-## 1 NA         2020-01-01     New Yea… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1  2020
-## 2 NA         2020-02-02     Groundh… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2  2020
-## 3 NA         2020-02-14     Valenti… 14-Fe… Feb-1… 2/14… 2020… 2020…     2  2020
-## 4 NA         2020-03-17     Shamroc… 17-Ma… Mar-1… 3/17… 2020… 2020…     3  2020
-## 5 NA         2020-04-12     Bunny D… 12-Ap… Apr-1… 4/12… 12/4… 2020…     4  2020
-## 6 NA         2020-04-22     Earth D… 22-Ap… Apr-2… 4/22… 2020… 2020…     4  2020
-## # … with 2 more variables: Day <dbl>, Month2 <chr>
+#> Warning in make_date(year = Year, month = Month2, day =
+#> Day): NAs introduced by coercion
+#> # A tibble: 6 x 12
+#>   Date_test2 Date_test_plot Holiday  Date1 Date2 Date3 Date4
+#>   <date>     <date>         <chr>    <chr> <chr> <chr> <chr>
+#> 1 NA         2020-01-01     New Yea… 1-Ja… Jan-… 1/1/… 1/1/…
+#> 2 NA         2020-02-02     Groundh… 2-Fe… Feb-… 2/2/… 2/2/…
+#> 3 NA         2020-02-14     Valenti… 14-F… Feb-… 2/14… 2020…
+#> 4 NA         2020-03-17     Shamroc… 17-M… Mar-… 3/17… 2020…
+#> 5 NA         2020-04-12     Bunny D… 12-A… Apr-… 4/12… 12/4…
+#> 6 NA         2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
+#> # … with 5 more variables: Date5 <chr>, Month <dbl>,
+#> #   Year <dbl>, Day <dbl>, Month2 <chr>
 ```
 
 So the `make_date()` function requires a specific format for the year, month, and day columns. It may take a little pre-processing to put a particular data set in that format.
@@ -192,23 +169,18 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 ```r
 holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
   select(Date_test, everything())
-```
-
-```
-## Warning: 3 failed to parse.
-```
-
-```
-## # A tibble: 6 x 12
-##   Date_test  Date_test_plot Holiday  Date1  Date2  Date3 Date4 Date5 Month  Year
-##   <date>     <date>         <chr>    <chr>  <chr>  <chr> <chr> <chr> <dbl> <dbl>
-## 1 2001-01-20 2020-01-01     New Yea… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1  2020
-## 2 2002-02-20 2020-02-02     Groundh… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2  2020
-## 3 NA         2020-02-14     Valenti… 14-Fe… Feb-1… 2/14… 2020… 2020…     2  2020
-## 4 NA         2020-03-17     Shamroc… 17-Ma… Mar-1… 3/17… 2020… 2020…     3  2020
-## 5 2012-04-20 2020-04-12     Bunny D… 12-Ap… Apr-1… 4/12… 12/4… 2020…     4  2020
-## 6 NA         2020-04-22     Earth D… 22-Ap… Apr-2… 4/22… 2020… 2020…     4  2020
-## # … with 2 more variables: Day <dbl>, Month2 <chr>
+#> Warning: 3 failed to parse.
+#> # A tibble: 6 x 12
+#>   Date_test  Date_test_plot Holiday  Date1 Date2 Date3 Date4
+#>   <date>     <date>         <chr>    <chr> <chr> <chr> <chr>
+#> 1 2001-01-20 2020-01-01     New Yea… 1-Ja… Jan-… 1/1/… 1/1/…
+#> 2 2002-02-20 2020-02-02     Groundh… 2-Fe… Feb-… 2/2/… 2/2/…
+#> 3 NA         2020-02-14     Valenti… 14-F… Feb-… 2/14… 2020…
+#> 4 NA         2020-03-17     Shamroc… 17-M… Mar-… 3/17… 2020…
+#> 5 2012-04-20 2020-04-12     Bunny D… 12-A… Apr-… 4/12… 12/4…
+#> 6 NA         2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
+#> # … with 5 more variables: Date5 <chr>, Month <dbl>,
+#> #   Year <dbl>, Day <dbl>, Month2 <chr>
 ```
 
 2. \* Practice converting `Date3` and `Date5` to `<date>` variables with `lubridate` functions.
@@ -226,13 +198,8 @@ start <- ymd("2011-01-01")
 end <- ymd("2021-5-19")
 getSymbols(c("AAPL", "NTDOY", "CMG", "SPY"), src = "yahoo",
            from = start, to = end)
-```
+#> [1] "AAPL"  "NTDOY" "CMG"   "SPY"
 
-```
-## [1] "AAPL"  "NTDOY" "CMG"   "SPY"
-```
-
-```r
 date_tib <- as_tibble(index(AAPL)) %>%
   rename(start_date = value)
 app_tib <- as_tibble(AAPL)
@@ -252,18 +219,15 @@ stocks_long <- all_stocks %>%
                                  `S & P 500` = "SPY.Adjusted"
                                  ))
 tail(stocks_long)
-```
-
-```
-## # A tibble: 6 x 3
-##   start_date Stock_Type  Price
-##   <date>     <fct>       <dbl>
-## 1 2021-05-17 Chipotle   1332. 
-## 2 2021-05-17 S & P 500   414. 
-## 3 2021-05-18 Apple       125. 
-## 4 2021-05-18 Nintendo     70.4
-## 5 2021-05-18 Chipotle   1325. 
-## 6 2021-05-18 S & P 500   411.
+#> # A tibble: 6 x 3
+#>   start_date Stock_Type  Price
+#>   <date>     <fct>       <dbl>
+#> 1 2021-05-17 Chipotle   1332. 
+#> 2 2021-05-17 S & P 500   414. 
+#> 3 2021-05-18 Apple       125. 
+#> 4 2021-05-18 Nintendo     70.4
+#> 5 2021-05-18 Chipotle   1325. 
+#> 6 2021-05-18 S & P 500   411.
 ```
 
 You'll have a chance in the Exercises to choose your own stocks to investigate. For now, I've made a data set with three variables:
@@ -281,7 +245,7 @@ ggplot(data = stocks_sp, aes(x = start_date, y = Price)) +
   geom_line()
 ```
 
-<img src="11-lubridate_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](11-lubridate_files/figure-epub3/unnamed-chunk-9-1.png)<!-- -->
 
 But, there's other information that we can get from the `start_date` variable. We might be interested in things like day of the week, monthly trends, or yearly trends. To extract variables like "weekday" and "month" from a `<date>` variable, there are a series of functions that are fairly straightforward to use. We will discuss the `year()` `month()`, `mday()`, `yday()`, and `wday()` functions.
 
@@ -304,10 +268,7 @@ The `yday()` function grabs the day of the year from a `<date>` object. For exam
 ```r
 test <- mdy("November 4, 2020")
 yday(test)
-```
-
-```
-## [1] 309
+#> [1] 309
 ```
 
 returns `309`, indicating that November 4th is the 309th day of the year 2020. Using this function in a `mutate()` statement creates a new variable that has `yday` for each observation:
@@ -315,23 +276,20 @@ returns `309`, indicating that November 4th is the 309th day of the year 2020. U
 
 ```r
 stocks_long %>% mutate(day_in_year = yday(start_date))
-```
-
-```
-## # A tibble: 10,444 x 4
-##    start_date Stock_Type Price day_in_year
-##    <date>     <fct>      <dbl>       <dbl>
-##  1 2011-01-03 Apple       10.1           3
-##  2 2011-01-03 Nintendo    36.7           3
-##  3 2011-01-03 Chipotle   224.            3
-##  4 2011-01-03 S & P 500  103.            3
-##  5 2011-01-04 Apple       10.2           4
-##  6 2011-01-04 Nintendo    35.5           4
-##  7 2011-01-04 Chipotle   222.            4
-##  8 2011-01-04 S & P 500  103.            4
-##  9 2011-01-05 Apple       10.2           5
-## 10 2011-01-05 Nintendo    34.6           5
-## # … with 10,434 more rows
+#> # A tibble: 10,444 x 4
+#>    start_date Stock_Type Price day_in_year
+#>    <date>     <fct>      <dbl>       <dbl>
+#>  1 2011-01-03 Apple       10.1           3
+#>  2 2011-01-03 Nintendo    36.7           3
+#>  3 2011-01-03 Chipotle   224.            3
+#>  4 2011-01-03 S & P 500  103.            3
+#>  5 2011-01-04 Apple       10.2           4
+#>  6 2011-01-04 Nintendo    35.5           4
+#>  7 2011-01-04 Chipotle   222.            4
+#>  8 2011-01-04 S & P 500  103.            4
+#>  9 2011-01-05 Apple       10.2           5
+#> 10 2011-01-05 Nintendo    34.6           5
+#> # … with 10,434 more rows
 ```
 
 Finally, the function `wday()` grabs the day of the week from a `<date>`. By default, `wday()` puts the day of the week as a numeric, but I find this confusing, as I can't ever remember whether a `1` means `Sunday` or a `1` means `Monday`. Adding, `label = TRUE` creates the weekday variable as `Sunday`, `Monday`, `Tuesday`, etc.:
@@ -385,10 +343,7 @@ The `truncated` argument to `ymd()`, `dmy()`, `mdy()`, etc. will allow `R` to pa
 ```r
 library(lubridate)
 ymd("2019", truncated = 2)
-```
-
-```
-## [1] "2019-01-01"
+#> [1] "2019-01-01"
 ```
 
 parses `2019` to be January 1, 2019 when the month and day are missing. The `2` means that the last two parts of the date (in this case, month and day) are allowed to be missing. Similarly,
@@ -396,10 +351,7 @@ parses `2019` to be January 1, 2019 when the month and day are missing. The `2` 
 
 ```r
 dmy("19-10", truncated = 1)
-```
-
-```
-## [1] "0000-10-19"
+#> [1] "0000-10-19"
 ```
 
 truncates the year (which is given as 0000). The truncate function is usually most useful in the context of the first example with a truncated month and/or day.
@@ -415,23 +367,20 @@ library(tidyverse)
 library(lubridate)
 ds_df <- read_csv("data/ds_google.csv")
 ds_df
-```
-
-```
-## # A tibble: 202 x 2
-##    Month   Data_Science
-##    <chr>          <dbl>
-##  1 2004-01           14
-##  2 2004-02            8
-##  3 2004-03           16
-##  4 2004-04           11
-##  5 2004-05            5
-##  6 2004-06            8
-##  7 2004-07            7
-##  8 2004-08            9
-##  9 2004-09           13
-## 10 2004-10           11
-## # … with 192 more rows
+#> # A tibble: 202 x 2
+#>    Month   Data_Science
+#>    <chr>          <dbl>
+#>  1 2004-01           14
+#>  2 2004-02            8
+#>  3 2004-03           16
+#>  4 2004-04           11
+#>  5 2004-05            5
+#>  6 2004-06            8
+#>  7 2004-07            7
+#>  8 2004-08            9
+#>  9 2004-09           13
+#> 10 2004-10           11
+#> # … with 192 more rows
 ```
 
 1. \* Use a `lubridate` function with the `truncated` option to convert the `Month` variable to be in the `<date>` format.
@@ -491,23 +440,18 @@ Explore the stock data that you chose, constructing a line plot of the price thr
 ```r
 holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
   select(Date_test, everything())
-```
-
-```
-## Warning: 3 failed to parse.
-```
-
-```
-## # A tibble: 6 x 12
-##   Date_test  Date_test_plot Holiday  Date1  Date2  Date3 Date4 Date5 Month  Year
-##   <date>     <date>         <chr>    <chr>  <chr>  <chr> <chr> <chr> <dbl> <dbl>
-## 1 2001-01-20 2020-01-01     New Yea… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1  2020
-## 2 2002-02-20 2020-02-02     Groundh… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2  2020
-## 3 NA         2020-02-14     Valenti… 14-Fe… Feb-1… 2/14… 2020… 2020…     2  2020
-## 4 NA         2020-03-17     Shamroc… 17-Ma… Mar-1… 3/17… 2020… 2020…     3  2020
-## 5 2012-04-20 2020-04-12     Bunny D… 12-Ap… Apr-1… 4/12… 12/4… 2020…     4  2020
-## 6 NA         2020-04-22     Earth D… 22-Ap… Apr-2… 4/22… 2020… 2020…     4  2020
-## # … with 2 more variables: Day <dbl>, Month2 <chr>
+#> Warning: 3 failed to parse.
+#> # A tibble: 6 x 12
+#>   Date_test  Date_test_plot Holiday  Date1 Date2 Date3 Date4
+#>   <date>     <date>         <chr>    <chr> <chr> <chr> <chr>
+#> 1 2001-01-20 2020-01-01     New Yea… 1-Ja… Jan-… 1/1/… 1/1/…
+#> 2 2002-02-20 2020-02-02     Groundh… 2-Fe… Feb-… 2/2/… 2/2/…
+#> 3 NA         2020-02-14     Valenti… 14-F… Feb-… 2/14… 2020…
+#> 4 NA         2020-03-17     Shamroc… 17-M… Mar-… 3/17… 2020…
+#> 5 2012-04-20 2020-04-12     Bunny D… 12-A… Apr-… 4/12… 12/4…
+#> 6 NA         2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
+#> # … with 5 more variables: Date5 <chr>, Month <dbl>,
+#> #   Year <dbl>, Day <dbl>, Month2 <chr>
 ```
 
 
@@ -522,37 +466,30 @@ holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
 ```r
 holiday_df %>% mutate(Date_test = mdy(Date3)) %>%
   select(Date_test, everything())
-```
-
-```
-## # A tibble: 6 x 12
-##   Date_test  Date_test_plot Holiday  Date1  Date2  Date3 Date4 Date5 Month  Year
-##   <date>     <date>         <chr>    <chr>  <chr>  <chr> <chr> <chr> <dbl> <dbl>
-## 1 2020-01-01 2020-01-01     New Yea… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1  2020
-## 2 2020-02-02 2020-02-02     Groundh… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2  2020
-## 3 2020-02-14 2020-02-14     Valenti… 14-Fe… Feb-1… 2/14… 2020… 2020…     2  2020
-## 4 2020-03-17 2020-03-17     Shamroc… 17-Ma… Mar-1… 3/17… 2020… 2020…     3  2020
-## 5 2020-04-12 2020-04-12     Bunny D… 12-Ap… Apr-1… 4/12… 12/4… 2020…     4  2020
-## 6 2020-04-22 2020-04-22     Earth D… 22-Ap… Apr-2… 4/22… 2020… 2020…     4  2020
-## # … with 2 more variables: Day <dbl>, Month2 <chr>
-```
-
-```r
+#> # A tibble: 6 x 12
+#>   Date_test  Date_test_plot Holiday  Date1 Date2 Date3 Date4
+#>   <date>     <date>         <chr>    <chr> <chr> <chr> <chr>
+#> 1 2020-01-01 2020-01-01     New Yea… 1-Ja… Jan-… 1/1/… 1/1/…
+#> 2 2020-02-02 2020-02-02     Groundh… 2-Fe… Feb-… 2/2/… 2/2/…
+#> 3 2020-02-14 2020-02-14     Valenti… 14-F… Feb-… 2/14… 2020…
+#> 4 2020-03-17 2020-03-17     Shamroc… 17-M… Mar-… 3/17… 2020…
+#> 5 2020-04-12 2020-04-12     Bunny D… 12-A… Apr-… 4/12… 12/4…
+#> 6 2020-04-22 2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
+#> # … with 5 more variables: Date5 <chr>, Month <dbl>,
+#> #   Year <dbl>, Day <dbl>, Month2 <chr>
 holiday_df %>% mutate(Date_test = ymd(Date5)) %>%
   select(Date_test, everything())
-```
-
-```
-## # A tibble: 6 x 12
-##   Date_test  Date_test_plot Holiday  Date1  Date2  Date3 Date4 Date5 Month  Year
-##   <date>     <date>         <chr>    <chr>  <chr>  <chr> <chr> <chr> <dbl> <dbl>
-## 1 2020-01-01 2020-01-01     New Yea… 1-Jan… Jan-1… 1/1/… 1/1/… 2020…     1  2020
-## 2 2020-02-02 2020-02-02     Groundh… 2-Feb… Feb-2… 2/2/… 2/2/… 2020…     2  2020
-## 3 2020-02-14 2020-02-14     Valenti… 14-Fe… Feb-1… 2/14… 2020… 2020…     2  2020
-## 4 2020-03-17 2020-03-17     Shamroc… 17-Ma… Mar-1… 3/17… 2020… 2020…     3  2020
-## 5 2020-04-12 2020-04-12     Bunny D… 12-Ap… Apr-1… 4/12… 12/4… 2020…     4  2020
-## 6 2020-04-22 2020-04-22     Earth D… 22-Ap… Apr-2… 4/22… 2020… 2020…     4  2020
-## # … with 2 more variables: Day <dbl>, Month2 <chr>
+#> # A tibble: 6 x 12
+#>   Date_test  Date_test_plot Holiday  Date1 Date2 Date3 Date4
+#>   <date>     <date>         <chr>    <chr> <chr> <chr> <chr>
+#> 1 2020-01-01 2020-01-01     New Yea… 1-Ja… Jan-… 1/1/… 1/1/…
+#> 2 2020-02-02 2020-02-02     Groundh… 2-Fe… Feb-… 2/2/… 2/2/…
+#> 3 2020-02-14 2020-02-14     Valenti… 14-F… Feb-… 2/14… 2020…
+#> 4 2020-03-17 2020-03-17     Shamroc… 17-M… Mar-… 3/17… 2020…
+#> 5 2020-04-12 2020-04-12     Bunny D… 12-A… Apr-… 4/12… 12/4…
+#> 6 2020-04-22 2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
+#> # … with 5 more variables: Date5 <chr>, Month <dbl>,
+#> #   Year <dbl>, Day <dbl>, Month2 <chr>
 ```
 
 ### Functions for `<date>` Variables S
@@ -574,13 +511,10 @@ ds_df
 ggplot(data = ds_df, aes(x = Month, y = Data_Science)) +
   geom_line() +
   geom_smooth(se = FALSE)
+#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-<img src="11-lubridate_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+![](11-lubridate_files/figure-epub3/unnamed-chunk-28-1.png)<!-- -->
 
 ```r
 ## it's like super popular!!!!
@@ -595,19 +529,13 @@ In the top-right window of the graph, you should click the down arrow to downloa
 
 ```r
 videogame_df <- read_csv("data/smash_animal_crossing.csv")
-```
-
-```
-## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Month = col_character(),
-##   super_smash = col_double(),
-##   animal_crossing = col_double()
-## )
-```
-
-```r
+#> 
+#> ── Column specification ────────────────────────────────────
+#> cols(
+#>   Month = col_character(),
+#>   super_smash = col_double(),
+#>   animal_crossing = col_double()
+#> )
 videogame_df <- videogame_df %>% mutate(date = ymd(Month, truncated = 1))
 ```
 
@@ -626,7 +554,7 @@ ggplot(data = videogame_long, aes(x = date,
   scale_colour_viridis_d(begin = 0, end = 0.9)
 ```
 
-<img src="11-lubridate_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+![](11-lubridate_files/figure-epub3/unnamed-chunk-30-1.png)<!-- -->
 
 5. \* Using your data set that explored a variable or two from 2004 through now, make a table of the __average__ popularity for each year. __Hint__: You'll need a lubridate function to extract the year variable from the date object.
 
@@ -637,18 +565,12 @@ Again, click the download button again and read in the data to `R`. Convert the 
 
 ```r
 steelers_df <- read_csv("data/steelers.csv")
-```
-
-```
-## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Day = col_character(),
-##   Steelers = col_double()
-## )
-```
-
-```r
+#> 
+#> ── Column specification ────────────────────────────────────
+#> cols(
+#>   Day = col_character(),
+#>   Steelers = col_double()
+#> )
 steelers_df <- steelers_df %>% mutate(day_var = mdy(Day))
 ```
 
@@ -660,13 +582,10 @@ ggplot(data = steelers_df, aes(x = day_var, y = Steelers)) +
   geom_smooth() + 
   geom_line() +
   labs(y = "Popularity")
+#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-<img src="11-lubridate_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+![](11-lubridate_files/figure-epub3/unnamed-chunk-32-1.png)<!-- -->
 
 ## Non-Exercise `R` Code {#rcode-11}
 

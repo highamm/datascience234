@@ -1,1 +1,1 @@
-`bookdown` was used to generate this bundle of course materials used for STAT 234, Introduction to Data Science, at St. Lawrence University. The website for the textbook is <https://highamm.github.io/datascience234/>
+The `bs4_book` template from the `bookdown` `R` package was used to generate this bundle of course materials used for STAT 234, Introduction to Data Science, at St. Lawrence University. The website for the textbook is <https://highamm.github.io/datascience234/>.

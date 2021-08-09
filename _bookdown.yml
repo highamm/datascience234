@@ -1,7 +1,9 @@
-book_filename: _main.md
+book_filename: "bs4_test"
+new_session: true
+before_chapter_script: _common.R
+delete_merged_file: true
 language:
   ui:
-    chapter_name: ""
-delete_merged_file: true
-new_session: yes
+    chapter_name: " "
 output_dir: "docs"
+

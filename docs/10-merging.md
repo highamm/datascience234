@@ -38,10 +38,7 @@ To combine results from both data sets,
 
 ```r
 atp_df <- bind_rows(atp_2018, atp_2019)
-```
-
-```
-## Error: Can't combine `winner_seed` <double> and `winner_seed` <character>.
+#> Error: Can't combine `winner_seed` <double> and `winner_seed` <character>.
 ```
 
 What happens? Can you fix the error? __Hint__: run
@@ -79,16 +76,13 @@ Now run the following and look at the output.
 df_test2a <- tibble(xvar = c(1, 2))
 df_test2b <- tibble(xvar = c(1, 2), y = c(5, 1))
 bind_rows(df_test2a, df_test2b)
-```
-
-```
-## # A tibble: 4 x 2
-##    xvar     y
-##   <dbl> <dbl>
-## 1     1    NA
-## 2     2    NA
-## 3     1     5
-## 4     2     1
+#> # A tibble: 4 x 2
+#>    xvar     y
+#>   <dbl> <dbl>
+#> 1     1    NA
+#> 2     2    NA
+#> 3     1     5
+#> 4     2     1
 ```
 
 Is this the behavior you would expect?
@@ -106,14 +100,11 @@ We will use a couple of test data sets, `df_test1a` and `df_test1b`, to see it i
 df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
 df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
 bind_cols(df_test1a, df_test1b)
-```
-
-```
-## # A tibble: 2 x 4
-##    xvar  yvar     x     y
-##   <dbl> <dbl> <dbl> <dbl>
-## 1     1     5     1     5
-## 2     2     1     2     1
+#> # A tibble: 2 x 4
+#>    xvar  yvar     x     y
+#>   <dbl> <dbl> <dbl> <dbl>
+#> 1     1     5     1     5
+#> 2     2     1     2     1
 ```
 
 For a larger data set, why might this be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?
@@ -129,16 +120,13 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
 df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
 bind_rows(df_test1a, df_test1b)
-```
-
-```
-## # A tibble: 4 x 4
-##    xvar  yvar     x     y
-##   <dbl> <dbl> <dbl> <dbl>
-## 1     1     5    NA    NA
-## 2     2     1    NA    NA
-## 3    NA    NA     1     5
-## 4    NA    NA     2     1
+#> # A tibble: 4 x 4
+#>    xvar  yvar     x     y
+#>   <dbl> <dbl> <dbl> <dbl>
+#> 1     1     5    NA    NA
+#> 2     2     1    NA    NA
+#> 3    NA    NA     1     5
+#> 4    NA    NA     2     1
 ```
 
 ## Mutating Joins
@@ -187,34 +175,25 @@ Suppose that you want to combine the `births` data set with the `babynames` data
 ```r
 combined_left <- left_join(babynames_df, birth_df, by = c("year" = "year"))
 head(combined_left)
-```
-
-```
-## # A tibble: 6 x 6
-##    year sex   name          n   prop births
-##   <dbl> <chr> <chr>     <int>  <dbl>  <int>
-## 1  1880 F     Mary       7065 0.0724     NA
-## 2  1880 F     Anna       2604 0.0267     NA
-## 3  1880 F     Emma       2003 0.0205     NA
-## 4  1880 F     Elizabeth  1939 0.0199     NA
-## 5  1880 F     Minnie     1746 0.0179     NA
-## 6  1880 F     Margaret   1578 0.0162     NA
-```
-
-```r
+#> # A tibble: 6 x 6
+#>    year sex   name          n   prop births
+#>   <dbl> <chr> <chr>     <int>  <dbl>  <int>
+#> 1  1880 F     Mary       7065 0.0724     NA
+#> 2  1880 F     Anna       2604 0.0267     NA
+#> 3  1880 F     Emma       2003 0.0205     NA
+#> 4  1880 F     Elizabeth  1939 0.0199     NA
+#> 5  1880 F     Minnie     1746 0.0179     NA
+#> 6  1880 F     Margaret   1578 0.0162     NA
 tail(combined_left)
-```
-
-```
-## # A tibble: 6 x 6
-##    year sex   name       n       prop  births
-##   <dbl> <chr> <chr>  <int>      <dbl>   <int>
-## 1  2017 M     Zyhier     5 0.00000255 3855500
-## 2  2017 M     Zykai      5 0.00000255 3855500
-## 3  2017 M     Zykeem     5 0.00000255 3855500
-## 4  2017 M     Zylin      5 0.00000255 3855500
-## 5  2017 M     Zylis      5 0.00000255 3855500
-## 6  2017 M     Zyrie      5 0.00000255 3855500
+#> # A tibble: 6 x 6
+#>    year sex   name       n       prop  births
+#>   <dbl> <chr> <chr>  <int>      <dbl>   <int>
+#> 1  2017 M     Zyhier     5 0.00000255 3855500
+#> 2  2017 M     Zykai      5 0.00000255 3855500
+#> 3  2017 M     Zykeem     5 0.00000255 3855500
+#> 4  2017 M     Zylin      5 0.00000255 3855500
+#> 5  2017 M     Zylis      5 0.00000255 3855500
+#> 6  2017 M     Zyrie      5 0.00000255 3855500
 ```
 
 Why are `births` missing in `head(combined_left)` but not in `tail(combined_left)`?
@@ -227,44 +206,35 @@ Recall from the accompanying handout that there is no need to ever use `right_jo
 ```r
 ## these will always do the same exact thing
 right_join(babynames_df, birth_df, by = c("year" = "year"))
-```
-
-```
-## # A tibble: 1,839,952 x 6
-##     year sex   name          n   prop  births
-##    <dbl> <chr> <chr>     <int>  <dbl>   <int>
-##  1  1909 F     Mary      19259 0.0523 2718000
-##  2  1909 F     Helen      9250 0.0251 2718000
-##  3  1909 F     Margaret   7359 0.0200 2718000
-##  4  1909 F     Ruth       6509 0.0177 2718000
-##  5  1909 F     Dorothy    6253 0.0170 2718000
-##  6  1909 F     Anna       5804 0.0158 2718000
-##  7  1909 F     Elizabeth  5176 0.0141 2718000
-##  8  1909 F     Mildred    5054 0.0137 2718000
-##  9  1909 F     Marie      4301 0.0117 2718000
-## 10  1909 F     Alice      4170 0.0113 2718000
-## # … with 1,839,942 more rows
-```
-
-```r
+#> # A tibble: 1,839,952 x 6
+#>     year sex   name          n   prop  births
+#>    <dbl> <chr> <chr>     <int>  <dbl>   <int>
+#>  1  1909 F     Mary      19259 0.0523 2718000
+#>  2  1909 F     Helen      9250 0.0251 2718000
+#>  3  1909 F     Margaret   7359 0.0200 2718000
+#>  4  1909 F     Ruth       6509 0.0177 2718000
+#>  5  1909 F     Dorothy    6253 0.0170 2718000
+#>  6  1909 F     Anna       5804 0.0158 2718000
+#>  7  1909 F     Elizabeth  5176 0.0141 2718000
+#>  8  1909 F     Mildred    5054 0.0137 2718000
+#>  9  1909 F     Marie      4301 0.0117 2718000
+#> 10  1909 F     Alice      4170 0.0113 2718000
+#> # … with 1,839,942 more rows
 left_join(birth_df, babynames_df, by = c("year" = "year"))
-```
-
-```
-## # A tibble: 1,839,952 x 6
-##     year  births sex   name          n   prop
-##    <dbl>   <int> <chr> <chr>     <int>  <dbl>
-##  1  1909 2718000 F     Mary      19259 0.0523
-##  2  1909 2718000 F     Helen      9250 0.0251
-##  3  1909 2718000 F     Margaret   7359 0.0200
-##  4  1909 2718000 F     Ruth       6509 0.0177
-##  5  1909 2718000 F     Dorothy    6253 0.0170
-##  6  1909 2718000 F     Anna       5804 0.0158
-##  7  1909 2718000 F     Elizabeth  5176 0.0141
-##  8  1909 2718000 F     Mildred    5054 0.0137
-##  9  1909 2718000 F     Marie      4301 0.0117
-## 10  1909 2718000 F     Alice      4170 0.0113
-## # … with 1,839,942 more rows
+#> # A tibble: 1,839,952 x 6
+#>     year  births sex   name          n   prop
+#>    <dbl>   <int> <chr> <chr>     <int>  <dbl>
+#>  1  1909 2718000 F     Mary      19259 0.0523
+#>  2  1909 2718000 F     Helen      9250 0.0251
+#>  3  1909 2718000 F     Margaret   7359 0.0200
+#>  4  1909 2718000 F     Ruth       6509 0.0177
+#>  5  1909 2718000 F     Dorothy    6253 0.0170
+#>  6  1909 2718000 F     Anna       5804 0.0158
+#>  7  1909 2718000 F     Elizabeth  5176 0.0141
+#>  8  1909 2718000 F     Mildred    5054 0.0137
+#>  9  1909 2718000 F     Marie      4301 0.0117
+#> 10  1909 2718000 F     Alice      4170 0.0113
+#> # … with 1,839,942 more rows
 ```
 
 Therefore, it's usually easier to just always use `left_join()` and ignore `right_join()` completely. 
@@ -285,23 +255,20 @@ We can also keep only rows with matching keys with `inner_join()`. For this join
 
 ```r
 inner_join(babynames_df, birth_df, by = c("year" = "year"))
-```
-
-```
-## # A tibble: 1,839,952 x 6
-##     year sex   name          n   prop  births
-##    <dbl> <chr> <chr>     <int>  <dbl>   <int>
-##  1  1909 F     Mary      19259 0.0523 2718000
-##  2  1909 F     Helen      9250 0.0251 2718000
-##  3  1909 F     Margaret   7359 0.0200 2718000
-##  4  1909 F     Ruth       6509 0.0177 2718000
-##  5  1909 F     Dorothy    6253 0.0170 2718000
-##  6  1909 F     Anna       5804 0.0158 2718000
-##  7  1909 F     Elizabeth  5176 0.0141 2718000
-##  8  1909 F     Mildred    5054 0.0137 2718000
-##  9  1909 F     Marie      4301 0.0117 2718000
-## 10  1909 F     Alice      4170 0.0113 2718000
-## # … with 1,839,942 more rows
+#> # A tibble: 1,839,952 x 6
+#>     year sex   name          n   prop  births
+#>    <dbl> <chr> <chr>     <int>  <dbl>   <int>
+#>  1  1909 F     Mary      19259 0.0523 2718000
+#>  2  1909 F     Helen      9250 0.0251 2718000
+#>  3  1909 F     Margaret   7359 0.0200 2718000
+#>  4  1909 F     Ruth       6509 0.0177 2718000
+#>  5  1909 F     Dorothy    6253 0.0170 2718000
+#>  6  1909 F     Anna       5804 0.0158 2718000
+#>  7  1909 F     Elizabeth  5176 0.0141 2718000
+#>  8  1909 F     Mildred    5054 0.0137 2718000
+#>  9  1909 F     Marie      4301 0.0117 2718000
+#> 10  1909 F     Alice      4170 0.0113 2718000
+#> # … with 1,839,942 more rows
 ```
 
 <br>
@@ -319,35 +286,28 @@ The key variable is very important for joining and is not always available in a 
 slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
 collegemajors_df <- read_csv("data/college-majors.csv")
 head(slumajors_df)
-```
-
-```
-## # A tibble: 6 x 3
-##   Major                        nfemales nmales
-##   <chr>                           <dbl>  <dbl>
-## 1 Anthropology                       34     15
-## 2 Art & Art History                  65     11
-## 3 Biochemistry                       14     11
-## 4 Biology                           162     67
-## 5 Business in the Liberal Arts      135    251
-## 6 Chemistry                          26     14
-```
-
-```r
+#> # A tibble: 6 x 3
+#>   Major                        nfemales nmales
+#>   <chr>                           <dbl>  <dbl>
+#> 1 Anthropology                       34     15
+#> 2 Art & Art History                  65     11
+#> 3 Biochemistry                       14     11
+#> 4 Biology                           162     67
+#> 5 Business in the Liberal Arts      135    251
+#> 6 Chemistry                          26     14
 head(collegemajors_df)
-```
-
-```
-## # A tibble: 6 x 12
-##   Major Total   Men Women Major_category Employed Full_time Part_time Unemployed
-##   <chr> <dbl> <dbl> <dbl> <chr>             <dbl>     <dbl>     <dbl>      <dbl>
-## 1 PETR…  2339  2057   282 Engineering        1976      1849       270         37
-## 2 MINI…   756   679    77 Engineering         640       556       170         85
-## 3 META…   856   725   131 Engineering         648       558       133         16
-## 4 NAVA…  1258  1123   135 Engineering         758      1069       150         40
-## 5 CHEM… 32260 21239 11021 Engineering       25694     23170      5180       1672
-## 6 NUCL…  2573  2200   373 Engineering        1857      2038       264        400
-## # … with 3 more variables: Median <dbl>, P25th <dbl>, P75th <dbl>
+#> # A tibble: 6 x 12
+#>   Major  Total   Men Women Major_category Employed Full_time
+#>   <chr>  <dbl> <dbl> <dbl> <chr>             <dbl>     <dbl>
+#> 1 PETRO…  2339  2057   282 Engineering        1976      1849
+#> 2 MININ…   756   679    77 Engineering         640       556
+#> 3 METAL…   856   725   131 Engineering         648       558
+#> 4 NAVAL…  1258  1123   135 Engineering         758      1069
+#> 5 CHEMI… 32260 21239 11021 Engineering       25694     23170
+#> 6 NUCLE…  2573  2200   373 Engineering        1857      2038
+#> # … with 5 more variables: Part_time <dbl>,
+#> #   Unemployed <dbl>, Median <dbl>, P25th <dbl>,
+#> #   P75th <dbl>
 ```
 
 The most logical key for joining these two data sets is `Major`,  but joining the data sets won't actually work. The following is an attempt at using `Major` as the key.
@@ -355,24 +315,23 @@ The most logical key for joining these two data sets is `Major`,  but joining th
 
 ```r
 left_join(slumajors_df, collegemajors_df, by = c("Major" = "Major"))
-```
-
-```
-## # A tibble: 27 x 14
-##    Major     nfemales nmales Total   Men Women Major_category Employed Full_time
-##    <chr>        <dbl>  <dbl> <dbl> <dbl> <dbl> <chr>             <dbl>     <dbl>
-##  1 Anthropo…       34     15    NA    NA    NA <NA>                 NA        NA
-##  2 Art & Ar…       65     11    NA    NA    NA <NA>                 NA        NA
-##  3 Biochemi…       14     11    NA    NA    NA <NA>                 NA        NA
-##  4 Biology        162     67    NA    NA    NA <NA>                 NA        NA
-##  5 Business…      135    251    NA    NA    NA <NA>                 NA        NA
-##  6 Chemistry       26     14    NA    NA    NA <NA>                 NA        NA
-##  7 Computer…       21     47    NA    NA    NA <NA>                 NA        NA
-##  8 Conserva…       38     20    NA    NA    NA <NA>                 NA        NA
-##  9 Economics      128    349    NA    NA    NA <NA>                 NA        NA
-## 10 English        131     54    NA    NA    NA <NA>                 NA        NA
-## # … with 17 more rows, and 5 more variables: Part_time <dbl>, Unemployed <dbl>,
-## #   Median <dbl>, P25th <dbl>, P75th <dbl>
+#> # A tibble: 27 x 14
+#>    Major    nfemales nmales Total   Men Women Major_category
+#>    <chr>       <dbl>  <dbl> <dbl> <dbl> <dbl> <chr>         
+#>  1 Anthrop…       34     15    NA    NA    NA <NA>          
+#>  2 Art & A…       65     11    NA    NA    NA <NA>          
+#>  3 Biochem…       14     11    NA    NA    NA <NA>          
+#>  4 Biology       162     67    NA    NA    NA <NA>          
+#>  5 Busines…      135    251    NA    NA    NA <NA>          
+#>  6 Chemist…       26     14    NA    NA    NA <NA>          
+#>  7 Compute…       21     47    NA    NA    NA <NA>          
+#>  8 Conserv…       38     20    NA    NA    NA <NA>          
+#>  9 Economi…      128    349    NA    NA    NA <NA>          
+#> 10 English       131     54    NA    NA    NA <NA>          
+#> # … with 17 more rows, and 7 more variables:
+#> #   Employed <dbl>, Full_time <dbl>, Part_time <dbl>,
+#> #   Unemployed <dbl>, Median <dbl>, P25th <dbl>,
+#> #   P75th <dbl>
 ```
 
 Why did the `collegemajors_df` give only `NA` values when we tried to merge by major?
@@ -384,28 +343,24 @@ This example underscores the importance of having a key that matches __exactly__
 collegemajors_df <- collegemajors_df %>%
   mutate(Major = str_to_title(Major))
 left_join(slumajors_df, collegemajors_df)
-```
-
-```
-## Joining, by = "Major"
-```
-
-```
-## # A tibble: 27 x 14
-##    Major  nfemales nmales  Total    Men  Women Major_category Employed Full_time
-##    <chr>     <dbl>  <dbl>  <dbl>  <dbl>  <dbl> <chr>             <dbl>     <dbl>
-##  1 Anthr…       34     15     NA     NA     NA <NA>                 NA        NA
-##  2 Art &…       65     11     NA     NA     NA <NA>                 NA        NA
-##  3 Bioch…       14     11     NA     NA     NA <NA>                 NA        NA
-##  4 Biolo…      162     67 280709 111762 168947 Biology & Lif…   182295    144512
-##  5 Busin…      135    251     NA     NA     NA <NA>                 NA        NA
-##  6 Chemi…       26     14  66530  32923  33607 Physical Scie…    48535     39509
-##  7 Compu…       21     47 128319  99743  28576 Computers & M…   102087     91485
-##  8 Conse…       38     20     NA     NA     NA <NA>                 NA        NA
-##  9 Econo…      128    349 139247  89749  49498 Social Science   104117     96567
-## 10 Engli…      131     54     NA     NA     NA <NA>                 NA        NA
-## # … with 17 more rows, and 5 more variables: Part_time <dbl>, Unemployed <dbl>,
-## #   Median <dbl>, P25th <dbl>, P75th <dbl>
+#> Joining, by = "Major"
+#> # A tibble: 27 x 14
+#>    Major nfemales nmales  Total    Men  Women Major_category
+#>    <chr>    <dbl>  <dbl>  <dbl>  <dbl>  <dbl> <chr>         
+#>  1 Anth…       34     15     NA     NA     NA <NA>          
+#>  2 Art …       65     11     NA     NA     NA <NA>          
+#>  3 Bioc…       14     11     NA     NA     NA <NA>          
+#>  4 Biol…      162     67 280709 111762 168947 Biology & Lif…
+#>  5 Busi…      135    251     NA     NA     NA <NA>          
+#>  6 Chem…       26     14  66530  32923  33607 Physical Scie…
+#>  7 Comp…       21     47 128319  99743  28576 Computers & M…
+#>  8 Cons…       38     20     NA     NA     NA <NA>          
+#>  9 Econ…      128    349 139247  89749  49498 Social Science
+#> 10 Engl…      131     54     NA     NA     NA <NA>          
+#> # … with 17 more rows, and 7 more variables:
+#> #   Employed <dbl>, Full_time <dbl>, Part_time <dbl>,
+#> #   Unemployed <dbl>, Median <dbl>, P25th <dbl>,
+#> #   P75th <dbl>
 ```
 
 As we can see, this solves the issue for some majors but others still have different naming conventions in the two data sets.
@@ -419,44 +374,35 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 ```r
 left_join(babynames_df, birth_df, by = c("year" = "year"))
-```
-
-```
-## # A tibble: 1,924,665 x 6
-##     year sex   name          n   prop births
-##    <dbl> <chr> <chr>     <int>  <dbl>  <int>
-##  1  1880 F     Mary       7065 0.0724     NA
-##  2  1880 F     Anna       2604 0.0267     NA
-##  3  1880 F     Emma       2003 0.0205     NA
-##  4  1880 F     Elizabeth  1939 0.0199     NA
-##  5  1880 F     Minnie     1746 0.0179     NA
-##  6  1880 F     Margaret   1578 0.0162     NA
-##  7  1880 F     Ida        1472 0.0151     NA
-##  8  1880 F     Alice      1414 0.0145     NA
-##  9  1880 F     Bertha     1320 0.0135     NA
-## 10  1880 F     Sarah      1288 0.0132     NA
-## # … with 1,924,655 more rows
-```
-
-```r
+#> # A tibble: 1,924,665 x 6
+#>     year sex   name          n   prop births
+#>    <dbl> <chr> <chr>     <int>  <dbl>  <int>
+#>  1  1880 F     Mary       7065 0.0724     NA
+#>  2  1880 F     Anna       2604 0.0267     NA
+#>  3  1880 F     Emma       2003 0.0205     NA
+#>  4  1880 F     Elizabeth  1939 0.0199     NA
+#>  5  1880 F     Minnie     1746 0.0179     NA
+#>  6  1880 F     Margaret   1578 0.0162     NA
+#>  7  1880 F     Ida        1472 0.0151     NA
+#>  8  1880 F     Alice      1414 0.0145     NA
+#>  9  1880 F     Bertha     1320 0.0135     NA
+#> 10  1880 F     Sarah      1288 0.0132     NA
+#> # … with 1,924,655 more rows
 left_join(birth_df, babynames_df, by = c("year" = "year"))
-```
-
-```
-## # A tibble: 1,839,952 x 6
-##     year  births sex   name          n   prop
-##    <dbl>   <int> <chr> <chr>     <int>  <dbl>
-##  1  1909 2718000 F     Mary      19259 0.0523
-##  2  1909 2718000 F     Helen      9250 0.0251
-##  3  1909 2718000 F     Margaret   7359 0.0200
-##  4  1909 2718000 F     Ruth       6509 0.0177
-##  5  1909 2718000 F     Dorothy    6253 0.0170
-##  6  1909 2718000 F     Anna       5804 0.0158
-##  7  1909 2718000 F     Elizabeth  5176 0.0141
-##  8  1909 2718000 F     Mildred    5054 0.0137
-##  9  1909 2718000 F     Marie      4301 0.0117
-## 10  1909 2718000 F     Alice      4170 0.0113
-## # … with 1,839,942 more rows
+#> # A tibble: 1,839,952 x 6
+#>     year  births sex   name          n   prop
+#>    <dbl>   <int> <chr> <chr>     <int>  <dbl>
+#>  1  1909 2718000 F     Mary      19259 0.0523
+#>  2  1909 2718000 F     Helen      9250 0.0251
+#>  3  1909 2718000 F     Margaret   7359 0.0200
+#>  4  1909 2718000 F     Ruth       6509 0.0177
+#>  5  1909 2718000 F     Dorothy    6253 0.0170
+#>  6  1909 2718000 F     Anna       5804 0.0158
+#>  7  1909 2718000 F     Elizabeth  5176 0.0141
+#>  8  1909 2718000 F     Mildred    5054 0.0137
+#>  9  1909 2718000 F     Marie      4301 0.0117
+#> 10  1909 2718000 F     Alice      4170 0.0113
+#> # … with 1,839,942 more rows
 ```
 
 2. Evaluate whether the following statement is true or false: an `inner_join()` will always result in a data set with the same or fewer rows than a `full_join()`.
@@ -474,64 +420,65 @@ Consider again the two data sets on men's tennis matches in 2018 and in 2019.
 atp_2019 <- read_csv("data/atp_matches_2019.csv")
 atp_2018 <- read_csv("data/atp_matches_2018.csv")
 atp_2019
-```
-
-```
-## # A tibble: 2,781 x 49
-##    tourney_id tourney_name surface draw_size tourney_level tourney_date
-##    <chr>      <chr>        <chr>       <dbl> <chr>                <dbl>
-##  1 2019-M020  Brisbane     Hard           32 A                 20181231
-##  2 2019-M020  Brisbane     Hard           32 A                 20181231
-##  3 2019-M020  Brisbane     Hard           32 A                 20181231
-##  4 2019-M020  Brisbane     Hard           32 A                 20181231
-##  5 2019-M020  Brisbane     Hard           32 A                 20181231
-##  6 2019-M020  Brisbane     Hard           32 A                 20181231
-##  7 2019-M020  Brisbane     Hard           32 A                 20181231
-##  8 2019-M020  Brisbane     Hard           32 A                 20181231
-##  9 2019-M020  Brisbane     Hard           32 A                 20181231
-## 10 2019-M020  Brisbane     Hard           32 A                 20181231
-## # … with 2,771 more rows, and 43 more variables: match_num <dbl>,
-## #   winner_id <dbl>, winner_seed <chr>, winner_entry <chr>, winner_name <chr>,
-## #   winner_hand <chr>, winner_ht <dbl>, winner_ioc <chr>, winner_age <dbl>,
-## #   loser_id <dbl>, loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
-## #   loser_hand <chr>, loser_ht <dbl>, loser_ioc <chr>, loser_age <dbl>,
-## #   score <chr>, best_of <dbl>, round <chr>, minutes <dbl>, w_ace <dbl>,
-## #   w_df <dbl>, w_svpt <dbl>, w_1stIn <dbl>, w_1stWon <dbl>, w_2ndWon <dbl>,
-## #   w_SvGms <dbl>, w_bpSaved <dbl>, w_bpFaced <dbl>, l_ace <dbl>, l_df <dbl>,
-## #   l_svpt <dbl>, l_1stIn <dbl>, l_1stWon <dbl>, l_2ndWon <dbl>, l_SvGms <dbl>,
-## #   l_bpSaved <dbl>, l_bpFaced <dbl>, winner_rank <dbl>,
-## #   winner_rank_points <dbl>, loser_rank <dbl>, loser_rank_points <dbl>
-```
-
-```r
+#> # A tibble: 2,781 x 49
+#>    tourney_id tourney_name surface draw_size tourney_level
+#>    <chr>      <chr>        <chr>       <dbl> <chr>        
+#>  1 2019-M020  Brisbane     Hard           32 A            
+#>  2 2019-M020  Brisbane     Hard           32 A            
+#>  3 2019-M020  Brisbane     Hard           32 A            
+#>  4 2019-M020  Brisbane     Hard           32 A            
+#>  5 2019-M020  Brisbane     Hard           32 A            
+#>  6 2019-M020  Brisbane     Hard           32 A            
+#>  7 2019-M020  Brisbane     Hard           32 A            
+#>  8 2019-M020  Brisbane     Hard           32 A            
+#>  9 2019-M020  Brisbane     Hard           32 A            
+#> 10 2019-M020  Brisbane     Hard           32 A            
+#> # … with 2,771 more rows, and 44 more variables:
+#> #   tourney_date <dbl>, match_num <dbl>, winner_id <dbl>,
+#> #   winner_seed <chr>, winner_entry <chr>,
+#> #   winner_name <chr>, winner_hand <chr>, winner_ht <dbl>,
+#> #   winner_ioc <chr>, winner_age <dbl>, loser_id <dbl>,
+#> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
+#> #   loser_hand <chr>, loser_ht <dbl>, loser_ioc <chr>,
+#> #   loser_age <dbl>, score <chr>, best_of <dbl>,
+#> #   round <chr>, minutes <dbl>, w_ace <dbl>, w_df <dbl>,
+#> #   w_svpt <dbl>, w_1stIn <dbl>, w_1stWon <dbl>,
+#> #   w_2ndWon <dbl>, w_SvGms <dbl>, w_bpSaved <dbl>,
+#> #   w_bpFaced <dbl>, l_ace <dbl>, l_df <dbl>, l_svpt <dbl>,
+#> #   l_1stIn <dbl>, l_1stWon <dbl>, l_2ndWon <dbl>,
+#> #   l_SvGms <dbl>, l_bpSaved <dbl>, l_bpFaced <dbl>,
+#> #   winner_rank <dbl>, winner_rank_points <dbl>,
+#> #   loser_rank <dbl>, loser_rank_points <dbl>
 atp_2018
-```
-
-```
-## # A tibble: 2,889 x 49
-##    tourney_id tourney_name surface draw_size tourney_level tourney_date
-##    <chr>      <chr>        <chr>       <dbl> <chr>                <dbl>
-##  1 2018-M020  Brisbane     Hard           32 A                 20180101
-##  2 2018-M020  Brisbane     Hard           32 A                 20180101
-##  3 2018-M020  Brisbane     Hard           32 A                 20180101
-##  4 2018-M020  Brisbane     Hard           32 A                 20180101
-##  5 2018-M020  Brisbane     Hard           32 A                 20180101
-##  6 2018-M020  Brisbane     Hard           32 A                 20180101
-##  7 2018-M020  Brisbane     Hard           32 A                 20180101
-##  8 2018-M020  Brisbane     Hard           32 A                 20180101
-##  9 2018-M020  Brisbane     Hard           32 A                 20180101
-## 10 2018-M020  Brisbane     Hard           32 A                 20180101
-## # … with 2,879 more rows, and 43 more variables: match_num <dbl>,
-## #   winner_id <dbl>, winner_seed <dbl>, winner_entry <chr>, winner_name <chr>,
-## #   winner_hand <chr>, winner_ht <dbl>, winner_ioc <chr>, winner_age <dbl>,
-## #   loser_id <dbl>, loser_seed <dbl>, loser_entry <chr>, loser_name <chr>,
-## #   loser_hand <chr>, loser_ht <dbl>, loser_ioc <chr>, loser_age <dbl>,
-## #   score <chr>, best_of <dbl>, round <chr>, minutes <dbl>, w_ace <dbl>,
-## #   w_df <dbl>, w_svpt <dbl>, w_1stIn <dbl>, w_1stWon <dbl>, w_2ndWon <dbl>,
-## #   w_SvGms <dbl>, w_bpSaved <dbl>, w_bpFaced <dbl>, l_ace <dbl>, l_df <dbl>,
-## #   l_svpt <dbl>, l_1stIn <dbl>, l_1stWon <dbl>, l_2ndWon <dbl>, l_SvGms <dbl>,
-## #   l_bpSaved <dbl>, l_bpFaced <dbl>, winner_rank <dbl>,
-## #   winner_rank_points <dbl>, loser_rank <dbl>, loser_rank_points <dbl>
+#> # A tibble: 2,889 x 49
+#>    tourney_id tourney_name surface draw_size tourney_level
+#>    <chr>      <chr>        <chr>       <dbl> <chr>        
+#>  1 2018-M020  Brisbane     Hard           32 A            
+#>  2 2018-M020  Brisbane     Hard           32 A            
+#>  3 2018-M020  Brisbane     Hard           32 A            
+#>  4 2018-M020  Brisbane     Hard           32 A            
+#>  5 2018-M020  Brisbane     Hard           32 A            
+#>  6 2018-M020  Brisbane     Hard           32 A            
+#>  7 2018-M020  Brisbane     Hard           32 A            
+#>  8 2018-M020  Brisbane     Hard           32 A            
+#>  9 2018-M020  Brisbane     Hard           32 A            
+#> 10 2018-M020  Brisbane     Hard           32 A            
+#> # … with 2,879 more rows, and 44 more variables:
+#> #   tourney_date <dbl>, match_num <dbl>, winner_id <dbl>,
+#> #   winner_seed <dbl>, winner_entry <chr>,
+#> #   winner_name <chr>, winner_hand <chr>, winner_ht <dbl>,
+#> #   winner_ioc <chr>, winner_age <dbl>, loser_id <dbl>,
+#> #   loser_seed <dbl>, loser_entry <chr>, loser_name <chr>,
+#> #   loser_hand <chr>, loser_ht <dbl>, loser_ioc <chr>,
+#> #   loser_age <dbl>, score <chr>, best_of <dbl>,
+#> #   round <chr>, minutes <dbl>, w_ace <dbl>, w_df <dbl>,
+#> #   w_svpt <dbl>, w_1stIn <dbl>, w_1stWon <dbl>,
+#> #   w_2ndWon <dbl>, w_SvGms <dbl>, w_bpSaved <dbl>,
+#> #   w_bpFaced <dbl>, l_ace <dbl>, l_df <dbl>, l_svpt <dbl>,
+#> #   l_1stIn <dbl>, l_1stWon <dbl>, l_2ndWon <dbl>,
+#> #   l_SvGms <dbl>, l_bpSaved <dbl>, l_bpFaced <dbl>,
+#> #   winner_rank <dbl>, winner_rank_points <dbl>,
+#> #   loser_rank <dbl>, loser_rank_points <dbl>
 ```
 
 ##### Filtering with `semi_join()` 
@@ -546,23 +493,20 @@ win10 <- atp_2018 %>% group_by(winner_name) %>%
   summarise(nwin = n()) %>% 
   filter(nwin >= 10)
 win10
-```
-
-```
-## # A tibble: 93 x 2
-##    winner_name       nwin
-##    <chr>            <int>
-##  1 Adrian Mannarino    26
-##  2 Albert Ramos        21
-##  3 Alex De Minaur      29
-##  4 Alexander Zverev    58
-##  5 Aljaz Bedene        19
-##  6 Andreas Seppi       24
-##  7 Andrey Rublev       20
-##  8 Benoit Paire        27
-##  9 Borna Coric         40
-## 10 Cameron Norrie      19
-## # … with 83 more rows
+#> # A tibble: 93 x 2
+#>    winner_name       nwin
+#>    <chr>            <int>
+#>  1 Adrian Mannarino    26
+#>  2 Albert Ramos        21
+#>  3 Alex De Minaur      29
+#>  4 Alexander Zverev    58
+#>  5 Aljaz Bedene        19
+#>  6 Andreas Seppi       24
+#>  7 Andrey Rublev       20
+#>  8 Benoit Paire        27
+#>  9 Borna Coric         40
+#> 10 Cameron Norrie      19
+#> # … with 83 more rows
 ```
 
 Next, we apply `semi_join()`, which takes the names of two data sets (the second is the one that contains information about how the first should be "filtered"). The third argument gives the name of the key (`winner_name`) in this case.
@@ -594,23 +538,20 @@ We can then examine how many wins each of these "new" (or perhaps previously inj
 new_winners %>% group_by(winner_name) %>%
   summarise(nwin = n()) %>%
   arrange(desc(nwin))
-```
-
-```
-## # A tibble: 59 x 2
-##    winner_name           nwin
-##    <chr>                <int>
-##  1 Christian Garin         32
-##  2 Juan Ignacio Londero    22
-##  3 Miomir Kecmanovic       22
-##  4 Hugo Dellien            12
-##  5 Attila Balazs            7
-##  6 Cedrik Marcel Stebe      7
-##  7 Janko Tipsarevic         7
-##  8 Jannik Sinner            7
-##  9 Soon Woo Kwon            7
-## 10 Gregoire Barrere         6
-## # … with 49 more rows
+#> # A tibble: 59 x 2
+#>    winner_name           nwin
+#>    <chr>                <int>
+#>  1 Christian Garin         32
+#>  2 Juan Ignacio Londero    22
+#>  3 Miomir Kecmanovic       22
+#>  4 Hugo Dellien            12
+#>  5 Attila Balazs            7
+#>  6 Cedrik Marcel Stebe      7
+#>  7 Janko Tipsarevic         7
+#>  8 Jannik Sinner            7
+#>  9 Soon Woo Kwon            7
+#> 10 Gregoire Barrere         6
+#> # … with 49 more rows
 ```
 
 The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.
@@ -648,20 +589,12 @@ Some examples of `dbplyr`'s `translate_sql()` function and its translation of `R
 library(dbplyr)
 translate_sql(semi_join(atp_2019, win10,
                         c("winner_name" = "winner_name")))
-```
+#> <SQL> semi_join(`atp_2019`, `win10`, 'winner_name' AS `winner_name`)
 
-```
-## <SQL> semi_join(`atp_2019`, `win10`, 'winner_name' AS `winner_name`)
-```
-
-```r
 translate_sql(atp_2018 %>% group_by(winner_name) %>%
   summarise(n()) %>% 
   filter(nwin >= 10))
-```
-
-```
-## <SQL> filter(summarise(group_by(`atp_2018`, `winner_name`), COUNT(*) OVER ()), `nwin` >= 10.0)
+#> <SQL> filter(summarise(group_by(`atp_2018`, `winner_name`), COUNT(*) OVER ()), `nwin` >= 10.0)
 ```
 
 and a resource for learning more is <a href="https://dbplyr.tidyverse.org/articles/sql-translation.html" target="_blank">https://dbplyr.tidyverse.org/articles/sql-translation.html</a>.
@@ -690,28 +623,14 @@ bind_rows(mortality_df, test1)
 
 test2 <- tibble(state = "Washington D.C.", mortality_rate = 16.7,
        ownership_rate = 0.087, region = NE)
-```
-
-```
-## Error in eval_tidy(xs[[j]], mask): object 'NE' not found
-```
-
-```r
+#> Error in eval_tidy(xs[[j]], mask): object 'NE' not found
 bind_rows(mortality_df, test2)
-```
+#> Error in list2(...): object 'test2' not found
 
-```
-## Error in list2(...): object 'test2' not found
-```
-
-```r
 test3 <- tibble(state = "Washington D.C.", mortality_rate = "16.7",
        ownership_rate = "0.087", region = "NE")
 bind_rows(mortality_df, test3)
-```
-
-```
-## Error: Can't combine `mortality_rate` <double> and `mortality_rate` <character>.
+#> Error: Can't combine `mortality_rate` <double> and `mortality_rate` <character>.
 ```
 
 3. Examine the following data sets that are in `R`'s base library on demographic statistics about the U.S. states and state abbreviations:
@@ -721,44 +640,36 @@ bind_rows(mortality_df, test3)
 df1 <- as_tibble(state.x77)
 df2 <- as_tibble(state.abb)
 df1
-```
-
-```
-## # A tibble: 50 x 8
-##    Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost   Area
-##         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl> <dbl>  <dbl>
-##  1       3615   3624        2.1       69.0   15.1      41.3    20  50708
-##  2        365   6315        1.5       69.3   11.3      66.7   152 566432
-##  3       2212   4530        1.8       70.6    7.8      58.1    15 113417
-##  4       2110   3378        1.9       70.7   10.1      39.9    65  51945
-##  5      21198   5114        1.1       71.7   10.3      62.6    20 156361
-##  6       2541   4884        0.7       72.1    6.8      63.9   166 103766
-##  7       3100   5348        1.1       72.5    3.1      56     139   4862
-##  8        579   4809        0.9       70.1    6.2      54.6   103   1982
-##  9       8277   4815        1.3       70.7   10.7      52.6    11  54090
-## 10       4931   4091        2         68.5   13.9      40.6    60  58073
-## # … with 40 more rows
-```
-
-```r
+#> # A tibble: 50 x 8
+#>    Population Income Illiteracy `Life Exp` Murder `HS Grad`
+#>         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl>
+#>  1       3615   3624        2.1       69.0   15.1      41.3
+#>  2        365   6315        1.5       69.3   11.3      66.7
+#>  3       2212   4530        1.8       70.6    7.8      58.1
+#>  4       2110   3378        1.9       70.7   10.1      39.9
+#>  5      21198   5114        1.1       71.7   10.3      62.6
+#>  6       2541   4884        0.7       72.1    6.8      63.9
+#>  7       3100   5348        1.1       72.5    3.1      56  
+#>  8        579   4809        0.9       70.1    6.2      54.6
+#>  9       8277   4815        1.3       70.7   10.7      52.6
+#> 10       4931   4091        2         68.5   13.9      40.6
+#> # … with 40 more rows, and 2 more variables: Frost <dbl>,
+#> #   Area <dbl>
 df2
-```
-
-```
-## # A tibble: 50 x 1
-##    value
-##    <chr>
-##  1 AL   
-##  2 AK   
-##  3 AZ   
-##  4 AR   
-##  5 CA   
-##  6 CO   
-##  7 CT   
-##  8 DE   
-##  9 FL   
-## 10 GA   
-## # … with 40 more rows
+#> # A tibble: 50 x 1
+#>    value
+#>    <chr>
+#>  1 AL   
+#>  2 AK   
+#>  3 AZ   
+#>  4 AR   
+#>  5 CA   
+#>  6 CO   
+#>  7 CT   
+#>  8 DE   
+#>  9 FL   
+#> 10 GA   
+#> # … with 40 more rows
 ```
 
 Combine the two data sets with `bind_cols()`. What are you assuming about the data sets in order to use this function? 
@@ -854,16 +765,13 @@ f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" 
 df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
 df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
 bind_rows(df_test1a, df_test1b)
-```
-
-```
-## # A tibble: 4 x 4
-##    xvar  yvar     x     y
-##   <dbl> <dbl> <dbl> <dbl>
-## 1     1     5    NA    NA
-## 2     2     1    NA    NA
-## 3    NA    NA     1     5
-## 4    NA    NA     2     1
+#> # A tibble: 4 x 4
+#>    xvar  yvar     x     y
+#>   <dbl> <dbl> <dbl> <dbl>
+#> 1     1     5    NA    NA
+#> 2     2     1    NA    NA
+#> 3    NA    NA     1     5
+#> 4    NA    NA     2     1
 ```
 
 
@@ -875,16 +783,13 @@ bind_rows(df_test1a, df_test1b)
 
 df_test1a <- df_test1a %>% rename(x = "xvar", y = "yvar")
 bind_rows(df_test1a, df_test1b)
-```
-
-```
-## # A tibble: 4 x 2
-##       x     y
-##   <dbl> <dbl>
-## 1     1     5
-## 2     2     1
-## 3     1     5
-## 4     2     1
+#> # A tibble: 4 x 2
+#>       x     y
+#>   <dbl> <dbl>
+#> 1     1     5
+#> 2     2     1
+#> 3     1     5
+#> 4     2     1
 ```
 
 ### Mutating Joins S
@@ -912,13 +817,7 @@ tennis_2019_10_lose <- semi_join(atp_2019, win10,
 ## to avoid duplicates with joining functions is
 
 tennis_temp <- anti_join(tennis_2019_10_lose, tennis_2019_10)
-```
-
-```
-## Joining, by = c("tourney_id", "tourney_name", "surface", "draw_size", "tourney_level", "tourney_date", "match_num", "winner_id", "winner_seed", "winner_entry", "winner_name", "winner_hand", "winner_ht", "winner_ioc", "winner_age", "loser_id", "loser_seed", "loser_entry", "loser_name", "loser_hand", "loser_ht", "loser_ioc", "loser_age", "score", "best_of", "round", "minutes", "w_ace", "w_df", "w_svpt", "w_1stIn", "w_1stWon", "w_2ndWon", "w_SvGms", "w_bpSaved", "w_bpFaced", "l_ace", "l_df", "l_svpt", "l_1stIn", "l_1stWon", "l_2ndWon", "l_SvGms", "l_bpSaved", "l_bpFaced", "winner_rank", "winner_rank_points", "loser_rank", "loser_rank_points")
-```
-
-```r
+#> Joining, by = c("tourney_id", "tourney_name", "surface", "draw_size", "tourney_level", "tourney_date", "match_num", "winner_id", "winner_seed", "winner_entry", "winner_name", "winner_hand", "winner_ht", "winner_ioc", "winner_age", "loser_id", "loser_seed", "loser_entry", "loser_name", "loser_hand", "loser_ht", "loser_ioc", "loser_age", "score", "best_of", "round", "minutes", "w_ace", "w_df", "w_svpt", "w_1stIn", "w_1stWon", "w_2ndWon", "w_SvGms", "w_bpSaved", "w_bpFaced", "l_ace", "l_df", "l_svpt", "l_1stIn", "l_1stWon", "l_2ndWon", "l_SvGms", "l_bpSaved", "l_bpFaced", "winner_rank", "winner_rank_points", "loser_rank", "loser_rank_points")
 tennis_temp
 ## there are 383 matches in the lose data set that aren't in the 
 ## win data set. Now, we can bind_rows():
@@ -934,17 +833,14 @@ final_df <- bind_rows(tennis_2019_10, tennis_temp)
 ```r
 library(tidyverse)
 mortality_df <- read_csv("data/gun_violence_us.csv")
-```
-
-```
-## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   state = col_character(),
-##   mortality_rate = col_double(),
-##   ownership_rate = col_double(),
-##   region = col_character()
-## )
+#> 
+#> ── Column specification ────────────────────────────────────
+#> cols(
+#>   state = col_character(),
+#>   mortality_rate = col_double(),
+#>   ownership_rate = col_double(),
+#>   region = col_character()
+#> )
 ```
 
 
@@ -966,47 +862,40 @@ bind_cols(mortality_df, states_df)
 
 ```r
 left_join(all_df, states_df, by = c("state" = "value"))
-```
-
-```
-## # A tibble: 51 x 12
-##    state mortality_rate ownership_rate region Population Income Illiteracy
-##    <chr>          <dbl>          <dbl> <chr>       <dbl>  <dbl>      <dbl>
-##  1 AL              16.7          0.489 South        3615   3624        2.1
-##  2 AK              18.8          0.617 West          365   6315        1.5
-##  3 AZ              13.4          0.323 West         2212   4530        1.8
-##  4 AR              16.4          0.579 South        2110   3378        1.9
-##  5 CA               7.4          0.201 West        21198   5114        1.1
-##  6 CO              12.1          0.343 West         2541   4884        0.7
-##  7 CT               4.9          0.166 NE           3100   5348        1.1
-##  8 DE              11.1          0.052 NE            579   4809        0.9
-##  9 FL              11.5          0.325 South        8277   4815        1.3
-## 10 GA              13.7          0.316 South        4931   4091        2  
-## # … with 41 more rows, and 5 more variables: Life Exp <dbl>, Murder <dbl>,
-## #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
-```
-
-```r
+#> # A tibble: 51 x 12
+#>    state mortality_rate ownership_rate region Population
+#>    <chr>          <dbl>          <dbl> <chr>       <dbl>
+#>  1 AL              16.7          0.489 South        3615
+#>  2 AK              18.8          0.617 West          365
+#>  3 AZ              13.4          0.323 West         2212
+#>  4 AR              16.4          0.579 South        2110
+#>  5 CA               7.4          0.201 West        21198
+#>  6 CO              12.1          0.343 West         2541
+#>  7 CT               4.9          0.166 NE           3100
+#>  8 DE              11.1          0.052 NE            579
+#>  9 FL              11.5          0.325 South        8277
+#> 10 GA              13.7          0.316 South        4931
+#> # … with 41 more rows, and 7 more variables: Income <dbl>,
+#> #   Illiteracy <dbl>, Life Exp <dbl>, Murder <dbl>,
+#> #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
 ## or
 full_join(all_df, states_df, by = c("state" = "value"))
-```
-
-```
-## # A tibble: 51 x 12
-##    state mortality_rate ownership_rate region Population Income Illiteracy
-##    <chr>          <dbl>          <dbl> <chr>       <dbl>  <dbl>      <dbl>
-##  1 AL              16.7          0.489 South        3615   3624        2.1
-##  2 AK              18.8          0.617 West          365   6315        1.5
-##  3 AZ              13.4          0.323 West         2212   4530        1.8
-##  4 AR              16.4          0.579 South        2110   3378        1.9
-##  5 CA               7.4          0.201 West        21198   5114        1.1
-##  6 CO              12.1          0.343 West         2541   4884        0.7
-##  7 CT               4.9          0.166 NE           3100   5348        1.1
-##  8 DE              11.1          0.052 NE            579   4809        0.9
-##  9 FL              11.5          0.325 South        8277   4815        1.3
-## 10 GA              13.7          0.316 South        4931   4091        2  
-## # … with 41 more rows, and 5 more variables: Life Exp <dbl>, Murder <dbl>,
-## #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
+#> # A tibble: 51 x 12
+#>    state mortality_rate ownership_rate region Population
+#>    <chr>          <dbl>          <dbl> <chr>       <dbl>
+#>  1 AL              16.7          0.489 South        3615
+#>  2 AK              18.8          0.617 West          365
+#>  3 AZ              13.4          0.323 West         2212
+#>  4 AR              16.4          0.579 South        2110
+#>  5 CA               7.4          0.201 West        21198
+#>  6 CO              12.1          0.343 West         2541
+#>  7 CT               4.9          0.166 NE           3100
+#>  8 DE              11.1          0.052 NE            579
+#>  9 FL              11.5          0.325 South        8277
+#> 10 GA              13.7          0.316 South        4931
+#> # … with 41 more rows, and 7 more variables: Income <dbl>,
+#> #   Illiteracy <dbl>, Life Exp <dbl>, Murder <dbl>,
+#> #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
 ```
 
 6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()` ing it out explictly).
@@ -1014,47 +903,40 @@ full_join(all_df, states_df, by = c("state" = "value"))
 
 ```r
 inner_join(all_df, states_df, by = c("state" = "value"))
-```
-
-```
-## # A tibble: 50 x 12
-##    state mortality_rate ownership_rate region Population Income Illiteracy
-##    <chr>          <dbl>          <dbl> <chr>       <dbl>  <dbl>      <dbl>
-##  1 AL              16.7          0.489 South        3615   3624        2.1
-##  2 AK              18.8          0.617 West          365   6315        1.5
-##  3 AZ              13.4          0.323 West         2212   4530        1.8
-##  4 AR              16.4          0.579 South        2110   3378        1.9
-##  5 CA               7.4          0.201 West        21198   5114        1.1
-##  6 CO              12.1          0.343 West         2541   4884        0.7
-##  7 CT               4.9          0.166 NE           3100   5348        1.1
-##  8 DE              11.1          0.052 NE            579   4809        0.9
-##  9 FL              11.5          0.325 South        8277   4815        1.3
-## 10 GA              13.7          0.316 South        4931   4091        2  
-## # … with 40 more rows, and 5 more variables: Life Exp <dbl>, Murder <dbl>,
-## #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
-```
-
-```r
+#> # A tibble: 50 x 12
+#>    state mortality_rate ownership_rate region Population
+#>    <chr>          <dbl>          <dbl> <chr>       <dbl>
+#>  1 AL              16.7          0.489 South        3615
+#>  2 AK              18.8          0.617 West          365
+#>  3 AZ              13.4          0.323 West         2212
+#>  4 AR              16.4          0.579 South        2110
+#>  5 CA               7.4          0.201 West        21198
+#>  6 CO              12.1          0.343 West         2541
+#>  7 CT               4.9          0.166 NE           3100
+#>  8 DE              11.1          0.052 NE            579
+#>  9 FL              11.5          0.325 South        8277
+#> 10 GA              13.7          0.316 South        4931
+#> # … with 40 more rows, and 7 more variables: Income <dbl>,
+#> #   Illiteracy <dbl>, Life Exp <dbl>, Murder <dbl>,
+#> #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
 ## or
 left_join(states_df, all_df, by = c("value" = "state"))
-```
-
-```
-## # A tibble: 50 x 12
-##    Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost   Area value
-##         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl> <dbl>  <dbl> <chr>
-##  1       3615   3624        2.1       69.0   15.1      41.3    20  50708 AL   
-##  2        365   6315        1.5       69.3   11.3      66.7   152 566432 AK   
-##  3       2212   4530        1.8       70.6    7.8      58.1    15 113417 AZ   
-##  4       2110   3378        1.9       70.7   10.1      39.9    65  51945 AR   
-##  5      21198   5114        1.1       71.7   10.3      62.6    20 156361 CA   
-##  6       2541   4884        0.7       72.1    6.8      63.9   166 103766 CO   
-##  7       3100   5348        1.1       72.5    3.1      56     139   4862 CT   
-##  8        579   4809        0.9       70.1    6.2      54.6   103   1982 DE   
-##  9       8277   4815        1.3       70.7   10.7      52.6    11  54090 FL   
-## 10       4931   4091        2         68.5   13.9      40.6    60  58073 GA   
-## # … with 40 more rows, and 3 more variables: mortality_rate <dbl>,
-## #   ownership_rate <dbl>, region <chr>
+#> # A tibble: 50 x 12
+#>    Population Income Illiteracy `Life Exp` Murder `HS Grad`
+#>         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl>
+#>  1       3615   3624        2.1       69.0   15.1      41.3
+#>  2        365   6315        1.5       69.3   11.3      66.7
+#>  3       2212   4530        1.8       70.6    7.8      58.1
+#>  4       2110   3378        1.9       70.7   10.1      39.9
+#>  5      21198   5114        1.1       71.7   10.3      62.6
+#>  6       2541   4884        0.7       72.1    6.8      63.9
+#>  7       3100   5348        1.1       72.5    3.1      56  
+#>  8        579   4809        0.9       70.1    6.2      54.6
+#>  9       8277   4815        1.3       70.7   10.7      52.6
+#> 10       4931   4091        2         68.5   13.9      40.6
+#> # … with 40 more rows, and 6 more variables: Frost <dbl>,
+#> #   Area <dbl>, value <chr>, mortality_rate <dbl>,
+#> #   ownership_rate <dbl>, region <chr>
 ```
 
 7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` first to contain only states in the `NE` region.
@@ -1063,22 +945,21 @@ left_join(states_df, all_df, by = c("value" = "state"))
 ```r
 ne_df <- all_df %>% filter(region == "NE")
 semi_join(states_df, ne_df, by = c("value" = "state"))
-```
-
-```
-## # A tibble: 10 x 9
-##    Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost  Area value
-##         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl> <dbl> <dbl> <chr>
-##  1       3100   5348        1.1       72.5    3.1      56     139  4862 CT   
-##  2        579   4809        0.9       70.1    6.2      54.6   103  1982 DE   
-##  3       1058   3694        0.7       70.4    2.7      54.7   161 30920 ME   
-##  4       4122   5299        0.9       70.2    8.5      52.3   101  9891 MD   
-##  5       5814   4755        1.1       71.8    3.3      58.5   103  7826 MA   
-##  6        812   4281        0.7       71.2    3.3      57.6   174  9027 NH   
-##  7       7333   5237        1.1       70.9    5.2      52.5   115  7521 NJ   
-##  8      18076   4903        1.4       70.6   10.9      52.7    82 47831 NY   
-##  9        931   4558        1.3       71.9    2.4      46.4   127  1049 RI   
-## 10        472   3907        0.6       71.6    5.5      57.1   168  9267 VT
+#> # A tibble: 10 x 9
+#>    Population Income Illiteracy `Life Exp` Murder `HS Grad`
+#>         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl>
+#>  1       3100   5348        1.1       72.5    3.1      56  
+#>  2        579   4809        0.9       70.1    6.2      54.6
+#>  3       1058   3694        0.7       70.4    2.7      54.7
+#>  4       4122   5299        0.9       70.2    8.5      52.3
+#>  5       5814   4755        1.1       71.8    3.3      58.5
+#>  6        812   4281        0.7       71.2    3.3      57.6
+#>  7       7333   5237        1.1       70.9    5.2      52.5
+#>  8      18076   4903        1.4       70.6   10.9      52.7
+#>  9        931   4558        1.3       71.9    2.4      46.4
+#> 10        472   3907        0.6       71.6    5.5      57.1
+#> # … with 3 more variables: Frost <dbl>, Area <dbl>,
+#> #   value <chr>
 ```
 
 8. \* Do the same thing as Exercise 7, but this time, use `anti_join()`. __Hint__: You'll need to filter `all_df` in a different way to achieve this.
@@ -1087,22 +968,21 @@ semi_join(states_df, ne_df, by = c("value" = "state"))
 ```r
 notne_df <- all_df %>% filter(region != "NE")
 anti_join(states_df, notne_df, by = c("value" = "state"))
-```
-
-```
-## # A tibble: 10 x 9
-##    Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost  Area value
-##         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl> <dbl> <dbl> <chr>
-##  1       3100   5348        1.1       72.5    3.1      56     139  4862 CT   
-##  2        579   4809        0.9       70.1    6.2      54.6   103  1982 DE   
-##  3       1058   3694        0.7       70.4    2.7      54.7   161 30920 ME   
-##  4       4122   5299        0.9       70.2    8.5      52.3   101  9891 MD   
-##  5       5814   4755        1.1       71.8    3.3      58.5   103  7826 MA   
-##  6        812   4281        0.7       71.2    3.3      57.6   174  9027 NH   
-##  7       7333   5237        1.1       70.9    5.2      52.5   115  7521 NJ   
-##  8      18076   4903        1.4       70.6   10.9      52.7    82 47831 NY   
-##  9        931   4558        1.3       71.9    2.4      46.4   127  1049 RI   
-## 10        472   3907        0.6       71.6    5.5      57.1   168  9267 VT
+#> # A tibble: 10 x 9
+#>    Population Income Illiteracy `Life Exp` Murder `HS Grad`
+#>         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl>
+#>  1       3100   5348        1.1       72.5    3.1      56  
+#>  2        579   4809        0.9       70.1    6.2      54.6
+#>  3       1058   3694        0.7       70.4    2.7      54.7
+#>  4       4122   5299        0.9       70.2    8.5      52.3
+#>  5       5814   4755        1.1       71.8    3.3      58.5
+#>  6        812   4281        0.7       71.2    3.3      57.6
+#>  7       7333   5237        1.1       70.9    5.2      52.5
+#>  8      18076   4903        1.4       70.6   10.9      52.7
+#>  9        931   4558        1.3       71.9    2.4      46.4
+#> 10        472   3907        0.6       71.6    5.5      57.1
+#> # … with 3 more variables: Frost <dbl>, Area <dbl>,
+#> #   value <chr>
 ```
 
 ## Non-Exercise `R` Code {#rcode-10}

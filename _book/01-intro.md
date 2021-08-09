@@ -111,23 +111,21 @@ You can name your data set whatever you want to (with a few restrictions). I've 
 
 ```r
 alcohol_data
-```
-
-```
-## # A tibble: 193 x 5
-##    country      beer_servings spirit_servings wine_servings total_litres_of_pur…
-##    <chr>                <dbl>           <dbl>         <dbl>                <dbl>
-##  1 Afghanistan              0               0             0                  0  
-##  2 Albania                 89             132            54                  4.9
-##  3 Algeria                 25               0            14                  0.7
-##  4 Andorra                245             138           312                 12.4
-##  5 Angola                 217              57            45                  5.9
-##  6 Antigua & B…           102             128            45                  4.9
-##  7 Argentina              193              25           221                  8.3
-##  8 Armenia                 21             179            11                  3.8
-##  9 Australia              261              72           212                 10.4
-## 10 Austria                279              75           191                  9.7
-## # … with 183 more rows
+#> # A tibble: 193 x 5
+#>    country       beer_servings spirit_servings wine_servings
+#>    <chr>                 <dbl>           <dbl>         <dbl>
+#>  1 Afghanistan               0               0             0
+#>  2 Albania                  89             132            54
+#>  3 Algeria                  25               0            14
+#>  4 Andorra                 245             138           312
+#>  5 Angola                  217              57            45
+#>  6 Antigua & Ba…           102             128            45
+#>  7 Argentina               193              25           221
+#>  8 Armenia                  21             179            11
+#>  9 Australia               261              72           212
+#> 10 Austria                 279              75           191
+#> # … with 183 more rows, and 1 more variable:
+#> #   total_litres_of_pure_alcohol <dbl>
 ```
 
 What's in this data set? We see a few _variables_ on the columns:
@@ -147,7 +145,7 @@ ggplot(data = alcohol_data,
   geom_histogram(colour = "black", fill = "white", bins = 15)
 ```
 
-<img src="01-intro_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](01-intro_files/figure-epub3/unnamed-chunk-5-1.png)<!-- -->
 
 I now want to see where the United States (`USA`) falls on this distribution by drawing a red vertical line for the total litres of alcohol consumed in the United States. To do so, I'll first use the `filter()` function in the `dplyr` package (again, we will learn about that function in detail later). Copy and paste the following lines of code into a new `R` chunk. Then, run the lines.
 
@@ -167,25 +165,24 @@ It looks like there are some countries that consume little to no alcohol. We mig
 
 ```r
 alcohol_data %>% filter(total_litres_of_pure_alcohol == 0)
-```
-
-```
-## # A tibble: 13 x 5
-##    country     beer_servings spirit_servings wine_servings total_litres_of_pure…
-##    <chr>               <dbl>           <dbl>         <dbl>                 <dbl>
-##  1 Afghanistan             0               0             0                     0
-##  2 Bangladesh              0               0             0                     0
-##  3 North Korea             0               0             0                     0
-##  4 Iran                    0               0             0                     0
-##  5 Kuwait                  0               0             0                     0
-##  6 Libya                   0               0             0                     0
-##  7 Maldives                0               0             0                     0
-##  8 Marshall I…             0               0             0                     0
-##  9 Mauritania              0               0             0                     0
-## 10 Monaco                  0               0             0                     0
-## 11 Pakistan                0               0             0                     0
-## 12 San Marino              0               0             0                     0
-## 13 Somalia                 0               0             0                     0
+#> # A tibble: 13 x 5
+#>    country       beer_servings spirit_servings wine_servings
+#>    <chr>                 <dbl>           <dbl>         <dbl>
+#>  1 Afghanistan               0               0             0
+#>  2 Bangladesh                0               0             0
+#>  3 North Korea               0               0             0
+#>  4 Iran                      0               0             0
+#>  5 Kuwait                    0               0             0
+#>  6 Libya                     0               0             0
+#>  7 Maldives                  0               0             0
+#>  8 Marshall Isl…             0               0             0
+#>  9 Mauritania                0               0             0
+#> 10 Monaco                    0               0             0
+#> 11 Pakistan                  0               0             0
+#> 12 San Marino                0               0             0
+#> 13 Somalia                   0               0             0
+#> # … with 1 more variable:
+#> #   total_litres_of_pure_alcohol <dbl>
 ```
 
 It looks like there are 13 countries in the data set that consume no alcohol. Note that, in the chunk above, we have to use in `total_litres_of_pure_alcohol` as the variable name because this is the name of the variable in the data set. Even something like spelling litres in the American English liters (`total_liters_of_pure_alcohol`) would throw an error because this isn't the exact name of the variable in the data set. This is something that can be very aggravating when you are first learning any coding language. 
@@ -216,22 +213,23 @@ Finally, suppose that I want to know which country consumes the most wine relati
 
 
 ```r
-alcohol_long <- alcohol_data %>% pivot_longer(c(beer_servings, wine_servings),
-  names_to = "type", values_to = "litres_per_person")
-
-onecountry_df <- alcohol_long %>% 
+onecountry_df <- alcohol_data %>% 
   filter(country == "Denmark")
-ggplot(data = alcohol_long, mapping = aes(x = type, y = litres_per_person,
-    group = country)) + 
-  geom_line(alpha = 0.3) +
-  geom_line(data = onecountry_df,
-    colour = "purple", size = 1.5)
+
+library(ggrepel)
+ggplot(data = alcohol_data,
+       mapping = aes(x = beer_servings, y = wine_servings)) + 
+  geom_point(alpha = 0.5) +
+  geom_label_repel(data = onecountry_df, aes(label = country),
+    colour = "purple") +
+  geom_point(data = onecountry_df, colour = "purple",
+             size = 2.5, shape = 1) +
+  geom_abline(aes(slope = 1, intercept = 0), alpha = 0.3)
 ```
 
-<img src="01-intro_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+![](01-intro_files/figure-epub3/unnamed-chunk-10-1.png)<!-- -->
 
-We could do much better than this fairly ugly plot, and it's missing a legend telling us that the purple line corresponds to Denmark, the country at the top of my "must visit" list. The left corresponds to beer servings while the right corresponds to wine servings so a line that has a positive slope corresponds to a country that consumes more wine than beer. We will get into that stuff later: for now, copy the code chunk and change the highlighted line so that it corresponds to a country that interests you (other than Denmark). 
-
+The x-axis corresponds to beer servings while the y-axis corresponds to wine servings. A reference line is given so with countries above the line consuming more wine than beer. We will get into how to make a plot like this later: for now, copy the code chunk and change the labeled point so that it corresponds to a country that interests you (other than Denmark). 
 We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:
 
 
@@ -240,23 +238,20 @@ alcohol_data %>%
   mutate(wbratio = wine_servings / beer_servings) %>%
   arrange(desc(wbratio)) %>%
   select(country, beer_servings, wine_servings, wbratio)
-```
-
-```
-## # A tibble: 193 x 4
-##    country             beer_servings wine_servings wbratio
-##    <chr>                       <dbl>         <dbl>   <dbl>
-##  1 Cook Islands                    0            74  Inf   
-##  2 Qatar                           1             7    7   
-##  3 Montenegro                     31           128    4.13
-##  4 Timor-Leste                     1             4    4   
-##  5 Syria                           5            16    3.2 
-##  6 France                        127           370    2.91
-##  7 Georgia                        52           149    2.87
-##  8 Italy                          85           237    2.79
-##  9 Equatorial Guinea              92           233    2.53
-## 10 Sao Tome & Principe            56           140    2.5 
-## # … with 183 more rows
+#> # A tibble: 193 x 4
+#>    country             beer_servings wine_servings wbratio
+#>    <chr>                       <dbl>         <dbl>   <dbl>
+#>  1 Cook Islands                    0            74  Inf   
+#>  2 Qatar                           1             7    7   
+#>  3 Montenegro                     31           128    4.13
+#>  4 Timor-Leste                     1             4    4   
+#>  5 Syria                           5            16    3.2 
+#>  6 France                        127           370    2.91
+#>  7 Georgia                        52           149    2.87
+#>  8 Italy                          85           237    2.79
+#>  9 Equatorial Guinea              92           233    2.53
+#> 10 Sao Tome & Principe            56           140    2.5 
+#> # … with 183 more rows
 ```
 
 Why is one of the ratios `Inf`? 
@@ -303,18 +298,16 @@ We will first read in the data set below and name it `athletes`. We can then use
 ```r
 athletes <- read_csv("data/athletesdata.csv")
 head(athletes)
-```
-
-```
-## # A tibble: 6 x 9
-##      X1 Name            Rank Sport    endorsements totalpay  salary   age Gender
-##   <dbl> <chr>          <dbl> <chr>           <dbl>    <dbl>   <dbl> <dbl> <chr> 
-## 1     1 Aaron Rodgers     55 Football      7500000 22000000  1.45e7    31 Male  
-## 2     2 Adam Scott        95 Golf          9000000 17700000  8.7 e6    34 Male  
-## 3     3 Adrian Gonzal…    60 Baseball       400000 21500000  2.11e7    32 Male  
-## 4     4 Alex Rodriguez    48 Baseball       300000 22900000  2.26e7    39 Male  
-## 5     5 Alfonso Soria…    93 Baseball        50000 18050000  1.8 e7    38 Male  
-## 6     6 Amar'e Stoude…    27 Basketb…      5000000 26700000  2.17e7    32 Male
+#> # A tibble: 6 x 9
+#>      X1 Name   Rank Sport endorsements totalpay salary   age
+#>   <dbl> <chr> <dbl> <chr>        <dbl>    <dbl>  <dbl> <dbl>
+#> 1     1 Aaro…    55 Foot…      7500000 22000000 1.45e7    31
+#> 2     2 Adam…    95 Golf       9000000 17700000 8.7 e6    34
+#> 3     3 Adri…    60 Base…       400000 21500000 2.11e7    32
+#> 4     4 Alex…    48 Base…       300000 22900000 2.26e7    39
+#> 5     5 Alfo…    93 Base…        50000 18050000 1.8 e7    38
+#> 6     6 Amar…    27 Bask…      5000000 26700000 2.17e7    32
+#> # … with 1 more variable: Gender <chr>
 ```
 
 There are many different interesting questions to answer with this data set. First, we might be interested in the relationship between athlete age and salary for the top 100 athletes. Recall from an earlier stat course that one appropriate graphic to examine this relationship is a scatterplot:
@@ -326,7 +319,7 @@ ggplot(data = athletes, mapping = aes(x = age, y = salary)) +
   geom_smooth(se = FALSE)
 ```
 
-<img src="01-intro_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+![](01-intro_files/figure-epub3/unnamed-chunk-14-1.png)<!-- -->
 
 Do you see anything strange with the scatterplot? What do you think the y-axis tick labels of 2.5e+07, 5.0e+07, etc. mean?
 
@@ -337,13 +330,10 @@ Now let's see if we can count the number of athletes in the Top 100 that are in 
 athletes %>% group_by(Sport) %>%
   summarise(counts = n()) %>%
   filter(Sport == "Tennis")
-```
-
-```
-## # A tibble: 1 x 2
-##   Sport  counts
-##   <chr>   <int>
-## 1 Tennis      6
+#> # A tibble: 1 x 2
+#>   Sport  counts
+#>   <chr>   <int>
+#> 1 Tennis      6
 ```
 
 It looks like there are 6 athletes: we can see who they are and sort them by their `Rank` with:
@@ -353,22 +343,20 @@ It looks like there are 6 athletes: we can see who they are and sort them by the
 athletes %>%
   filter(Sport == "Tennis") %>%
   arrange(Rank)
-```
-
-```
-## # A tibble: 6 x 9
-##      X1 Name             Rank Sport  endorsements totalpay   salary   age Gender
-##   <dbl> <chr>           <dbl> <chr>         <dbl>    <dbl>    <dbl> <dbl> <chr> 
-## 1    82 Roger Federer       7 Tennis     52000000 56200000  4200000    33 Male  
-## 2    78 Rafael Nadal        9 Tennis     30000000 44500000 14500000    28 Male  
-## 3    72 Novak Djokovic     17 Tennis     21000000 33100000 12100000    27 Male  
-## 4    64 Maria Sharapova    34 Tennis     22000000 24400000  2400000    27 Female
-## 5    60 Li Na              41 Tennis     18000000 23600000  5600000    32 Female
-## 6    89 Serena Williams    55 Tennis     11000000 22000000 11000000    33 Female
+#> # A tibble: 6 x 9
+#>      X1 Name   Rank Sport endorsements totalpay salary   age
+#>   <dbl> <chr> <dbl> <chr>        <dbl>    <dbl>  <dbl> <dbl>
+#> 1    82 Roge…     7 Tenn…     52000000 56200000 4.2 e6    33
+#> 2    78 Rafa…     9 Tenn…     30000000 44500000 1.45e7    28
+#> 3    72 Nova…    17 Tenn…     21000000 33100000 1.21e7    27
+#> 4    64 Mari…    34 Tenn…     22000000 24400000 2.4 e6    27
+#> 5    60 Li Na    41 Tenn…     18000000 23600000 5.6 e6    32
+#> 6    89 Sere…    55 Tenn…     11000000 22000000 1.1 e7    33
+#> # … with 1 more variable: Gender <chr>
 ```
 
 
-Finally, let's see if we can compare the ratio of endorsements (from commericals and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).
+Finally, let's see if we can compare the ratio of endorsements (from commercials and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).
 
 
 ```r
@@ -378,7 +366,7 @@ athletes %>% filter(Sport == "Football" | Sport == "Basketball") %>%
   labs(y = "Endorsements / Salary")
 ```
 
-<img src="01-intro_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](01-intro_files/figure-epub3/unnamed-chunk-17-1.png)<!-- -->
 
 In the graph an endorsements / salary ratio of 1 indicates that the person makes half of their overall pay from endorsements and half of their overall pay from salary.
 
@@ -394,7 +382,7 @@ Which sport looks like it tends to receive a larger proportion of their overall 
 
 How many athletes are in the top 100 in the sport that you chose?
 
-3. Change one of the sports above to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.
+3. In the endorsements / salary example, change one of the sports to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.
 
 4. What qualification might you want to make about your statement in the previous exercise? (Is this a random sample of athletes from each sport? Why does that matter?).
 
@@ -460,25 +448,22 @@ Finally, you can add a comment to a code chunk with the `#` symbol (I always use
 ## this is a comment
 ## this calculation might be useful later
 7 * 42
-```
-
-```
-## [1] 294
+#> [1] 294
 ```
 
 Comments are most useful for longer code chunks, as they allow you to remember why you did something. They also tell someone whom you've shared your code with why you did something.
 
-Save this file by clicking File -> Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit buttonin the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!
+Save this file by clicking File -> Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit button in the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!
 
 ## Chapter Exercises {#chapexercise-1}
 
-__Note__: It's entirely up to you whether you'd like to put these exercises in a new .Rmd file or in the .Rmd file that you've been working on throughout the other sections of the chapter. I would maybe lean toward having everything in 1 .Rmd file, just so it's in one spot, but, people are different and a different organizational structure might work better for you!
+__Note__: Usually, exercises will ask you to write code on your own using the week's chapter as a reference. However, for this initial chapter, we will do something a little different.
 
-__Note 2__: Usually, exercises will ask you to write code on your own using the week's chapter as a reference. However, for this initial chapter, we will do something a little different.
+Open a new .Rmd file (File -> New File -> `R Markdown` -> OK) and delete the text explaining what `R Markdown` is in lines 10 and below. Then, complete the following exercises.
 
-Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `R Markdown` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
+Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `R Markdown` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
 
-Answer the following questions by typing answersin your .Rmd document. You should not need to make any new code chunks, as the questions don't ask you to do any coding! 
+Answer the following questions by typing answers in your .Rmd document. You should not need to make any new code chunks, as the questions don't ask you to do any coding! 
 
 1. What are the two major areas that the `tidyverse` __doesn't__ provide tools for?
 
@@ -487,6 +472,34 @@ Answer the following questions by typing answersin your .Rmd document. You shoul
 3. What does it mean for the `tidyverse` to be "human-centred"?
 
 4. In about 2 sentences, describe the data science "cycle" given in the diagram at the top of page 3. 
+
+Exercise 2. You may continue to use the same .Rmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
+
+a. What is your name and what is your class year (first-year, sophomore, junior, senior)?
+
+b. What is/are your major(s) and minor(s), either actual or intended?
+
+c. Why are you taking this course? (Major requirement?, Minor requirement?, recommended by advisor or student?, exploring the field?, etc.).
+
+d. In what semester and year did you take STAT 113 and who was your professor?
+
+e. Have you taken STAT 213? Have you taken CS 140?
+
+f. What is your hometown: city, state, country?
+
+g. Do you play a sport on campus? If so, what sport? If not, what is an activity that you do on or off-campus?
+
+h. What is your favorite TV show or movie or band/musical artist?
+
+i. Tell me something about yourself.
+
+j. Take a look at the learning outcomes listed on the syllabus. Which are you most excited for and why?
+
+k. What are your expectations for this class and/or what do you hope to gain from this class?
+
+
+
+<br>
 
 Knit your .Rmd file into an .html file and submit your knitted .html file to Sakai. If your file won't knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Sakai. Use the following steps to do so:
 

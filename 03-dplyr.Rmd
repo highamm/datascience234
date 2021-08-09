@@ -4,7 +4,7 @@ __Goals:__
 
 *  Use the `mutate()`, `if_else()`, and `case_when()` functions to create new variables.
 
-* Use the `filter()`, `select()`, and `arrange()` functions in `dplyr` to choose certain rows to keep or get rid of, choose certain columns to keep or get rid of, and to sort the data, respectively.
+* Use the `filter()` and `slice()`, `select()`, and `arrange()` functions in `dplyr` to choose certain rows to keep or get rid of, choose certain columns to keep or get rid of, and to sort the data, respectively.
 
 * Use `group_by()` and `summarise()` to create useful summaries of a data set. 
 
@@ -189,7 +189,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 6. With one or two of the newly created variables from `mutate()`, create a plot that investigates a question of interest you might have about the data.
 
-## `arrange()`, `select()`, and `slice()`, and `filter()`
+## `arrange()` (Ordering Rows), `select()` (Choosing Columns), and `slice()` and `filter()` (Choosing Rows)
 
 `arrange()` is used to order rows in the data set according to some variable, `select()` is used to choose columns to keep (or get rid of) and `filter()` is used to keep (or get rid of) only some of the observations (rows).
 

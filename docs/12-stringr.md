@@ -147,23 +147,20 @@ rblack_df <- tibble(words = rblack4)
 rblack_df %>% group_by(words) %>%
   summarise(word_count = n()) %>%
   arrange(desc(word_count))
-```
-
-```
-## # A tibble: 126 x 2
-##    words   word_count
-##    <chr>        <int>
-##  1 the             20
-##  2 Friday          17
-##  3 to              15
-##  4 weekend         13
-##  5 forward         12
-##  6 Gotta           10
-##  7 on              10
-##  8 down             9
-##  9 Friday,          9
-## 10 fun,             9
-## # … with 116 more rows
+#> # A tibble: 126 x 2
+#>    words   word_count
+#>    <chr>        <int>
+#>  1 the             20
+#>  2 Friday          17
+#>  3 to              15
+#>  4 weekend         13
+#>  5 forward         12
+#>  6 Gotta           10
+#>  7 on              10
+#>  8 down             9
+#>  9 Friday,          9
+#> 10 fun,             9
+#> # … with 116 more rows
 ```
 
 The issue with this approach is that there are some instances of Friday with a `,` and some without. Based on this issue, let's go back to our vector of words `rblack4` and see if we can fix it using `str_remove()`, which removes given patterns in a string. For example,
@@ -199,23 +196,20 @@ Next, let's make the Friday words into a `tibble` with the `tibble()` function:
 ```r
 rblack_df <- tibble(words = rblack6)
 rblack_df
-```
-
-```
-## # A tibble: 360 x 1
-##    words              
-##    <chr>              
-##  1 oo-ooh-ooh         
-##  2 hoo                
-##  3 yeah               
-##  4 yeah               
-##  5 (yeah              
-##  6 ah-ah-ah-ah-ah-ark)
-##  7 yeah               
-##  8 yeah               
-##  9 yeah-ah-ah         
-## 10 yeah-ah-ah         
-## # … with 350 more rows
+#> # A tibble: 360 x 1
+#>    words              
+#>    <chr>              
+#>  1 oo-ooh-ooh         
+#>  2 hoo                
+#>  3 yeah               
+#>  4 yeah               
+#>  5 (yeah              
+#>  6 ah-ah-ah-ah-ah-ark)
+#>  7 yeah               
+#>  8 yeah               
+#>  9 yeah-ah-ah         
+#> 10 yeah-ah-ah         
+#> # … with 350 more rows
 ```
 
 And we can now use the `anti_join()` function to get rid of the stop words in the Rebecca Black data set.
@@ -225,23 +219,20 @@ And we can now use the `anti_join()` function to get rid of the stop words in th
 rblack_small <- anti_join(rblack_df, stop_words,
                           by = c("words" = "word"))
 rblack_small
-```
-
-```
-## # A tibble: 208 x 1
-##    words              
-##    <chr>              
-##  1 oo-ooh-ooh         
-##  2 hoo                
-##  3 yeah               
-##  4 yeah               
-##  5 (yeah              
-##  6 ah-ah-ah-ah-ah-ark)
-##  7 yeah               
-##  8 yeah               
-##  9 yeah-ah-ah         
-## 10 yeah-ah-ah         
-## # … with 198 more rows
+#> # A tibble: 208 x 1
+#>    words              
+#>    <chr>              
+#>  1 oo-ooh-ooh         
+#>  2 hoo                
+#>  3 yeah               
+#>  4 yeah               
+#>  5 (yeah              
+#>  6 ah-ah-ah-ah-ah-ark)
+#>  7 yeah               
+#>  8 yeah               
+#>  9 yeah-ah-ah         
+#> 10 yeah-ah-ah         
+#> # … with 198 more rows
 ```
 
 We see that 98 words were dropped from the data set, but that some words weren't picked up (like `yeah-ah-ah`). We will leave these for now, but, we could remove them with `filter(words != "yeah-ah-ah")` Finally, we can get some counts of words in the song Friday that aren't "stop words."
@@ -251,23 +242,20 @@ We see that 98 words were dropped from the data set, but that some words weren't
 rblack_small %>% group_by(words) %>%
   summarise(word_count = n()) %>%
   arrange(desc(word_count))
-```
-
-```
-## # A tibble: 60 x 2
-##    words       word_count
-##    <chr>            <int>
-##  1 friday              26
-##  2 fun                 19
-##  3 weekend             17
-##  4 partyin'            16
-##  5 gotta               13
-##  6 forward             12
-##  7 lookin'             12
-##  8 everybody's          9
-##  9 (yeah)               8
-## 10 yeah                 7
-## # … with 50 more rows
+#> # A tibble: 60 x 2
+#>    words       word_count
+#>    <chr>            <int>
+#>  1 friday              26
+#>  2 fun                 19
+#>  3 weekend             17
+#>  4 partyin'            16
+#>  5 gotta               13
+#>  6 forward             12
+#>  7 lookin'             12
+#>  8 everybody's          9
+#>  9 (yeah)               8
+#> 10 yeah                 7
+#> # … with 50 more rows
 ```
 
 ### Exercises {#exercise-12-1}
@@ -372,7 +360,7 @@ ggplot(data = rblack10, aes(x = words_ord, y = word_count)) +
   coord_flip()
 ```
 
-<img src="12-stringr_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+![](12-stringr_files/figure-epub3/unnamed-chunk-22-1.png)<!-- -->
 
 ### Second Example S
 

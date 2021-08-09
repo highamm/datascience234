@@ -4,11 +4,12 @@ tab:unnamed-chunk-36
 syllabus-and-course-information
 general-information
 course-information
-general-course-outcomes
 use-of-r-and-rstudio
+general-course-outcomes
 how-you-will-be-assessed
 breakdown
 grading-scale
+collaboration-diversity-accessibility-and-academic-integrity
 rules-for-collaboration
 diversity-statement
 accessibility-statement
@@ -59,7 +60,7 @@ mutate-create-variables
 a-little-more-on-piping
 if_else-and-case_when
 exercise-3-1
-arrange-select-and-slice-and-filter
+arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows
 arrange-ordering-rows
 select-choose-columns
 slice-and-filter-choose-rows

@@ -3,13 +3,13 @@ title: "STAT 234: Data Science"
 author: "Matt Higham"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
+url: https://highamm.github.io/datascience234/
+# cover-image: path to the social sharing image like images/cover.jpg
+description: "This book contains examples for SLU's Introduction to Data Science course."
 biblio-style: apalike
-link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "This book contains all examples for SLU's Introduction to Data Science course."
+csl: chicago-fullnote-bibliography.csl
 ---
 
 # Syllabus and Course Information
@@ -27,7 +27,7 @@ __Instructor Information__
     + Wednesday 2:30 - 3:30
     + Friday 10:00 - 11:00
     + other times by appointment
-    + all in-person
+    + all in-person, unless otherwise requested
 <!-- * Zoom Link: <https://stlawu.zoom.us/j/98496966102> -->
 * Sections:
     + MW 8:50 - 10:20
@@ -51,6 +51,15 @@ Welcome to STAT 234! The overall purpose of this course is learn the data scienc
 
 We will put more emphasis on the _Import, Tidy, Transform, Visualize, and Communicate_ parts of the cycle, as an introduction to _Modeling_ part is covered in STAT 213.
 
+### Use of `R` and `RStudio`
+
+We will use the statistical software `R` to construct graphs and analyze data. A few notes:
+
+* `R` and `RStudio` are both free to use.
+* We will primarily be using the SLU `R Studio` server at first: <a href="studio.stlawu.local:8787" target="_blank">studio.stlawu.local:8787</a>.
+* Additionally, we will be using `RMarkdown` for data analysis reports. 
+_Note_: It's always nice to start assignments and projects as early as possible, but this is particularly important to do for assignments and projects involving `R`. It's no fun to try and figure out why code is not working at the last minute. If you start early enough though, you will have plenty of time to seek help and therefore won't waste a lot of time on a coding error.
+
 ***
 ***
 
@@ -72,15 +81,6 @@ We will put more emphasis on the _Import, Tidy, Transform, Visualize, and Commun
 
 To paraphrase the _R for Data Science_ textbook, about 80% of the skills necessary to do a complete data analysis project can be learned through coursework in classes like this one. But, 20% of any particular project will involve learning new things that are specific to that project. Achieving Goal # 6 will allow you to learn this extra 20% on your own. 
 
-### Use of `R` and `RStudio`
-
-We will use the statistical software `R` to construct graphs and analyze data. A few notes:
-
-* `R` and `RStudio` are both free to use.
-* We will primarily be using the SLU `R Studio` server at first: <a href="http://rstudio-u18-01.stlawu.local:8787/" target="_blank">Link to R Studio Server</a>.
-* Additionally, we will be using `RMarkdown` for data analysis reports. 
-_Note_: It's always nice to start assignments and projects as early as possible, but this is particularly important to do for assignments and projects involving `R`. It's no fun to try and figure out why code is not working at the last minute. If you start early enough though, you will have plenty of time to seek help and therefore won't waste a lot of time on a coding error.
-
 ***
 ***
 
@@ -90,7 +90,7 @@ The components to your grade are described below:
 
 * Class
 
-Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. Additionally, there will be a 10-point "share something interesting you found with the class" assignment on very Wednesday, where, two students will volunteer to....share something interesting that they found with the data set we were working with with the rest of the class. The rubric used will be shared on the first day of class, and more information about the Wednesday 10 points will also be given on the first day of class.
+Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. Additionally, there will be a 10-point "share something interesting you found with the class" assignment on nearly every day of class, where a student will volunteer to....share something interesting that they found with the data set we were working with with the rest of the class. The rubric used will be shared on the first day of class, and more information about the extra 10 points will also be given on the first day of class.
 
 * Exercises
 
@@ -146,6 +146,8 @@ The following is a _rough_ grading scale. I reserve the right to make any change
 
 ***
 ***
+
+## Collaboration, Diversity, Accessibility, and Academic Integrity
 
 ### Rules for Collaboration
 

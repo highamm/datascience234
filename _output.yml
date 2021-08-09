@@ -1,22 +1,6 @@
-bookdown::gitbook:
-  css: style.css
-  config:
-    toc:
-      collapse: section
-      scroll_highlight: yes
-      before: |
-        <li><a href="./">STAT 234: Data Science</a></li>
-      after: |
-        <li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
-    sharing:
-      facebook: no
-      github: no
-      twitter: no
-      linkedin: no
-      weibo: no
-      instapaper: no
-      vk: no
-      whatsapp: no
-      all: no
-    info: yes
-
+bookdown::bs4_book:
+  css: bs4_style.css
+  theme:
+    primary: "#811994"
+  # repo: https://github.com/highamm/datascience234
+bookdown::epub_book: default

@@ -23,15 +23,12 @@ A _reproducible example_, or __reprex__, is a chunk of code that we can give to 
 library(tidyverse)
 test_df <- read_csv("data/parsedf.csv")
 head(test_df)
-```
-
-```
-## # A tibble: 3 x 2
-##   x                   y
-##   <chr>           <dbl>
-## 1 20,000 dollars      1
-## 2 40 dollars          2
-## 3 only 13 dollars     3
+#> # A tibble: 3 x 2
+#>   x                   y
+#>   <chr>           <dbl>
+#> 1 20,000 dollars      1
+#> 2 40 dollars          2
+#> 3 only 13 dollars     3
 ```
 
 We want to post on StackExchange for someone to help us convert a variable from a character vector with units to a numeric vector without units. We want to be able to give any possible helpers a small example data set to work with. For this, we can create our own tiny data set with `tibble()`:
@@ -44,14 +41,11 @@ library(tidyverse)
 test_df2 <- tibble(xvar = c("20,000 dollars", "40 dollars"),
                    yvar = c(1, 2))
 test_df2
-```
-
-```
-## # A tibble: 2 x 2
-##   xvar            yvar
-##   <chr>          <dbl>
-## 1 20,000 dollars     1
-## 2 40 dollars         2
+#> # A tibble: 2 x 2
+#>   xvar            yvar
+#>   <chr>          <dbl>
+#> 1 20,000 dollars     1
+#> 2 40 dollars         2
 ```
 
 Why is `library(tidyverse)` necessary in the code chunk above for my reprex?
@@ -71,20 +65,18 @@ For Project 2, we will work with some course evaluation data for a professor at 
 library(tidyverse)
 evals_df <- read_csv("data/evals_prof_S21.csv")
 head(evals_df)
-```
-
-```
-## # A tibble: 6 x 10
-##   Term  Course Question          `Agree strongly` Agree `Agree Somewhat` Neutral
-##   <chr> <chr>  <chr>                        <dbl> <dbl>            <dbl>   <dbl>
-## 1 F19   113-02 1. Course has be…                9     9                1       5
-## 2 F19   113-02 2. Effectively O…               12     8                1       2
-## 3 F19   113-02 3. Environment C…               11     8                2       3
-## 4 F19   113-02 5a. Fair Assessm…                5    13                3       1
-## 5 F19   113-02 5b. Timely Asses…                8    12                1       2
-## 6 F19   113-02 5c. Constructive…                5     8                4       6
-## # … with 3 more variables: Disagree Somewhat <dbl>, Disagree <dbl>,
-## #   Disagree Strongly <dbl>
+#> # A tibble: 6 x 10
+#>   Term  Course Question               `Agree strongly` Agree
+#>   <chr> <chr>  <chr>                             <dbl> <dbl>
+#> 1 F19   113-02 1. Course has been a …                9     9
+#> 2 F19   113-02 2. Effectively Organi…               12     8
+#> 3 F19   113-02 3. Environment Conduc…               11     8
+#> 4 F19   113-02 5a. Fair Assessment o…                5    13
+#> 5 F19   113-02 5b. Timely Assessment…                8    12
+#> 6 F19   113-02 5c. Constructive Asse…                5     8
+#> # … with 5 more variables: Agree Somewhat <dbl>,
+#> #   Neutral <dbl>, Disagree Somewhat <dbl>, Disagree <dbl>,
+#> #   Disagree Strongly <dbl>
 ```
 
 Put together a reprex using `tibble()` that someone would be able to run to help you figure out your question.
@@ -105,18 +97,16 @@ The `mtcarsex.csv` has observations on different car models with variables that 
 library(tidyverse)
 cars_df <- read_csv("data/mtcarsex.csv")
 head(cars_df)
-```
-
-```
-## # A tibble: 6 x 11
-##   `This is a data s… X2    X3    X4    X5    X6    X7    X8    X9    X10   X11  
-##   <chr>              <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
-## 1 "I'm a na\x95ve d… <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
-## 2 "mpg"              cyl   disp  hp    drat  wt    qsec  vs    am    gear  carb 
-## 3  <NA>              <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
-## 4  <NA>              <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
-## 5 "-999"             6     160   110   3.9   2.62  16.46 0     1     4     4    
-## 6 "21"               6     160   110   3.9   2.875 17.02 0     1     4     4
+#> # A tibble: 6 x 11
+#>   `This is a data… X2    X3    X4    X5    X6    X7    X8   
+#>   <chr>            <chr> <chr> <chr> <chr> <chr> <chr> <chr>
+#> 1 "I'm a na\x95ve… <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
+#> 2 "mpg"            cyl   disp  hp    drat  wt    qsec  vs   
+#> 3  <NA>            <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
+#> 4  <NA>            <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
+#> 5 "-999"           6     160   110   3.9   2.62  16.46 0    
+#> 6 "21"             6     160   110   3.9   2.875 17.02 0    
+#> # … with 3 more variables: X9 <chr>, X10 <chr>, X11 <chr>
 ```
 
 What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of `R`.
@@ -130,18 +120,16 @@ Let's start with `skip` so that we aren't reading in the first two rows of the d
 cars_df <- read_csv("data/mtcarsex.csv", skip = 2)
 ## first two lines will be skipped
 head(cars_df)
-```
-
-```
-## # A tibble: 6 x 11
-##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-## 1   NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA
-## 2   NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA
-## 3 -999       6   160   110  3.9   2.62  16.5     0     1     4     4
-## 4   21       6   160   110  3.9   2.88  17.0     0     1     4     4
-## 5   22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
-## 6   21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
+#> # A tibble: 6 x 11
+#>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am
+#>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1   NA      NA    NA    NA NA    NA     NA      NA    NA
+#> 2   NA      NA    NA    NA NA    NA     NA      NA    NA
+#> 3 -999       6   160   110  3.9   2.62  16.5     0     1
+#> 4   21       6   160   110  3.9   2.88  17.0     0     1
+#> 5   22.8     4   108    93  3.85  2.32  18.6     1     1
+#> 6   21.4     6   258   110  3.08  3.22  19.4     1     0
+#> # … with 2 more variables: gear <dbl>, carb <dbl>
 ```
 
 That looks better, but there are still a couple of problems. What do you notice?
@@ -152,18 +140,16 @@ Go the help and read about the `na` argument. Let's add that as an option to fix
 ```r
 cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2)
 head(cars_df)
-```
-
-```
-## # A tibble: 6 x 11
-##     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-## 1  NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA
-## 2  NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA
-## 3  NA       6   160   110  3.9   2.62  16.5     0     1     4     4
-## 4  21       6   160   110  3.9   2.88  17.0     0     1     4     4
-## 5  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
-## 6  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
+#> # A tibble: 6 x 11
+#>     mpg   cyl  disp    hp  drat    wt  qsec    vs    am
+#>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1  NA      NA    NA    NA NA    NA     NA      NA    NA
+#> 2  NA      NA    NA    NA NA    NA     NA      NA    NA
+#> 3  NA       6   160   110  3.9   2.62  16.5     0     1
+#> 4  21       6   160   110  3.9   2.88  17.0     0     1
+#> 5  22.8     4   108    93  3.85  2.32  18.6     1     1
+#> 6  21.4     6   258   110  3.08  3.22  19.4     1     0
+#> # … with 2 more variables: gear <dbl>, carb <dbl>
 ```
 
 Now look at the classes of each variable. Which classes look like they are incorrect?
@@ -208,18 +194,16 @@ cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2,
 )) %>%
   slice(-(1:2))
 head(cars_df)
-```
-
-```
-## # A tibble: 6 x 11
-##     mpg cyl    disp    hp  drat    wt  qsec vs       am  gear  carb
-##   <dbl> <fct> <dbl> <dbl> <dbl> <dbl> <dbl> <fct> <dbl> <dbl> <dbl>
-## 1  NA   6       160   110  3.9   2.62  16.5 0         1     4     4
-## 2  21   6       160   110  3.9   2.88  17.0 0         1     4     4
-## 3  22.8 4       108    93  3.85  2.32  18.6 1         1     4     1
-## 4  21.4 6       258   110  3.08  3.22  19.4 1         0     3     1
-## 5  NA   8       360   175  3.15  3.44  17.0 0         0     3     2
-## 6  18.1 6       225   105  2.76  3.46  20.2 1         0     3     1
+#> # A tibble: 6 x 11
+#>     mpg cyl    disp    hp  drat    wt  qsec vs       am
+#>   <dbl> <fct> <dbl> <dbl> <dbl> <dbl> <dbl> <fct> <dbl>
+#> 1  NA   6       160   110  3.9   2.62  16.5 0         1
+#> 2  21   6       160   110  3.9   2.88  17.0 0         1
+#> 3  22.8 4       108    93  3.85  2.32  18.6 1         1
+#> 4  21.4 6       258   110  3.08  3.22  19.4 1         0
+#> 5  NA   8       360   175  3.15  3.44  17.0 0         0
+#> 6  18.1 6       225   105  2.76  3.46  20.2 1         0
+#> # … with 2 more variables: gear <dbl>, carb <dbl>
 ```
 
 There are __many__ other possible file formats for data storage. For example, there is a data set called `oscars.tsv`, which is a tab-separated file. You can read it in with `read_tsv()` instead of `read_csv()`. 
@@ -228,32 +212,36 @@ There are __many__ other possible file formats for data storage. For example, th
 ```r
 oscars_df <- read_tsv("data/oscars.tsv")
 head(oscars_df)
-```
-
-```
-## # A tibble: 6 x 51
-##   FilmName     OscarYear Duration Rating DirectorName DirectorGender OscarWinner
-##   <chr>            <dbl>    <dbl>  <dbl> <chr>                 <dbl>       <dbl>
-## 1 Crash             2006      113      4 Haggis                    0           1
-## 2 Brokeback M…      2006      134      4 Lee                       0           0
-## 3 Capote            2006      114      4 Miller                    0           0
-## 4 Good Night,…      2006       93      2 Clooney                   0           0
-## 5 Munich            2006      164      4 Spielberg                 0           0
-## 6 The Departed      2007      151      4 Scorsese                  0           1
-## # … with 44 more variables: GenreName <chr>, Genre_Drama <dbl>,
-## #   Genre_Bio <dbl>, CountryName <chr>, ForeignandUSA <dbl>,
-## #   ProductionName <chr>, ProductionCompany <dbl>, BudgetRevised <chr>,
-## #   Budget <chr>, DomesticBoxOffice <dbl>, WorldwideRevised <dbl>,
-## #   WorldwideBoxOffice <dbl>, DomesticPercent <dbl>, LimitedOpeningWnd <dbl>,
-## #   LimitedTheaters <dbl>, LimitedAveragePThtr <dbl>, WideOpeningWkd <dbl>,
-## #   WideTheaters <dbl>, WideTheaterAverage <dbl>, WidestTheaters <dbl>,
-## #   Days <chr>, Rotten <dbl>, Metacritic <dbl>, IMDb <dbl>,
-## #   CriticAverage <dbl>, MPrinicpalCast <dbl>, FPrincipalCast <dbl>,
-## #   FPercentPrincipalCast <dbl>, MLeadTime <dbl>, FLeadTime <dbl>,
-## #   GuestMLeadTIme <dbl>, GuestFLEadTime <dbl>, MLeadPercentinFilm <dbl>,
-## #   FLeadPercentinFilm <dbl>, GMLeadPerinFilm <chr>, GFLeadPerinFilm <chr>,
-## #   M/FDifference <dbl>, F/MRatio <dbl>, M/FPercentMore <dbl>, FHighLow <dbl>,
-## #   LeadTime <dbl>, MorF <dbl>, MaleLAA <dbl>, FemaleLAA <dbl>
+#> # A tibble: 6 x 51
+#>   FilmName            OscarYear Duration Rating DirectorName
+#>   <chr>                   <dbl>    <dbl>  <dbl> <chr>       
+#> 1 Crash                    2006      113      4 Haggis      
+#> 2 Brokeback Mountain       2006      134      4 Lee         
+#> 3 Capote                   2006      114      4 Miller      
+#> 4 Good Night, and Go…      2006       93      2 Clooney     
+#> 5 Munich                   2006      164      4 Spielberg   
+#> 6 The Departed             2007      151      4 Scorsese    
+#> # … with 46 more variables: DirectorGender <dbl>,
+#> #   OscarWinner <dbl>, GenreName <chr>, Genre_Drama <dbl>,
+#> #   Genre_Bio <dbl>, CountryName <chr>,
+#> #   ForeignandUSA <dbl>, ProductionName <chr>,
+#> #   ProductionCompany <dbl>, BudgetRevised <chr>,
+#> #   Budget <chr>, DomesticBoxOffice <dbl>,
+#> #   WorldwideRevised <dbl>, WorldwideBoxOffice <dbl>,
+#> #   DomesticPercent <dbl>, LimitedOpeningWnd <dbl>,
+#> #   LimitedTheaters <dbl>, LimitedAveragePThtr <dbl>,
+#> #   WideOpeningWkd <dbl>, WideTheaters <dbl>,
+#> #   WideTheaterAverage <dbl>, WidestTheaters <dbl>,
+#> #   Days <chr>, Rotten <dbl>, Metacritic <dbl>, IMDb <dbl>,
+#> #   CriticAverage <dbl>, MPrinicpalCast <dbl>,
+#> #   FPrincipalCast <dbl>, FPercentPrincipalCast <dbl>,
+#> #   MLeadTime <dbl>, FLeadTime <dbl>, GuestMLeadTIme <dbl>,
+#> #   GuestFLEadTime <dbl>, MLeadPercentinFilm <dbl>,
+#> #   FLeadPercentinFilm <dbl>, GMLeadPerinFilm <chr>,
+#> #   GFLeadPerinFilm <chr>, M/FDifference <dbl>,
+#> #   F/MRatio <dbl>, M/FPercentMore <dbl>, FHighLow <dbl>,
+#> #   LeadTime <dbl>, MorF <dbl>, MaleLAA <dbl>,
+#> #   FemaleLAA <dbl>
 ```
 
 You'll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet. 
@@ -264,15 +252,12 @@ The final issue that we will discuss in this section occurs when a data set has 
 ```r
 test_df <- read_csv("data/parsedf.csv")
 head(test_df)
-```
-
-```
-## # A tibble: 3 x 2
-##   x                   y
-##   <chr>           <dbl>
-## 1 20,000 dollars      1
-## 2 40 dollars          2
-## 3 only 13 dollars     3
+#> # A tibble: 3 x 2
+#>   x                   y
+#>   <chr>           <dbl>
+#> 1 20,000 dollars      1
+#> 2 40 dollars          2
+#> 3 only 13 dollars     3
 ```
 
 The `parse_number()` function is really useful if you just want the number (no commas, no units, etc.). The function is often paired with `mutate()` since we are creating a new variable:
@@ -280,15 +265,12 @@ The `parse_number()` function is really useful if you just want the number (no c
 
 ```r
 test_df %>% mutate(x2 = parse_number(x))
-```
-
-```
-## # A tibble: 3 x 3
-##   x                   y    x2
-##   <chr>           <dbl> <dbl>
-## 1 20,000 dollars      1 20000
-## 2 40 dollars          2    40
-## 3 only 13 dollars     3    13
+#> # A tibble: 3 x 3
+#>   x                   y    x2
+#>   <chr>           <dbl> <dbl>
+#> 1 20,000 dollars      1 20000
+#> 2 40 dollars          2    40
+#> 3 only 13 dollars     3    13
 ```
 
 ### Exercises {#exercise-8-2}
@@ -417,18 +399,15 @@ library(tidyverse)
 cr_cards_flat <- cr_cards[["cards"]]
 cr_cards_df <- as_tibble(cr_cards_flat)
 head(cr_cards_df)
-```
-
-```
-## # A tibble: 6 x 8
-##   key    name    elixir type  rarity arena description                        id
-##   <chr>  <chr>    <int> <chr> <chr>  <int> <chr>                           <int>
-## 1 knight Knight       3 Troop Common     0 A tough melee fighter. The Ba… 2.6 e7
-## 2 arche… Archers      3 Troop Common     0 A pair of lightly armored ran… 2.60e7
-## 3 gobli… Goblins      2 Troop Common     1 Three fast, unarmored melee a… 2.60e7
-## 4 giant  Giant        5 Troop Rare       0 Slow but durable, only attack… 2.60e7
-## 5 pekka  P.E.K.…      7 Troop Epic       4 A heavily armored, slow melee… 2.60e7
-## 6 minio… Minions      3 Troop Common     0 Three fast, unarmored flying … 2.60e7
+#> # A tibble: 6 x 8
+#>   key    name  elixir type  rarity arena description      id
+#>   <chr>  <chr>  <int> <chr> <chr>  <int> <chr>         <int>
+#> 1 knight Knig…      3 Troop Common     0 A tough mel… 2.6 e7
+#> 2 arche… Arch…      3 Troop Common     0 A pair of l… 2.60e7
+#> 3 gobli… Gobl…      2 Troop Common     1 Three fast,… 2.60e7
+#> 4 giant  Giant      5 Troop Rare       0 Slow but du… 2.60e7
+#> 5 pekka  P.E.…      7 Troop Epic       4 A heavily a… 2.60e7
+#> 6 minio… Mini…      3 Troop Common     0 Three fast,… 2.60e7
 ```
 
 The second method uses the `flatten()` function from the `purrr` package, the only package in the core `tidyverse` that we do not talk about in detail in this class. There is also a different `flatten()` function in the `jsonlite` package. In the code below, we specify that we want to use `flatten()` from `purrr` with `purrr::flatten()`. If we wanted to use `flatten()` from `jsonlite`, we'd use `jsonlite::flatten()`
@@ -438,18 +417,15 @@ The second method uses the `flatten()` function from the `purrr` package, the on
 cr_cards_flat2 <- purrr::flatten(cr_cards)
 cr_cards_df2 <- as_tibble(cr_cards_flat2)
 head(cr_cards_df2)
-```
-
-```
-## # A tibble: 6 x 8
-##   key    name    elixir type  rarity arena description                        id
-##   <chr>  <chr>    <int> <chr> <chr>  <int> <chr>                           <int>
-## 1 knight Knight       3 Troop Common     0 A tough melee fighter. The Ba… 2.6 e7
-## 2 arche… Archers      3 Troop Common     0 A pair of lightly armored ran… 2.60e7
-## 3 gobli… Goblins      2 Troop Common     1 Three fast, unarmored melee a… 2.60e7
-## 4 giant  Giant        5 Troop Rare       0 Slow but durable, only attack… 2.60e7
-## 5 pekka  P.E.K.…      7 Troop Epic       4 A heavily armored, slow melee… 2.60e7
-## 6 minio… Minions      3 Troop Common     0 Three fast, unarmored flying … 2.60e7
+#> # A tibble: 6 x 8
+#>   key    name  elixir type  rarity arena description      id
+#>   <chr>  <chr>  <int> <chr> <chr>  <int> <chr>         <int>
+#> 1 knight Knig…      3 Troop Common     0 A tough mel… 2.6 e7
+#> 2 arche… Arch…      3 Troop Common     0 A pair of l… 2.60e7
+#> 3 gobli… Gobl…      2 Troop Common     1 Three fast,… 2.60e7
+#> 4 giant  Giant      5 Troop Rare       0 Slow but du… 2.60e7
+#> 5 pekka  P.E.…      7 Troop Epic       4 A heavily a… 2.60e7
+#> 6 minio… Mini…      3 Troop Common     0 Three fast,… 2.60e7
 ```
 
 Both methods give a `tibble` that we can then use our usual `tidyverse` tools `ggplot2`, `dplyr`, `tidyr`, etc. on.
@@ -463,45 +439,42 @@ Now let's try to look at some animal crossing data that were obtained from <a hr
 acedata <- fromJSON("data/ace.json")
 aceflat <- purrr::flatten(acedata)
 head(aceflat)
-```
-
-```
-## $gender
-## [1] "male"
-## 
-## $species
-## [1] "bird"
-## 
-## $birthday
-## [1] "3-13"
-## 
-## $ac
-## $ac$personality
-## [1] "jock"
-## 
-## $ac$clothes
-## [1] "spade-shirt"
-## 
-## $ac$song
-## [1] "K.K. Parade"
-## 
-## $ac$phrase
-## [1] "ace"
-## 
-## 
-## $`afe+`
-## $`afe+`$personality
-## [1] "jock"
-## 
-## $`afe+`$clothes
-## [1] "spade-shirt"
-## 
-## $`afe+`$song
-## [1] "K.K. Parade"
-## 
-## 
-## $name
-## [1] "Ace"
+#> $gender
+#> [1] "male"
+#> 
+#> $species
+#> [1] "bird"
+#> 
+#> $birthday
+#> [1] "3-13"
+#> 
+#> $ac
+#> $ac$personality
+#> [1] "jock"
+#> 
+#> $ac$clothes
+#> [1] "spade-shirt"
+#> 
+#> $ac$song
+#> [1] "K.K. Parade"
+#> 
+#> $ac$phrase
+#> [1] "ace"
+#> 
+#> 
+#> $`afe+`
+#> $`afe+`$personality
+#> [1] "jock"
+#> 
+#> $`afe+`$clothes
+#> [1] "spade-shirt"
+#> 
+#> $`afe+`$song
+#> [1] "K.K. Parade"
+#> 
+#> 
+#> $name
+#> [1] "Ace"
 ```
 
 Things are now....more complicated. This example is just to show that it's not always easy working with JSON data. Lists can be nested and that creates problems when trying to convert a deeply nested list into our "rectangular" format that's easy to work with. 
@@ -562,20 +535,18 @@ __Note__: A few sports (men's and women's golf, for example), give results in PD
 library(tidyverse)
 evals_df <- read_csv("data/evals_prof_S21.csv")
 head(evals_df)
-```
-
-```
-## # A tibble: 6 x 10
-##   Term  Course Question          `Agree strongly` Agree `Agree Somewhat` Neutral
-##   <chr> <chr>  <chr>                        <dbl> <dbl>            <dbl>   <dbl>
-## 1 F19   113-02 1. Course has be…                9     9                1       5
-## 2 F19   113-02 2. Effectively O…               12     8                1       2
-## 3 F19   113-02 3. Environment C…               11     8                2       3
-## 4 F19   113-02 5a. Fair Assessm…                5    13                3       1
-## 5 F19   113-02 5b. Timely Asses…                8    12                1       2
-## 6 F19   113-02 5c. Constructive…                5     8                4       6
-## # … with 3 more variables: Disagree Somewhat <dbl>, Disagree <dbl>,
-## #   Disagree Strongly <dbl>
+#> # A tibble: 6 x 10
+#>   Term  Course Question               `Agree strongly` Agree
+#>   <chr> <chr>  <chr>                             <dbl> <dbl>
+#> 1 F19   113-02 1. Course has been a …                9     9
+#> 2 F19   113-02 2. Effectively Organi…               12     8
+#> 3 F19   113-02 3. Environment Conduc…               11     8
+#> 4 F19   113-02 5a. Fair Assessment o…                5    13
+#> 5 F19   113-02 5b. Timely Assessment…                8    12
+#> 6 F19   113-02 5c. Constructive Asse…                5     8
+#> # … with 5 more variables: Agree Somewhat <dbl>,
+#> #   Neutral <dbl>, Disagree Somewhat <dbl>, Disagree <dbl>,
+#> #   Disagree Strongly <dbl>
 ```
 
 Put together a reprex using `tibble()` that someone would be able to run to help you figure out your question.

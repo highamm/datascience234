@@ -1,44 +1,44 @@
 --- 
 title: "STAT 234: Data Science"
 author: "Matt Higham"
-date: "2021-06-24"
+date: "2021-08-09"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
+url: https://highamm.github.io/datascience234/
+# cover-image: path to the social sharing image like images/cover.jpg
+description: "This book contains examples for SLU's Introduction to Data Science course."
 biblio-style: apalike
-link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "This book contains all examples for SLU's Introduction to Data Science course."
+csl: chicago-fullnote-bibliography.csl
 ---
 
 # Syllabus and Course Information
-
-Needs to be updated for Fall 2021.
 
 ## General Information
 
 __Instructor Information__
 
 * Professor: Matt Higham
-* Office: Bewkes 121
+* Office: Bewkes 123
 * Email: mhigham@stlawu.edu
-* Semester: Fall 2020
+* Semester: Fall 2021
 * Office Hours: 
-    + Tuesday 12:00 - 2:00 (in Zoom)
-    + Friday 10:50 - 11:50 (in JHS 224 or in Zoom)
-    + Friday 1:30 - 2:30 (in JHS 224 or in Zoom)
+    + Tuesday 1:30 - 3:30 
+    + Wednesday 2:30 - 3:30
+    + Friday 10:00 - 11:00
     + other times by appointment
-* Zoom Link: <https://stlawu.zoom.us/j/98496966102>
+    + all in-person
+<!-- * Zoom Link: <https://stlawu.zoom.us/j/98496966102> -->
 * Sections:
-    + MW 3:20 - 4:50
+    + MW 8:50 - 10:20
     
 __Course Materials__
 
-* Textbook: R for Data Science by Garrett Grolemund and Hadley Wickham 
-    + free online version: [R for Data Science (r4ds)](https://r4ds.had.co.nz/)
-    + we will use this only as a reference
-* Computer with Internet access
+* <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. This will be our primary source of materials.
+* Textbooks (only used as references):
+    * Modern Data Science with `R` by Baumer, Kaplan, and Horton, found <a href="https://mdsr-book.github.io/mdsr2e/" target="_blank">here</a> in a free online version.
+    * R for Data Science by Grolemund and Wickham, found <a href="https://r4ds.had.co.nz/" target="_blank">here</a> in a free online version.
+* Computer with Internet access.
     
 ***
 ***
@@ -49,7 +49,7 @@ Welcome to STAT 234! The overall purpose of this course is learn the data scienc
 
 ![](other/data-science.png)
 
-We will put more emphasis on the _Import, Tidy, Transform, Visaulize, and Communicate_ parts of the cycle, as much of the _Modeling_ part is covered in STAT 213.
+We will put more emphasis on the _Import, Tidy, Transform, Visualize, and Communicate_ parts of the cycle, as an introduction to _Modeling_ part is covered in STAT 213.
 
 ***
 ***
@@ -60,22 +60,24 @@ We will put more emphasis on the _Import, Tidy, Transform, Visaulize, and Commun
 
 2. _Tidy_ data into a form that can be more easily visualized, summarised, and modeled.
 
-3. _Transform_ and _Visualize_ variables in a data set to assess patterns in the data.
+3. _Transform_, _Wrangle_, and _Visualize_ variables in a data set to assess patterns in the data.
 
 4. _Communicate_ the results of your analysis to a target audience with a written report, or, possibly an oral presentation.
 
-5. Practice reproducible statistical practices through the use of `R Markdown` for data anlaysis projects. 
+5. Practice reproducible statistical practices through the use of `R Markdown` for data analysis projects. 
 
-6. _Generally_: develop the necessary skills to be able to answer future data analysis questions on your own, either using `R` or another program, such as Python. 
+6. Explain why it is ethically important to consider the context that a data set comes in.
 
-To paraphrase our textbook, about 80% of the skills necessary to do a complete data analysis project can be learned through coursework in classes like this one. But, 20% of any particular project will involve learning new things that are specific to that project. Achieving Goal # 6 will allow you to learn this extra 20% on your own. 
+7. Develop the necessary skills to be able to ask and answer future data analysis questions on your own, either using `R` or another program, such as Python. 
+
+To paraphrase the _R for Data Science_ textbook, about 80% of the skills necessary to do a complete data analysis project can be learned through coursework in classes like this one. But, 20% of any particular project will involve learning new things that are specific to that project. Achieving Goal # 6 will allow you to learn this extra 20% on your own. 
 
 ### Use of `R` and `RStudio`
 
 We will use the statistical software `R` to construct graphs and analyze data. A few notes:
 
 * `R` and `RStudio` are both free to use.
-* We will primarily be using the SLU `R Studio` server at first: <http://rstudio-u18-01.stlawu.local:8787/> 
+* We will primarily be using the SLU `R Studio` server at first: <a href="http://rstudio-u18-01.stlawu.local:8787/" target="_blank">Link to R Studio Server</a>.
 * Additionally, we will be using `RMarkdown` for data analysis reports. 
 _Note_: It's always nice to start assignments and projects as early as possible, but this is particularly important to do for assignments and projects involving `R`. It's no fun to try and figure out why code is not working at the last minute. If you start early enough though, you will have plenty of time to seek help and therefore won't waste a lot of time on a coding error.
 
@@ -84,45 +86,46 @@ _Note_: It's always nice to start assignments and projects as early as possible,
 
 ## How You Will Be Assessed
 
-There are 5 components to your grade, each described below. 
+The components to your grade are described below:
 
-* Tutorials, Exercises, and Classes
+* Class
 
-There are 14 sets of tutorials, exercises, and class that are graded for completion only. Tutorials are worth 2 points each, exercise sets are worth 4 points each, and each week of class is worth 4 points for a total of 140 points.
+Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. Additionally, there will be a 10-point "share something interesting you found with the class" assignment on very Wednesday, where, two students will volunteer to....share something interesting that they found with the data set we were working with with the rest of the class. The rubric used will be shared on the first day of class, and more information about the Wednesday 10 points will also be given on the first day of class.
 
-__Note__: To get class credit, you can either come to class or zoom in. If you miss class, then you can still get "class" credit by completing the class exercises given within 2 days.
+* Exercises
+
+There are about 14 sets of weekly exercises that often require you to read some of the sections in the <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a> first. These are worth either 10 or 5 points, depending on the length of the exercises, for a total of 100 points. Most weeks toward the beginning of the semester will be 10 point weeks because we won't have any projects to work on. Exercises are graded __for completion only__: for many exercises, the solutions are provided in our course materials. 
 
 * Quizzes
 
-There will be 10 Quizzes, each worth 20 points for a total of 180 points with one dropped quiz. The purpose of the quizzes are for you to practice what you've learned for the week in a short, concise format. Quizzes, for the most part, will assess basic understanding of the functions that we've used for that particular week.
+There will be 10 Quizzes, each worth 20 points for a total of 180 points with one dropped quiz. The purpose of the quizzes are for you to practice what you've learned for the week in a short, concise format. Quizzes will consist of two parts: (1) a take-home component and (2) an in-class component. The take-home component should take about 15 minutes. You are allowed use any course materials and you are allowed to work with other students in this course, as long as you list the names of those students at the top of your quiz. The in-class component will be 5 minutes. You will be asked to do a simple task with pen and paper, without using any course notes or materials. 
 
-If you need to miss class on the day of the quiz, a make-up will be given during the first Friday office hours that you are available. The make-up quiz will be oral. 
+<!-- If you need to miss class on the day of the quiz, a make-up will be given during the first Friday office hours that you are available. The make-up quiz will be oral.  -->
 
 * Mini Projects
 
-There are 3 mini-projects scattered throughout the semester that are worth 50 points each (~ one every 3 weeks). Each mini-project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.
+There are 3 mini-projects scattered throughout the semester that are worth 60 points each. Each mini-project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.
 
 In order to get experience with oral presentations of results, each student will give a short oral presentation on __1__ mini-project. Use of `R Markdown` is required for this presentation (as opposed to PowerPoint or Prezi). More details will be given later in the semester.
 
 * Midterm Exams
 
-There will be two midterm exams, each worth 165 points. Exams will have both an in-class and take-home component. The purpose of the in-class portion is to assess "the basics." The purpose of the take-home portion is to assess your ability to put the basics together to form a cohesive data analysis. More information will be given about these later.
+There will be two midterm exams, each worth 150 points. More information will be given about these later.
 
 * Final Project
 
-There is one final project, worth 200 points. The purpose of the final project is to give you an opportunity to assemble topics throughout the course into one coherent data analysis. More information about the final project will be given later. 
+There is one final project, worth 150 points. The primary purpose of the final project is to give you an opportunity to assemble topics throughout the course into one coherent data analysis. More information about the final project will be given later. 
 
-There will be no Final Exam.
+There will be no Final Exam for this course.
 
 ### Breakdown
 
-__Note__: Points were updated on November 24 to reflect a 20 points increase in the Final Project points
-
-* 120 points for Tutorials, Exercises, and Class
+* 70 points for Class
+* 100 points for Exercises
 * 180 points for Quizzes
-* 150 points for Mini-Projects + 20 points for Presentation
-* 165 points for each of two Midterm Exams
-* 200 points for Final Project
+* 180 points for Mini-Projects + 20 points for Presentation
+* 150 points for each of two Midterm Exams
+* 150 points for Final Project
 
 Points add up to 1000 so your grade at the end of the semester will be the number of points you've earned across all categories divided by 1000.
 
@@ -199,7 +202,7 @@ To avoid academic dishonesty, it is important that you follow all directions and
 
 It is important to work in a way that maximizes your learning. Be aware that students who rely too much on others for the homework and projects tend to do poorly on the quizzes and exams.
 
-_Please note that in addition the above, any assignments in which your score is reduced due to academic dishonesty will not be dropped according to the quiz policy e.g., if you receive a zero on a quiz because of academic dishonesty, it will not be dropped from your grade. Additionally, academic honesty on the homework will result in a 0 for that week's quiz (since the homework is not worth points on its own)_
+_Please note that in addition the above, any assignments in which your score is reduced due to academic dishonesty will not be dropped according to the quiz policy e.g., if you receive a zero on a quiz because of academic dishonesty, it will not be dropped from your grade._
 
 ***
 ***
@@ -208,22 +211,24 @@ _Please note that in addition the above, any assignments in which your score is 
 
 | Week | Date | Topics |
 | ---- | ------ | ---- | --------------------------------------------------- |
-| 0 | 8/26  | Introduction to `R`, `R Studio`|
-| 1 | 8/31 | Graphics with `ggplot2` |
-| 2 | 9/7 | Data Wrangling and Transformation with `dplyr` |
-| 3 | 9/14 | Data Tidying with `tidyr` |
-| 4 | 9/21 | Communication with `R Markdown` and `ggplot2` |
-| 5 | 9/28| Basic Coding in `R`|
-| 6 | 10/5 | Catch-up and Midterm 1 |
+| 0 | 8/25  | Introduction to `R`, `R Studio`|
+| 1 | 8/30 | Graphics with `ggplot2` |
+| 2 | 9/6 | Data Wrangling and Transformation with `dplyr` |
+| 3 | 9/13 | Data Tidying with `tidyr` |
+| 4 | 9/20 | Communication with `R Markdown` and `ggplot2` |
+| 5 | 9/27| Basic Coding in `R`|
+| 6 | 10/4 | Catch-up and Midterm 1 |
 ||||
-| 7 | 10/12 | Factors with `forcats` and Data Ethics  |
-| 8 | 10/19 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble`|
-| 9 | 10/26 | Data Merging with `dplyr` |
-| 10 | 11/2 | Dates and Times with `lubridate` |
-| 11 | 11/9 | Strings with `stringr` |
-| 12 | 11/16 | Catch-up and Midterm 2|
+| 7 | 10/11 | Factors with `forcats` and Data Ethics  |
+| 8 | 10/18 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble`|
+| 9 | 10/25 | Data Merging with `dplyr` |
+| 10 | 11/1 | Dates and Times with `lubridate` |
+| 11 | 11/8 | Strings with `stringr` |
+| 12 | 11/15 | Catch-up and Midterm 2|
 ||||
-| 13 | 11/23 | Predictive Modeling |
-| 14 | 11/30 | Final Project |
+| 13 | 11/22 | Thanksgiving Break |
+| 14 | 11/29 | Predictive Modeling Final Project |
+| 14 | 12/6 | Final Project |
 
+* The three mini-projects are tentatively scheduled to be due on September 27, October 25, and November 8, though these are subject to change.
 * There will be no Final Exam, but keep your schedule open at our Final Exam time in case we decide to use it for something. 

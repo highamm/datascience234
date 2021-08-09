@@ -27,30 +27,27 @@ One easy way to get a quick summary of a `factor` variable is to use `group_by()
 ```r
 pokemon_df %>% group_by(`Type 1`) %>%
   summarise(counttype = n())
-```
-
-```
-## # A tibble: 18 x 2
-##    `Type 1` counttype
-##    <chr>        <int>
-##  1 Bug             75
-##  2 Dark            31
-##  3 Dragon          41
-##  4 Electric        90
-##  5 Fairy           18
-##  6 Fighting        27
-##  7 Fire            56
-##  8 Flying           6
-##  9 Ghost           58
-## 10 Grass           73
-## 11 Ground          42
-## 12 Ice             24
-## 13 Normal         108
-## 14 Poison          30
-## 15 Psychic         73
-## 16 Rock            47
-## 17 Steel           29
-## 18 Water          119
+#> # A tibble: 18 x 2
+#>    `Type 1` counttype
+#>    <chr>        <int>
+#>  1 Bug             75
+#>  2 Dark            31
+#>  3 Dragon          41
+#>  4 Electric        90
+#>  5 Fairy           18
+#>  6 Fighting        27
+#>  7 Fire            56
+#>  8 Flying           6
+#>  9 Ghost           58
+#> 10 Grass           73
+#> 11 Ground          42
+#> 12 Ice             24
+#> 13 Normal         108
+#> 14 Poison          30
+#> 15 Psychic         73
+#> 16 Rock            47
+#> 17 Steel           29
+#> 18 Water          119
 ```
 
 <br>
@@ -68,7 +65,7 @@ ggplot(data = pokemon_legend, aes(x = Generation_cat, y = nlegend)) +
   geom_col()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
 
 We've discussed how to change many aspects of `ggplot2` graphs, but we haven't discussed how to rename the labels of levels of a categorical variable, whether those appear in the x-axis or in a separate legend. The easiest way to do this is to rename the levels in the factor itself using `fct_recode()`. Suppose, for example, that we want to relabel the Generation number with the actual region corresponding to each game (Kanto, Johto, Hoenn, Sinnoh, Unova, and Kalos). The function `fct_recode()` takes the name of a factor already present in the data set as its first argument and then a series of renaming schemes (new_name = "old_name") as its remaining arguments.
 
@@ -81,27 +78,21 @@ pokemon_legend <- pokemon_legend %>%
                                       Kalos = "6")) %>%
   select(Generation_cat2, everything())
 head(pokemon_legend)
-```
-
-```
-## # A tibble: 6 x 3
-##   Generation_cat2 Generation_cat nlegend
-##   <fct>           <fct>            <int>
-## 1 Kanto           1                    6
-## 2 Johto           2                    5
-## 3 Hoenn           3                   34
-## 4 Sinnoh          4                   17
-## 5 Unova           5                   27
-## 6 Kalos           6                   13
-```
-
-```r
+#> # A tibble: 6 x 3
+#>   Generation_cat2 Generation_cat nlegend
+#>   <fct>           <fct>            <int>
+#> 1 Kanto           1                    6
+#> 2 Johto           2                    5
+#> 3 Hoenn           3                   34
+#> 4 Sinnoh          4                   17
+#> 5 Unova           5                   27
+#> 6 Kalos           6                   13
 ggplot(data = pokemon_legend,
        aes(x = Generation_cat2, y = nlegend)) +
   geom_col()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
 
 ### Collapsing Many Levels Into Fewer Levels with `fct_collapse()`
 
@@ -116,26 +107,25 @@ pokemon_long %>%
   mutate(new_type = fct_collapse(Type, Coolest = c("Ice", "Dark"),
                                  Least_Cool = c("Fire", "Fighting", "Poison"))) %>%
   select(new_type, Type, everything())
-```
-
-```
-## # A tibble: 1,894 x 22
-##    new_type  Type     `#` Name    Total    HP Attack Defense `Sp. Atk` `Sp. Def`
-##    <fct>     <chr>  <dbl> <chr>   <dbl> <dbl>  <dbl>   <dbl>     <dbl>     <dbl>
-##  1 Grass     Grass      1 Bulbas…   318    45     49      49        65        65
-##  2 Least_Co… Poison     1 Bulbas…   318    45     49      49        65        65
-##  3 Grass     Grass      2 Ivysaur   405    60     62      63        80        80
-##  4 Least_Co… Poison     2 Ivysaur   405    60     62      63        80        80
-##  5 Grass     Grass      3 Venusa…   525    80     82      83       100       100
-##  6 Least_Co… Poison     3 Venusa…   525    80     82      83       100       100
-##  7 Grass     Grass      3 Venusa…   525    80     82      83       100       100
-##  8 Least_Co… Poison     3 Venusa…   525    80     82      83       100       100
-##  9 Least_Co… Fire       4 Charma…   309    39     52      43        60        50
-## 10 <NA>      <NA>       4 Charma…   309    39     52      43        60        50
-## # … with 1,884 more rows, and 12 more variables: Speed <dbl>, Generation <dbl>,
-## #   Legendary <lgl>, id <chr>, identifier <chr>, height <dbl>, weight <dbl>,
-## #   base_experience <dbl>, order <dbl>, is_default <dbl>, Generation_cat <fct>,
-## #   Number <chr>
+#> # A tibble: 1,894 x 22
+#>    new_type  Type     `#` Name    Total    HP Attack Defense
+#>    <fct>     <chr>  <dbl> <chr>   <dbl> <dbl>  <dbl>   <dbl>
+#>  1 Grass     Grass      1 Bulbas…   318    45     49      49
+#>  2 Least_Co… Poison     1 Bulbas…   318    45     49      49
+#>  3 Grass     Grass      2 Ivysaur   405    60     62      63
+#>  4 Least_Co… Poison     2 Ivysaur   405    60     62      63
+#>  5 Grass     Grass      3 Venusa…   525    80     82      83
+#>  6 Least_Co… Poison     3 Venusa…   525    80     82      83
+#>  7 Grass     Grass      3 Venusa…   525    80     82      83
+#>  8 Least_Co… Poison     3 Venusa…   525    80     82      83
+#>  9 Least_Co… Fire       4 Charma…   309    39     52      43
+#> 10 <NA>      <NA>       4 Charma…   309    39     52      43
+#> # … with 1,884 more rows, and 14 more variables:
+#> #   Sp. Atk <dbl>, Sp. Def <dbl>, Speed <dbl>,
+#> #   Generation <dbl>, Legendary <lgl>, id <chr>,
+#> #   identifier <chr>, height <dbl>, weight <dbl>,
+#> #   base_experience <dbl>, order <dbl>, is_default <dbl>,
+#> #   Generation_cat <fct>, Number <chr>
 ```
 
 What happens to the levels that aren't being re-specified?
@@ -180,7 +170,7 @@ ggplot(data = pokemon_sum, aes(x = Type,
   coord_flip()  ## flips the x and y axes
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-6-1.png)<!-- -->
 
 How does `R` order the levels of the `Type` factor, by default? How might you like them to be ordered to make the graph more readable?
 
@@ -198,7 +188,7 @@ ggplot(data = pokemon_sum, aes(x = Type_ordered,
   coord_flip()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-7-1.png)<!-- -->
 
 `fct_reorder()` also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the `Defense` stat changes for different Pokemon types
 
@@ -214,7 +204,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
   coord_flip()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-8-1.png)<!-- -->
 
 The following code makes a point plot that shows the median defense for each type instead of boxplots.
 
@@ -229,7 +219,7 @@ ggplot(data = pokemon_med, aes(x = med_def, y = Type_Deford)) +
   geom_point()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-9-1.png)<!-- -->
 
 Do you have a preference between the boxplot graph and the point plot?
 
@@ -260,7 +250,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-11-1.png)<!-- -->
 
 Notice the order of the levels in the legend. Most people would prefer the order to actually match up with where the lines in the plot end, not for the order to be alphabetical. To achieve this, we can use `fct_reorder2()` to change the order of the factor levels:
 
@@ -276,7 +266,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-12-1.png)<!-- -->
 
 Did it change the order of the levels how you would expect? `fct_reorder2()` actually looks at __points__, not lines, when determining the ordering. If you want the levels to match up exactly, then we'll have to reorder the levels manually with `fct_relevel()`:
 
@@ -294,7 +284,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-13-1.png)<!-- -->
 
 Reordering the levels of a factor manually might also be useful in fitting linear models. Recall that, by default, `R` makes the __reference group__ in a linear model the first level alphabetically. If you'd like a different reference group, you can reorder the levels of the factor:
 
@@ -331,7 +321,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
   coord_flip()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-15-1.png)<!-- -->
 
 Why aren't the types ordered by median defense anymore? 
 
@@ -418,54 +408,33 @@ gss_recent <- gss_cat %>% filter(year != 2014)
 
 tab1 <- table(gss_recent$party_small, gss_recent$race)
 tab1
-```
-
-```
-##        
-##         Other Black White Not applicable
-##   Other    39    46   375              0
-##   Rep     215   127  4467              0
-##   Ind     863   827  5631              0
-##   Dem     580  1743  4032              0
-```
-
-```r
+#>        
+#>         Other Black White Not applicable
+#>   Other    39    46   375              0
+#>   Rep     215   127  4467              0
+#>   Ind     863   827  5631              0
+#>   Dem     580  1743  4032              0
 prop.table(tab1)
-```
-
-```
-##        
-##               Other       Black       White Not applicable
-##   Other 0.002058591 0.002428081 0.019794141    0.000000000
-##   Rep   0.011348641 0.006703616 0.235787807    0.000000000
-##   Ind   0.045552916 0.043652679 0.297228820    0.000000000
-##   Dem   0.030614938 0.092003167 0.212826603    0.000000000
-```
-
-```r
+#>        
+#>               Other       Black       White Not applicable
+#>   Other 0.002058591 0.002428081 0.019794141    0.000000000
+#>   Rep   0.011348641 0.006703616 0.235787807    0.000000000
+#>   Ind   0.045552916 0.043652679 0.297228820    0.000000000
+#>   Dem   0.030614938 0.092003167 0.212826603    0.000000000
 prop.table(tab1, margin = 1)
-```
-
-```
-##        
-##              Other      Black      White Not applicable
-##   Other 0.08478261 0.10000000 0.81521739     0.00000000
-##   Rep   0.04470784 0.02640882 0.92888334     0.00000000
-##   Ind   0.11788007 0.11296271 0.76915722     0.00000000
-##   Dem   0.09126672 0.27427223 0.63446105     0.00000000
-```
-
-```r
+#>        
+#>              Other      Black      White Not applicable
+#>   Other 0.08478261 0.10000000 0.81521739     0.00000000
+#>   Rep   0.04470784 0.02640882 0.92888334     0.00000000
+#>   Ind   0.11788007 0.11296271 0.76915722     0.00000000
+#>   Dem   0.09126672 0.27427223 0.63446105     0.00000000
 prop.table(tab1, margin = 2)
-```
-
-```
-##        
-##              Other      Black      White Not applicable
-##   Other 0.02298173 0.01676996 0.02585315               
-##   Rep   0.12669417 0.04629967 0.30796277               
-##   Ind   0.50854449 0.30149471 0.38821096               
-##   Dem   0.34177961 0.63543565 0.27797311
+#>        
+#>              Other      Black      White Not applicable
+#>   Other 0.02298173 0.01676996 0.02585315               
+#>   Rep   0.12669417 0.04629967 0.30796277               
+#>   Ind   0.50854449 0.30149471 0.38821096               
+#>   Dem   0.34177961 0.63543565 0.27797311
 ```
 
 Use the help on `?prop.table` to figure out how each of these three tables are constructed.
@@ -542,7 +511,7 @@ ggplot(data = relig_summary, aes(tvhours, relig)) +
   geom_point()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+![](07-forcats_files/figure-epub3/unnamed-chunk-24-1.png)<!-- -->
 
 4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):
 

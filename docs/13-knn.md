@@ -40,36 +40,31 @@ train_sample <- pokemon %>%
 test_sample <- anti_join(pokemon, train_sample)
 
 train_sample %>% head()
-```
-
-```
-## # A tibble: 6 x 14
-##      X1 Name   Type     HP Attack Defense Speed SpAtk SpDef Generation Legendary
-##   <dbl> <chr>  <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>      <dbl> <lgl>    
-## 1   491 Darkr… Dark     70     90      90   125   135    90          4 TRUE     
-## 2   136 Flare… Fire     65    130      60    65    95   110          1 FALSE    
-## 3   571 Zoroa… Dark     60    105      60   105   120    60          5 FALSE    
-## 4   221 Pilos… Ice     100    100      80    50    60    60          2 FALSE    
-## 5   668 Pyroar Fire     86     68      72   106   109    66          6 FALSE    
-## 6   262 Might… Dark     70     90      70    70    60    60          3 FALSE    
-## # … with 3 more variables: height <dbl>, weight <dbl>, base_experience <dbl>
-```
-
-```r
+#> # A tibble: 6 x 14
+#>      X1 Name    Type     HP Attack Defense Speed SpAtk SpDef
+#>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
+#> 1   491 Darkrai Dark     70     90      90   125   135    90
+#> 2   136 Flareon Fire     65    130      60    65    95   110
+#> 3   571 Zoroark Dark     60    105      60   105   120    60
+#> 4   221 Pilosw… Ice     100    100      80    50    60    60
+#> 5   668 Pyroar  Fire     86     68      72   106   109    66
+#> 6   262 Mighty… Dark     70     90      70    70    60    60
+#> # … with 5 more variables: Generation <dbl>,
+#> #   Legendary <lgl>, height <dbl>, weight <dbl>,
+#> #   base_experience <dbl>
 test_sample %>% head()
-```
-
-```
-## # A tibble: 6 x 14
-##      X1 Name   Type     HP Attack Defense Speed SpAtk SpDef Generation Legendary
-##   <dbl> <chr>  <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>      <dbl> <lgl>    
-## 1     4 Charm… Fire     39     52      43    65    60    50          1 FALSE    
-## 2     5 Charm… Fire     58     64      58    80    80    65          1 FALSE    
-## 3    37 Vulpix Fire     38     41      40    65    50    65          1 FALSE    
-## 4    38 Ninet… Fire     73     76      75   100    81   100          1 FALSE    
-## 5    58 Growl… Fire     55     70      45    60    70    50          1 FALSE    
-## 6    59 Arcan… Fire     90    110      80    95   100    80          1 FALSE    
-## # … with 3 more variables: height <dbl>, weight <dbl>, base_experience <dbl>
+#> # A tibble: 6 x 14
+#>      X1 Name    Type     HP Attack Defense Speed SpAtk SpDef
+#>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
+#> 1     4 Charma… Fire     39     52      43    65    60    50
+#> 2     5 Charme… Fire     58     64      58    80    80    65
+#> 3    37 Vulpix  Fire     38     41      40    65    50    65
+#> 4    38 Nineta… Fire     73     76      75   100    81   100
+#> 5    58 Growli… Fire     55     70      45    60    70    50
+#> 6    59 Arcani… Fire     90    110      80    95   100    80
+#> # … with 5 more variables: Generation <dbl>,
+#> #   Legendary <lgl>, height <dbl>, weight <dbl>,
+#> #   base_experience <dbl>
 ```
 
 The ideas of a training data set and test data set are pervasive in predictive and classification models, including models not related to knn. Note that we are going to do this method because it's the simplest: if you wanted to take this a step further, you'd repeat the training and test process 5 or 10 times, using what's known as __k-fold cross-validation.__
@@ -94,7 +89,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
         axis.ticks.y=element_blank())
 ```
 
-<img src="13-knn_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](13-knn_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
 
 We see from the plot that `Steel` type Pokemon tend to have pretty high defense values. Now suppose that we want to predict the `Type` for one of the Pokemon in our test data set, `Dialga`. We know that Dialga has a `Defense` stat of 120: the plot below shows Dialga marked with a large black X.
 
@@ -108,7 +103,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
   geom_point(data = dialga, colour = "black", shape = 4, size = 7)
 ```
 
-<img src="13-knn_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](13-knn_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
 
 What would your prediction for `Dialga` be? Why? According to knn with `k = 1`, we would predict `Dialga` to be `Fire` type. `k = 1` means that we are using the __1st__ nearest neighbor: in this case the point that is closest to `Dialga` is a green triangle, corresponding to a `Fire` type Pokemon.
 
@@ -129,7 +124,7 @@ ggplot(data = train_sample, aes(x = Defense, y = Speed, colour = Type, shape = T
   geom_point(data = dialga, colour = "black", shape = 4, size = 5)
 ```
 
-<img src="13-knn_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](13-knn_files/figure-epub3/unnamed-chunk-5-1.png)<!-- -->
 
 For $k = 1$, we would predict the `Dialga` is Steel, as the closest point is the purple `+` sign in the top-left corner of the graph. For $k = 3$, what `Type` would you predict for Dialga? For this question, it's a little hard to tell which three points are closest to `Dialga` without computing the distances numerically, which is something we will let `R` do with the `knn()` function.
 
@@ -146,7 +141,7 @@ ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
   geom_point(data = newobs, shape = 4, size = 10)
 ```
 
-<img src="13-knn_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](13-knn_files/figure-epub3/unnamed-chunk-6-1.png)<!-- -->
 
 On the plot is also given a Pokemon in our test data set that we wish to predict the `Type` of, marked with a black X. Upon visual inspection, with `k = 1`, it looks like we would classify this pokemon as Dark. However, the units of weight and height are on very different scales. We will compute the actual distances in class to see if the conclusion from the calculation matches with the visual conclusion.
 
@@ -163,18 +158,15 @@ For example, scaling `weight` for the 15 original pokemon:
 
 ```r
 train_sample %>% select(weight) %>% head()
-```
-
-```
-## # A tibble: 6 x 1
-##   weight
-##    <dbl>
-## 1    505
-## 2    250
-## 3    811
-## 4    558
-## 5    815
-## 6    370
+#> # A tibble: 6 x 1
+#>   weight
+#>    <dbl>
+#> 1    505
+#> 2    250
+#> 3    811
+#> 4    558
+#> 5    815
+#> 6    370
 ```
 
 puts all weights between 0 and 1: 
@@ -185,18 +177,15 @@ train_sample %>% mutate(weight_s = (weight - min(weight)) /
                           (max(weight) - min(weight))) %>%
   select(weight_s) %>%
   head()
-```
-
-```
-## # A tibble: 6 x 1
-##   weight_s
-##      <dbl>
-## 1   0.187 
-## 2   0.0835
-## 3   0.312 
-## 4   0.209 
-## 5   0.314 
-## 6   0.132
+#> # A tibble: 6 x 1
+#>   weight_s
+#>      <dbl>
+#> 1   0.187 
+#> 2   0.0835
+#> 3   0.312 
+#> 4   0.209 
+#> 5   0.314 
+#> 6   0.132
 ```
 
 If we do the same with `height`, then the variables will contribute more "equally" to the distance metric used in knn. 
@@ -211,16 +200,15 @@ train_sample %>%
   mutate(across(where(is.numeric), ~ (.x - min(.x)) /
                                  (max(.x) - min(.x)))) %>%
   slice(1:3)
-```
-
-```
-## # A tibble: 3 x 14
-##      X1 Name   Type     HP Attack Defense Speed SpAtk SpDef Generation Legendary
-##   <dbl> <chr>  <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>      <dbl> <lgl>    
-## 1 0.720 Darkr… Dark  0.417  0.444     0.4 1     1     0.658        0.6 TRUE     
-## 2 0.193 Flare… Fire  0.333  0.889     0.1 0.368 0.619 0.921        0   FALSE    
-## 3 0.838 Zoroa… Dark  0.25   0.611     0.1 0.789 0.857 0.263        0.8 FALSE    
-## # … with 3 more variables: height <dbl>, weight <dbl>, base_experience <dbl>
+#> # A tibble: 3 x 14
+#>      X1 Name    Type     HP Attack Defense Speed SpAtk SpDef
+#>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
+#> 1 0.720 Darkrai Dark  0.417  0.444     0.4 1     1     0.658
+#> 2 0.193 Flareon Fire  0.333  0.889     0.1 0.368 0.619 0.921
+#> 3 0.838 Zoroark Dark  0.25   0.611     0.1 0.789 0.857 0.263
+#> # … with 5 more variables: Generation <dbl>,
+#> #   Legendary <lgl>, height <dbl>, weight <dbl>,
+#> #   base_experience <dbl>
 ```
 
 ### Exercises {#exercise-13-2}
@@ -237,7 +225,7 @@ ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
   geom_point(data = newobs, shape = 4, size = 10)
 ```
 
-<img src="13-knn_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+![](13-knn_files/figure-epub3/unnamed-chunk-10-1.png)<!-- -->
 
 The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks "closer" to the Dark type pokemon. Verify that this is __not__ actually the case by computing the actual distances numerically.
 
@@ -258,7 +246,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
   geom_point(data = dialga, colour = "black", shape = 4, size = 7)
 ```
 
-<img src="13-knn_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+![](13-knn_files/figure-epub3/unnamed-chunk-13-1.png)<!-- -->
 
 With k = 2, there is a tie between Fire and Steel. Come up with a way in which you might break ties in a knn algorithm.
 
@@ -298,10 +286,7 @@ pokemon_scaled <- pokemon %>%
 train_sample_2 <- pokemon_scaled %>%
   sample_n(70)
 test_sample_2 <- anti_join(pokemon_scaled, train_sample_2)
-```
-
-```
-## Joining, by = c("X1", "Name", "Type", "HP", "Attack", "Defense", "Speed", "SpAtk", "SpDef", "Generation", "Legendary", "height", "weight", "base_experience")
+#> Joining, by = c("X1", "Name", "Type", "HP", "Attack", "Defense", "Speed", "SpAtk", "SpDef", "Generation", "Legendary", "height", "weight", "base_experience")
 ```
 
 The first knn model we will investigate will have `HP`, `Attack`, `Defense`, and `Speed` as predictors. The `class` library can fit knn models with a `knn()` function but requires the training and test data sets to have __only__ the predictors that we want to use to fit the model. The `knn()` function also requires the response variable, `Type`, to be given as a vector.
@@ -334,15 +319,13 @@ Now that the data has been prepared for the `knn()` function in the `class` libr
 knn_mod <- knn(train = train_small, test = test_small,
                cl = train_cat, k = 9)
 knn_mod
-```
-
-```
-##  [1] Ice   Fire  Fire  Fire  Fire  Fire  Steel Fire  Ice   Fire  Fire  Fire 
-## [13] Fire  Ice   Ice   Steel Ice   Dark  Ice   Fire  Steel Fire  Fire  Ice  
-## [25] Fire  Ice   Steel Fire  Fire  Ice   Dark  Fire  Fire  Fire  Dark  Ice  
-## [37] Ice   Fire  Ice   Fire  Fire  Fire  Fire  Fire  Fire  Fire  Fire  Fire 
-## [49] Ice   Fire 
-## Levels: Dark Fire Ice Steel
+#>  [1] Ice   Fire  Fire  Fire  Fire  Fire  Steel Fire  Ice  
+#> [10] Fire  Fire  Fire  Fire  Ice   Ice   Steel Ice   Dark 
+#> [19] Ice   Fire  Steel Fire  Fire  Ice   Fire  Ice   Steel
+#> [28] Fire  Fire  Ice   Dark  Fire  Fire  Fire  Dark  Ice  
+#> [37] Ice   Fire  Ice   Fire  Fire  Fire  Fire  Fire  Fire 
+#> [46] Fire  Fire  Fire  Ice   Fire 
+#> Levels: Dark Fire Ice Steel
 ```
 
 The output of `knn_mod` gives the predicted categories for the __test__ sample. We can compare the predictions from the knn model with the actual pokemon `Type`s in the test sample with `table()`, which makes a confusion matrix:
@@ -350,15 +333,12 @@ The output of `knn_mod` gives the predicted categories for the __test__ sample. 
 
 ```r
 table(knn_mod, test_cat) 
-```
-
-```
-##        test_cat
-## knn_mod Dark Fire Ice Steel
-##   Dark     0    3   0     0
-##   Fire     6   13   7     4
-##   Ice      5    5   2     1
-##   Steel    0    1   0     3
+#>        test_cat
+#> knn_mod Dark Fire Ice Steel
+#>   Dark     0    3   0     0
+#>   Fire     6   13   7     4
+#>   Ice      5    5   2     1
+#>   Steel    0    1   0     3
 ```
 
 The columns of the confusion matrix give the actual Pokemon types in the test data while the rows give the predicted types from our knn model. The above table tells us that there were 0 pokemon that were Dark type that our knn model correctly classified as Dark. There were 6 pokemon that were Dark type that our knn model incorrectly classified as Fire. There were 5 pokemon that were Dark type and that our knn model incorrectly classified as Ice. In other words, correct predictions appear on the diagonal, while incorrect predictions appear on the off-diagonal. 
@@ -368,10 +348,7 @@ One common metric used to assess overall model performance is the model's __clas
 
 ```r
 (0 + 13 + 2 + 3) / 50
-```
-
-```
-## [1] 0.36
+#> [1] 0.36
 ```
 
 Code to automatically obtain the classification rate from a confusion matrix is
@@ -380,10 +357,7 @@ Code to automatically obtain the classification rate from a confusion matrix is
 ```r
 tab <- table(knn_mod, test_cat) 
 sum(diag(tab)) / sum(tab)
-```
-
-```
-## [1] 0.36
+#> [1] 0.36
 ```
 
 What does `diag()` seem to do in the code above?
@@ -414,7 +388,7 @@ ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
   geom_point(data = newobs, shape = 4, size = 10)
 ```
 
-<img src="13-knn_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+![](13-knn_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
 
 The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks "closer" to the Dark type pokemon. Verify that this is __not__ the case by computing the actual distances numerically.
 

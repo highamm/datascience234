@@ -42,19 +42,18 @@ In a fresh .Rmd file (File -> New File -> R Markdown) that is in your Notes proj
 library(tidyverse)
 polls <- read_csv("data/rcp-polls.csv", na = "--")
 polls
-```
-
-```
-## # A tibble: 7 x 8
-##   Poll    Date  Sample   MoE `Clinton (D)` `Trump (R)` `Johnson (L)` `Stein (G)`
-##   <chr>   <chr> <chr>  <dbl>         <dbl>       <dbl>         <dbl>       <dbl>
-## 1 Monmou… 7/14… 688 LV   3.7            45          43             5           1
-## 2 CNN/ORC 7/13… 872 RV   3.5            42          37            13           5
-## 3 ABC Ne… 7/11… 816 RV   4              42          38             8           5
-## 4 NBC Ne… 7/9 … 1000 …   3.1            41          35            11           6
-## 5 Econom… 7/9 … 932 RV   4.5            40          37             5           2
-## 6 Associ… 7/7 … 837 RV  NA              40          36             6           2
-## 7 McClat… 7/5 … 1053 …   3              40          35            10           5
+#> # A tibble: 7 x 8
+#>   Poll        Date    Sample   MoE `Clinton (D)` `Trump (R)`
+#>   <chr>       <chr>   <chr>  <dbl>         <dbl>       <dbl>
+#> 1 Monmouth    7/14 -… 688 LV   3.7            45          43
+#> 2 CNN/ORC     7/13 -… 872 RV   3.5            42          37
+#> 3 ABC News/W… 7/11 -… 816 RV   4              42          38
+#> 4 NBC News/W… 7/9 - … 1000 …   3.1            41          35
+#> 5 Economist/… 7/9 - … 932 RV   4.5            40          37
+#> 6 Associated… 7/7 - … 837 RV  NA              40          36
+#> 7 McClatchy/… 7/5 - … 1053 …   3              40          35
+#> # … with 2 more variables: Johnson (L) <dbl>,
+#> #   Stein (G) <dbl>
 ```
 
 Suppose that you wanted to know what the average sample size of the polls was. Using `dplyr` functions,
@@ -77,20 +76,18 @@ Let's `separate()` the two variables into `Sample_size` and `Sample_type`:
 polls %>%
   separate(col = Sample, into = c("Sample_size", "Sample_type"), 
            sep = " ")
-```
-
-```
-## # A tibble: 7 x 9
-##   Poll           Date    Sample_size Sample_type   MoE `Clinton (D)` `Trump (R)`
-##   <chr>          <chr>   <chr>       <chr>       <dbl>         <dbl>       <dbl>
-## 1 Monmouth       7/14 -… 688         LV            3.7            45          43
-## 2 CNN/ORC        7/13 -… 872         RV            3.5            42          37
-## 3 ABC News/Wash… 7/11 -… 816         RV            4              42          38
-## 4 NBC News/Wall… 7/9 - … 1000        RV            3.1            41          35
-## 5 Economist/You… 7/9 - … 932         RV            4.5            40          37
-## 6 Associated Pr… 7/7 - … 837         RV           NA              40          36
-## 7 McClatchy/Mar… 7/5 - … 1053        RV            3              40          35
-## # … with 2 more variables: Johnson (L) <dbl>, Stein (G) <dbl>
+#> # A tibble: 7 x 9
+#>   Poll     Date  Sample_size Sample_type   MoE `Clinton (D)`
+#>   <chr>    <chr> <chr>       <chr>       <dbl>         <dbl>
+#> 1 Monmouth 7/14… 688         LV            3.7            45
+#> 2 CNN/ORC  7/13… 872         RV            3.5            42
+#> 3 ABC New… 7/11… 816         RV            4              42
+#> 4 NBC New… 7/9 … 1000        RV            3.1            41
+#> 5 Economi… 7/9 … 932         RV            4.5            40
+#> 6 Associa… 7/7 … 837         RV           NA              40
+#> 7 McClatc… 7/5 … 1053        RV            3              40
+#> # … with 3 more variables: Trump (R) <dbl>,
+#> #   Johnson (L) <dbl>, Stein (G) <dbl>
 ```
 
 The arguments to `separate()` are fairly easy to learn:
@@ -133,20 +130,18 @@ polls_sillytest <- polls_sep %>%
   separate(col = Start, into = c("Start_month", "Start_day"), 
            sep = "/")
 polls_sillytest
-```
-
-```
-## # A tibble: 7 x 10
-##   Poll        Start_month Start_day End   Sample   MoE `Clinton (D)` `Trump (R)`
-##   <chr>       <chr>       <chr>     <chr> <chr>  <dbl>         <dbl>       <dbl>
-## 1 Monmouth    7           14        7/16  688 LV   3.7            45          43
-## 2 CNN/ORC     7           13        7/16  872 RV   3.5            42          37
-## 3 ABC News/W… 7           11        7/14  816 RV   4              42          38
-## 4 NBC News/W… 7           9         7/13  1000 …   3.1            41          35
-## 5 Economist/… 7           9         7/11  932 RV   4.5            40          37
-## 6 Associated… 7           7         7/11  837 RV  NA              40          36
-## 7 McClatchy/… 7           5         7/9   1053 …   3              40          35
-## # … with 2 more variables: Johnson (L) <dbl>, Stein (G) <dbl>
+#> # A tibble: 7 x 10
+#>   Poll              Start_month Start_day End   Sample   MoE
+#>   <chr>             <chr>       <chr>     <chr> <chr>  <dbl>
+#> 1 Monmouth          7           14        7/16  688 LV   3.7
+#> 2 CNN/ORC           7           13        7/16  872 RV   3.5
+#> 3 ABC News/Wash Po… 7           11        7/14  816 RV   4  
+#> 4 NBC News/Wall St… 7           9         7/13  1000 …   3.1
+#> 5 Economist/YouGov  7           9         7/11  932 RV   4.5
+#> 6 Associated Press… 7           7         7/11  837 RV  NA  
+#> 7 McClatchy/Marist  7           5         7/9   1053 …   3  
+#> # … with 4 more variables: Clinton (D) <dbl>,
+#> #   Trump (R) <dbl>, Johnson (L) <dbl>, Stein (G) <dbl>
 ```
 
 This situation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use `unite()` to combine these two columns into a single `Date`, called `New_start_date`:
@@ -156,20 +151,18 @@ This situation could occur in practice: the date variable is in multiple columns
 polls_sillytest %>%
   unite("New_start_date", c(Start_month, Start_day),
         sep = "/")
-```
-
-```
-## # A tibble: 7 x 9
-##   Poll               New_start_date End   Sample   MoE `Clinton (D)` `Trump (R)`
-##   <chr>              <chr>          <chr> <chr>  <dbl>         <dbl>       <dbl>
-## 1 Monmouth           7/14           7/16  688 LV   3.7            45          43
-## 2 CNN/ORC            7/13           7/16  872 RV   3.5            42          37
-## 3 ABC News/Wash Post 7/11           7/14  816 RV   4              42          38
-## 4 NBC News/Wall St.… 7/9            7/13  1000 …   3.1            41          35
-## 5 Economist/YouGov   7/9            7/11  932 RV   4.5            40          37
-## 6 Associated Press-… 7/7            7/11  837 RV  NA              40          36
-## 7 McClatchy/Marist   7/5            7/9   1053 …   3              40          35
-## # … with 2 more variables: Johnson (L) <dbl>, Stein (G) <dbl>
+#> # A tibble: 7 x 9
+#>   Poll       New_start_date End   Sample   MoE `Clinton (D)`
+#>   <chr>      <chr>          <chr> <chr>  <dbl>         <dbl>
+#> 1 Monmouth   7/14           7/16  688 LV   3.7            45
+#> 2 CNN/ORC    7/13           7/16  872 RV   3.5            42
+#> 3 ABC News/… 7/11           7/14  816 RV   4              42
+#> 4 NBC News/… 7/9            7/13  1000 …   3.1            41
+#> 5 Economist… 7/9            7/11  932 RV   4.5            40
+#> 6 Associate… 7/7            7/11  837 RV  NA              40
+#> 7 McClatchy… 7/5            7/9   1053 …   3              40
+#> # … with 3 more variables: Trump (R) <dbl>,
+#> #   Johnson (L) <dbl>, Stein (G) <dbl>
 ```
 
 Note how `unite()` just switches around the first two arguments of `separate()`. Argument 1 is now the name of the new column and Argument 2 is the names of columns in the data set that you want to combine.
@@ -179,18 +172,9 @@ We have also used the `c()` function in `separate()` and `unite()`. While `c()` 
 
 ```r
 c(1, 4, 2)
-```
-
-```
-## [1] 1 4 2
-```
-
-```r
+#> [1] 1 4 2
 c("A", "A", "D")
-```
-
-```
-## [1] "A" "A" "D"
+#> [1] "A" "A" "D"
 ```
 
 This is useful if a function argument expects two or more "things": for example, in `separate()`, the `into` argument requires two column names for this example. Those column names must be specified by combining the names together with `c()`.
@@ -202,20 +186,18 @@ You might have noticed that the columns with percentage of votes for Clinton, Tr
 
 ```r
 polls_sep
-```
-
-```
-## # A tibble: 7 x 9
-##   Poll          Start End   Sample   MoE `Clinton (D)` `Trump (R)` `Johnson (L)`
-##   <chr>         <chr> <chr> <chr>  <dbl>         <dbl>       <dbl>         <dbl>
-## 1 Monmouth      7/14  7/16  688 LV   3.7            45          43             5
-## 2 CNN/ORC       7/13  7/16  872 RV   3.5            42          37            13
-## 3 ABC News/Was… 7/11  7/14  816 RV   4              42          38             8
-## 4 NBC News/Wal… 7/9   7/13  1000 …   3.1            41          35            11
-## 5 Economist/Yo… 7/9   7/11  932 RV   4.5            40          37             5
-## 6 Associated P… 7/7   7/11  837 RV  NA              40          36             6
-## 7 McClatchy/Ma… 7/5   7/9   1053 …   3              40          35            10
-## # … with 1 more variable: Stein (G) <dbl>
+#> # A tibble: 7 x 9
+#>   Poll    Start End   Sample   MoE `Clinton (D)` `Trump (R)`
+#>   <chr>   <chr> <chr> <chr>  <dbl>         <dbl>       <dbl>
+#> 1 Monmou… 7/14  7/16  688 LV   3.7            45          43
+#> 2 CNN/ORC 7/13  7/16  872 RV   3.5            42          37
+#> 3 ABC Ne… 7/11  7/14  816 RV   4              42          38
+#> 4 NBC Ne… 7/9   7/13  1000 …   3.1            41          35
+#> 5 Econom… 7/9   7/11  932 RV   4.5            40          37
+#> 6 Associ… 7/7   7/11  837 RV  NA              40          36
+#> 7 McClat… 7/5   7/9   1053 …   3              40          35
+#> # … with 2 more variables: Johnson (L) <dbl>,
+#> #   Stein (G) <dbl>
 ```
 
 This happens because the column names have a space in them (this also would occur if the columns started with a number or had odd special characters in them). Then, any time you want to reference a variable, you need the include the backticks:
@@ -236,19 +218,17 @@ polls_new <- polls_sep %>%
   rename(Clinton_D = `Clinton (D)`, Trump_R = `Trump (R)`,
          Johnson_L = `Johnson (L)`, Stein_G = `Stein (G)`)
 polls_new
-```
-
-```
-## # A tibble: 7 x 9
-##   Poll              Start End   Sample   MoE Clinton_D Trump_R Johnson_L Stein_G
-##   <chr>             <chr> <chr> <chr>  <dbl>     <dbl>   <dbl>     <dbl>   <dbl>
-## 1 Monmouth          7/14  7/16  688 LV   3.7        45      43         5       1
-## 2 CNN/ORC           7/13  7/16  872 RV   3.5        42      37        13       5
-## 3 ABC News/Wash Po… 7/11  7/14  816 RV   4          42      38         8       5
-## 4 NBC News/Wall St… 7/9   7/13  1000 …   3.1        41      35        11       6
-## 5 Economist/YouGov  7/9   7/11  932 RV   4.5        40      37         5       2
-## 6 Associated Press… 7/7   7/11  837 RV  NA          40      36         6       2
-## 7 McClatchy/Marist  7/5   7/9   1053 …   3          40      35        10       5
+#> # A tibble: 7 x 9
+#>   Poll  Start End   Sample   MoE Clinton_D Trump_R Johnson_L
+#>   <chr> <chr> <chr> <chr>  <dbl>     <dbl>   <dbl>     <dbl>
+#> 1 Monm… 7/14  7/16  688 LV   3.7        45      43         5
+#> 2 CNN/… 7/13  7/16  872 RV   3.5        42      37        13
+#> 3 ABC … 7/11  7/14  816 RV   4          42      38         8
+#> 4 NBC … 7/9   7/13  1000 …   3.1        41      35        11
+#> 5 Econ… 7/9   7/11  932 RV   4.5        40      37         5
+#> 6 Asso… 7/7   7/11  837 RV  NA          40      36         6
+#> 7 McCl… 7/5   7/9   1053 …   3          40      35        10
+#> # … with 1 more variable: Stein_G <dbl>
 ```
 
 `rename()` can also be very useful if you have variable names that are very long to type out. `rename()` is actually from `dplyr`, not `tidyr`, but we didn't have a need for it with any of the `dplyr` data sets. 
@@ -266,18 +246,15 @@ The MLB salary data set contains salaries on all 862 players in Major League Bas
 library(tidyverse)
 baseball_df <- read_csv("data/mlb2016.csv")
 head(baseball_df)
-```
-
-```
-## # A tibble: 6 x 7
-##   Name            Team  POS   Salary       Years        Total.Value  Avg.Annual 
-##   <chr>           <chr> <chr> <chr>        <chr>        <chr>        <chr>      
-## 1 Clayton Kershaw LAD   SP    $ 33,000,000 7 (2014-20)  $ 215,000,0… $ 30,714,2…
-## 2 Zack Greinke    ARI   SP    $ 31,799,030 6 (2016-21)  $ 206,500,0… $ 34,416,6…
-## 3 David Price     BOS   SP    $ 30,000,000 7 (2016-22)  $ 217,000,0… $ 31,000,0…
-## 4 Miguel Cabrera  DET   1B    $ 28,000,000 10 (2014-23) $ 292,000,0… $ 29,200,0…
-## 5 Justin Verland… DET   SP    $ 28,000,000 7 (2013-19)  $ 180,000,0… $ 25,714,2…
-## 6 Yoenis Cespedes NYM   CF    $ 27,328,046 3 (2016-18)  $ 75,000,000 $ 25,000,0…
+#> # A tibble: 6 x 7
+#>   Name    Team  POS   Salary   Years  Total.Value Avg.Annual
+#>   <chr>   <chr> <chr> <chr>    <chr>  <chr>       <chr>     
+#> 1 Clayto… LAD   SP    $ 33,00… 7 (20… $ 215,000,… $ 30,714,…
+#> 2 Zack G… ARI   SP    $ 31,79… 6 (20… $ 206,500,… $ 34,416,…
+#> 3 David … BOS   SP    $ 30,00… 7 (20… $ 217,000,… $ 31,000,…
+#> 4 Miguel… DET   1B    $ 28,00… 10 (2… $ 292,000,… $ 29,200,…
+#> 5 Justin… DET   SP    $ 28,00… 7 (20… $ 180,000,… $ 25,714,…
+#> 6 Yoenis… NYM   CF    $ 27,32… 3 (20… $ 75,000,0… $ 25,000,…
 ```
 
 
@@ -327,20 +304,18 @@ polls_clean <- polls %>%
   rename(Clinton_D = `Clinton (D)`, Trump_R = `Trump (R)`,
          Johnson_L = `Johnson (L)`, Stein_G = `Stein (G)`)
 polls_clean
-```
-
-```
-## # A tibble: 7 x 10
-##   Poll     Start End   Sample_size Sample_type   MoE Clinton_D Trump_R Johnson_L
-##   <chr>    <chr> <chr> <chr>       <chr>       <dbl>     <dbl>   <dbl>     <dbl>
-## 1 Monmouth 7/14  7/16  688         LV            3.7        45      43         5
-## 2 CNN/ORC  7/13  7/16  872         RV            3.5        42      37        13
-## 3 ABC New… 7/11  7/14  816         RV            4          42      38         8
-## 4 NBC New… 7/9   7/13  1000        RV            3.1        41      35        11
-## 5 Economi… 7/9   7/11  932         RV            4.5        40      37         5
-## 6 Associa… 7/7   7/11  837         RV           NA          40      36         6
-## 7 McClatc… 7/5   7/9   1053        RV            3          40      35        10
-## # … with 1 more variable: Stein_G <dbl>
+#> # A tibble: 7 x 10
+#>   Poll   Start End   Sample_size Sample_type   MoE Clinton_D
+#>   <chr>  <chr> <chr> <chr>       <chr>       <dbl>     <dbl>
+#> 1 Monmo… 7/14  7/16  688         LV            3.7        45
+#> 2 CNN/O… 7/13  7/16  872         RV            3.5        42
+#> 3 ABC N… 7/11  7/14  816         RV            4          42
+#> 4 NBC N… 7/9   7/13  1000        RV            3.1        41
+#> 5 Econo… 7/9   7/11  932         RV            4.5        40
+#> 6 Assoc… 7/7   7/11  837         RV           NA          40
+#> 7 McCla… 7/5   7/9   1053        RV            3          40
+#> # … with 3 more variables: Trump_R <dbl>, Johnson_L <dbl>,
+#> #   Stein_G <dbl>
 ```
 
 The data set `polls_clean` __still__ isn't tidy!! The `candidate` variable is spread out over 4 different columns and the values in each of these 4 columns actually represent 1 variable: poll percentage. 
@@ -372,23 +347,21 @@ This is where `pivot_longer()` can help! <a href="https://www.youtube.com/watch?
 polls_clean %>%
   pivot_longer(cols = c(Clinton_D, Trump_R, Johnson_L, Stein_G),
                names_to = "candidate", values_to = "poll_percent")
-```
-
-```
-## # A tibble: 28 x 8
-##    Poll         Start End   Sample_size Sample_type   MoE candidate poll_percent
-##    <chr>        <chr> <chr> <chr>       <chr>       <dbl> <chr>            <dbl>
-##  1 Monmouth     7/14  7/16  688         LV            3.7 Clinton_D           45
-##  2 Monmouth     7/14  7/16  688         LV            3.7 Trump_R             43
-##  3 Monmouth     7/14  7/16  688         LV            3.7 Johnson_L            5
-##  4 Monmouth     7/14  7/16  688         LV            3.7 Stein_G              1
-##  5 CNN/ORC      7/13  7/16  872         RV            3.5 Clinton_D           42
-##  6 CNN/ORC      7/13  7/16  872         RV            3.5 Trump_R             37
-##  7 CNN/ORC      7/13  7/16  872         RV            3.5 Johnson_L           13
-##  8 CNN/ORC      7/13  7/16  872         RV            3.5 Stein_G              5
-##  9 ABC News/Wa… 7/11  7/14  816         RV            4   Clinton_D           42
-## 10 ABC News/Wa… 7/11  7/14  816         RV            4   Trump_R             38
-## # … with 18 more rows
+#> # A tibble: 28 x 8
+#>    Poll  Start End   Sample_size Sample_type   MoE candidate
+#>    <chr> <chr> <chr> <chr>       <chr>       <dbl> <chr>    
+#>  1 Monm… 7/14  7/16  688         LV            3.7 Clinton_D
+#>  2 Monm… 7/14  7/16  688         LV            3.7 Trump_R  
+#>  3 Monm… 7/14  7/16  688         LV            3.7 Johnson_L
+#>  4 Monm… 7/14  7/16  688         LV            3.7 Stein_G  
+#>  5 CNN/… 7/13  7/16  872         RV            3.5 Clinton_D
+#>  6 CNN/… 7/13  7/16  872         RV            3.5 Trump_R  
+#>  7 CNN/… 7/13  7/16  872         RV            3.5 Johnson_L
+#>  8 CNN/… 7/13  7/16  872         RV            3.5 Stein_G  
+#>  9 ABC … 7/11  7/14  816         RV            4   Clinton_D
+#> 10 ABC … 7/11  7/14  816         RV            4   Trump_R  
+#> # … with 18 more rows, and 1 more variable:
+#> #   poll_percent <dbl>
 ```
 
 `pivot_longer()` has three important arguments:
@@ -414,7 +387,7 @@ ggplot(data = polls_long,
   geom_point() + xlab("Poll Start Date")
 ```
 
-<img src="04-tidyr_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+![](04-tidyr_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
 
 ### `pivot_wider()` to Spread to Multiple Columns
 
@@ -427,20 +400,19 @@ Let's examine some airline safety data that fivethirtyeight used in their Should
 ```r
 airlines <- read_csv("data/airline-safety.csv")
 head(airlines)
-```
-
-```
-## # A tibble: 6 x 8
-##   airline  avail_seat_km_pe… `incidents 1985_… `fatal_accident… `fatalities 198…
-##   <chr>                <dbl>             <dbl>            <dbl>            <dbl>
-## 1 Aer Lin…         320906734                 2                0                0
-## 2 Aeroflo…        1197672318                76               14              128
-## 3 Aerolin…         385803648                 6                0                0
-## 4 Aeromex…         596871813                 3                1               64
-## 5 Air Can…        1865253802                 2                0                0
-## 6 Air Fra…        3004002661                14                4               79
-## # … with 3 more variables: incidents 2000_2014 <dbl>,
-## #   fatal_accidents 2000_2014 <dbl>, fatalities 2000_2014 <dbl>
+#> # A tibble: 6 x 8
+#>   airline avail_seat_km_p… `incidents 1985… `fatal_accident…
+#>   <chr>              <dbl>            <dbl>            <dbl>
+#> 1 Aer Li…        320906734                2                0
+#> 2 Aerofl…       1197672318               76               14
+#> 3 Aeroli…        385803648                6                0
+#> 4 Aerome…        596871813                3                1
+#> 5 Air Ca…       1865253802                2                0
+#> 6 Air Fr…       3004002661               14                4
+#> # … with 4 more variables: fatalities 1985_1999 <dbl>,
+#> #   incidents 2000_2014 <dbl>,
+#> #   fatal_accidents 2000_2014 <dbl>,
+#> #   fatalities 2000_2014 <dbl>
 ```
 
 The data set contains the following columns:
@@ -471,23 +443,20 @@ Let's start with `pivot_longer()` to see if we can get year to be its own variab
 airlines %>%
   pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
   values_to = "total_num") 
-```
-
-```
-## # A tibble: 336 x 4
-##    airline    avail_seat_km_per_week type_year                 total_num
-##    <chr>                       <dbl> <chr>                         <dbl>
-##  1 Aer Lingus              320906734 incidents 1985_1999               2
-##  2 Aer Lingus              320906734 fatal_accidents 1985_1999         0
-##  3 Aer Lingus              320906734 fatalities 1985_1999              0
-##  4 Aer Lingus              320906734 incidents 2000_2014               0
-##  5 Aer Lingus              320906734 fatal_accidents 2000_2014         0
-##  6 Aer Lingus              320906734 fatalities 2000_2014              0
-##  7 Aeroflot*              1197672318 incidents 1985_1999              76
-##  8 Aeroflot*              1197672318 fatal_accidents 1985_1999        14
-##  9 Aeroflot*              1197672318 fatalities 1985_1999            128
-## 10 Aeroflot*              1197672318 incidents 2000_2014               6
-## # … with 326 more rows
+#> # A tibble: 336 x 4
+#>    airline   avail_seat_km_per_… type_year         total_num
+#>    <chr>                   <dbl> <chr>                 <dbl>
+#>  1 Aer Ling…           320906734 incidents 1985_1…         2
+#>  2 Aer Ling…           320906734 fatal_accidents …         0
+#>  3 Aer Ling…           320906734 fatalities 1985_…         0
+#>  4 Aer Ling…           320906734 incidents 2000_2…         0
+#>  5 Aer Ling…           320906734 fatal_accidents …         0
+#>  6 Aer Ling…           320906734 fatalities 2000_…         0
+#>  7 Aeroflot*          1197672318 incidents 1985_1…        76
+#>  8 Aeroflot*          1197672318 fatal_accidents …        14
+#>  9 Aeroflot*          1197672318 fatalities 1985_…       128
+#> 10 Aeroflot*          1197672318 incidents 2000_2…         6
+#> # … with 326 more rows
 ```
 
 Instead of giving `pivot_longer()` names of variables, we gave it the column numbers instead. So `c(3, 4, 5, 6, 7, 8)` corresponds to the 3rd, 4th, ...., 8th columns in the data set. That didn't quite give us a `year` variable, but we should be excited to see an opportunity to take advantage of `separate()`:
@@ -497,23 +466,20 @@ Instead of giving `pivot_longer()` names of variables, we gave it the column num
 airlines %>% pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
                           values_to = "total_num") %>%
   separate(type_year, into = c("type", "year"), sep = " ")
-```
-
-```
-## # A tibble: 336 x 5
-##    airline    avail_seat_km_per_week type            year      total_num
-##    <chr>                       <dbl> <chr>           <chr>         <dbl>
-##  1 Aer Lingus              320906734 incidents       1985_1999         2
-##  2 Aer Lingus              320906734 fatal_accidents 1985_1999         0
-##  3 Aer Lingus              320906734 fatalities      1985_1999         0
-##  4 Aer Lingus              320906734 incidents       2000_2014         0
-##  5 Aer Lingus              320906734 fatal_accidents 2000_2014         0
-##  6 Aer Lingus              320906734 fatalities      2000_2014         0
-##  7 Aeroflot*              1197672318 incidents       1985_1999        76
-##  8 Aeroflot*              1197672318 fatal_accidents 1985_1999        14
-##  9 Aeroflot*              1197672318 fatalities      1985_1999       128
-## 10 Aeroflot*              1197672318 incidents       2000_2014         6
-## # … with 326 more rows
+#> # A tibble: 336 x 5
+#>    airline   avail_seat_km_per_… type       year   total_num
+#>    <chr>                   <dbl> <chr>      <chr>      <dbl>
+#>  1 Aer Ling…           320906734 incidents  1985_…         2
+#>  2 Aer Ling…           320906734 fatal_acc… 1985_…         0
+#>  3 Aer Ling…           320906734 fatalities 1985_…         0
+#>  4 Aer Ling…           320906734 incidents  2000_…         0
+#>  5 Aer Ling…           320906734 fatal_acc… 2000_…         0
+#>  6 Aer Ling…           320906734 fatalities 2000_…         0
+#>  7 Aeroflot*          1197672318 incidents  1985_…        76
+#>  8 Aeroflot*          1197672318 fatal_acc… 1985_…        14
+#>  9 Aeroflot*          1197672318 fatalities 1985_…       128
+#> 10 Aeroflot*          1197672318 incidents  2000_…         6
+#> # … with 326 more rows
 ```
 
 Is this the format that we want the data set to be in? Depending on the task, it could be. But, we also might want each of the accident `type`s to be its own variable. That is, we might want to collapse the data set to have a variable for `incidents`, a variable for `fatal_accidents`, and a variable for `fatalities`. If so, we want to add more columns to the data set, so we need to use `pivot_wider()`. 
@@ -530,23 +496,21 @@ airlines_long <- airlines %>%
 ## fatal_accidents:
 airlines_long %>% pivot_wider(names_from = type,
                               values_from = total_num)
-```
-
-```
-## # A tibble: 112 x 6
-##    airline       avail_seat_km_per_… year   incidents fatal_accidents fatalities
-##    <chr>                       <dbl> <chr>      <dbl>           <dbl>      <dbl>
-##  1 Aer Lingus              320906734 1985_…         2               0          0
-##  2 Aer Lingus              320906734 2000_…         0               0          0
-##  3 Aeroflot*              1197672318 1985_…        76              14        128
-##  4 Aeroflot*              1197672318 2000_…         6               1         88
-##  5 Aerolineas A…           385803648 1985_…         6               0          0
-##  6 Aerolineas A…           385803648 2000_…         1               0          0
-##  7 Aeromexico*             596871813 1985_…         3               1         64
-##  8 Aeromexico*             596871813 2000_…         5               0          0
-##  9 Air Canada             1865253802 1985_…         2               0          0
-## 10 Air Canada             1865253802 2000_…         2               0          0
-## # … with 102 more rows
+#> # A tibble: 112 x 6
+#>    airline  avail_seat_km_p… year  incidents fatal_accidents
+#>    <chr>               <dbl> <chr>     <dbl>           <dbl>
+#>  1 Aer Lin…        320906734 1985…         2               0
+#>  2 Aer Lin…        320906734 2000…         0               0
+#>  3 Aeroflo…       1197672318 1985…        76              14
+#>  4 Aeroflo…       1197672318 2000…         6               1
+#>  5 Aerolin…        385803648 1985…         6               0
+#>  6 Aerolin…        385803648 2000…         1               0
+#>  7 Aeromex…        596871813 1985…         3               1
+#>  8 Aeromex…        596871813 2000…         5               0
+#>  9 Air Can…       1865253802 1985…         2               0
+#> 10 Air Can…       1865253802 2000…         2               0
+#> # … with 102 more rows, and 1 more variable:
+#> #   fatalities <dbl>
 ```
 
 `pivot_wider()` has two main arguments: 
@@ -657,35 +621,41 @@ The `under5mortality.csv` file contains data on mortality for people under the a
 ```r
 mortality_df <- read_csv("data/under5mortality.csv")
 head(mortality_df)
-```
-
-```
-## # A tibble: 6 x 217
-##   `Under five mortality` `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807`
-##   <chr>                   <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-## 1 Abkhazia                  NA     NA     NA     NA     NA     NA     NA     NA 
-## 2 Afghanistan              469.   469.   469.   469.   469.   469.   470.   470.
-## 3 Akrotiri and Dhekelia     NA     NA     NA     NA     NA     NA     NA     NA 
-## 4 Albania                  375.   375.   375.   375.   375.   375.   375.   375.
-## 5 Algeria                  460.   460.   460.   460.   460.   460.   460.   460.
-## 6 American Samoa            NA     NA     NA     NA     NA     NA     NA     NA 
-## # … with 208 more variables: 1808 <dbl>, 1809 <dbl>, 1810 <dbl>, 1811 <dbl>,
-## #   1812 <dbl>, 1813 <dbl>, 1814 <dbl>, 1815 <dbl>, 1816 <dbl>, 1817 <dbl>,
-## #   1818 <dbl>, 1819 <dbl>, 1820 <dbl>, 1821 <dbl>, 1822 <dbl>, 1823 <dbl>,
-## #   1824 <dbl>, 1825 <dbl>, 1826 <dbl>, 1827 <dbl>, 1828 <dbl>, 1829 <dbl>,
-## #   1830 <dbl>, 1831 <dbl>, 1832 <dbl>, 1833 <dbl>, 1834 <dbl>, 1835 <dbl>,
-## #   1836 <dbl>, 1837 <dbl>, 1838 <dbl>, 1839 <dbl>, 1840 <dbl>, 1841 <dbl>,
-## #   1842 <dbl>, 1843 <dbl>, 1844 <dbl>, 1845 <dbl>, 1846 <dbl>, 1847 <dbl>,
-## #   1848 <dbl>, 1849 <dbl>, 1850 <dbl>, 1851 <dbl>, 1852 <dbl>, 1853 <dbl>,
-## #   1854 <dbl>, 1855 <dbl>, 1856 <dbl>, 1857 <dbl>, 1858 <dbl>, 1859 <dbl>,
-## #   1860 <dbl>, 1861 <dbl>, 1862 <dbl>, 1863 <dbl>, 1864 <dbl>, 1865 <dbl>,
-## #   1866 <dbl>, 1867 <dbl>, 1868 <dbl>, 1869 <dbl>, 1870 <dbl>, 1871 <dbl>,
-## #   1872 <dbl>, 1873 <dbl>, 1874 <dbl>, 1875 <dbl>, 1876 <dbl>, 1877 <dbl>,
-## #   1878 <dbl>, 1879 <dbl>, 1880 <dbl>, 1881 <dbl>, 1882 <dbl>, 1883 <dbl>,
-## #   1884 <dbl>, 1885 <dbl>, 1886 <dbl>, 1887 <dbl>, 1888 <dbl>, 1889 <dbl>,
-## #   1890 <dbl>, 1891 <dbl>, 1892 <dbl>, 1893 <dbl>, 1894 <dbl>, 1895 <dbl>,
-## #   1896 <dbl>, 1897 <dbl>, 1898 <dbl>, 1899 <dbl>, 1900 <dbl>, 1901 <dbl>,
-## #   1902 <dbl>, 1903 <dbl>, 1904 <dbl>, 1905 <dbl>, 1906 <dbl>, 1907 <dbl>, …
+#> # A tibble: 6 x 217
+#>   `Under five mor… `1800` `1801` `1802` `1803` `1804` `1805`
+#>   <chr>             <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+#> 1 Abkhazia            NA     NA     NA     NA     NA     NA 
+#> 2 Afghanistan        469.   469.   469.   469.   469.   469.
+#> 3 Akrotiri and Dh…    NA     NA     NA     NA     NA     NA 
+#> 4 Albania            375.   375.   375.   375.   375.   375.
+#> 5 Algeria            460.   460.   460.   460.   460.   460.
+#> 6 American Samoa      NA     NA     NA     NA     NA     NA 
+#> # … with 210 more variables: 1806 <dbl>, 1807 <dbl>,
+#> #   1808 <dbl>, 1809 <dbl>, 1810 <dbl>, 1811 <dbl>,
+#> #   1812 <dbl>, 1813 <dbl>, 1814 <dbl>, 1815 <dbl>,
+#> #   1816 <dbl>, 1817 <dbl>, 1818 <dbl>, 1819 <dbl>,
+#> #   1820 <dbl>, 1821 <dbl>, 1822 <dbl>, 1823 <dbl>,
+#> #   1824 <dbl>, 1825 <dbl>, 1826 <dbl>, 1827 <dbl>,
+#> #   1828 <dbl>, 1829 <dbl>, 1830 <dbl>, 1831 <dbl>,
+#> #   1832 <dbl>, 1833 <dbl>, 1834 <dbl>, 1835 <dbl>,
+#> #   1836 <dbl>, 1837 <dbl>, 1838 <dbl>, 1839 <dbl>,
+#> #   1840 <dbl>, 1841 <dbl>, 1842 <dbl>, 1843 <dbl>,
+#> #   1844 <dbl>, 1845 <dbl>, 1846 <dbl>, 1847 <dbl>,
+#> #   1848 <dbl>, 1849 <dbl>, 1850 <dbl>, 1851 <dbl>,
+#> #   1852 <dbl>, 1853 <dbl>, 1854 <dbl>, 1855 <dbl>,
+#> #   1856 <dbl>, 1857 <dbl>, 1858 <dbl>, 1859 <dbl>,
+#> #   1860 <dbl>, 1861 <dbl>, 1862 <dbl>, 1863 <dbl>,
+#> #   1864 <dbl>, 1865 <dbl>, 1866 <dbl>, 1867 <dbl>,
+#> #   1868 <dbl>, 1869 <dbl>, 1870 <dbl>, 1871 <dbl>,
+#> #   1872 <dbl>, 1873 <dbl>, 1874 <dbl>, 1875 <dbl>,
+#> #   1876 <dbl>, 1877 <dbl>, 1878 <dbl>, 1879 <dbl>,
+#> #   1880 <dbl>, 1881 <dbl>, 1882 <dbl>, 1883 <dbl>,
+#> #   1884 <dbl>, 1885 <dbl>, 1886 <dbl>, 1887 <dbl>,
+#> #   1888 <dbl>, 1889 <dbl>, 1890 <dbl>, 1891 <dbl>,
+#> #   1892 <dbl>, 1893 <dbl>, 1894 <dbl>, 1895 <dbl>,
+#> #   1896 <dbl>, 1897 <dbl>, 1898 <dbl>, 1899 <dbl>,
+#> #   1900 <dbl>, 1901 <dbl>, 1902 <dbl>, 1903 <dbl>,
+#> #   1904 <dbl>, 1905 <dbl>, …
 ```
 
 1. \* Use the `skim()` function in `skimr` to obtain some preliminary information about the data set.
@@ -807,18 +777,15 @@ prices_long <- prices_df %>% pivot_longer(cols = c(2, 3, 4, 5, 6, 7),
   names_to = "commod_year", values_to = "price") %>%
   separate(col = "commod_year", into = c("commodity", "year"), sep = -4)
 head(prices_long)
-```
-
-```
-## # A tibble: 6 x 4
-##   city      commodity year  price
-##   <chr>     <chr>     <chr> <dbl>
-## 1 Amsterdam bigmac    2009     19
-## 2 Amsterdam bread     2009     10
-## 3 Amsterdam rice      2009     11
-## 4 Amsterdam bigmac    2003     16
-## 5 Amsterdam bread     2003      9
-## 6 Amsterdam rice      2003      9
+#> # A tibble: 6 x 4
+#>   city      commodity year  price
+#>   <chr>     <chr>     <chr> <dbl>
+#> 1 Amsterdam bigmac    2009     19
+#> 2 Amsterdam bread     2009     10
+#> 3 Amsterdam rice      2009     11
+#> 4 Amsterdam bigmac    2003     16
+#> 5 Amsterdam bread     2003      9
+#> 6 Amsterdam rice      2003      9
 ```
 
 3. \* Convert your data set from the previous exercise so that `commodity` is split up into 3 variables: `bigmac` price, `rice` price and `bread` price.
@@ -828,18 +795,15 @@ head(prices_long)
 prices_wide <- prices_long %>%
   pivot_wider(names_from = commodity, values_from = price)
 head(prices_wide)
-```
-
-```
-## # A tibble: 6 x 5
-##   city      year  bigmac bread  rice
-##   <chr>     <chr>  <dbl> <dbl> <dbl>
-## 1 Amsterdam 2009      19    10    11
-## 2 Amsterdam 2003      16     9     9
-## 3 Athens    2009      30    13    27
-## 4 Athens    2003      21    12    19
-## 5 Auckland  2009      19    19    13
-## 6 Auckland  2003      19    19     9
+#> # A tibble: 6 x 5
+#>   city      year  bigmac bread  rice
+#>   <chr>     <chr>  <dbl> <dbl> <dbl>
+#> 1 Amsterdam 2009      19    10    11
+#> 2 Amsterdam 2003      16     9     9
+#> 3 Athens    2009      30    13    27
+#> 4 Athens    2003      21    12    19
+#> 5 Auckland  2009      19    19    13
+#> 6 Auckland  2003      19    19     9
 ```
 
 ### Skimming Data with `skimr()` S
@@ -874,23 +838,20 @@ nfl_long <- nfl_df %>%
   pivot_longer(c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
                names_to = "position", values_to = "salary")
 nfl_long
-```
-
-```
-## # A tibble: 8,000 x 3
-##     year position            salary
-##    <dbl> <chr>                <dbl>
-##  1  2011 Cornerback        11265916
-##  2  2011 Defensive Lineman 17818000
-##  3  2011 Linebacker        16420000
-##  4  2011 Offensive Lineman 15960000
-##  5  2011 Quarterback       17228125
-##  6  2011 Running Back      12955000
-##  7  2011 Safety             8871428
-##  8  2011 Special Teamer     4300000
-##  9  2011 Tight End          8734375
-## 10  2011 Wide Receiver     16250000
-## # … with 7,990 more rows
+#> # A tibble: 8,000 x 3
+#>     year position            salary
+#>    <dbl> <chr>                <dbl>
+#>  1  2011 Cornerback        11265916
+#>  2  2011 Defensive Lineman 17818000
+#>  3  2011 Linebacker        16420000
+#>  4  2011 Offensive Lineman 15960000
+#>  5  2011 Quarterback       17228125
+#>  6  2011 Running Back      12955000
+#>  7  2011 Safety             8871428
+#>  8  2011 Special Teamer     4300000
+#>  9  2011 Tight End          8734375
+#> 10  2011 Wide Receiver     16250000
+#> # … with 7,990 more rows
 ```
 
 3. \* To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position so that the highest paid players in each position all receive a `1`, the second highest paid players receive a `2`, etc. Compare your results for the default way that `R` uses to break ties between two salaries that are the same and using `ties.method = "first"`. 
@@ -916,27 +877,23 @@ In the second ranking method, the first observation in the data set gets the "hi
 ```r
 nfl_max <- nfl_long %>% group_by(position, year) %>%
   summarise(maxsal = max(salary, na.rm = TRUE))
-```
+#> `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
 
-```
-## `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
-```
-
-```r
 ggplot(data = nfl_max,
   aes(x = year, y = maxsal, group = position, colour = position)) +
   geom_line()
 ```
 
-<img src="04-tidyr_files/figure-html/unnamed-chunk-47-1.png" width="672" />
+![](04-tidyr_files/figure-epub3/unnamed-chunk-47-1.png)<!-- -->
 
 ```r
+
 ggplot(data = nfl_max, aes(x = year, y = maxsal)) +
   geom_line() +
   facet_wrap( ~ position)
 ```
 
-<img src="04-tidyr_files/figure-html/unnamed-chunk-47-2.png" width="672" />
+![](04-tidyr_files/figure-epub3/unnamed-chunk-47-2.png)<!-- -->
 
 With this number of levels, I personally prefer the faceted graph for its cleaner look.
 
@@ -947,19 +904,14 @@ With this number of levels, I personally prefer the faceted graph for its cleane
 nfl_rank <- nfl_long %>% filter(rank <= 20) %>%
   group_by(position, year) %>%
   summarise(mean20 = mean(salary, na.rm = TRUE))
-```
+#> `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
 
-```
-## `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
-```
-
-```r
 ggplot(data = nfl_rank, aes(x = year, y = mean20)) +
   geom_line() + 
   facet_wrap( ~ position)
 ```
 
-<img src="04-tidyr_files/figure-html/unnamed-chunk-48-1.png" width="672" />
+![](04-tidyr_files/figure-epub3/unnamed-chunk-48-1.png)<!-- -->
 
 Running backs haven't had much of a salary increase whereas all other offensive positions have had a large salary increase. There are many plausible explanations for why this is the case. One is that the NFL is much more of a "passing league" now than it was decades ago.
 
@@ -977,20 +929,15 @@ nfl_inf <- nfl_long %>%
   filter(year == 2011 | year == 2018) %>% 
   filter(rank <= 20) %>% group_by(position, year) %>%
   summarise(mean20 = mean(salary, na.rm = TRUE)) 
-```
+#> `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
 
-```
-## `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
-```
-
-```r
 ggplot(data = nfl_inf, aes(x = year, y = mean20)) +
   geom_line() +
   geom_point() +
   facet_wrap( ~ position)
 ```
 
-<img src="04-tidyr_files/figure-html/unnamed-chunk-49-1.png" width="672" />
+![](04-tidyr_files/figure-epub3/unnamed-chunk-49-1.png)<!-- -->
 
 All positions have higher salaries, even after adjusting for inflation, except perhaps running backs (it's too hard to tell from the graph).
 
