@@ -333,7 +333,7 @@ But, the basic idea is that the HPI is a metric that computes how happy and heal
 
 Read in the data set with
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 library(tidyverse)
 hpi_df <- read_csv("data/hpi-tidy.csv")
 head(hpi_df)
@@ -341,7 +341,7 @@ head(hpi_df)
 
 Let's look at the relationship between `HappyLifeYears` and `Footprint` for countries of different `Region`s of the world.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point()
@@ -353,7 +353,7 @@ Which region seems to have the most variability in their Ecological Footprint?
 
 We can add `+ labs()` to change various labels and titles throughout the plot:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
@@ -376,7 +376,7 @@ What is the only text on the plot that we aren't able to change with `labs()`?
 
 We can also change the x-axis limits and the y-axis limits to, for example, start at 0 for the y-axis:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
@@ -397,7 +397,7 @@ In which of those 3 situations are we in for the World Region graph?
 
 If we want to use one of these colour scales, we just need to add `scale_colour_brewer()` with the name of the scale we want to use.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
@@ -408,7 +408,7 @@ Try changing the palette to something else besides `"Accent"`. Do you like the n
 
 One more option to easily change the colour scale is to use the `viridis` package. The base `viridis` functions automatically load with `ggplot2` so there's no need to call the package with `library(viridis)`. The `viridis` colour scales were made to be both aesthetically pleasing and CVD-friendly.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
@@ -427,7 +427,7 @@ One goal we might have with communication is highlighting particular points in a
 
 All of this can be done with `geom_label()`. Let's start by labeling all of the points. `geom_label()` needs one aesthetic called `label` which is the name of the column in the data set with the labels you want to use.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
@@ -437,7 +437,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
 
 Yikes! It's quite uncommon to want to label __all__ of the points. Let's see if we can instead label each country with the best HPI in that country's region. To do so, we first need to use our `dplyr` skills to create a new data set that has these 7 "best" countries. When we used `group_by()`, we typically used `summarise()` afterward. But, `group_by()` works with `filter()` as well!
 
-```{r}
+```{r, appendix = TRUE}
 plot_df <- hpi_df %>% group_by(Region) %>%
   filter(HPIRank == min(HPIRank))
 ```
@@ -446,7 +446,7 @@ What is the code in the previous chunk doing?
 
 Now that we have this new data set, we can use it within `geom_label()`. Recall that the `data = ` argument in `ggplot()` carries on through __all__ `geom`s __unless__ we specify otherwise. Now is our chance to "specify otherwise" by including another `data = ` argument within `geom_label()`:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
@@ -456,7 +456,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
 
 Why do you think the colour legend changed to showing the letter "a" for each region?
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point(aes(colour = Region)) +
@@ -468,7 +468,7 @@ Why does the code chunk above change all of the "a"'s back to points?
 
 A common issue, even with few labels, is that some of the labels could overlap. The `ggrepel` package solves this problem by including a `geom_label_repel()` `geom` that automatically repels any overlapping labels:
 
-```{r}
+```{r, appendix = TRUE}
 library(ggrepel)
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
@@ -480,7 +480,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
 
 And a final issue with the plot is that it's not always very clear which point on the plot is being labeled. A trick used in the _R for Data Science_ book is to surround the points that are being labeled with an open circle using an extra `geom_point()` function:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears, colour = Region)) +
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
@@ -492,7 +492,7 @@ In the code above, `shape = 1` says that the new point should be an open circle 
 
 You can use this same strategy to label specific countries. I'm interested in where the United States of America falls on this graph because I'm from the U.S. I'm also interested in where Denmark falls because that's the country I'm most interested in visiting. Feel free to replace those countries with any that you're interested in!
 
-```{r}
+```{r, appendix = TRUE}
 plot_df_us <- hpi_df %>%
   filter(Country == "United States of America" | Country == "Denmark")
 
@@ -512,7 +512,7 @@ Plot themes are an easy way to change many aspects of your plot with an overall 
 
 However, there are many more choices in the `ggthemes` package. Load the package with `library(ggthemes)` and check out <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/"target="_blank">https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/</a> for a few of the themes in the package. My personal favorites, all given below, are `theme_solarized()`, `theme_fivethirtyeight()`, and `theme_economist()`, but choosing a theme is mostly a matter of personal taste.
 
-```{r, fig.keep = "none"}
+```{r, fig.keep = "none", appendix = TRUE}
 library(ggthemes)
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
@@ -549,7 +549,7 @@ The `theme()` function is a way to really specialise your plot. We will explore 
 
 1. Using only options in `theme()` or options to change colours, shapes, sizes, etc., create the ugliest possible `ggplot2` graph that you can make. You may not change the underlying data for this graph, but your goal is to investigate some of the options given in `theme()`.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point()
@@ -783,4 +783,9 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
     title = "Life Expectancy Increases Across time for nearly every country") +
   geom_label(data = interest_countries, aes(label = country),
     nudge_x = 7)
+```
+
+## Non-Exercise `R` Code {#rcode-5}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
 ```

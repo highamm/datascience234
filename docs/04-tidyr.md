@@ -994,3 +994,73 @@ ggplot(data = nfl_inf, aes(x = year, y = mean20)) +
 
 All positions have higher salaries, even after adjusting for inflation, except perhaps running backs (it's too hard to tell from the graph).
 
+## Non-Exercise `R` Code {#rcode-4}
+
+
+```r
+library(tidyverse)
+polls <- read_csv("data/rcp-polls.csv", na = "--")
+polls
+polls %>% summarise(meansample = mean(Sample))
+polls %>%
+  separate(col = Sample, into = c("Sample_size", "Sample_type"), 
+           sep = " ")
+polls_sep <- polls %>%
+  separate(col = Date, into = c("Start", "End"),
+           sep = " - ")
+polls_sillytest <- polls_sep %>%
+  separate(col = Start, into = c("Start_month", "Start_day"), 
+           sep = "/")
+polls_sillytest
+polls_sillytest %>%
+  unite("New_start_date", c(Start_month, Start_day),
+        sep = "/")
+c(1, 4, 2)
+c("A", "A", "D")
+polls_sep
+polls_new <- polls_sep %>%
+  rename(Clinton_D = `Clinton (D)`, Trump_R = `Trump (R)`,
+         Johnson_L = `Johnson (L)`, Stein_G = `Stein (G)`)
+polls_new
+polls_clean <- polls %>%
+  separate(col = Sample, into = c("Sample_size", "Sample_type"), 
+           sep = " ")  %>%
+  separate(col = Date, into = c("Start", "End"),
+           sep = " - ") %>% 
+  rename(Clinton_D = `Clinton (D)`, Trump_R = `Trump (R)`,
+         Johnson_L = `Johnson (L)`, Stein_G = `Stein (G)`)
+polls_clean
+polls_clean %>%
+  pivot_longer(cols = c(Clinton_D, Trump_R, Johnson_L, Stein_G),
+               names_to = "candidate", values_to = "poll_percent")
+polls_long <- polls_clean %>%
+  pivot_longer(cols = c(Clinton_D, Trump_R, Johnson_L, Stein_G),
+               names_to = "candidate", values_to = "poll_percent")
+
+## ignore as.Date for now....we will get to dates later!
+ggplot(data = polls_long,
+       aes(x = as.Date(Start, "%m/%d"), y = poll_percent,
+           colour = candidate)) +
+  geom_point() + xlab("Poll Start Date")
+airlines <- read_csv("data/airline-safety.csv")
+head(airlines)
+airlines %>%
+  pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
+  values_to = "total_num") 
+airlines %>% pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
+                          values_to = "total_num") %>%
+  separate(type_year, into = c("type", "year"), sep = " ")
+## name the long data set
+airlines_long <- airlines %>%
+  pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
+               values_to = "total_num") %>%
+  separate(type_year, into = c("type", "year"), sep = " ")
+
+## use pivot_wider() to create variables for incidents, fatalities, and
+## fatal_accidents:
+airlines_long %>% pivot_wider(names_from = type,
+                              values_from = total_num)
+library(skimr)
+skim(airlines)
+```
+

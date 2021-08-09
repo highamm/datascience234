@@ -24,7 +24,7 @@ For example, examine the following website and notice how there are .csv files g
 
 Then, read in the data sets, and look at how many columns each has.
 
-```{r, message = FALSE, warning = FALSE, results = "hide"}
+```{r, message = FALSE, warning = FALSE, results = "hide", appendix = TRUE}
 library(tidyverse)
 atp_2019 <- read_csv("data/atp_matches_2019.csv")
 atp_2018 <- read_csv("data/atp_matches_2018.csv")
@@ -40,13 +40,13 @@ atp_df <- bind_rows(atp_2018, atp_2019)
 
 What happens? Can you fix the error? __Hint__: run
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, appendix = TRUE}
 spec(atp_2018)
 ```
 
 to get the full column specifications and use your `readr` knowledge to change a couple of the column types. We also did not discuss this, but, when using the `col_type` argument in `read_csv()`, you don't need to specify all of the column types. Just specifying the ones that you want to change works too. The following code forces the seed variables in the 2018 data set to be characters.
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 atp_2018 <- read_csv("data/atp_matches_2018.csv",
                      col_types = cols(winner_seed = col_character(),
                                       loser_seed = col_character()))
@@ -54,7 +54,7 @@ atp_2018 <- read_csv("data/atp_matches_2018.csv",
 
 We can try combining the data sets now.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 atp_df <- bind_rows(atp_2018, atp_2019)
 atp_df
 ```
@@ -65,7 +65,7 @@ It might seem a little annoying, but, by default `bind_rows()` will only combine
 
 Now run the following and look at the output.
 
-```{r}
+```{r, appendix = TRUE}
 df_test2a <- tibble(xvar = c(1, 2))
 df_test2b <- tibble(xvar = c(1, 2), y = c(5, 1))
 bind_rows(df_test2a, df_test2b)
@@ -81,7 +81,7 @@ We won't spend much time talking about how to bind together columns because it's
 
 We will use a couple of test data sets, `df_test1a` and `df_test1b`, to see it in action:
 
-```{r}
+```{r, appendix = TRUE}
 df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
 df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
 bind_cols(df_test1a, df_test1b)
@@ -107,7 +107,7 @@ If the goal is to combine two data sets using some common variable(s) that both 
 
 As a simple first example, consider
 
-```{r}
+```{r, appendix = TRUE}
 library(tidyverse)
 df1 <- tibble(name = c("Emily", "Miguel", "Tonya"), fav_sport = c("Swimming", "Football", "Tennis"))
 df2 <- tibble(name = c("Tonya", "Miguel", "Emily"),
@@ -126,7 +126,7 @@ Consider the `babynames` `R` package, which has the following data sets:
 * `births`: the number of births in the United States in each year, since 1909
 * `babynames`: popularity of different baby names per year and sex since the year 1880.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 ##install.packages("babynames")
 library(babynames)
 life_df <- babynames::lifetables
@@ -141,7 +141,7 @@ Read about each data set with `?babynames`, `?births` and `?lifetables`.
 
 Suppose that you want to combine the `births` data set with the `babynames` data set, so that each row of `babynames` now has the total number of births for that year. We first need to identify the key in each data set that we will use for the joining. In this case, each data set has a `year` variable, and we can use `left_join()` to keep all observations in `babynames_df`, even for years that are not in the `births_df` data set.
 
-```{r}
+```{r, appendix = TRUE}
 combined_left <- left_join(babynames_df, birth_df, by = c("year" = "year"))
 head(combined_left)
 tail(combined_left)
@@ -153,7 +153,7 @@ Why are `births` missing in `head(combined_left)` but not in `tail(combined_left
 
 Recall from the accompanying handout that there is no need to ever use `right_join()` because it is the same as using a `left_join()` with the first two data set arguments switched:
 
-```{r}
+```{r, appendix = TRUE}
 ## these will always do the same exact thing
 right_join(babynames_df, birth_df, by = c("year" = "year"))
 left_join(birth_df, babynames_df, by = c("year" = "year"))
@@ -165,7 +165,7 @@ Therefore, it's usually easier to just always use `left_join()` and ignore `righ
 
 A `full_join()` will keep all rows in data set 1 that don't have a matching key in data set 2, and will also keep all rows in data set 2 that don't have a matching key in data set 1, filling in `NA` for missing values when necessary. For our example of merging `babynames_df` with `birth_df`,
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 full_join(babynames_df, birth_df, by = c("year" = "year"))
 ```
 
@@ -173,7 +173,7 @@ full_join(babynames_df, birth_df, by = c("year" = "year"))
 
 We can also keep only rows with matching keys with `inner_join()`. For this join, any row in data set 1 without a matching key in data set 2 is dropped, and any row in data set 2 without a matching key in data set 1 is also dropped.
 
-```{r}
+```{r, appendix = TRUE}
 inner_join(babynames_df, birth_df, by = c("year" = "year"))
 ```
 
@@ -187,7 +187,7 @@ Which join function we use will depend on the context of the data and what quest
 
 The key variable is very important for joining and is not always available in a "perfect" form. Recall the college majors data sets we have, called `slumajors_df`, which information on majors at SLU. Another data set, `collegemajors_df`, has different statistics on college majors nationwide. There's lots of interesting variables in these data sets, but we'll focus on the `Major` variable here. Read in and examine the two data sets with:
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
 collegemajors_df <- read_csv("data/college-majors.csv")
 head(slumajors_df)
@@ -196,7 +196,7 @@ head(collegemajors_df)
 
 The most logical key for joining these two data sets is `Major`,  but joining the data sets won't actually work. The following is an attempt at using `Major` as the key.
 
-```{r}
+```{r, appendix = TRUE}
 left_join(slumajors_df, collegemajors_df, by = c("Major" = "Major"))
 ```
 
@@ -204,7 +204,7 @@ Why did the `collegemajors_df` give only `NA` values when we tried to merge by m
 
 This example underscores the importance of having a key that matches __exactly__. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the `stringr` package (discussed in a few weeks). For example, the capitalization issue can be solved with the `str_to_title()` function, which converts that all-caps majors in `collegemajors_df` to majors where only the first letter of each word is capitalized:
 
-```{r}
+```{r, appendix = TRUE}
 collegemajors_df <- collegemajors_df %>%
   mutate(Major = str_to_title(Major))
 left_join(slumajors_df, collegemajors_df)
@@ -233,7 +233,7 @@ Filtering joins (`semi_join()` and `anti_join()`) are useful if you would only l
 
 Consider again the two data sets on men's tennis matches in 2018 and in 2019.
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 atp_2019 <- read_csv("data/atp_matches_2019.csv")
 atp_2018 <- read_csv("data/atp_matches_2018.csv")
 atp_2019
@@ -246,7 +246,7 @@ Suppose that we only want to keep matches in 2019 where the winning player had 1
 
 To accomplish this, we can first create a data set that has the names of all of the players that won 10 or more matches in 2018, using functions that we learned from `dplyr` earlier in the semester:
 
-```{r}
+```{r, appendix = TRUE}
 win10 <- atp_2018 %>% group_by(winner_name) %>%
   summarise(nwin = n()) %>% 
   filter(nwin >= 10)
@@ -255,7 +255,7 @@ win10
 
 Next, we apply `semi_join()`, which takes the names of two data sets (the second is the one that contains information about how the first should be "filtered"). The third argument gives the name of the key (`winner_name`) in this case.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 tennis_2019_10 <- semi_join(atp_2019, win10,
                             by = c("winner_name" = "winner_name"))
 tennis_2019_10$winner_name
@@ -267,7 +267,7 @@ Note that this only keeps the matches in 2019 where the __winner__ had 10 or mor
 
 Now suppose that we want to only keep the matches in 2019 where the winning player did not have __any__ wins in 2018. We might think of these players as "emerging players" in 2019, players who are coming back from an injury, etc.. To do this, we can use `anti_join()`, which only keeps the rows in the first data set that do __not__ have a match in the second data set.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 new_winners <- anti_join(atp_2019, atp_2018,
                          by = c("winner_name" = "winner_name")) 
 new_winners$winner_name
@@ -275,7 +275,7 @@ new_winners$winner_name
 
 We can then examine how many wins each of these "new" (or perhaps previously injured) players had in 2019:
 
-```{r}
+```{r, appendix = TRUE}
 new_winners %>% group_by(winner_name) %>%
   summarise(nwin = n()) %>%
   arrange(desc(nwin))
@@ -309,7 +309,7 @@ All of the `dplyr` functions we've used (both the ones from Week 2 and the Joins
 
 Some examples of `dbplyr`'s `translate_sql()` function and its translation of `R` code to SQL is:
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 library(dbplyr)
 translate_sql(semi_join(atp_2019, win10,
                         c("winner_name" = "winner_name")))
@@ -558,5 +558,9 @@ notne_df <- all_df %>% filter(region != "NE")
 anti_join(states_df, notne_df, by = c("value" = "state"))
 ```
 
+## Non-Exercise `R` Code {#rcode-10}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
+```
 
 

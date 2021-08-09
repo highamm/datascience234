@@ -37,7 +37,7 @@ To get started exploring the data, complete the following steps that you learned
 
 1. Finally, read in and name the data set `pres_df`, and take a look at the data set by running the `head(pres_df)` line, which shows the first few observations of the data set:
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
 pres_df <- read_table("data/PRES2000.txt") 
 ## don't worry about the `read_table` function....yet
@@ -83,7 +83,7 @@ The structure of `ggplot()` plots is based on the Grammar of Graphics <a href="h
 
 Let's go ahead and begin our exploration of the data by making a histogram of the number of people who voted for `Gore` in each county. Recall that a histogram is useful if we would like a graph of a single quantitative variable. Copy the following code to an `R` chunk and run the code:
 
-```{r, warning = TRUE, message = TRUE}
+```{r, warning = TRUE, message = TRUE, appendix = TRUE}
 ggplot(data = pres_df, mapping = aes(x = Gore)) +
   geom_histogram(colour = "black", fill = "white") +
   xlab("Votes for Gore in Florida")
@@ -101,7 +101,7 @@ There are a couple of observations with very high vote values. What could explai
 
 Another graph useful in visualizing a single quantitative variable is a frequency plot. The code to make a frequency plot is given below. We are simply replacing `geom_histogram()` with `geom_freqpoly()`.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = pres_df, mapping = aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") 
@@ -109,7 +109,7 @@ ggplot(data = pres_df, mapping = aes(x = Gore)) +
 
 The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including __both__ a geom_freqpoly() and a geom_histogram() in your plot, though it doesn't make for the prettiest graph:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = pres_df, mapping = aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") +
@@ -139,7 +139,7 @@ Which code chunk would you want to read two years from now? Which code chunk wou
 
 Recall from STAT 113 that bar plots are useful if you want to examine the distribution of one categorical variable. Side-by-side bar plots or stacked bar plots are plots that are useful for looking at the relationship between two categorical variables. There actually aren't any categorical variables that would be interesting to plot in this data set, so we'll make one, called `winner` using code that we don't need to understand until next week. `winner` will be `"Gore"` if Gore won the county and `"Bush"` if Bush won the county. We'll name this new data set `pres_cat`.
 
-```{r}
+```{r, appendix = TRUE}
 pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
                                                 true = "Gore",
                                                 false = "Bush"))
@@ -148,14 +148,14 @@ pres_cat
 
 Using this data set, we can make a bar plot with `geom_bar()`. The beauty of `ggplot()` is that the code is super-similar to what we used for histograms and frequency plots!
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = pres_cat, aes(x = winner)) +
   geom_bar()
 ```
 
 Note that, sometimes, data are in format such that one column contains the _levels_ of the categorical variable while another column contains the counts directly. For example, we can create such a data set using code that we will learn next week:
 
-```{r}
+```{r, appendix = TRUE}
 pres_cat2 <- pres_cat %>% group_by(winner) %>%
   summarise(nwins = n())
 pres_cat2
@@ -163,14 +163,14 @@ pres_cat2
 
 This data set has just two observations and contains a column for the two major presidential candidates and a column for the number of counties that each candidate won. If we wanted to make a barplot showing the number of wins for each candidate, we can't use `geom_bar()`. Predict what the result will be from running the following code.
 
-```{r, fig.keep = "none"}
+```{r, fig.keep = "none", appendix = TRUE}
 ggplot(pres_cat2, aes(x = winner)) +
   geom_bar()
 ```
 
 Instead, we can use `geom_col()`, which takes an `x` aesthetic giving the column with names of the levels of our categorical variable, and a `y` aesthetic giving the column with the counts:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(pres_cat2, aes(x = winner, y = nwins)) +
   geom_col()
 ```
@@ -236,7 +236,7 @@ Moving back to the 2000 presidential election data set, thus far, we've figured 
 
 Let's start by making a scatterplot of the number of votes for Gore and the number of votes for Bush. Note that the `geom_` for making a scatterplot is called `geom_point()` because we are adding a layer of points to the plot.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
   geom_point()
 ```
@@ -268,7 +268,7 @@ For the remainder of this chapter, we will work with some fitness data collected
 * `stepgoal`, whether or not I reached 10,000 steps for the day
 * `weekend_ind`, a variable for whether or not the day of the week was a weekend day (Saturday or Sunday) or a weekday (Monday - Friday).
 
-```{r}
+```{r, appendix = TRUE}
 library(tidyverse)
 fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
   TRUE ~ "weekday"))
@@ -276,14 +276,14 @@ fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind
 
 First, let's make a basic scatterplot to illustrate why it's so important to plot your data. I'll use the variable `distance` as the x-variable and `active_cals` as the y-variable.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
   geom_point()
 ```
 
 One aspect of the plot that you may notice is that there are observations where I burned 0 or very few active calories, yet walked/jogged/ran/moved some distance. Is it possible to not burn any calories and move ~ 4 miles? Probably not, so let's drop these observations from the data set and make a note of why we dropped those observations. Unfortunately, we don't have the tools to do this yet, so just run the following chunk of code without worrying too much about the syntax.
 
-```{r}
+```{r, appendix = TRUE}
 ## drop observations that have active calories < 50. 
 ## assuming that these are data errors or 
 ## days where the Apple Watch wasn't worn.
@@ -293,7 +293,7 @@ fitness <- fitness_full %>%
 
 Let's make the plot again with the `fitness` data set instead of `fitness_full` to see if the outliers are actually gone. This time, we will put the `aes()` in the `geom_point()` function:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness) +
   geom_point(aes(x = distance, y = active_cals))
 ```
@@ -304,7 +304,7 @@ __Other `aes()` Options__
 
 In addition to `x` and `y`, we can also use `aes()` to map variables to things like `colour`, `size`, and `shape`. For example, we might make a scatterplot with `Start` on the x-axis (for the date) and `active_cals` on the y-axis, colouring by whether or not the day of the week was a weekend.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, colour = weekend_ind))
 ```
@@ -313,7 +313,7 @@ Is there anything useful that you notice about the plot? Is there anything about
 
 Instead of using colour, you can also specify the point shape. This could be useful, for example, if you are printing something in black and white.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, shape = weekend_ind))
 ```
@@ -322,7 +322,7 @@ Do you prefer the colour or the shape? Why?
 
 Finally, another common `aes()` is `size`. For example, we could make the size of the points in the scatterplot change depending on how many `flights` of stairs I climbed.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, size = flights))
 ```
@@ -333,7 +333,7 @@ __Inside vs Outside `aes()`__
 
 We've changed the colour of the points to correspond to `weekend_ind`, but what if we just wanted to change the colour of points to all be the same colour, `"purple"`. Try running the following code chunk:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, colour = "purple"))
 ```
@@ -348,7 +348,7 @@ Putting `colour = ____` inside `aes()` or outside `aes()` achieves different thi
 
 You can also change the overall point size and shape. The standard size is `1` so the following code chunk makes the points bigger. The standard shape is `19`: you can try changing that to other integers to see what other shapes you can get.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals), size = 1.5, shape = 19)
 ```
@@ -357,7 +357,7 @@ ggplot(data = fitness) +
 
 We might also be interested in fitting a smooth curve to our scatterplot. When we want to put more than one "geom" on our plot, we can use multiple `geoms`. Since I want the `aes()` to apply to __both__ `geom_point()` and `geom_smooth()`, I am going to move the `aes()` command to the overall `ggplot()` line of code:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
   geom_smooth()
@@ -365,7 +365,7 @@ ggplot(data = fitness, aes(x = Start, y = active_cals)) +
 
 Within `geom_smooth()`, you can set `se = FALSE` to get rid of the grey standard errors around each of the lines, and you can set`method = "lm"` to fit straight linear regression lines instead of smooth curves:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
   geom_smooth(se = FALSE, method = "lm")
@@ -377,7 +377,7 @@ Does it look like there is an increasing overall trend? decreasing? Does it make
 
 Line plots are often useful when you have a quantitative variable that you'd like to explore over time. The y-axis is the quantitative variable while the x-axis is typically time. More generally, line plots are often used when the x-axis variable has one discrete value for each y-axis variable. For example, suppose we want to explore how my step count has changed through time over the past couple of years. Compare the standard scatterplot with the following line plot: which do you prefer?
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
   geom_point() + geom_smooth() + xlab("Date")
 ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
@@ -390,7 +390,7 @@ Can you spot the start of the pandemic in the graph? What seemed to happen with 
 
 Using colour to colour points of different levels of a categorical variable is generally fine when there are just a couple of levels and/or there is little overlap among the levels. But, what if there are a lot more than two categories to colour by. For example, let's move back to the STAT 113 survey data set and investigate the relationship between `Pulse` and `Exercise` for different class `Year`'s. We might hypothesize that students who get more exercise tend to have lower pulse rates.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = stat113_df, aes(x = Exercise, y = Pulse,
                            colour = Year)) +
   geom_point() +
@@ -399,7 +399,7 @@ ggplot(data = stat113_df, aes(x = Exercise, y = Pulse,
 
 When there are many different categories for a categorical variable (there are only 4 categories for `Year`, but this particular plot is still a bit difficult to read), it can sometimes be useful to `facet` the plot by that variable instead of trying to use different `colour`s or `shape`s.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = stat113_df, aes(x = Exercise, y = Pulse)) +
   geom_point() +
   geom_smooth(se = TRUE) +
@@ -436,7 +436,7 @@ There are a few other common geoms that will be useful throughout the semester. 
 
 Another common plot used in Intro Stat courses is a boxplot. Side-by-side boxplots are particularly useful if you want to compare a quantitative response variable across two or more levels of a categorical variable. Let's stick with the STAT 113 survey data to examine the relationship between `Exercise` and `Award` preference.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
   geom_boxplot()
 ```
@@ -447,7 +447,7 @@ What can you conclude from the plot?
 
 An alternative to side-by-side boxplots are violin plots:
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
   geom_violin()
 ```
@@ -460,7 +460,7 @@ The only combination of two variables that we have yet to explore are two variab
 
 To make the graph, we specify `position = "fill"` so that the bars are "filled" by `stepgoal`.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = stat113_df, aes(x = Year, fill = SocialMedia)) +
   geom_bar(position = "fill") +
   ylab("Proportion")
@@ -608,3 +608,7 @@ ggplot(data = stat113_df, aes(x = Sex, y = GPA)) +
   stat_summary(fun = mean, shape = 18, colour = "darkgreen")
 ```
 
+## Non-Exercise `R` Code {#rcode-2}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
+```

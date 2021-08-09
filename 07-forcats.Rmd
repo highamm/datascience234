@@ -14,7 +14,7 @@ __The Data__: The `pokemon_allgen.csv` data set contains observations on Pokemon
 
 Read in the data set with `read_csv()`. Then, use a `mutate()` statement to make a `Generation_cat` variable that is a factor.
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
 pokemon_df <- read_csv("data/pokemon_allgen.csv") %>%
   mutate(Generation_cat = factor(Generation))
@@ -22,7 +22,7 @@ pokemon_df <- read_csv("data/pokemon_allgen.csv") %>%
 
 One easy way to get a quick summary of a `factor` variable is to use `group_by()` and `n()` within a `summarise()` statement:
 
-```{r}
+```{r, appendix = TRUE}
 pokemon_df %>% group_by(`Type 1`) %>%
   summarise(counttype = n())
 ```
@@ -33,7 +33,7 @@ pokemon_df %>% group_by(`Type 1`) %>%
 
 Now, let's make a bar plot that examines how many `Legendary` Pokemon first appear in each generation, using `dplyr` commands that we've used and a simple `geom_col()`:
 
-```{r}
+```{r, appendix = TRUE}
 pokemon_legend <- pokemon_df %>% filter(Legendary == TRUE) %>%
   group_by(Generation_cat) %>%
   summarise(nlegend = n())
@@ -43,7 +43,7 @@ ggplot(data = pokemon_legend, aes(x = Generation_cat, y = nlegend)) +
 
 We've discussed how to change many aspects of `ggplot2` graphs, but we haven't discussed how to rename the labels of levels of a categorical variable, whether those appear in the x-axis or in a separate legend. The easiest way to do this is to rename the levels in the factor itself using `fct_recode()`. Suppose, for example, that we want to relabel the Generation number with the actual region corresponding to each game (Kanto, Johto, Hoenn, Sinnoh, Unova, and Kalos). The function `fct_recode()` takes the name of a factor already present in the data set as its first argument and then a series of renaming schemes (new_name = "old_name") as its remaining arguments.
 
-```{r}
+```{r, appendix = TRUE}
 pokemon_legend <- pokemon_legend %>%
   mutate(Generation_cat2 = fct_recode(Generation_cat, Kanto = "1",
                                       Johto = "2", Hoenn = "3",
@@ -60,7 +60,7 @@ ggplot(data = pokemon_legend,
 
 Sometimes, you might want to collapse the levels of two or more factors into a single level. With the Pokemon data set, there isn't an example where this really makes sense, but, in the exercises, you'll see a good use for this function with the social survey data set. For practice, we can collapse the `Ice` and `Dark` type Pokemon into a new level called `Coolest` and we can collapse the `Poison`, `Fighting`, and `Fire` type Pokemon into a new level called `Least_Cool`. 
 
-```{r}
+```{r, appendix = TRUE}
 pokemon_long <- pokemon_df %>% pivot_longer(c(`Type 1`, `Type 2`),
                             names_to = "Number",
                             values_to = "Type")
@@ -94,7 +94,7 @@ Figure out why some Pokemon are double counted. Then, create a new data set that
 
 You might also be interested in re-ordering the x or y-axis of a particular graph so that the order of the factors correspond to, for example, the median of a quantitative variable for each level. The reason you would want to do this is easiest to see with an example. For example, suppose you want to look at the most common Pokemon types across the first 6 generations. We use the non-duplicated data set from the previous section's exercises, we pivot the data so that type is in one column, and we remove observations with missing `Type`, which correspond to the second `Type` of Pokemon that only have a single `Type`:
 
-```{r}
+```{r, appendix = TRUE}
 pokemon_nodup <- pokemon_df %>% group_by(`#`) %>% slice(1) %>%
   ungroup()
 pokemon_long <- pokemon_nodup %>%
@@ -117,7 +117,7 @@ How does `R` order the levels of the `Type` factor, by default? How might you li
 
 The following code creates a new factor variable called `Type_ordered` that orders type by the `count_type` variable. `fct_reorder()` takes a factor as its first argument and a numeric variable to re-order that factor by as its second argument. The bar plot is then reconstructed with this new variable.
 
-```{r}
+```{r, appendix = TRUE}
 pokemon_sum <- pokemon_sum %>% 
   mutate(Type_ordered = fct_reorder(.f = Type, .x = count_type))
 ggplot(data = pokemon_sum, aes(x = Type_ordered,
@@ -128,7 +128,7 @@ ggplot(data = pokemon_sum, aes(x = Type_ordered,
 
 `fct_reorder()` also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the `Defense` stat changes for different Pokemon types
 
-```{r}
+```{r, appendix = TRUE}
 pokemon_long <- pokemon_long %>%
   filter(!is.na(Type)) %>%
   mutate(Type_Deford = fct_reorder(.f = Type, .x = Defense,
@@ -141,7 +141,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
 
 The following code makes a point plot that shows the median defense for each type instead of boxplots.
 
-```{r}
+```{r, appendix = TRUE}
 pokemon_med <- pokemon_long %>% group_by(Type_Deford) %>%
   summarise(med_def = median(Defense)) %>%
   mutate(Type_Deford = fct_reorder(.f = Type_Deford, .x = med_def,
@@ -162,7 +162,7 @@ __New Data__. The `gun_violence_us.csv` data set was obtained from <a href="http
 * `ownership_rate`, the proportion of adults who own a gun
 * `region`, region of the U.S. (`South`, `West`, `NE`, and `MW`)
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 mortality_df <- read_csv("data/gun_violence_us.csv") %>%
   mutate(region = factor(region))
 ```
@@ -171,7 +171,7 @@ mortality_df <- read_csv("data/gun_violence_us.csv") %>%
 
 Suppose that we want to investigate the relationship between `mortality_rate` and `ownership_rate` using this data set. Run the following code to create a scatterplot of `mortality_rate` vs. `ownership_rate` with fitted linear regression lines for each `region` of the United States:
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 ggplot(data = mortality_df,
        aes(x = ownership_rate, y = mortality_rate, colour = region)) +
   geom_point() +
@@ -180,7 +180,7 @@ ggplot(data = mortality_df,
 
 Notice the order of the levels in the legend. Most people would prefer the order to actually match up with where the lines in the plot end, not for the order to be alphabetical. To achieve this, we can use `fct_reorder2()` to change the order of the factor levels:
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 mortality_df <- mortality_df %>%
   mutate(region_2 = fct_reorder2(region,
                                  .x = ownership_rate,
@@ -197,7 +197,7 @@ Did it change the order of the levels how you would expect? `fct_reorder2()` act
 
 Factors are ordered alphabetically by default. If we want precise control over the order of the levels of a factor, we can use `fct_relevel()`, which takes a factor and a vector of the new levels as inputs:
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 mortality_df <- mortality_df %>%
   mutate(region_3 = fct_relevel(region, c("South", "West", "MW", "NE")))
 ggplot(data = mortality_df,
@@ -208,7 +208,7 @@ ggplot(data = mortality_df,
 
 Reordering the levels of a factor manually might also be useful in fitting linear models. Recall that, by default, `R` makes the __reference group__ in a linear model the first level alphabetically. If you'd like a different reference group, you can reorder the levels of the factor:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 mod <- lm(mortality_rate ~ ownership_rate + region, data = mortality_df)
 mod2 <- lm(mortality_rate ~ ownership_rate + region_2, data = mortality_df)
 mod3 <- lm(mortality_rate ~ ownership_rate + region_3, data = mortality_df)
@@ -419,6 +419,11 @@ ggplot(by_age2, aes(age, prop,
   geom_line(na.rm = TRUE) +
   labs(colour = "marital") +
   scale_colour_viridis_d()
+```
+
+## Non-Exercise `R` Code {#rcode-7}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
 ```
 
 

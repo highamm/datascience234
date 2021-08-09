@@ -12,13 +12,13 @@ __Goals:__
 
 Throughout this chapter, we will use the `babynames` data set in the `babynames` `R` package. To begin, read about the data set, by running 
 
-```{r}
+```{r, appendix = TRUE}
 library(babynames)
 ```
 
 and then typing `?babynames` in your bottom-left window of `R Studio`. We see that this data set contains baby name data provided by the SSA in the United States dating back to 1880:
 
-```{r}
+```{r, appendix = TRUE}
 head(babynames)
 ```
 
@@ -30,7 +30,7 @@ The second data set that we will use has 27 observations, one for each of SLU's 
 
 The data has kindly been provided by Dr. Ramler. With your Notes `R Project` open, you can read in the data set with
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
 slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
 slumajors_df
@@ -52,7 +52,7 @@ Sometimes, we will want to create a new variable that's not in the data set, oft
 
 For example, suppose that we want to create a variable in `slumajors_df` that has the total number of students graduating in each major. We can do this with `mutate()`:
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% mutate(ntotal = nfemales + nmales)
 ```
 
@@ -72,25 +72,25 @@ Since this is our first time using `mutate()`, let's also delve into what the fu
 
 We might also want to create a variable that is the percentage of students identifying as female for each major:
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>%
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
 ```
 
 But what happened to `ntotal`? Is it still in the printout? It's not: when we created the variable `ntotal`, we didn't actually __save__ the new data set as anything. So `R` makes and prints the new variable, but it doesn't get saved to any data set. If we want to save the new data set, then we can use the `<-` operator. Here, we're saving the new data set with the same name as the old data set: `slumajors_df`. Then, we're doing the same thing for the `percfemale` variable. We won't always want to give the new data set the same name as the old one: we'll talk about this more in the chapter exercises.
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df <- slumajors_df %>%
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
 ```
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df <- slumajors_df %>% mutate(ntotal = nfemales + nmales)
 ```
 
 But, you can pipe as many things together as you want to, so it's probably easier to just create both variables in one go. The following chunk says to "Take `slumajors_df` and create a new variable `ntotal`. With that new data set, create a new variable called `percfemale`." Finally, the `slumajors_df <- ` at the beginning says to "save this new data set as a data set with the same name, `slumajors_df`."
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df <- slumajors_df %>%
   mutate(ntotal = nfemales + nmales) %>%
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
@@ -112,7 +112,7 @@ mutate(df, x = y + 4)
 
 Piping really isn't that useful if you just have something that can be done with a single `%>%`. But, doing our previous example without piping might look like:
 
-```{r}
+```{r, appendix = TRUE}
 mutate(mutate(slumajors_df, ntotal = nfemales + nmales), percfemale = 100 * nfemales / (nfemales + nmales))
 ```
 
@@ -137,7 +137,7 @@ Suppose that you want to make a new variable that is conditional on another vari
 
 Suppose we want to create a new variable that tells us whether or not the `Major` has a majority of Women. That is, we want this new variable, `morewomen` to be `"Yes"` if the `Major` has more than 50% women and `"No"` if it has 50% or less. 
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% mutate(morewomen = if_else(percfemale > 50,
                                             true = "Yes",
                                             false = "No"))
@@ -151,7 +151,7 @@ We can see from the above set up that if we had more than one condition, then we
 
 For example, when looking at the output, we see that `Biochemistry` has 56% female graduates. That's "about" a 50/50 split, so suppose we want a variable called `large_majority` that is "female" when the percent women is 70 or more, "male" when the percent women is 30 or less, and "none" when the percent female is between 30 and 70. 
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% mutate(large_majority =
                           case_when(percfemale >= 70 ~ "female",
                                     percfemale <= 30 ~ "male",
@@ -162,7 +162,7 @@ The `case_when()` function reads "When the percent female is more than or equal 
 
 Let's save these two new variables to the `slumajors_df`:
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df <- slumajors_df %>%
   mutate(morewomen = if_else(percfemale > 50,
                              true = "Yes",
@@ -197,7 +197,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 The `arrange()` function allows us to order rows in the data set using one or more variables. The function is very straightforward. Suppose that we want to order the rows so that the majors with the lowest `percfemale` are first:
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% arrange(percfemale)
 ```
 
@@ -205,7 +205,7 @@ Which major has the lowest percentage of female graduates?
 
 We see that, by default, `arrange()` orders the rows from low to high. To order from high to low so that the majors with the highest `percfemale` are first, use `desc()` around the variable that you are ordering by:
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% arrange(desc(percfemale))
 ```
 
@@ -215,7 +215,7 @@ What is the major with the highest percentage of women graduates?
 
 We might also be interested in getting rid of some of the columns in a data set. One reason to do this is if there are an overwhelming (30+) columns in a data set, but we know that we just need a few of them. The easiest way to use `select()` is to just input the names of the columns that you want to keep. For example, if we were only interested in majors and their totals, we could do
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% select(Major, ntotal)
 ```
 
@@ -223,13 +223,13 @@ If I wanted to use this data set for anything else, I'd also need to name, or re
 
 We might also want to use `select()` to get rid of one or two columns. If this is the case, we denote any column you want to get rid of with `-`. For example, we might want to get rid of the `ntotal` column that we made and get rid of the `nmales` and `nfemales` columns:
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% select(-ntotal, -nfemales, -nmales)
 ```
 
 `select()` comes with many useful helper functions, but these are oftentimes not needed. One of the helper functions that __is__ actually often useful is `everything()`. We can, for example, use this after using `mutate()` to put the variable that was just created at the front of the data set to make sure there weren't any unexpected issues:
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% mutate(propfemale = percfemale / 100) %>%
   select(propfemale, everything())
 ```
@@ -242,7 +242,7 @@ Instead of choosing which columns to keep, we can also choose certain rows to ke
 
 `slice()` allows you to specify the __row numbers__ corresponding to rows that you want to keep. For example, suppose that we only want to keep the rows with the five most popular majors:
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>% arrange(desc(ntotal)) %>%
   slice(1, 2, 3, 4, 5)
 ```
@@ -260,7 +260,7 @@ We can keep rows based on a categorical variable or a quantitative variable or a
 
 It's probably time for a change of data set too! We'll be working with the `babynames` data set for the rest of this chapter:
 
-```{r}
+```{r, appendix = TRUE}
 library(babynames)
 babynames
 ```
@@ -269,7 +269,7 @@ If needed, we can remind ourselves what is in the `babynames` data set by typing
 
 What do the following statements do? See if you can guess before running the code.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 babynames %>% filter(name == "Matthew")
 babynames %>% filter(year >= 2000)
 babynames %>% filter(sex != "M")
@@ -285,7 +285,7 @@ Look at the Venn diagrams in `R` for Data Science to learn about the various Boo
 
 The following gives some examples. See if you can figure out what each line of code is doing before running it.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 babynames %>% filter(n > 20000 | prop > 0.05)
 babynames %>% filter(sex == "F" & name == "Mary")
 babynames %>% filter(sex == "F" & name == "Mary" & prop > 0.05)
@@ -307,7 +307,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 The `summarise()` function is useful to get summaries from the data. For example, suppose that we want to know the average major size at SLU across the five year span or the total number of majors across those five years. Then we can use `summarise()` and a summary function, like `mean()`, `sum()`, `median()`, `max()`, `min()`, `n()`, etc. You'll notice that the format of `summarise()` is extremely similar to the format of `mutate()`. Using the `slumajors_df` data again just for one quick example,
 
-```{r}
+```{r, appendix = TRUE}
 slumajors_df %>%
   summarise(meantotalmajor = mean(ntotal),
             totalgrad = sum(ntotal))
@@ -319,7 +319,7 @@ slumajors_df %>%
 
 For example, suppose that you wanted the total number of registered births per year in the `babynames` data set:
 
-```{r}
+```{r, appendix = TRUE}
 babynames %>% group_by(year) %>%
   summarise(totalbirths = sum(n))
 ```
@@ -330,13 +330,13 @@ Most summary functions are intuitive if you've had intro stat. But, if you're no
 
 The `n()` function can be used within `summarise()` to obtain the number of observations. It will give you the total number of rows, if used without `group_by()`
 
-```{r}
+```{r, appendix = TRUE}
 babynames %>% summarise(totalobs = n())
 ```
 
 Note that `n()` typically doesn't have any inputs. It's typically more useful when paired with `group_by()`: this allows us to see the number of observations within each `year`, for instance:
 
-```{r}
+```{r, appendix = TRUE}
 babynames %>% group_by(year) %>%
   summarise(ngroup = n())
 ```
@@ -413,25 +413,25 @@ Missing values should not be removed without carefully examination and a note of
 
 __If__ we have investigated the missing values and are comfortable with removing them, many functions that we would use in `summarise()` have an `na.rm` argument that we can set to `TRUE` to tell `summarise()` to remove any `NA`s before taking the `mean()`, `median()`, `max()`, etc.
 
-```{r}
+```{r, appendix = TRUE}
 toy_df %>% summarise(meanx = mean(x, na.rm = TRUE))
 ```
 
 If we want to remove the missing values more directly, we can use the `is.na()` function in combination with `filter()`. If the variable is `NA` (Not Available) for an observation, `is.na()` evaluates to `TRUE`; if not, `is.na()` evaluates to `FALSE`. Test this out using `mutate()` to create a new variable for whether `Median` is missing:
 
-```{r}
+```{r, appendix = TRUE}
 toy_df %>% mutate(missingx = is.na(x))
 ```
 
 `missingx` is `TRUE` only for the the first observation.  We can use this to our advantage with `filter()` to filter it out of the data set, without going through the extra step of actually making a new variable `missingx`:
 
-```{r}
+```{r, appendix = TRUE}
 toy_df %>% filter(is.na(x) != TRUE)
 ```
 
 You'll commonly see this written as short-hand in people's code you may come across as:
 
-```{r}
+```{r, appendix = TRUE}
 toy_df %>% filter(!is.na(x))
 ```
 
@@ -633,4 +633,7 @@ e. `select()`
 
 This can sometimes be okay if you're sure that the variables you are removing won't ever be used. 
 
+## Non-Exercise `R` Code {#rcode-3}
 
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
+```

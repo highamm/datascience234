@@ -1096,3 +1096,82 @@ ggplot(data = videogame_nomiss,
 ```
 
 <img src="06-basics_files/figure-html/unnamed-chunk-62-1.png" width="672" />
+
+## Non-Exercise `R` Code {#rcode-6}
+
+
+```r
+library(tidyverse)
+videogame_df <- read_csv("data/videogame_clean.csv")
+head(videogame_df)
+videogame_small <- videogame_df %>% slice(1:100)
+ggplot(data = videogame_small, aes(x = release_date, y = price)) +
+  geom_point() 
+
+ggplot(data = videogame_small, aes(x = release_date2, y = metascore)) +
+  geom_point(aes(colour = price_cat))
+head(videogame_df)
+videogame_df$game
+str(videogame_df$game)
+class(videogame_df$game)
+mean(videogame_df$game)
+videogame_df %>% summarise(maxgame = max(game))
+class(videogame_df$meta_cat)
+class(as.factor(videogame_df$meta_cat))
+videogame_df <- videogame_df %>%
+  mutate(meta_cat_factor = as.factor(meta_cat))
+str(videogame_df$meta_cat_factor)
+str(videogame_df$release_date)
+str(videogame_df$release_date2)
+median(videogame_df$release_date2, na.rm = TRUE)
+mean(videogame_df$release_date2, na.rm = TRUE)
+str(videogame_df$price)
+str(videogame_df$price_cat)
+str(as.factor(videogame_df$price_cat))
+videogame_df <- videogame_df %>%
+  mutate(price_factor = as.factor(price_cat)) 
+ggplot(data = videogame_df, aes(x = release_date2, y = metascore)) +
+  geom_point(aes(colour = price_factor))
+str(videogame_df$playtime_miss)
+sum(videogame_df$playtime_miss)
+mean(videogame_df$playtime_miss)
+str(videogame_df) ## look at the beginning to see "tibble"
+videogame_df[5, 3]
+videogame_df[ ,3] ## grab the third column
+
+videogame_df[5, ] ## grab the fifth row
+3:7
+
+videogame_df[ ,3:7] ## grab columns 3 through 7
+
+videogame_df[3:7, ] ## grab rows 3 through 7
+videogame_df[ ,c(1, 3, 4)] ## grab columns 1, 3, and 4
+
+videogame_df[c(1, 3, 4), ] ## grab rows 1, 3, and 4
+vec1 <- c(1, 3, 2)
+vec2 <- c("b", 1, 2)
+vec3 <- c(FALSE, FALSE, TRUE)
+str(vec1); str(vec2); str(vec3)
+videogame_df$metascore
+metavec <- videogame_df$metascore
+mean(metavec, na.rm = TRUE)
+metavec[100] ## 100th element is missing
+testlist <- list("a", 4, c(1, 4, 2, 6),
+                 tibble(x = c(1, 2), y = c(3, 2)))
+testlist
+videogame_df %>% filter(!is.na(metascore))
+filter(videogame_df, !is.na(metascore))
+videogame_df %>% filter(!is.na(metascore)) %>%
+  filter(median_playtime > 0) %>%
+  group_by(price_cat) %>%
+  summarise(avg_med_time = median(median_playtime, na.rm = TRUE))
+filter(videogame_df, !is.na(metascore))
+filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0)
+group_by(filter(filter(videogame_df, !is.na(metascore)),
+                median_playtime > 0),
+  price_cat)
+summarise(group_by(filter(filter(videogame_df, !is.na(metascore)),
+  median_playtime > 0), price_cat), 
+  avg_med_time = median(median_playtime, na.rm = TRUE))
+fitness_df <- read_csv("data/higham_fitness_notclean.csv")
+```

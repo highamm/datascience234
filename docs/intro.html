@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science</title>
+  <title>2 Getting Started with R and R Studio | STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science" />
+  <meta property="og:title" content="2 Getting Started with R and R Studio | STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Getting Started with R and R Studio | STAT 234: Data Science" />
+  <meta name="twitter:title" content="2 Getting Started with R and R Studio | STAT 234: Data Science" />
   
   <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-07-07" />
+<meta name="date" content="2021-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -121,7 +121,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -134,9 +133,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">STAT 234: Data Science</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
@@ -212,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-etc.-s"><i class="fa fa-check"></i><b>3.7.5</b> Boxplots, Stacked, etc. S</a></li>
 <li class="chapter" data-level="3.7.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2-S"><i class="fa fa-check"></i><b>3.7.6</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2.html"><a href="ggplot2.html#rcode-2"><i class="fa fa-check"></i><b>3.8</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
 <ul>
@@ -247,6 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#missing-values-s"><i class="fa fa-check"></i><b>4.6.4</b> Missing Values S</a></li>
 <li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3-S"><i class="fa fa-check"></i><b>4.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="4.7" data-path="dplyr.html"><a href="dplyr.html#rcode-3"><i class="fa fa-check"></i><b>4.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
 <ul>
@@ -277,6 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr-s"><i class="fa fa-check"></i><b>5.6.4</b> Skimming Data with <code>skimr()</code> S</a></li>
 <li class="chapter" data-level="5.6.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4-S"><i class="fa fa-check"></i><b>5.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="5.7" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#rcode-4"><i class="fa fa-check"></i><b>5.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code></a>
 <ul>
@@ -311,6 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication-s"><i class="fa fa-check"></i><b>6.5.3</b> <code>ggplot2</code> Communication S</a></li>
 <li class="chapter" data-level="6.5.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5-S"><i class="fa fa-check"></i><b>6.5.4</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="6.6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#rcode-5"><i class="fa fa-check"></i><b>6.6</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
 <ul>
@@ -355,6 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.5" data-path="r-basics.html"><a href="r-basics.html#other-r-topics-s"><i class="fa fa-check"></i><b>7.7.5</b> Other R Topics S</a></li>
 <li class="chapter" data-level="7.7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6-S"><i class="fa fa-check"></i><b>7.7.6</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="7.8" data-path="r-basics.html"><a href="r-basics.html#rcode-6"><i class="fa fa-check"></i><b>7.8</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html"><i class="fa fa-check"></i><b>8</b> Factors with <code>forcats</code></a>
 <ul>
@@ -378,6 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels-s"><i class="fa fa-check"></i><b>8.4.2</b> Reorder Factor Levels S</a></li>
 <li class="chapter" data-level="8.4.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7-S"><i class="fa fa-check"></i><b>8.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="8.5" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#rcode-7"><i class="fa fa-check"></i><b>8.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html"><i class="fa fa-check"></i><b>9</b> Reprexes and Import</a>
 <ul>
@@ -409,6 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-with-jsonlite-s"><i class="fa fa-check"></i><b>9.6.4</b> JSON with <code>jsonlite</code> S</a></li>
 <li class="chapter" data-level="9.6.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8-S"><i class="fa fa-check"></i><b>9.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="9.7" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#rcode-8"><i class="fa fa-check"></i><b>9.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>10</b> Data Ethics</a>
 <ul>
@@ -459,6 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.6.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins-s"><i class="fa fa-check"></i><b>11.6.3</b> Filtering Joins S</a></li>
 <li class="chapter" data-level="11.6.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10-S"><i class="fa fa-check"></i><b>11.6.4</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="11.7" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#rcode-10"><i class="fa fa-check"></i><b>11.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html"><i class="fa fa-check"></i><b>12</b> Dates with <code>lubridate</code></a>
 <ul>
@@ -481,6 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables-s"><i class="fa fa-check"></i><b>12.4.2</b> Functions for <code>&lt;date&gt;</code> Variables S</a></li>
 <li class="chapter" data-level="12.4.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11-S"><i class="fa fa-check"></i><b>12.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="12.5" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#rcode-11"><i class="fa fa-check"></i><b>12.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html"><i class="fa fa-check"></i><b>13</b> Strings with <code>stringr</code></a>
 <ul>
@@ -496,6 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#second-example-s"><i class="fa fa-check"></i><b>13.4.2</b> Second Example S</a></li>
 <li class="chapter" data-level="13.4.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12-S"><i class="fa fa-check"></i><b>13.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="13.5" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#rcode-12"><i class="fa fa-check"></i><b>13.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html"><i class="fa fa-check"></i><b>14</b> Predictive Modeling with knn</a>
 <ul>
@@ -525,10 +531,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.5.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction-s"><i class="fa fa-check"></i><b>14.5.2</b> knn Introduction S</a></li>
 <li class="chapter" data-level="14.5.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k-s"><i class="fa fa-check"></i><b>14.5.3</b> Choosing Predictors and k S</a></li>
 </ul></li>
+<li class="chapter" data-level="14.6" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#rcode-13"><i class="fa fa-check"></i><b>14.6</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -547,7 +551,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="intro" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Getting Started with <code>R</code> and <code>R Studio</code></h1>
+<h1><span class="header-section-number">2</span> Getting Started with <code>R</code> and <code>R Studio</code></h1>
 <p><strong>Goals</strong>:</p>
 <ol style="list-style-type: decimal">
 <li><p>Use <code>R Studio</code> on the server</p></li>
@@ -808,7 +812,7 @@ We might be able to better answer the original question numerically by computing
 </ol>
 <p>How many athletes are in the top 100 in the sport that you chose?</p>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Change one of the sports above to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.</p></li>
+<li><p>In the endorsements / salary example, change one of the sports to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.</p></li>
 <li><p>What qualification might you want to make about your statement in the previous exercise? (Is this a random sample of athletes from each sport? Why does that matter?).</p></li>
 <li><p>In the side-by-side boxplots comparing the endorsements to salary ratio of two different sports, I’ve changed the y-axis label above to be Endorsements / Salary using the <code>labs(y = "Endorsements / Salary")</code> statement. Try changing the x-axis label to something else. What do you think you would need to add to the plot?</p></li>
 </ol>
@@ -861,9 +865,9 @@ We might be able to better answer the original question numerically by computing
 </div>
 <div id="chapexercise-1" class="section level2" number="2.7">
 <h2><span class="header-section-number">2.7</span> Chapter Exercises</h2>
-<p><strong>Note</strong>: It’s entirely up to you whether you’d like to put these exercises in a new .Rmd file or in the .Rmd file that you’ve been working on throughout the other sections of the chapter. I would maybe lean toward having everything in 1 .Rmd file, just so it’s in one spot, but, people are different and a different organizational structure might work better for you!</p>
-<p><strong>Note 2</strong>: Usually, exercises will ask you to write code on your own using the week’s chapter as a reference. However, for this initial chapter, we will do something a little different.</p>
-<p>Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the <code>tidyverse</code>, and answer the questions below in your <code>R Markdown</code> file. I’m imagining this whole exercise should only take you ~ 20-25 minutes.</p>
+<p><strong>Note</strong>: Usually, exercises will ask you to write code on your own using the week’s chapter as a reference. However, for this initial chapter, we will do something a little different.</p>
+<p>Open a new .Rmd file (File -&gt; New File -&gt; <code>R Markdown</code> -&gt; OK) and delete the text explaining what <code>R Markdown</code> is in lines 10 and below. Then, complete the following exercises.</p>
+<p>Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the <code>tidyverse</code>, and answer the questions below in your <code>R Markdown</code> file. I’m imagining this whole exercise should only take you ~ 20-25 minutes.</p>
 <p>Answer the following questions by typing answers in your .Rmd document. You should not need to make any new code chunks, as the questions don’t ask you to do any coding!</p>
 <ol style="list-style-type: decimal">
 <li><p>What are the two major areas that the <code>tidyverse</code> <strong>doesn’t</strong> provide tools for?</p></li>
@@ -871,6 +875,21 @@ We might be able to better answer the original question numerically by computing
 <li><p>What does it mean for the <code>tidyverse</code> to be “human-centred?”</p></li>
 <li><p>In about 2 sentences, describe the data science “cycle” given in the diagram at the top of page 3.</p></li>
 </ol>
+<p>Exercise 2. You may continue to use the same .Rmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>What is your name and what is your class year (first-year, sophomore, junior, senior)?</p></li>
+<li><p>What is/are your major(s) and minor(s), either actual or intended?</p></li>
+<li><p>Why are you taking this course? (Major requirement?, Minor requirement?, recommended by advisor or student?, exploring the field?, etc.).</p></li>
+<li><p>In what semester and year did you take STAT 113 and who was your professor?</p></li>
+<li><p>Have you taken STAT 213? Have you taken CS 140?</p></li>
+<li><p>What is your hometown: city, state, country?</p></li>
+<li><p>Do you play a sport on campus? If so, what sport? If not, what is an activity that you do on or off-campus?</p></li>
+<li><p>What is your favorite TV show or movie or band/musical artist?</p></li>
+<li><p>Tell me something about yourself.</p></li>
+<li><p>Take a look at the learning outcomes listed on the syllabus. Which are you most excited for and why?</p></li>
+<li><p>What are your expectations for this class and/or what do you hope to gain from this class?</p></li>
+</ol>
+<p><br></p>
 <p>Knit your .Rmd file into an .html file and submit your knitted .html file to Sakai. If your file won’t knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Sakai. Use the following steps to do so:</p>
 <ol style="list-style-type: decimal">
 <li><p>Click the checkbox next to your knitted .html file.</p></li>
@@ -910,14 +929,14 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": false,
-"twitter": false,
+"facebook": true,
+"twitter": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
 "whatsapp": false,
-"all": false
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -938,10 +957,8 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"info": true
+"collapse": "subsection"
+}
 });
 });
 </script>

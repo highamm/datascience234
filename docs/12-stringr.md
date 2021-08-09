@@ -424,3 +424,114 @@ ggplot(data = beyonce_bigwords, aes(x = word_count, y = b_words)) +
 ## there's still some stopwords in there (yeah, ya, wanna, 'cause)
 ## but these can be removed with dplyr.
 ```
+
+## Non-Exercise `R` Code {#rcode-12}
+
+
+```r
+library(tidyverse)
+library(stringr)
+rblack <- c("Oo-ooh-ooh, hoo yeah, yeah (Yeah, ah-ah-ah-ah-ah-ark)
+Yeah, yeah
+Yeah-ah-ah, yeah-ah-ah
+Yeah-ah-ah
+Yeah, yeah, yeah
+Seven a.m., waking up in the morning
+Gotta be fresh, gotta go downstairs
+Gotta have my bowl, gotta have cereal
+Seein' everything, the time is goin'
+Tickin' on and on, everybody's rushin'
+Gotta get down to the bus stop
+Gotta catch my bus, I see my friends (my friends)
+Kickin' in the front seat
+Sittin' in the back seat
+Gotta make my mind up
+Which seat can I take?
+It's Friday, Friday
+Gotta get down on Friday
+Everybody's lookin' forward to the weekend, weekend
+Friday, Friday
+Gettin' down on Friday
+Everybody's lookin' forward to the weekend
+Partyin', partyin' (yeah)
+Partyin', partyin' (yeah)
+Fun, fun, fun, fun
+Lookin' forward to the weekend
+Seven, forty five, we're drivin' on the highway
+Cruisin' so fast, I want time to fly
+Fun, fun, think about fun
+You know what it is
+I got this, you got this
+My friend is by my right, aye
+I got this, you got this
+Now you know it
+Kickin' in the front seat
+Sittin' in the back seat
+Gotta make my mind up
+Which seat can I take?
+It's Friday, Friday
+Gotta get down on Friday
+Everybody's lookin' forward to the weekend, weekend
+Friday, Friday
+Gettin' down on Friday
+Everybody's lookin' forward to the weekend
+Partyin', partyin' (yeah)
+Partyin', partyin' (yeah)
+Fun, fun, fun, fun
+Lookin' forward to the weekend
+Yesterday was Thursday, Thursday
+Today it is Friday, Friday (partyin')
+We-we-we so excited
+We so excited
+We gonna have a ball today
+Tomorrow is Saturday
+And Sunday comes afterwards
+I don't want this weekend to end
+It's Friday, Friday
+Gotta get down on Friday
+Everybody's lookin' forward to the weekend, weekend (we gotta get down)
+Friday, Friday
+Gettin' down on Friday
+Everybody's lookin' forward to the weekend
+Partyin', partyin' (yeah)
+Partyin', partyin' (yeah)
+Fun, fun, fun, fun
+Lookin' forward to the weekend
+It's Friday, Friday
+Gotta get down on Friday
+Everybody's lookin' forward to the weekend, weekend
+Friday, Friday
+Gettin' down on Friday
+Everybody's lookin' forward to the weekend
+Partyin', partyin' (yeah)
+Partyin', partyin' (yeah)
+Fun, fun, fun, fun
+Lookin' forward to the weekend")
+rblack
+rblack2 <- str_split(rblack, "\n", simplify = TRUE)
+rblack2
+str(rblack2)
+rblack3 <- str_split(rblack2, c(" "))
+rblack3
+rblack4 <- unlist(rblack3)
+rblack4
+rblack_df <- tibble(words = rblack4)
+rblack_df %>% group_by(words) %>%
+  summarise(word_count = n()) %>%
+  arrange(desc(word_count))
+rblack5 <- str_remove(rblack4, pattern = c(","))
+rblack5
+rblack6 <- str_to_lower(rblack5)
+rblack6
+##install.packages("tidytext")
+library(tidytext)
+stop_words
+rblack_df <- tibble(words = rblack6)
+rblack_df
+rblack_small <- anti_join(rblack_df, stop_words,
+                          by = c("words" = "word"))
+rblack_small
+rblack_small %>% group_by(words) %>%
+  summarise(word_count = n()) %>%
+  arrange(desc(word_count))
+```

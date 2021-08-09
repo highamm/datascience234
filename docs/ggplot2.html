@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Plotting with ggplot2 | STAT 234: Data Science</title>
+  <title>3 Plotting with ggplot2 | STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Plotting with ggplot2 | STAT 234: Data Science" />
+  <meta property="og:title" content="3 Plotting with ggplot2 | STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Plotting with ggplot2 | STAT 234: Data Science" />
+  <meta name="twitter:title" content="3 Plotting with ggplot2 | STAT 234: Data Science" />
   
   <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-07-07" />
+<meta name="date" content="2021-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -121,7 +121,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -134,9 +133,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">STAT 234: Data Science</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
@@ -212,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-etc.-s"><i class="fa fa-check"></i><b>3.7.5</b> Boxplots, Stacked, etc. S</a></li>
 <li class="chapter" data-level="3.7.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2-S"><i class="fa fa-check"></i><b>3.7.6</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2.html"><a href="ggplot2.html#rcode-2"><i class="fa fa-check"></i><b>3.8</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
 <ul>
@@ -247,6 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#missing-values-s"><i class="fa fa-check"></i><b>4.6.4</b> Missing Values S</a></li>
 <li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3-S"><i class="fa fa-check"></i><b>4.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="4.7" data-path="dplyr.html"><a href="dplyr.html#rcode-3"><i class="fa fa-check"></i><b>4.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
 <ul>
@@ -277,6 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr-s"><i class="fa fa-check"></i><b>5.6.4</b> Skimming Data with <code>skimr()</code> S</a></li>
 <li class="chapter" data-level="5.6.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4-S"><i class="fa fa-check"></i><b>5.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="5.7" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#rcode-4"><i class="fa fa-check"></i><b>5.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code></a>
 <ul>
@@ -311,6 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication-s"><i class="fa fa-check"></i><b>6.5.3</b> <code>ggplot2</code> Communication S</a></li>
 <li class="chapter" data-level="6.5.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5-S"><i class="fa fa-check"></i><b>6.5.4</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="6.6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#rcode-5"><i class="fa fa-check"></i><b>6.6</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
 <ul>
@@ -355,6 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.5" data-path="r-basics.html"><a href="r-basics.html#other-r-topics-s"><i class="fa fa-check"></i><b>7.7.5</b> Other R Topics S</a></li>
 <li class="chapter" data-level="7.7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6-S"><i class="fa fa-check"></i><b>7.7.6</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="7.8" data-path="r-basics.html"><a href="r-basics.html#rcode-6"><i class="fa fa-check"></i><b>7.8</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html"><i class="fa fa-check"></i><b>8</b> Factors with <code>forcats</code></a>
 <ul>
@@ -378,6 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels-s"><i class="fa fa-check"></i><b>8.4.2</b> Reorder Factor Levels S</a></li>
 <li class="chapter" data-level="8.4.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7-S"><i class="fa fa-check"></i><b>8.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="8.5" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#rcode-7"><i class="fa fa-check"></i><b>8.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html"><i class="fa fa-check"></i><b>9</b> Reprexes and Import</a>
 <ul>
@@ -409,6 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-with-jsonlite-s"><i class="fa fa-check"></i><b>9.6.4</b> JSON with <code>jsonlite</code> S</a></li>
 <li class="chapter" data-level="9.6.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8-S"><i class="fa fa-check"></i><b>9.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="9.7" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#rcode-8"><i class="fa fa-check"></i><b>9.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>10</b> Data Ethics</a>
 <ul>
@@ -459,6 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.6.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins-s"><i class="fa fa-check"></i><b>11.6.3</b> Filtering Joins S</a></li>
 <li class="chapter" data-level="11.6.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10-S"><i class="fa fa-check"></i><b>11.6.4</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="11.7" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#rcode-10"><i class="fa fa-check"></i><b>11.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html"><i class="fa fa-check"></i><b>12</b> Dates with <code>lubridate</code></a>
 <ul>
@@ -481,6 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables-s"><i class="fa fa-check"></i><b>12.4.2</b> Functions for <code>&lt;date&gt;</code> Variables S</a></li>
 <li class="chapter" data-level="12.4.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11-S"><i class="fa fa-check"></i><b>12.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="12.5" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#rcode-11"><i class="fa fa-check"></i><b>12.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html"><i class="fa fa-check"></i><b>13</b> Strings with <code>stringr</code></a>
 <ul>
@@ -496,6 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#second-example-s"><i class="fa fa-check"></i><b>13.4.2</b> Second Example S</a></li>
 <li class="chapter" data-level="13.4.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12-S"><i class="fa fa-check"></i><b>13.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="13.5" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#rcode-12"><i class="fa fa-check"></i><b>13.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html"><i class="fa fa-check"></i><b>14</b> Predictive Modeling with knn</a>
 <ul>
@@ -525,10 +531,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.5.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction-s"><i class="fa fa-check"></i><b>14.5.2</b> knn Introduction S</a></li>
 <li class="chapter" data-level="14.5.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k-s"><i class="fa fa-check"></i><b>14.5.3</b> Choosing Predictors and k S</a></li>
 </ul></li>
+<li class="chapter" data-level="14.6" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#rcode-13"><i class="fa fa-check"></i><b>14.6</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -547,7 +551,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="ggplot2" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Plotting with <code>ggplot2</code></h1>
+<h1><span class="header-section-number">3</span> Plotting with <code>ggplot2</code></h1>
 <p><strong>Goals:</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>Use the <code>ggplot2</code> package to make exploratory plots from STAT 113 of a single quantitative variable, two quantitative variables, a quantitative and a categorical variable, a single categorical variable, and two categorical variables.</p></li>
@@ -1070,8 +1074,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: Removed 70 rows containing non-finite values (stat_summary).</code></pre>
 <pre><code>## Warning: Removed 3 rows containing missing values (geom_segment).</code></pre>
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
-
 </div>
+</div>
+<div id="rcode-2" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code</h2>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="ggplot2.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb102-2"><a href="ggplot2.html#cb102-2" aria-hidden="true" tabindex="-1"></a>pres_df <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">&quot;data/PRES2000.txt&quot;</span>) </span>
+<span id="cb102-3"><a href="ggplot2.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="do">## don&#39;t worry about the `read_table` function....yet</span></span>
+<span id="cb102-4"><a href="ggplot2.html#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pres_df)</span>
+<span id="cb102-5"><a href="ggplot2.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb102-6"><a href="ggplot2.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb102-7"><a href="ggplot2.html#cb102-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Votes for Gore in Florida&quot;</span>)</span>
+<span id="cb102-8"><a href="ggplot2.html#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb102-9"><a href="ggplot2.html#cb102-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb102-10"><a href="ggplot2.html#cb102-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Votes for Gore in Florida&quot;</span>) </span>
+<span id="cb102-11"><a href="ggplot2.html#cb102-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb102-12"><a href="ggplot2.html#cb102-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb102-13"><a href="ggplot2.html#cb102-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Votes for Gore in Florida&quot;</span>) <span class="sc">+</span></span>
+<span id="cb102-14"><a href="ggplot2.html#cb102-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() </span>
+<span id="cb102-15"><a href="ggplot2.html#cb102-15" aria-hidden="true" tabindex="-1"></a>pres_cat <span class="ot">&lt;-</span> pres_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">winner =</span> <span class="fu">if_else</span>(Gore <span class="sc">&gt;</span> Bush,</span>
+<span id="cb102-16"><a href="ggplot2.html#cb102-16" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">true =</span> <span class="st">&quot;Gore&quot;</span>,</span>
+<span id="cb102-17"><a href="ggplot2.html#cb102-17" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">false =</span> <span class="st">&quot;Bush&quot;</span>))</span>
+<span id="cb102-18"><a href="ggplot2.html#cb102-18" aria-hidden="true" tabindex="-1"></a>pres_cat</span>
+<span id="cb102-19"><a href="ggplot2.html#cb102-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_cat, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
+<span id="cb102-20"><a href="ggplot2.html#cb102-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb102-21"><a href="ggplot2.html#cb102-21" aria-hidden="true" tabindex="-1"></a>pres_cat2 <span class="ot">&lt;-</span> pres_cat <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(winner) <span class="sc">%&gt;%</span></span>
+<span id="cb102-22"><a href="ggplot2.html#cb102-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwins =</span> <span class="fu">n</span>())</span>
+<span id="cb102-23"><a href="ggplot2.html#cb102-23" aria-hidden="true" tabindex="-1"></a>pres_cat2</span>
+<span id="cb102-24"><a href="ggplot2.html#cb102-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
+<span id="cb102-25"><a href="ggplot2.html#cb102-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb102-26"><a href="ggplot2.html#cb102-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner, <span class="at">y =</span> nwins)) <span class="sc">+</span></span>
+<span id="cb102-27"><a href="ggplot2.html#cb102-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb102-28"><a href="ggplot2.html#cb102-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Gore, <span class="at">y =</span> Bush)) <span class="sc">+</span></span>
+<span id="cb102-29"><a href="ggplot2.html#cb102-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb102-30"><a href="ggplot2.html#cb102-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb102-31"><a href="ggplot2.html#cb102-31" aria-hidden="true" tabindex="-1"></a>fitness_full <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/higham_fitness_clean.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">case_when</span>(weekday <span class="sc">==</span> <span class="st">&quot;Sat&quot;</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="st">&quot;Sun&quot;</span> <span class="sc">~</span> <span class="st">&quot;weekend&quot;</span>,</span>
+<span id="cb102-32"><a href="ggplot2.html#cb102-32" aria-hidden="true" tabindex="-1"></a>  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;weekday&quot;</span>))</span>
+<span id="cb102-33"><a href="ggplot2.html#cb102-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness_full, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb102-34"><a href="ggplot2.html#cb102-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb102-35"><a href="ggplot2.html#cb102-35" aria-hidden="true" tabindex="-1"></a><span class="do">## drop observations that have active calories &lt; 50. </span></span>
+<span id="cb102-36"><a href="ggplot2.html#cb102-36" aria-hidden="true" tabindex="-1"></a><span class="do">## assuming that these are data errors or </span></span>
+<span id="cb102-37"><a href="ggplot2.html#cb102-37" aria-hidden="true" tabindex="-1"></a><span class="do">## days where the Apple Watch wasn&#39;t worn.</span></span>
+<span id="cb102-38"><a href="ggplot2.html#cb102-38" aria-hidden="true" tabindex="-1"></a>fitness <span class="ot">&lt;-</span> fitness_full <span class="sc">%&gt;%</span></span>
+<span id="cb102-39"><a href="ggplot2.html#cb102-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(active_cals <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb102-40"><a href="ggplot2.html#cb102-40" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb102-41"><a href="ggplot2.html#cb102-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals))</span>
+<span id="cb102-42"><a href="ggplot2.html#cb102-42" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb102-43"><a href="ggplot2.html#cb102-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> weekend_ind))</span>
+<span id="cb102-44"><a href="ggplot2.html#cb102-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb102-45"><a href="ggplot2.html#cb102-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">shape =</span> weekend_ind))</span>
+<span id="cb102-46"><a href="ggplot2.html#cb102-46" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb102-47"><a href="ggplot2.html#cb102-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">size =</span> flights))</span>
+<span id="cb102-48"><a href="ggplot2.html#cb102-48" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb102-49"><a href="ggplot2.html#cb102-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>))</span>
+<span id="cb102-50"><a href="ggplot2.html#cb102-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb102-51"><a href="ggplot2.html#cb102-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals), <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">shape =</span> <span class="dv">19</span>)</span>
+<span id="cb102-52"><a href="ggplot2.html#cb102-52" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb102-53"><a href="ggplot2.html#cb102-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb102-54"><a href="ggplot2.html#cb102-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb102-55"><a href="ggplot2.html#cb102-55" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb102-56"><a href="ggplot2.html#cb102-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb102-57"><a href="ggplot2.html#cb102-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb102-58"><a href="ggplot2.html#cb102-58" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
+<span id="cb102-59"><a href="ggplot2.html#cb102-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>)</span>
+<span id="cb102-60"><a href="ggplot2.html#cb102-60" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
+<span id="cb102-61"><a href="ggplot2.html#cb102-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>)</span>
+<span id="cb102-62"><a href="ggplot2.html#cb102-62" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse,</span>
+<span id="cb102-63"><a href="ggplot2.html#cb102-63" aria-hidden="true" tabindex="-1"></a>                           <span class="at">colour =</span> Year)) <span class="sc">+</span></span>
+<span id="cb102-64"><a href="ggplot2.html#cb102-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb102-65"><a href="ggplot2.html#cb102-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb102-66"><a href="ggplot2.html#cb102-66" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse)) <span class="sc">+</span></span>
+<span id="cb102-67"><a href="ggplot2.html#cb102-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb102-68"><a href="ggplot2.html#cb102-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb102-69"><a href="ggplot2.html#cb102-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Year)</span>
+<span id="cb102-70"><a href="ggplot2.html#cb102-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb102-71"><a href="ggplot2.html#cb102-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb102-72"><a href="ggplot2.html#cb102-72" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb102-73"><a href="ggplot2.html#cb102-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span>
+<span id="cb102-74"><a href="ggplot2.html#cb102-74" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">fill =</span> SocialMedia)) <span class="sc">+</span></span>
+<span id="cb102-75"><a href="ggplot2.html#cb102-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb102-76"><a href="ggplot2.html#cb102-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Proportion&quot;</span>)</span></code></pre></div>
+
 </div>
 </div>
             </section>
@@ -1097,14 +1180,14 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": false,
-"twitter": false,
+"facebook": true,
+"twitter": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
 "whatsapp": false,
-"all": false
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1125,10 +1208,8 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"info": true
+"collapse": "subsection"
+}
 });
 });
 </script>

@@ -286,7 +286,7 @@ Which sport looks like it tends to receive a larger proportion of their overall 
 
 How many athletes are in the top 100 in the sport that you chose?
 
-3. Change one of the sports above to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.
+3. In the endorsements / salary example, change one of the sports to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.
 
 4. What qualification might you want to make about your statement in the previous exercise? (Is this a random sample of athletes from each sport? Why does that matter?).
 
@@ -355,11 +355,11 @@ Save this file by clicking File -> Save or by using the keyboard shortcut Comman
 
 ## Chapter Exercises {#chapexercise-1}
 
-__Note__: It's entirely up to you whether you'd like to put these exercises in a new .Rmd file or in the .Rmd file that you've been working on throughout the other sections of the chapter. I would maybe lean toward having everything in 1 .Rmd file, just so it's in one spot, but, people are different and a different organizational structure might work better for you!
+__Note__: Usually, exercises will ask you to write code on your own using the week's chapter as a reference. However, for this initial chapter, we will do something a little different.
 
-__Note 2__: Usually, exercises will ask you to write code on your own using the week's chapter as a reference. However, for this initial chapter, we will do something a little different.
+Open a new .Rmd file (File -> New File -> `R Markdown` -> OK) and delete the text explaining what `R Markdown` is in lines 10 and below. Then, complete the following exercises.
 
-Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `R Markdown` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
+Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `R Markdown` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
 
 Answer the following questions by typing answers in your .Rmd document. You should not need to make any new code chunks, as the questions don't ask you to do any coding! 
 
@@ -370,6 +370,34 @@ Answer the following questions by typing answers in your .Rmd document. You shou
 3. What does it mean for the `tidyverse` to be "human-centred"?
 
 4. In about 2 sentences, describe the data science "cycle" given in the diagram at the top of page 3. 
+
+Exercise 2. You may continue to use the same .Rmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
+
+a. What is your name and what is your class year (first-year, sophomore, junior, senior)?
+
+b. What is/are your major(s) and minor(s), either actual or intended?
+
+c. Why are you taking this course? (Major requirement?, Minor requirement?, recommended by advisor or student?, exploring the field?, etc.).
+
+d. In what semester and year did you take STAT 113 and who was your professor?
+
+e. Have you taken STAT 213? Have you taken CS 140?
+
+f. What is your hometown: city, state, country?
+
+g. Do you play a sport on campus? If so, what sport? If not, what is an activity that you do on or off-campus?
+
+h. What is your favorite TV show or movie or band/musical artist?
+
+i. Tell me something about yourself.
+
+j. Take a look at the learning outcomes listed on the syllabus. Which are you most excited for and why?
+
+k. What are your expectations for this class and/or what do you hope to gain from this class?
+
+
+
+<br>
 
 Knit your .Rmd file into an .html file and submit your knitted .html file to Sakai. If your file won't knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Sakai. Use the following steps to do so:
 

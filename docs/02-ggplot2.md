@@ -878,3 +878,84 @@ ggplot(data = stat113_df, aes(x = Sex, y = GPA)) +
 
 <img src="02-ggplot2_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 
+## Non-Exercise `R` Code {#rcode-2}
+
+
+```r
+library(tidyverse)
+pres_df <- read_table("data/PRES2000.txt") 
+## don't worry about the `read_table` function....yet
+head(pres_df)
+ggplot(data = pres_df, mapping = aes(x = Gore)) +
+  geom_histogram(colour = "black", fill = "white") +
+  xlab("Votes for Gore in Florida")
+ggplot(data = pres_df, mapping = aes(x = Gore)) +
+  geom_freqpoly(colour = "black") +
+  xlab("Votes for Gore in Florida") 
+ggplot(data = pres_df, mapping = aes(x = Gore)) +
+  geom_freqpoly(colour = "black") +
+  xlab("Votes for Gore in Florida") +
+  geom_histogram() 
+pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
+                                                true = "Gore",
+                                                false = "Bush"))
+pres_cat
+ggplot(data = pres_cat, aes(x = winner)) +
+  geom_bar()
+pres_cat2 <- pres_cat %>% group_by(winner) %>%
+  summarise(nwins = n())
+pres_cat2
+ggplot(pres_cat2, aes(x = winner)) +
+  geom_bar()
+ggplot(pres_cat2, aes(x = winner, y = nwins)) +
+  geom_col()
+ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
+  geom_point()
+library(tidyverse)
+fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+  TRUE ~ "weekday"))
+ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
+  geom_point()
+## drop observations that have active calories < 50. 
+## assuming that these are data errors or 
+## days where the Apple Watch wasn't worn.
+fitness <- fitness_full %>%
+  filter(active_cals > 50)
+ggplot(data = fitness) +
+  geom_point(aes(x = distance, y = active_cals))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals, colour = weekend_ind))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals, shape = weekend_ind))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals, size = flights))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals, colour = "purple"))
+ggplot(data = fitness) +
+  geom_point(aes(x = Start, y = active_cals), size = 1.5, shape = 19)
+ggplot(data = fitness, aes(x = Start, y = active_cals)) +
+  geom_point() +
+  geom_smooth()
+ggplot(data = fitness, aes(x = Start, y = active_cals)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm")
+ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+  geom_point() + geom_smooth() + xlab("Date")
+ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+  geom_line() + geom_smooth() + xlab("Date")
+ggplot(data = stat113_df, aes(x = Exercise, y = Pulse,
+                           colour = Year)) +
+  geom_point() +
+  geom_smooth(se = TRUE)
+ggplot(data = stat113_df, aes(x = Exercise, y = Pulse)) +
+  geom_point() +
+  geom_smooth(se = TRUE) +
+  facet_wrap(~ Year)
+ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
+  geom_boxplot()
+ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
+  geom_violin()
+ggplot(data = stat113_df, aes(x = Year, fill = SocialMedia)) +
+  geom_bar(position = "fill") +
+  ylab("Proportion")
+```

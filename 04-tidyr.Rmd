@@ -37,7 +37,7 @@ We will begin by focusing on the first characteristic: every variable in a the d
 
 In a fresh .Rmd file (File -> New File -> R Markdown) that is in your Notes project, copy and paste the following code into an `R` chunk:
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
 polls <- read_csv("data/rcp-polls.csv", na = "--")
 polls
@@ -45,7 +45,7 @@ polls
 
 Suppose that you wanted to know what the average sample size of the polls was. Using `dplyr` functions,
 
-```{r, results = "hide", warning = FALSE}
+```{r, results = "hide", warning = FALSE, appendix = TRUE}
 polls %>% summarise(meansample = mean(Sample))
 ```
 
@@ -57,7 +57,7 @@ You would get a similar warning (or sometimes an error) any time that you want t
 
 Let's `separate()` the two variables into `Sample_size` and `Sample_type`:
 
-```{r}
+```{r, appendix = TRUE}
 polls %>%
   separate(col = Sample, into = c("Sample_size", "Sample_type"), 
            sep = " ")
@@ -81,7 +81,7 @@ polls %>%
 
 Similarly, we would like the `Date` column to be separated into a poll start date and a poll end date:
 
-```{r}
+```{r, appendix = TRUE}
 polls_sep <- polls %>%
   separate(col = Date, into = c("Start", "End"),
            sep = " - ")
@@ -95,7 +95,7 @@ What happened to `Sample`? Why is it back to its un-separated form?
 
 `unite()` is the "opposite" of `separate()`: use it when one variable is stored across multiple columns, but each row still represents a single case. The need to use `unite()` is less common than `separate()`. In our current data set, there is no need to use it at all. But, for the sake of seeing an example, let's separate the `Start` date into `month` and `day` and then use `unite()` to re-unite those columns:
 
-```{r}
+```{r, appendix = TRUE}
 polls_sillytest <- polls_sep %>%
   separate(col = Start, into = c("Start_month", "Start_day"), 
            sep = "/")
@@ -104,7 +104,7 @@ polls_sillytest
 
 This situation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use `unite()` to combine these two columns into a single `Date`, called `New_start_date`:
 
-```{r}
+```{r, appendix = TRUE}
 polls_sillytest %>%
   unite("New_start_date", c(Start_month, Start_day),
         sep = "/")
@@ -114,7 +114,7 @@ Note how `unite()` just switches around the first two arguments of `separate()`.
 
 We have also used the `c()` function in `separate()` and `unite()`. While `c()` is a very general `R` function and isn't specific to tidy data, this is the first time that we're seeing it in this course. `c()` officially stands for concatenate, but, in simpler terms, `c()` combines two or more "things", separated by a comma.
 
-```{r}
+```{r, appendix = TRUE}
 c(1, 4, 2)
 c("A", "A", "D")
 ```
@@ -125,7 +125,7 @@ This is useful if a function argument expects two or more "things": for example,
 
 You might have noticed that the columns with percentage of votes for Clinton, Trump, etc. are surrounded by backticks \` \` when you print `polls` or `polls_sep`:
 
-```{r}
+```{r, appendix = TRUE}
 polls_sep
 ```
 
@@ -140,7 +140,7 @@ polls_sep %>%
 
 Having variable names with spaces doesn't technically violate any principle of tidy data, but it can be quite annoying. Always using backticks can be a huge pain. We can rename variables easily with `rename()`, which just takes a series of `new_name = old_name` arguments. 
 
-```{r}
+```{r, appendix = TRUE}
 polls_new <- polls_sep %>%
   rename(Clinton_D = `Clinton (D)`, Trump_R = `Trump (R)`,
          Johnson_L = `Johnson (L)`, Stein_G = `Stein (G)`)
@@ -213,7 +213,7 @@ Run the code above so that the parsing is saved to `baseball_df`.
 
 We will continue to use the polling data set to introduce the pivoting functions and data reshaping. To make sure that we are all working with the same data set, run the following line of code:
 
-```{r}
+```{r, appendix = TRUE}
 polls_clean <- polls %>%
   separate(col = Sample, into = c("Sample_size", "Sample_type"), 
            sep = " ")  %>%
@@ -247,7 +247,7 @@ This is where `pivot_longer()` can help! <a href="https://www.youtube.com/watch?
 
 `pivot_longer()` "pivots" the data set so that is has more rows (hence the "longer") by collapsing multiple columns into two columns. One new column is a "key" column, which is the new variable containing the old data set's column names. The second new column is a "value" column, which is the new variable containing the old data set's values for each of the old data set's column names. It's easier to see this with an example. We know from our plotting exercise above that we'd really like a `candidate` variable to colour by and a `poll_percent` variable for the y-axis of our plot. So, we can use `pivot_longer()` to make these two columns:
 
-```{r}
+```{r, appendix = TRUE}
 polls_clean %>%
   pivot_longer(cols = c(Clinton_D, Trump_R, Johnson_L, Stein_G),
                names_to = "candidate", values_to = "poll_percent")
@@ -263,7 +263,7 @@ What happens when you omit `names_to` and `values_to` arguments? Give it a try!
 
 Now we can make our plot using Week 1 `ggplot` functions. But don't forget to give a name to our new "long" data set first!
 
-```{r}
+```{r, appendix = TRUE}
 polls_long <- polls_clean %>%
   pivot_longer(cols = c(Clinton_D, Trump_R, Johnson_L, Stein_G),
                names_to = "candidate", values_to = "poll_percent")
@@ -282,7 +282,7 @@ The "opposite" of `pivot_longer()` is `pivot_wider()`. We need to use `pivot_wid
 Let's examine some airline safety data that fivethirtyeight used in their Should Travelers Avoid Flying Airlines that Have Had Crashes in the Past? story: <a href="https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/" target="_blank">https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/</a>
 . The raw data can be found <a href="https://github.com/fivethirtyeight/data/tree/master/airline-safety" target="_blank">here</a>.
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 airlines <- read_csv("data/airline-safety.csv")
 head(airlines)
 ```
@@ -310,7 +310,7 @@ etc.
 
 Let's start with `pivot_longer()` to see if we can get year to be its own variable (We know that a year variable, which is what we want, will make more rows so `pivot_longer()` seems like a good place to start):
 
-```{r}
+```{r, appendix = TRUE}
 airlines %>%
   pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
   values_to = "total_num") 
@@ -318,7 +318,7 @@ airlines %>%
 
 Instead of giving `pivot_longer()` names of variables, we gave it the column numbers instead. So `c(3, 4, 5, 6, 7, 8)` corresponds to the 3rd, 4th, ...., 8th columns in the data set. That didn't quite give us a `year` variable, but we should be excited to see an opportunity to take advantage of `separate()`:
 
-```{r}
+```{r, appendix = TRUE}
 airlines %>% pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
                           values_to = "total_num") %>%
   separate(type_year, into = c("type", "year"), sep = " ")
@@ -326,7 +326,7 @@ airlines %>% pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
 
 Is this the format that we want the data set to be in? Depending on the task, it could be. But, we also might want each of the accident `type`s to be its own variable. That is, we might want to collapse the data set to have a variable for `incidents`, a variable for `fatal_accidents`, and a variable for `fatalities`. If so, we want to add more columns to the data set, so we need to use `pivot_wider()`. 
 
-```{r}
+```{r, appendix = TRUE}
 ## name the long data set
 airlines_long <- airlines %>%
   pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
@@ -393,7 +393,7 @@ We've now talked about plotting, wrangling, and tidying data. When you first loa
 
 A helpful function for this is the `skim()` function in the `skimr` package. Load the package with `library(skimr)` and obtain summaries of the data sets we've used so far:
 
-```{r}
+```{r, appendix = TRUE}
 library(skimr)
 skim(airlines)
 ```
@@ -685,4 +685,9 @@ ggplot(data = nfl_inf, aes(x = year, y = mean20)) +
 ```
 
 All positions have higher salaries, even after adjusting for inflation, except perhaps running backs (it's too hard to tell from the graph).
+
+## Non-Exercise `R` Code {#rcode-4}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
+```
 

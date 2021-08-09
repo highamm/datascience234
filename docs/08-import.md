@@ -704,3 +704,104 @@ pokemon_unnest <- unnest(pokemon_df, cols = c(type))
 
 
 
+## Non-Exercise `R` Code {#rcode-8}
+
+
+```r
+## Hello! How do I get rid of the units from the values in
+## my variable `x`? Thanks!
+library(tidyverse)
+test_df <- read_csv("data/parsedf.csv")
+head(test_df)
+## Hello! How do I get rid of the units from the values in
+## my variable `xvar`? Thanks!
+library(tidyverse)
+test_df2 <- tibble(xvar = c("20,000 dollars", "40 dollars"),
+                   yvar = c(1, 2))
+test_df2
+library(tidyverse)
+cars_df <- read_csv("data/mtcarsex.csv")
+head(cars_df)
+cars_df <- read_csv("data/mtcarsex.csv", skip = 2)
+## first two lines will be skipped
+head(cars_df)
+cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2)
+head(cars_df)
+cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2,
+  col_types = cols(
+  mpg = col_double(),
+  cyl = col_factor(),
+  disp = col_double(),
+  hp = col_double(),
+  drat = col_double(),
+  wt = col_double(),
+  qsec = col_double(),
+  vs = col_factor(),
+  am = col_double(),
+  gear = col_double(),
+  carb = col_double()
+))
+cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2,
+  col_types = cols(
+  mpg = col_double(),
+  cyl = col_factor(),
+  disp = col_double(),
+  hp = col_double(),
+  drat = col_double(),
+  wt = col_double(),
+  qsec = col_double(),
+  vs = col_factor(),
+  am = col_double(),
+  gear = col_double(),
+  carb = col_double()
+)) %>%
+  slice(-(1:2))
+head(cars_df)
+oscars_df <- read_tsv("data/oscars.tsv")
+head(oscars_df)
+test_df <- read_csv("data/parsedf.csv")
+head(test_df)
+test_df %>% mutate(x2 = parse_number(x))
+library(tidyverse)
+library(rvest)
+
+## provide the URL and name it something (in this case, url).
+url <- "https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state"
+
+## convert the html code into something R can read
+h <- read_html(url)
+
+## grabs the tables
+tab <- h %>% html_nodes("table")
+test1 <- tab[[1]] %>% html_table()
+test2 <- tab[[2]] %>% html_table()
+test3 <- tab[[3]] %>% html_table()
+
+head(test1)
+head(test2)
+head(test3)
+url <- "https://saintsathletics.com/sports/baseball/stats/2021"
+h <- read_html(url)
+tab <- h %>% html_nodes("table")
+tab
+obj <- tab[[1]] %>% html_table(fill = TRUE)
+head(obj)
+tail(obj)
+obj2 <- tab[[2]] %>% html_table(fill = TRUE)
+head(obj2)
+tail(obj2)
+## install.packages("jsonlite")
+library(jsonlite)
+cr_cards <- fromJSON("data/clash_royale_card_info.json")
+library(tidyverse)
+cr_cards_flat <- cr_cards[["cards"]]
+cr_cards_df <- as_tibble(cr_cards_flat)
+head(cr_cards_df)
+cr_cards_flat2 <- purrr::flatten(cr_cards)
+cr_cards_df2 <- as_tibble(cr_cards_flat2)
+head(cr_cards_df2)
+acedata <- fromJSON("data/ace.json")
+aceflat <- purrr::flatten(acedata)
+head(aceflat)
+```
+

@@ -17,7 +17,7 @@ The string below has lyrics to Rebecca Black's critically reviewed song _Friday_
 
 These questions may seem simple, but they can actually still be somewhat challenging to answer. Issues like punctuation, filler words, and parsing the long string will give us some challenges to work through.
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 library(tidyverse)
 library(stringr)
 rblack <- c("Oo-ooh-ooh, hoo yeah, yeah (Yeah, ah-ah-ah-ah-ah-ark)
@@ -100,26 +100,26 @@ Lookin' forward to the weekend")
 
 Our first goal is to parse out every word so that we have an object. Run the following to examine the `rblack` object. The `\n` denotes a line break in the string.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 rblack
 ```
 
 Our first step will be to use the `\n` as a separator and split the lyric strings by that character using the `str_split()` function. `str_split()` takes a string as its first argument and what we want to split the string by (`\n` in this case) as its second argument. `simplify = TRUE` puts the results into a matrix instead of a list.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 rblack2 <- str_split(rblack, "\n", simplify = TRUE)
 rblack2
 ```
 
 That's much better to look at! Look at the structure of `rblack2` with:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 str(rblack2)
 ```
 
 We see that `rblack2` is a matrix with 1 row and 76 columns. But, we now want each word to be its own separate string. We can do this by using `str_split()` again, but, this time getting rid of the spaces.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 rblack3 <- str_split(rblack2, c(" "))
 rblack3
 ```
@@ -128,14 +128,14 @@ Look carefully between `rblack2` and `rblack3`: what's the difference? In `rblac
 
 We can use the `unlist()` function to convert the list into a regular vector:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 rblack4 <- unlist(rblack3)
 rblack4
 ```
 
 What would happen if we tried to count the number of times Rebecca Black says Friday from the words below? Let's try and see!
 
-```{r}
+```{r, appendix = TRUE}
 rblack_df <- tibble(words = rblack4)
 rblack_df %>% group_by(words) %>%
   summarise(word_count = n()) %>%
@@ -144,7 +144,7 @@ rblack_df %>% group_by(words) %>%
 
 The issue with this approach is that there are some instances of Friday with a `,` and some without. Based on this issue, let's go back to our vector of words `rblack4` and see if we can fix it using `str_remove()`, which removes given patterns in a string. For example,
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 rblack5 <- str_remove(rblack4, pattern = c(","))
 rblack5
 ```
@@ -153,14 +153,14 @@ removes all of the commas.
 
 Another issue is that, if a word starts a sentence, it's capitalized so `R` thinks `Partyin'` is a completely different word than `partyin'`. The `str_to_lower()` function converts all characters to lowercase:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 rblack6 <- str_to_lower(rblack5)
 rblack6
 ```
 
 Finally, we might want to get rid of "non-interesting" words, commonly known as "stop words." These are words like "the", "on", "a", "I", etc. that don't really provide meaning about the song. The `tidytext` package has a data set that has a list of stop words prepackaged. Install the package, load the `tidytext` library, and examine the stop words with:
 
-```{r, results = "hide", message = FALSE}
+```{r, results = "hide", message = FALSE, appendix = TRUE}
 ##install.packages("tidytext")
 library(tidytext)
 stop_words
@@ -168,14 +168,14 @@ stop_words
 
 Next, let's make the Friday words into a `tibble` with the `tibble()` function:
 
-```{r}
+```{r, appendix = TRUE}
 rblack_df <- tibble(words = rblack6)
 rblack_df
 ```
 
 And we can now use the `anti_join()` function to get rid of the stop words in the Rebecca Black data set.
 
-```{r}
+```{r, appendix = TRUE}
 rblack_small <- anti_join(rblack_df, stop_words,
                           by = c("words" = "word"))
 rblack_small
@@ -183,7 +183,7 @@ rblack_small
 
 We see that 98 words were dropped from the data set, but that some words weren't picked up (like `yeah-ah-ah`). We will leave these for now, but, we could remove them with `filter(words != "yeah-ah-ah")` Finally, we can get some counts of words in the song Friday that aren't "stop words."
 
-```{r}
+```{r, appendix = TRUE}
 rblack_small %>% group_by(words) %>%
   summarise(word_count = n()) %>%
   arrange(desc(word_count))
@@ -347,4 +347,9 @@ ggplot(data = beyonce_bigwords, aes(x = word_count, y = b_words)) +
   geom_col()
 ## there's still some stopwords in there (yeah, ya, wanna, 'cause)
 ## but these can be removed with dplyr.
+```
+
+## Non-Exercise `R` Code {#rcode-12}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
 ```

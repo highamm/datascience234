@@ -37,7 +37,7 @@ The data set was modified from <a href="https://github.com/rfordatascience/tidyt
 
 Run the code in the following `R` chunk to read in the data.
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 library(tidyverse)
 videogame_df <- read_csv("data/videogame_clean.csv")
 head(videogame_df)
@@ -47,7 +47,7 @@ A data frame or tibble holds variables that are allowed to be different classes.
 
 Run the following lines of code. In some cases, we are only using the first 100 observations in `videogame_small`. Otherwise, the code would take a __very__ long time to run.
 
-```{r}
+```{r, appendix = TRUE}
 videogame_small <- videogame_df %>% slice(1:100)
 ggplot(data = videogame_small, aes(x = release_date, y = price)) +
   geom_point() 
@@ -66,7 +66,7 @@ We've actually seen both of these issues before as well (the Date issue in the e
 
 If you examine the output of the following line of code
 
-```{r}
+```{r, appendix = TRUE}
 head(videogame_df)
 ```
 
@@ -83,19 +83,19 @@ you'll see that, at the very top of the output, right below the variable names, 
 
 We can use `name_of_dataset$name_of_variable` to look at a specific variable in a data set:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 videogame_df$game
 ```
 
 prints the first thousand entries of the variable `game`. There are a few ways to get the `class` of this variable: the way that we will use most often is with `str()`, which stands for "structure", and gives the class of the variable, the number of observations (26688), as well as the first couple of observations:
 
-```{r}
+```{r, appendix = TRUE}
 str(videogame_df$game)
 ```
 
 You can also get a variable's class more directly with `class()`
 
-```{r}
+```{r, appendix = TRUE}
 class(videogame_df$game)
 ```
 
@@ -107,21 +107,21 @@ The following gives summary information about each class of variables in `R`:
 
 With the character class, `R` will give you a warning and/or a missing value if you try to perform any numerical operations:
 
-```{r}
+```{r, appendix = TRUE}
 mean(videogame_df$game)
 videogame_df %>% summarise(maxgame = max(game))
 ```
 
 You also can't convert a character class to numeric. You can, however, convert a character class to a `<fct>` class, using `as.factor()`. The `<fct>` class will be useful when we discuss the `forcats` package, but isn't particularly useful now.
 
-```{r}
+```{r, appendix = TRUE}
 class(videogame_df$meta_cat)
 class(as.factor(videogame_df$meta_cat))
 ```
 
 In general, `as._____` will lets you convert between classes. Note, however, that we aren't saving our converted variable anywhere. If we wanted the conversion to the factor to be saved in the data set, we can use `mutate()`:
 
-```{r}
+```{r, appendix = TRUE}
 videogame_df <- videogame_df %>%
   mutate(meta_cat_factor = as.factor(meta_cat))
 str(videogame_df$meta_cat_factor)
@@ -133,7 +133,7 @@ For most `R` functions, it won't matter whether your variable is in class charac
 
 The `<date>` class is used for dates, and the `<datetime>` class is used for Dates with times. `R` requires a very specific format for dates and times. Note that, while to the human eye, both of the following variables contain dates, only one is of class `<date>`:
 
-```{r}
+```{r, appendix = TRUE}
 str(videogame_df$release_date)
 str(videogame_df$release_date2)
 ```
@@ -148,7 +148,7 @@ Dates and times can be pretty complicated. In fact, we will spend an entire week
 
 On variables that are in `Date` format, like `release_date2`, we can use numerical operations:
 
-```{r}
+```{r, appendix = TRUE}
 median(videogame_df$release_date2, na.rm = TRUE)
 mean(videogame_df$release_date2, na.rm = TRUE)
 ```
@@ -159,25 +159,25 @@ What do you think taking the median or taking the mean of a date class means?
 
 Class `<dbl>` and `<int>` are probably the most self-explanatory classes. `<dbl>`, the `numeric` class, are just variables that have only numbers in them while `<int>` only have integers (..., -2, -1, 0, 1, 2, ....). You can do numerical operations on either of these classes (and we've been doing them throughout the semester). For our purposes, these two classes are interchangeable.
 
-```{r}
+```{r, appendix = TRUE}
 str(videogame_df$price)
 ```
 
 Problems arise when numeric variables are coded as something non-numeric, or when non-numeric variables are coded as numeric. For example, examine:
 
-```{r}
+```{r, appendix = TRUE}
 str(videogame_df$price_cat)
 ```
 
 `price_cat` is categorical but is coded as `1` for cheap games, `2` for moderately priced games, and `3` for expensive games. Therefore, `R` thinks that the variable is numeric, when, it's actually a factor.
 
-```{r}
+```{r, appendix = TRUE}
 str(as.factor(videogame_df$price_cat))
 ```
 
 This is the cause of the odd colour scale that we encountered earlier and can be fixed by converting `price_cat` to a factor:
 
-```{r}
+```{r, appendix = TRUE}
 videogame_df <- videogame_df %>%
   mutate(price_factor = as.factor(price_cat)) 
 ggplot(data = videogame_df, aes(x = release_date2, y = metascore)) +
@@ -188,13 +188,13 @@ ggplot(data = videogame_df, aes(x = release_date2, y = metascore)) +
 
 Finally, there is a class of variables called logical. These variables can only take 2 values: `TRUE` or `FALSE`. For example, `playtime_miss`, a variable for whether or not the `median_playtime` variable is missing or not, is logical:
 
-```{r}
+```{r, appendix = TRUE}
 str(videogame_df$playtime_miss)
 ```
 
 It's a little strange at first, but `R` can perform numeric operations on logical classes. All `R` does is treat every `TRUE` as a `1` and every `FALSE` as a `0`. Therefore, `sum()` gives the total number of `TRUE`s and `mean()` gives the proportion of `TRUE`s. So, we can find the number and proportion of games that are missing their `median_playtime` as:
 
-```{r}
+```{r, appendix = TRUE}
 sum(videogame_df$playtime_miss)
 mean(videogame_df$playtime_miss)
 ```
@@ -246,19 +246,19 @@ Variables of these different classes can be stored in a variety of different obj
 
 The `tibble` object is very similar to the `data.frame` object. You can also check what type of object you're working with using the `str()` command:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 str(videogame_df) ## look at the beginning to see "tibble"
 ```
 
 We will have a small section on `tibble`s in the coming weeks so we won't focus on them here. But, we should take note that, to reference a specific element in a `tibble`, called _indexing_, you can use `[# , #]`. So, for example, `videogame_df[5, 3]` grabs the value in the fifth row and the third column:
 
-```{r}
+```{r, appendix = TRUE}
 videogame_df[5, 3]
 ```
 
 More often, we'd want to grab an entire row (or range of rows) or an entire column. We can do this by leaving the row number blank (to grab the entire column) or by leaving the column number blank (to grab the entire row):
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 videogame_df[ ,3] ## grab the third column
 
 videogame_df[5, ] ## grab the fifth row
@@ -266,7 +266,7 @@ videogame_df[5, ] ## grab the fifth row
 
 We can also grab a range of columns or rows using the `:` operator:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 3:7
 
 videogame_df[ ,3:7] ## grab columns 3 through 7
@@ -276,7 +276,7 @@ videogame_df[3:7, ] ## grab rows 3 through 7
 
 or we can grab different columns or rows using `c()`:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 videogame_df[ ,c(1, 3, 4)] ## grab columns 1, 3, and 4
 
 videogame_df[c(1, 3, 4), ] ## grab rows 1, 3, and 4
@@ -288,7 +288,7 @@ To get rid of an entire row or column, use `-`: `videogame_df[ ,-c(1, 2)]` drops
 
 A vector is an object that holds "things", or elements, of the same class. You can create a vector in `R` using the `c()` function, which stands for "concatenate". We've used the `c()` function before to bind things together; we just hadn't yet discussed it in the context of creating a vector.
 
-```{r}
+```{r, appendix = TRUE}
 vec1 <- c(1, 3, 2)
 vec2 <- c("b", 1, 2)
 vec3 <- c(FALSE, FALSE, TRUE)
@@ -299,7 +299,7 @@ Notice that `vec2` is a character class. `R` requires all elements in a vector t
 
 Using the `dataset$variable` draws out a vector from a `tibble` or `data.frame`:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 videogame_df$metascore
 ```
 
@@ -307,7 +307,7 @@ If you wanted to make the above vector "by hand", you'd need to have a lot of pa
 
 Just like tibbles, you can save vectors as something for later use:
 
-```{r}
+```{r, appendix = TRUE}
 metavec <- videogame_df$metascore
 mean(metavec, na.rm = TRUE)
 ```
@@ -316,7 +316,7 @@ How would you get the mean `metascore` using `dplyr` functions?
 
 Vectors are one-dimensional: if we want to grab the 100th element of a vector we just use `name_of_vector[100]`:
 
-```{r}
+```{r, appendix = TRUE}
 metavec[100] ## 100th element is missing
 ```
 
@@ -326,7 +326,7 @@ Be aware that, if you're coming from a math perspective, a "vector" in `R` doesn
 
 Lists are one of the more flexible objects in `R`: you can put objects of different classes in the same list and lists aren't required to be rectangular (like `tibbles` are). Lists are __extremely__ useful because of this flexibility, but, we won't use them much in this class. Therefore, we will just see an example of a list before moving on:
 
-```{r}
+```{r, appendix = TRUE}
 testlist <- list("a", 4, c(1, 4, 2, 6),
                  tibble(x = c(1, 2), y = c(3, 2)))
 testlist
@@ -363,19 +363,19 @@ The pipe `%>%` is loaded automatically when the `tidyverse` library is loaded, b
 
 Let's say you want to `filter()` the data set to include only observations with a `metascore` that isn't missing. We've been using:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 videogame_df %>% filter(!is.na(metascore))
 ```
 
 What the pipe is doing is putting `videogame_df` as the first argument in the `filter()` function so that the piping statement in the chunk above is equivalent to:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 filter(videogame_df, !is.na(metascore))
 ```
 
 If we want to first filter out games with a non-missing metascore, get rid of all observations with a median play time of 0, and then obtain the "median" `median_playtime` for each of the 3 price categories, we would typically use
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 videogame_df %>% filter(!is.na(metascore)) %>%
   filter(median_playtime > 0) %>%
   group_by(price_cat) %>%
@@ -384,19 +384,19 @@ videogame_df %>% filter(!is.na(metascore)) %>%
 
 We see from the summary that, in general, games do tend to give you more "bang for the buck": more expensive games tend to have a larger median play time. Consecutive pipes build on each other: we can slowly build out what the pipe is doing step-by-step. Starting from the top, `videogame_df` is the first argument in the `filter(!is.na(metascore))` function:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 filter(videogame_df, !is.na(metascore))
 ```
 
 `filter(videogame_df, !is.na(metascore))` is the first argument in `filter(median_playtime > 0)`:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0)
 ```
 
 `filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0)` is the first argument in `group_by(price_cat)`:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 group_by(filter(filter(videogame_df, !is.na(metascore)),
                 median_playtime > 0),
   price_cat)
@@ -404,7 +404,7 @@ group_by(filter(filter(videogame_df, !is.na(metascore)),
 
 and `group_by(filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0), price_cat)` is the first argument of `summarise(avg_med_time = median(median_playtime, na.rm = TRUE))`:
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 summarise(group_by(filter(filter(videogame_df, !is.na(metascore)),
   median_playtime > 0), price_cat), 
   avg_med_time = median(median_playtime, na.rm = TRUE))
@@ -465,7 +465,7 @@ Why should you rarely use an absolute directory?
 
 Look at the top of your bottom-left terminal window. If you've made an `R project` (which you should have!), you should see that a file path that is the current folder you're working in. This is where `R Studio` will look for files by default. So,
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 fitness_df <- read_csv("data/higham_fitness_notclean.csv")
 ```
 
@@ -712,4 +712,9 @@ ggplot(data = videogame_nomiss,
        aes(x = metascore, y = median_playtime)) + 
   geom_jitter(alpha = 0.4) +
   geom_label_repel(data = videogame_long, aes(label = game))
+```
+
+## Non-Exercise `R` Code {#rcode-6}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
 ```

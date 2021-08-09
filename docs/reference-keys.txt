@@ -53,6 +53,7 @@ graphing-a-single-variable-s
 graphing-two-quant.-etc.-s
 boxplots-stacked-etc.-s
 chapexercise-2-S
+rcode-2
 dplyr
 mutate-create-variables
 a-little-more-on-piping
@@ -76,6 +77,7 @@ arrange-select-.-s
 summarise-and-group_by-s
 missing-values-s
 chapexercise-3-S
+rcode-3
 tidying-with-tidyr
 what-is-tidy-data
 separate-and-unite-columns
@@ -96,6 +98,7 @@ separate-and-unite-s
 pivot_-s
 skimming-data-with-skimr-s
 chapexercise-4-S
+rcode-4
 communication-with-rmarkdown
 reproducbility
 r-scripts-vs.-r-markdown
@@ -120,6 +123,7 @@ reproducibility-s
 r-markdown-files-s
 ggplot2-communication-s
 chapexercise-5-S
+rcode-5
 r-basics
 variable-classes-in-r
 referencing-variables-and-using-str
@@ -150,6 +154,7 @@ object-types-s
 piping-s
 other-r-topics-s
 chapexercise-6-S
+rcode-6
 factors-with-forcats
 change-factor-levels
 fct_recode-to-rename-levels
@@ -165,6 +170,7 @@ solutions-7
 change-factor-levels-s
 reorder-factor-levels-s
 chapexercise-7-S
+rcode-7
 reprexes-and-import
 reprexes-and-tibble
 exercise-8-1
@@ -184,6 +190,7 @@ readr-s
 rvest-and-data-scraping-s
 json-with-jsonlite-s
 chapexercise-8-S
+rcode-8
 data-ethics
 ethical-examples
 exercise-9-1
@@ -217,6 +224,7 @@ bind_rows-and-bind_cols-s
 mutating-joins-s
 filtering-joins-s
 chapexercise-10-S
+rcode-10
 dates-with-lubridate
 converting-variables-to-date
 from-chr-to-date
@@ -231,6 +239,7 @@ solutions-11
 converting-variables-to-date-s
 functions-for-date-variables-s
 chapexercise-11-S
+rcode-11
 strings-with-stringr
 friday-friday
 exercise-12-1
@@ -240,6 +249,7 @@ solutions-12
 friday-friday-s
 second-example-s
 chapexercise-12-S
+rcode-12
 predictive-modeling-with-knn
 introduction-to-classification
 training-and-test-data
@@ -259,3 +269,4 @@ solutions-13
 introduction-to-classification-s
 knn-introduction-s
 choosing-predictors-and-k-s
+rcode-13

@@ -426,6 +426,83 @@ The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the ac
 
 ### Choosing Predictors and k S
 
+## Non-Exercise `R` Code {#rcode-13}
+
+
+```r
+set.seed(1119)
+library(tidyverse)
+pokemon <- read_csv("data/pokemon_full.csv") %>%
+  filter(Type %in% c("Steel", "Dark", "Fire", "Ice"))
+train_sample <- pokemon %>%
+  sample_n(15)
+test_sample <- anti_join(pokemon, train_sample)
+
+train_sample %>% head()
+test_sample %>% head()
+ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
+  geom_point(size = 4) +  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+dialga <- test_sample %>% slice(63)
+ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
+  geom_point(size = 4) +  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  geom_point(data = dialga, colour = "black", shape = 4, size = 7)
+ggplot(data = train_sample, aes(x = Defense, y = Speed, colour = Type, shape = Type)) +
+  geom_point(size = 3) +
+  geom_point(data = dialga, colour = "black", shape = 4, size = 5)
+train_tiny <- train_sample %>% slice(1:2)
+newobs <- tibble(height = 15, weight = 350, Type = "Unknown")
+ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
+  geom_point(size = 5, aes(colour = Type)) + xlim(c(7, 17)) + ylim(c(200, 550)) +
+  geom_point(data = newobs, shape = 4, size = 10)
+train_sample %>% select(weight) %>% head()
+train_sample %>% mutate(weight_s = (weight - min(weight)) / 
+                          (max(weight) - min(weight))) %>%
+  select(weight_s) %>%
+  head()
+## ?across
+library(pander)
+train_sample %>%
+  mutate(across(where(is.numeric), ~ (.x - min(.x)) /
+                                 (max(.x) - min(.x)))) %>%
+  slice(1:3)
+library(tidyverse)
+set.seed(11232020) ## run this line so that you get the same 
+## results as I do!
+
+## scale the quantitative predictors
+pokemon_scaled <- pokemon %>%
+    mutate(across(where(is.numeric), ~ (.x - min(.x)) /
+                                 (max(.x) - min(.x)))) 
+
+train_sample_2 <- pokemon_scaled %>%
+  sample_n(70)
+test_sample_2 <- anti_join(pokemon_scaled, train_sample_2)
+## install.packages("class")
+library(class)
+
+## create a data frame that only has the predictors
+## that we will use
+train_small <- train_sample_2 %>% select(HP, Attack, Defense, Speed)
+test_small <- test_sample_2 %>% select(HP, Attack, Defense, Speed)
+
+## put our response variable into a vector
+train_cat <- train_sample_2$Type
+test_cat <- test_sample_2$Type
+## fit the knn model with 9 nearest neighbors
+knn_mod <- knn(train = train_small, test = test_small,
+               cl = train_cat, k = 9)
+knn_mod
+table(knn_mod, test_cat) 
+(0 + 13 + 2 + 3) / 50
+tab <- table(knn_mod, test_cat) 
+sum(diag(tab)) / sum(tab)
+```
+
+
 
 
 

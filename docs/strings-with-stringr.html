@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Strings with stringr | STAT 234: Data Science</title>
+  <title>13 Strings with stringr | STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Strings with stringr | STAT 234: Data Science" />
+  <meta property="og:title" content="13 Strings with stringr | STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Strings with stringr | STAT 234: Data Science" />
+  <meta name="twitter:title" content="13 Strings with stringr | STAT 234: Data Science" />
   
   <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-07-07" />
+<meta name="date" content="2021-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -121,7 +121,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -134,9 +133,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">STAT 234: Data Science</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
@@ -212,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-etc.-s"><i class="fa fa-check"></i><b>3.7.5</b> Boxplots, Stacked, etc. S</a></li>
 <li class="chapter" data-level="3.7.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2-S"><i class="fa fa-check"></i><b>3.7.6</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2.html"><a href="ggplot2.html#rcode-2"><i class="fa fa-check"></i><b>3.8</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
 <ul>
@@ -247,6 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#missing-values-s"><i class="fa fa-check"></i><b>4.6.4</b> Missing Values S</a></li>
 <li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3-S"><i class="fa fa-check"></i><b>4.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="4.7" data-path="dplyr.html"><a href="dplyr.html#rcode-3"><i class="fa fa-check"></i><b>4.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
 <ul>
@@ -277,6 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr-s"><i class="fa fa-check"></i><b>5.6.4</b> Skimming Data with <code>skimr()</code> S</a></li>
 <li class="chapter" data-level="5.6.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4-S"><i class="fa fa-check"></i><b>5.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="5.7" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#rcode-4"><i class="fa fa-check"></i><b>5.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code></a>
 <ul>
@@ -311,6 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication-s"><i class="fa fa-check"></i><b>6.5.3</b> <code>ggplot2</code> Communication S</a></li>
 <li class="chapter" data-level="6.5.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5-S"><i class="fa fa-check"></i><b>6.5.4</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="6.6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#rcode-5"><i class="fa fa-check"></i><b>6.6</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
 <ul>
@@ -355,6 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.5" data-path="r-basics.html"><a href="r-basics.html#other-r-topics-s"><i class="fa fa-check"></i><b>7.7.5</b> Other R Topics S</a></li>
 <li class="chapter" data-level="7.7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6-S"><i class="fa fa-check"></i><b>7.7.6</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="7.8" data-path="r-basics.html"><a href="r-basics.html#rcode-6"><i class="fa fa-check"></i><b>7.8</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html"><i class="fa fa-check"></i><b>8</b> Factors with <code>forcats</code></a>
 <ul>
@@ -378,6 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels-s"><i class="fa fa-check"></i><b>8.4.2</b> Reorder Factor Levels S</a></li>
 <li class="chapter" data-level="8.4.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7-S"><i class="fa fa-check"></i><b>8.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="8.5" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#rcode-7"><i class="fa fa-check"></i><b>8.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html"><i class="fa fa-check"></i><b>9</b> Reprexes and Import</a>
 <ul>
@@ -409,6 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-with-jsonlite-s"><i class="fa fa-check"></i><b>9.6.4</b> JSON with <code>jsonlite</code> S</a></li>
 <li class="chapter" data-level="9.6.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8-S"><i class="fa fa-check"></i><b>9.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="9.7" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#rcode-8"><i class="fa fa-check"></i><b>9.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>10</b> Data Ethics</a>
 <ul>
@@ -459,6 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.6.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins-s"><i class="fa fa-check"></i><b>11.6.3</b> Filtering Joins S</a></li>
 <li class="chapter" data-level="11.6.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10-S"><i class="fa fa-check"></i><b>11.6.4</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="11.7" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#rcode-10"><i class="fa fa-check"></i><b>11.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html"><i class="fa fa-check"></i><b>12</b> Dates with <code>lubridate</code></a>
 <ul>
@@ -481,6 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables-s"><i class="fa fa-check"></i><b>12.4.2</b> Functions for <code>&lt;date&gt;</code> Variables S</a></li>
 <li class="chapter" data-level="12.4.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11-S"><i class="fa fa-check"></i><b>12.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="12.5" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#rcode-11"><i class="fa fa-check"></i><b>12.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html"><i class="fa fa-check"></i><b>13</b> Strings with <code>stringr</code></a>
 <ul>
@@ -496,6 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#second-example-s"><i class="fa fa-check"></i><b>13.4.2</b> Second Example S</a></li>
 <li class="chapter" data-level="13.4.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12-S"><i class="fa fa-check"></i><b>13.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="13.5" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#rcode-12"><i class="fa fa-check"></i><b>13.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html"><i class="fa fa-check"></i><b>14</b> Predictive Modeling with knn</a>
 <ul>
@@ -525,10 +531,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.5.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction-s"><i class="fa fa-check"></i><b>14.5.2</b> knn Introduction S</a></li>
 <li class="chapter" data-level="14.5.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k-s"><i class="fa fa-check"></i><b>14.5.3</b> Choosing Predictors and k S</a></li>
 </ul></li>
+<li class="chapter" data-level="14.6" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#rcode-13"><i class="fa fa-check"></i><b>14.6</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -547,7 +551,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="strings-with-stringr" class="section level1" number="13">
-<h1><span class="header-section-number">Chapter 13</span> Strings with <code>stringr</code></h1>
+<h1><span class="header-section-number">13</span> Strings with <code>stringr</code></h1>
 <p>Incomplete Chapter (Section 13.2).</p>
 <p><strong>Goals</strong>:</p>
 <ul>
@@ -563,103 +567,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>what are the most popular words in the song?</li>
 </ol>
 <p>These questions may seem simple, but they can actually still be somewhat challenging to answer. Issues like punctuation, filler words, and parsing the long string will give us some challenges to work through.</p>
-<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="strings-with-stringr.html#cb633-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb633-2"><a href="strings-with-stringr.html#cb633-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb633-3"><a href="strings-with-stringr.html#cb633-3" aria-hidden="true" tabindex="-1"></a>rblack <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Oo-ooh-ooh, hoo yeah, yeah (Yeah, ah-ah-ah-ah-ah-ark)</span></span>
-<span id="cb633-4"><a href="strings-with-stringr.html#cb633-4" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah, yeah</span></span>
-<span id="cb633-5"><a href="strings-with-stringr.html#cb633-5" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah-ah-ah, yeah-ah-ah</span></span>
-<span id="cb633-6"><a href="strings-with-stringr.html#cb633-6" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah-ah-ah</span></span>
-<span id="cb633-7"><a href="strings-with-stringr.html#cb633-7" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah, yeah, yeah</span></span>
-<span id="cb633-8"><a href="strings-with-stringr.html#cb633-8" aria-hidden="true" tabindex="-1"></a><span class="st">Seven a.m., waking up in the morning</span></span>
-<span id="cb633-9"><a href="strings-with-stringr.html#cb633-9" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta be fresh, gotta go downstairs</span></span>
-<span id="cb633-10"><a href="strings-with-stringr.html#cb633-10" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta have my bowl, gotta have cereal</span></span>
-<span id="cb633-11"><a href="strings-with-stringr.html#cb633-11" aria-hidden="true" tabindex="-1"></a><span class="st">Seein&#39; everything, the time is goin&#39;</span></span>
-<span id="cb633-12"><a href="strings-with-stringr.html#cb633-12" aria-hidden="true" tabindex="-1"></a><span class="st">Tickin&#39; on and on, everybody&#39;s rushin&#39;</span></span>
-<span id="cb633-13"><a href="strings-with-stringr.html#cb633-13" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down to the bus stop</span></span>
-<span id="cb633-14"><a href="strings-with-stringr.html#cb633-14" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta catch my bus, I see my friends (my friends)</span></span>
-<span id="cb633-15"><a href="strings-with-stringr.html#cb633-15" aria-hidden="true" tabindex="-1"></a><span class="st">Kickin&#39; in the front seat</span></span>
-<span id="cb633-16"><a href="strings-with-stringr.html#cb633-16" aria-hidden="true" tabindex="-1"></a><span class="st">Sittin&#39; in the back seat</span></span>
-<span id="cb633-17"><a href="strings-with-stringr.html#cb633-17" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta make my mind up</span></span>
-<span id="cb633-18"><a href="strings-with-stringr.html#cb633-18" aria-hidden="true" tabindex="-1"></a><span class="st">Which seat can I take?</span></span>
-<span id="cb633-19"><a href="strings-with-stringr.html#cb633-19" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
-<span id="cb633-20"><a href="strings-with-stringr.html#cb633-20" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
-<span id="cb633-21"><a href="strings-with-stringr.html#cb633-21" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
-<span id="cb633-22"><a href="strings-with-stringr.html#cb633-22" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
-<span id="cb633-23"><a href="strings-with-stringr.html#cb633-23" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
-<span id="cb633-24"><a href="strings-with-stringr.html#cb633-24" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
-<span id="cb633-25"><a href="strings-with-stringr.html#cb633-25" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
-<span id="cb633-26"><a href="strings-with-stringr.html#cb633-26" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
-<span id="cb633-27"><a href="strings-with-stringr.html#cb633-27" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
-<span id="cb633-28"><a href="strings-with-stringr.html#cb633-28" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
-<span id="cb633-29"><a href="strings-with-stringr.html#cb633-29" aria-hidden="true" tabindex="-1"></a><span class="st">Seven, forty five, we&#39;re drivin&#39; on the highway</span></span>
-<span id="cb633-30"><a href="strings-with-stringr.html#cb633-30" aria-hidden="true" tabindex="-1"></a><span class="st">Cruisin&#39; so fast, I want time to fly</span></span>
-<span id="cb633-31"><a href="strings-with-stringr.html#cb633-31" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, think about fun</span></span>
-<span id="cb633-32"><a href="strings-with-stringr.html#cb633-32" aria-hidden="true" tabindex="-1"></a><span class="st">You know what it is</span></span>
-<span id="cb633-33"><a href="strings-with-stringr.html#cb633-33" aria-hidden="true" tabindex="-1"></a><span class="st">I got this, you got this</span></span>
-<span id="cb633-34"><a href="strings-with-stringr.html#cb633-34" aria-hidden="true" tabindex="-1"></a><span class="st">My friend is by my right, aye</span></span>
-<span id="cb633-35"><a href="strings-with-stringr.html#cb633-35" aria-hidden="true" tabindex="-1"></a><span class="st">I got this, you got this</span></span>
-<span id="cb633-36"><a href="strings-with-stringr.html#cb633-36" aria-hidden="true" tabindex="-1"></a><span class="st">Now you know it</span></span>
-<span id="cb633-37"><a href="strings-with-stringr.html#cb633-37" aria-hidden="true" tabindex="-1"></a><span class="st">Kickin&#39; in the front seat</span></span>
-<span id="cb633-38"><a href="strings-with-stringr.html#cb633-38" aria-hidden="true" tabindex="-1"></a><span class="st">Sittin&#39; in the back seat</span></span>
-<span id="cb633-39"><a href="strings-with-stringr.html#cb633-39" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta make my mind up</span></span>
-<span id="cb633-40"><a href="strings-with-stringr.html#cb633-40" aria-hidden="true" tabindex="-1"></a><span class="st">Which seat can I take?</span></span>
-<span id="cb633-41"><a href="strings-with-stringr.html#cb633-41" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
-<span id="cb633-42"><a href="strings-with-stringr.html#cb633-42" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
-<span id="cb633-43"><a href="strings-with-stringr.html#cb633-43" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
-<span id="cb633-44"><a href="strings-with-stringr.html#cb633-44" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
-<span id="cb633-45"><a href="strings-with-stringr.html#cb633-45" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
-<span id="cb633-46"><a href="strings-with-stringr.html#cb633-46" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
-<span id="cb633-47"><a href="strings-with-stringr.html#cb633-47" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
-<span id="cb633-48"><a href="strings-with-stringr.html#cb633-48" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
-<span id="cb633-49"><a href="strings-with-stringr.html#cb633-49" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
-<span id="cb633-50"><a href="strings-with-stringr.html#cb633-50" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
-<span id="cb633-51"><a href="strings-with-stringr.html#cb633-51" aria-hidden="true" tabindex="-1"></a><span class="st">Yesterday was Thursday, Thursday</span></span>
-<span id="cb633-52"><a href="strings-with-stringr.html#cb633-52" aria-hidden="true" tabindex="-1"></a><span class="st">Today it is Friday, Friday (partyin&#39;)</span></span>
-<span id="cb633-53"><a href="strings-with-stringr.html#cb633-53" aria-hidden="true" tabindex="-1"></a><span class="st">We-we-we so excited</span></span>
-<span id="cb633-54"><a href="strings-with-stringr.html#cb633-54" aria-hidden="true" tabindex="-1"></a><span class="st">We so excited</span></span>
-<span id="cb633-55"><a href="strings-with-stringr.html#cb633-55" aria-hidden="true" tabindex="-1"></a><span class="st">We gonna have a ball today</span></span>
-<span id="cb633-56"><a href="strings-with-stringr.html#cb633-56" aria-hidden="true" tabindex="-1"></a><span class="st">Tomorrow is Saturday</span></span>
-<span id="cb633-57"><a href="strings-with-stringr.html#cb633-57" aria-hidden="true" tabindex="-1"></a><span class="st">And Sunday comes afterwards</span></span>
-<span id="cb633-58"><a href="strings-with-stringr.html#cb633-58" aria-hidden="true" tabindex="-1"></a><span class="st">I don&#39;t want this weekend to end</span></span>
-<span id="cb633-59"><a href="strings-with-stringr.html#cb633-59" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
-<span id="cb633-60"><a href="strings-with-stringr.html#cb633-60" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
-<span id="cb633-61"><a href="strings-with-stringr.html#cb633-61" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend (we gotta get down)</span></span>
-<span id="cb633-62"><a href="strings-with-stringr.html#cb633-62" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
-<span id="cb633-63"><a href="strings-with-stringr.html#cb633-63" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
-<span id="cb633-64"><a href="strings-with-stringr.html#cb633-64" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
-<span id="cb633-65"><a href="strings-with-stringr.html#cb633-65" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
-<span id="cb633-66"><a href="strings-with-stringr.html#cb633-66" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
-<span id="cb633-67"><a href="strings-with-stringr.html#cb633-67" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
-<span id="cb633-68"><a href="strings-with-stringr.html#cb633-68" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
-<span id="cb633-69"><a href="strings-with-stringr.html#cb633-69" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
-<span id="cb633-70"><a href="strings-with-stringr.html#cb633-70" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
-<span id="cb633-71"><a href="strings-with-stringr.html#cb633-71" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
-<span id="cb633-72"><a href="strings-with-stringr.html#cb633-72" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
-<span id="cb633-73"><a href="strings-with-stringr.html#cb633-73" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
-<span id="cb633-74"><a href="strings-with-stringr.html#cb633-74" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
-<span id="cb633-75"><a href="strings-with-stringr.html#cb633-75" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
-<span id="cb633-76"><a href="strings-with-stringr.html#cb633-76" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
-<span id="cb633-77"><a href="strings-with-stringr.html#cb633-77" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
-<span id="cb633-78"><a href="strings-with-stringr.html#cb633-78" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="strings-with-stringr.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb642-2"><a href="strings-with-stringr.html#cb642-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb642-3"><a href="strings-with-stringr.html#cb642-3" aria-hidden="true" tabindex="-1"></a>rblack <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Oo-ooh-ooh, hoo yeah, yeah (Yeah, ah-ah-ah-ah-ah-ark)</span></span>
+<span id="cb642-4"><a href="strings-with-stringr.html#cb642-4" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah, yeah</span></span>
+<span id="cb642-5"><a href="strings-with-stringr.html#cb642-5" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah-ah-ah, yeah-ah-ah</span></span>
+<span id="cb642-6"><a href="strings-with-stringr.html#cb642-6" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah-ah-ah</span></span>
+<span id="cb642-7"><a href="strings-with-stringr.html#cb642-7" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah, yeah, yeah</span></span>
+<span id="cb642-8"><a href="strings-with-stringr.html#cb642-8" aria-hidden="true" tabindex="-1"></a><span class="st">Seven a.m., waking up in the morning</span></span>
+<span id="cb642-9"><a href="strings-with-stringr.html#cb642-9" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta be fresh, gotta go downstairs</span></span>
+<span id="cb642-10"><a href="strings-with-stringr.html#cb642-10" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta have my bowl, gotta have cereal</span></span>
+<span id="cb642-11"><a href="strings-with-stringr.html#cb642-11" aria-hidden="true" tabindex="-1"></a><span class="st">Seein&#39; everything, the time is goin&#39;</span></span>
+<span id="cb642-12"><a href="strings-with-stringr.html#cb642-12" aria-hidden="true" tabindex="-1"></a><span class="st">Tickin&#39; on and on, everybody&#39;s rushin&#39;</span></span>
+<span id="cb642-13"><a href="strings-with-stringr.html#cb642-13" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down to the bus stop</span></span>
+<span id="cb642-14"><a href="strings-with-stringr.html#cb642-14" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta catch my bus, I see my friends (my friends)</span></span>
+<span id="cb642-15"><a href="strings-with-stringr.html#cb642-15" aria-hidden="true" tabindex="-1"></a><span class="st">Kickin&#39; in the front seat</span></span>
+<span id="cb642-16"><a href="strings-with-stringr.html#cb642-16" aria-hidden="true" tabindex="-1"></a><span class="st">Sittin&#39; in the back seat</span></span>
+<span id="cb642-17"><a href="strings-with-stringr.html#cb642-17" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta make my mind up</span></span>
+<span id="cb642-18"><a href="strings-with-stringr.html#cb642-18" aria-hidden="true" tabindex="-1"></a><span class="st">Which seat can I take?</span></span>
+<span id="cb642-19"><a href="strings-with-stringr.html#cb642-19" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb642-20"><a href="strings-with-stringr.html#cb642-20" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb642-21"><a href="strings-with-stringr.html#cb642-21" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb642-22"><a href="strings-with-stringr.html#cb642-22" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb642-23"><a href="strings-with-stringr.html#cb642-23" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb642-24"><a href="strings-with-stringr.html#cb642-24" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb642-25"><a href="strings-with-stringr.html#cb642-25" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb642-26"><a href="strings-with-stringr.html#cb642-26" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb642-27"><a href="strings-with-stringr.html#cb642-27" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb642-28"><a href="strings-with-stringr.html#cb642-28" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb642-29"><a href="strings-with-stringr.html#cb642-29" aria-hidden="true" tabindex="-1"></a><span class="st">Seven, forty five, we&#39;re drivin&#39; on the highway</span></span>
+<span id="cb642-30"><a href="strings-with-stringr.html#cb642-30" aria-hidden="true" tabindex="-1"></a><span class="st">Cruisin&#39; so fast, I want time to fly</span></span>
+<span id="cb642-31"><a href="strings-with-stringr.html#cb642-31" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, think about fun</span></span>
+<span id="cb642-32"><a href="strings-with-stringr.html#cb642-32" aria-hidden="true" tabindex="-1"></a><span class="st">You know what it is</span></span>
+<span id="cb642-33"><a href="strings-with-stringr.html#cb642-33" aria-hidden="true" tabindex="-1"></a><span class="st">I got this, you got this</span></span>
+<span id="cb642-34"><a href="strings-with-stringr.html#cb642-34" aria-hidden="true" tabindex="-1"></a><span class="st">My friend is by my right, aye</span></span>
+<span id="cb642-35"><a href="strings-with-stringr.html#cb642-35" aria-hidden="true" tabindex="-1"></a><span class="st">I got this, you got this</span></span>
+<span id="cb642-36"><a href="strings-with-stringr.html#cb642-36" aria-hidden="true" tabindex="-1"></a><span class="st">Now you know it</span></span>
+<span id="cb642-37"><a href="strings-with-stringr.html#cb642-37" aria-hidden="true" tabindex="-1"></a><span class="st">Kickin&#39; in the front seat</span></span>
+<span id="cb642-38"><a href="strings-with-stringr.html#cb642-38" aria-hidden="true" tabindex="-1"></a><span class="st">Sittin&#39; in the back seat</span></span>
+<span id="cb642-39"><a href="strings-with-stringr.html#cb642-39" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta make my mind up</span></span>
+<span id="cb642-40"><a href="strings-with-stringr.html#cb642-40" aria-hidden="true" tabindex="-1"></a><span class="st">Which seat can I take?</span></span>
+<span id="cb642-41"><a href="strings-with-stringr.html#cb642-41" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb642-42"><a href="strings-with-stringr.html#cb642-42" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb642-43"><a href="strings-with-stringr.html#cb642-43" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb642-44"><a href="strings-with-stringr.html#cb642-44" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb642-45"><a href="strings-with-stringr.html#cb642-45" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb642-46"><a href="strings-with-stringr.html#cb642-46" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb642-47"><a href="strings-with-stringr.html#cb642-47" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb642-48"><a href="strings-with-stringr.html#cb642-48" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb642-49"><a href="strings-with-stringr.html#cb642-49" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb642-50"><a href="strings-with-stringr.html#cb642-50" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb642-51"><a href="strings-with-stringr.html#cb642-51" aria-hidden="true" tabindex="-1"></a><span class="st">Yesterday was Thursday, Thursday</span></span>
+<span id="cb642-52"><a href="strings-with-stringr.html#cb642-52" aria-hidden="true" tabindex="-1"></a><span class="st">Today it is Friday, Friday (partyin&#39;)</span></span>
+<span id="cb642-53"><a href="strings-with-stringr.html#cb642-53" aria-hidden="true" tabindex="-1"></a><span class="st">We-we-we so excited</span></span>
+<span id="cb642-54"><a href="strings-with-stringr.html#cb642-54" aria-hidden="true" tabindex="-1"></a><span class="st">We so excited</span></span>
+<span id="cb642-55"><a href="strings-with-stringr.html#cb642-55" aria-hidden="true" tabindex="-1"></a><span class="st">We gonna have a ball today</span></span>
+<span id="cb642-56"><a href="strings-with-stringr.html#cb642-56" aria-hidden="true" tabindex="-1"></a><span class="st">Tomorrow is Saturday</span></span>
+<span id="cb642-57"><a href="strings-with-stringr.html#cb642-57" aria-hidden="true" tabindex="-1"></a><span class="st">And Sunday comes afterwards</span></span>
+<span id="cb642-58"><a href="strings-with-stringr.html#cb642-58" aria-hidden="true" tabindex="-1"></a><span class="st">I don&#39;t want this weekend to end</span></span>
+<span id="cb642-59"><a href="strings-with-stringr.html#cb642-59" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb642-60"><a href="strings-with-stringr.html#cb642-60" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb642-61"><a href="strings-with-stringr.html#cb642-61" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend (we gotta get down)</span></span>
+<span id="cb642-62"><a href="strings-with-stringr.html#cb642-62" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb642-63"><a href="strings-with-stringr.html#cb642-63" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb642-64"><a href="strings-with-stringr.html#cb642-64" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb642-65"><a href="strings-with-stringr.html#cb642-65" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb642-66"><a href="strings-with-stringr.html#cb642-66" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb642-67"><a href="strings-with-stringr.html#cb642-67" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb642-68"><a href="strings-with-stringr.html#cb642-68" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb642-69"><a href="strings-with-stringr.html#cb642-69" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb642-70"><a href="strings-with-stringr.html#cb642-70" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb642-71"><a href="strings-with-stringr.html#cb642-71" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb642-72"><a href="strings-with-stringr.html#cb642-72" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb642-73"><a href="strings-with-stringr.html#cb642-73" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb642-74"><a href="strings-with-stringr.html#cb642-74" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb642-75"><a href="strings-with-stringr.html#cb642-75" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb642-76"><a href="strings-with-stringr.html#cb642-76" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb642-77"><a href="strings-with-stringr.html#cb642-77" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb642-78"><a href="strings-with-stringr.html#cb642-78" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend&quot;</span>)</span></code></pre></div>
 <p>Our first goal is to parse out every word so that we have an object. Run the following to examine the <code>rblack</code> object. The <code>\n</code> denotes a line break in the string.</p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="strings-with-stringr.html#cb634-1" aria-hidden="true" tabindex="-1"></a>rblack</span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="strings-with-stringr.html#cb643-1" aria-hidden="true" tabindex="-1"></a>rblack</span></code></pre></div>
 <p>Our first step will be to use the <code>\n</code> as a separator and split the lyric strings by that character using the <code>str_split()</code> function. <code>str_split()</code> takes a string as its first argument and what we want to split the string by (<code>\n</code> in this case) as its second argument. <code>simplify = TRUE</code> puts the results into a matrix instead of a list.</p>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="strings-with-stringr.html#cb635-1" aria-hidden="true" tabindex="-1"></a>rblack2 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(rblack, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb635-2"><a href="strings-with-stringr.html#cb635-2" aria-hidden="true" tabindex="-1"></a>rblack2</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="strings-with-stringr.html#cb644-1" aria-hidden="true" tabindex="-1"></a>rblack2 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(rblack, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb644-2"><a href="strings-with-stringr.html#cb644-2" aria-hidden="true" tabindex="-1"></a>rblack2</span></code></pre></div>
 <p>That’s much better to look at! Look at the structure of <code>rblack2</code> with:</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="strings-with-stringr.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rblack2)</span></code></pre></div>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="strings-with-stringr.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rblack2)</span></code></pre></div>
 <p>We see that <code>rblack2</code> is a matrix with 1 row and 76 columns. But, we now want each word to be its own separate string. We can do this by using <code>str_split()</code> again, but, this time getting rid of the spaces.</p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="strings-with-stringr.html#cb637-1" aria-hidden="true" tabindex="-1"></a>rblack3 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(rblack2, <span class="fu">c</span>(<span class="st">&quot; &quot;</span>))</span>
-<span id="cb637-2"><a href="strings-with-stringr.html#cb637-2" aria-hidden="true" tabindex="-1"></a>rblack3</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="strings-with-stringr.html#cb646-1" aria-hidden="true" tabindex="-1"></a>rblack3 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(rblack2, <span class="fu">c</span>(<span class="st">&quot; &quot;</span>))</span>
+<span id="cb646-2"><a href="strings-with-stringr.html#cb646-2" aria-hidden="true" tabindex="-1"></a>rblack3</span></code></pre></div>
 <p>Look carefully between <code>rblack2</code> and <code>rblack3</code>: what’s the difference? In <code>rblack2</code>, there’s quotes surrounding each line while in <code>rblack3</code>, there’s quotes surrounding each word.</p>
 <p>We can use the <code>unlist()</code> function to convert the list into a regular vector:</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="strings-with-stringr.html#cb638-1" aria-hidden="true" tabindex="-1"></a>rblack4 <span class="ot">&lt;-</span> <span class="fu">unlist</span>(rblack3)</span>
-<span id="cb638-2"><a href="strings-with-stringr.html#cb638-2" aria-hidden="true" tabindex="-1"></a>rblack4</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="strings-with-stringr.html#cb647-1" aria-hidden="true" tabindex="-1"></a>rblack4 <span class="ot">&lt;-</span> <span class="fu">unlist</span>(rblack3)</span>
+<span id="cb647-2"><a href="strings-with-stringr.html#cb647-2" aria-hidden="true" tabindex="-1"></a>rblack4</span></code></pre></div>
 <p>What would happen if we tried to count the number of times Rebecca Black says Friday from the words below? Let’s try and see!</p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="strings-with-stringr.html#cb639-1" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">words =</span> rblack4)</span>
-<span id="cb639-2"><a href="strings-with-stringr.html#cb639-2" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
-<span id="cb639-3"><a href="strings-with-stringr.html#cb639-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb639-4"><a href="strings-with-stringr.html#cb639-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="strings-with-stringr.html#cb648-1" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">words =</span> rblack4)</span>
+<span id="cb648-2"><a href="strings-with-stringr.html#cb648-2" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb648-3"><a href="strings-with-stringr.html#cb648-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb648-4"><a href="strings-with-stringr.html#cb648-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span></code></pre></div>
 <pre><code>## # A tibble: 126 x 2
 ##    words   word_count
 ##    &lt;chr&gt;        &lt;int&gt;
@@ -675,19 +679,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 fun,             9
 ## # … with 116 more rows</code></pre>
 <p>The issue with this approach is that there are some instances of Friday with a <code>,</code> and some without. Based on this issue, let’s go back to our vector of words <code>rblack4</code> and see if we can fix it using <code>str_remove()</code>, which removes given patterns in a string. For example,</p>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="strings-with-stringr.html#cb641-1" aria-hidden="true" tabindex="-1"></a>rblack5 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack4, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;,&quot;</span>))</span>
-<span id="cb641-2"><a href="strings-with-stringr.html#cb641-2" aria-hidden="true" tabindex="-1"></a>rblack5</span></code></pre></div>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="strings-with-stringr.html#cb650-1" aria-hidden="true" tabindex="-1"></a>rblack5 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack4, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;,&quot;</span>))</span>
+<span id="cb650-2"><a href="strings-with-stringr.html#cb650-2" aria-hidden="true" tabindex="-1"></a>rblack5</span></code></pre></div>
 <p>removes all of the commas.</p>
 <p>Another issue is that, if a word starts a sentence, it’s capitalized so <code>R</code> thinks <code>Partyin'</code> is a completely different word than <code>partyin'</code>. The <code>str_to_lower()</code> function converts all characters to lowercase:</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="strings-with-stringr.html#cb642-1" aria-hidden="true" tabindex="-1"></a>rblack6 <span class="ot">&lt;-</span> <span class="fu">str_to_lower</span>(rblack5)</span>
-<span id="cb642-2"><a href="strings-with-stringr.html#cb642-2" aria-hidden="true" tabindex="-1"></a>rblack6</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="strings-with-stringr.html#cb651-1" aria-hidden="true" tabindex="-1"></a>rblack6 <span class="ot">&lt;-</span> <span class="fu">str_to_lower</span>(rblack5)</span>
+<span id="cb651-2"><a href="strings-with-stringr.html#cb651-2" aria-hidden="true" tabindex="-1"></a>rblack6</span></code></pre></div>
 <p>Finally, we might want to get rid of “non-interesting” words, commonly known as “stop words.” These are words like “the,” “on,” “a,” “I,” etc. that don’t really provide meaning about the song. The <code>tidytext</code> package has a data set that has a list of stop words prepackaged. Install the package, load the <code>tidytext</code> library, and examine the stop words with:</p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="strings-with-stringr.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="do">##install.packages(&quot;tidytext&quot;)</span></span>
-<span id="cb643-2"><a href="strings-with-stringr.html#cb643-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb643-3"><a href="strings-with-stringr.html#cb643-3" aria-hidden="true" tabindex="-1"></a>stop_words</span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="strings-with-stringr.html#cb652-1" aria-hidden="true" tabindex="-1"></a><span class="do">##install.packages(&quot;tidytext&quot;)</span></span>
+<span id="cb652-2"><a href="strings-with-stringr.html#cb652-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb652-3"><a href="strings-with-stringr.html#cb652-3" aria-hidden="true" tabindex="-1"></a>stop_words</span></code></pre></div>
 <p>Next, let’s make the Friday words into a <code>tibble</code> with the <code>tibble()</code> function:</p>
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="strings-with-stringr.html#cb644-1" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">words =</span> rblack6)</span>
-<span id="cb644-2"><a href="strings-with-stringr.html#cb644-2" aria-hidden="true" tabindex="-1"></a>rblack_df</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="strings-with-stringr.html#cb653-1" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">words =</span> rblack6)</span>
+<span id="cb653-2"><a href="strings-with-stringr.html#cb653-2" aria-hidden="true" tabindex="-1"></a>rblack_df</span></code></pre></div>
 <pre><code>## # A tibble: 360 x 1
 ##    words              
 ##    &lt;chr&gt;              
@@ -703,9 +707,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 yeah-ah-ah         
 ## # … with 350 more rows</code></pre>
 <p>And we can now use the <code>anti_join()</code> function to get rid of the stop words in the Rebecca Black data set.</p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="strings-with-stringr.html#cb646-1" aria-hidden="true" tabindex="-1"></a>rblack_small <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(rblack_df, stop_words,</span>
-<span id="cb646-2"><a href="strings-with-stringr.html#cb646-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;words&quot;</span> <span class="ot">=</span> <span class="st">&quot;word&quot;</span>))</span>
-<span id="cb646-3"><a href="strings-with-stringr.html#cb646-3" aria-hidden="true" tabindex="-1"></a>rblack_small</span></code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="strings-with-stringr.html#cb655-1" aria-hidden="true" tabindex="-1"></a>rblack_small <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(rblack_df, stop_words,</span>
+<span id="cb655-2"><a href="strings-with-stringr.html#cb655-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;words&quot;</span> <span class="ot">=</span> <span class="st">&quot;word&quot;</span>))</span>
+<span id="cb655-3"><a href="strings-with-stringr.html#cb655-3" aria-hidden="true" tabindex="-1"></a>rblack_small</span></code></pre></div>
 <pre><code>## # A tibble: 208 x 1
 ##    words              
 ##    &lt;chr&gt;              
@@ -721,9 +725,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 yeah-ah-ah         
 ## # … with 198 more rows</code></pre>
 <p>We see that 98 words were dropped from the data set, but that some words weren’t picked up (like <code>yeah-ah-ah</code>). We will leave these for now, but, we could remove them with <code>filter(words != "yeah-ah-ah")</code> Finally, we can get some counts of words in the song Friday that aren’t “stop words.”</p>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="strings-with-stringr.html#cb648-1" aria-hidden="true" tabindex="-1"></a>rblack_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
-<span id="cb648-2"><a href="strings-with-stringr.html#cb648-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb648-3"><a href="strings-with-stringr.html#cb648-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="strings-with-stringr.html#cb657-1" aria-hidden="true" tabindex="-1"></a>rblack_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb657-2"><a href="strings-with-stringr.html#cb657-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb657-3"><a href="strings-with-stringr.html#cb657-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span></code></pre></div>
 <pre><code>## # A tibble: 60 x 2
 ##    words       word_count
 ##    &lt;chr&gt;            &lt;int&gt;
@@ -746,24 +750,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>* Ignore the parentheses for now. Make a point plot that shows the 10 most common words in Rebecca Black’s Friday, where the words are ordered from the most common to the least common on your graph.</p></li>
 <li><p>We can also make a wordcloud (though word clouds have some issues). <code>R</code> has a wordcloud package called <code>wordcloud</code>. Run the following code to make a word cloud of the words in the song <em>Friday</em>.</p></li>
 </ol>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="strings-with-stringr.html#cb650-1" aria-hidden="true" tabindex="-1"></a>rblack_sum <span class="ot">&lt;-</span> rblack_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
-<span id="cb650-2"><a href="strings-with-stringr.html#cb650-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb650-3"><a href="strings-with-stringr.html#cb650-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span>
-<span id="cb650-4"><a href="strings-with-stringr.html#cb650-4" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;wordcloud&quot;)</span></span>
-<span id="cb650-5"><a href="strings-with-stringr.html#cb650-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
-<span id="cb650-6"><a href="strings-with-stringr.html#cb650-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(rblack_sum<span class="sc">$</span>words, rblack_sum<span class="sc">$</span>word_count, </span>
-<span id="cb650-7"><a href="strings-with-stringr.html#cb650-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Dark2&quot;</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">5</span>, .<span class="dv">2</span>),</span>
-<span id="cb650-8"><a href="strings-with-stringr.html#cb650-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">random.color =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="strings-with-stringr.html#cb659-1" aria-hidden="true" tabindex="-1"></a>rblack_sum <span class="ot">&lt;-</span> rblack_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb659-2"><a href="strings-with-stringr.html#cb659-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb659-3"><a href="strings-with-stringr.html#cb659-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span>
+<span id="cb659-4"><a href="strings-with-stringr.html#cb659-4" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;wordcloud&quot;)</span></span>
+<span id="cb659-5"><a href="strings-with-stringr.html#cb659-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
+<span id="cb659-6"><a href="strings-with-stringr.html#cb659-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(rblack_sum<span class="sc">$</span>words, rblack_sum<span class="sc">$</span>word_count, </span>
+<span id="cb659-7"><a href="strings-with-stringr.html#cb659-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Dark2&quot;</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">5</span>, .<span class="dv">2</span>),</span>
+<span id="cb659-8"><a href="strings-with-stringr.html#cb659-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">random.color =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Then, type <code>?wordcloud</code> to explore some of the options. In particular, try to increase the number of words plotted in the cloud.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Finally, what about those pesky parentheses? Certain characters in <code>R</code> are treated as special: <code>$</code>, <code>(</code>, <code>.</code>, and <code>)</code> are all examples. Dealing with these are fairly annoying: we need to “escape” them with a backslash and then “escape” that backslash with another backslash. If that’s confusing, no worries: we won’t focus too much on these special characters in this class.</li>
 </ol>
 <p>To remove the front parenthesis, use</p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="strings-with-stringr.html#cb651-1" aria-hidden="true" tabindex="-1"></a>rblack7 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack6, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>))</span>
-<span id="cb651-2"><a href="strings-with-stringr.html#cb651-2" aria-hidden="true" tabindex="-1"></a>rblack7</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="strings-with-stringr.html#cb660-1" aria-hidden="true" tabindex="-1"></a>rblack7 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack6, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>))</span>
+<span id="cb660-2"><a href="strings-with-stringr.html#cb660-2" aria-hidden="true" tabindex="-1"></a>rblack7</span></code></pre></div>
 <p>and then to remove the back parenthesis, use</p>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="strings-with-stringr.html#cb652-1" aria-hidden="true" tabindex="-1"></a>rblack8 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack7, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>))</span>
-<span id="cb652-2"><a href="strings-with-stringr.html#cb652-2" aria-hidden="true" tabindex="-1"></a>rblack8</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="strings-with-stringr.html#cb661-1" aria-hidden="true" tabindex="-1"></a>rblack8 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack7, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>))</span>
+<span id="cb661-2"><a href="strings-with-stringr.html#cb661-2" aria-hidden="true" tabindex="-1"></a>rblack8</span></code></pre></div>
 <p>These are “regular expressions:” if interested, you can read more in the <a href="https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions" target="_blank">R4DS textbook</a>.</p>
 <p>We analyzed a short text data set, but, you can imagine extending this type of analysis to things like:</p>
 <ul>
@@ -785,8 +789,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>* Read in the <code>beyonce_lyrics.csv</code> file, which has the lyrics to all of beyonce’s songs and construct either a word cloud or a point plot that shows the most common non-stop words in either all of Beyonce’s songs. Do the best you can here (you might have some minor errors, like the parentheses in Friday’s “yeah” that we don’t have the tools to fix).</li>
 </ol>
 <p><strong>Hint</strong>: You can actually skip a couple of the steps from the Friday analysis, as, for example, there is no “<code>\n</code>” character to remove in Beyonce’s lyrics.</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="strings-with-stringr.html#cb653-1" aria-hidden="true" tabindex="-1"></a>beyonce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/beyonce_lyrics.csv&quot;</span>)</span>
-<span id="cb653-2"><a href="strings-with-stringr.html#cb653-2" aria-hidden="true" tabindex="-1"></a>beyonce_lyrics <span class="ot">&lt;-</span> beyonce<span class="sc">$</span>line</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="strings-with-stringr.html#cb662-1" aria-hidden="true" tabindex="-1"></a>beyonce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/beyonce_lyrics.csv&quot;</span>)</span>
+<span id="cb662-2"><a href="strings-with-stringr.html#cb662-2" aria-hidden="true" tabindex="-1"></a>beyonce_lyrics <span class="ot">&lt;-</span> beyonce<span class="sc">$</span>line</span></code></pre></div>
 </div>
 <div id="solutions-12" class="section level2" number="13.4">
 <h2><span class="header-section-number">13.4</span> Exercise Solutions</h2>
@@ -795,19 +799,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>* Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the <code>tidytext</code> package? Create a tibble with a couple of stop words not picked up by the <code>tidytext</code> package, and use a join function to drop these words from <code>rblack_small</code>.</li>
 </ol>
-<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="strings-with-stringr.html#cb654-1" aria-hidden="true" tabindex="-1"></a>extra_stops <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">other_stop_words =</span> <span class="fu">c</span>(<span class="st">&quot;gonna&quot;</span>, <span class="st">&quot;yeah&quot;</span>))</span>
-<span id="cb654-2"><a href="strings-with-stringr.html#cb654-2" aria-hidden="true" tabindex="-1"></a>rblack_small2 <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(rblack_small, extra_stops, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;words&quot;</span> <span class="ot">=</span> <span class="st">&quot;other_stop_words&quot;</span>))</span>
-<span id="cb654-3"><a href="strings-with-stringr.html#cb654-3" aria-hidden="true" tabindex="-1"></a>rblack_wordcounts <span class="ot">&lt;-</span> rblack_small2 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
-<span id="cb654-4"><a href="strings-with-stringr.html#cb654-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb654-5"><a href="strings-with-stringr.html#cb654-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span>
-<span id="cb654-6"><a href="strings-with-stringr.html#cb654-6" aria-hidden="true" tabindex="-1"></a>rblack10 <span class="ot">&lt;-</span> rblack_wordcounts <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="strings-with-stringr.html#cb663-1" aria-hidden="true" tabindex="-1"></a>extra_stops <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">other_stop_words =</span> <span class="fu">c</span>(<span class="st">&quot;gonna&quot;</span>, <span class="st">&quot;yeah&quot;</span>))</span>
+<span id="cb663-2"><a href="strings-with-stringr.html#cb663-2" aria-hidden="true" tabindex="-1"></a>rblack_small2 <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(rblack_small, extra_stops, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;words&quot;</span> <span class="ot">=</span> <span class="st">&quot;other_stop_words&quot;</span>))</span>
+<span id="cb663-3"><a href="strings-with-stringr.html#cb663-3" aria-hidden="true" tabindex="-1"></a>rblack_wordcounts <span class="ot">&lt;-</span> rblack_small2 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb663-4"><a href="strings-with-stringr.html#cb663-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb663-5"><a href="strings-with-stringr.html#cb663-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span>
+<span id="cb663-6"><a href="strings-with-stringr.html#cb663-6" aria-hidden="true" tabindex="-1"></a>rblack10 <span class="ot">&lt;-</span> rblack_wordcounts <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>* Ignore the parentheses for now. Make a point plot that shows the 10 most common words in Rebecca Black’s Friday, where the words are ordered from the most common to the least common on your graph.</li>
 </ol>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="strings-with-stringr.html#cb655-1" aria-hidden="true" tabindex="-1"></a>rblack10 <span class="ot">&lt;-</span> rblack10 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">words_ord =</span> <span class="fu">fct_reorder</span>(words, <span class="at">.x =</span> word_count))</span>
-<span id="cb655-2"><a href="strings-with-stringr.html#cb655-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> rblack10, <span class="fu">aes</span>(<span class="at">x =</span> words_ord, <span class="at">y =</span> word_count)) <span class="sc">+</span></span>
-<span id="cb655-3"><a href="strings-with-stringr.html#cb655-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb655-4"><a href="strings-with-stringr.html#cb655-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="strings-with-stringr.html#cb664-1" aria-hidden="true" tabindex="-1"></a>rblack10 <span class="ot">&lt;-</span> rblack10 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">words_ord =</span> <span class="fu">fct_reorder</span>(words, <span class="at">.x =</span> word_count))</span>
+<span id="cb664-2"><a href="strings-with-stringr.html#cb664-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> rblack10, <span class="fu">aes</span>(<span class="at">x =</span> words_ord, <span class="at">y =</span> word_count)) <span class="sc">+</span></span>
+<span id="cb664-3"><a href="strings-with-stringr.html#cb664-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb664-4"><a href="strings-with-stringr.html#cb664-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="12-stringr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="second-example-s" class="section level3" number="13.4.2">
@@ -819,39 +823,147 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>* Read in the <code>beyonce_lyrics.csv</code> file, which has the lyrics to all of beyonce’s songs and construct either a word cloud or a point plot that shows the most common non-stop words in either all of Beyonce’s songs. Do the best you can here (you might have some minor errors, like the parentheses in Friday’s “yeah” that we don’t have the tools to fix).</li>
 </ol>
 <p><strong>Hint</strong>: You can actually skip a couple of the steps from the Friday analysis, as, for example, there is no “<code>\n</code>” character to remove in Beyonce’s lyrics.</p>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="strings-with-stringr.html#cb656-1" aria-hidden="true" tabindex="-1"></a>beyonce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/beyonce_lyrics.csv&quot;</span>)</span>
-<span id="cb656-2"><a href="strings-with-stringr.html#cb656-2" aria-hidden="true" tabindex="-1"></a>beyonce_lyrics <span class="ot">&lt;-</span> beyonce<span class="sc">$</span>line</span></code></pre></div>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="strings-with-stringr.html#cb657-1" aria-hidden="true" tabindex="-1"></a>beyonce_lines <span class="ot">&lt;-</span> <span class="fu">str_split</span>(beyonce<span class="sc">$</span>line, <span class="fu">c</span>(<span class="st">&quot; &quot;</span>))</span>
-<span id="cb657-2"><a href="strings-with-stringr.html#cb657-2" aria-hidden="true" tabindex="-1"></a>words_only <span class="ot">&lt;-</span> <span class="fu">unlist</span>(beyonce_lines)</span>
-<span id="cb657-3"><a href="strings-with-stringr.html#cb657-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb657-4"><a href="strings-with-stringr.html#cb657-4" aria-hidden="true" tabindex="-1"></a>beyonce_lines2 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(words_only, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;,&quot;</span>))</span>
-<span id="cb657-5"><a href="strings-with-stringr.html#cb657-5" aria-hidden="true" tabindex="-1"></a>beyonce_lines2</span>
-<span id="cb657-6"><a href="strings-with-stringr.html#cb657-6" aria-hidden="true" tabindex="-1"></a>beyonce_lines3 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(beyonce_lines2, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;;&quot;</span>))</span>
-<span id="cb657-7"><a href="strings-with-stringr.html#cb657-7" aria-hidden="true" tabindex="-1"></a>beyonce_lines3</span>
-<span id="cb657-8"><a href="strings-with-stringr.html#cb657-8" aria-hidden="true" tabindex="-1"></a>beyonce_lines4 <span class="ot">&lt;-</span> <span class="fu">str_to_lower</span>(beyonce_lines3)</span>
-<span id="cb657-9"><a href="strings-with-stringr.html#cb657-9" aria-hidden="true" tabindex="-1"></a>beyonce_lines4</span>
-<span id="cb657-10"><a href="strings-with-stringr.html#cb657-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb657-11"><a href="strings-with-stringr.html#cb657-11" aria-hidden="true" tabindex="-1"></a>beyonce_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">b_words =</span> beyonce_lines4)</span></code></pre></div>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="strings-with-stringr.html#cb658-1" aria-hidden="true" tabindex="-1"></a>beyonce_small <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(beyonce_df, stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;b_words&quot;</span> <span class="ot">=</span> <span class="st">&quot;word&quot;</span>))</span>
-<span id="cb658-2"><a href="strings-with-stringr.html#cb658-2" aria-hidden="true" tabindex="-1"></a>beyonce_small</span>
-<span id="cb658-3"><a href="strings-with-stringr.html#cb658-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb658-4"><a href="strings-with-stringr.html#cb658-4" aria-hidden="true" tabindex="-1"></a>beyonce_sum <span class="ot">&lt;-</span> beyonce_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(b_words) <span class="sc">%&gt;%</span></span>
-<span id="cb658-5"><a href="strings-with-stringr.html#cb658-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb658-6"><a href="strings-with-stringr.html#cb658-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count)) <span class="sc">%&gt;%</span></span>
-<span id="cb658-7"><a href="strings-with-stringr.html#cb658-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(word_count <span class="sc">&gt;</span> <span class="dv">100</span>)</span>
-<span id="cb658-8"><a href="strings-with-stringr.html#cb658-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb658-9"><a href="strings-with-stringr.html#cb658-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
-<span id="cb658-10"><a href="strings-with-stringr.html#cb658-10" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(beyonce_sum<span class="sc">$</span>b_words, beyonce_sum<span class="sc">$</span>word_count, </span>
-<span id="cb658-11"><a href="strings-with-stringr.html#cb658-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Dark2&quot;</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">5</span>, .<span class="dv">2</span>),</span>
-<span id="cb658-12"><a href="strings-with-stringr.html#cb658-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">random.color =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb658-13"><a href="strings-with-stringr.html#cb658-13" aria-hidden="true" tabindex="-1"></a>beyonce_bigwords <span class="ot">&lt;-</span> beyonce_sum <span class="sc">%&gt;%</span> <span class="fu">filter</span>(word_count <span class="sc">&gt;</span> <span class="dv">250</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb658-14"><a href="strings-with-stringr.html#cb658-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">b_words =</span> <span class="fu">fct_reorder</span>(b_words, <span class="at">.x =</span> word_count))</span>
-<span id="cb658-15"><a href="strings-with-stringr.html#cb658-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beyonce_bigwords, <span class="fu">aes</span>(<span class="at">x =</span> word_count, <span class="at">y =</span> b_words)) <span class="sc">+</span></span>
-<span id="cb658-16"><a href="strings-with-stringr.html#cb658-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
-<span id="cb658-17"><a href="strings-with-stringr.html#cb658-17" aria-hidden="true" tabindex="-1"></a><span class="do">## there&#39;s still some stopwords in there (yeah, ya, wanna, &#39;cause)</span></span>
-<span id="cb658-18"><a href="strings-with-stringr.html#cb658-18" aria-hidden="true" tabindex="-1"></a><span class="do">## but these can be removed with dplyr.</span></span></code></pre></div>
-
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="strings-with-stringr.html#cb665-1" aria-hidden="true" tabindex="-1"></a>beyonce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/beyonce_lyrics.csv&quot;</span>)</span>
+<span id="cb665-2"><a href="strings-with-stringr.html#cb665-2" aria-hidden="true" tabindex="-1"></a>beyonce_lyrics <span class="ot">&lt;-</span> beyonce<span class="sc">$</span>line</span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="strings-with-stringr.html#cb666-1" aria-hidden="true" tabindex="-1"></a>beyonce_lines <span class="ot">&lt;-</span> <span class="fu">str_split</span>(beyonce<span class="sc">$</span>line, <span class="fu">c</span>(<span class="st">&quot; &quot;</span>))</span>
+<span id="cb666-2"><a href="strings-with-stringr.html#cb666-2" aria-hidden="true" tabindex="-1"></a>words_only <span class="ot">&lt;-</span> <span class="fu">unlist</span>(beyonce_lines)</span>
+<span id="cb666-3"><a href="strings-with-stringr.html#cb666-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb666-4"><a href="strings-with-stringr.html#cb666-4" aria-hidden="true" tabindex="-1"></a>beyonce_lines2 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(words_only, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;,&quot;</span>))</span>
+<span id="cb666-5"><a href="strings-with-stringr.html#cb666-5" aria-hidden="true" tabindex="-1"></a>beyonce_lines2</span>
+<span id="cb666-6"><a href="strings-with-stringr.html#cb666-6" aria-hidden="true" tabindex="-1"></a>beyonce_lines3 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(beyonce_lines2, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;;&quot;</span>))</span>
+<span id="cb666-7"><a href="strings-with-stringr.html#cb666-7" aria-hidden="true" tabindex="-1"></a>beyonce_lines3</span>
+<span id="cb666-8"><a href="strings-with-stringr.html#cb666-8" aria-hidden="true" tabindex="-1"></a>beyonce_lines4 <span class="ot">&lt;-</span> <span class="fu">str_to_lower</span>(beyonce_lines3)</span>
+<span id="cb666-9"><a href="strings-with-stringr.html#cb666-9" aria-hidden="true" tabindex="-1"></a>beyonce_lines4</span>
+<span id="cb666-10"><a href="strings-with-stringr.html#cb666-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb666-11"><a href="strings-with-stringr.html#cb666-11" aria-hidden="true" tabindex="-1"></a>beyonce_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">b_words =</span> beyonce_lines4)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="strings-with-stringr.html#cb667-1" aria-hidden="true" tabindex="-1"></a>beyonce_small <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(beyonce_df, stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;b_words&quot;</span> <span class="ot">=</span> <span class="st">&quot;word&quot;</span>))</span>
+<span id="cb667-2"><a href="strings-with-stringr.html#cb667-2" aria-hidden="true" tabindex="-1"></a>beyonce_small</span>
+<span id="cb667-3"><a href="strings-with-stringr.html#cb667-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb667-4"><a href="strings-with-stringr.html#cb667-4" aria-hidden="true" tabindex="-1"></a>beyonce_sum <span class="ot">&lt;-</span> beyonce_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(b_words) <span class="sc">%&gt;%</span></span>
+<span id="cb667-5"><a href="strings-with-stringr.html#cb667-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb667-6"><a href="strings-with-stringr.html#cb667-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count)) <span class="sc">%&gt;%</span></span>
+<span id="cb667-7"><a href="strings-with-stringr.html#cb667-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(word_count <span class="sc">&gt;</span> <span class="dv">100</span>)</span>
+<span id="cb667-8"><a href="strings-with-stringr.html#cb667-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb667-9"><a href="strings-with-stringr.html#cb667-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
+<span id="cb667-10"><a href="strings-with-stringr.html#cb667-10" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(beyonce_sum<span class="sc">$</span>b_words, beyonce_sum<span class="sc">$</span>word_count, </span>
+<span id="cb667-11"><a href="strings-with-stringr.html#cb667-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Dark2&quot;</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">5</span>, .<span class="dv">2</span>),</span>
+<span id="cb667-12"><a href="strings-with-stringr.html#cb667-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">random.color =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb667-13"><a href="strings-with-stringr.html#cb667-13" aria-hidden="true" tabindex="-1"></a>beyonce_bigwords <span class="ot">&lt;-</span> beyonce_sum <span class="sc">%&gt;%</span> <span class="fu">filter</span>(word_count <span class="sc">&gt;</span> <span class="dv">250</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb667-14"><a href="strings-with-stringr.html#cb667-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">b_words =</span> <span class="fu">fct_reorder</span>(b_words, <span class="at">.x =</span> word_count))</span>
+<span id="cb667-15"><a href="strings-with-stringr.html#cb667-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> beyonce_bigwords, <span class="fu">aes</span>(<span class="at">x =</span> word_count, <span class="at">y =</span> b_words)) <span class="sc">+</span></span>
+<span id="cb667-16"><a href="strings-with-stringr.html#cb667-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb667-17"><a href="strings-with-stringr.html#cb667-17" aria-hidden="true" tabindex="-1"></a><span class="do">## there&#39;s still some stopwords in there (yeah, ya, wanna, &#39;cause)</span></span>
+<span id="cb667-18"><a href="strings-with-stringr.html#cb667-18" aria-hidden="true" tabindex="-1"></a><span class="do">## but these can be removed with dplyr.</span></span></code></pre></div>
 </div>
+</div>
+<div id="rcode-12" class="section level2" number="13.5">
+<h2><span class="header-section-number">13.5</span> Non-Exercise <code>R</code> Code</h2>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="strings-with-stringr.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb668-2"><a href="strings-with-stringr.html#cb668-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb668-3"><a href="strings-with-stringr.html#cb668-3" aria-hidden="true" tabindex="-1"></a>rblack <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Oo-ooh-ooh, hoo yeah, yeah (Yeah, ah-ah-ah-ah-ah-ark)</span></span>
+<span id="cb668-4"><a href="strings-with-stringr.html#cb668-4" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah, yeah</span></span>
+<span id="cb668-5"><a href="strings-with-stringr.html#cb668-5" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah-ah-ah, yeah-ah-ah</span></span>
+<span id="cb668-6"><a href="strings-with-stringr.html#cb668-6" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah-ah-ah</span></span>
+<span id="cb668-7"><a href="strings-with-stringr.html#cb668-7" aria-hidden="true" tabindex="-1"></a><span class="st">Yeah, yeah, yeah</span></span>
+<span id="cb668-8"><a href="strings-with-stringr.html#cb668-8" aria-hidden="true" tabindex="-1"></a><span class="st">Seven a.m., waking up in the morning</span></span>
+<span id="cb668-9"><a href="strings-with-stringr.html#cb668-9" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta be fresh, gotta go downstairs</span></span>
+<span id="cb668-10"><a href="strings-with-stringr.html#cb668-10" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta have my bowl, gotta have cereal</span></span>
+<span id="cb668-11"><a href="strings-with-stringr.html#cb668-11" aria-hidden="true" tabindex="-1"></a><span class="st">Seein&#39; everything, the time is goin&#39;</span></span>
+<span id="cb668-12"><a href="strings-with-stringr.html#cb668-12" aria-hidden="true" tabindex="-1"></a><span class="st">Tickin&#39; on and on, everybody&#39;s rushin&#39;</span></span>
+<span id="cb668-13"><a href="strings-with-stringr.html#cb668-13" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down to the bus stop</span></span>
+<span id="cb668-14"><a href="strings-with-stringr.html#cb668-14" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta catch my bus, I see my friends (my friends)</span></span>
+<span id="cb668-15"><a href="strings-with-stringr.html#cb668-15" aria-hidden="true" tabindex="-1"></a><span class="st">Kickin&#39; in the front seat</span></span>
+<span id="cb668-16"><a href="strings-with-stringr.html#cb668-16" aria-hidden="true" tabindex="-1"></a><span class="st">Sittin&#39; in the back seat</span></span>
+<span id="cb668-17"><a href="strings-with-stringr.html#cb668-17" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta make my mind up</span></span>
+<span id="cb668-18"><a href="strings-with-stringr.html#cb668-18" aria-hidden="true" tabindex="-1"></a><span class="st">Which seat can I take?</span></span>
+<span id="cb668-19"><a href="strings-with-stringr.html#cb668-19" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb668-20"><a href="strings-with-stringr.html#cb668-20" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb668-21"><a href="strings-with-stringr.html#cb668-21" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb668-22"><a href="strings-with-stringr.html#cb668-22" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb668-23"><a href="strings-with-stringr.html#cb668-23" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb668-24"><a href="strings-with-stringr.html#cb668-24" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb668-25"><a href="strings-with-stringr.html#cb668-25" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb668-26"><a href="strings-with-stringr.html#cb668-26" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb668-27"><a href="strings-with-stringr.html#cb668-27" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb668-28"><a href="strings-with-stringr.html#cb668-28" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb668-29"><a href="strings-with-stringr.html#cb668-29" aria-hidden="true" tabindex="-1"></a><span class="st">Seven, forty five, we&#39;re drivin&#39; on the highway</span></span>
+<span id="cb668-30"><a href="strings-with-stringr.html#cb668-30" aria-hidden="true" tabindex="-1"></a><span class="st">Cruisin&#39; so fast, I want time to fly</span></span>
+<span id="cb668-31"><a href="strings-with-stringr.html#cb668-31" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, think about fun</span></span>
+<span id="cb668-32"><a href="strings-with-stringr.html#cb668-32" aria-hidden="true" tabindex="-1"></a><span class="st">You know what it is</span></span>
+<span id="cb668-33"><a href="strings-with-stringr.html#cb668-33" aria-hidden="true" tabindex="-1"></a><span class="st">I got this, you got this</span></span>
+<span id="cb668-34"><a href="strings-with-stringr.html#cb668-34" aria-hidden="true" tabindex="-1"></a><span class="st">My friend is by my right, aye</span></span>
+<span id="cb668-35"><a href="strings-with-stringr.html#cb668-35" aria-hidden="true" tabindex="-1"></a><span class="st">I got this, you got this</span></span>
+<span id="cb668-36"><a href="strings-with-stringr.html#cb668-36" aria-hidden="true" tabindex="-1"></a><span class="st">Now you know it</span></span>
+<span id="cb668-37"><a href="strings-with-stringr.html#cb668-37" aria-hidden="true" tabindex="-1"></a><span class="st">Kickin&#39; in the front seat</span></span>
+<span id="cb668-38"><a href="strings-with-stringr.html#cb668-38" aria-hidden="true" tabindex="-1"></a><span class="st">Sittin&#39; in the back seat</span></span>
+<span id="cb668-39"><a href="strings-with-stringr.html#cb668-39" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta make my mind up</span></span>
+<span id="cb668-40"><a href="strings-with-stringr.html#cb668-40" aria-hidden="true" tabindex="-1"></a><span class="st">Which seat can I take?</span></span>
+<span id="cb668-41"><a href="strings-with-stringr.html#cb668-41" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb668-42"><a href="strings-with-stringr.html#cb668-42" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb668-43"><a href="strings-with-stringr.html#cb668-43" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb668-44"><a href="strings-with-stringr.html#cb668-44" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb668-45"><a href="strings-with-stringr.html#cb668-45" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb668-46"><a href="strings-with-stringr.html#cb668-46" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb668-47"><a href="strings-with-stringr.html#cb668-47" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb668-48"><a href="strings-with-stringr.html#cb668-48" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb668-49"><a href="strings-with-stringr.html#cb668-49" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb668-50"><a href="strings-with-stringr.html#cb668-50" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb668-51"><a href="strings-with-stringr.html#cb668-51" aria-hidden="true" tabindex="-1"></a><span class="st">Yesterday was Thursday, Thursday</span></span>
+<span id="cb668-52"><a href="strings-with-stringr.html#cb668-52" aria-hidden="true" tabindex="-1"></a><span class="st">Today it is Friday, Friday (partyin&#39;)</span></span>
+<span id="cb668-53"><a href="strings-with-stringr.html#cb668-53" aria-hidden="true" tabindex="-1"></a><span class="st">We-we-we so excited</span></span>
+<span id="cb668-54"><a href="strings-with-stringr.html#cb668-54" aria-hidden="true" tabindex="-1"></a><span class="st">We so excited</span></span>
+<span id="cb668-55"><a href="strings-with-stringr.html#cb668-55" aria-hidden="true" tabindex="-1"></a><span class="st">We gonna have a ball today</span></span>
+<span id="cb668-56"><a href="strings-with-stringr.html#cb668-56" aria-hidden="true" tabindex="-1"></a><span class="st">Tomorrow is Saturday</span></span>
+<span id="cb668-57"><a href="strings-with-stringr.html#cb668-57" aria-hidden="true" tabindex="-1"></a><span class="st">And Sunday comes afterwards</span></span>
+<span id="cb668-58"><a href="strings-with-stringr.html#cb668-58" aria-hidden="true" tabindex="-1"></a><span class="st">I don&#39;t want this weekend to end</span></span>
+<span id="cb668-59"><a href="strings-with-stringr.html#cb668-59" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb668-60"><a href="strings-with-stringr.html#cb668-60" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb668-61"><a href="strings-with-stringr.html#cb668-61" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend (we gotta get down)</span></span>
+<span id="cb668-62"><a href="strings-with-stringr.html#cb668-62" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb668-63"><a href="strings-with-stringr.html#cb668-63" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb668-64"><a href="strings-with-stringr.html#cb668-64" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb668-65"><a href="strings-with-stringr.html#cb668-65" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb668-66"><a href="strings-with-stringr.html#cb668-66" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb668-67"><a href="strings-with-stringr.html#cb668-67" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb668-68"><a href="strings-with-stringr.html#cb668-68" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend</span></span>
+<span id="cb668-69"><a href="strings-with-stringr.html#cb668-69" aria-hidden="true" tabindex="-1"></a><span class="st">It&#39;s Friday, Friday</span></span>
+<span id="cb668-70"><a href="strings-with-stringr.html#cb668-70" aria-hidden="true" tabindex="-1"></a><span class="st">Gotta get down on Friday</span></span>
+<span id="cb668-71"><a href="strings-with-stringr.html#cb668-71" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend, weekend</span></span>
+<span id="cb668-72"><a href="strings-with-stringr.html#cb668-72" aria-hidden="true" tabindex="-1"></a><span class="st">Friday, Friday</span></span>
+<span id="cb668-73"><a href="strings-with-stringr.html#cb668-73" aria-hidden="true" tabindex="-1"></a><span class="st">Gettin&#39; down on Friday</span></span>
+<span id="cb668-74"><a href="strings-with-stringr.html#cb668-74" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody&#39;s lookin&#39; forward to the weekend</span></span>
+<span id="cb668-75"><a href="strings-with-stringr.html#cb668-75" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb668-76"><a href="strings-with-stringr.html#cb668-76" aria-hidden="true" tabindex="-1"></a><span class="st">Partyin&#39;, partyin&#39; (yeah)</span></span>
+<span id="cb668-77"><a href="strings-with-stringr.html#cb668-77" aria-hidden="true" tabindex="-1"></a><span class="st">Fun, fun, fun, fun</span></span>
+<span id="cb668-78"><a href="strings-with-stringr.html#cb668-78" aria-hidden="true" tabindex="-1"></a><span class="st">Lookin&#39; forward to the weekend&quot;</span>)</span>
+<span id="cb668-79"><a href="strings-with-stringr.html#cb668-79" aria-hidden="true" tabindex="-1"></a>rblack</span>
+<span id="cb668-80"><a href="strings-with-stringr.html#cb668-80" aria-hidden="true" tabindex="-1"></a>rblack2 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(rblack, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb668-81"><a href="strings-with-stringr.html#cb668-81" aria-hidden="true" tabindex="-1"></a>rblack2</span>
+<span id="cb668-82"><a href="strings-with-stringr.html#cb668-82" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rblack2)</span>
+<span id="cb668-83"><a href="strings-with-stringr.html#cb668-83" aria-hidden="true" tabindex="-1"></a>rblack3 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(rblack2, <span class="fu">c</span>(<span class="st">&quot; &quot;</span>))</span>
+<span id="cb668-84"><a href="strings-with-stringr.html#cb668-84" aria-hidden="true" tabindex="-1"></a>rblack3</span>
+<span id="cb668-85"><a href="strings-with-stringr.html#cb668-85" aria-hidden="true" tabindex="-1"></a>rblack4 <span class="ot">&lt;-</span> <span class="fu">unlist</span>(rblack3)</span>
+<span id="cb668-86"><a href="strings-with-stringr.html#cb668-86" aria-hidden="true" tabindex="-1"></a>rblack4</span>
+<span id="cb668-87"><a href="strings-with-stringr.html#cb668-87" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">words =</span> rblack4)</span>
+<span id="cb668-88"><a href="strings-with-stringr.html#cb668-88" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb668-89"><a href="strings-with-stringr.html#cb668-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb668-90"><a href="strings-with-stringr.html#cb668-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span>
+<span id="cb668-91"><a href="strings-with-stringr.html#cb668-91" aria-hidden="true" tabindex="-1"></a>rblack5 <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(rblack4, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;,&quot;</span>))</span>
+<span id="cb668-92"><a href="strings-with-stringr.html#cb668-92" aria-hidden="true" tabindex="-1"></a>rblack5</span>
+<span id="cb668-93"><a href="strings-with-stringr.html#cb668-93" aria-hidden="true" tabindex="-1"></a>rblack6 <span class="ot">&lt;-</span> <span class="fu">str_to_lower</span>(rblack5)</span>
+<span id="cb668-94"><a href="strings-with-stringr.html#cb668-94" aria-hidden="true" tabindex="-1"></a>rblack6</span>
+<span id="cb668-95"><a href="strings-with-stringr.html#cb668-95" aria-hidden="true" tabindex="-1"></a><span class="do">##install.packages(&quot;tidytext&quot;)</span></span>
+<span id="cb668-96"><a href="strings-with-stringr.html#cb668-96" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb668-97"><a href="strings-with-stringr.html#cb668-97" aria-hidden="true" tabindex="-1"></a>stop_words</span>
+<span id="cb668-98"><a href="strings-with-stringr.html#cb668-98" aria-hidden="true" tabindex="-1"></a>rblack_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">words =</span> rblack6)</span>
+<span id="cb668-99"><a href="strings-with-stringr.html#cb668-99" aria-hidden="true" tabindex="-1"></a>rblack_df</span>
+<span id="cb668-100"><a href="strings-with-stringr.html#cb668-100" aria-hidden="true" tabindex="-1"></a>rblack_small <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(rblack_df, stop_words,</span>
+<span id="cb668-101"><a href="strings-with-stringr.html#cb668-101" aria-hidden="true" tabindex="-1"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;words&quot;</span> <span class="ot">=</span> <span class="st">&quot;word&quot;</span>))</span>
+<span id="cb668-102"><a href="strings-with-stringr.html#cb668-102" aria-hidden="true" tabindex="-1"></a>rblack_small</span>
+<span id="cb668-103"><a href="strings-with-stringr.html#cb668-103" aria-hidden="true" tabindex="-1"></a>rblack_small <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(words) <span class="sc">%&gt;%</span></span>
+<span id="cb668-104"><a href="strings-with-stringr.html#cb668-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">word_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb668-105"><a href="strings-with-stringr.html#cb668-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_count))</span></code></pre></div>
+
 </div>
 </div>
             </section>
@@ -877,14 +989,14 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": false,
-"twitter": false,
+"facebook": true,
+"twitter": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
 "whatsapp": false,
-"all": false
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -905,10 +1017,8 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"info": true
+"collapse": "subsection"
+}
 });
 });
 </script>

@@ -1215,4 +1215,68 @@ e. `select()`
 
 This can sometimes be okay if you're sure that the variables you are removing won't ever be used. 
 
+## Non-Exercise `R` Code {#rcode-3}
 
+
+```r
+library(babynames)
+head(babynames)
+library(tidyverse)
+slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
+slumajors_df
+slumajors_df %>% mutate(ntotal = nfemales + nmales)
+slumajors_df %>%
+  mutate(percfemale = 100 * nfemales / (nfemales + nmales))
+slumajors_df <- slumajors_df %>%
+  mutate(percfemale = 100 * nfemales / (nfemales + nmales))
+slumajors_df <- slumajors_df %>% mutate(ntotal = nfemales + nmales)
+slumajors_df <- slumajors_df %>%
+  mutate(ntotal = nfemales + nmales) %>%
+  mutate(percfemale = 100 * nfemales / (nfemales + nmales))
+mutate(mutate(slumajors_df, ntotal = nfemales + nmales), percfemale = 100 * nfemales / (nfemales + nmales))
+slumajors_df %>% mutate(morewomen = if_else(percfemale > 50,
+                                            true = "Yes",
+                                            false = "No"))
+slumajors_df %>% mutate(large_majority =
+                          case_when(percfemale >= 70 ~ "female",
+                                    percfemale <= 30 ~ "male",
+                                    percfemale > 30 & percfemale < 70 ~ "none")) 
+slumajors_df <- slumajors_df %>%
+  mutate(morewomen = if_else(percfemale > 50,
+                             true = "Yes",
+                             false = "No")) %>%
+  mutate(large_majority =
+           case_when(percfemale >= 70 ~ "female",
+                     percfemale <= 30 ~ "male",
+                     percfemale > 30 & percfemale < 70 ~ "none")) 
+slumajors_df %>% arrange(percfemale)
+slumajors_df %>% arrange(desc(percfemale))
+slumajors_df %>% select(Major, ntotal)
+slumajors_df %>% select(-ntotal, -nfemales, -nmales)
+slumajors_df %>% mutate(propfemale = percfemale / 100) %>%
+  select(propfemale, everything())
+slumajors_df %>% arrange(desc(ntotal)) %>%
+  slice(1, 2, 3, 4, 5)
+library(babynames)
+babynames
+babynames %>% filter(name == "Matthew")
+babynames %>% filter(year >= 2000)
+babynames %>% filter(sex != "M")
+babynames %>% filter(prop > 0.05)
+babynames %>% filter(year == max(year))
+babynames %>% filter(n > 20000 | prop > 0.05)
+babynames %>% filter(sex == "F" & name == "Mary")
+babynames %>% filter(sex == "F" & name == "Mary" & prop > 0.05)
+slumajors_df %>%
+  summarise(meantotalmajor = mean(ntotal),
+            totalgrad = sum(ntotal))
+babynames %>% group_by(year) %>%
+  summarise(totalbirths = sum(n))
+babynames %>% summarise(totalobs = n())
+babynames %>% group_by(year) %>%
+  summarise(ngroup = n())
+toy_df %>% summarise(meanx = mean(x, na.rm = TRUE))
+toy_df %>% mutate(missingx = is.na(x))
+toy_df %>% filter(is.na(x) != TRUE)
+toy_df %>% filter(!is.na(x))
+```

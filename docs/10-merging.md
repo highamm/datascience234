@@ -1105,5 +1105,79 @@ anti_join(states_df, notne_df, by = c("value" = "state"))
 ## 10        472   3907        0.6       71.6    5.5      57.1   168  9267 VT
 ```
 
+## Non-Exercise `R` Code {#rcode-10}
+
+
+```r
+library(tidyverse)
+atp_2019 <- read_csv("data/atp_matches_2019.csv")
+atp_2018 <- read_csv("data/atp_matches_2018.csv")
+head(atp_2019) 
+head(atp_2018)
+spec(atp_2018)
+atp_2018 <- read_csv("data/atp_matches_2018.csv",
+                     col_types = cols(winner_seed = col_character(),
+                                      loser_seed = col_character()))
+atp_df <- bind_rows(atp_2018, atp_2019)
+atp_df
+df_test2a <- tibble(xvar = c(1, 2))
+df_test2b <- tibble(xvar = c(1, 2), y = c(5, 1))
+bind_rows(df_test2a, df_test2b)
+df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
+df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
+bind_cols(df_test1a, df_test1b)
+library(tidyverse)
+df1 <- tibble(name = c("Emily", "Miguel", "Tonya"), fav_sport = c("Swimming", "Football", "Tennis"))
+df2 <- tibble(name = c("Tonya", "Miguel", "Emily"),
+              fav_colour = c("Robin's Egg Blue", "Tickle Me Pink", "Goldenrod"))
+##install.packages("babynames")
+library(babynames)
+life_df <- babynames::lifetables
+birth_df <- babynames::births
+babynames_df <- babynames::babynames
+head(babynames)
+head(births)
+head(lifetables)
+combined_left <- left_join(babynames_df, birth_df, by = c("year" = "year"))
+head(combined_left)
+tail(combined_left)
+## these will always do the same exact thing
+right_join(babynames_df, birth_df, by = c("year" = "year"))
+left_join(birth_df, babynames_df, by = c("year" = "year"))
+full_join(babynames_df, birth_df, by = c("year" = "year"))
+inner_join(babynames_df, birth_df, by = c("year" = "year"))
+slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
+collegemajors_df <- read_csv("data/college-majors.csv")
+head(slumajors_df)
+head(collegemajors_df)
+left_join(slumajors_df, collegemajors_df, by = c("Major" = "Major"))
+collegemajors_df <- collegemajors_df %>%
+  mutate(Major = str_to_title(Major))
+left_join(slumajors_df, collegemajors_df)
+atp_2019 <- read_csv("data/atp_matches_2019.csv")
+atp_2018 <- read_csv("data/atp_matches_2018.csv")
+atp_2019
+atp_2018
+win10 <- atp_2018 %>% group_by(winner_name) %>%
+  summarise(nwin = n()) %>% 
+  filter(nwin >= 10)
+win10
+tennis_2019_10 <- semi_join(atp_2019, win10,
+                            by = c("winner_name" = "winner_name"))
+tennis_2019_10$winner_name
+new_winners <- anti_join(atp_2019, atp_2018,
+                         by = c("winner_name" = "winner_name")) 
+new_winners$winner_name
+new_winners %>% group_by(winner_name) %>%
+  summarise(nwin = n()) %>%
+  arrange(desc(nwin))
+library(dbplyr)
+translate_sql(semi_join(atp_2019, win10,
+                        c("winner_name" = "winner_name")))
+
+translate_sql(atp_2018 %>% group_by(winner_name) %>%
+  summarise(n()) %>% 
+  filter(nwin >= 10))
+```
 
 

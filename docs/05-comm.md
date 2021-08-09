@@ -751,3 +751,106 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
 ```
 
 <img src="05-comm_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+
+## Non-Exercise `R` Code {#rcode-5}
+
+
+```r
+library(tidyverse)
+hpi_df <- read_csv("data/hpi-tidy.csv")
+head(hpi_df)
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point()
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  labs(title = "Countries with a Higher Ecological Footprint Tend to Have Citizens with Longer, Happier Lives", 
+       ## add title
+       subtitle = "HappyLifeYears is a Combination of Life Expectancy and Citizen Well-Being", 
+       ## add subtitle (smaller text size than the title)
+       caption = "Data Source: http://happyplanetindex.org/countries", 
+       ## add caption to the bottom of the figure
+       x = "Ecological Footprint", ## change x axis label
+       y = "Happy Life Years", ## change y axis label
+       colour = "World Region") ## change label of colour legend
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  ylim(c(0, 70))
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Accent")
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_viridis_d(option = "plasma")
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_label(aes(label = Country))
+plot_df <- hpi_df %>% group_by(Region) %>%
+  filter(HPIRank == min(HPIRank))
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_label(data = plot_df, aes(label = Country))
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point(aes(colour = Region)) +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_label(data = plot_df, aes(label = Country), show.legend = FALSE)
+library(ggrepel)
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_label_repel(data = plot_df, aes(label = Country),
+                   show.legend = FALSE) 
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears, colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_label_repel(data = plot_df, aes(label = Country), show.legend = FALSE) +
+  geom_point(data = plot_df, size = 3, shape = 1, show.legend = FALSE) 
+plot_df_us <- hpi_df %>%
+  filter(Country == "United States of America" | Country == "Denmark")
+
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_point(data = plot_df_us, size = 3, shape = 1,
+             show.legend = FALSE) +
+  geom_label_repel(data = plot_df_us, aes(label = Country),
+                   show.legend = FALSE)
+library(ggthemes)
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_point(data = plot_df_us, size = 3, shape = 1, show.legend = FALSE) +
+  geom_label_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
+  theme_solarized()
+
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_point(data = plot_df_us, size = 3, shape = 1, show.legend = FALSE) +
+  geom_label_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
+  theme_fivethirtyeight()
+
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Dark2") +
+  geom_point(data = plot_df_us, size = 3, shape = 1, show.legend = FALSE) +
+  geom_label_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
+  theme_economist()
+ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
+                          colour = Region)) +
+  geom_point()
+```

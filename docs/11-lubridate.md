@@ -19,7 +19,7 @@ today()
 ```
 
 ```
-## [1] "2021-07-07"
+## [1] "2021-08-07"
 ```
 
 ```r
@@ -27,7 +27,7 @@ now()
 ```
 
 ```
-## [1] "2021-07-07 11:59:32 EDT"
+## [1] "2021-08-07 10:37:25 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
@@ -329,13 +329,12 @@ stocks_long %>% mutate(day_in_year = yday(start_date))
 ##  6 2011-01-04 Nintendo    35.5           4
 ##  7 2011-01-04 Chipotle   222.            4
 ##  8 2011-01-04 S & P 500  103.            4
-##  9 2011-01-05 Apple       10.3           5
+##  9 2011-01-05 Apple       10.2           5
 ## 10 2011-01-05 Nintendo    34.6           5
 ## # … with 10,434 more rows
 ```
 
 Finally, the function `wday()` grabs the day of the week from a `<date>`. By default, `wday()` puts the day of the week as a numeric, but I find this confusing, as I can't ever remember whether a `1` means `Sunday` or a `1` means `Monday`. Adding, `label = TRUE` creates the weekday variable as `Sunday`, `Monday`, `Tuesday`, etc.:
-
 
 
 ```r
@@ -668,3 +667,73 @@ ggplot(data = steelers_df, aes(x = day_var, y = Steelers)) +
 ```
 
 <img src="11-lubridate_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+
+## Non-Exercise `R` Code {#rcode-11}
+
+
+```r
+library(tidyverse)
+library(lubridate)
+today()
+now()
+holiday_df <- read_csv("data/animal_crossing_holidays.csv")
+holiday_df
+holiday_df %>% mutate(Date_test = dmy(Date1)) %>%
+  select(Date_test, everything())
+holiday_df %>% mutate(Date_test = mdy(Date2)) %>%
+  select(Date_test, everything())
+ggplot(data = holiday_df, aes(x = Date1, y = Holiday)) +
+  geom_point()
+holiday_df <- holiday_df %>% mutate(Date_test_plot = dmy(Date1)) %>%
+  select(Date_test_plot, everything())
+ggplot(data = holiday_df, aes(x = Date_test_plot, y = Holiday)) +
+  geom_point()
+holiday_df %>% mutate(Date_test2 = make_date(year = Year,
+                                             month = Month,
+                                             day = Day)) %>%
+  select(Date_test2, everything())
+holiday_df %>% mutate(Date_test2 = make_date(year = Year,
+                                             month = Month2,
+                                             day = Day)) %>%
+  select(Date_test2, everything())
+## install.packages("quantmod")
+library(quantmod)
+
+start <- ymd("2011-01-01")
+end <- ymd("2021-5-19")
+getSymbols(c("AAPL", "NTDOY", "CMG", "SPY"), src = "yahoo",
+           from = start, to = end)
+
+date_tib <- as_tibble(index(AAPL)) %>%
+  rename(start_date = value)
+app_tib <- as_tibble(AAPL)
+nint_tib <- as_tibble(NTDOY)
+chip_tib <- as_tibble(CMG)
+spy_tib <- as_tibble(SPY)
+all_stocks <- bind_cols(date_tib, app_tib, nint_tib, chip_tib, spy_tib)
+
+stocks_long <- all_stocks %>%
+  select(start_date, AAPL.Adjusted, NTDOY.Adjusted,
+                      CMG.Adjusted, SPY.Adjusted) %>%
+  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") %>%
+  mutate(Stock_Type = fct_recode(Stock_Type,
+                                 Apple = "AAPL.Adjusted",
+                                 Nintendo = "NTDOY.Adjusted",
+                                 Chipotle = "CMG.Adjusted",
+                                 `S & P 500` = "SPY.Adjusted"
+                                 ))
+tail(stocks_long)
+stocks_sp <- stocks_long %>% filter(Stock_Type == "S & P 500")
+ggplot(data = stocks_sp, aes(x = start_date, y = Price)) +
+  geom_line()
+stocks_long %>% mutate(year_stock = year(start_date))
+stocks_long %>% mutate(month_stock = month(start_date))
+stocks_long %>% mutate(day_stock = mday(start_date))
+test <- mdy("November 4, 2020")
+yday(test)
+stocks_long %>% mutate(day_in_year = yday(start_date))
+stocks_long %>% mutate(day_of_week = wday(start_date))
+stocks_long %>% mutate(day_of_week = wday(start_date,
+                                          label = TRUE, abbr = FALSE))
+```
+

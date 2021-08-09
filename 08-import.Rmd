@@ -16,7 +16,7 @@ We can also create a data set directly within `R` with the `tibble()` function i
 
 A _reproducible example_, or __reprex__, is a chunk of code that we can give to someone else that runs without any outside data. These are used often on StackExchange. The following code chunk is __not__ a reprex because people would not necessarily have the data set `parsedf.csv`.
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 ## Hello! How do I get rid of the units from the values in
 ## my variable `x`? Thanks!
 library(tidyverse)
@@ -26,7 +26,7 @@ head(test_df)
 
 We want to post on StackExchange for someone to help us convert a variable from a character vector with units to a numeric vector without units. We want to be able to give any possible helpers a small example data set to work with. For this, we can create our own tiny data set with `tibble()`:
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 ## Hello! How do I get rid of the units from the values in
 ## my variable `xvar`? Thanks!
 library(tidyverse)
@@ -66,7 +66,7 @@ Up to now, we have mostly worked with data that was "`R` Ready": meaning that it
 
 The `mtcarsex.csv` has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the `mtcarsex.csv` data set with the following code. Then, examine the data set with `head()`.
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
 cars_df <- read_csv("data/mtcarsex.csv")
 head(cars_df)
@@ -78,7 +78,7 @@ Type in `?read_csv` in the bottom-left window and look at some of the options in
 
 Let's start with `skip` so that we aren't reading in the first two rows of the data set:
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 cars_df <- read_csv("data/mtcarsex.csv", skip = 2)
 ## first two lines will be skipped
 head(cars_df)
@@ -88,7 +88,7 @@ That looks better, but there are still a couple of problems. What do you notice?
 
 Go the help and read about the `na` argument. Let's add that as an option to fix the missing value issue.
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2)
 head(cars_df)
 ```
@@ -97,7 +97,7 @@ Now look at the classes of each variable. Which classes look like they are incor
 
 We've talked about how to re-specify classes of variables using `mutate()` and the `as.factor()` or `as.Date()` or `as.numeric()` functions, but sometimes it's easier just to respecify the class when we are reading in the data. Notice how, when we use `read_csv()`, `R` gives us a message about each of the column types. This is actually an argument in `read_csv()` called `col_types`. `R` prints it so that it's easy for us to copy and paste it into `read_csv()` and change any classes. For example, notice how `cyl = col_double()` is changed to `cyl = col_factor()` in the code chunk below:
 
-```{r}
+```{r, appendix = TRUE}
 cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2,
   col_types = cols(
   mpg = col_double(),
@@ -116,7 +116,7 @@ cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2,
 
 Finally, there are two rows with all missing values. These aren't providing anything useful so we can `slice()` them out:
 
-```{r}
+```{r, appendix = TRUE}
 cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2,
   col_types = cols(
   mpg = col_double(),
@@ -137,7 +137,7 @@ head(cars_df)
 
 There are __many__ other possible file formats for data storage. For example, there is a data set called `oscars.tsv`, which is a tab-separated file. You can read it in with `read_tsv()` instead of `read_csv()`. 
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 oscars_df <- read_tsv("data/oscars.tsv")
 head(oscars_df)
 ```
@@ -146,14 +146,14 @@ You'll be able to work with .txt files and Excel files in the Exercises. Check o
 
 The final issue that we will discuss in this section occurs when a data set has units within its cells. Consider the earlier example that we used in the reprex section:
 
-```{r, message = FALSE}
+```{r, message = FALSE, appendix = TRUE}
 test_df <- read_csv("data/parsedf.csv")
 head(test_df)
 ```
 
 The `parse_number()` function is really useful if you just want the number (no commas, no units, etc.). The function is often paired with `mutate()` since we are creating a new variable:
 
-```{r}
+```{r, appendix = TRUE}
 test_df %>% mutate(x2 = parse_number(x))
 ```
 
@@ -189,7 +189,7 @@ Go to the following website and suppose that you wanted the table of gun violenc
 
 In the following code chunk, `read_html()` reads in the entire html file from the url provided while `html_nodes()` extracts only the tables on the website.
 
-```{r, results = "hide", message = FALSE}
+```{r, results = "hide", message = FALSE, appendix = TRUE}
 library(tidyverse)
 library(rvest)
 
@@ -207,7 +207,7 @@ You'll see that, for this example, there are 3 tables provided. The tables are s
 
 The `html_table()` function converts the table into a `data.frame` object.
 
-```{r, error = TRUE, results = "hide"}
+```{r, error = TRUE, results = "hide", appendix = TRUE}
 test1 <- tab[[1]] %>% html_table()
 test2 <- tab[[2]] %>% html_table()
 test3 <- tab[[3]] %>% html_table()
@@ -225,7 +225,7 @@ Go to the following website to look at the table of data that we want to scrape:
 
 After looking at the website, use the following code to scrape the data set.
 
-```{r, results = "hide"}
+```{r, results = "hide", appendix = TRUE}
 url <- "https://saintsathletics.com/sports/baseball/stats/2021"
 h <- read_html(url)
 tab <- h %>% html_nodes("table")
@@ -258,7 +258,7 @@ A final common data format that we will discuss is JSON (JavaScript Object Notat
 
 First, consider data from the mobile game Clash Royale. Install the `jsonlite` package and then use it to read in the `json` file with the function `fromJSON()`:
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 ## install.packages("jsonlite")
 library(jsonlite)
 cr_cards <- fromJSON("data/clash_royale_card_info.json")
@@ -272,7 +272,7 @@ The following give a couple of ways to grab the data using code. The `as_tibble(
 
 The first option specifies the name of the table that's in the JSON file (in this case, the name is `"cards"`):
 
-```{r}
+```{r, appendix = TRUE}
 library(tidyverse)
 cr_cards_flat <- cr_cards[["cards"]]
 cr_cards_df <- as_tibble(cr_cards_flat)
@@ -281,7 +281,7 @@ head(cr_cards_df)
 
 The second method uses the `flatten()` function from the `purrr` package, the only package in the core `tidyverse` that we do not talk about in detail in this class. There is also a different `flatten()` function in the `jsonlite` package. In the code below, we specify that we want to use `flatten()` from `purrr` with `purrr::flatten()`. If we wanted to use `flatten()` from `jsonlite`, we'd use `jsonlite::flatten()`
 
-```{r}
+```{r, appendix = TRUE}
 cr_cards_flat2 <- purrr::flatten(cr_cards)
 cr_cards_df2 <- as_tibble(cr_cards_flat2)
 head(cr_cards_df2)
@@ -293,7 +293,7 @@ Both methods give a `tibble` that we can then use our usual `tidyverse` tools `g
 
 Now let's try to look at some animal crossing data that were obtained from <a href="https://github.com/jefflomacy/villagerdb" target="_blank">https://github.com/jefflomacy/villagerdb</a>. We first just want to look at the data from one individual villager (ace) in the file `ace.json`.
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 acedata <- fromJSON("data/ace.json")
 aceflat <- purrr::flatten(acedata)
 head(aceflat)
@@ -515,5 +515,10 @@ h <- read_html(url)
 tab <- h %>% html_nodes("table")
 obj <- tab[[2]] %>% html_table(fill = TRUE, header = TRUE)
 obj
+```
+
+## Non-Exercise `R` Code {#rcode-8}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
 ```
 

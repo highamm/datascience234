@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 R Basics | STAT 234: Data Science</title>
+  <title>7 R Basics | STAT 234: Data Science</title>
   <meta name="description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 R Basics | STAT 234: Data Science" />
+  <meta property="og:title" content="7 R Basics | STAT 234: Data Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 R Basics | STAT 234: Data Science" />
+  <meta name="twitter:title" content="7 R Basics | STAT 234: Data Science" />
   
   <meta name="twitter:description" content="This book contains all examples for SLU’s Introduction to Data Science course." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Matt Higham" />
 
 
-<meta name="date" content="2021-07-07" />
+<meta name="date" content="2021-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -121,7 +121,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -134,9 +133,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">STAT 234: Data Science</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus and Course Information</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-information"><i class="fa fa-check"></i><b>1.1</b> General Information</a></li>
@@ -212,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.5" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-stacked-etc.-s"><i class="fa fa-check"></i><b>3.7.5</b> Boxplots, Stacked, etc. S</a></li>
 <li class="chapter" data-level="3.7.6" data-path="ggplot2.html"><a href="ggplot2.html#chapexercise-2-S"><i class="fa fa-check"></i><b>3.7.6</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2.html"><a href="ggplot2.html#rcode-2"><i class="fa fa-check"></i><b>3.8</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Wrangling with <code>dplyr</code></a>
 <ul>
@@ -247,6 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#missing-values-s"><i class="fa fa-check"></i><b>4.6.4</b> Missing Values S</a></li>
 <li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#chapexercise-3-S"><i class="fa fa-check"></i><b>4.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="4.7" data-path="dplyr.html"><a href="dplyr.html#rcode-3"><i class="fa fa-check"></i><b>4.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidying with <code>tidyr</code></a>
 <ul>
@@ -277,6 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#skimming-data-with-skimr-s"><i class="fa fa-check"></i><b>5.6.4</b> Skimming Data with <code>skimr()</code> S</a></li>
 <li class="chapter" data-level="5.6.5" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#chapexercise-4-S"><i class="fa fa-check"></i><b>5.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="5.7" data-path="tidying-with-tidyr.html"><a href="tidying-with-tidyr.html#rcode-4"><i class="fa fa-check"></i><b>5.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html"><i class="fa fa-check"></i><b>6</b> Communication with <code>RMarkdown</code></a>
 <ul>
@@ -311,6 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5.3" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#ggplot2-communication-s"><i class="fa fa-check"></i><b>6.5.3</b> <code>ggplot2</code> Communication S</a></li>
 <li class="chapter" data-level="6.5.4" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#chapexercise-5-S"><i class="fa fa-check"></i><b>6.5.4</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="6.6" data-path="communication-with-rmarkdown.html"><a href="communication-with-rmarkdown.html#rcode-5"><i class="fa fa-check"></i><b>6.6</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>7</b> <code>R</code> Basics</a>
 <ul>
@@ -355,6 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.5" data-path="r-basics.html"><a href="r-basics.html#other-r-topics-s"><i class="fa fa-check"></i><b>7.7.5</b> Other R Topics S</a></li>
 <li class="chapter" data-level="7.7.6" data-path="r-basics.html"><a href="r-basics.html#chapexercise-6-S"><i class="fa fa-check"></i><b>7.7.6</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="7.8" data-path="r-basics.html"><a href="r-basics.html#rcode-6"><i class="fa fa-check"></i><b>7.8</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html"><i class="fa fa-check"></i><b>8</b> Factors with <code>forcats</code></a>
 <ul>
@@ -378,6 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.2" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#reorder-factor-levels-s"><i class="fa fa-check"></i><b>8.4.2</b> Reorder Factor Levels S</a></li>
 <li class="chapter" data-level="8.4.3" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#chapexercise-7-S"><i class="fa fa-check"></i><b>8.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="8.5" data-path="factors-with-forcats.html"><a href="factors-with-forcats.html#rcode-7"><i class="fa fa-check"></i><b>8.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html"><i class="fa fa-check"></i><b>9</b> Reprexes and Import</a>
 <ul>
@@ -409,6 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.4" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#json-with-jsonlite-s"><i class="fa fa-check"></i><b>9.6.4</b> JSON with <code>jsonlite</code> S</a></li>
 <li class="chapter" data-level="9.6.5" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#chapexercise-8-S"><i class="fa fa-check"></i><b>9.6.5</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="9.7" data-path="reprexes-and-import.html"><a href="reprexes-and-import.html#rcode-8"><i class="fa fa-check"></i><b>9.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>10</b> Data Ethics</a>
 <ul>
@@ -459,6 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.6.3" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#filtering-joins-s"><i class="fa fa-check"></i><b>11.6.3</b> Filtering Joins S</a></li>
 <li class="chapter" data-level="11.6.4" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#chapexercise-10-S"><i class="fa fa-check"></i><b>11.6.4</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="11.7" data-path="merging-with-dplyr.html"><a href="merging-with-dplyr.html#rcode-10"><i class="fa fa-check"></i><b>11.7</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html"><i class="fa fa-check"></i><b>12</b> Dates with <code>lubridate</code></a>
 <ul>
@@ -481,6 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.2" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#functions-for-date-variables-s"><i class="fa fa-check"></i><b>12.4.2</b> Functions for <code>&lt;date&gt;</code> Variables S</a></li>
 <li class="chapter" data-level="12.4.3" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#chapexercise-11-S"><i class="fa fa-check"></i><b>12.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="12.5" data-path="dates-with-lubridate.html"><a href="dates-with-lubridate.html#rcode-11"><i class="fa fa-check"></i><b>12.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html"><i class="fa fa-check"></i><b>13</b> Strings with <code>stringr</code></a>
 <ul>
@@ -496,6 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#second-example-s"><i class="fa fa-check"></i><b>13.4.2</b> Second Example S</a></li>
 <li class="chapter" data-level="13.4.3" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#chapexercise-12-S"><i class="fa fa-check"></i><b>13.4.3</b> Chapter Exercises S</a></li>
 </ul></li>
+<li class="chapter" data-level="13.5" data-path="strings-with-stringr.html"><a href="strings-with-stringr.html#rcode-12"><i class="fa fa-check"></i><b>13.5</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html"><i class="fa fa-check"></i><b>14</b> Predictive Modeling with knn</a>
 <ul>
@@ -525,10 +531,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.5.2" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#knn-introduction-s"><i class="fa fa-check"></i><b>14.5.2</b> knn Introduction S</a></li>
 <li class="chapter" data-level="14.5.3" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#choosing-predictors-and-k-s"><i class="fa fa-check"></i><b>14.5.3</b> Choosing Predictors and k S</a></li>
 </ul></li>
+<li class="chapter" data-level="14.6" data-path="predictive-modeling-with-knn.html"><a href="predictive-modeling-with-knn.html#rcode-13"><i class="fa fa-check"></i><b>14.6</b> Non-Exercise <code>R</code> Code</a></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/highamm/datascience234" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -547,7 +551,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="r-basics" class="section level1" number="7">
-<h1><span class="header-section-number">Chapter 7</span> <code>R</code> Basics</h1>
+<h1><span class="header-section-number">7</span> <code>R</code> Basics</h1>
 <p><strong>Goals</strong>:</p>
 <ul>
 <li>describe common classes for variables in a data set.</li>
@@ -578,9 +582,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>The data set was modified from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-07-30" target="_blank">https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-07-30</a>.</p>
 <p>Run the code in the following <code>R</code> chunk to read in the data.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="r-basics.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb290-2"><a href="r-basics.html#cb290-2" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/videogame_clean.csv&quot;</span>)</span>
-<span id="cb290-3"><a href="r-basics.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(videogame_df)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="r-basics.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb294-2"><a href="r-basics.html#cb294-2" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/videogame_clean.csv&quot;</span>)</span>
+<span id="cb294-3"><a href="r-basics.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(videogame_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 15
 ##   game       release_date release_date2 price owners   median_playtime metascore
 ##   &lt;chr&gt;      &lt;chr&gt;        &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;
@@ -595,13 +599,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   average_playtime &lt;dbl&gt;, meta_cat_factor &lt;chr&gt;</code></pre>
 <p>A data frame or tibble holds variables that are allowed to be different classes. If a variable is a different class than you would expect, you’ll get some strange errors or results when trying to wrangle the data or make graphics.</p>
 <p>Run the following lines of code. In some cases, we are only using the first 100 observations in <code>videogame_small</code>. Otherwise, the code would take a <strong>very</strong> long time to run.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="r-basics.html#cb292-1" aria-hidden="true" tabindex="-1"></a>videogame_small <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
-<span id="cb292-2"><a href="r-basics.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_small, <span class="fu">aes</span>(<span class="at">x =</span> release_date, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb292-3"><a href="r-basics.html#cb292-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="r-basics.html#cb296-1" aria-hidden="true" tabindex="-1"></a>videogame_small <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
+<span id="cb296-2"><a href="r-basics.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_small, <span class="fu">aes</span>(<span class="at">x =</span> release_date, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb296-3"><a href="r-basics.html#cb296-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <pre><code>## Warning: Removed 5 rows containing missing values (geom_point).</code></pre>
 <p><img src="06-basics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="r-basics.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_small, <span class="fu">aes</span>(<span class="at">x =</span> release_date2, <span class="at">y =</span> metascore)) <span class="sc">+</span></span>
-<span id="cb294-2"><a href="r-basics.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> price_cat))</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="r-basics.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_small, <span class="fu">aes</span>(<span class="at">x =</span> release_date2, <span class="at">y =</span> metascore)) <span class="sc">+</span></span>
+<span id="cb298-2"><a href="r-basics.html#cb298-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> price_cat))</span></code></pre></div>
 <pre><code>## Warning: Removed 43 rows containing missing values (geom_point).</code></pre>
 <p><img src="06-basics_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 <p>In the first plot, <code>release_date</code> isn’t ordered according to how you would expect (by date). Instead, <code>R</code> orders it alphabetically.</p>
@@ -609,7 +613,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Both plots are not rendered correctly because the variable classes are not correct in the underlying data set. Up until this point, the data that has been provided has almost always had the correct variable classes, by default, but that won’t always be the case!</p>
 <p>We’ve actually seen both of these issues before as well (the Date issue in the exercise data and the continuous colour scale in the cars data), but, in both of these instances, code was provided to “fix” the problem. After this section, you’ll have the tools to fix many <code>class</code> issues on your own!</p>
 <p>If you examine the output of the following line of code</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="r-basics.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(videogame_df)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="r-basics.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(videogame_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 15
 ##   game       release_date release_date2 price owners   median_playtime metascore
 ##   &lt;chr&gt;      &lt;chr&gt;        &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;
@@ -634,12 +638,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="referencing-variables-and-using-str" class="section level3" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Referencing Variables and Using <code>str()</code></h3>
 <p>We can use <code>name_of_dataset$name_of_variable</code> to look at a specific variable in a data set:</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="r-basics.html#cb298-1" aria-hidden="true" tabindex="-1"></a>videogame_df<span class="sc">$</span>game</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="r-basics.html#cb302-1" aria-hidden="true" tabindex="-1"></a>videogame_df<span class="sc">$</span>game</span></code></pre></div>
 <p>prints the first thousand entries of the variable <code>game</code>. There are a few ways to get the <code>class</code> of this variable: the way that we will use most often is with <code>str()</code>, which stands for “structure,” and gives the class of the variable, the number of observations (26688), as well as the first couple of observations:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="r-basics.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>game)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="r-basics.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>game)</span></code></pre></div>
 <pre><code>##  chr [1:26688] &quot;Half-Life 2&quot; &quot;Counter-Strike: Source&quot; ...</code></pre>
 <p>You can also get a variable’s class more directly with <code>class()</code></p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="r-basics.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(videogame_df<span class="sc">$</span>game)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="r-basics.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(videogame_df<span class="sc">$</span>game)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 </div>
 </div>
@@ -649,73 +653,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="chr-and-fct-class" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</h3>
 <p>With the character class, <code>R</code> will give you a warning and/or a missing value if you try to perform any numerical operations:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="r-basics.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>game)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="r-basics.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>game)</span></code></pre></div>
 <pre><code>## Warning in mean.default(videogame_df$game): argument is not numeric or logical:
 ## returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="r-basics.html#cb306-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">maxgame =</span> <span class="fu">max</span>(game))</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="r-basics.html#cb310-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">maxgame =</span> <span class="fu">max</span>(game))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   maxgame
 ##   &lt;chr&gt;  
 ## 1 &lt;NA&gt;</code></pre>
 <p>You also can’t convert a character class to numeric. You can, however, convert a character class to a <code>&lt;fct&gt;</code> class, using <code>as.factor()</code>. The <code>&lt;fct&gt;</code> class will be useful when we discuss the <code>forcats</code> package, but isn’t particularly useful now.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="r-basics.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(videogame_df<span class="sc">$</span>meta_cat)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="r-basics.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(videogame_df<span class="sc">$</span>meta_cat)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="r-basics.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.factor</span>(videogame_df<span class="sc">$</span>meta_cat))</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="r-basics.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.factor</span>(videogame_df<span class="sc">$</span>meta_cat))</span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <p>In general, <code>as._____</code> will lets you convert between classes. Note, however, that we aren’t saving our converted variable anywhere. If we wanted the conversion to the factor to be saved in the data set, we can use <code>mutate()</code>:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="r-basics.html#cb312-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span></span>
-<span id="cb312-2"><a href="r-basics.html#cb312-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">meta_cat_factor =</span> <span class="fu">as.factor</span>(meta_cat))</span>
-<span id="cb312-3"><a href="r-basics.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>meta_cat_factor)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="r-basics.html#cb316-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span></span>
+<span id="cb316-2"><a href="r-basics.html#cb316-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">meta_cat_factor =</span> <span class="fu">as.factor</span>(meta_cat))</span>
+<span id="cb316-3"><a href="r-basics.html#cb316-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>meta_cat_factor)</span></code></pre></div>
 <pre><code>##  Factor w/ 4 levels &quot;Generally Favorable&quot;,..: 4 1 3 NA NA NA 4 1 3 NA ...</code></pre>
 <p>For most <code>R</code> functions, it won’t matter whether your variable is in class character or class factor. In general, though, character classes are for variables that have a ton of different levels, like the name of the videogame, whereas factors are reserved for categorical variables with a finite number of levels.</p>
 </div>
 <div id="date-class" class="section level3" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> <code>&lt;date&gt;</code> Class</h3>
 <p>The <code>&lt;date&gt;</code> class is used for dates, and the <code>&lt;datetime&gt;</code> class is used for Dates with times. <code>R</code> requires a very specific format for dates and times. Note that, while to the human eye, both of the following variables contain dates, only one is of class <code>&lt;date&gt;</code>:</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="r-basics.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>release_date)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="r-basics.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>release_date)</span></code></pre></div>
 <pre><code>##  chr [1:26688] &quot;Nov 16, 2004&quot; &quot;Nov 1, 2004&quot; &quot;Mar 1, 2004&quot; &quot;Nov 1, 2004&quot; ...</code></pre>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="r-basics.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>release_date2)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="r-basics.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>release_date2)</span></code></pre></div>
 <pre><code>##  Date[1:26688], format: &quot;2004-11-16&quot; &quot;2004-11-01&quot; &quot;2004-03-01&quot; &quot;2004-11-01&quot; &quot;2004-06-01&quot; ...</code></pre>
 <p><code>release_date</code> is class character, which is why we had the issue with the odd ordering of the dates earlier. You can try converting it using <code>as.Date</code>, but this function doesn’t always work:</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="r-basics.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(videogame_df<span class="sc">$</span>release_date)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="r-basics.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(videogame_df<span class="sc">$</span>release_date)</span></code></pre></div>
 <pre><code>## Error in charToDate(x): character string is not in a standard unambiguous format</code></pre>
 <p>Dates and times can be pretty complicated. In fact, we will spend an entire week covering them using the <code>lubridate</code> package.</p>
 <p>On variables that are in <code>Date</code> format, like <code>release_date2</code>, we can use numerical operations:</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="r-basics.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(videogame_df<span class="sc">$</span>release_date2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="r-basics.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(videogame_df<span class="sc">$</span>release_date2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2017-06-09&quot;</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="r-basics.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>release_date2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="r-basics.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>release_date2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2016-09-15&quot;</code></pre>
 <p>What do you think taking the median or taking the mean of a date class means?</p>
 </div>
 <div id="dbl-and-int-class" class="section level3" number="7.2.3">
 <h3><span class="header-section-number">7.2.3</span> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</h3>
 <p>Class <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> are probably the most self-explanatory classes. <code>&lt;dbl&gt;</code>, the <code>numeric</code> class, are just variables that have only numbers in them while <code>&lt;int&gt;</code> only have integers (…, -2, -1, 0, 1, 2, ….). You can do numerical operations on either of these classes (and we’ve been doing them throughout the semester). For our purposes, these two classes are interchangeable.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="r-basics.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>price)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="r-basics.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>price)</span></code></pre></div>
 <pre><code>##  num [1:26688] 9.99 9.99 9.99 4.99 9.99 ...</code></pre>
 <p>Problems arise when numeric variables are coded as something non-numeric, or when non-numeric variables are coded as numeric. For example, examine:</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="r-basics.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>price_cat)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="r-basics.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>price_cat)</span></code></pre></div>
 <pre><code>##  num [1:26688] 1 1 1 1 1 NA 2 1 1 1 ...</code></pre>
 <p><code>price_cat</code> is categorical but is coded as <code>1</code> for cheap games, <code>2</code> for moderately priced games, and <code>3</code> for expensive games. Therefore, <code>R</code> thinks that the variable is numeric, when, it’s actually a factor.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="r-basics.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">as.factor</span>(videogame_df<span class="sc">$</span>price_cat))</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="r-basics.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">as.factor</span>(videogame_df<span class="sc">$</span>price_cat))</span></code></pre></div>
 <pre><code>##  Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 1 1 1 1 1 NA 2 1 1 1 ...</code></pre>
 <p>This is the cause of the odd colour scale that we encountered earlier and can be fixed by converting <code>price_cat</code> to a factor:</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="r-basics.html#cb330-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span></span>
-<span id="cb330-2"><a href="r-basics.html#cb330-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_factor =</span> <span class="fu">as.factor</span>(price_cat)) </span>
-<span id="cb330-3"><a href="r-basics.html#cb330-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_df, <span class="fu">aes</span>(<span class="at">x =</span> release_date2, <span class="at">y =</span> metascore)) <span class="sc">+</span></span>
-<span id="cb330-4"><a href="r-basics.html#cb330-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> price_factor))</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="r-basics.html#cb334-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span></span>
+<span id="cb334-2"><a href="r-basics.html#cb334-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_factor =</span> <span class="fu">as.factor</span>(price_cat)) </span>
+<span id="cb334-3"><a href="r-basics.html#cb334-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_df, <span class="fu">aes</span>(<span class="at">x =</span> release_date2, <span class="at">y =</span> metascore)) <span class="sc">+</span></span>
+<span id="cb334-4"><a href="r-basics.html#cb334-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> price_factor))</span></code></pre></div>
 <pre><code>## Warning: Removed 23838 rows containing missing values (geom_point).</code></pre>
 <p><img src="06-basics_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 <div id="lgl-class" class="section level3" number="7.2.4">
 <h3><span class="header-section-number">7.2.4</span> <code>&lt;lgl&gt;</code> Class</h3>
 <p>Finally, there is a class of variables called logical. These variables can only take 2 values: <code>TRUE</code> or <code>FALSE</code>. For example, <code>playtime_miss</code>, a variable for whether or not the <code>median_playtime</code> variable is missing or not, is logical:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="r-basics.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>playtime_miss)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="r-basics.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>playtime_miss)</span></code></pre></div>
 <pre><code>##  logi [1:26688] FALSE FALSE FALSE TRUE TRUE FALSE ...</code></pre>
 <p>It’s a little strange at first, but <code>R</code> can perform numeric operations on logical classes. All <code>R</code> does is treat every <code>TRUE</code> as a <code>1</code> and every <code>FALSE</code> as a <code>0</code>. Therefore, <code>sum()</code> gives the total number of <code>TRUE</code>s and <code>mean()</code> gives the proportion of <code>TRUE</code>s. So, we can find the number and proportion of games that are missing their <code>median_playtime</code> as:</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="r-basics.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(videogame_df<span class="sc">$</span>playtime_miss)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="r-basics.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(videogame_df<span class="sc">$</span>playtime_miss)</span></code></pre></div>
 <pre><code>## [1] 25837</code></pre>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="r-basics.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>playtime_miss)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="r-basics.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>playtime_miss)</span></code></pre></div>
 <pre><code>## [1] 0.968113</code></pre>
 <p>There’s a lot of games that are missing this information!</p>
 <p>We’ve actually used the ideas of logical variables for quite some time now, particularly in statements involving <code>if_else()</code>, <code>case_when()</code>, <code>filter()</code>, and <code>mutate()</code>.</p>
@@ -725,8 +729,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.5</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="r-basics.html#solutions-6">7.7</a>.</p>
 <p>We will use the fitness data set again for this set of exercises, as the data set has some of the issues with variable class that we have discussed. However, in week 1, some of the work of the work to fix those issues was already done before you saw the data. Now, you’ll get to fix a couple of those issues! Read in the data set with:</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="r-basics.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb338-2"><a href="r-basics.html#cb338-2" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/higham_fitness_notclean.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="r-basics.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb342-2"><a href="r-basics.html#cb342-2" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/higham_fitness_notclean.csv&quot;</span>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>What is the issue with the following plot? There’s no need to fix the plot (we’ll see how to fix it when we introduce the <code>lubridate</code> package).</p></li>
 <li><p>* What is the issue with the following plot? After you figure out the issue, use <code>mutate()</code> to create a new variable that fixes the issue and then reconstruct the graph.</p></li>
@@ -746,59 +750,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tibble-and-data.frame" class="section level3" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> <code>tibble</code> and <code>data.frame</code></h3>
 <p>The <code>tibble</code> object is very similar to the <code>data.frame</code> object. You can also check what type of object you’re working with using the <code>str()</code> command:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="r-basics.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df) <span class="do">## look at the beginning to see &quot;tibble&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="r-basics.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df) <span class="do">## look at the beginning to see &quot;tibble&quot;</span></span></code></pre></div>
 <p>We will have a small section on <code>tibble</code>s in the coming weeks so we won’t focus on them here. But, we should take note that, to reference a specific element in a <code>tibble</code>, called <em>indexing</em>, you can use <code>[# , #]</code>. So, for example, <code>videogame_df[5, 3]</code> grabs the value in the fifth row and the third column:</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="r-basics.html#cb340-1" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">5</span>, <span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="r-basics.html#cb344-1" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">5</span>, <span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   release_date2
 ##   &lt;date&gt;       
 ## 1 2004-06-01</code></pre>
 <p>More often, we’d want to grab an entire row (or range of rows) or an entire column. We can do this by leaving the row number blank (to grab the entire column) or by leaving the column number blank (to grab the entire row):</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="r-basics.html#cb342-1" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="dv">3</span>] <span class="do">## grab the third column</span></span>
-<span id="cb342-2"><a href="r-basics.html#cb342-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb342-3"><a href="r-basics.html#cb342-3" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">5</span>, ] <span class="do">## grab the fifth row</span></span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="r-basics.html#cb346-1" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="dv">3</span>] <span class="do">## grab the third column</span></span>
+<span id="cb346-2"><a href="r-basics.html#cb346-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb346-3"><a href="r-basics.html#cb346-3" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">5</span>, ] <span class="do">## grab the fifth row</span></span></code></pre></div>
 <p>We can also grab a range of columns or rows using the <code>:</code> operator:</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="r-basics.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span><span class="dv">7</span></span>
-<span id="cb343-2"><a href="r-basics.html#cb343-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb343-3"><a href="r-basics.html#cb343-3" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>] <span class="do">## grab columns 3 through 7</span></span>
-<span id="cb343-4"><a href="r-basics.html#cb343-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb343-5"><a href="r-basics.html#cb343-5" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, ] <span class="do">## grab rows 3 through 7</span></span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="r-basics.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span><span class="dv">7</span></span>
+<span id="cb347-2"><a href="r-basics.html#cb347-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb347-3"><a href="r-basics.html#cb347-3" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>] <span class="do">## grab columns 3 through 7</span></span>
+<span id="cb347-4"><a href="r-basics.html#cb347-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb347-5"><a href="r-basics.html#cb347-5" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, ] <span class="do">## grab rows 3 through 7</span></span></code></pre></div>
 <p>or we can grab different columns or rows using <code>c()</code>:</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="r-basics.html#cb344-1" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)] <span class="do">## grab columns 1, 3, and 4</span></span>
-<span id="cb344-2"><a href="r-basics.html#cb344-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-3"><a href="r-basics.html#cb344-3" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>), ] <span class="do">## grab rows 1, 3, and 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="r-basics.html#cb348-1" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)] <span class="do">## grab columns 1, 3, and 4</span></span>
+<span id="cb348-2"><a href="r-basics.html#cb348-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb348-3"><a href="r-basics.html#cb348-3" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>), ] <span class="do">## grab rows 1, 3, and 4</span></span></code></pre></div>
 <p>To get rid of an entire row or column, use <code>-</code>: <code>videogame_df[ ,-c(1, 2)]</code> drops the first and second columns while <code>videogame_df[-c(1, 2), ]</code> drops the first and second rows.</p>
 </div>
 <div id="vectors" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Vectors</h3>
 <p>A vector is an object that holds “things,” or elements, of the same class. You can create a vector in <code>R</code> using the <code>c()</code> function, which stands for “concatenate.” We’ve used the <code>c()</code> function before to bind things together; we just hadn’t yet discussed it in the context of creating a vector.</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="r-basics.html#cb345-1" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb345-2"><a href="r-basics.html#cb345-2" aria-hidden="true" tabindex="-1"></a>vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb345-3"><a href="r-basics.html#cb345-3" aria-hidden="true" tabindex="-1"></a>vec3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb345-4"><a href="r-basics.html#cb345-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(vec1); <span class="fu">str</span>(vec2); <span class="fu">str</span>(vec3)</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="r-basics.html#cb349-1" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb349-2"><a href="r-basics.html#cb349-2" aria-hidden="true" tabindex="-1"></a>vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb349-3"><a href="r-basics.html#cb349-3" aria-hidden="true" tabindex="-1"></a>vec3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb349-4"><a href="r-basics.html#cb349-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(vec1); <span class="fu">str</span>(vec2); <span class="fu">str</span>(vec3)</span></code></pre></div>
 <pre><code>##  num [1:3] 1 3 2</code></pre>
 <pre><code>##  chr [1:3] &quot;b&quot; &quot;1&quot; &quot;2&quot;</code></pre>
 <pre><code>##  logi [1:3] FALSE FALSE TRUE</code></pre>
 <p>Notice that <code>vec2</code> is a character class. <code>R</code> requires all elements in a vector to be of one class; since <code>R</code> knows <code>b</code> can’t be numeric, it makes all of the numbers characters as well.</p>
 <p>Using the <code>dataset$variable</code> draws out a vector from a <code>tibble</code> or <code>data.frame</code>:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="r-basics.html#cb349-1" aria-hidden="true" tabindex="-1"></a>videogame_df<span class="sc">$</span>metascore</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="r-basics.html#cb353-1" aria-hidden="true" tabindex="-1"></a>videogame_df<span class="sc">$</span>metascore</span></code></pre></div>
 <p>If you wanted to make the above vector “by hand,” you’d need to have a lot of patience: <code>c(96, 88, 65, NA, NA, NA, 93, .........)</code></p>
 <p>Just like tibbles, you can save vectors as something for later use:</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="r-basics.html#cb350-1" aria-hidden="true" tabindex="-1"></a>metavec <span class="ot">&lt;-</span> videogame_df<span class="sc">$</span>metascore</span>
-<span id="cb350-2"><a href="r-basics.html#cb350-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(metavec, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="r-basics.html#cb354-1" aria-hidden="true" tabindex="-1"></a>metavec <span class="ot">&lt;-</span> videogame_df<span class="sc">$</span>metascore</span>
+<span id="cb354-2"><a href="r-basics.html#cb354-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(metavec, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 71.89544</code></pre>
 <p>How would you get the mean <code>metascore</code> using <code>dplyr</code> functions?</p>
 <p>Vectors are one-dimensional: if we want to grab the 100th element of a vector we just use <code>name_of_vector[100]</code>:</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="r-basics.html#cb352-1" aria-hidden="true" tabindex="-1"></a>metavec[<span class="dv">100</span>] <span class="do">## 100th element is missing</span></span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="r-basics.html#cb356-1" aria-hidden="true" tabindex="-1"></a>metavec[<span class="dv">100</span>] <span class="do">## 100th element is missing</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>Be aware that, if you’re coming from a math perspective, a “vector” in <code>R</code> doesn’t correspond to a “vector” in mathematics or physics.</p>
 </div>
 <div id="lists" class="section level3" number="7.3.3">
 <h3><span class="header-section-number">7.3.3</span> Lists</h3>
 <p>Lists are one of the more flexible objects in <code>R</code>: you can put objects of different classes in the same list and lists aren’t required to be rectangular (like <code>tibbles</code> are). Lists are <strong>extremely</strong> useful because of this flexibility, but, we won’t use them much in this class. Therefore, we will just see an example of a list before moving on:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="r-basics.html#cb354-1" aria-hidden="true" tabindex="-1"></a>testlist <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">4</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>),</span>
-<span id="cb354-2"><a href="r-basics.html#cb354-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)))</span>
-<span id="cb354-3"><a href="r-basics.html#cb354-3" aria-hidden="true" tabindex="-1"></a>testlist</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="r-basics.html#cb358-1" aria-hidden="true" tabindex="-1"></a>testlist <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">4</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>),</span>
+<span id="cb358-2"><a href="r-basics.html#cb358-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)))</span>
+<span id="cb358-3"><a href="r-basics.html#cb358-3" aria-hidden="true" tabindex="-1"></a>testlist</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;a&quot;
 ## 
@@ -829,45 +833,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.</p></li>
 <li><p>Use <code>dplyr</code> functions and the <code>%in%</code> operator to create the new <code>weekend_ind</code> variable. You can use the following code chunk to help with what <code>%in%</code> does:</p></li>
 </ol>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="r-basics.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb356-2"><a href="r-basics.html#cb356-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb356-3"><a href="r-basics.html#cb356-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-4"><a href="r-basics.html#cb356-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="r-basics.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb360-2"><a href="r-basics.html#cb360-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb360-3"><a href="r-basics.html#cb360-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-4"><a href="r-basics.html#cb360-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="piping-with-magrittr" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> Piping with <code>magrittr</code></h2>
 <p>The pipe <code>%&gt;%</code> is loaded automatically when the <code>tidyverse</code> library is loaded, but the operator comes from the <code>magrittr</code> package. We’ve been using the pipe quite a bit, but let’s delve a little deeper into what it’s actually doing.</p>
 <p>Let’s say you want to <code>filter()</code> the data set to include only observations with a <code>metascore</code> that isn’t missing. We’ve been using:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="r-basics.html#cb357-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(metascore))</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="r-basics.html#cb361-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(metascore))</span></code></pre></div>
 <p>What the pipe is doing is putting <code>videogame_df</code> as the first argument in the <code>filter()</code> function so that the piping statement in the chunk above is equivalent to:</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="r-basics.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore))</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="r-basics.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore))</span></code></pre></div>
 <p>If we want to first filter out games with a non-missing metascore, get rid of all observations with a median play time of 0, and then obtain the “median” <code>median_playtime</code> for each of the 3 price categories, we would typically use</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="r-basics.html#cb359-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(metascore)) <span class="sc">%&gt;%</span></span>
-<span id="cb359-2"><a href="r-basics.html#cb359-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb359-3"><a href="r-basics.html#cb359-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(price_cat) <span class="sc">%&gt;%</span></span>
-<span id="cb359-4"><a href="r-basics.html#cb359-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_med_time =</span> <span class="fu">median</span>(median_playtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="r-basics.html#cb363-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(metascore)) <span class="sc">%&gt;%</span></span>
+<span id="cb363-2"><a href="r-basics.html#cb363-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb363-3"><a href="r-basics.html#cb363-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(price_cat) <span class="sc">%&gt;%</span></span>
+<span id="cb363-4"><a href="r-basics.html#cb363-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_med_time =</span> <span class="fu">median</span>(median_playtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <p>We see from the summary that, in general, games do tend to give you more “bang for the buck”: more expensive games tend to have a larger median play time. Consecutive pipes build on each other: we can slowly build out what the pipe is doing step-by-step. Starting from the top, <code>videogame_df</code> is the first argument in the <code>filter(!is.na(metascore))</code> function:</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="r-basics.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore))</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="r-basics.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore))</span></code></pre></div>
 <p><code>filter(videogame_df, !is.na(metascore))</code> is the first argument in <code>filter(median_playtime &gt; 0)</code>:</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="r-basics.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)), median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="r-basics.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)), median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
 <p><code>filter(filter(videogame_df, !is.na(metascore)), median_playtime &gt; 0)</code> is the first argument in <code>group_by(price_cat)</code>:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="r-basics.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)),</span>
-<span id="cb362-2"><a href="r-basics.html#cb362-2" aria-hidden="true" tabindex="-1"></a>                median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
-<span id="cb362-3"><a href="r-basics.html#cb362-3" aria-hidden="true" tabindex="-1"></a>  price_cat)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="r-basics.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)),</span>
+<span id="cb366-2"><a href="r-basics.html#cb366-2" aria-hidden="true" tabindex="-1"></a>                median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb366-3"><a href="r-basics.html#cb366-3" aria-hidden="true" tabindex="-1"></a>  price_cat)</span></code></pre></div>
 <p>and <code>group_by(filter(filter(videogame_df, !is.na(metascore)), median_playtime &gt; 0), price_cat)</code> is the first argument of <code>summarise(avg_med_time = median(median_playtime, na.rm = TRUE))</code>:</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="r-basics.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)),</span>
-<span id="cb363-2"><a href="r-basics.html#cb363-2" aria-hidden="true" tabindex="-1"></a>  median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>), price_cat), </span>
-<span id="cb363-3"><a href="r-basics.html#cb363-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_med_time =</span> <span class="fu">median</span>(median_playtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="r-basics.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)),</span>
+<span id="cb367-2"><a href="r-basics.html#cb367-2" aria-hidden="true" tabindex="-1"></a>  median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>), price_cat), </span>
+<span id="cb367-3"><a href="r-basics.html#cb367-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_med_time =</span> <span class="fu">median</span>(median_playtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <p>and we obtain the same result without the <code>%&gt;%</code> pipe. The example shows that, for our purposes, the pipe is most useful in aiding the readability of our code. It’s a lot easier to see what’s happening in the code chunk with the pipes than it is in the previous code chunk without the pipe.</p>
 <div id="when-you-cant-use-the-pipe" class="section level3" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> When You Can’t Use the Pipe</h3>
 <p>So, the pipe is a convenient way to put what precedes the pipe as the first argument to the function that follows the pipe. It’s important to understand this as you learn more about <code>R</code> because, while the functions in <code>tidyverse</code> are purposefully made to make good use of the pipe, not all functions in <code>R</code> utilize the pipe. Most of the functions in the <code>tidyverse</code> have a first argument that is a data set (which is why we can use pipes consecutively), but this isn’t the case with all <code>R</code> functions.</p>
 <p>For example, if you have taken STAT 213, you’ve used <code>lm()</code> to fit many different types of linear models. If you haven’t taken STAT 213, <code>lm(response ~ explanatory)</code> stands for “linear model” and can be used to fit the simple linear regression model that you learned about in STAT 113. You might expect something like this to work:</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="r-basics.html#cb364-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">lm</span>(metascore <span class="sc">~</span> price)</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="r-basics.html#cb368-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">lm</span>(metascore <span class="sc">~</span> price)</span></code></pre></div>
 <pre><code>## Error in as.data.frame.default(data): cannot coerce class &#39;&quot;formula&quot;&#39; to a data.frame</code></pre>
 <p>But it throws us an error. Typing in <code>?lm</code> reveals that its first argument is a <code>formula</code> to fit the model, not a data set. So the function is trying to run</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="r-basics.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(videogame_df, metascore <span class="sc">~</span> price)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="r-basics.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(videogame_df, metascore <span class="sc">~</span> price)</span></code></pre></div>
 <pre><code>## Error in as.data.frame.default(data): cannot coerce class &#39;&quot;formula&quot;&#39; to a data.frame</code></pre>
 <p>which doesn’t work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).</p>
 </div>
@@ -877,9 +881,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>* Recode the following to look cleaner by using the pipe <code>%&gt;%</code>:</li>
 </ol>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="r-basics.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(fitness_df, weekday <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="dv">7</span>),</span>
-<span id="cb368-2"><a href="r-basics.html#cb368-2" aria-hidden="true" tabindex="-1"></a>                   month),</span>
-<span id="cb368-3"><a href="r-basics.html#cb368-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">meanweekend =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="r-basics.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(fitness_df, weekday <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="dv">7</span>),</span>
+<span id="cb372-2"><a href="r-basics.html#cb372-2" aria-hidden="true" tabindex="-1"></a>                   month),</span>
+<span id="cb372-3"><a href="r-basics.html#cb372-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">meanweekend =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code></pre></div>
 <pre><code>## # A tibble: 12 x 2
 ##    month meanweekend
 ##    &lt;dbl&gt;       &lt;dbl&gt;
@@ -898,7 +902,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" style="list-style-type: decimal">
 <li>Explain why the following code gives a warning message and returns <code>NA</code>. Use the list of Arguments in <code>?mean</code> in your explanation.</li>
 </ol>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="r-basics.html#cb370-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="sc">%&gt;%</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="r-basics.html#cb374-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="sc">%&gt;%</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Warning in mean.default(., distance, na.rm = TRUE): argument is not numeric or
 ## logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
@@ -911,7 +915,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>R Projects</code> are a convenient way to keep related code, data sets, and analyses together. Read this very short introduction in <code>R</code> for Data Science here: <a href="https://r4ds.had.co.nz/workflow-projects.html#paths-and-directories" target="_blank">https://r4ds.had.co.nz/workflow-projects.html#paths-and-directories</a> and <a href="https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects" target="_blank">https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects</a>.</p>
 <p>Why should you rarely use an absolute directory?</p>
 <p>Look at the top of your bottom-left terminal window. If you’ve made an <code>R project</code> (which you should have!), you should see that a file path that is the current folder you’re working in. This is where <code>R Studio</code> will look for files by default. So,</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="r-basics.html#cb373-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/higham_fitness_notclean.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="r-basics.html#cb377-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/higham_fitness_notclean.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
@@ -974,14 +978,14 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <p>Step 5. If you want your STAT 234 materials off of the server (which you should!), then you’ll need to download them to your personal device. Click the checkbox next to the STAT 234 folder, and then click More -&gt; Export -&gt; Download. There should now be a zipped folder of your materials in your Downloads folder. Double click to unzip the folder and then move the STAT 234 folder to a place that’s convenient for you (since you’ll be using it a lot this semester, one place you could put it is your Desktop).</p>
 <p>Verify that the contents downloaded by opening up the Week5_R_Basics <code>R Project</code> by double clicking the <code>R Project</code> icon in the Week5 folder.</p>
 <p>Step 6. There’s a lot of packages that we’ve used that were already installed on the server. By far, the largest package (and the one that’s most likely to give you an error in installation) is the <code>tidyverse</code> package. Install this package using</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="r-basics.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="r-basics.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>Step 7. Open your Week4 Project in a new window and verify that your .Rmd files can knit (you’ll at least need to install <code>ggthemes</code> and <code>ggrepel</code> and possibly a couple of other packages that I’m not thinking of).</p>
 <p>Once <code>R</code> is installed and ready to go, work through the following exercises pertaining to the video game data set.</p>
 <ol style="list-style-type: decimal">
 <li>* Read in the data set and use <code>filter()</code> to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.</li>
 </ol>
 <p><strong>Note</strong>: We usually don’t want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn’t “major” enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren’t enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="r-basics.html#cb376-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/videogame_clean.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="r-basics.html#cb380-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/videogame_clean.csv&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>* Make a scatterplot with <code>median_playtime</code> on the y-axis and <code>metascore</code> on the x-axis with the filtered data set.</p></li>
 <li><p>* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is <em>discrete</em>: <code>metascore</code> can only take on integer values in this case. Change <code>geom_point()</code> in your previous plot to <code>geom_jitter()</code>. Then, use the help to write a sentence about what <code>geom_jitter()</code> does.</p></li>
@@ -1002,10 +1006,10 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <li>* What is the issue with the following plot? After you figure out the issue, use <code>mutate()</code> to create a new variable that fixes the issue and then reconstruct the graph.</li>
 </ol>
 <p>The issue is that weekday should be a factor, not numeric.</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="r-basics.html#cb377-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="ot">&lt;-</span> fitness_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">weekday_cat =</span> <span class="fu">as.factor</span>(weekday))</span>
-<span id="cb377-2"><a href="r-basics.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness_df, <span class="fu">aes</span>(<span class="at">x =</span> active_cals)) <span class="sc">+</span></span>
-<span id="cb377-3"><a href="r-basics.html#cb377-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">group =</span> weekday_cat, <span class="at">colour =</span> weekday_cat)) <span class="sc">+</span></span>
-<span id="cb377-4"><a href="r-basics.html#cb377-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="r-basics.html#cb381-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="ot">&lt;-</span> fitness_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">weekday_cat =</span> <span class="fu">as.factor</span>(weekday))</span>
+<span id="cb381-2"><a href="r-basics.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness_df, <span class="fu">aes</span>(<span class="at">x =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb381-3"><a href="r-basics.html#cb381-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">group =</span> weekday_cat, <span class="at">colour =</span> weekday_cat)) <span class="sc">+</span></span>
+<span id="cb381-4"><a href="r-basics.html#cb381-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="06-basics_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
@@ -1025,21 +1029,21 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <ol style="list-style-type: lower-alpha">
 <li>Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.</li>
 </ol>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="r-basics.html#cb379-1" aria-hidden="true" tabindex="-1"></a>vecweekend <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
-<span id="cb379-2"><a href="r-basics.html#cb379-2" aria-hidden="true" tabindex="-1"></a>vecweekday <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span> <span class="do">## or c(2, 3, 4, 5, 6)</span></span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="r-basics.html#cb383-1" aria-hidden="true" tabindex="-1"></a>vecweekend <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
+<span id="cb383-2"><a href="r-basics.html#cb383-2" aria-hidden="true" tabindex="-1"></a>vecweekday <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span> <span class="do">## or c(2, 3, 4, 5, 6)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Use <code>dplyr</code> functions and the <code>%in%</code> operator to create the new <code>weekend_ind</code> variable. You can use the following code chunk to help with what <code>%in%</code> does:</li>
 </ol>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="r-basics.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="r-basics.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="r-basics.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="r-basics.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="r-basics.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="r-basics.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="r-basics.html#cb386-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="sc">%&gt;%</span></span>
-<span id="cb386-2"><a href="r-basics.html#cb386-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">case_when</span>(weekday <span class="sc">%in%</span> vecweekend <span class="sc">~</span> <span class="st">&quot;weekend&quot;</span>,</span>
-<span id="cb386-3"><a href="r-basics.html#cb386-3" aria-hidden="true" tabindex="-1"></a>                                 weekday <span class="sc">%in%</span> vecweekday <span class="sc">~</span> <span class="st">&quot;weekday&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb386-4"><a href="r-basics.html#cb386-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(weekend_ind, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="r-basics.html#cb390-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="sc">%&gt;%</span></span>
+<span id="cb390-2"><a href="r-basics.html#cb390-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">case_when</span>(weekday <span class="sc">%in%</span> vecweekend <span class="sc">~</span> <span class="st">&quot;weekend&quot;</span>,</span>
+<span id="cb390-3"><a href="r-basics.html#cb390-3" aria-hidden="true" tabindex="-1"></a>                                 weekday <span class="sc">%in%</span> vecweekday <span class="sc">~</span> <span class="st">&quot;weekday&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb390-4"><a href="r-basics.html#cb390-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(weekend_ind, <span class="fu">everything</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 584 x 10
 ##    weekend_ind Start month weekday dayofyear distance  steps flights active_cals
 ##    &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;
@@ -1054,10 +1058,10 @@ To do so, click the checkbox next to the video games data set and the fitness da
 ##  9 weekday     12/6…    12       5       340    7.50  14208       13       997. 
 ## 10 weekday     12/7…    12       6       341    4.27   8269.       8       533. 
 ## # … with 574 more rows, and 1 more variable: weekday_cat &lt;fct&gt;</code></pre>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="r-basics.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="do">## can also use if_else, which is actually a little simpler in this case:</span></span>
-<span id="cb388-2"><a href="r-basics.html#cb388-2" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">if_else</span>(weekday <span class="sc">%in%</span> vecweekend,</span>
-<span id="cb388-3"><a href="r-basics.html#cb388-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">true =</span> <span class="st">&quot;weekend&quot;</span>, <span class="at">false =</span> <span class="st">&quot;weekday&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb388-4"><a href="r-basics.html#cb388-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(weekend_ind, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="r-basics.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="do">## can also use if_else, which is actually a little simpler in this case:</span></span>
+<span id="cb392-2"><a href="r-basics.html#cb392-2" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">if_else</span>(weekday <span class="sc">%in%</span> vecweekend,</span>
+<span id="cb392-3"><a href="r-basics.html#cb392-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">true =</span> <span class="st">&quot;weekend&quot;</span>, <span class="at">false =</span> <span class="st">&quot;weekday&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb392-4"><a href="r-basics.html#cb392-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(weekend_ind, <span class="fu">everything</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 584 x 10
 ##    weekend_ind Start month weekday dayofyear distance  steps flights active_cals
 ##    &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;
@@ -1078,9 +1082,9 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <ol style="list-style-type: decimal">
 <li>* Recode the following to look cleaner by using the pipe <code>%&gt;%</code>:</li>
 </ol>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="r-basics.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(fitness_df, weekday <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="dv">7</span>),</span>
-<span id="cb390-2"><a href="r-basics.html#cb390-2" aria-hidden="true" tabindex="-1"></a>                   month),</span>
-<span id="cb390-3"><a href="r-basics.html#cb390-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">meanweekend =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="r-basics.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(fitness_df, weekday <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="dv">7</span>),</span>
+<span id="cb394-2"><a href="r-basics.html#cb394-2" aria-hidden="true" tabindex="-1"></a>                   month),</span>
+<span id="cb394-3"><a href="r-basics.html#cb394-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">meanweekend =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code></pre></div>
 <pre><code>## # A tibble: 12 x 2
 ##    month meanweekend
 ##    &lt;dbl&gt;       &lt;dbl&gt;
@@ -1096,9 +1100,9 @@ To do so, click the checkbox next to the video games data set and the fitness da
 ## 10    10        3.98
 ## 11    11        2.86
 ## 12    12        3.55</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="r-basics.html#cb392-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(weekday <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb392-2"><a href="r-basics.html#cb392-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">%&gt;%</span></span>
-<span id="cb392-3"><a href="r-basics.html#cb392-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanweekend =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="r-basics.html#cb396-1" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(weekday <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb396-2"><a href="r-basics.html#cb396-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">%&gt;%</span></span>
+<span id="cb396-3"><a href="r-basics.html#cb396-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanweekend =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code></pre></div>
 <pre><code>## # A tibble: 12 x 2
 ##    month meanweekend
 ##    &lt;dbl&gt;       &lt;dbl&gt;
@@ -1128,46 +1132,122 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <li>* Read in the data set and use <code>filter()</code> to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.</li>
 </ol>
 <p><strong>Note</strong>: We usually don’t want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn’t “major” enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren’t enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="r-basics.html#cb394-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/videogame_clean.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="r-basics.html#cb395-1" aria-hidden="true" tabindex="-1"></a>videogame_nomiss <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span></span>
-<span id="cb395-2"><a href="r-basics.html#cb395-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(median_playtime) <span class="sc">&amp;</span></span>
-<span id="cb395-3"><a href="r-basics.html#cb395-3" aria-hidden="true" tabindex="-1"></a>           <span class="sc">!</span><span class="fu">is.na</span>(metascore) <span class="sc">&amp;</span></span>
-<span id="cb395-4"><a href="r-basics.html#cb395-4" aria-hidden="true" tabindex="-1"></a>           median_playtime <span class="sc">!=</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="r-basics.html#cb398-1" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/videogame_clean.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="r-basics.html#cb399-1" aria-hidden="true" tabindex="-1"></a>videogame_nomiss <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span></span>
+<span id="cb399-2"><a href="r-basics.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(median_playtime) <span class="sc">&amp;</span></span>
+<span id="cb399-3"><a href="r-basics.html#cb399-3" aria-hidden="true" tabindex="-1"></a>           <span class="sc">!</span><span class="fu">is.na</span>(metascore) <span class="sc">&amp;</span></span>
+<span id="cb399-4"><a href="r-basics.html#cb399-4" aria-hidden="true" tabindex="-1"></a>           median_playtime <span class="sc">!=</span> <span class="dv">0</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>* Make a scatterplot with <code>median_playtime</code> on the y-axis and <code>metascore</code> on the x-axis with the filtered data set.</li>
 </ol>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="r-basics.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_nomiss, <span class="fu">aes</span>(<span class="at">x =</span> metascore,</span>
-<span id="cb396-2"><a href="r-basics.html#cb396-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">y =</span> median_playtime)) <span class="sc">+</span> </span>
-<span id="cb396-3"><a href="r-basics.html#cb396-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="r-basics.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_nomiss, <span class="fu">aes</span>(<span class="at">x =</span> metascore,</span>
+<span id="cb400-2"><a href="r-basics.html#cb400-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">y =</span> median_playtime)) <span class="sc">+</span> </span>
+<span id="cb400-3"><a href="r-basics.html#cb400-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="06-basics_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is <em>discrete</em>: <code>metascore</code> can only take on integer values in this case. Change <code>geom_point()</code> in your previous plot to <code>geom_jitter()</code>. Then, use the help to write a sentence about what <code>geom_jitter()</code> does.</li>
 </ol>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="r-basics.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_nomiss, <span class="fu">aes</span>(<span class="at">x =</span> metascore,</span>
-<span id="cb397-2"><a href="r-basics.html#cb397-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">y =</span> median_playtime)) <span class="sc">+</span> </span>
-<span id="cb397-3"><a href="r-basics.html#cb397-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="r-basics.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_nomiss, <span class="fu">aes</span>(<span class="at">x =</span> metascore,</span>
+<span id="cb401-2"><a href="r-basics.html#cb401-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">y =</span> median_playtime)) <span class="sc">+</span> </span>
+<span id="cb401-3"><a href="r-basics.html#cb401-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code></pre></div>
 <p><img src="06-basics_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 <p><code>geom_jitter()</code> adds a small amount of “noise” to each data point so that points don’t overlap quite as much.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>* Another option is to control point transparency with <code>alpha</code>. In your <code>geom_jitter()</code> statement, change <code>alpha</code> so that you can still see all of the points, but so that you can tell in the plot where a lot of points are overlapping.</li>
 </ol>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="r-basics.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_nomiss, <span class="fu">aes</span>(<span class="at">x =</span> metascore,</span>
-<span id="cb398-2"><a href="r-basics.html#cb398-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">y =</span> median_playtime)) <span class="sc">+</span> </span>
-<span id="cb398-3"><a href="r-basics.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="r-basics.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_nomiss, <span class="fu">aes</span>(<span class="at">x =</span> metascore,</span>
+<span id="cb402-2"><a href="r-basics.html#cb402-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">y =</span> median_playtime)) <span class="sc">+</span> </span>
+<span id="cb402-3"><a href="r-basics.html#cb402-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>)</span></code></pre></div>
 <p><img src="06-basics_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="r-basics.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="do">## can see a lot of ponits have median playtimes close to 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="r-basics.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="do">## can see a lot of ponits have median playtimes close to 0</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>* Label the points that have median playtimes above 1500 hours. You may want to use the <code>ggrepel</code> package so that the labels don’t overlap.</li>
 </ol>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="r-basics.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb400-2"><a href="r-basics.html#cb400-2" aria-hidden="true" tabindex="-1"></a>videogame_long <span class="ot">&lt;-</span> videogame_nomiss <span class="sc">%&gt;%</span> <span class="fu">filter</span>(median_playtime <span class="sc">&gt;</span> <span class="dv">1500</span>)</span>
-<span id="cb400-3"><a href="r-basics.html#cb400-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_nomiss,</span>
-<span id="cb400-4"><a href="r-basics.html#cb400-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> metascore, <span class="at">y =</span> median_playtime)) <span class="sc">+</span> </span>
-<span id="cb400-5"><a href="r-basics.html#cb400-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb400-6"><a href="r-basics.html#cb400-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> videogame_long, <span class="fu">aes</span>(<span class="at">label =</span> game))</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="r-basics.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb404-2"><a href="r-basics.html#cb404-2" aria-hidden="true" tabindex="-1"></a>videogame_long <span class="ot">&lt;-</span> videogame_nomiss <span class="sc">%&gt;%</span> <span class="fu">filter</span>(median_playtime <span class="sc">&gt;</span> <span class="dv">1500</span>)</span>
+<span id="cb404-3"><a href="r-basics.html#cb404-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_nomiss,</span>
+<span id="cb404-4"><a href="r-basics.html#cb404-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> metascore, <span class="at">y =</span> median_playtime)) <span class="sc">+</span> </span>
+<span id="cb404-5"><a href="r-basics.html#cb404-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb404-6"><a href="r-basics.html#cb404-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> videogame_long, <span class="fu">aes</span>(<span class="at">label =</span> game))</span></code></pre></div>
 <p><img src="06-basics_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
-
 </div>
+</div>
+<div id="rcode-6" class="section level2" number="7.8">
+<h2><span class="header-section-number">7.8</span> Non-Exercise <code>R</code> Code</h2>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="r-basics.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb405-2"><a href="r-basics.html#cb405-2" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/videogame_clean.csv&quot;</span>)</span>
+<span id="cb405-3"><a href="r-basics.html#cb405-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(videogame_df)</span>
+<span id="cb405-4"><a href="r-basics.html#cb405-4" aria-hidden="true" tabindex="-1"></a>videogame_small <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
+<span id="cb405-5"><a href="r-basics.html#cb405-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_small, <span class="fu">aes</span>(<span class="at">x =</span> release_date, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb405-6"><a href="r-basics.html#cb405-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
+<span id="cb405-7"><a href="r-basics.html#cb405-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-8"><a href="r-basics.html#cb405-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_small, <span class="fu">aes</span>(<span class="at">x =</span> release_date2, <span class="at">y =</span> metascore)) <span class="sc">+</span></span>
+<span id="cb405-9"><a href="r-basics.html#cb405-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> price_cat))</span>
+<span id="cb405-10"><a href="r-basics.html#cb405-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(videogame_df)</span>
+<span id="cb405-11"><a href="r-basics.html#cb405-11" aria-hidden="true" tabindex="-1"></a>videogame_df<span class="sc">$</span>game</span>
+<span id="cb405-12"><a href="r-basics.html#cb405-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>game)</span>
+<span id="cb405-13"><a href="r-basics.html#cb405-13" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(videogame_df<span class="sc">$</span>game)</span>
+<span id="cb405-14"><a href="r-basics.html#cb405-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>game)</span>
+<span id="cb405-15"><a href="r-basics.html#cb405-15" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">maxgame =</span> <span class="fu">max</span>(game))</span>
+<span id="cb405-16"><a href="r-basics.html#cb405-16" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(videogame_df<span class="sc">$</span>meta_cat)</span>
+<span id="cb405-17"><a href="r-basics.html#cb405-17" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.factor</span>(videogame_df<span class="sc">$</span>meta_cat))</span>
+<span id="cb405-18"><a href="r-basics.html#cb405-18" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span></span>
+<span id="cb405-19"><a href="r-basics.html#cb405-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">meta_cat_factor =</span> <span class="fu">as.factor</span>(meta_cat))</span>
+<span id="cb405-20"><a href="r-basics.html#cb405-20" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>meta_cat_factor)</span>
+<span id="cb405-21"><a href="r-basics.html#cb405-21" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>release_date)</span>
+<span id="cb405-22"><a href="r-basics.html#cb405-22" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>release_date2)</span>
+<span id="cb405-23"><a href="r-basics.html#cb405-23" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(videogame_df<span class="sc">$</span>release_date2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb405-24"><a href="r-basics.html#cb405-24" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>release_date2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb405-25"><a href="r-basics.html#cb405-25" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>price)</span>
+<span id="cb405-26"><a href="r-basics.html#cb405-26" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>price_cat)</span>
+<span id="cb405-27"><a href="r-basics.html#cb405-27" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">as.factor</span>(videogame_df<span class="sc">$</span>price_cat))</span>
+<span id="cb405-28"><a href="r-basics.html#cb405-28" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="ot">&lt;-</span> videogame_df <span class="sc">%&gt;%</span></span>
+<span id="cb405-29"><a href="r-basics.html#cb405-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_factor =</span> <span class="fu">as.factor</span>(price_cat)) </span>
+<span id="cb405-30"><a href="r-basics.html#cb405-30" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> videogame_df, <span class="fu">aes</span>(<span class="at">x =</span> release_date2, <span class="at">y =</span> metascore)) <span class="sc">+</span></span>
+<span id="cb405-31"><a href="r-basics.html#cb405-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> price_factor))</span>
+<span id="cb405-32"><a href="r-basics.html#cb405-32" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df<span class="sc">$</span>playtime_miss)</span>
+<span id="cb405-33"><a href="r-basics.html#cb405-33" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(videogame_df<span class="sc">$</span>playtime_miss)</span>
+<span id="cb405-34"><a href="r-basics.html#cb405-34" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(videogame_df<span class="sc">$</span>playtime_miss)</span>
+<span id="cb405-35"><a href="r-basics.html#cb405-35" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(videogame_df) <span class="do">## look at the beginning to see &quot;tibble&quot;</span></span>
+<span id="cb405-36"><a href="r-basics.html#cb405-36" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">5</span>, <span class="dv">3</span>]</span>
+<span id="cb405-37"><a href="r-basics.html#cb405-37" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="dv">3</span>] <span class="do">## grab the third column</span></span>
+<span id="cb405-38"><a href="r-basics.html#cb405-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-39"><a href="r-basics.html#cb405-39" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">5</span>, ] <span class="do">## grab the fifth row</span></span>
+<span id="cb405-40"><a href="r-basics.html#cb405-40" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span><span class="dv">7</span></span>
+<span id="cb405-41"><a href="r-basics.html#cb405-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-42"><a href="r-basics.html#cb405-42" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>] <span class="do">## grab columns 3 through 7</span></span>
+<span id="cb405-43"><a href="r-basics.html#cb405-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-44"><a href="r-basics.html#cb405-44" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, ] <span class="do">## grab rows 3 through 7</span></span>
+<span id="cb405-45"><a href="r-basics.html#cb405-45" aria-hidden="true" tabindex="-1"></a>videogame_df[ ,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)] <span class="do">## grab columns 1, 3, and 4</span></span>
+<span id="cb405-46"><a href="r-basics.html#cb405-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-47"><a href="r-basics.html#cb405-47" aria-hidden="true" tabindex="-1"></a>videogame_df[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>), ] <span class="do">## grab rows 1, 3, and 4</span></span>
+<span id="cb405-48"><a href="r-basics.html#cb405-48" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb405-49"><a href="r-basics.html#cb405-49" aria-hidden="true" tabindex="-1"></a>vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb405-50"><a href="r-basics.html#cb405-50" aria-hidden="true" tabindex="-1"></a>vec3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb405-51"><a href="r-basics.html#cb405-51" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(vec1); <span class="fu">str</span>(vec2); <span class="fu">str</span>(vec3)</span>
+<span id="cb405-52"><a href="r-basics.html#cb405-52" aria-hidden="true" tabindex="-1"></a>videogame_df<span class="sc">$</span>metascore</span>
+<span id="cb405-53"><a href="r-basics.html#cb405-53" aria-hidden="true" tabindex="-1"></a>metavec <span class="ot">&lt;-</span> videogame_df<span class="sc">$</span>metascore</span>
+<span id="cb405-54"><a href="r-basics.html#cb405-54" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(metavec, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb405-55"><a href="r-basics.html#cb405-55" aria-hidden="true" tabindex="-1"></a>metavec[<span class="dv">100</span>] <span class="do">## 100th element is missing</span></span>
+<span id="cb405-56"><a href="r-basics.html#cb405-56" aria-hidden="true" tabindex="-1"></a>testlist <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">4</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>),</span>
+<span id="cb405-57"><a href="r-basics.html#cb405-57" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)))</span>
+<span id="cb405-58"><a href="r-basics.html#cb405-58" aria-hidden="true" tabindex="-1"></a>testlist</span>
+<span id="cb405-59"><a href="r-basics.html#cb405-59" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(metascore))</span>
+<span id="cb405-60"><a href="r-basics.html#cb405-60" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore))</span>
+<span id="cb405-61"><a href="r-basics.html#cb405-61" aria-hidden="true" tabindex="-1"></a>videogame_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(metascore)) <span class="sc">%&gt;%</span></span>
+<span id="cb405-62"><a href="r-basics.html#cb405-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb405-63"><a href="r-basics.html#cb405-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(price_cat) <span class="sc">%&gt;%</span></span>
+<span id="cb405-64"><a href="r-basics.html#cb405-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_med_time =</span> <span class="fu">median</span>(median_playtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb405-65"><a href="r-basics.html#cb405-65" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore))</span>
+<span id="cb405-66"><a href="r-basics.html#cb405-66" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)), median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb405-67"><a href="r-basics.html#cb405-67" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)),</span>
+<span id="cb405-68"><a href="r-basics.html#cb405-68" aria-hidden="true" tabindex="-1"></a>                median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb405-69"><a href="r-basics.html#cb405-69" aria-hidden="true" tabindex="-1"></a>  price_cat)</span>
+<span id="cb405-70"><a href="r-basics.html#cb405-70" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(videogame_df, <span class="sc">!</span><span class="fu">is.na</span>(metascore)),</span>
+<span id="cb405-71"><a href="r-basics.html#cb405-71" aria-hidden="true" tabindex="-1"></a>  median_playtime <span class="sc">&gt;</span> <span class="dv">0</span>), price_cat), </span>
+<span id="cb405-72"><a href="r-basics.html#cb405-72" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_med_time =</span> <span class="fu">median</span>(median_playtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb405-73"><a href="r-basics.html#cb405-73" aria-hidden="true" tabindex="-1"></a>fitness_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/higham_fitness_notclean.csv&quot;</span>)</span></code></pre></div>
+
 </div>
 </div>
             </section>
@@ -1193,14 +1273,14 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": false,
-"twitter": false,
+"facebook": true,
+"twitter": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
 "whatsapp": false,
-"all": false
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1221,10 +1301,8 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"info": true
+"collapse": "subsection"
+}
 });
 });
 </script>

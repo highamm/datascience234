@@ -573,4 +573,98 @@ ggplot(by_age2, aes(age, prop,
   scale_colour_viridis_d()
 ```
 
+## Non-Exercise `R` Code {#rcode-7}
+
+
+```r
+library(tidyverse)
+pokemon_df <- read_csv("data/pokemon_allgen.csv") %>%
+  mutate(Generation_cat = factor(Generation))
+pokemon_df %>% group_by(`Type 1`) %>%
+  summarise(counttype = n())
+pokemon_legend <- pokemon_df %>% filter(Legendary == TRUE) %>%
+  group_by(Generation_cat) %>%
+  summarise(nlegend = n())
+ggplot(data = pokemon_legend, aes(x = Generation_cat, y = nlegend)) +
+  geom_col()
+pokemon_legend <- pokemon_legend %>%
+  mutate(Generation_cat2 = fct_recode(Generation_cat, Kanto = "1",
+                                      Johto = "2", Hoenn = "3",
+                                      Sinnoh = "4", Unova = "5",
+                                      Kalos = "6")) %>%
+  select(Generation_cat2, everything())
+head(pokemon_legend)
+ggplot(data = pokemon_legend,
+       aes(x = Generation_cat2, y = nlegend)) +
+  geom_col()
+pokemon_long <- pokemon_df %>% pivot_longer(c(`Type 1`, `Type 2`),
+                            names_to = "Number",
+                            values_to = "Type")
+pokemon_long %>%
+  mutate(new_type = fct_collapse(Type, Coolest = c("Ice", "Dark"),
+                                 Least_Cool = c("Fire", "Fighting", "Poison"))) %>%
+  select(new_type, Type, everything())
+pokemon_nodup <- pokemon_df %>% group_by(`#`) %>% slice(1) %>%
+  ungroup()
+pokemon_long <- pokemon_nodup %>%
+  pivot_longer(c(`Type 1`, `Type 2`),
+               names_to = "Number",
+               values_to = "Type")
+pokemon_sum <- pokemon_long %>%
+  group_by(Type) %>%
+  summarise(count_type = n()) %>%
+  filter(!is.na(Type))
+ggplot(data = pokemon_sum, aes(x = Type,
+                               y = count_type)) +
+  geom_col() +
+  coord_flip()  ## flips the x and y axes
+pokemon_sum <- pokemon_sum %>% 
+  mutate(Type_ordered = fct_reorder(.f = Type, .x = count_type))
+ggplot(data = pokemon_sum, aes(x = Type_ordered,
+                               y = count_type)) +
+  geom_col() +
+  coord_flip()
+pokemon_long <- pokemon_long %>%
+  filter(!is.na(Type)) %>%
+  mutate(Type_Deford = fct_reorder(.f = Type, .x = Defense,
+                                   .fun = median))
+ggplot(data = pokemon_long, aes(x = Type_Deford,
+                               y = Defense)) +
+  geom_boxplot() + 
+  coord_flip()
+pokemon_med <- pokemon_long %>% group_by(Type_Deford) %>%
+  summarise(med_def = median(Defense)) %>%
+  mutate(Type_Deford = fct_reorder(.f = Type_Deford, .x = med_def,
+                                   .fun = median))
+
+ggplot(data = pokemon_med, aes(x = med_def, y = Type_Deford)) +
+  geom_point()
+mortality_df <- read_csv("data/gun_violence_us.csv") %>%
+  mutate(region = factor(region))
+ggplot(data = mortality_df,
+       aes(x = ownership_rate, y = mortality_rate, colour = region)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+mortality_df <- mortality_df %>%
+  mutate(region_2 = fct_reorder2(region,
+                                 .x = ownership_rate,
+                                 .y = mortality_rate))
+ggplot(data = mortality_df,
+       aes(x = ownership_rate, y = mortality_rate, colour = region_2)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+mortality_df <- mortality_df %>%
+  mutate(region_3 = fct_relevel(region, c("South", "West", "MW", "NE")))
+ggplot(data = mortality_df,
+       aes(x = ownership_rate, y = mortality_rate, colour = region_3)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+mod <- lm(mortality_rate ~ ownership_rate + region, data = mortality_df)
+mod2 <- lm(mortality_rate ~ ownership_rate + region_2, data = mortality_df)
+mod3 <- lm(mortality_rate ~ ownership_rate + region_3, data = mortality_df)
+summary(mod)
+summary(mod2)
+summary(mod3)
+```
+
 
