@@ -360,7 +360,7 @@ We might also be interested in fitting a smooth curve to our scatterplot. When w
 ```{r, appendix = TRUE}
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth(span = 0.3)
 ```
 
 Within `geom_smooth()`, you can set `se = FALSE` to get rid of the grey standard errors around each of the lines, and you can set`method = "lm"` to fit straight linear regression lines instead of smooth curves:
