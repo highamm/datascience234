@@ -1,0 +1,47 @@
+---
+title: "Week 1: Data Plotting with `ggplot2`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+Suppose we have the following toy data set, named `df`. The first two columns are numeric while the third column is categorical.
+
+```{r, echo = FALSE}
+library(tidyverse)
+df <- tibble(x1 = c(1, 7, 4, "..."),
+  x2 = c(3, 20, 2, "..."),
+  cat1 = c("Yes", "Yes", "No", "..."))
+
+library(pander)
+pander(df)
+```
+
+__Plotting a Single Variable__
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+__Plotting Two Variables__
+

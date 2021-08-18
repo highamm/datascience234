@@ -490,10 +490,10 @@
 <span class="co">#&gt; #   l_SvGms &lt;dbl&gt;, l_bpSaved &lt;dbl&gt;, l_bpFaced &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   winner_rank &lt;dbl&gt;, winner_rank_points &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   loser_rank &lt;dbl&gt;, loser_rank_points &lt;dbl&gt;</span></code></pre></div>
-<div id="filtering-with-semi_join" class="section level5" number="11.3.0.0.1">
-<h5>
-<span class="header-section-number">11.3.0.0.1</span> Filtering with <code>semi_join()</code><a class="anchor" aria-label="anchor" href="#filtering-with-semi_join"><i class="fas fa-link"></i></a>
-</h5>
+<div id="filtering-with-semi_join" class="section level3" number="11.3.1">
+<h3>
+<span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code><a class="anchor" aria-label="anchor" href="#filtering-with-semi_join"><i class="fas fa-link"></i></a>
+</h3>
 <p>Suppose that we only want to keep matches in 2019 where the winning player had 10 or more wins in 2018. This might be useful if we want to not consider players in 2018 that only played in a couple of matches, perhaps because they got injured or perhaps because they received a special wildcard into the draw of only one event.</p>
 <p>To accomplish this, we can first create a data set that has the names of all of the players that won 10 or more matches in 2018, using functions that we learned from <code>dplyr</code> earlier in the semester:</p>
 <div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
@@ -522,9 +522,9 @@
 <span class="va">tennis_2019_10</span><span class="op">$</span><span class="va">winner_name</span></code></pre></div>
 <p>Note that this only keeps the matches in 2019 where the <strong>winner</strong> had 10 or more match wins in 2018. It drops any matches where the <strong>loser</strong> lost against someone who did not have 10 or more match wins in 2018. So this isn’t yet perfect and would take a little more thought into which matches we actually want to keep for a particular analysis.</p>
 </div>
-<div id="filtering-with-anti_join" class="section level3" number="11.3.1">
+<div id="filtering-with-anti_join" class="section level3" number="11.3.2">
 <h3>
-<span class="header-section-number">11.3.1</span> Filtering with <code>anti_join()</code><a class="anchor" aria-label="anchor" href="#filtering-with-anti_join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code><a class="anchor" aria-label="anchor" href="#filtering-with-anti_join"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now suppose that we want to only keep the matches in 2019 where the winning player did not have <strong>any</strong> wins in 2018. We might think of these players as “emerging players” in 2019, players who are coming back from an injury, etc.. To do this, we can use <code>anti_join()</code>, which only keeps the rows in the first data set that do <strong>not</strong> have a match in the second data set.</p>
 <div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
@@ -552,9 +552,9 @@
 <span class="co">#&gt; # … with 49 more rows</span></code></pre></div>
 <p>The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.</p>
 </div>
-<div id="exercise-10-3" class="section level3" number="11.3.2">
+<div id="exercise-10-3" class="section level3" number="11.3.3">
 <h3>
-<span class="header-section-number">11.3.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-10-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.3.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-10-3"><i class="fas fa-link"></i></a>
 </h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="merging-with-dplyr.html#solutions-10">11.6</a>.</p>
 <ol style="list-style-type: decimal">
@@ -1068,8 +1068,9 @@
 </li>
 <li>
 <a class="nav-link" href="#filtering-joins"><span class="header-section-number">11.3</span> Filtering Joins</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#filtering-with-anti_join"><span class="header-section-number">11.3.1</span> Filtering with anti_join()</a></li>
-<li><a class="nav-link" href="#exercise-10-3"><span class="header-section-number">11.3.2</span> Exercises</a></li>
+<li><a class="nav-link" href="#filtering-with-semi_join"><span class="header-section-number">11.3.1</span> Filtering with semi_join()</a></li>
+<li><a class="nav-link" href="#filtering-with-anti_join"><span class="header-section-number">11.3.2</span> Filtering with anti_join()</a></li>
+<li><a class="nav-link" href="#exercise-10-3"><span class="header-section-number">11.3.3</span> Exercises</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#a-note-on-sql"><span class="header-section-number">11.4</span> A Note on SQL</a></li>
@@ -1099,7 +1100,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-08-09.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-08-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

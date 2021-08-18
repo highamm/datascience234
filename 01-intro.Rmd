@@ -377,7 +377,7 @@ a. What is your name and what is your class year (first-year, sophomore, junior,
 
 b. What is/are your major(s) and minor(s), either actual or intended?
 
-c. Why are you taking this course? (Major requirement?, Minor requirement?, recommended by advisor or student?, exploring the field?, etc.).
+c. Why are you taking this course? (Major requirement?, Minor requirement?, recommended by advisor or student?, exploring the field?, etc.). If you are taking it for a major or minor requirement, why did you decide to major or minor in statistics or data science?
 
 d. In what semester and year did you take STAT 113 and who was your professor?
 
@@ -415,4 +415,4 @@ Nice work: we will dive into `ggplot()` in the `ggplot2` package next!
 
 ## Exercise Solutions {#solutions-1}
 
-In most sections, some exercise solutions will be posted at the end of the section. However, for the introduction, we will do all of the coding exercises as a class to make sure that we all start off well.
+In most sections, some exercise solutions will be posted at the end of the section. However, because `R` is brand new, we will do all of the coding exercises as a class for this first section.

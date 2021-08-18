@@ -1,0 +1,48 @@
+---
+title: "Week 10: Dates with `lubridate` Handout"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+Suppose you have the following data set, named `df1`, which has various date formats, as `<chr>` variables. 
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(pander)
+df <- tibble(date1 = c("January 14, 1992", "October 19, 1991"),
+       date2 = c("1992-January-14", "1991-October-19"),
+       date3 = c("01/14/1992", "10/19/1991"))
+df %>% pander()
+```
+
+`dmy()`, `dym()`, `mdy()`, `myd()`, `ydm()`, `ymd()` to Convert to a `<date>`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+Now suppose you have a data set, called `df2`, that has a `<date>` variable:
+
+```{r}
+df %>% mutate(date1 = mdy(date1)) %>% select(date1) %>% pander()
+```
+
+`year()`, `month()`, `mday()` `yday()`, and `wday()` to Pull Useful Variables from a `<date>`

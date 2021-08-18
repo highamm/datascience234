@@ -1,7 +1,7 @@
 --- 
 title: "STAT 234: Data Science"
 author: "Matt Higham"
-date: "2021-08-09"
+date: "2021-08-18"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -56,7 +56,7 @@ We will put more emphasis on the _Import, Tidy, Transform, Visualize, and Commun
 We will use the statistical software `R` to construct graphs and analyze data. A few notes:
 
 * `R` and `RStudio` are both free to use.
-* We will primarily be using the SLU `R Studio` server at first: <a href="studio.stlawu.local:8787" target="_blank">studio.stlawu.local:8787</a>.
+* We will primarily be using the SLU `R Studio` server at first: <a href="rstudio.stlawu.local:8787" target="_blank">rstudio.stlawu.local:8787</a>.
 * Additionally, we will be using `RMarkdown` for data analysis reports. 
 _Note_: It's always nice to start assignments and projects as early as possible, but this is particularly important to do for assignments and projects involving `R`. It's no fun to try and figure out why code is not working at the last minute. If you start early enough though, you will have plenty of time to seek help and therefore won't waste a lot of time on a coding error.
 
@@ -124,7 +124,8 @@ There will be no Final Exam for this course.
 * 100 points for Exercises
 * 180 points for Quizzes
 * 180 points for Mini-Projects + 20 points for Presentation
-* 150 points for each of two Midterm Exams
+* 150 points for Midterm 1
+* 150 points for Midterm 2
 * 150 points for Final Project
 
 Points add up to 1000 so your grade at the end of the semester will be the number of points you've earned across all categories divided by 1000.
@@ -170,7 +171,7 @@ Diversity encompasses differences in age, colour, ethnicity, national origin, ge
 
 ### Accessibility Statement
 
-If you have a learning difference/disability or other health impairment and need accommodations please be sure to contact the Student Accessibility Services Office right away so they can help you get the accommodations you require. If you need to use any accommodations in this class, please meet with your instructor early and provide them with your Individualized Educational Accommodation Plan (IEAP) letter so you can have the best possible experience this semester.
+If you have a specific learning profile, medical and or mental health condition and need accommodations, please be sure to contact the Student Accessibility Services Office right away so they can help you get the accommodations you require. If you need to use any accommodations in this class, please meet with your instructor early and provide them with your Individualized Educational Accommodation Plan (IEAP) letter so you can have the best possible experience this semester.
  
 Although not required, your instructor would like to know of any accommodations that are needed at least 10 days before a quiz or test. Please be proactive and set up an appointment to meet with someone from the Student Accessibility Services Office.
  

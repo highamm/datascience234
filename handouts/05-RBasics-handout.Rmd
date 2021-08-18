@@ -1,0 +1,44 @@
+---
+title: "Week 5: `R` Basics, Piping, and `slice()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+__Chunk Options__
+
+| Class Type | Name | description of the class type | other notes
+| -------| -------------------------------- | ------- | --------------
+| `<chr>` | | | 
+|  | | | 
+| `<fct>`  | | | 
+|  | | | 
+| `<date>` | | | 
+|  | | | 
+| `<datetime>` | | | 
+|  | | | 
+| `<dbl>` | | | 
+|  | | | 
+| `<int>` | | |
+|  | | | 
+| `<lgl>` | | | 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+Piping with `magrittr`
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;

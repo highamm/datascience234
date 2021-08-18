@@ -1,0 +1,54 @@
+---
+title: "Week 4: `R Markdown`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+__Chunk Options__
+
+| option | description of the option | default | other choices
+| -------| -------------------------------- | ------- | --------------
+| `echo` | | | 
+|  | | | 
+| `eval` | | | 
+|  | | | 
+| `message` | | | 
+|  | | | 
+| `warning` | | | 
+|  | | | 
+| `fig.height` | | |
+|  | | | 
+| `fig.keep` | | | 
+|  | | | 
+| `results` | | | 
+
+__Table Creation__
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+__Text Options__
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;

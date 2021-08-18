@@ -344,14 +344,14 @@ fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind
 #> ── Column specification ────────────────────────────────────
 #> cols(
 #>   Start = col_date(format = ""),
+#>   active_cals = col_double(),
+#>   distance = col_double(),
+#>   flights = col_double(),
+#>   steps = col_double(),
 #>   month = col_character(),
 #>   weekday = col_character(),
 #>   dayofyear = col_double(),
-#>   distance = col_double(),
-#>   steps = col_double(),
-#>   flights = col_double(),
-#>   active_cals = col_double(),
-#>   stepgoal = col_character()
+#>   stepgoal = col_double()
 #> )
 ```
 
@@ -464,7 +464,7 @@ We might also be interested in fitting a smooth curve to our scatterplot. When w
 ```r
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth(span = 0.3)
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
@@ -866,7 +866,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals), size = 1.5, shape = 19)
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth(span = 0.3)
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
   geom_smooth(se = FALSE, method = "lm")

@@ -1,0 +1,139 @@
+---
+title: "Week 11: Strings with `stringr` Handout"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results = "hide")
+```
+
+Suppose we have the following data set with a couple of variables containing strings. Our example is small, but you might think of each variable as containing lyrics to a song or the text of a book or essay.
+
+```{r, results = "as.is"}
+library(tidyverse)
+library(pander)
+df1 <- tibble(strings_var1 = c("abc", "hi there"), strings_var2 = c("def", "okay byeeee"))
+pander(df1)
+```
+
+The following are just a few functions from the `stringr` package to manipulate strings.
+
+`str_c()` to combine two or more strings.
+
+```{r}
+str_c(df1$strings_var1, df1$strings_var2)
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+`str_split()` to Split a String in Two or More Parts
+
+```{r}
+str_split(df1$strings_var1, pattern = " ", simplify = TRUE)
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+`str_remove()` to Remove a Pattern from a String
+
+```{r}
+str_remove(df1$strings_var2, pattern = "eee")
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+\pagebreak
+
+`str_sub()` to grab certain parts of a string.
+
+```{r}
+str_sub(df1$strings_var1, start = 1, end = 2)
+## similar to separate()
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+`str_detect()` to Detect whether a String has a Certain Pattern
+
+```{r}
+str_detect(df1$strings_var2, pattern = "e")
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+Using `^` and `$` in `str_detect()` 
+
+```{r}
+str_detect(df1$strings_var2, pattern = "^e")
+str_detect(df1$strings_var2, pattern = "e$")
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+* You can also use `.` to match any character, `\d` to match any digit, `\s` to match any whitespace, `[abc]` to match a, b, or c, and `[^abc]` to match anything except a, b, or c.
+
+

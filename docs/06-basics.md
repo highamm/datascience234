@@ -569,18 +569,18 @@ summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
 #> # A tibble: 12 x 2
 #>    month meanweekend
 #>    <dbl>       <dbl>
-#>  1     1        3.96
-#>  2     2        4.94
-#>  3     3        5.15
-#>  4     4        5.48
-#>  5     5        4.96
-#>  6     6        3.78
-#>  7     7        5.81
-#>  8     8        5.59
-#>  9     9        4.62
-#> 10    10        3.98
-#> 11    11        2.86
-#> 12    12        3.55
+#>  1     1        3.89
+#>  2     2        4.87
+#>  3     3        4.86
+#>  4     4        5.30
+#>  5     5        5.00
+#>  6     6        4.18
+#>  7     7        4.85
+#>  8     8        5.52
+#>  9     9        4.02
+#> 10    10        3.82
+#> 11    11        3.06
+#> 12    12        3.30
 ```
 
 2. Explain why the following code gives a warning message and returns `NA`. Use the list of Arguments in `?mean` in your explanation.
@@ -611,14 +611,15 @@ fitness_df <- read_csv("data/higham_fitness_notclean.csv")
 #> 
 #> ── Column specification ────────────────────────────────────
 #> cols(
-#>   Start = col_character(),
+#>   Start = col_date(format = ""),
+#>   active_cals = col_double(),
+#>   distance = col_double(),
+#>   flights = col_double(),
+#>   steps = col_double(),
 #>   month = col_double(),
 #>   weekday = col_double(),
 #>   dayofyear = col_double(),
-#>   distance = col_double(),
-#>   steps = col_double(),
-#>   flights = col_double(),
-#>   active_cals = col_double()
+#>   stepgoal = col_double()
 #> )
 ```
 
@@ -788,41 +789,43 @@ fitness_df %>%
   mutate(weekend_ind = case_when(weekday %in% vecweekend ~ "weekend",
                                  weekday %in% vecweekday ~ "weekday")) %>%
   select(weekend_ind, everything())
-#> # A tibble: 584 x 10
-#>    weekend_ind Start month weekday dayofyear distance  steps
-#>    <chr>       <chr> <dbl>   <dbl>     <dbl>    <dbl>  <dbl>
-#>  1 weekday     11/2…    11       4       332    0.930  1885.
-#>  2 weekday     11/2…    11       5       333    4.64   8953.
-#>  3 weekday     11/3…    11       6       334    6.05  11665 
-#>  4 weekend     12/1…    12       7       335    6.80  12117 
-#>  5 weekend     12/2…    12       1       336    4.61   8925.
-#>  6 weekday     12/3…    12       2       337    3.96   7205 
-#>  7 weekday     12/4…    12       3       338    6.60  12483.
-#>  8 weekday     12/5…    12       4       339    4.91   9258.
-#>  9 weekday     12/6…    12       5       340    7.50  14208 
-#> 10 weekday     12/7…    12       6       341    4.27   8269.
-#> # … with 574 more rows, and 3 more variables:
-#> #   flights <dbl>, active_cals <dbl>, weekday_cat <fct>
+#> # A tibble: 993 x 11
+#>    weekend_ind Start      active_cals distance flights
+#>    <chr>       <date>           <dbl>    <dbl>   <dbl>
+#>  1 weekday     2018-11-28        57.8    0.930       0
+#>  2 weekday     2018-11-29       509.     4.64       18
+#>  3 weekday     2018-11-30       599.     6.05       12
+#>  4 weekend     2018-12-01       661.     6.80        6
+#>  5 weekend     2018-12-02       527.     4.61        1
+#>  6 weekday     2018-12-03       550.     3.96        2
+#>  7 weekday     2018-12-04       670.     6.60        5
+#>  8 weekday     2018-12-05       557.     4.91        6
+#>  9 weekday     2018-12-06       997.     7.50       13
+#> 10 weekday     2018-12-07       533.     4.27        8
+#> # … with 983 more rows, and 6 more variables: steps <dbl>,
+#> #   month <dbl>, weekday <dbl>, dayofyear <dbl>,
+#> #   stepgoal <dbl>, weekday_cat <fct>
 
 ## can also use if_else, which is actually a little simpler in this case:
 fitness_df %>% mutate(weekend_ind = if_else(weekday %in% vecweekend,
   true = "weekend", false = "weekday")) %>%
   select(weekend_ind, everything())
-#> # A tibble: 584 x 10
-#>    weekend_ind Start month weekday dayofyear distance  steps
-#>    <chr>       <chr> <dbl>   <dbl>     <dbl>    <dbl>  <dbl>
-#>  1 weekday     11/2…    11       4       332    0.930  1885.
-#>  2 weekday     11/2…    11       5       333    4.64   8953.
-#>  3 weekday     11/3…    11       6       334    6.05  11665 
-#>  4 weekend     12/1…    12       7       335    6.80  12117 
-#>  5 weekend     12/2…    12       1       336    4.61   8925.
-#>  6 weekday     12/3…    12       2       337    3.96   7205 
-#>  7 weekday     12/4…    12       3       338    6.60  12483.
-#>  8 weekday     12/5…    12       4       339    4.91   9258.
-#>  9 weekday     12/6…    12       5       340    7.50  14208 
-#> 10 weekday     12/7…    12       6       341    4.27   8269.
-#> # … with 574 more rows, and 3 more variables:
-#> #   flights <dbl>, active_cals <dbl>, weekday_cat <fct>
+#> # A tibble: 993 x 11
+#>    weekend_ind Start      active_cals distance flights
+#>    <chr>       <date>           <dbl>    <dbl>   <dbl>
+#>  1 weekday     2018-11-28        57.8    0.930       0
+#>  2 weekday     2018-11-29       509.     4.64       18
+#>  3 weekday     2018-11-30       599.     6.05       12
+#>  4 weekend     2018-12-01       661.     6.80        6
+#>  5 weekend     2018-12-02       527.     4.61        1
+#>  6 weekday     2018-12-03       550.     3.96        2
+#>  7 weekday     2018-12-04       670.     6.60        5
+#>  8 weekday     2018-12-05       557.     4.91        6
+#>  9 weekday     2018-12-06       997.     7.50       13
+#> 10 weekday     2018-12-07       533.     4.27        8
+#> # … with 983 more rows, and 6 more variables: steps <dbl>,
+#> #   month <dbl>, weekday <dbl>, dayofyear <dbl>,
+#> #   stepgoal <dbl>, weekday_cat <fct>
 ```
 
 ### Piping S
@@ -837,18 +840,18 @@ summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
 #> # A tibble: 12 x 2
 #>    month meanweekend
 #>    <dbl>       <dbl>
-#>  1     1        3.96
-#>  2     2        4.94
-#>  3     3        5.15
-#>  4     4        5.48
-#>  5     5        4.96
-#>  6     6        3.78
-#>  7     7        5.81
-#>  8     8        5.59
-#>  9     9        4.62
-#> 10    10        3.98
-#> 11    11        2.86
-#> 12    12        3.55
+#>  1     1        3.89
+#>  2     2        4.87
+#>  3     3        4.86
+#>  4     4        5.30
+#>  5     5        5.00
+#>  6     6        4.18
+#>  7     7        4.85
+#>  8     8        5.52
+#>  9     9        4.02
+#> 10    10        3.82
+#> 11    11        3.06
+#> 12    12        3.30
 ```
 
 
@@ -859,18 +862,18 @@ fitness_df %>% filter(weekday == 1 | weekday == 7) %>%
 #> # A tibble: 12 x 2
 #>    month meanweekend
 #>    <dbl>       <dbl>
-#>  1     1        3.96
-#>  2     2        4.94
-#>  3     3        5.15
-#>  4     4        5.48
-#>  5     5        4.96
-#>  6     6        3.78
-#>  7     7        5.81
-#>  8     8        5.59
-#>  9     9        4.62
-#> 10    10        3.98
-#> 11    11        2.86
-#> 12    12        3.55
+#>  1     1        3.89
+#>  2     2        4.87
+#>  3     3        4.86
+#>  4     4        5.30
+#>  5     5        5.00
+#>  6     6        4.18
+#>  7     7        4.85
+#>  8     8        5.52
+#>  9     9        4.02
+#> 10    10        3.82
+#> 11    11        3.06
+#> 12    12        3.30
 ```
 
 ### Other R Topics S

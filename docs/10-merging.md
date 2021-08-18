@@ -481,7 +481,7 @@ atp_2018
 #> #   loser_rank <dbl>, loser_rank_points <dbl>
 ```
 
-##### Filtering with `semi_join()` 
+### Filtering with `semi_join()` 
 
 Suppose that we only want to keep matches in 2019 where the winning player had 10 or more wins in 2018. This might be useful if we want to not consider players in 2018 that only played in a couple of matches, perhaps because they got injured or perhaps because they received a special wildcard into the draw of only one event.
 
