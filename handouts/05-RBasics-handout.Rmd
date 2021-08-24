@@ -1,5 +1,5 @@
 ---
-title: "Week 5: `R` Basics, Piping, and `slice()`"
+title: "5: `R` Basics, Piping, and `slice()`"
 output: pdf_document
 ---
 

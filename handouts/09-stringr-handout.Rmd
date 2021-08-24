@@ -1,5 +1,5 @@
 ---
-title: "Week 11: Strings with `stringr` Handout"
+title: "9: Strings with `stringr` Handout"
 output: pdf_document
 ---
 

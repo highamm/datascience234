@@ -94,7 +94,7 @@ Class participation will be assessed three times throughout the semester in a 20
 
 * Exercises
 
-There are about 14 sets of weekly exercises that often require you to read some of the sections in the <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a> first. These are worth either 10 or 5 points, depending on the length of the exercises, for a total of 100 points. Most weeks toward the beginning of the semester will be 10 point weeks because we won't have any projects to work on. Exercises are graded __for completion only__: for many exercises, the solutions are provided in our course materials. 
+There are about 14 sets of weekly exercises that often require you to read some of the sections in the <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a> first. These are worth either 10 or 5 points, depending on the length of the exercises, for a total of 100 points. Details of which sections to complete are posted in the weekly checklists. Most weeks toward the beginning of the semester will be 10 point weeks because we won't have any projects to work on. Exercises are graded __for completion only__: for many exercises, the solutions are provided in our course materials. 
 
 * Quizzes
 

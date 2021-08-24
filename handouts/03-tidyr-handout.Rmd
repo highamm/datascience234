@@ -1,5 +1,5 @@
 ---
-title: "Week 3: Tidy Data with `tidyr`"
+title: "3: Tidy Data with `tidyr`"
 output: pdf_document
 ---
 

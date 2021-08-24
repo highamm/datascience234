@@ -1,5 +1,5 @@
 ---
-title: "Week 4: `R Markdown`"
+title: "4: `R Markdown`"
 output: pdf_document
 ---
 
@@ -35,20 +35,3 @@ __Table Creation__
 
 &nbsp;
 
-__Text Options__
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
