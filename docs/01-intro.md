@@ -273,9 +273,9 @@ Note: careful about capitalization: `R` is case sensitive so USA is different th
 
 3. In the histogram of total alcohol consumption, change the __fill__ colour of the bins in the histogram above: what should be changed in the code chunk?
 
-4. In the rankings code, what if you wanted to look at the top 5 countries instead of the top 3? See if you could change the code.
+4. In the spirit rankings, why do you think only 2 countries showed up instead of 3? Can you do any investigation as to why this is the case?
 
-5. In the spirit rankings, why do you think only 2 countries showed up instead of 3? Can you do any investigation as to why this is the case?
+5. In the rankings code, what if you wanted to look at the top 5 countries instead of the top 3? See if you could change the code.
 
 6. Change the wine to beer ratio code example to find the countries with the highest beer to wine consumption (instead of wine to beer consumption).
 
