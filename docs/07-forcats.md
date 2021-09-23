@@ -404,37 +404,37 @@ gss_cat <- gss_cat %>% mutate(party_small = fct_collapse(partyid,
                                               Rep = c("Strong republican", "Not str republican"),
                                               Dem = c("Not str democrat", "Strong democrat")))
 
-gss_recent <- gss_cat %>% filter(year != 2014)
+gss_recent <- gss_cat %>% filter(year == 2014)
 
 tab1 <- table(gss_recent$party_small, gss_recent$race)
 tab1
 #>        
 #>         Other Black White Not applicable
-#>   Other    39    46   375              0
-#>   Rep     215   127  4467              0
-#>   Ind     863   827  5631              0
-#>   Dem     580  1743  4032              0
+#>   Other     8    12    68              0
+#>   Rep      22    17   498              0
+#>   Ind     152   108   828              0
+#>   Dem      80   249   496              0
 prop.table(tab1)
 #>        
 #>               Other       Black       White Not applicable
-#>   Other 0.002058591 0.002428081 0.019794141    0.000000000
-#>   Rep   0.011348641 0.006703616 0.235787807    0.000000000
-#>   Ind   0.045552916 0.043652679 0.297228820    0.000000000
-#>   Dem   0.030614938 0.092003167 0.212826603    0.000000000
+#>   Other 0.003152088 0.004728132 0.026792750    0.000000000
+#>   Rep   0.008668243 0.006698188 0.196217494    0.000000000
+#>   Ind   0.059889677 0.042553191 0.326241135    0.000000000
+#>   Dem   0.031520883 0.098108747 0.195429472    0.000000000
 prop.table(tab1, margin = 1)
 #>        
 #>              Other      Black      White Not applicable
-#>   Other 0.08478261 0.10000000 0.81521739     0.00000000
-#>   Rep   0.04470784 0.02640882 0.92888334     0.00000000
-#>   Ind   0.11788007 0.11296271 0.76915722     0.00000000
-#>   Dem   0.09126672 0.27427223 0.63446105     0.00000000
+#>   Other 0.09090909 0.13636364 0.77272727     0.00000000
+#>   Rep   0.04096834 0.03165736 0.92737430     0.00000000
+#>   Ind   0.13970588 0.09926471 0.76102941     0.00000000
+#>   Dem   0.09696970 0.30181818 0.60121212     0.00000000
 prop.table(tab1, margin = 2)
 #>        
 #>              Other      Black      White Not applicable
-#>   Other 0.02298173 0.01676996 0.02585315               
-#>   Rep   0.12669417 0.04629967 0.30796277               
-#>   Ind   0.50854449 0.30149471 0.38821096               
-#>   Dem   0.34177961 0.63543565 0.27797311
+#>   Other 0.03053435 0.03108808 0.03597884               
+#>   Rep   0.08396947 0.04404145 0.26349206               
+#>   Ind   0.58015267 0.27979275 0.43809524               
+#>   Dem   0.30534351 0.64507772 0.26243386
 ```
 
 Use the help on `?prop.table` to figure out how each of these three tables are constructed.

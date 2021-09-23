@@ -16,9 +16,9 @@ To begin, install the `lubridate` package, and load the package with `library()`
 library(tidyverse)
 library(lubridate)
 today()
-#> [1] "2021-08-24"
+#> [1] "2021-09-23"
 now()
-#> [1] "2021-08-24 16:19:03 EDT"
+#> [1] "2021-09-23 10:21:35 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
@@ -223,11 +223,11 @@ tail(stocks_long)
 #>   start_date Stock_Type  Price
 #>   <date>     <fct>       <dbl>
 #> 1 2021-05-17 Chipotle   1332. 
-#> 2 2021-05-17 S & P 500   414. 
+#> 2 2021-05-17 S & P 500   413. 
 #> 3 2021-05-18 Apple       125. 
 #> 4 2021-05-18 Nintendo     70.4
 #> 5 2021-05-18 Chipotle   1325. 
-#> 6 2021-05-18 S & P 500   411.
+#> 6 2021-05-18 S & P 500   409.
 ```
 
 You'll have a chance in the Exercises to choose your own stocks to investigate. For now, I've made a data set with three variables:

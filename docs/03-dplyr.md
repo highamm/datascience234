@@ -1168,6 +1168,10 @@ babynames %>% group_by(year) %>%
 babynames %>% summarise(totalobs = n())
 babynames %>% group_by(year) %>%
   summarise(ngroup = n())
+toy_df <- tibble(x = c(NA, 3, 4, 7),
+                 y = c(1, 4, 3, 2),
+                 z = c("A", "A", "B", NA))
+toy_df
 toy_df %>% summarise(meanx = mean(x, na.rm = TRUE))
 toy_df %>% mutate(missingx = is.na(x))
 toy_df %>% filter(is.na(x) != TRUE)

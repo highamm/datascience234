@@ -271,4 +271,3 @@ introduction-to-classification-s
 knn-introduction-s
 choosing-predictors-and-k-s
 rcode-13
-cover-image-path-to-the-social-sharing-image-like-imagescover.jpg
