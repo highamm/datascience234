@@ -386,7 +386,7 @@ Both of the data sets that we've worked with are nice in that they do not have a
 
 Missing values in `R` are denoted with `NA` for "Not Available." Run the following code to create a toy data set with some missing values so that we can see how the various functions we've used so far deal with `NA` values.
 
-```{r}
+```{r, appendix = TRUE}
 toy_df <- tibble(x = c(NA, 3, 4, 7),
                  y = c(1, 4, 3, 2),
                  z = c("A", "A", "B", NA))

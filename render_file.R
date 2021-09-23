@@ -21,3 +21,18 @@ map(paste0("About_Me/", files), render)
 files <- list.files("participation_feedback", pattern = "*.Rmd", include.dirs = TRUE)
 map(paste0("participation_feedback/", files), render)
 
+## render projects
+files <- list.files("Projects/MP1_F2021", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("Projects/MP1_F2021/", files), render)
+
+## render presentations
+files <- list.files("Projects/MP_Presentations", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("Projects/MP_Presentations/", files), render)
+
+## render midterms
+files <- list.files("midterms/Midterm1/Fall_2020", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("midterms/Midterm1/Fall_2020/", files), render)
+files <- list.files("midterms/Midterm1/Fall_2021", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("midterms/Midterm1/Fall_2021/", files), render)
+files <- list.files("midterms/Midterm1/Practice_StudyGuide", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("midterms/Midterm1/Practice_StudyGuide/", files), render)

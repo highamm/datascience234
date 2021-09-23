@@ -20,6 +20,13 @@ pander(df)
 
 __Split One Column into Two with `separate()`__
 
+```{r, echo = FALSE, results = "hide"}
+df %>% separate(xvar, into = c("speed", "handedness"),
+                sep = "-")
+df %>% pivot_longer(c(Rank1980, Rank1981), names_to = "Year",
+                    values_to = "Rank")
+```
+
 &nbsp;
 
 &nbsp;

@@ -34,6 +34,7 @@ Before moving on, click the **Knit** button in the top-left window at the top of
 ## What are `R`, `R Studio`, and `R Markdown`?
 
 The distinction between the 3 will become more clear later on. For now, 
+
 * `R` is a statistical coding software used heavily for data analysis and statistical procedures.
 
 * `R Studio` is a nice IDE (Integrated Development Environment) for `R` that has a lot of convenient features. Think of this as just a convenient User Interface.

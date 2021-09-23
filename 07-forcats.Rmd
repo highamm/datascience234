@@ -316,7 +316,7 @@ gss_cat <- gss_cat %>% mutate(party_small = fct_collapse(partyid,
                                               Rep = c("Strong republican", "Not str republican"),
                                               Dem = c("Not str democrat", "Strong democrat")))
 
-gss_recent <- gss_cat %>% filter(year != 2014)
+gss_recent <- gss_cat %>% filter(year == 2014)
 
 tab1 <- table(gss_recent$party_small, gss_recent$race)
 tab1

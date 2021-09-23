@@ -1,5 +1,5 @@
 ---
-title: "9: Strings with `stringr` Handout"
+title: "9: Strings with `stringr`"
 output: pdf_document
 ---
 
