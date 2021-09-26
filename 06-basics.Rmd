@@ -216,23 +216,16 @@ library(tidyverse)
 fitness_df <- read_csv("data/higham_fitness_notclean.csv")
 ```
 
-1. What is the issue with the following plot? There's no need to fix the plot (we'll see how to fix it when we introduce the `lubridate` package).
+1. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
 
-```{r, fig.keep = "last", echo = TRUE}
-ggplot(data = fitness_df, aes(x = Start, y = distance)) +
-  geom_line()
-```
-
-2. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
-
-```{r, fig.keep = "last", echo = TRUE}
+```{r, echo = TRUE}
 ggplot(data = fitness_df, aes(x = active_cals)) +
   geom_freqpoly(aes(group = weekday, colour = weekday))
 ```
 
-3. \* What is a third variable in the data set that has an incorrect `class`?
+2. \* What is another variable in the data set that has an incorrect `class`?
 
-4. Create a new variable, called `step_goal` that is `1` or `TRUE` if at least 10000 steps were walked and `0` or `FALSE` if fewer than 10000 steps were walked. Using this variable, find the total number of days where the goal was met and the proportion of the days where the goal was met.
+3. Create a new variable, called `step_goal` that is `1` or `TRUE` if at least 10000 steps were walked and `0` or `FALSE` if fewer than 10000 steps were walked. Using this variable, find the total number of days where the goal was met and the proportion of the days where the goal was met.
 
 ## Object Types and Subsetting
 
@@ -581,7 +574,7 @@ videogame_df <- read_csv("data/videogame_clean.csv")
 
 ### Classes in Detail S
 
-2. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
+1. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
 
 ```{r, fig.keep = "last"}
 ggplot(data = fitness_df, aes(x = active_cals)) +
@@ -597,7 +590,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
   scale_colour_viridis_d()
 ```
 
-3. \* What is a third variable in the data set that has an incorrect `class`?
+2. \* What is another variable in the data set that has an incorrect `class`?
 
 Month should be an ordered factor, not numeric.
 
