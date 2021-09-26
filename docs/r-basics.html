@@ -305,9 +305,16 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/higham_fitness_notclean.csv"</span><span class="op">)</span></code></pre></div>
 <ol style="list-style-type: decimal">
-<li><p>What is the issue with the following plot? There’s no need to fix the plot (we’ll see how to fix it when we introduce the <code>lubridate</code> package).</p></li>
-<li><p>* What is the issue with the following plot? After you figure out the issue, use <code>mutate()</code> to create a new variable that fixes the issue and then reconstruct the graph.</p></li>
-<li><p>* What is a third variable in the data set that has an incorrect <code>class</code>?</p></li>
+<li>* What is the issue with the following plot? After you figure out the issue, use <code>mutate()</code> to create a new variable that fixes the issue and then reconstruct the graph.</li>
+</ol>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_freqpoly</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>group <span class="op">=</span> <span class="va">weekday</span>, colour <span class="op">=</span> <span class="va">weekday</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with</span>
+<span class="co">#&gt; `binwidth`.</span></code></pre></div>
+<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>* What is another variable in the data set that has an incorrect <code>class</code>?</p></li>
 <li><p>Create a new variable, called <code>step_goal</code> that is <code>1</code> or <code>TRUE</code> if at least 10000 steps were walked and <code>0</code> or <code>FALSE</code> if fewer than 10000 steps were walked. Using this variable, find the total number of days where the goal was met and the proportion of the days where the goal was met.</p></li>
 </ol>
 </div>
@@ -327,29 +334,29 @@
 <span class="header-section-number">7.3.1</span> <code>tibble</code> and <code>data.frame</code><a class="anchor" aria-label="anchor" href="#tibble-and-data.frame"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>tibble</code> object is very similar to the <code>data.frame</code> object. You can also check what type of object you’re working with using the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> command:</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">)</span> <span class="co">## look at the beginning to see "tibble"</span></code></pre></div>
 <p>We will have a small section on <code>tibble</code>s in the coming weeks so we won’t focus on them here. But, we should take note that, to reference a specific element in a <code>tibble</code>, called <em>indexing</em>, you can use <code>[# , #]</code>. So, for example, <code>videogame_df[5, 3]</code> grabs the value in the fifth row and the third column:</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_df</span><span class="op">[</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;   release_date2</span>
 <span class="co">#&gt;   &lt;date&gt;       </span>
 <span class="co">#&gt; 1 2004-06-01</span></code></pre></div>
 <p>More often, we’d want to grab an entire row (or range of rows) or an entire column. We can do this by leaving the row number blank (to grab the entire column) or by leaving the column number blank (to grab the entire row):</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_df</span><span class="op">[</span> ,<span class="fl">3</span><span class="op">]</span> <span class="co">## grab the third column</span>
 
 <span class="va">videogame_df</span><span class="op">[</span><span class="fl">5</span>, <span class="op">]</span> <span class="co">## grab the fifth row</span></code></pre></div>
 <p>We can also grab a range of columns or rows using the <code><a href="https://rdrr.io/r/base/Colon.html">:</a></code> operator:</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">3</span><span class="op">:</span><span class="fl">7</span>
 
 <span class="va">videogame_df</span><span class="op">[</span> ,<span class="fl">3</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span> <span class="co">## grab columns 3 through 7</span>
 
 <span class="va">videogame_df</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span>, <span class="op">]</span> <span class="co">## grab rows 3 through 7</span></code></pre></div>
 <p>or we can grab different columns or rows using <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>:</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_df</span><span class="op">[</span> ,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span> <span class="co">## grab columns 1, 3, and 4</span>
 
 <span class="va">videogame_df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, <span class="op">]</span> <span class="co">## grab rows 1, 3, and 4</span></code></pre></div>
@@ -360,7 +367,7 @@
 <span class="header-section-number">7.3.2</span> Vectors<a class="anchor" aria-label="anchor" href="#vectors"><i class="fas fa-link"></i></a>
 </h3>
 <p>A vector is an object that holds “things,” or elements, of the same class. You can create a vector in <code>R</code> using the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function, which stands for “concatenate.” We’ve used the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function before to bind things together; we just hadn’t yet discussed it in the context of creating a vector.</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="va">vec2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="va">vec3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>
@@ -370,17 +377,17 @@
 <span class="co">#&gt;  logi [1:3] FALSE FALSE TRUE</span></code></pre></div>
 <p>Notice that <code>vec2</code> is a character class. <code>R</code> requires all elements in a vector to be of one class; since <code>R</code> knows <code>b</code> can’t be numeric, it makes all of the numbers characters as well.</p>
 <p>Using the <code>dataset$variable</code> draws out a vector from a <code>tibble</code> or <code>data.frame</code>:</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_df</span><span class="op">$</span><span class="va">metascore</span></code></pre></div>
 <p>If you wanted to make the above vector “by hand,” you’d need to have a lot of patience: <code><a href="https://rdrr.io/r/base/c.html">c(96, 88, 65, NA, NA, NA, 93, .........)</a></code></p>
 <p>Just like tibbles, you can save vectors as something for later use:</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">metavec</span> <span class="op">&lt;-</span> <span class="va">videogame_df</span><span class="op">$</span><span class="va">metascore</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">metavec</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; [1] 71.89544</span></code></pre></div>
 <p>How would you get the mean <code>metascore</code> using <code>dplyr</code> functions?</p>
 <p>Vectors are one-dimensional: if we want to grab the 100th element of a vector we just use <code>name_of_vector[100]</code>:</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">metavec</span><span class="op">[</span><span class="fl">100</span><span class="op">]</span> <span class="co">## 100th element is missing</span>
 <span class="co">#&gt; [1] NA</span></code></pre></div>
 <p>Be aware that, if you’re coming from a math perspective, a “vector” in <code>R</code> doesn’t correspond to a “vector” in mathematics or physics.</p>
@@ -390,7 +397,7 @@
 <span class="header-section-number">7.3.3</span> Lists<a class="anchor" aria-label="anchor" href="#lists"><i class="fas fa-link"></i></a>
 </h3>
 <p>Lists are one of the more flexible objects in <code>R</code>: you can put objects of different classes in the same list and lists aren’t required to be rectangular (like <code>tibbles</code> are). Lists are <strong>extremely</strong> useful because of this flexibility, but, we won’t use them much in this class. Therefore, we will just see an example of a list before moving on:</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">testlist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span>,
                  <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">testlist</span>
@@ -426,7 +433,7 @@
 <li><p>Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.</p></li>
 <li><p>Use <code>dplyr</code> functions and the <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> operator to create the new <code>weekend_ind</code> variable. You can use the following code chunk to help with what <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> does:</p></li>
 </ol>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>
 <span class="fl">2</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>
 
@@ -439,30 +446,30 @@
 </h2>
 <p>The pipe <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code> is loaded automatically when the <code>tidyverse</code> library is loaded, but the operator comes from the <code>magrittr</code> package. We’ve been using the pipe quite a bit, but let’s delve a little deeper into what it’s actually doing.</p>
 <p>Let’s say you want to <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> the data set to include only observations with a <code>metascore</code> that isn’t missing. We’ve been using:</p>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>What the pipe is doing is putting <code>videogame_df</code> as the first argument in the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function so that the piping statement in the chunk above is equivalent to:</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>If we want to first filter out games with a non-missing metascore, get rid of all observations with a median play time of 0, and then obtain the “median” <code>median_playtime</code> for each of the 3 price categories, we would typically use</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">price_cat</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>avg_med_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">median_playtime</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We see from the summary that, in general, games do tend to give you more “bang for the buck”: more expensive games tend to have a larger median play time. Consecutive pipes build on each other: we can slowly build out what the pipe is doing step-by-step. Starting from the top, <code>videogame_df</code> is the first argument in the <code><a href="https://rdrr.io/r/stats/filter.html">filter(!is.na(metascore))</a></code> function:</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><code><a href="https://rdrr.io/r/stats/filter.html">filter(videogame_df, !is.na(metascore))</a></code> is the first argument in <code><a href="https://rdrr.io/r/stats/filter.html">filter(median_playtime &gt; 0)</a></code>:</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>, <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <p><code><a href="https://rdrr.io/r/stats/filter.html">filter(filter(videogame_df, !is.na(metascore)), median_playtime &gt; 0)</a></code> is the first argument in <code>group_by(price_cat)</code>:</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">group_by</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>,
                 <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span>,
   <span class="va">price_cat</span><span class="op">)</span></code></pre></div>
 <p>and <code>group_by(filter(filter(videogame_df, !is.na(metascore)), median_playtime &gt; 0), price_cat)</code> is the first argument of <code>summarise(avg_med_time = median(median_playtime, na.rm = TRUE))</code>:</p>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">summarise</span><span class="op">(</span><span class="fu">group_by</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>,
   <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span>, <span class="va">price_cat</span><span class="op">)</span>, 
   avg_med_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">median_playtime</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -473,11 +480,11 @@
 </h3>
 <p>So, the pipe is a convenient way to put what precedes the pipe as the first argument to the function that follows the pipe. It’s important to understand this as you learn more about <code>R</code> because, while the functions in <code>tidyverse</code> are purposefully made to make good use of the pipe, not all functions in <code>R</code> utilize the pipe. Most of the functions in the <code>tidyverse</code> have a first argument that is a data set (which is why we can use pipes consecutively), but this isn’t the case with all <code>R</code> functions.</p>
 <p>For example, if you have taken STAT 213, you’ve used <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> to fit many different types of linear models. If you haven’t taken STAT 213, <code><a href="https://rdrr.io/r/stats/lm.html">lm(response ~ explanatory)</a></code> stands for “linear model” and can be used to fit the simple linear regression model that you learned about in STAT 113. You might expect something like this to work:</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">metascore</span> <span class="op">~</span> <span class="va">price</span><span class="op">)</span>
 <span class="co">#&gt; Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame</span></code></pre></div>
 <p>But it throws us an error. Typing in <code><a href="https://rdrr.io/r/stats/lm.html">?lm</a></code> reveals that its first argument is a <code>formula</code> to fit the model, not a data set. So the function is trying to run</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="va">metascore</span> <span class="op">~</span> <span class="va">price</span><span class="op">)</span>
 <span class="co">#&gt; Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame</span></code></pre></div>
 <p>which doesn’t work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).</p>
@@ -490,7 +497,7 @@
 <ol style="list-style-type: decimal">
 <li>* Recode the following to look cleaner by using the pipe <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>:</li>
 </ol>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">summarise</span><span class="op">(</span><span class="fu">group_by</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span>,
                    <span class="va">month</span><span class="op">)</span>,
           meanweekend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> 
@@ -512,7 +519,7 @@
 <ol start="2" style="list-style-type: decimal">
 <li>Explain why the following code gives a warning message and returns <code>NA</code>. Use the list of Arguments in <code><a href="https://rdrr.io/r/base/mean.html">?mean</a></code> in your explanation.</li>
 </ol>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitness_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Warning in mean.default(., distance, na.rm = TRUE): argument</span>
 <span class="co">#&gt; is not numeric or logical: returning NA</span>
@@ -530,7 +537,7 @@
 <p><code>R Projects</code> are a convenient way to keep related code, data sets, and analyses together. Read this very short introduction in <code>R</code> for Data Science here: <a href="https://r4ds.had.co.nz/workflow-projects.html#paths-and-directories" target="_blank">https://r4ds.had.co.nz/workflow-projects.html#paths-and-directories</a> and <a href="https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects" target="_blank">https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects</a>.</p>
 <p>Why should you rarely use an absolute directory?</p>
 <p>Look at the top of your bottom-left terminal window. If you’ve made an <code>R project</code> (which you should have!), you should see that a file path that is the current folder you’re working in. This is where <code>R Studio</code> will look for files by default. So,</p>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/higham_fitness_notclean.csv"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ── Column specification ────────────────────────────────────</span>
@@ -603,7 +610,7 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <p>Step 5. If you want your STAT 234 materials off of the server (which you should!), then you’ll need to download them to your personal device. Click the checkbox next to the STAT 234 folder, and then click More -&gt; Export -&gt; Download. There should now be a zipped folder of your materials in your Downloads folder. Double click to unzip the folder and then move the STAT 234 folder to a place that’s convenient for you (since you’ll be using it a lot this semester, one place you could put it is your Desktop).</p>
 <p>Verify that the contents downloaded by opening up the Week5_R_Basics <code>R Project</code> by double clicking the <code>R Project</code> icon in the Week5 folder.</p>
 <p>Step 6. There’s a lot of packages that we’ve used that were already installed on the server. By far, the largest package (and the one that’s most likely to give you an error in installation) is the <code>tidyverse</code> package. Install this package using</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
 <p>Step 7. Open your Week4 Project in a new window and verify that your .Rmd files can knit (you’ll at least need to install <code>ggthemes</code> and <code>ggrepel</code> and possibly a couple of other packages that I’m not thinking of).</p>
 <p>Once <code>R</code> is installed and ready to go, work through the following exercises pertaining to the video game data set.</p>
@@ -611,7 +618,7 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <li>* Read in the data set and use <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.</li>
 </ol>
 <p><strong>Note</strong>: We usually don’t want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn’t “major” enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren’t enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>* Make a scatterplot with <code>median_playtime</code> on the y-axis and <code>metascore</code> on the x-axis with the filtered data set.</p></li>
@@ -635,20 +642,20 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <h3>
 <span class="header-section-number">7.7.2</span> Classes in Detail S<a class="anchor" aria-label="anchor" href="#classes-in-detail-s"><i class="fas fa-link"></i></a>
 </h3>
-<ol start="2" style="list-style-type: decimal">
+<ol style="list-style-type: decimal">
 <li>* What is the issue with the following plot? After you figure out the issue, use <code>mutate()</code> to create a new variable that fixes the issue and then reconstruct the graph.</li>
 </ol>
 <p>The issue is that weekday should be a factor, not numeric.</p>
-<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="va">fitness_df</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>weekday_cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">weekday</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_freqpoly</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>group <span class="op">=</span> <span class="va">weekday_cat</span>, colour <span class="op">=</span> <span class="va">weekday_cat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_colour_viridis_d</span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with</span>
 <span class="co">#&gt; `binwidth`.</span></code></pre></div>
-<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-51-1.png" width="672"></div>
-<ol start="3" style="list-style-type: decimal">
-<li>* What is a third variable in the data set that has an incorrect <code>class</code>?</li>
+<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-50-1.png" width="672"></div>
+<ol start="2" style="list-style-type: decimal">
+<li>* What is another variable in the data set that has an incorrect <code>class</code>?</li>
 </ol>
 <p>Month should be an ordered factor, not numeric.</p>
 </div>
@@ -666,13 +673,13 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <ol style="list-style-type: lower-alpha">
 <li>Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.</li>
 </ol>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vecweekend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">)</span>
 <span class="va">vecweekday</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">:</span><span class="fl">6</span> <span class="co">## or c(2, 3, 4, 5, 6)</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Use <code>dplyr</code> functions and the <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> operator to create the new <code>weekend_ind</code> variable. You can use the following code chunk to help with what <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> does:</li>
 </ol>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span>
 <span class="fl">2</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>
@@ -680,7 +687,7 @@ To do so, click the checkbox next to the video games data set and the fitness da
 
 <span class="fl">2</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>
 <span class="co">#&gt; [1] FALSE</span></code></pre></div>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitness_df</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>weekend_ind <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">weekday</span> <span class="op">%in%</span> <span class="va">vecweekend</span> <span class="op">~</span> <span class="st">"weekend"</span>,
                                  <span class="va">weekday</span> <span class="op">%in%</span> <span class="va">vecweekday</span> <span class="op">~</span> <span class="st">"weekday"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -730,7 +737,7 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <ol style="list-style-type: decimal">
 <li>* Recode the following to look cleaner by using the pipe <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>:</li>
 </ol>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">summarise</span><span class="op">(</span><span class="fu">group_by</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span>,
                    <span class="va">month</span><span class="op">)</span>,
           meanweekend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> 
@@ -749,7 +756,7 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <span class="co">#&gt; 10    10        3.82</span>
 <span class="co">#&gt; 11    11        3.06</span>
 <span class="co">#&gt; 12    12        3.30</span></code></pre></div>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitness_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>meanweekend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> 
@@ -786,9 +793,9 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <li>* Read in the data set and use <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.</li>
 </ol>
 <p><strong>Note</strong>: We usually don’t want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn’t “major” enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren’t enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">videogame_nomiss</span> <span class="op">&lt;-</span> <span class="va">videogame_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">median_playtime</span><span class="op">)</span> <span class="op">&amp;</span>
            <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span> <span class="op">&amp;</span>
@@ -796,48 +803,48 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <ol start="2" style="list-style-type: decimal">
 <li>* Make a scatterplot with <code>median_playtime</code> on the y-axis and <code>metascore</code> on the x-axis with the filtered data set.</li>
 </ol>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_nomiss</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>,
-                                    y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-59-1.png" width="672"></div>
-<ol start="3" style="list-style-type: decimal">
-<li>* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is <em>discrete</em>: <code>metascore</code> can only take on integer values in this case. Change <code>geom_point()</code> in your previous plot to <code>geom_jitter()</code>. Then, use the help to write a sentence about what <code>geom_jitter()</code> does.</li>
-</ol>
 <div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_nomiss</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>,
                                     y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_jitter</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-60-1.png" width="672"></div>
-<p><code>geom_jitter()</code> adds a small amount of “noise” to each data point so that points don’t overlap quite as much.</p>
-<ol start="4" style="list-style-type: decimal">
-<li>* Another option is to control point transparency with <code>alpha</code>. In your <code>geom_jitter()</code> statement, change <code>alpha</code> so that you can still see all of the points, but so that you can tell in the plot where a lot of points are overlapping.</li>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-58-1.png" width="672"></div>
+<ol start="3" style="list-style-type: decimal">
+<li>* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is <em>discrete</em>: <code>metascore</code> can only take on integer values in this case. Change <code>geom_point()</code> in your previous plot to <code>geom_jitter()</code>. Then, use the help to write a sentence about what <code>geom_jitter()</code> does.</li>
 </ol>
 <div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_nomiss</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>,
                                     y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_jitter</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-61-1.png" width="672"></div>
+  <span class="fu">geom_jitter</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-59-1.png" width="672"></div>
+<p><code>geom_jitter()</code> adds a small amount of “noise” to each data point so that points don’t overlap quite as much.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>* Another option is to control point transparency with <code>alpha</code>. In your <code>geom_jitter()</code> statement, change <code>alpha</code> so that you can still see all of the points, but so that you can tell in the plot where a lot of points are overlapping.</li>
+</ol>
 <div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_nomiss</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>,
+                                    y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_jitter</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-60-1.png" width="672"></div>
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## can see a lot of ponits have median playtimes close to 0</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>* Label the points that have median playtimes above 1500 hours. You may want to use the <code>ggrepel</code> package so that the labels don’t overlap.</li>
 </ol>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span>
 <span class="va">videogame_long</span> <span class="op">&lt;-</span> <span class="va">videogame_nomiss</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">1500</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_nomiss</span>,
        <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>, y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_jitter</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_long</span>, <span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">game</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-62-1.png" width="672"></div>
+<div class="inline-figure"><img src="06-basics_files/figure-html/unnamed-chunk-61-1.png" width="672"></div>
 </div>
 </div>
 <div id="rcode-6" class="section level2" number="7.8">
 <h2>
 <span class="header-section-number">7.8</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-6"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">)</span>
@@ -983,7 +990,7 @@ To do so, click the checkbox next to the video games data set and the fitness da
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-09-23.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-09-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -316,7 +316,11 @@ If you were doing one of these analyses, there are lots of cool functions in `ti
 
 ## Add Second Example Here
 
-maybe the office package? maybe the friends package?
+<!-- see below: sentiment analysis for the friends package -->
+
+<!-- https://amirdjv.netlify.app/post/rating-and-sentiment-analysis-for-friends/ -->
+
+<!-- additional resource: https://www.tidytextmining.com/tidytext.html -->
 
 ## Chapter Exercises {#chapexercise-12}
 

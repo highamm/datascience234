@@ -301,17 +301,21 @@ library(tidyverse)
 fitness_df <- read_csv("data/higham_fitness_notclean.csv")
 ```
 
-1. What is the issue with the following plot? There's no need to fix the plot (we'll see how to fix it when we introduce the `lubridate` package).
+1. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
 
 
+```r
+ggplot(data = fitness_df, aes(x = active_cals)) +
+  geom_freqpoly(aes(group = weekday, colour = weekday))
+#> `stat_bin()` using `bins = 30`. Pick better value with
+#> `binwidth`.
+```
 
-2. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
+![](06-basics_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
 
+2. \* What is another variable in the data set that has an incorrect `class`?
 
-
-3. \* What is a third variable in the data set that has an incorrect `class`?
-
-4. Create a new variable, called `step_goal` that is `1` or `TRUE` if at least 10000 steps were walked and `0` or `FALSE` if fewer than 10000 steps were walked. Using this variable, find the total number of days where the goal was met and the proportion of the days where the goal was met.
+3. Create a new variable, called `step_goal` that is `1` or `TRUE` if at least 10000 steps were walked and `0` or `FALSE` if fewer than 10000 steps were walked. Using this variable, find the total number of days where the goal was met and the proportion of the days where the goal was met.
 
 ## Object Types and Subsetting
 
@@ -732,7 +736,7 @@ videogame_df <- read_csv("data/videogame_clean.csv")
 
 ### Classes in Detail S
 
-2. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
+1. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
 
 
 
@@ -748,9 +752,9 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 #> `binwidth`.
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-51-1.png)<!-- -->
+![](06-basics_files/figure-epub3/unnamed-chunk-50-1.png)<!-- -->
 
-3. \* What is a third variable in the data set that has an incorrect `class`?
+2. \* What is another variable in the data set that has an incorrect `class`?
 
 Month should be an ordered factor, not numeric.
 
@@ -910,7 +914,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_point()
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-59-1.png)<!-- -->
+![](06-basics_files/figure-epub3/unnamed-chunk-58-1.png)<!-- -->
 
 3. \* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is _discrete_: `metascore` can only take on integer values in this case. Change `geom_point()` in your previous plot to `geom_jitter()`. Then, use the help to write a sentence about what `geom_jitter()` does.
 
@@ -921,7 +925,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter()
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-60-1.png)<!-- -->
+![](06-basics_files/figure-epub3/unnamed-chunk-59-1.png)<!-- -->
 
 `geom_jitter()` adds a small amount of "noise" to each data point so that points don't overlap quite as much.
 
@@ -934,7 +938,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter(alpha = 0.4)
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-61-1.png)<!-- -->
+![](06-basics_files/figure-epub3/unnamed-chunk-60-1.png)<!-- -->
 
 ```r
 ## can see a lot of ponits have median playtimes close to 0
@@ -952,7 +956,7 @@ ggplot(data = videogame_nomiss,
   geom_label_repel(data = videogame_long, aes(label = game))
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-62-1.png)<!-- -->
+![](06-basics_files/figure-epub3/unnamed-chunk-61-1.png)<!-- -->
 
 ## Non-Exercise `R` Code {#rcode-6}
 

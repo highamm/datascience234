@@ -82,31 +82,31 @@
 <li>what are the most popular words in the song?</li>
 </ol>
 <p>These questions may seem simple, but they can actually still be somewhat challenging to answer. Issues like punctuation, filler words, and parsing the long string will give us some challenges to work through.</p>
-<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
 <span class="va">rblack</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">[2156 chars quoted with '"']</span><span class="op">)</span></code></pre></div>
 <p>Our first goal is to parse out every word so that we have an object. Run the following to examine the <code>rblack</code> object. The <code>\n</code> denotes a line break in the string.</p>
-<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack</span></code></pre></div>
 <p>Our first step will be to use the <code>\n</code> as a separator and split the lyric strings by that character using the <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> function. <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> takes a string as its first argument and what we want to split the string by (<code>\n</code> in this case) as its second argument. <code>simplify = TRUE</code> puts the results into a matrix instead of a list.</p>
-<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">rblack</span>, <span class="st">"\n"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">rblack2</span></code></pre></div>
 <p>That’s much better to look at! Look at the structure of <code>rblack2</code> with:</p>
-<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">rblack2</span><span class="op">)</span></code></pre></div>
 <p>We see that <code>rblack2</code> is a matrix with 1 row and 76 columns. But, we now want each word to be its own separate string. We can do this by using <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> again, but, this time getting rid of the spaces.</p>
-<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">rblack2</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span><span class="op">)</span><span class="op">)</span>
 <span class="va">rblack3</span></code></pre></div>
 <p>Look carefully between <code>rblack2</code> and <code>rblack3</code>: what’s the difference? In <code>rblack2</code>, there’s quotes surrounding each line while in <code>rblack3</code>, there’s quotes surrounding each word.</p>
 <p>We can use the <code><a href="https://rdrr.io/r/base/unlist.html">unlist()</a></code> function to convert the list into a regular vector:</p>
-<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">rblack3</span><span class="op">)</span>
 <span class="va">rblack4</span></code></pre></div>
 <p>What would happen if we tried to count the number of times Rebecca Black says Friday from the words below? Let’s try and see!</p>
-<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack_df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>words <span class="op">=</span> <span class="va">rblack4</span><span class="op">)</span>
 <span class="va">rblack_df</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">words</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>word_count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -126,21 +126,21 @@
 <span class="co">#&gt; 10 fun,             9</span>
 <span class="co">#&gt; # … with 116 more rows</span></code></pre></div>
 <p>The issue with this approach is that there are some instances of Friday with a <code>,</code> and some without. Based on this issue, let’s go back to our vector of words <code>rblack4</code> and see if we can fix it using <code><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove()</a></code>, which removes given patterns in a string. For example,</p>
-<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="va">rblack4</span>, pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span><span class="op">)</span>
 <span class="va">rblack5</span></code></pre></div>
 <p>removes all of the commas.</p>
 <p>Another issue is that, if a word starts a sentence, it’s capitalized so <code>R</code> thinks <code>Partyin'</code> is a completely different word than <code>partyin'</code>. The <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower()</a></code> function converts all characters to lowercase:</p>
-<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="va">rblack5</span><span class="op">)</span>
 <span class="va">rblack6</span></code></pre></div>
 <p>Finally, we might want to get rid of “non-interesting” words, commonly known as “stop words.” These are words like “the,” “on,” “a,” “I,” etc. that don’t really provide meaning about the song. The <code>tidytext</code> package has a data set that has a list of stop words prepackaged. Install the package, load the <code>tidytext</code> library, and examine the stop words with:</p>
-<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">##install.packages("tidytext")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
 <span class="va">stop_words</span></code></pre></div>
 <p>Next, let’s make the Friday words into a <code>tibble</code> with the <code>tibble()</code> function:</p>
-<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack_df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>words <span class="op">=</span> <span class="va">rblack6</span><span class="op">)</span>
 <span class="va">rblack_df</span>
 <span class="co">#&gt; # A tibble: 360 x 1</span>
@@ -158,7 +158,7 @@
 <span class="co">#&gt; 10 yeah-ah-ah         </span>
 <span class="co">#&gt; # … with 350 more rows</span></code></pre></div>
 <p>And we can now use the <code>anti_join()</code> function to get rid of the stop words in the Rebecca Black data set.</p>
-<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack_small</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">rblack_df</span>, <span class="va">stop_words</span>,
                           by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"words"</span> <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">rblack_small</span>
@@ -177,7 +177,7 @@
 <span class="co">#&gt; 10 yeah-ah-ah         </span>
 <span class="co">#&gt; # … with 198 more rows</span></code></pre></div>
 <p>We see that 98 words were dropped from the data set, but that some words weren’t picked up (like <code>yeah-ah-ah</code>). We will leave these for now, but, we could remove them with <code><a href="https://rdrr.io/r/stats/filter.html">filter(words != "yeah-ah-ah")</a></code> Finally, we can get some counts of words in the song Friday that aren’t “stop words.”</p>
-<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack_small</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">words</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>word_count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">word_count</span><span class="op">)</span><span class="op">)</span>
@@ -205,7 +205,7 @@
 <li><p>* Ignore the parentheses for now. Make a point plot that shows the 10 most common words in Rebecca Black’s Friday, where the words are ordered from the most common to the least common on your graph.</p></li>
 <li><p>We can also make a wordcloud (though word clouds have some issues). <code>R</code> has a wordcloud package called <code>wordcloud</code>. Run the following code to make a word cloud of the words in the song <em>Friday</em>.</p></li>
 </ol>
-<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack_sum</span> <span class="op">&lt;-</span> <span class="va">rblack_small</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">words</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>word_count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">word_count</span><span class="op">)</span><span class="op">)</span>
@@ -219,11 +219,11 @@
 <li>Finally, what about those pesky parentheses? Certain characters in <code>R</code> are treated as special: <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code>, <code>(</code>, <code>.</code>, and <code>)</code> are all examples. Dealing with these are fairly annoying: we need to “escape” them with a backslash and then “escape” that backslash with another backslash. If that’s confusing, no worries: we won’t focus too much on these special characters in this class.</li>
 </ol>
 <p>To remove the front parenthesis, use</p>
-<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="va">rblack6</span>, pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"\\("</span><span class="op">)</span><span class="op">)</span>
 <span class="va">rblack7</span></code></pre></div>
 <p>and then to remove the back parenthesis, use</p>
-<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="va">rblack7</span>, pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"\\)"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">rblack8</span></code></pre></div>
 <p>These are “regular expressions:” if interested, you can read more in the <a href="https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions" target="_blank">R4DS textbook</a>.</p>
@@ -241,7 +241,9 @@
 <h2>
 <span class="header-section-number">13.2</span> Add Second Example Here<a class="anchor" aria-label="anchor" href="#add-second-example-here"><i class="fas fa-link"></i></a>
 </h2>
-<p>maybe the office package? maybe the friends package?</p>
+<!-- see below: sentiment analysis for the friends package -->
+<!-- https://amirdjv.netlify.app/post/rating-and-sentiment-analysis-for-friends/ -->
+<!-- additional resource: https://www.tidytextmining.com/tidytext.html -->
 </div>
 <div id="chapexercise-12" class="section level2" number="13.3">
 <h2>
@@ -252,7 +254,7 @@
 <li>* Read in the <code>beyonce_lyrics.csv</code> file, which has the lyrics to all of beyonce’s songs and construct either a word cloud or a point plot that shows the most common non-stop words in either all of Beyonce’s songs. Do the best you can here (you might have some minor errors, like the parentheses in Friday’s “yeah” that we don’t have the tools to fix).</li>
 </ol>
 <p><strong>Hint</strong>: You can actually skip a couple of the steps from the Friday analysis, as, for example, there is no “<code>\n</code>” character to remove in Beyonce’s lyrics.</p>
-<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beyonce</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/beyonce_lyrics.csv"</span><span class="op">)</span>
 <span class="va">beyonce_lyrics</span> <span class="op">&lt;-</span> <span class="va">beyonce</span><span class="op">$</span><span class="va">line</span></code></pre></div>
 </div>
@@ -267,7 +269,7 @@
 <ol style="list-style-type: decimal">
 <li>* Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the <code>tidytext</code> package? Create a tibble with a couple of stop words not picked up by the <code>tidytext</code> package, and use a join function to drop these words from <code>rblack_small</code>.</li>
 </ol>
-<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">extra_stops</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>other_stop_words <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gonna"</span>, <span class="st">"yeah"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">rblack_small2</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">rblack_small</span>, <span class="va">extra_stops</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"words"</span> <span class="op">=</span> <span class="st">"other_stop_words"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">rblack_wordcounts</span> <span class="op">&lt;-</span> <span class="va">rblack_small2</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">words</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -277,7 +279,7 @@
 <ol start="2" style="list-style-type: decimal">
 <li>* Ignore the parentheses for now. Make a point plot that shows the 10 most common words in Rebecca Black’s Friday, where the words are ordered from the most common to the least common on your graph.</li>
 </ol>
-<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rblack10</span> <span class="op">&lt;-</span> <span class="va">rblack10</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>words_ord <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">words</span>, .x <span class="op">=</span> <span class="va">word_count</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">rblack10</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">words_ord</span>, y <span class="op">=</span> <span class="va">word_count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -297,10 +299,10 @@
 <li>* Read in the <code>beyonce_lyrics.csv</code> file, which has the lyrics to all of beyonce’s songs and construct either a word cloud or a point plot that shows the most common non-stop words in either all of Beyonce’s songs. Do the best you can here (you might have some minor errors, like the parentheses in Friday’s “yeah” that we don’t have the tools to fix).</li>
 </ol>
 <p><strong>Hint</strong>: You can actually skip a couple of the steps from the Friday analysis, as, for example, there is no “<code>\n</code>” character to remove in Beyonce’s lyrics.</p>
-<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beyonce</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/beyonce_lyrics.csv"</span><span class="op">)</span>
 <span class="va">beyonce_lyrics</span> <span class="op">&lt;-</span> <span class="va">beyonce</span><span class="op">$</span><span class="va">line</span></code></pre></div>
-<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beyonce_lines</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">beyonce</span><span class="op">$</span><span class="va">line</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span><span class="op">)</span><span class="op">)</span>
 <span class="va">words_only</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">beyonce_lines</span><span class="op">)</span>
 
@@ -312,7 +314,7 @@
 <span class="va">beyonce_lines4</span>
 
 <span class="va">beyonce_df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>b_words <span class="op">=</span> <span class="va">beyonce_lines4</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beyonce_small</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">beyonce_df</span>, <span class="va">stop_words</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b_words"</span> <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">beyonce_small</span>
 
@@ -337,7 +339,7 @@
 <h2>
 <span class="header-section-number">13.5</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-12"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
 <span class="va">rblack</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">[2156 chars quoted with '"']</span><span class="op">)</span>
@@ -407,7 +409,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-09-23.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-09-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
