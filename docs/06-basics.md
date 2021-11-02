@@ -612,19 +612,14 @@ Look at the top of your bottom-left terminal window. If you've made an `R projec
 
 ```r
 fitness_df <- read_csv("data/higham_fitness_notclean.csv")
-#> 
+#> Rows: 993 Columns: 9
 #> ── Column specification ────────────────────────────────────
-#> cols(
-#>   Start = col_date(format = ""),
-#>   active_cals = col_double(),
-#>   distance = col_double(),
-#>   flights = col_double(),
-#>   steps = col_double(),
-#>   month = col_double(),
-#>   weekday = col_double(),
-#>   dayofyear = col_double(),
-#>   stepgoal = col_double()
-#> )
+#> Delimiter: ","
+#> dbl  (8): active_cals, distance, flights, steps, month, ...
+#> date (1): Start
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 starts at the path given in the console, looks for a folder called `data` in that path and looks for a file called `higham_fitness_notclean.csv` in the data folder. 

@@ -340,19 +340,15 @@ For the remainder of this chapter, we will work with some fitness data collected
 library(tidyverse)
 fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
   TRUE ~ "weekday"))
-#> 
+#> Rows: 993 Columns: 9
 #> ── Column specification ────────────────────────────────────
-#> cols(
-#>   Start = col_date(format = ""),
-#>   active_cals = col_double(),
-#>   distance = col_double(),
-#>   flights = col_double(),
-#>   steps = col_double(),
-#>   month = col_character(),
-#>   weekday = col_character(),
-#>   dayofyear = col_double(),
-#>   stepgoal = col_double()
-#> )
+#> Delimiter: ","
+#> chr  (2): month, weekday
+#> dbl  (6): active_cals, distance, flights, steps, dayofye...
+#> date (1): Start
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 First, let's make a basic scatterplot to illustrate why it's so important to plot your data. I'll use the variable `distance` as the x-variable and `active_cals` as the y-variable.

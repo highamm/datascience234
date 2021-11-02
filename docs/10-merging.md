@@ -833,14 +833,14 @@ final_df <- bind_rows(tennis_2019_10, tennis_temp)
 ```r
 library(tidyverse)
 mortality_df <- read_csv("data/gun_violence_us.csv")
-#> 
+#> Rows: 50 Columns: 4
 #> ── Column specification ────────────────────────────────────
-#> cols(
-#>   state = col_character(),
-#>   mortality_rate = col_double(),
-#>   ownership_rate = col_double(),
-#>   region = col_character()
-#> )
+#> Delimiter: ","
+#> chr (2): state, region
+#> dbl (2): mortality_rate, ownership_rate
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 

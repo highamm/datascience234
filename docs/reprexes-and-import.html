@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 9 Reprexes and Import | STAT 234: Data Science">
 <meta name="twitter:description" content="Goals: Use tibble to create data sets in R, and describe the benefits of reprexes. Use readr to read in data to R from .csv, .txt, and .tsv files. Use rvest to scrape data from public websites....">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
@@ -52,7 +52,7 @@
 <li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
 <li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">11</span> Merging with dplyr</a></li>
 <li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">12</span> Dates with lubridate</a></li>
-<li><a class="" href="strings-with-stringr.html"><span class="header-section-number">13</span> Strings with stringr</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">13</span> Text Data with tidytext and stringr</a></li>
 <li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">14</span> Predictive Modeling with knn</a></li>
 </ul>
 
@@ -151,7 +151,7 @@
 <span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 11</span>
-<span class="co">#&gt;   `This is a data… X2    X3    X4    X5    X6    X7    X8   </span>
+<span class="co">#&gt;   `This is a data… ...2  ...3  ...4  ...5  ...6  ...7  ...8 </span>
 <span class="co">#&gt;   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span>
 <span class="co">#&gt; 1 "I'm a na\x95ve… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span>
 <span class="co">#&gt; 2 "mpg"            cyl   disp  hp    drat  wt    qsec  vs   </span>
@@ -159,7 +159,8 @@
 <span class="co">#&gt; 4  &lt;NA&gt;            &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span>
 <span class="co">#&gt; 5 "-999"           6     160   110   3.9   2.62  16.46 0    </span>
 <span class="co">#&gt; 6 "21"             6     160   110   3.9   2.875 17.02 0    </span>
-<span class="co">#&gt; # … with 3 more variables: X9 &lt;chr&gt;, X10 &lt;chr&gt;, X11 &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; # … with 3 more variables: ...9 &lt;chr&gt;, ...10 &lt;chr&gt;,</span>
+<span class="co">#&gt; #   ...11 &lt;chr&gt;</span></code></pre></div>
 <p>What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of <code>R</code>.</p>
 <p>Type in <code>?read_csv</code> in the bottom-left window and look at some of the options in <code>read_csv()</code>. In particular, we will use the <code>na</code> and the <code>skip</code> arguments to fix up our reading.</p>
 <p>Let’s start with <code>skip</code> so that we aren’t reading in the first two rows of the data set:</p>
@@ -183,15 +184,15 @@
 <code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 11</span>
-<span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  NA      NA    NA    NA NA    NA     NA      NA    NA</span>
-<span class="co">#&gt; 2  NA      NA    NA    NA NA    NA     NA      NA    NA</span>
-<span class="co">#&gt; 3  NA       6   160   110  3.9   2.62  16.5     0     1</span>
-<span class="co">#&gt; 4  21       6   160   110  3.9   2.88  17.0     0     1</span>
-<span class="co">#&gt; 5  22.8     4   108    93  3.85  2.32  18.6     1     1</span>
-<span class="co">#&gt; 6  21.4     6   258   110  3.08  3.22  19.4     1     0</span>
-<span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;   mpg   cyl   disp  hp    drat  wt    qsec  vs    am   </span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1 NA    NA    NA    NA    NA    NA    NA    NA    NA   </span>
+<span class="co">#&gt; 2 NA    NA    NA    NA    NA    NA    NA    NA    NA   </span>
+<span class="co">#&gt; 3 &lt;NA&gt;  6     160   110   3.9   2.62  16.46 0     1    </span>
+<span class="co">#&gt; 4 21    6     160   110   3.9   2.875 17.02 0     1    </span>
+<span class="co">#&gt; 5 22.8  4     108   93    3.85  2.32  18.61 1     1    </span>
+<span class="co">#&gt; 6 21.4  6     258   110   3.08  3.215 19.44 1     0    </span>
+<span class="co">#&gt; # … with 2 more variables: gear &lt;chr&gt;, carb &lt;chr&gt;</span></code></pre></div>
 <p>Now look at the classes of each variable. Which classes look like they are incorrect?</p>
 <p>We’ve talked about how to re-specify classes of variables using <code>mutate()</code> and the <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> or <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> or <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> functions, but sometimes it’s easier just to respecify the class when we are reading in the data. Notice how, when we use <code>read_csv()</code>, <code>R</code> gives us a message about each of the column types. This is actually an argument in <code>read_csv()</code> called <code>col_types</code>. <code>R</code> prints it so that it’s easy for us to copy and paste it into <code>read_csv()</code> and change any classes. For example, notice how <code>cyl = col_double()</code> is changed to <code>cyl = col_factor()</code> in the code chunk below:</p>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
@@ -567,11 +568,10 @@
 <code class="sourceCode R"><span class="fu">read_delim</span><span class="op">(</span><span class="st">"data/birthdays.txt"</span>, delim <span class="op">=</span> <span class="st">"-"</span>, skip <span class="op">=</span> <span class="fl">4</span>,
   col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Birthday"</span>, <span class="st">"Name"</span>,
     <span class="st">"Animal"</span>, <span class="st">"Island"</span><span class="op">)</span>,
-  na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"N/A"</span>, <span class="st">"?"</span><span class="op">)</span>,
   trim_ws <span class="op">=</span> <span class="cn">TRUE</span>,
   col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span>, <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span>, <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span>, <span class="fu">col_number</span><span class="op">(</span><span class="op">)</span>
-  <span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"N/A"</span>, <span class="st">"?"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code>read_csv()</code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("readxl")</a></code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, the data set used for Project 2, with the <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> function.</li>
 </ol>
@@ -796,7 +796,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-09-26.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-11-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

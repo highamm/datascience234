@@ -241,13 +241,13 @@ converting-variables-to-date-s
 functions-for-date-variables-s
 chapexercise-11-S
 rcode-11
-strings-with-stringr
-friday-friday
+text-data-with-tidytext-and-stringr
+text-analysis
 exercise-12-1
-add-second-example-here
+basic-sentiment-analysis
 chapexercise-12
 solutions-12
-friday-friday-s
+text-analysis-s
 second-example-s
 chapexercise-12-S
 rcode-12

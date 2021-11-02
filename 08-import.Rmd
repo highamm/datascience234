@@ -414,11 +414,10 @@ head(df)
 read_delim("data/birthdays.txt", delim = "-", skip = 4,
   col_names = c("Birthday", "Name",
     "Animal", "Island"),
-  na = c("N/A", "?"),
   trim_ws = TRUE,
   col_types = list(
     col_character(), col_character(), col_character(), col_number()
-  ))
+  ), na = c("N/A", "?"))
 ```
 
 2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, the data set used for Project 2, with the `read_excel()` function.

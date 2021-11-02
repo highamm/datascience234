@@ -6,8 +6,8 @@ files <- list.files("quizzes", pattern = "*.Rmd", include.dirs = TRUE)
 map(paste0("quizzes/", files), render)
 
 ## render checklists
-files <- list.files("Checklists", pattern = "*.Rmd", include.dirs = TRUE)
-map(paste0("Checklists/", files), render)
+files <- list.files("checklists", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("checklists/", files), render)
 
 ## render handouts
 files <- list.files("handouts", pattern = "*.Rmd", include.dirs = TRUE)
@@ -24,6 +24,10 @@ map(paste0("participation_feedback/", files), render)
 ## render projects
 files <- list.files("Projects/MP1_F2021", pattern = "*.Rmd", include.dirs = TRUE)
 map(paste0("Projects/MP1_F2021/", files), render)
+files <- list.files("Projects/MP2_F2021", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("Projects/MP2_F2021/", files), render)
+files <- list.files("Projects/MP3_F2021", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("Projects/MP3_F2021/", files), render)
 
 ## render presentations
 files <- list.files("Projects/MP_Presentations", pattern = "*.Rmd", include.dirs = TRUE)

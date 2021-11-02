@@ -300,7 +300,7 @@ We will first read in the data set below and name it `athletes`. We can then use
 athletes <- read_csv("data/athletesdata.csv")
 head(athletes)
 #> # A tibble: 6 x 9
-#>      X1 Name   Rank Sport endorsements totalpay salary   age
+#>    ...1 Name   Rank Sport endorsements totalpay salary   age
 #>   <dbl> <chr> <dbl> <chr>        <dbl>    <dbl>  <dbl> <dbl>
 #> 1     1 Aaro…    55 Foot…      7500000 22000000 1.45e7    31
 #> 2     2 Adam…    95 Golf       9000000 17700000 8.7 e6    34
@@ -345,7 +345,7 @@ athletes %>%
   filter(Sport == "Tennis") %>%
   arrange(Rank)
 #> # A tibble: 6 x 9
-#>      X1 Name   Rank Sport endorsements totalpay salary   age
+#>    ...1 Name   Rank Sport endorsements totalpay salary   age
 #>   <dbl> <chr> <dbl> <chr>        <dbl>    <dbl>  <dbl> <dbl>
 #> 1    82 Roge…     7 Tenn…     52000000 56200000 4.2 e6    33
 #> 2    78 Rafa…     9 Tenn…     30000000 44500000 1.45e7    28

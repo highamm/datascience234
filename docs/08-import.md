@@ -98,7 +98,7 @@ library(tidyverse)
 cars_df <- read_csv("data/mtcarsex.csv")
 head(cars_df)
 #> # A tibble: 6 x 11
-#>   `This is a data… X2    X3    X4    X5    X6    X7    X8   
+#>   `This is a data… ...2  ...3  ...4  ...5  ...6  ...7  ...8 
 #>   <chr>            <chr> <chr> <chr> <chr> <chr> <chr> <chr>
 #> 1 "I'm a na\x95ve… <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
 #> 2 "mpg"            cyl   disp  hp    drat  wt    qsec  vs   
@@ -106,7 +106,8 @@ head(cars_df)
 #> 4  <NA>            <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
 #> 5 "-999"           6     160   110   3.9   2.62  16.46 0    
 #> 6 "21"             6     160   110   3.9   2.875 17.02 0    
-#> # … with 3 more variables: X9 <chr>, X10 <chr>, X11 <chr>
+#> # … with 3 more variables: ...9 <chr>, ...10 <chr>,
+#> #   ...11 <chr>
 ```
 
 What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of `R`.
@@ -141,15 +142,15 @@ Go the help and read about the `na` argument. Let's add that as an option to fix
 cars_df <- read_csv("data/mtcarsex.csv", na = c(NA, "-999"), skip = 2)
 head(cars_df)
 #> # A tibble: 6 x 11
-#>     mpg   cyl  disp    hp  drat    wt  qsec    vs    am
-#>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1  NA      NA    NA    NA NA    NA     NA      NA    NA
-#> 2  NA      NA    NA    NA NA    NA     NA      NA    NA
-#> 3  NA       6   160   110  3.9   2.62  16.5     0     1
-#> 4  21       6   160   110  3.9   2.88  17.0     0     1
-#> 5  22.8     4   108    93  3.85  2.32  18.6     1     1
-#> 6  21.4     6   258   110  3.08  3.22  19.4     1     0
-#> # … with 2 more variables: gear <dbl>, carb <dbl>
+#>   mpg   cyl   disp  hp    drat  wt    qsec  vs    am   
+#>   <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
+#> 1 NA    NA    NA    NA    NA    NA    NA    NA    NA   
+#> 2 NA    NA    NA    NA    NA    NA    NA    NA    NA   
+#> 3 <NA>  6     160   110   3.9   2.62  16.46 0     1    
+#> 4 21    6     160   110   3.9   2.875 17.02 0     1    
+#> 5 22.8  4     108   93    3.85  2.32  18.61 1     1    
+#> 6 21.4  6     258   110   3.08  3.215 19.44 1     0    
+#> # … with 2 more variables: gear <chr>, carb <chr>
 ```
 
 Now look at the classes of each variable. Which classes look like they are incorrect?
@@ -591,11 +592,10 @@ head(df)
 read_delim("data/birthdays.txt", delim = "-", skip = 4,
   col_names = c("Birthday", "Name",
     "Animal", "Island"),
-  na = c("N/A", "?"),
   trim_ws = TRUE,
   col_types = list(
     col_character(), col_character(), col_character(), col_number()
-  ))
+  ), na = c("N/A", "?"))
 ```
 
 2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, the data set used for Project 2, with the `read_excel()` function.

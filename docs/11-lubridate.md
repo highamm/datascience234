@@ -16,9 +16,9 @@ To begin, install the `lubridate` package, and load the package with `library()`
 library(tidyverse)
 library(lubridate)
 today()
-#> [1] "2021-09-26"
+#> [1] "2021-11-02"
 now()
-#> [1] "2021-09-26 14:18:05 EDT"
+#> [1] "2021-11-02 09:40:06 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
@@ -529,13 +529,14 @@ In the top-right window of the graph, you should click the down arrow to downloa
 
 ```r
 videogame_df <- read_csv("data/smash_animal_crossing.csv")
-#> 
+#> Rows: 203 Columns: 3
 #> ── Column specification ────────────────────────────────────
-#> cols(
-#>   Month = col_character(),
-#>   super_smash = col_double(),
-#>   animal_crossing = col_double()
-#> )
+#> Delimiter: ","
+#> chr (1): Month
+#> dbl (2): super_smash, animal_crossing
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 videogame_df <- videogame_df %>% mutate(date = ymd(Month, truncated = 1))
 ```
 
@@ -565,12 +566,14 @@ Again, click the download button again and read in the data to `R`. Convert the 
 
 ```r
 steelers_df <- read_csv("data/steelers.csv")
-#> 
+#> Rows: 91 Columns: 2
 #> ── Column specification ────────────────────────────────────
-#> cols(
-#>   Day = col_character(),
-#>   Steelers = col_double()
-#> )
+#> Delimiter: ","
+#> chr (1): Day
+#> dbl (1): Steelers
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 steelers_df <- steelers_df %>% mutate(day_var = mdy(Day))
 ```
 

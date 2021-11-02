@@ -41,7 +41,7 @@ test_sample <- anti_join(pokemon, train_sample)
 
 train_sample %>% head()
 #> # A tibble: 6 x 14
-#>      X1 Name    Type     HP Attack Defense Speed SpAtk SpDef
+#>    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef
 #>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
 #> 1   491 Darkrai Dark     70     90      90   125   135    90
 #> 2   136 Flareon Fire     65    130      60    65    95   110
@@ -54,7 +54,7 @@ train_sample %>% head()
 #> #   base_experience <dbl>
 test_sample %>% head()
 #> # A tibble: 6 x 14
-#>      X1 Name    Type     HP Attack Defense Speed SpAtk SpDef
+#>    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef
 #>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
 #> 1     4 Charma… Fire     39     52      43    65    60    50
 #> 2     5 Charme… Fire     58     64      58    80    80    65
@@ -201,7 +201,7 @@ train_sample %>%
                                  (max(.x) - min(.x)))) %>%
   slice(1:3)
 #> # A tibble: 3 x 14
-#>      X1 Name    Type     HP Attack Defense Speed SpAtk SpDef
+#>    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef
 #>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
 #> 1 0.720 Darkrai Dark  0.417  0.444     0.4 1     1     0.658
 #> 2 0.193 Flareon Fire  0.333  0.889     0.1 0.368 0.619 0.921
@@ -286,7 +286,7 @@ pokemon_scaled <- pokemon %>%
 train_sample_2 <- pokemon_scaled %>%
   sample_n(70)
 test_sample_2 <- anti_join(pokemon_scaled, train_sample_2)
-#> Joining, by = c("X1", "Name", "Type", "HP", "Attack", "Defense", "Speed", "SpAtk", "SpDef", "Generation", "Legendary", "height", "weight", "base_experience")
+#> Joining, by = c("...1", "Name", "Type", "HP", "Attack", "Defense", "Speed", "SpAtk", "SpDef", "Generation", "Legendary", "height", "weight", "base_experience")
 ```
 
 The first knn model we will investigate will have `HP`, `Attack`, `Defense`, and `Speed` as predictors. The `class` library can fit knn models with a `knn()` function but requires the training and test data sets to have __only__ the predictors that we want to use to fit the model. The `knn()` function also requires the response variable, `Type`, to be given as a vector.
