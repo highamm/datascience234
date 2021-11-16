@@ -85,8 +85,8 @@ Suppose that we have just those __15__ pokemon in our training data set. We want
 ```r
 ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
   geom_point(size = 4) +  theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank())
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
 ```
 
 ![](13-knn_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
@@ -250,7 +250,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
 
 With k = 2, there is a tie between Fire and Steel. Come up with a way in which you might break ties in a knn algorithm.
 
-4. Explain what knn would use a prediction for all test observations if k equals the number of observations in the training data set.
+4. Explain what knn would use as a prediction for all test observations if k equals the number of observations in the training data set.
 
 5. What are some advantages for making k smaller and what are some advantages for making k larger?
 
@@ -258,9 +258,35 @@ With k = 2, there is a tie between Fire and Steel. Come up with a way in which y
 
 We now know how knn classifies observations in the test data set, but how do we choose which predictors should be used by the knn algorithm? And how do we choose the number of neighbors, k? We want to measure how "good" models with different predictors and different k's do, but we first need to define what "good" means.
 
+Much of the "choosing predictors" part will be trial and error by evaluating different models with a criterion that we will talk about in the next section. However, it is always helpful to explore the data set with graphics to get us to a good starting point. A __scatterplot matrix__ is a useful exploratory tool. The following is a scatterplot matrix with the response variable, `Type`, and just three candidate predictors, `HP`, `Attack`, and `Defense`, created with the `GGally` ("g-g-ally") package.
+
+
+```r
+## install.packages("GGally")
+library(GGally)
+#> Registered S3 method overwritten by 'GGally':
+#>   method from   
+#>   +.gg   ggplot2
+#> 
+#> Attaching package: 'GGally'
+#> The following object is masked from 'package:pander':
+#> 
+#>     wrap
+ggpairs(data = train_sample, columns = c(4, 5, 6, 3), 
+        lower = list(combo = wrap(ggally_facethist, bins = 15)))
+```
+
+![](13-knn_files/figure-epub3/unnamed-chunk-14-1.png)<!-- -->
+
+The `lower` argument changes the number of bins in the faceted histograms in the bottom row. You can mostly ignore this.
+
+The `columns` argument __is__ important: it allows you to specify which columns you want to look at. I prefer putting the response, `Type` (column `3`) in the last slot.
+
+We can examine this to see which variables seem to have a relationship with `Type`. Where would we want to look for this?
+
 ### The Confusion Matrix
 
-One definition of "good" in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a "good" model correctly classifies most `Dark` pokemon as `Dark`, most `Fire` pokemon as `Fire`, etc. 
+But, we still need a metric to evaluate models with different predictors. One definition of a "good" model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a "good" model correctly classifies most `Dark` pokemon as `Dark`, most `Fire` pokemon as `Fire`, etc. 
 
 In order to examine the performance of a particular model, we'll create a __confusion matrix__ that shows the results of the model's classification on observations in the test data set. Note that in STAT 213, we didn't call this a confusion matrix; we instead called this a classification table. 
 
@@ -388,7 +414,7 @@ ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
   geom_point(data = newobs, shape = 4, size = 10)
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
+![](13-knn_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
 
 The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks "closer" to the Dark type pokemon. Verify that this is __not__ the case by computing the actual distances numerically.
 
@@ -416,8 +442,8 @@ train_sample %>% head()
 test_sample %>% head()
 ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
   geom_point(size = 4) +  theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank())
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
 dialga <- test_sample %>% slice(63)
 ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
   geom_point(size = 4) +  theme(axis.title.y=element_blank(),
@@ -443,6 +469,10 @@ train_sample %>%
   mutate(across(where(is.numeric), ~ (.x - min(.x)) /
                                  (max(.x) - min(.x)))) %>%
   slice(1:3)
+## install.packages("GGally")
+library(GGally)
+ggpairs(data = train_sample, columns = c(4, 5, 6, 3), 
+        lower = list(combo = wrap(ggally_facethist, bins = 15)))
 library(tidyverse)
 set.seed(11232020) ## run this line so that you get the same 
 ## results as I do!

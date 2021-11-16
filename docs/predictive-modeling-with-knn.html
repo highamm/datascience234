@@ -147,8 +147,8 @@
 <div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
-        axis.text.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
-        axis.ticks.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+        axis.text.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
+        axis.ticks.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
 <p>We see from the plot that <code>Steel</code> type Pokemon tend to have pretty high defense values. Now suppose that we want to predict the <code>Type</code> for one of the Pokemon in our test data set, <code>Dialga</code>. We know that Dialga has a <code>Defense</code> stat of 120: the plot below shows Dialga marked with a large black X.</p>
 <div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
@@ -272,7 +272,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-13-1.png" width="672"></div>
 <p>With k = 2, there is a tie between Fire and Steel. Come up with a way in which you might break ties in a knn algorithm.</p>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Explain what knn would use a prediction for all test observations if k equals the number of observations in the training data set.</p></li>
+<li><p>Explain what knn would use as a prediction for all test observations if k equals the number of observations in the training data set.</p></li>
 <li><p>What are some advantages for making k smaller and what are some advantages for making k larger?</p></li>
 </ol>
 </div>
@@ -282,11 +282,29 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="header-section-number">14.3</span> Choosing Predictors and k<a class="anchor" aria-label="anchor" href="#choosing-predictors-and-k"><i class="fas fa-link"></i></a>
 </h2>
 <p>We now know how knn classifies observations in the test data set, but how do we choose which predictors should be used by the knn algorithm? And how do we choose the number of neighbors, k? We want to measure how “good” models with different predictors and different k’s do, but we first need to define what “good” means.</p>
+<p>Much of the “choosing predictors” part will be trial and error by evaluating different models with a criterion that we will talk about in the next section. However, it is always helpful to explore the data set with graphics to get us to a good starting point. A <strong>scatterplot matrix</strong> is a useful exploratory tool. The following is a scatterplot matrix with the response variable, <code>Type</code>, and just three candidate predictors, <code>HP</code>, <code>Attack</code>, and <code>Defense</code>, created with the <code>GGally</code> (“g-g-ally”) package.</p>
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## install.packages("GGally")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span>
+<span class="co">#&gt; Registered S3 method overwritten by 'GGally':</span>
+<span class="co">#&gt;   method from   </span>
+<span class="co">#&gt;   +.gg   ggplot2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'GGally'</span>
+<span class="co">#&gt; The following object is masked from 'package:pander':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     wrap</span>
+<span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span>, 
+        lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>combo <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html">wrap</a></span><span class="op">(</span><span class="va">ggally_facethist</span>, bins <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
+<p>The <code>lower</code> argument changes the number of bins in the faceted histograms in the bottom row. You can mostly ignore this.</p>
+<p>The <code>columns</code> argument <strong>is</strong> important: it allows you to specify which columns you want to look at. I prefer putting the response, <code>Type</code> (column <code>3</code>) in the last slot.</p>
+<p>We can examine this to see which variables seem to have a relationship with <code>Type</code>. Where would we want to look for this?</p>
 <div id="the-confusion-matrix" class="section level3" number="14.3.1">
 <h3>
 <span class="header-section-number">14.3.1</span> The Confusion Matrix<a class="anchor" aria-label="anchor" href="#the-confusion-matrix"><i class="fas fa-link"></i></a>
 </h3>
-<p>One definition of “good” in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a “good” model correctly classifies most <code>Dark</code> pokemon as <code>Dark</code>, most <code>Fire</code> pokemon as <code>Fire</code>, etc.</p>
+<p>But, we still need a metric to evaluate models with different predictors. One definition of a “good” model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a “good” model correctly classifies most <code>Dark</code> pokemon as <code>Dark</code>, most <code>Fire</code> pokemon as <code>Fire</code>, etc.</p>
 <p>In order to examine the performance of a particular model, we’ll create a <strong>confusion matrix</strong> that shows the results of the model’s classification on observations in the test data set. Note that in STAT 213, we didn’t call this a confusion matrix; we instead called this a classification table.</p>
 <p>The following video explains confusion matrices in more detail and should also cement the ideas of training and test data. <a href="https://www.youtube.com/watch?v=Kdsp6soqA7o" target="_blank">https://www.youtube.com/watch?v=Kdsp6soqA7o</a>.</p>
 </div>
@@ -296,7 +314,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 </h3>
 <p>To make a confusion matrix for a model using the pokemon data set, we first need to obtain predictions from a model. We’ll use the <code>class</code> library to fit a knn model to the pokemon data. Note that, instead of having 15 Pokemon in our training data set, we now have <strong>70</strong> pokemon to give a more reasonable number. The test set has the remaining <strong>50</strong> pokemon.</p>
 <p>The following code chunk sets a seed so that we all get the same training and test samples, scales all numeric variables in the pokemon data set, and then randomly selects 70 pokemon to be in the training sample.</p>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">11232020</span><span class="op">)</span> <span class="co">## run this line so that you get the same </span>
 <span class="co">## results as I do!</span>
@@ -311,7 +329,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="va">test_sample_2</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">pokemon_scaled</span>, <span class="va">train_sample_2</span><span class="op">)</span>
 <span class="co">#&gt; Joining, by = c("...1", "Name", "Type", "HP", "Attack", "Defense", "Speed", "SpAtk", "SpDef", "Generation", "Legendary", "height", "weight", "base_experience")</span></code></pre></div>
 <p>The first knn model we will investigate will have <code>HP</code>, <code>Attack</code>, <code>Defense</code>, and <code>Speed</code> as predictors. The <code>class</code> library can fit knn models with a <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> function but requires the training and test data sets to have <strong>only</strong> the predictors that we want to use to fit the model. The <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> function also requires the response variable, <code>Type</code>, to be given as a vector.</p>
-<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## install.packages("class")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">class</a></span><span class="op">)</span>
 
@@ -334,7 +352,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <li>
 <code>k</code>, the number of nearest neighbors.</li>
 </ul>
-<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## fit the knn model with 9 nearest neighbors</span>
 <span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_small</span>, test <span class="op">=</span> <span class="va">test_small</span>,
                cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span>
@@ -347,7 +365,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="co">#&gt; [46] Fire  Fire  Fire  Ice   Fire </span>
 <span class="co">#&gt; Levels: Dark Fire Ice Steel</span></code></pre></div>
 <p>The output of <code>knn_mod</code> gives the predicted categories for the <strong>test</strong> sample. We can compare the predictions from the knn model with the actual pokemon <code>Type</code>s in the test sample with <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>, which makes a confusion matrix:</p>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span> 
 <span class="co">#&gt;        test_cat</span>
 <span class="co">#&gt; knn_mod Dark Fire Ice Steel</span>
@@ -357,11 +375,11 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="co">#&gt;   Steel    0    1   0     3</span></code></pre></div>
 <p>The columns of the confusion matrix give the actual Pokemon types in the test data while the rows give the predicted types from our knn model. The above table tells us that there were 0 pokemon that were Dark type that our knn model correctly classified as Dark. There were 6 pokemon that were Dark type that our knn model incorrectly classified as Fire. There were 5 pokemon that were Dark type and that our knn model incorrectly classified as Ice. In other words, correct predictions appear on the diagonal, while incorrect predictions appear on the off-diagonal.</p>
 <p>One common metric used to assess overall model performance is the model’s <strong>classification rate</strong>, which is computed as the number of correct classifications divided by the total number of observations in the test data set. In this case, our classification rate is</p>
-<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="fl">13</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="fl">50</span>
 <span class="co">#&gt; [1] 0.36</span></code></pre></div>
 <p>Code to automatically obtain the classification rate from a confusion matrix is</p>
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span> 
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.36</span></code></pre></div>
@@ -399,12 +417,12 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <ol style="list-style-type: decimal">
 <li>* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
 </ol>
-<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_tiny</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, y <span class="op">=</span> <span class="va">weight</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span>, <span class="fu">aes</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">17</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">550</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">newobs</span>, shape <span class="op">=</span> <span class="fl">4</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
+<div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-21-1.png" width="672"></div>
 <p>The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks “closer” to the Dark type pokemon. Verify that this is <strong>not</strong> the case by computing the actual distances numerically.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>* After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn’t give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is “closer” to the Dark type pokemon bu numerically computing distances.</li>
@@ -420,7 +438,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <h2>
 <span class="header-section-number">14.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-13"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1119</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">pokemon</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/pokemon_full.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -433,8 +451,8 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="va">test_sample</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
-        axis.text.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
-        axis.ticks.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+        axis.text.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
+        axis.ticks.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">dialga</span> <span class="op">&lt;-</span> <span class="va">test_sample</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">63</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
@@ -460,6 +478,10 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
   <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="op">(</span><span class="va">.x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span>
                                  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
+<span class="co">## install.packages("GGally")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span>, 
+        lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>combo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/pander/man/wrap.html">wrap</a></span><span class="op">(</span><span class="va">ggally_facethist</span>, bins <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">11232020</span><span class="op">)</span> <span class="co">## run this line so that you get the same </span>
 <span class="co">## results as I do!</span>
@@ -548,7 +570,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-11-02.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-11-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

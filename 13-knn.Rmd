@@ -58,8 +58,8 @@ Suppose that we have just those __15__ pokemon in our training data set. We want
 ```{r, appendix = TRUE}
 ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
   geom_point(size = 4) +  theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank())
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
 ```
 
 We see from the plot that `Steel` type Pokemon tend to have pretty high defense values. Now suppose that we want to predict the `Type` for one of the Pokemon in our test data set, `Dialga`. We know that Dialga has a `Defense` stat of 120: the plot below shows Dialga marked with a large black X.
@@ -182,7 +182,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
 
 With k = 2, there is a tie between Fire and Steel. Come up with a way in which you might break ties in a knn algorithm.
 
-4. Explain what knn would use a prediction for all test observations if k equals the number of observations in the training data set.
+4. Explain what knn would use as a prediction for all test observations if k equals the number of observations in the training data set.
 
 5. What are some advantages for making k smaller and what are some advantages for making k larger?
 
@@ -190,9 +190,24 @@ With k = 2, there is a tie between Fire and Steel. Come up with a way in which y
 
 We now know how knn classifies observations in the test data set, but how do we choose which predictors should be used by the knn algorithm? And how do we choose the number of neighbors, k? We want to measure how "good" models with different predictors and different k's do, but we first need to define what "good" means.
 
+Much of the "choosing predictors" part will be trial and error by evaluating different models with a criterion that we will talk about in the next section. However, it is always helpful to explore the data set with graphics to get us to a good starting point. A __scatterplot matrix__ is a useful exploratory tool. The following is a scatterplot matrix with the response variable, `Type`, and just three candidate predictors, `HP`, `Attack`, and `Defense`, created with the `GGally` ("g-g-ally") package.
+
+```{r, appendix = TRUE}
+## install.packages("GGally")
+library(GGally)
+ggpairs(data = train_sample, columns = c(4, 5, 6, 3), 
+        lower = list(combo = wrap(ggally_facethist, bins = 15)))
+```
+
+The `lower` argument changes the number of bins in the faceted histograms in the bottom row. You can mostly ignore this.
+
+The `columns` argument __is__ important: it allows you to specify which columns you want to look at. I prefer putting the response, `Type` (column `3`) in the last slot.
+
+We can examine this to see which variables seem to have a relationship with `Type`. Where would we want to look for this?
+
 ### The Confusion Matrix
 
-One definition of "good" in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a "good" model correctly classifies most `Dark` pokemon as `Dark`, most `Fire` pokemon as `Fire`, etc. 
+But, we still need a metric to evaluate models with different predictors. One definition of a "good" model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a "good" model correctly classifies most `Dark` pokemon as `Dark`, most `Fire` pokemon as `Fire`, etc. 
 
 In order to examine the performance of a particular model, we'll create a __confusion matrix__ that shows the results of the model's classification on observations in the test data set. Note that in STAT 213, we didn't call this a confusion matrix; we instead called this a classification table. 
 

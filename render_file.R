@@ -33,6 +33,11 @@ map(paste0("Projects/MP3_F2021/", files), render)
 files <- list.files("Projects/MP_Presentations", pattern = "*.Rmd", include.dirs = TRUE)
 map(paste0("Projects/MP_Presentations/", files), render)
 
+
+## render other
+files <- list.files("other", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("other/", files), render)
+
 ## render midterms
 files <- list.files("midterms/Midterm1/Fall_2020", pattern = "*.Rmd", include.dirs = TRUE)
 map(paste0("midterms/Midterm1/Fall_2020/", files), render)
@@ -40,3 +45,13 @@ files <- list.files("midterms/Midterm1/Fall_2021", pattern = "*.Rmd", include.di
 map(paste0("midterms/Midterm1/Fall_2021/", files), render)
 files <- list.files("midterms/Midterm1/Practice_StudyGuide", pattern = "*.Rmd", include.dirs = TRUE)
 map(paste0("midterms/Midterm1/Practice_StudyGuide/", files), render)
+
+files <- list.files("midterms/Midterm2/Midterm2_F2020", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("midterms/Midterm2/Midterm2_F2020/", files), render)
+files <- list.files("midterms/Midterm2/Midterm2_F2021", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("midterms/Midterm2/Midterm2_F2021/", files), render)
+files <- list.files("midterms/Midterm2/Practice_StudyGuide", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("midterms/Midterm2/Practice_StudyGuide/", files), render)
+
+files <- list.files("midterms/Final/Final_F2021", pattern = "*.Rmd", include.dirs = TRUE)
+map(paste0("midterms/Final/Final_F2021/", files), render)
