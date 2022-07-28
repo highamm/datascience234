@@ -18,7 +18,8 @@ To introduce this, we will be using `pokemon_full.csv` data. Pokemon have differ
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 set.seed(1119)
 library(tidyverse)
-pokemon <- read_csv("data/pokemon_full.csv") %>%
+library(here)
+pokemon <- read_csv(here("data/pokemon_full.csv")) |>
   filter(Type %in% c("Steel", "Dark", "Fire", "Ice"))
 ```
 
@@ -33,12 +34,12 @@ A __test__ data set consists of the remaining 20%-50% of the observations not in
 The following code uses that `sample_n()` function to randomly select 15 observations to be in the training data set. `anti_join()` then makes a test data set without the 15 pokemon in the training data set.
 
 ```{r, message = FALSE, appendix = TRUE}
-train_sample <- pokemon %>%
+train_sample <- pokemon |>
   sample_n(15)
 test_sample <- anti_join(pokemon, train_sample)
 
-train_sample %>% head()
-test_sample %>% head()
+train_sample |> head()
+test_sample |> head()
 ```
 
 The ideas of a training data set and test data set are pervasive in predictive and classification models, including models not related to knn. Note that we are going to do this method because it's the simplest: if you wanted to take this a step further, you'd repeat the training and test process 5 or 10 times, using what's known as __k-fold cross-validation.__
@@ -65,7 +66,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
 We see from the plot that `Steel` type Pokemon tend to have pretty high defense values. Now suppose that we want to predict the `Type` for one of the Pokemon in our test data set, `Dialga`. We know that Dialga has a `Defense` stat of 120: the plot below shows Dialga marked with a large black X.
 
 ```{r, appendix = TRUE}
-dialga <- test_sample %>% slice(63)
+dialga <- test_sample |> slice(63)
 ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
   geom_point(size = 4) +  theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
@@ -98,7 +99,7 @@ For $k = 1$, we would predict the `Dialga` is Steel, as the closest point is the
 In general, we want to scale any quantitative predictors when using knn because it relies on distances between points in its predictions. This is easiest to see with an example. Suppose, in our Pokemon example, that we want to use `height` and `weight` as our predictors in the `knn` model. We just have 2 observations in our training data set: a Dark Type pokemon with a height of 15 centimeters and a weight of 505 pounds, and a Fire Type Pokemon with a height of 9 centimeters and a weight of 250 pounds. 
 
 ```{r, appendix = TRUE}
-train_tiny <- train_sample %>% slice(1:2)
+train_tiny <- train_sample |> slice(1:2)
 newobs <- tibble(height = 15, weight = 350, Type = "Unknown")
 ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
   geom_point(size = 5, aes(colour = Type)) + xlim(c(7, 17)) + ylim(c(200, 550)) +
@@ -118,15 +119,15 @@ $$
 For example, scaling `weight` for the 15 original pokemon:
 
 ```{r, echo = TRUE, appendix = TRUE}
-train_sample %>% select(weight) %>% head()
+train_sample |> select(weight) |> head()
 ```
 
 puts all weights between 0 and 1: 
 
 ```{r, echo = TRUE, appendix = TRUE}
-train_sample %>% mutate(weight_s = (weight - min(weight)) / 
-                          (max(weight) - min(weight))) %>%
-  select(weight_s) %>%
+train_sample |> mutate(weight_s = (weight - min(weight)) / 
+                          (max(weight) - min(weight))) |>
+  select(weight_s) |>
   head()
 ```
 
@@ -137,9 +138,9 @@ The code below scales all numeric variables in a data set, using the `across()` 
 ```{r, echo = TRUE, appendix = TRUE}
 ## ?across
 library(pander)
-train_sample %>%
+train_sample |>
   mutate(across(where(is.numeric), ~ (.x - min(.x)) /
-                                 (max(.x) - min(.x)))) %>%
+                                 (max(.x) - min(.x)))) |>
   slice(1:3)
 ```
 
@@ -225,11 +226,11 @@ set.seed(11232020) ## run this line so that you get the same
 ## results as I do!
 
 ## scale the quantitative predictors
-pokemon_scaled <- pokemon %>%
+pokemon_scaled <- pokemon |>
     mutate(across(where(is.numeric), ~ (.x - min(.x)) /
                                  (max(.x) - min(.x)))) 
 
-train_sample_2 <- pokemon_scaled %>%
+train_sample_2 <- pokemon_scaled |>
   sample_n(70)
 test_sample_2 <- anti_join(pokemon_scaled, train_sample_2)
 ```
@@ -242,8 +243,8 @@ library(class)
 
 ## create a data frame that only has the predictors
 ## that we will use
-train_small <- train_sample_2 %>% select(HP, Attack, Defense, Speed)
-test_small <- test_sample_2 %>% select(HP, Attack, Defense, Speed)
+train_small <- train_sample_2 |> select(HP, Attack, Defense, Speed)
+test_small <- test_sample_2 |> select(HP, Attack, Defense, Speed)
 
 ## put our response variable into a vector
 train_cat <- train_sample_2$Type

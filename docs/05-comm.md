@@ -33,7 +33,8 @@ So, what are the advantages and disadvantages of using an `R Script` file compar
 
 The advantage of an `R` Script would be in a situation where you really aren't presenting results to anyone and you also don't need any text explanations. This often occurs in two situations. (1) There are a lot of data preparation steps. In this case, you would typically complete all of these data prep steps in an `R script` and then write the resulting clean data to a .csv that you'd import in an `R Markdown` file. (2) What you're doing is complicated statistically. If this is the case, then the code is much more of a focus than the text or creating figures so you'd use an `R` Script. 
 
-We will "demo" a reproducible analysis in class on political data.
+We will "demo" a reproducible analysis in class.
+
 
 ### Spell-Checking
 
@@ -84,6 +85,15 @@ Lines 8-10 are the set-up chunk. Again, we'll come back to this in a bit. For no
 
 ```r
 library(tidyverse)
+#> Warning: replacing previous import
+#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
+#> loading 'pillar'
+#> Warning: replacing previous import
+#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
+#> loading 'tibble'
+#> Warning: replacing previous import
+#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
+#> loading 'hms'
 head(cars)
 ggplot(data = cars, aes(x = speed, y = dist)) +
   geom_point()
@@ -656,6 +666,7 @@ Explore the data set with `head()`, `skim()`, and `?gapminder` before proceeding
 
 ```r
 library(knitr)
+#> Warning: package 'knitr' was built under R version 4.1.2
 library(pander)
 library(tidyverse)
 mpg_df <- mtcars %>% group_by(cyl) %>%

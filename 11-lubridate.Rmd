@@ -1,3 +1,5 @@
+# (PART) Special Topics {-}
+
 # Dates with `lubridate`
 
 __Goals__:
@@ -26,7 +28,8 @@ This first section will deal with how to convert a variable in `R` to be a `Date
 Read in the data set with
 
 ```{r, message = FALSE, appendix = TRUE}
-holiday_df <- read_csv("data/animal_crossing_holidays.csv")
+library(here)
+holiday_df <- read_csv(here("data/animal_crossing_holidays.csv"))
 holiday_df
 ```
 
@@ -47,9 +50,9 @@ and `dym()`, `mdy()`, and `myd()` work similarly. `lubridate` is usually "smart"
 Let's try it out on `Date1` and `Date2`:
 
 ```{r, appendix = TRUE}
-holiday_df %>% mutate(Date_test = dmy(Date1)) %>%
+holiday_df |> mutate(Date_test = dmy(Date1)) |>
   select(Date_test, everything())
-holiday_df %>% mutate(Date_test = mdy(Date2)) %>%
+holiday_df |> mutate(Date_test = mdy(Date2)) |>
   select(Date_test, everything())
 ```
 
@@ -58,7 +61,7 @@ __A Reminder__: Why do `<date>` objects even matter? Compare the following two p
 ```{r, appendix = TRUE}
 ggplot(data = holiday_df, aes(x = Date1, y = Holiday)) +
   geom_point()
-holiday_df <- holiday_df %>% mutate(Date_test_plot = dmy(Date1)) %>%
+holiday_df <- holiday_df |> mutate(Date_test_plot = dmy(Date1)) |>
   select(Date_test_plot, everything())
 ggplot(data = holiday_df, aes(x = Date_test_plot, y = Holiday)) +
   geom_point()
@@ -71,18 +74,18 @@ In which plot does the ordering on the x-axis make more sense?
 Another way to create a Date object is to assemble it with `make_date()` from a month, day, and year components, each stored in a separate column:
 
 ```{r, appendix = TRUE}
-holiday_df %>% mutate(Date_test2 = make_date(year = Year,
+holiday_df |> mutate(Date_test2 = make_date(year = Year,
                                              month = Month,
-                                             day = Day)) %>%
+                                             day = Day)) |>
   select(Date_test2, everything())
 ```
 
 But, when `Month` is stored as a character (e.g. `February`) instead of a number (e.g. `2`), problems arise with the `make_date()` function:
 
 ```{r, appendix = TRUE}
-holiday_df %>% mutate(Date_test2 = make_date(year = Year,
+holiday_df |> mutate(Date_test2 = make_date(year = Year,
                                              month = Month2,
-                                             day = Day)) %>%
+                                             day = Day)) |>
   select(Date_test2, everything())
 ```
 
@@ -95,7 +98,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 1. \* What's the issue with trying to convert `Date4` to a `<date>` form? You may want to investigate `Date4` further to answer this question.
 
 ```{r}
-holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
+holiday_df |> mutate(Date_test = ymd(Date4)) |>
   select(Date_test, everything())
 ```
 
@@ -114,7 +117,7 @@ end <- ymd("2021-5-19")
 getSymbols(c("AAPL", "NTDOY", "CMG", "SPY"), src = "yahoo",
            from = start, to = end)
 
-date_tib <- as_tibble(index(AAPL)) %>%
+date_tib <- as_tibble(index(AAPL)) |>
   rename(start_date = value)
 app_tib <- as_tibble(AAPL)
 nint_tib <- as_tibble(NTDOY)
@@ -122,10 +125,10 @@ chip_tib <- as_tibble(CMG)
 spy_tib <- as_tibble(SPY)
 all_stocks <- bind_cols(date_tib, app_tib, nint_tib, chip_tib, spy_tib)
 
-stocks_long <- all_stocks %>%
+stocks_long <- all_stocks |>
   select(start_date, AAPL.Adjusted, NTDOY.Adjusted,
-                      CMG.Adjusted, SPY.Adjusted) %>%
-  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") %>%
+                      CMG.Adjusted, SPY.Adjusted) |>
+  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") |>
   mutate(Stock_Type = fct_recode(Stock_Type,
                                  Apple = "AAPL.Adjusted",
                                  Nintendo = "NTDOY.Adjusted",
@@ -144,7 +147,7 @@ You'll have a chance in the Exercises to choose your own stocks to investigate. 
 First, let's make a line plot that shows how the S & P 500 has changed over time:
 
 ```{r, appendix = TRUE}
-stocks_sp <- stocks_long %>% filter(Stock_Type == "S & P 500")
+stocks_sp <- stocks_long |> filter(Stock_Type == "S & P 500")
 ggplot(data = stocks_sp, aes(x = start_date, y = Price)) +
   geom_line()
 ```
@@ -156,9 +159,9 @@ But, there's other information that we can get from the `start_date` variable. W
 The functions `year()`, `month()`, and `mday()` can grab the year, month, and day of the month, respectively, from a `<date>` variable. Like the `forcats` functions, these will almost always be paired with a `mutate()` statement because they will create a new variable:
 
 ```{r, results = "hide", appendix = TRUE}
-stocks_long %>% mutate(year_stock = year(start_date))
-stocks_long %>% mutate(month_stock = month(start_date))
-stocks_long %>% mutate(day_stock = mday(start_date))
+stocks_long |> mutate(year_stock = year(start_date))
+stocks_long |> mutate(month_stock = month(start_date))
+stocks_long |> mutate(day_stock = mday(start_date))
 ```
 
 ### `yday()` and `wday()`
@@ -173,14 +176,14 @@ yday(test)
 returns `309`, indicating that November 4th is the 309th day of the year 2020. Using this function in a `mutate()` statement creates a new variable that has `yday` for each observation:
 
 ```{r, appendix = TRUE}
-stocks_long %>% mutate(day_in_year = yday(start_date))
+stocks_long |> mutate(day_in_year = yday(start_date))
 ```
 
 Finally, the function `wday()` grabs the day of the week from a `<date>`. By default, `wday()` puts the day of the week as a numeric, but I find this confusing, as I can't ever remember whether a `1` means `Sunday` or a `1` means `Monday`. Adding, `label = TRUE` creates the weekday variable as `Sunday`, `Monday`, `Tuesday`, etc.:
 
 ```{r, results = "hide", appendix = TRUE}
-stocks_long %>% mutate(day_of_week = wday(start_date))
-stocks_long %>% mutate(day_of_week = wday(start_date,
+stocks_long |> mutate(day_of_week = wday(start_date))
+stocks_long |> mutate(day_of_week = wday(start_date,
                                           label = TRUE, abbr = FALSE))
 ```
 
@@ -212,7 +215,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 1. The `month()` function gives the numbers corresponding to each month by default. Type `?month` and figure out which argument you would need to change to get the __names__ (January, February, etc.) instead of the month numbers. What about the __abbreviations__ (Jan, Feb, etc.) of each month instead of the month numbers? Try making the changes in the `mutate()` statement below.
 
 ```{r, results = "hide"}
-stocks_long %>% mutate(month_stock = month(start_date))
+stocks_long |> mutate(month_stock = month(start_date))
 ```
 
 ## Chapter Exercises {#chapexercise-11}
@@ -242,14 +245,14 @@ Examine the `ds_google.csv`, which contains
 ```{r, message = FALSE}
 library(tidyverse)
 library(lubridate)
-ds_df <- read_csv("data/ds_google.csv")
+ds_df <- read_csv(here("data/ds_google.csv"))
 ds_df
 ```
 
 1. \* Use a `lubridate` function with the `truncated` option to convert the `Month` variable to be in the `<date>` format.
 
 ```{r, echo = FALSE, results = "hide"}
-ds_df <- ds_df %>% mutate(Month = ymd(Month, truncated = 1))
+ds_df <- ds_df |> mutate(Month = ymd(Month, truncated = 1))
 ds_df
 ```
 
@@ -271,14 +274,14 @@ My search terms will be "super smash" and "animal crossing", but yours should be
 In the top-right window of the graph, you should click the down arrow to download the data set. Delete the first two rows of your data set (either in Excel or `R`), read in the data set, and change the date variable so that it's in a Date format.
 
 ```{r, echo = FALSE, message = FALSE}
-videogame_df <- read_csv("data/smash_animal_crossing.csv")
-videogame_df <- videogame_df %>% mutate(date = ymd(Month, truncated = 1))
+videogame_df <- read_csv(here("data/smash_animal_crossing.csv"))
+videogame_df <- videogame_df |> mutate(date = ymd(Month, truncated = 1))
 ```
 
 4. \* Make a plot of your Popularity variables through time. __Hint__: Does the data set need to be tidied at all first?
 
 ```{r, echo = FALSE, fig.keep = "none"}
-videogame_long <- videogame_df %>%
+videogame_long <- videogame_df |>
   pivot_longer(cols = c("super_smash", "animal_crossing"),
                               names_to = "game",
                               values_to = "popularity")
@@ -296,8 +299,8 @@ ggplot(data = videogame_long, aes(x = date,
 Again, click the download button again and read in the data to `R`. Convert the date variable to be in `<date>` format.
 
 ```{r, message = FALSE, echo = FALSE}
-steelers_df <- read_csv("data/steelers.csv")
-steelers_df <- steelers_df %>% mutate(day_var = mdy(Day))
+steelers_df <- read_csv(here("data/steelers.csv"))
+steelers_df <- steelers_df |> mutate(day_var = mdy(Day))
 ```
 
 7. \* Make a plot of your popularity variable through time, adding a smoother.
@@ -329,7 +332,7 @@ Explore the stock data that you chose, constructing a line plot of the price thr
 1. \* What's the issue with trying to convert `Date4` to a `<date>` form?
 
 ```{r}
-holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
+holiday_df |> mutate(Date_test = ymd(Date4)) |>
   select(Date_test, everything())
 ```
 
@@ -341,9 +344,9 @@ holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
 2. \* Practice converting `Date3` and `Date5` to date objects with `lubridate` functions.
 
 ```{r}
-holiday_df %>% mutate(Date_test = mdy(Date3)) %>%
+holiday_df |> mutate(Date_test = mdy(Date3)) |>
   select(Date_test, everything())
-holiday_df %>% mutate(Date_test = ymd(Date5)) %>%
+holiday_df |> mutate(Date_test = ymd(Date5)) |>
   select(Date_test, everything())
 ```
 
@@ -354,7 +357,7 @@ holiday_df %>% mutate(Date_test = ymd(Date5)) %>%
 1. \* Use a `lubridate` function with the `truncated` option to convert the `Month` variable to be in the `<date>` format.
 
 ```{r, results = "hide"}
-ds_df <- ds_df %>% mutate(Month = ymd(Month, truncated = 1))
+ds_df <- ds_df |> mutate(Month = ymd(Month, truncated = 1))
 ds_df
 ```
 
@@ -374,14 +377,14 @@ My search terms will be "super smash" and "animal crossing", but yours should be
 In the top-right window of the graph, you should click the down arrow to download the data set. Delete the first two rows of your data set (either in Excel or `R`), read in the data set, and change the date variable so that it's in a Date format.
 
 ```{r}
-videogame_df <- read_csv("data/smash_animal_crossing.csv")
-videogame_df <- videogame_df %>% mutate(date = ymd(Month, truncated = 1))
+videogame_df <- read_csv(here("data/smash_animal_crossing.csv"))
+videogame_df <- videogame_df |> mutate(date = ymd(Month, truncated = 1))
 ```
 
 4. \* Make a plot of your Popularity variables through time. __Hint__: Does the data set need to be tidied at all first?
 
 ```{r}
-videogame_long <- videogame_df %>%
+videogame_long <- videogame_df |>
   pivot_longer(cols = c("super_smash", "animal_crossing"),
                               names_to = "game",
                               values_to = "popularity")
@@ -399,8 +402,8 @@ ggplot(data = videogame_long, aes(x = date,
 Again, click the download button again and read in the data to `R`. Convert the date variable to be in `<date>` format.
 
 ```{r}
-steelers_df <- read_csv("data/steelers.csv")
-steelers_df <- steelers_df %>% mutate(day_var = mdy(Day))
+steelers_df <- read_csv(here("data/steelers.csv"))
+steelers_df <- steelers_df |> mutate(day_var = mdy(Day))
 ```
 
 7. \* Make a plot of your popularity variable through time, adding a smoother.

@@ -80,7 +80,7 @@ For example, suppose that we want to create a variable in `slumajors_df` that ha
 
 
 ```r
-slumajors_df %>% mutate(ntotal = nfemales + nmales)
+slumajors_df |> mutate(ntotal = nfemales + nmales)
 #> # A tibble: 27 x 4
 #>    Major                        nfemales nmales ntotal
 #>    <chr>                           <dbl>  <dbl>  <dbl>
@@ -97,7 +97,7 @@ slumajors_df %>% mutate(ntotal = nfemales + nmales)
 #> # … with 17 more rows
 ```
 
-There's a lot to break down in that code chunk: most importantly, we're seeing our first of many, many, many, many, many, many, many instances of using `%>%` to pipe! The `%>%` operator approximately reads take `slumajors_df` "and then" `mutate()` it.
+There's a lot to break down in that code chunk: most importantly, we're seeing our first of many, many, many, many, many, many, many instances of using `|>` to pipe! The `|>` operator approximately reads take `slumajors_df` "and then" `mutate()` it.
 
 Piping is a really convenient, easy-to-read way to build a sequence of commands. How you can read the above code is:
 
@@ -115,7 +115,7 @@ We might also want to create a variable that is the percentage of students ident
 
 
 ```r
-slumajors_df %>%
+slumajors_df |>
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
 #> # A tibble: 27 x 4
 #>    Major                        nfemales nmales percfemale
@@ -137,31 +137,31 @@ But what happened to `ntotal`? Is it still in the printout? It's not: when we cr
 
 
 ```r
-slumajors_df <- slumajors_df %>%
+slumajors_df <- slumajors_df |>
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
 ```
 
 
 ```r
-slumajors_df <- slumajors_df %>% mutate(ntotal = nfemales + nmales)
+slumajors_df <- slumajors_df |> mutate(ntotal = nfemales + nmales)
 ```
 
 But, you can pipe as many things together as you want to, so it's probably easier to just create both variables in one go. The following chunk says to "Take `slumajors_df` and create a new variable `ntotal`. With that new data set, create a new variable called `percfemale`." Finally, the `slumajors_df <- ` at the beginning says to "save this new data set as a data set with the same name, `slumajors_df`."
 
 
 ```r
-slumajors_df <- slumajors_df %>%
-  mutate(ntotal = nfemales + nmales) %>%
+slumajors_df <- slumajors_df |>
+  mutate(ntotal = nfemales + nmales) |>
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
 ```
 
 ### A Little More on Piping
 
-We are jumping straight into using piping, but we do want to have an appreciation on how terrible life would be without it. What piping does is make whatever is given before the `%>%` pipe the first argument of whatever function follows the `%>%`. So 
+We are jumping straight into using piping, but we do want to have an appreciation on how terrible life would be without it. What piping does is make whatever is given before the `|>` pipe the first argument of whatever function follows the `|>`. So 
 
 
 ```r
-df %>% mutate(x = y + 4)
+df |> mutate(x = y + 4)
 ```
 
 is equivalent to
@@ -171,7 +171,7 @@ is equivalent to
 mutate(df, x = y + 4)
 ```
 
-Piping really isn't that useful if you just have something that can be done with a single `%>%`. But, doing our previous example without piping might look like:
+Piping really isn't that useful if you just have something that can be done with a single `|>`. But, doing our previous example without piping might look like:
 
 
 ```r
@@ -198,9 +198,9 @@ It might also help to use an analogy when thinking about piping. Consider the Ke
 
 
 ```r
-kesha %>% wake_up(time = "morning", feels_like = "P-Diddy") %>%
-  grab(glasses) %>%
-  brush(teeth, item = "jack", unit = "bottle") %>% ....
+kesha |> wake_up(time = "morning", feels_like = "P-Diddy") |>
+  grab(glasses) |>
+  brush(teeth, item = "jack", unit = "bottle") |> ....
 ```
 
 Kesha first wakes up in the morning, _and then_ the Kesha that has woken up grabs her glasses, _and then_ the Kesha who has woken up and has her glasses brushes her teeth, etc.
@@ -216,7 +216,7 @@ Suppose we want to create a new variable that tells us whether or not the `Major
 
 
 ```r
-slumajors_df %>% mutate(morewomen = if_else(percfemale > 50,
+slumajors_df |> mutate(morewomen = if_else(percfemale > 50,
                                             true = "Yes",
                                             false = "No"))
 #> # A tibble: 27 x 6
@@ -245,7 +245,7 @@ For example, when looking at the output, we see that `Biochemistry` has 56% fema
 
 
 ```r
-slumajors_df %>% mutate(large_majority =
+slumajors_df |> mutate(large_majority =
                           case_when(percfemale >= 70 ~ "female",
                                     percfemale <= 30 ~ "male",
                                     percfemale > 30 & percfemale < 70 ~ "none")) 
@@ -271,10 +271,10 @@ Let's save these two new variables to the `slumajors_df`:
 
 
 ```r
-slumajors_df <- slumajors_df %>%
+slumajors_df <- slumajors_df |>
   mutate(morewomen = if_else(percfemale > 50,
                              true = "Yes",
-                             false = "No")) %>%
+                             false = "No")) |>
   mutate(large_majority =
            case_when(percfemale >= 70 ~ "female",
                      percfemale <= 30 ~ "male",
@@ -307,7 +307,7 @@ The `arrange()` function allows us to order rows in the data set using one or mo
 
 
 ```r
-slumajors_df %>% arrange(percfemale)
+slumajors_df |> arrange(percfemale)
 #> # A tibble: 27 x 7
 #>    Major         nfemales nmales percfemale ntotal morewomen
 #>    <chr>            <dbl>  <dbl>      <dbl>  <dbl> <chr>    
@@ -331,7 +331,7 @@ We see that, by default, `arrange()` orders the rows from low to high. To order 
 
 
 ```r
-slumajors_df %>% arrange(desc(percfemale))
+slumajors_df |> arrange(desc(percfemale))
 #> # A tibble: 27 x 7
 #>    Major         nfemales nmales percfemale ntotal morewomen
 #>    <chr>            <dbl>  <dbl>      <dbl>  <dbl> <chr>    
@@ -357,7 +357,7 @@ We might also be interested in getting rid of some of the columns in a data set.
 
 
 ```r
-slumajors_df %>% select(Major, ntotal)
+slumajors_df |> select(Major, ntotal)
 #> # A tibble: 27 x 2
 #>    Major                        ntotal
 #>    <chr>                         <dbl>
@@ -380,7 +380,7 @@ We might also want to use `select()` to get rid of one or two columns. If this i
 
 
 ```r
-slumajors_df %>% select(-ntotal, -nfemales, -nmales)
+slumajors_df |> select(-ntotal, -nfemales, -nmales)
 #> # A tibble: 27 x 4
 #>    Major                 percfemale morewomen large_majority
 #>    <chr>                      <dbl> <chr>     <chr>         
@@ -401,7 +401,7 @@ slumajors_df %>% select(-ntotal, -nfemales, -nmales)
 
 
 ```r
-slumajors_df %>% mutate(propfemale = percfemale / 100) %>%
+slumajors_df |> mutate(propfemale = percfemale / 100) |>
   select(propfemale, everything())
 #> # A tibble: 27 x 8
 #>    propfemale Major        nfemales nmales percfemale ntotal
@@ -430,7 +430,7 @@ Instead of choosing which columns to keep, we can also choose certain rows to ke
 
 
 ```r
-slumajors_df %>% arrange(desc(ntotal)) %>%
+slumajors_df |> arrange(desc(ntotal)) |>
   slice(1, 2, 3, 4, 5)
 #> # A tibble: 5 x 7
 #>   Major          nfemales nmales percfemale ntotal morewomen
@@ -482,11 +482,11 @@ What do the following statements do? See if you can guess before running the cod
 
 
 ```r
-babynames %>% filter(name == "Matthew")
-babynames %>% filter(year >= 2000)
-babynames %>% filter(sex != "M")
-babynames %>% filter(prop > 0.05)
-babynames %>% filter(year == max(year))
+babynames |> filter(name == "Matthew")
+babynames |> filter(year >= 2000)
+babynames |> filter(sex != "M")
+babynames |> filter(prop > 0.05)
+babynames |> filter(year == max(year))
 ```
 
 Why are some things put in quotes, like `"Matthew"` while some things aren't, like `2000`? Can you make out a pattern?
@@ -499,9 +499,9 @@ The following gives some examples. See if you can figure out what each line of c
 
 
 ```r
-babynames %>% filter(n > 20000 | prop > 0.05)
-babynames %>% filter(sex == "F" & name == "Mary")
-babynames %>% filter(sex == "F" & name == "Mary" & prop > 0.05)
+babynames |> filter(n > 20000 | prop > 0.05)
+babynames |> filter(sex == "F" & name == "Mary")
+babynames |> filter(sex == "F" & name == "Mary" & prop > 0.05)
 ```
 
 ### Exercises {#exercise-3-2}
@@ -522,7 +522,7 @@ The `summarise()` function is useful to get summaries from the data. For example
 
 
 ```r
-slumajors_df %>%
+slumajors_df |>
   summarise(meantotalmajor = mean(ntotal),
             totalgrad = sum(ntotal))
 #> # A tibble: 1 x 2
@@ -539,7 +539,7 @@ For example, suppose that you wanted the total number of registered births per y
 
 
 ```r
-babynames %>% group_by(year) %>%
+babynames |> group_by(year) |>
   summarise(totalbirths = sum(n))
 #> # A tibble: 138 x 2
 #>     year totalbirths
@@ -565,7 +565,7 @@ The `n()` function can be used within `summarise()` to obtain the number of obse
 
 
 ```r
-babynames %>% summarise(totalobs = n())
+babynames |> summarise(totalobs = n())
 #> # A tibble: 1 x 1
 #>   totalobs
 #>      <int>
@@ -576,7 +576,7 @@ Note that `n()` typically doesn't have any inputs. It's typically more useful wh
 
 
 ```r
-babynames %>% group_by(year) %>%
+babynames |> group_by(year) |>
   summarise(ngroup = n())
 #> # A tibble: 138 x 2
 #>     year ngroup
@@ -602,12 +602,12 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 
 ```r
-slumajors_df %>%
+slumajors_df |>
   summarise(meantotalmajor = mean(ntotal),
             totalgrad = sum(ntotal)) 
-slumajors_df %>%
+slumajors_df |>
   mutate(meantotalmajor = mean(ntotal),
-            totalgrad = sum(ntotal)) %>%
+            totalgrad = sum(ntotal)) |>
   select(meantotalmajor, totalgrad, everything())
 ```
 
@@ -615,7 +615,7 @@ slumajors_df %>%
 
 
 ```r
-babynames %>% group_by(year) %>%
+babynames |> group_by(year) |>
   summarise(ngroup = n())
 #> # A tibble: 138 x 2
 #>     year ngroup
@@ -645,9 +645,9 @@ make a line plot with `ngroup` on the x-axis and `year` on the y-axis. How would
 
 
 ```r
-babynames_test <- babynames %>%
-  group_by(year, sex) %>% mutate(ntest = n / prop)
-babynames_test %>% slice(1, 2, 3, 4, 5)
+babynames_test <- babynames |>
+  group_by(year, sex) |> mutate(ntest = n / prop)
+babynames_test |> slice(1, 2, 3, 4, 5)
 #> # A tibble: 1,380 x 6
 #> # Groups:   year, sex [276]
 #>     year sex   name          n   prop   ntest
@@ -708,7 +708,7 @@ __If__ we have investigated the missing values and are comfortable with removing
 
 
 ```r
-toy_df %>% summarise(meanx = mean(x, na.rm = TRUE))
+toy_df |> summarise(meanx = mean(x, na.rm = TRUE))
 #> # A tibble: 1 x 1
 #>   meanx
 #>   <dbl>
@@ -719,7 +719,7 @@ If we want to remove the missing values more directly, we can use the `is.na()` 
 
 
 ```r
-toy_df %>% mutate(missingx = is.na(x))
+toy_df |> mutate(missingx = is.na(x))
 #> # A tibble: 4 x 4
 #>       x     y z     missingx
 #>   <dbl> <dbl> <chr> <lgl>   
@@ -733,7 +733,7 @@ toy_df %>% mutate(missingx = is.na(x))
 
 
 ```r
-toy_df %>% filter(is.na(x) != TRUE)
+toy_df |> filter(is.na(x) != TRUE)
 #> # A tibble: 3 x 3
 #>       x     y z    
 #>   <dbl> <dbl> <chr>
@@ -746,7 +746,7 @@ You'll commonly see this written as short-hand in people's code you may come acr
 
 
 ```r
-toy_df %>% filter(!is.na(x))
+toy_df |> filter(!is.na(x))
 #> # A tibble: 3 x 3
 #>       x     y z    
 #>   <dbl> <dbl> <chr>
@@ -777,14 +777,14 @@ c. Create a bar plot that shows the 10 most popular names as well as the count f
 
 
 ```r
-toy_df <- toy_df %>% mutate(newvar = x / y)
+toy_df <- toy_df |> mutate(newvar = x / y)
 ```
 
 In other cases, we've given the data set a new name, like
 
 
 ```r
-toy_small <- toy_df %>% filter(!is.na(x))
+toy_small <- toy_df |> filter(!is.na(x))
 ```
 
 For which of the functions below is a generally "safe" to name the data set using the same name after using the function. Why?
@@ -809,7 +809,7 @@ e. `select()`
 
 
 ```r
-slumajors_df %>% mutate(major_size = if_else(ntotal >= 100,
+slumajors_df |> mutate(major_size = if_else(ntotal >= 100,
                                              true = "large",
                                              false = "small"))
 #> # A tibble: 27 x 8
@@ -828,7 +828,7 @@ slumajors_df %>% mutate(major_size = if_else(ntotal >= 100,
 #> # … with 17 more rows, and 2 more variables:
 #> #   large_majority <chr>, major_size <chr>
 ## OR
-slumajors_df %>%
+slumajors_df |>
   mutate(major_size = case_when(ntotal >= 100 ~ "large",
                                 ntotal < 100 ~ "small"))
 #> # A tibble: 27 x 8
@@ -879,7 +879,7 @@ For non-coverage, any observation that is not covered is given an NA.
 
 
 ```r
-slumajors_df %>% select(large_majority, everything())
+slumajors_df |> select(large_majority, everything())
 #> # A tibble: 27 x 7
 #>    large_majority Major    nfemales nmales percfemale ntotal
 #>    <chr>          <chr>       <dbl>  <dbl>      <dbl>  <dbl>
@@ -900,8 +900,8 @@ slumajors_df %>% select(large_majority, everything())
 
 
 ```r
-babynames %>% filter(sex == "M" & year == 2017) %>%
-  mutate(rankname = rank(desc(n))) %>%
+babynames |> filter(sex == "M" & year == 2017) |>
+  mutate(rankname = rank(desc(n))) |>
   filter(rankname <= 10)
 #> # A tibble: 10 x 6
 #>     year sex   name         n    prop rankname
@@ -924,7 +924,7 @@ babynames %>% filter(sex == "M" & year == 2017) %>%
 
 
 ```r
-babynames %>% group_by(name) %>%
+babynames |> group_by(name) |>
   summarise(totalbirths = sum(n))
 #> # A tibble: 97,310 x 2
 #>    name      totalbirths
@@ -946,7 +946,7 @@ babynames %>% group_by(name) %>%
 
 
 ```r
-ranked_babynames <- babynames %>% group_by(year, sex) %>%
+ranked_babynames <- babynames |> group_by(year, sex) |>
   mutate(rankname = rank((desc(n))))
 ```
 
@@ -954,9 +954,9 @@ ranked_babynames <- babynames %>% group_by(year, sex) %>%
 
 
 ```r
-ranked_babynames %>% filter(rankname == 1) %>%
-  group_by(name) %>%
-  summarise(nappear = n()) %>%
+ranked_babynames |> filter(rankname == 1) |>
+  group_by(name) |>
+  summarise(nappear = n()) |>
   arrange(desc(nappear))
 #> # A tibble: 18 x 2
 #>    name     nappear
@@ -985,9 +985,9 @@ ranked_babynames %>% filter(rankname == 1) %>%
 
 
 ```r
-babynames_test <- babynames %>%
-  group_by(year, sex) %>% mutate(ntest = n / prop)
-babynames_test %>% slice(1, 2, 3, 4, 5)
+babynames_test <- babynames |>
+  group_by(year, sex) |> mutate(ntest = n / prop)
+babynames_test |> slice(1, 2, 3, 4, 5)
 #> # A tibble: 1,380 x 6
 #> # Groups:   year, sex [276]
 #>     year sex   name          n   prop   ntest
@@ -1009,7 +1009,7 @@ Functions like `slice()` and `rank()` operate on defined groups in the data set 
 
 
 ```r
-babynames_test %>% ungroup() %>% slice(1:5)
+babynames_test |> ungroup() |> slice(1:5)
 #> # A tibble: 5 x 6
 #>    year sex   name          n   prop  ntest
 #>   <dbl> <chr> <chr>     <int>  <dbl>  <dbl>
@@ -1026,7 +1026,7 @@ babynames_test %>% ungroup() %>% slice(1:5)
 
 
 ```r
-toy_df %>% mutate(xy = x * y)
+toy_df |> mutate(xy = x * y)
 #> # A tibble: 4 x 5
 #>       x     y z     newvar    xy
 #>   <dbl> <dbl> <chr>  <dbl> <dbl>
@@ -1048,10 +1048,10 @@ c. Make a line plot showing the popularity of these 5 names over time.
 
 
 ```r
-baby5 <- babynames %>% filter(name == "Matthew" | name == "Ivan" |
+baby5 <- babynames |> filter(name == "Matthew" | name == "Ivan" |
                                 name == "Jessica" | name == "Robin" |
                                 name == "Michael")
-baby5_tot <- baby5 %>% group_by(year, name) %>%
+baby5_tot <- baby5 |> group_by(year, name) |>
   summarise(ntot = sum(n))
 #> `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 ggplot(data = baby5_tot, aes(x = year, y = ntot, colour = name)) +
@@ -1064,14 +1064,14 @@ ggplot(data = baby5_tot, aes(x = year, y = ntot, colour = name)) +
 
 
 ```r
-toy_df <- toy_df %>% mutate(newvar = x / y)
+toy_df <- toy_df |> mutate(newvar = x / y)
 ```
 
 In other cases, we've given the data set a new name, like
 
 
 ```r
-toy_small <- toy_df %>% filter(!is.na(x))
+toy_small <- toy_df |> filter(!is.na(x))
 ```
 
 For which of the functions below is a generally "safe" to name the data set using the same name after using the function. Why?
@@ -1094,7 +1094,7 @@ Usually not the best practice. Again, naming the summarized data set the same as
 
 
 ```r
-toy_df <- toy_df %>% summarise(meanx = mean(x))
+toy_df <- toy_df |> summarise(meanx = mean(x))
 toy_df
 #> # A tibble: 1 x 1
 #>   meanx
@@ -1117,59 +1117,59 @@ head(babynames)
 library(tidyverse)
 slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
 slumajors_df
-slumajors_df %>% mutate(ntotal = nfemales + nmales)
-slumajors_df %>%
+slumajors_df |> mutate(ntotal = nfemales + nmales)
+slumajors_df |>
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
-slumajors_df <- slumajors_df %>%
+slumajors_df <- slumajors_df |>
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
-slumajors_df <- slumajors_df %>% mutate(ntotal = nfemales + nmales)
-slumajors_df <- slumajors_df %>%
-  mutate(ntotal = nfemales + nmales) %>%
+slumajors_df <- slumajors_df |> mutate(ntotal = nfemales + nmales)
+slumajors_df <- slumajors_df |>
+  mutate(ntotal = nfemales + nmales) |>
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
 mutate(mutate(slumajors_df, ntotal = nfemales + nmales), percfemale = 100 * nfemales / (nfemales + nmales))
-slumajors_df %>% mutate(morewomen = if_else(percfemale > 50,
+slumajors_df |> mutate(morewomen = if_else(percfemale > 50,
                                             true = "Yes",
                                             false = "No"))
-slumajors_df %>% mutate(large_majority =
+slumajors_df |> mutate(large_majority =
                           case_when(percfemale >= 70 ~ "female",
                                     percfemale <= 30 ~ "male",
                                     percfemale > 30 & percfemale < 70 ~ "none")) 
-slumajors_df <- slumajors_df %>%
+slumajors_df <- slumajors_df |>
   mutate(morewomen = if_else(percfemale > 50,
                              true = "Yes",
-                             false = "No")) %>%
+                             false = "No")) |>
   mutate(large_majority =
            case_when(percfemale >= 70 ~ "female",
                      percfemale <= 30 ~ "male",
                      percfemale > 30 & percfemale < 70 ~ "none")) 
-slumajors_df %>% arrange(percfemale)
-slumajors_df %>% arrange(desc(percfemale))
-slumajors_df %>% select(Major, ntotal)
-slumajors_df %>% select(-ntotal, -nfemales, -nmales)
-slumajors_df %>% mutate(propfemale = percfemale / 100) %>%
+slumajors_df |> arrange(percfemale)
+slumajors_df |> arrange(desc(percfemale))
+slumajors_df |> select(Major, ntotal)
+slumajors_df |> select(-ntotal, -nfemales, -nmales)
+slumajors_df |> mutate(propfemale = percfemale / 100) |>
   select(propfemale, everything())
-slumajors_df %>% arrange(desc(ntotal)) %>%
+slumajors_df |> arrange(desc(ntotal)) |>
   slice(1, 2, 3, 4, 5)
 library(babynames)
 babynames
-babynames %>% filter(name == "Matthew")
-babynames %>% filter(year >= 2000)
-babynames %>% filter(sex != "M")
-babynames %>% filter(prop > 0.05)
-babynames %>% filter(year == max(year))
-babynames %>% filter(n > 20000 | prop > 0.05)
-babynames %>% filter(sex == "F" & name == "Mary")
-babynames %>% filter(sex == "F" & name == "Mary" & prop > 0.05)
-slumajors_df %>%
+babynames |> filter(name == "Matthew")
+babynames |> filter(year >= 2000)
+babynames |> filter(sex != "M")
+babynames |> filter(prop > 0.05)
+babynames |> filter(year == max(year))
+babynames |> filter(n > 20000 | prop > 0.05)
+babynames |> filter(sex == "F" & name == "Mary")
+babynames |> filter(sex == "F" & name == "Mary" & prop > 0.05)
+slumajors_df |>
   summarise(meantotalmajor = mean(ntotal),
             totalgrad = sum(ntotal))
-babynames %>% group_by(year) %>%
+babynames |> group_by(year) |>
   summarise(totalbirths = sum(n))
-babynames %>% summarise(totalobs = n())
-babynames %>% group_by(year) %>%
+babynames |> summarise(totalobs = n())
+babynames |> group_by(year) |>
   summarise(ngroup = n())
-toy_df %>% summarise(meanx = mean(x, na.rm = TRUE))
-toy_df %>% mutate(missingx = is.na(x))
-toy_df %>% filter(is.na(x) != TRUE)
-toy_df %>% filter(!is.na(x))
+toy_df |> summarise(meanx = mean(x, na.rm = TRUE))
+toy_df |> mutate(missingx = is.na(x))
+toy_df |> filter(is.na(x) != TRUE)
+toy_df |> filter(!is.na(x))
 ```

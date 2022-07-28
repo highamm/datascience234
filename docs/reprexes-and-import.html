@@ -4,21 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title> 9 Reprexes and Import | STAT 234: Data Science</title>
+<title> 10 Reprexes and Import | STAT 234: Data Science</title>
 <meta name="author" content="Matt Higham">
-<meta name="description" content="Goals: Use tibble to create data sets in R, and describe the benefits of reprexes. Use readr to read in data to R from .csv, .txt, and .tsv files. Use rvest to scrape data from public websites....">
-<meta name="generator" content="bookdown 0.22.17 with bs4_book()">
-<meta property="og:title" content=" 9 Reprexes and Import | STAT 234: Data Science">
+<meta name="description" content="Goals: Use readr to read in data to R from .csv, .txt, and .tsv files. Use rvest to scrape data from public websites. Use jsonlite to read in data in JSON (Java Script Object Notation) files. ...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 10 Reprexes and Import | STAT 234: Data Science">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://highamm.github.io/datascience234/reprexes-and-import.html">
-<meta property="og:description" content="Goals: Use tibble to create data sets in R, and describe the benefits of reprexes. Use readr to read in data to R from .csv, .txt, and .tsv files. Use rvest to scrape data from public websites....">
+<meta property="og:description" content="Goals: Use readr to read in data to R from .csv, .txt, and .tsv files. Use rvest to scrape data from public websites. Use jsonlite to read in data in JSON (Java Script Object Notation) files. ...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 9 Reprexes and Import | STAT 234: Data Science">
-<meta name="twitter:description" content="Goals: Use tibble to create data sets in R, and describe the benefits of reprexes. Use readr to read in data to R from .csv, .txt, and .tsv files. Use rvest to scrape data from public websites....">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="twitter:title" content=" 10 Reprexes and Import | STAT 234: Data Science">
+<meta name="twitter:description" content="Goals: Use readr to read in data to R from .csv, .txt, and .tsv files. Use rvest to scrape data from public websites. Use jsonlite to read in data in JSON (Java Script Object Notation) files. ...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -41,19 +45,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
 <li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
 <li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
 <li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
-<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">5</span> Tidying with tidyr</a></li>
-<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">6</span> Communication with RMarkdown</a></li>
-<li><a class="" href="r-basics.html"><span class="header-section-number">7</span> R Basics</a></li>
-<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">8</span> Factors with forcats</a></li>
-<li><a class="active" href="reprexes-and-import.html"><span class="header-section-number">9</span> Reprexes and Import</a></li>
-<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
-<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">11</span> Merging with dplyr</a></li>
-<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">12</span> Dates with lubridate</a></li>
-<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">13</span> Text Data with tidytext and stringr</a></li>
-<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">14</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">5</span> Communication with RMarkdown</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="active" href="reprexes-and-import.html"><span class="header-section-number">10</span> Reprexes and Import</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">11</span> Data Ethics</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
 </ul>
 
         <div class="book-extra">
@@ -61,94 +71,30 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="reprexes-and-import" class="section level1" number="9">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="reprexes-and-import" class="section level1" number="10">
 <h1>
-<span class="header-section-number"> 9</span> Reprexes and Import<a class="anchor" aria-label="anchor" href="#reprexes-and-import"><i class="fas fa-link"></i></a>
+<span class="header-section-number"> 10</span> Reprexes and Import<a class="anchor" aria-label="anchor" href="#reprexes-and-import"><i class="fas fa-link"></i></a>
 </h1>
 <p><strong>Goals:</strong></p>
 <ul>
-<li><p>Use <code>tibble</code> to create data sets in <code>R</code>, and describe the benefits of <strong>reprexes</strong>.</p></li>
 <li><p>Use <code>readr</code> to read in data to <code>R</code> from .csv, .txt, and .tsv files.</p></li>
 <li><p>Use <code>rvest</code> to scrape data from public websites.</p></li>
 <li><p>Use <code>jsonlite</code> to read in data in JSON (Java Script Object Notation) files.</p></li>
 </ul>
-<div id="reprexes-and-tibble" class="section level2" number="9.1">
+<div id="readr-to-read-in-data" class="section level2" number="10.1">
 <h2>
-<span class="header-section-number">9.1</span> Reprexes and <code>tibble</code><a class="anchor" aria-label="anchor" href="#reprexes-and-tibble"><i class="fas fa-link"></i></a>
-</h2>
-<p>We can also create a data set directly within <code>R</code> with the <code>tibble()</code> function in the <code>tibble</code> package. This is most useful when we want to make a small reproducible example so that someone else may help with our code.</p>
-<p>A <em>reproducible example</em>, or <strong>reprex</strong>, is a chunk of code that we can give to someone else that runs without any outside data. These are used often on StackExchange. The following code chunk is <strong>not</strong> a reprex because people would not necessarily have the data set <code>parsedf.csv</code>.</p>
-<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Hello! How do I get rid of the units from the values in</span>
-<span class="co">## my variable `x`? Thanks!</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 2</span>
-<span class="co">#&gt;   x                   y</span>
-<span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 20,000 dollars      1</span>
-<span class="co">#&gt; 2 40 dollars          2</span>
-<span class="co">#&gt; 3 only 13 dollars     3</span></code></pre></div>
-<p>We want to post on StackExchange for someone to help us convert a variable from a character vector with units to a numeric vector without units. We want to be able to give any possible helpers a small example data set to work with. For this, we can create our own tiny data set with <code>tibble()</code>:</p>
-<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Hello! How do I get rid of the units from the values in</span>
-<span class="co">## my variable `xvar`? Thanks!</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">test_df2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"20,000 dollars"</span>, <span class="st">"40 dollars"</span><span class="op">)</span>,
-                   yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-<span class="va">test_df2</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
-<span class="co">#&gt;   xvar            yvar</span>
-<span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 20,000 dollars     1</span>
-<span class="co">#&gt; 2 40 dollars         2</span></code></pre></div>
-<p>Why is <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> necessary in the code chunk above for my reprex?</p>
-<p>We can copy and paste the code chunk above to our question: it’s code that anyone can run as long as they have the <code>tidyverse</code> package installed, and really encourages more people to help.</p>
-<div id="exercise-8-1" class="section level3" number="9.1.1">
-<h3>
-<span class="header-section-number">9.1.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-8-1"><i class="fas fa-link"></i></a>
-</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">9.6</a>.</p>
-<p>For Project 2, we will work with some course evaluation data for a professor at SLU. Overall, you’ll answer some questions about how the professor can improve their courses at SLU by looking at course evaluation data. The variables and data set will be described in more detail in the project description.</p>
-<ol style="list-style-type: decimal">
-<li>* Suppose that you can’t figure out how to create a semester variable and a year variable from <code>Term</code> in <code>evals_prof_S21.csv</code>. (You want to split the <code>Term</code> variable into two variables: <code>Semester</code> with levels <code>F</code> and <code>S</code> and <code>Year</code> with levels <code>19</code>, <code>20</code>, and <code>21</code>).</li>
-</ol>
-<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">evals_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/evals_prof_S21.csv"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">evals_df</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   Term  Course Question               `Agree strongly` Agree</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;                             &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 F19   113-02 1. Course has been a …                9     9</span>
-<span class="co">#&gt; 2 F19   113-02 2. Effectively Organi…               12     8</span>
-<span class="co">#&gt; 3 F19   113-02 3. Environment Conduc…               11     8</span>
-<span class="co">#&gt; 4 F19   113-02 5a. Fair Assessment o…                5    13</span>
-<span class="co">#&gt; 5 F19   113-02 5b. Timely Assessment…                8    12</span>
-<span class="co">#&gt; 6 F19   113-02 5c. Constructive Asse…                5     8</span>
-<span class="co">#&gt; # … with 5 more variables: Agree Somewhat &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   Neutral &lt;dbl&gt;, Disagree Somewhat &lt;dbl&gt;, Disagree &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   Disagree Strongly &lt;dbl&gt;</span></code></pre></div>
-<p>Put together a reprex using <code>tibble()</code> that someone would be able to run to help you figure out your question.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>* You should actually be able to answer your own question using a function that we learned a couple of weeks ago. Do so, creating a <code>Semester</code> and <code>Year</code> variable.</li>
-</ol>
-</div>
-</div>
-<div id="readr-to-read-in-data" class="section level2" number="9.2">
-<h2>
-<span class="header-section-number">9.2</span> <code>readr</code> to Read in Data<a class="anchor" aria-label="anchor" href="#readr-to-read-in-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1</span> <code>readr</code> to Read in Data<a class="anchor" aria-label="anchor" href="#readr-to-read-in-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Up to now, we have mostly worked with data that was “<code>R</code> Ready”: meaning that it was in a nice .csv file that could be read into <code>R</code> easily with <code>read_csv()</code> from the <code>readr</code> package. We will begin by looking at some options in the <code>read_csv()</code> function and then move into formats other than .csv that data are commonly stored in.</p>
-<div id="read_csv-options" class="section level3" number="9.2.1">
+<div id="read_csv-options" class="section level3" number="10.1.1">
 <h3>
-<span class="header-section-number">9.2.1</span> <code>read_csv()</code> Options<a class="anchor" aria-label="anchor" href="#read_csv-options"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1.1</span> <code>read_csv()</code> Options<a class="anchor" aria-label="anchor" href="#read_csv-options"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>mtcarsex.csv</code> has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the <code>mtcarsex.csv</code> data set with the following code. Then, examine the data set with <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
-<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span>
+<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 11</span>
 <span class="co">#&gt;   `This is a data… ...2  ...3  ...4  ...5  ...6  ...7  ...8 </span>
@@ -164,8 +110,8 @@
 <p>What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of <code>R</code>.</p>
 <p>Type in <code>?read_csv</code> in the bottom-left window and look at some of the options in <code>read_csv()</code>. In particular, we will use the <code>na</code> and the <code>skip</code> arguments to fix up our reading.</p>
 <p>Let’s start with <code>skip</code> so that we aren’t reading in the first two rows of the data set:</p>
-<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co">## first two lines will be skipped</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 11</span>
@@ -180,8 +126,8 @@
 <span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></code></pre></div>
 <p>That looks better, but there are still a couple of problems. What do you notice?</p>
 <p>Go the help and read about the <code>na</code> argument. Let’s add that as an option to fix the missing value issue.</p>
-<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 11</span>
 <span class="co">#&gt;   mpg   cyl   disp  hp    drat  wt    qsec  vs    am   </span>
@@ -195,8 +141,8 @@
 <span class="co">#&gt; # … with 2 more variables: gear &lt;chr&gt;, carb &lt;chr&gt;</span></code></pre></div>
 <p>Now look at the classes of each variable. Which classes look like they are incorrect?</p>
 <p>We’ve talked about how to re-specify classes of variables using <code>mutate()</code> and the <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> or <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> or <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> functions, but sometimes it’s easier just to respecify the class when we are reading in the data. Notice how, when we use <code>read_csv()</code>, <code>R</code> gives us a message about each of the column types. This is actually an argument in <code>read_csv()</code> called <code>col_types</code>. <code>R</code> prints it so that it’s easy for us to copy and paste it into <code>read_csv()</code> and change any classes. For example, notice how <code>cyl = col_double()</code> is changed to <code>cyl = col_factor()</code> in the code chunk below:</p>
-<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,
   col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span>
   mpg <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   cyl <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
@@ -211,8 +157,8 @@
   carb <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Finally, there are two rows with all missing values. These aren’t providing anything useful so we can <code>slice()</code> them out:</p>
-<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,
   col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span>
   mpg <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   cyl <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
@@ -225,7 +171,7 @@
   am <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   gear <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   carb <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu">slice</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 11</span>
@@ -239,8 +185,8 @@
 <span class="co">#&gt; 6  18.1 6       225   105  2.76  3.46  20.2 1         0</span>
 <span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></code></pre></div>
 <p>There are <strong>many</strong> other possible file formats for data storage. For example, there is a data set called <code>oscars.tsv</code>, which is a tab-separated file. You can read it in with <code>read_tsv()</code> instead of <code>read_csv()</code>.</p>
-<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">oscars_df</span> <span class="op">&lt;-</span> <span class="fu">read_tsv</span><span class="op">(</span><span class="st">"data/oscars.tsv"</span><span class="op">)</span>
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">oscars_df</span> <span class="op">&lt;-</span> <span class="fu">read_tsv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/oscars.tsv"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oscars_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 51</span>
 <span class="co">#&gt;   FilmName            OscarYear Duration Rating DirectorName</span>
@@ -274,8 +220,8 @@
 <span class="co">#&gt; #   FemaleLAA &lt;dbl&gt;</span></code></pre></div>
 <p>You’ll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet.</p>
 <p>The final issue that we will discuss in this section occurs when a data set has units within its cells. Consider the earlier example that we used in the reprex section:</p>
-<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span>
+<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 2</span>
 <span class="co">#&gt;   x                   y</span>
@@ -284,8 +230,8 @@
 <span class="co">#&gt; 2 40 dollars          2</span>
 <span class="co">#&gt; 3 only 13 dollars     3</span></code></pre></div>
 <p>The <code>parse_number()</code> function is really useful if you just want the number (no commas, no units, etc.). The function is often paired with <code>mutate()</code> since we are creating a new variable:</p>
-<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_df</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>x2 <span class="op">=</span> <span class="fu">parse_number</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test_df</span> |&gt; <span class="fu">mutate</span><span class="op">(</span>x2 <span class="op">=</span> <span class="fu">parse_number</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 3</span>
 <span class="co">#&gt;   x                   y    x2</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -293,11 +239,11 @@
 <span class="co">#&gt; 2 40 dollars          2    40</span>
 <span class="co">#&gt; 3 only 13 dollars     3    13</span></code></pre></div>
 </div>
-<div id="exercise-8-2" class="section level3" number="9.2.2">
+<div id="exercise-8-2" class="section level3" number="10.1.2">
 <h3>
-<span class="header-section-number">9.2.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-8-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-8-2"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">9.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">10.5</a>.</p>
 <ol style="list-style-type: decimal">
 <li>* The <code>birthdays.txt</code> file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal’s Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.</li>
 </ol>
@@ -309,9 +255,9 @@
 <li><code>trim_ws</code></li>
 <li><code>col_types</code></li>
 </ul>
-<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">read_delim</span><span class="op">(</span><span class="st">"data/birthdays.txt"</span>, delim <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">read_delim</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/birthdays.txt"</span><span class="op">)</span>, delim <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code>read_csv()</code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("readxl")</a></code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, the data set used for Project 2, with the <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> function.</p></li>
@@ -319,14 +265,14 @@
 </ol>
 </div>
 </div>
-<div id="data-scraping-with-rvest" class="section level2" number="9.3">
+<div id="data-scraping-with-rvest" class="section level2" number="10.2">
 <h2>
-<span class="header-section-number">9.3</span> Data Scraping with <code>rvest</code><a class="anchor" aria-label="anchor" href="#data-scraping-with-rvest"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.2</span> Data Scraping with <code>rvest</code><a class="anchor" aria-label="anchor" href="#data-scraping-with-rvest"><i class="fas fa-link"></i></a>
 </h2>
 <p>Sometimes, you might want data from a public website that <strong>isn’t</strong> provided in a file format. To obtain this data, you’ll need to use web scraping, a term which just means “getting data from a website.” The easiest way to do this in <code>R</code> is with the <code>rvest</code> package. Note that we could spend an entire semester talking about web scraping, but we will focus only on websites where the scraping of data is “easy” and won’t give us any major errors.</p>
 <p>Go to the following website and suppose that you wanted the table of gun violence statistics in <code>R</code>: <a href="https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state" target="_blank">https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state</a>. You could try copy-pasting the table into Excel and reading the data set in with <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code>. Depending on the format of the table, that strategy may work but it may not. Another way is to scrape it directly with <code>rvest</code>. Additionally, if the website continually updates (standings for a sports league, enrollment data for a school, best-selling products for a company, etc.), then scraping is much more convenient, as you don’t need to continually copy-paste for updated data.</p>
 <p>In the following code chunk, <code><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html()</a></code> reads in the entire html file from the url provided while <code><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes()</a></code> extracts only the tables on the website.</p>
-<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
 
@@ -337,13 +283,13 @@
 <span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
 
 <span class="co">## grabs the tables</span>
-<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></code></pre></div>
+<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></code></pre></div>
 <p>You’ll see that, for this example, there are 3 tables provided. The tables are stored in a <code>list</code> and we can reference the first table using <code>[[1]]</code>, the second table using <code>[[2]]</code>, etc. For the purposes of this class, we will figure out which of the 3 tables is the one we actually want using trial and error.</p>
 <p>The <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code> function converts the table into a <code>data.frame</code> object.</p>
-<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">test2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">test3</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">test2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">test3</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test2</span><span class="op">)</span>
@@ -352,23 +298,23 @@
 <p>As another example, consider scraping data from SLU’s athletics page. In particular, suppose we want to do an analysis on SLU’s baseball team.</p>
 <p>Go to the following website to look at the table of data that we want to scrape: <a href="https://saintsathletics.com/sports/baseball/stats/2021" target="_blank">https://saintsathletics.com/sports/baseball/stats/2021</a>.</p>
 <p>After looking at the website, use the following code to scrape the data set.</p>
-<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2021"</span>
 <span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
-<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span>
+<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span>
 <span class="va">tab</span>
-<span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span>
-<span class="va">obj2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">obj2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">obj2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">obj2</span><span class="op">)</span></code></pre></div>
 <p>There’s now 72 different tables! See if you can figure out where the first few tables are coming from on the website.</p>
-<div id="exercise-8-3" class="section level3" number="9.3.1">
+<div id="exercise-8-3" class="section level3" number="10.2.1">
 <h3>
-<span class="header-section-number">9.3.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-8-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.2.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-8-3"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">9.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">10.5</a>.</p>
 <ol style="list-style-type: decimal">
 <li><p>Choose a topic/person/place/etc. that interests you that has tables on Wikipedia and scrape the table that is related to that topic.</p></li>
 <li><p>* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/ir/diversity/faculty" target="_blank">https://www.stlawu.edu/ir/diversity/faculty</a>. Use <code>rvest</code> to scrape the data tables into <code>R</code>.</p></li>
@@ -376,25 +322,25 @@
 <p><strong>Hint</strong>: You may need to use an extra argument in <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code> like <code>fill</code>.</p>
 </div>
 </div>
-<div id="json-files-with-jsonlite" class="section level2" number="9.4">
+<div id="json-files-with-jsonlite" class="section level2" number="10.3">
 <h2>
-<span class="header-section-number">9.4</span> JSON Files with <code>jsonlite</code><a class="anchor" aria-label="anchor" href="#json-files-with-jsonlite"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3</span> JSON Files with <code>jsonlite</code><a class="anchor" aria-label="anchor" href="#json-files-with-jsonlite"><i class="fas fa-link"></i></a>
 </h2>
 <p>A final common data format that we will discuss is JSON (JavaScript Object Notation). We will only cover the very basics of JSON data and use the <code>jsonlite</code> package in <code>R</code> to read in some .json files. JSON files are read in to <code>R</code> as a <code>list</code> object.</p>
-<div id="everything-working-well" class="section level3" number="9.4.1">
+<div id="everything-working-well" class="section level3" number="10.3.1">
 <h3>
-<span class="header-section-number">9.4.1</span> Everything Working Well<a class="anchor" aria-label="anchor" href="#everything-working-well"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3.1</span> Everything Working Well<a class="anchor" aria-label="anchor" href="#everything-working-well"><i class="fas fa-link"></i></a>
 </h3>
 <p>First, consider data from the mobile game Clash Royale. Install the <code>jsonlite</code> package and then use it to read in the <code>json</code> file with the function <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON()</a></code>:</p>
-<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## install.packages("jsonlite")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arxiv.org/abs/1403.2805">jsonlite</a></span><span class="op">)</span>
-<span class="va">cr_cards</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="st">"data/clash_royale_card_info.json"</span><span class="op">)</span></code></pre></div>
+<span class="va">cr_cards</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/clash_royale_card_info.json"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>You should get a warning message, which we will investigate in class.</p>
 <p>Next, type <code><a href="https://rdrr.io/r/utils/View.html">View(cr_cards)</a></code> in your console (bottom-left) window to look at the data. See if you can pull out the data set by clicking on some things in the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> window.</p>
 <p>The following give a couple of ways to grab the data using code. The <code>as_tibble()</code> function converts a rectangular object into our familiar <code>tibble</code>.</p>
 <p>The first option specifies the name of the table that’s in the JSON file (in this case, the name is <code>"cards"</code>):</p>
-<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">cr_cards_flat</span> <span class="op">&lt;-</span> <span class="va">cr_cards</span><span class="op">[[</span><span class="st">"cards"</span><span class="op">]</span><span class="op">]</span>
 <span class="va">cr_cards_df</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">cr_cards_flat</span><span class="op">)</span>
@@ -409,7 +355,7 @@
 <span class="co">#&gt; 5 pekka  P.E.…      7 Troop Epic       4 A heavily a… 2.60e7</span>
 <span class="co">#&gt; 6 minio… Mini…      3 Troop Common     0 Three fast,… 2.60e7</span></code></pre></div>
 <p>The second method uses the <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">flatten()</a></code> function from the <code>purrr</code> package, the only package in the core <code>tidyverse</code> that we do not talk about in detail in this class. There is also a different <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">flatten()</a></code> function in the <code>jsonlite</code> package. In the code below, we specify that we want to use <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">flatten()</a></code> from <code>purrr</code> with <code><a href="https://purrr.tidyverse.org/reference/flatten.html">purrr::flatten()</a></code>. If we wanted to use <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">flatten()</a></code> from <code>jsonlite</code>, we’d use <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">jsonlite::flatten()</a></code></p>
-<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cr_cards_flat2</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten</a></span><span class="op">(</span><span class="va">cr_cards</span><span class="op">)</span>
 <span class="va">cr_cards_df2</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">cr_cards_flat2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cr_cards_df2</span><span class="op">)</span>
@@ -424,13 +370,13 @@
 <span class="co">#&gt; 6 minio… Mini…      3 Troop Common     0 Three fast,… 2.60e7</span></code></pre></div>
 <p>Both methods give a <code>tibble</code> that we can then use our usual <code>tidyverse</code> tools <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, etc. on.</p>
 </div>
-<div id="things-arent-always-so-easy" class="section level3" number="9.4.2">
+<div id="things-arent-always-so-easy" class="section level3" number="10.3.2">
 <h3>
-<span class="header-section-number">9.4.2</span> Things Aren’t Always So Easy<a class="anchor" aria-label="anchor" href="#things-arent-always-so-easy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3.2</span> Things Aren’t Always So Easy<a class="anchor" aria-label="anchor" href="#things-arent-always-so-easy"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now let’s try to look at some animal crossing data that were obtained from <a href="https://github.com/jefflomacy/villagerdb" target="_blank">https://github.com/jefflomacy/villagerdb</a>. We first just want to look at the data from one individual villager (ace) in the file <code>ace.json</code>.</p>
-<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acedata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="st">"data/ace.json"</span><span class="op">)</span>
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">acedata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/ace.json"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">aceflat</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten</a></span><span class="op">(</span><span class="va">acedata</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">aceflat</span><span class="op">)</span>
 <span class="co">#&gt; $gender</span>
@@ -472,11 +418,11 @@
 <p>Things are now….more complicated. This example is just to show that it’s not always easy working with JSON data. Lists can be nested and that creates problems when trying to convert a deeply nested list into our “rectangular” format that’s easy to work with.</p>
 <p>There’s also the added problem of reading in the <code>.json</code> files from all villagers at the same time We could do this with a for loop or a mapping function from <code>purrr</code> to download and read in the JSON files for all villagers. We won’t delve any more deeply into this, but there’s a lot more to all of the file formats that we’ve discussed this week, particularly web scraping and .json files.</p>
 </div>
-<div id="exercise-8-4" class="section level3" number="9.4.3">
+<div id="exercise-8-4" class="section level3" number="10.3.3">
 <h3>
-<span class="header-section-number">9.4.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-8-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-8-4"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">9.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">10.5</a>.</p>
 <ol style="list-style-type: decimal">
 <li><p>* Read in the <code>pokedex.json</code> file, a data set that has information on the 151 original Pokemon. Then, use the <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">flatten()</a></code> function from <code>purrr</code> to flatten the list.</p></li>
 <li><p>* Use <code>as_tibble()</code> to convert your flattened list to a <code>tibble</code>.</p></li>
@@ -484,7 +430,7 @@
 <li><p>* Look at the <code>type</code> variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a <code>dplyr</code> function?</p></li>
 </ol>
 <p>You can <code>unnest()</code> the <code>Type</code> variable with the <code>unnest()</code> function from <code>tidyr</code>. We didn’t discuss this function but feel free to read about it with <code>?unnest</code></p>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pokemon_unnest</span> <span class="op">&lt;-</span> <span class="fu">unnest</span><span class="op">(</span><span class="va">pokemon_df</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li><p>There are 6 pokemon with a <code>spawn_chance</code> of 0. Figure out what these 6 pokemon are.</p></li>
@@ -492,11 +438,11 @@
 </ol>
 </div>
 </div>
-<div id="chapexercise-8" class="section level2" number="9.5">
+<div id="chapexercise-8" class="section level2" number="10.4">
 <h2>
-<span class="header-section-number">9.5</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-8"><i class="fas fa-link"></i></a>
 </h2>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">9.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="reprexes-and-import.html#solutions-8">10.5</a>.</p>
 <ol style="list-style-type: decimal">
 <li>Choose a sports team at SLU, and go to that team’s website (by simply googling SLU name_of_sport). Scrape the data tables from the “Results” or “Statistics” section of this sport. After you scrape the data, tidy the data set. Then, choose one of the following options (different options might make more/less sense for different sports)</li>
 </ol>
@@ -505,49 +451,13 @@
 <p>(c). Ask and answer any other questions that make sense for the particular sport that you are looking at!</p>
 <p><strong>Note</strong>: A few sports (men’s and women’s golf, for example), give results in PDF format. PDF format is generally a horrible way to record and share data, as it’s very difficult to read in to almost any program. Therefore, avoid sports with PDF results for the purposes of this exercise.</p>
 </div>
-<div id="solutions-8" class="section level2" number="9.6">
+<div id="solutions-8" class="section level2" number="10.5">
 <h2>
-<span class="header-section-number">9.6</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-8"><i class="fas fa-link"></i></a>
 </h2>
-<div id="reprexes-and-tibble-s" class="section level3" number="9.6.1">
+<div id="readr-s" class="section level3" number="10.5.1">
 <h3>
-<span class="header-section-number">9.6.1</span> Reprexes and <code>tibble</code> S<a class="anchor" aria-label="anchor" href="#reprexes-and-tibble-s"><i class="fas fa-link"></i></a>
-</h3>
-<ol style="list-style-type: decimal">
-<li>* Suppose that you can’t figure out how to create a semester variable and a year variable from <code>Term</code> in <code>evals_prof_S21.csv</code>. (You want to split the <code>Term</code> variable into two variables: <code>Semester</code> with levels <code>F</code> and <code>S</code> and <code>Year</code> with levels <code>19</code>, <code>20</code>, and <code>21</code>).</li>
-</ol>
-<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">evals_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/evals_prof_S21.csv"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">evals_df</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   Term  Course Question               `Agree strongly` Agree</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;                             &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 F19   113-02 1. Course has been a …                9     9</span>
-<span class="co">#&gt; 2 F19   113-02 2. Effectively Organi…               12     8</span>
-<span class="co">#&gt; 3 F19   113-02 3. Environment Conduc…               11     8</span>
-<span class="co">#&gt; 4 F19   113-02 5a. Fair Assessment o…                5    13</span>
-<span class="co">#&gt; 5 F19   113-02 5b. Timely Assessment…                8    12</span>
-<span class="co">#&gt; 6 F19   113-02 5c. Constructive Asse…                5     8</span>
-<span class="co">#&gt; # … with 5 more variables: Agree Somewhat &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   Neutral &lt;dbl&gt;, Disagree Somewhat &lt;dbl&gt;, Disagree &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   Disagree Strongly &lt;dbl&gt;</span></code></pre></div>
-<p>Put together a reprex using <code>tibble()</code> that someone would be able to run to help you figure out your question.</p>
-<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>Term <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F19"</span>, <span class="st">"S20"</span><span class="op">)</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## Hello! I need help creating a variable that has F/S and </span>
-<span class="co">## a separate year variable that has 19 and 20 from the data set above.</span>
-<span class="co">## Thanks!</span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>* You should actually be able to answer your own question using a function that we learned a couple of weeks ago. Do so, creating a <code>Semester</code> and <code>Year</code> variable.</li>
-</ol>
-<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span> <span class="fu">separate</span><span class="op">(</span><span class="va">Term</span>, sep <span class="op">=</span> <span class="fl">1</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Semester"</span>, <span class="st">"Year"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="readr-s" class="section level3" number="9.6.2">
-<h3>
-<span class="header-section-number">9.6.2</span> <code>readr</code> S<a class="anchor" aria-label="anchor" href="#readr-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.1</span> <code>readr</code> S<a class="anchor" aria-label="anchor" href="#readr-s"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>* The <code>birthdays.txt</code> file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal’s Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.</li>
@@ -560,12 +470,12 @@
 <li><code>trim_ws</code></li>
 <li><code>col_types</code></li>
 </ul>
-<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">read_delim</span><span class="op">(</span><span class="st">"data/birthdays.txt"</span>, delim <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">read_delim</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/birthdays.txt"</span><span class="op">)</span>, delim <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">read_delim</span><span class="op">(</span><span class="st">"data/birthdays.txt"</span>, delim <span class="op">=</span> <span class="st">"-"</span>, skip <span class="op">=</span> <span class="fl">4</span>,
+<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">read_delim</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/birthdays.txt"</span><span class="op">)</span>, delim <span class="op">=</span> <span class="st">"-"</span>, skip <span class="op">=</span> <span class="fl">4</span>,
   col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Birthday"</span>, <span class="st">"Name"</span>,
     <span class="st">"Animal"</span>, <span class="st">"Island"</span><span class="op">)</span>,
   trim_ws <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -575,96 +485,86 @@
 <ol start="2" style="list-style-type: decimal">
 <li>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code>read_csv()</code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("readxl")</a></code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, the data set used for Project 2, with the <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> function.</li>
 </ol>
-<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## install.packages("readxl")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
-<span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/evals_prof.xlsx"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/evals_prof.xlsx"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>* Now, read in the second sheet, using the help file for <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">?read_excel</a></code> to change one of the arguments.</li>
 </ol>
-<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/evals_prof.xlsx"</span>, sheet <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/evals_prof.xlsx"</span><span class="op">)</span>, sheet <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="rvest-and-data-scraping-s" class="section level3" number="9.6.3">
+<div id="rvest-and-data-scraping-s" class="section level3" number="10.5.2">
 <h3>
-<span class="header-section-number">9.6.3</span> <code>rvest</code> and Data Scraping S<a class="anchor" aria-label="anchor" href="#rvest-and-data-scraping-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.2</span> <code>rvest</code> and Data Scraping S<a class="anchor" aria-label="anchor" href="#rvest-and-data-scraping-s"><i class="fas fa-link"></i></a>
 </h3>
 <ol start="2" style="list-style-type: decimal">
 <li>* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/ir/diversity/faculty" target="_blank">https://www.stlawu.edu/ir/diversity/faculty</a>. Use <code>rvest</code> to scrape the data tables into <code>R</code>.</li>
 </ol>
-<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://www.stlawu.edu/ir/diversity/faculty"</span>
 <span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
-<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span>
-<span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span>
+<span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">obj</span></code></pre></div>
 </div>
-<div id="json-with-jsonlite-s" class="section level3" number="9.6.4">
+<div id="json-with-jsonlite-s" class="section level3" number="10.5.3">
 <h3>
-<span class="header-section-number">9.6.4</span> JSON with <code>jsonlite</code> S<a class="anchor" aria-label="anchor" href="#json-with-jsonlite-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.3</span> JSON with <code>jsonlite</code> S<a class="anchor" aria-label="anchor" href="#json-with-jsonlite-s"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>* Read in the <code>pokedex.json</code> file, a data set that has information on the 151 original Pokemon. Then, use the <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">flatten()</a></code> function from <code>purrr</code> to flatten the list.</li>
 </ol>
-<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arxiv.org/abs/1403.2805">jsonlite</a></span><span class="op">)</span>
-<span class="va">pokedex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="st">"data/pokedex.json"</span><span class="op">)</span>
+<span class="va">pokedex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/pokedex.json"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten</a></span><span class="op">(</span><span class="va">pokedex</span><span class="op">)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>* Use <code>as_tibble()</code> to convert your flattened list to a <code>tibble</code>.</li>
 </ol>
-<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pokemon_df</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>* Use <code>parse_number()</code> with <code>mutate()</code> to tidy two of the variables in the data set.</li>
 </ol>
-<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pokemon_df</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>height <span class="op">=</span> <span class="fu">parse_number</span><span class="op">(</span><span class="va">height</span><span class="op">)</span>,
+<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pokemon_df</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> |&gt; <span class="fu">mutate</span><span class="op">(</span>height <span class="op">=</span> <span class="fu">parse_number</span><span class="op">(</span><span class="va">height</span><span class="op">)</span>,
                                     weight <span class="op">=</span> <span class="fu">parse_number</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>* Look at the <code>type</code> variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a <code>dplyr</code> function?</li>
 </ol>
-<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## it's a variable of lists....this is happening because some </span>
 <span class="co">## pokemon have more than one type.</span>
 
 <span class="co">## most ggplot() and dplyr() functions won't work, or</span>
 <span class="co">## won't work as you'd expect</span></code></pre></div>
 <p>You can <code>unnest()</code> the <code>Type</code> variable with the <code>unnest()</code> function from <code>tidyr</code>. We didn’t discuss this function but feel free to read about it with <code>?unnest</code></p>
-<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pokemon_unnest</span> <span class="op">&lt;-</span> <span class="fu">unnest</span><span class="op">(</span><span class="va">pokemon_df</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="chapexercise-8-S" class="section level3" number="9.6.5">
+<div id="chapexercise-8-S" class="section level3" number="10.5.4">
 <h3>
-<span class="header-section-number">9.6.5</span> Chapter Exercises S<a class="anchor" aria-label="anchor" href="#chapexercise-8-S"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.4</span> Chapter Exercises S<a class="anchor" aria-label="anchor" href="#chapexercise-8-S"><i class="fas fa-link"></i></a>
 </h3>
 </div>
 </div>
-<div id="rcode-8" class="section level2" number="9.7">
+<div id="rcode-8" class="section level2" number="10.6">
 <h2>
-<span class="header-section-number">9.7</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-8"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Hello! How do I get rid of the units from the values in</span>
-<span class="co">## my variable `x`? Thanks!</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span>
-<span class="co">## Hello! How do I get rid of the units from the values in</span>
-<span class="co">## my variable `xvar`? Thanks!</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">test_df2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"20,000 dollars"</span>, <span class="st">"40 dollars"</span><span class="op">)</span>,
-                   yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-<span class="va">test_df2</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>
+<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span>
+<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
-<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co">## first two lines will be skipped</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
-<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
-<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,
+<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,
   col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span>
   mpg <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   cyl <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
@@ -678,7 +578,7 @@
   gear <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   carb <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span>
-<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,
+<span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,
   col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span>
   mpg <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   cyl <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
@@ -691,14 +591,14 @@
   am <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   gear <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
   carb <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu">slice</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span>
-<span class="va">oscars_df</span> <span class="op">&lt;-</span> <span class="fu">read_tsv</span><span class="op">(</span><span class="st">"data/oscars.tsv"</span><span class="op">)</span>
+<span class="va">oscars_df</span> <span class="op">&lt;-</span> <span class="fu">read_tsv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/oscars.tsv"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oscars_df</span><span class="op">)</span>
-<span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span>
+<span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span>
-<span class="va">test_df</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>x2 <span class="op">=</span> <span class="fu">parse_number</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
+<span class="va">test_df</span> |&gt; <span class="fu">mutate</span><span class="op">(</span>x2 <span class="op">=</span> <span class="fu">parse_number</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
 
@@ -709,27 +609,27 @@
 <span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
 
 <span class="co">## grabs the tables</span>
-<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span>
-<span class="va">test1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">test2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">test3</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span>
+<span class="va">test1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">test2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">test3</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test3</span><span class="op">)</span>
 <span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2021"</span>
 <span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
-<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span>
+<span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span>
 <span class="va">tab</span>
-<span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span>
-<span class="va">obj2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">obj2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> |&gt; <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">obj2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">obj2</span><span class="op">)</span>
 <span class="co">## install.packages("jsonlite")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arxiv.org/abs/1403.2805">jsonlite</a></span><span class="op">)</span>
-<span class="va">cr_cards</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="st">"data/clash_royale_card_info.json"</span><span class="op">)</span>
+<span class="va">cr_cards</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/clash_royale_card_info.json"</span><span class="op">)</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">cr_cards_flat</span> <span class="op">&lt;-</span> <span class="va">cr_cards</span><span class="op">[[</span><span class="st">"cards"</span><span class="op">]</span><span class="op">]</span>
 <span class="va">cr_cards_df</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">cr_cards_flat</span><span class="op">)</span>
@@ -737,49 +637,45 @@
 <span class="va">cr_cards_flat2</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten</a></span><span class="op">(</span><span class="va">cr_cards</span><span class="op">)</span>
 <span class="va">cr_cards_df2</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">cr_cards_flat2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cr_cards_df2</span><span class="op">)</span>
-<span class="va">acedata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="st">"data/ace.json"</span><span class="op">)</span>
+<span class="va">acedata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/ace.json"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">aceflat</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten</a></span><span class="op">(</span><span class="va">acedata</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">aceflat</span><span class="op">)</span></code></pre></div>
 
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="factors-with-forcats.html"><span class="header-section-number">8</span> Factors with forcats</a></div>
-<div class="next"><a href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></div>
+<div class="prev"><a href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></div>
+<div class="next"><a href="data-ethics.html"><span class="header-section-number">11</span> Data Ethics</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#reprexes-and-import"><span class="header-section-number">9</span> Reprexes and Import</a></li>
+<li><a class="nav-link" href="#reprexes-and-import"><span class="header-section-number">10</span> Reprexes and Import</a></li>
 <li>
-<a class="nav-link" href="#reprexes-and-tibble"><span class="header-section-number">9.1</span> Reprexes and tibble</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-8-1"><span class="header-section-number">9.1.1</span> Exercises</a></li></ul>
-</li>
-<li>
-<a class="nav-link" href="#readr-to-read-in-data"><span class="header-section-number">9.2</span> readr to Read in Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#read_csv-options"><span class="header-section-number">9.2.1</span> read_csv() Options</a></li>
-<li><a class="nav-link" href="#exercise-8-2"><span class="header-section-number">9.2.2</span> Exercises</a></li>
+<a class="nav-link" href="#readr-to-read-in-data"><span class="header-section-number">10.1</span> readr to Read in Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#read_csv-options"><span class="header-section-number">10.1.1</span> read_csv() Options</a></li>
+<li><a class="nav-link" href="#exercise-8-2"><span class="header-section-number">10.1.2</span> Exercises</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#data-scraping-with-rvest"><span class="header-section-number">9.3</span> Data Scraping with rvest</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-8-3"><span class="header-section-number">9.3.1</span> Exercises</a></li></ul>
+<a class="nav-link" href="#data-scraping-with-rvest"><span class="header-section-number">10.2</span> Data Scraping with rvest</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-8-3"><span class="header-section-number">10.2.1</span> Exercises</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#json-files-with-jsonlite"><span class="header-section-number">9.4</span> JSON Files with jsonlite</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#everything-working-well"><span class="header-section-number">9.4.1</span> Everything Working Well</a></li>
-<li><a class="nav-link" href="#things-arent-always-so-easy"><span class="header-section-number">9.4.2</span> Things Aren’t Always So Easy</a></li>
-<li><a class="nav-link" href="#exercise-8-4"><span class="header-section-number">9.4.3</span> Exercises</a></li>
+<a class="nav-link" href="#json-files-with-jsonlite"><span class="header-section-number">10.3</span> JSON Files with jsonlite</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#everything-working-well"><span class="header-section-number">10.3.1</span> Everything Working Well</a></li>
+<li><a class="nav-link" href="#things-arent-always-so-easy"><span class="header-section-number">10.3.2</span> Things Aren’t Always So Easy</a></li>
+<li><a class="nav-link" href="#exercise-8-4"><span class="header-section-number">10.3.3</span> Exercises</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#chapexercise-8"><span class="header-section-number">9.5</span> Chapter Exercises</a></li>
+<li><a class="nav-link" href="#chapexercise-8"><span class="header-section-number">10.4</span> Chapter Exercises</a></li>
 <li>
-<a class="nav-link" href="#solutions-8"><span class="header-section-number">9.6</span> Exercise Solutions</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#reprexes-and-tibble-s"><span class="header-section-number">9.6.1</span> Reprexes and tibble S</a></li>
-<li><a class="nav-link" href="#readr-s"><span class="header-section-number">9.6.2</span> readr S</a></li>
-<li><a class="nav-link" href="#rvest-and-data-scraping-s"><span class="header-section-number">9.6.3</span> rvest and Data Scraping S</a></li>
-<li><a class="nav-link" href="#json-with-jsonlite-s"><span class="header-section-number">9.6.4</span> JSON with jsonlite S</a></li>
-<li><a class="nav-link" href="#chapexercise-8-S"><span class="header-section-number">9.6.5</span> Chapter Exercises S</a></li>
+<a class="nav-link" href="#solutions-8"><span class="header-section-number">10.5</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#readr-s"><span class="header-section-number">10.5.1</span> readr S</a></li>
+<li><a class="nav-link" href="#rvest-and-data-scraping-s"><span class="header-section-number">10.5.2</span> rvest and Data Scraping S</a></li>
+<li><a class="nav-link" href="#json-with-jsonlite-s"><span class="header-section-number">10.5.3</span> JSON with jsonlite S</a></li>
+<li><a class="nav-link" href="#chapexercise-8-S"><span class="header-section-number">10.5.4</span> Chapter Exercises S</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#rcode-8"><span class="header-section-number">9.7</span> Non-Exercise R Code</a></li>
+<li><a class="nav-link" href="#rcode-8"><span class="header-section-number">10.6</span> Non-Exercise R Code</a></li>
 </ul>
 
       <div class="book-extra">
@@ -796,7 +692,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-11-16.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-07-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

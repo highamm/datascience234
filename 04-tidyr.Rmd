@@ -1,4 +1,9 @@
+# (PART) Data Wrangling {-}
+
 # Tidying with `tidyr`
+
+<!-- For a quiz: unheadr::AOEunits_raw -->
+<!-- For a quiz: smoothie data  -->
 
 __Goals:__
 
@@ -39,14 +44,15 @@ In a fresh .Rmd file (File -> New File -> R Markdown) that is in your Notes proj
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
-polls <- read_csv("data/rcp-polls.csv", na = "--")
+library(here)
+polls <- read_csv(here("data/rcp-polls.csv"), na = "--")
 polls
 ```
 
 Suppose that you wanted to know what the average sample size of the polls was. Using `dplyr` functions,
 
 ```{r, results = "hide", warning = FALSE, appendix = TRUE}
-polls %>% summarise(meansample = mean(Sample))
+polls |> summarise(meansample = mean(Sample))
 ```
 
 What warning do you get? Why?
@@ -58,7 +64,7 @@ You would get a similar warning (or sometimes an error) any time that you want t
 Let's `separate()` the two variables into `Sample_size` and `Sample_type`:
 
 ```{r, appendix = TRUE}
-polls %>%
+polls |>
   separate(col = Sample, into = c("Sample_size", "Sample_type"), 
            sep = " ")
 ```
@@ -74,7 +80,7 @@ The arguments to `separate()` are fairly easy to learn:
 The `sep` argument is the newest piece of information here. Note that even using `sep = ""` will produce an error (there is not a space now, so `R` doesn't know what to separate by).
 
 ```{r, eval = FALSE}
-polls %>%
+polls |>
   separate(col = Sample, into = c("Sample_size", "Sample_type"), 
            sep = "")
 ```
@@ -82,7 +88,7 @@ polls %>%
 Similarly, we would like the `Date` column to be separated into a poll start date and a poll end date:
 
 ```{r, appendix = TRUE}
-polls_sep <- polls %>%
+polls_sep <- polls |>
   separate(col = Date, into = c("Start", "End"),
            sep = " - ")
 ```
@@ -96,7 +102,7 @@ What happened to `Sample`? Why is it back to its un-separated form?
 `unite()` is the "opposite" of `separate()`: use it when one variable is stored across multiple columns, but each row still represents a single case. The need to use `unite()` is less common than `separate()`. In our current data set, there is no need to use it at all. But, for the sake of seeing an example, let's separate the `Start` date into `month` and `day` and then use `unite()` to re-unite those columns:
 
 ```{r, appendix = TRUE}
-polls_sillytest <- polls_sep %>%
+polls_sillytest <- polls_sep |>
   separate(col = Start, into = c("Start_month", "Start_day"), 
            sep = "/")
 polls_sillytest
@@ -105,7 +111,7 @@ polls_sillytest
 This situation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use `unite()` to combine these two columns into a single `Date`, called `New_start_date`:
 
 ```{r, appendix = TRUE}
-polls_sillytest %>%
+polls_sillytest |>
   unite("New_start_date", c(Start_month, Start_day),
         sep = "/")
 ```
@@ -132,16 +138,16 @@ polls_sep
 This happens because the column names have a space in them (this also would occur if the columns started with a number or had odd special characters in them). Then, any time you want to reference a variable, you need the include the backticks:
 
 ```{r, eval = FALSE}
-polls_sep %>%
+polls_sep |>
   summarise(meanclinton = mean(Clinton (D))) ## throws an error
-polls_sep %>%
+polls_sep |>
   summarise(meanclinton = mean(`Clinton (D)`)) ## backticks save the day!
 ```
 
 Having variable names with spaces doesn't technically violate any principle of tidy data, but it can be quite annoying. Always using backticks can be a huge pain. We can rename variables easily with `rename()`, which just takes a series of `new_name = old_name` arguments. 
 
 ```{r, appendix = TRUE}
-polls_new <- polls_sep %>%
+polls_new <- polls_sep |>
   rename(Clinton_D = `Clinton (D)`, Trump_R = `Trump (R)`,
          Johnson_L = `Johnson (L)`, Stein_G = `Stein (G)`)
 polls_new
@@ -159,7 +165,8 @@ The MLB salary data set contains salaries on all 862 players in Major League Bas
 
 ```{r, message = FALSE}
 library(tidyverse)
-baseball_df <- read_csv("data/mlb2016.csv")
+library(here)
+baseball_df <- read_csv(here("data/mlb2016.csv"))
 head(baseball_df)
 ```
 
@@ -177,8 +184,8 @@ head(baseball_df)
 * the year range (also currently given in the `Year` column) is split into a variable called `Start` and a variable called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
 
 ```{r, echo = FALSE, warning = FALSE}
-baseball_df <- baseball_df %>%
-  separate(Years, into = c("Duration", "Range"), sep = " ") %>%
+baseball_df <- baseball_df |>
+  separate(Years, into = c("Duration", "Range"), sep = " ") |>
   separate(Range, into = c("Start", "End"), sep = "-")
 ```
 
@@ -193,7 +200,7 @@ baseball_df <- baseball_df %>%
 4. We won't learn about `parse_number()` until `readr`, but the function is straightforward enough to mention here. It's useful when you have extra characters in the values of a numeric variable (like a `$` or a `(`), but you just want to grab the actual number:
 
 ```{r, results = "hide", eval = FALSE}
-baseball_df <- baseball_df %>%
+baseball_df <- baseball_df |>
   mutate(Salary = parse_number(Salary),
          Total.Value = parse_number(Total.Value),
          Avg.Annual = parse_number(Avg.Annual),
@@ -214,11 +221,11 @@ Run the code above so that the parsing is saved to `baseball_df`.
 We will continue to use the polling data set to introduce the pivoting functions and data reshaping. To make sure that we are all working with the same data set, run the following line of code:
 
 ```{r, appendix = TRUE}
-polls_clean <- polls %>%
+polls_clean <- polls |>
   separate(col = Sample, into = c("Sample_size", "Sample_type"), 
-           sep = " ")  %>%
+           sep = " ")  |>
   separate(col = Date, into = c("Start", "End"),
-           sep = " - ") %>% 
+           sep = " - ") |> 
   rename(Clinton_D = `Clinton (D)`, Trump_R = `Trump (R)`,
          Johnson_L = `Johnson (L)`, Stein_G = `Stein (G)`)
 polls_clean
@@ -248,7 +255,7 @@ This is where `pivot_longer()` can help! <a href="https://www.youtube.com/watch?
 `pivot_longer()` "pivots" the data set so that is has more rows (hence the "longer") by collapsing multiple columns into two columns. One new column is a "key" column, which is the new variable containing the old data set's column names. The second new column is a "value" column, which is the new variable containing the old data set's values for each of the old data set's column names. It's easier to see this with an example. We know from our plotting exercise above that we'd really like a `candidate` variable to colour by and a `poll_percent` variable for the y-axis of our plot. So, we can use `pivot_longer()` to make these two columns:
 
 ```{r, appendix = TRUE}
-polls_clean %>%
+polls_clean |>
   pivot_longer(cols = c(Clinton_D, Trump_R, Johnson_L, Stein_G),
                names_to = "candidate", values_to = "poll_percent")
 ```
@@ -264,7 +271,7 @@ What happens when you omit `names_to` and `values_to` arguments? Give it a try!
 Now we can make our plot using Week 1 `ggplot` functions. But don't forget to give a name to our new "long" data set first!
 
 ```{r, appendix = TRUE}
-polls_long <- polls_clean %>%
+polls_long <- polls_clean |>
   pivot_longer(cols = c(Clinton_D, Trump_R, Johnson_L, Stein_G),
                names_to = "candidate", values_to = "poll_percent")
 
@@ -283,7 +290,8 @@ Let's examine some airline safety data that fivethirtyeight used in their Should
 . The raw data can be found <a href="https://github.com/fivethirtyeight/data/tree/master/airline-safety" target="_blank">here</a>.
 
 ```{r, message = FALSE, appendix = TRUE}
-airlines <- read_csv("data/airline-safety.csv")
+library(here)
+airlines <- read_csv(here("data/airline-safety.csv"))
 head(airlines)
 ```
 
@@ -311,7 +319,7 @@ etc.
 Let's start with `pivot_longer()` to see if we can get year to be its own variable (We know that a year variable, which is what we want, will make more rows so `pivot_longer()` seems like a good place to start):
 
 ```{r, appendix = TRUE}
-airlines %>%
+airlines |>
   pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
   values_to = "total_num") 
 ```
@@ -319,8 +327,8 @@ airlines %>%
 Instead of giving `pivot_longer()` names of variables, we gave it the column numbers instead. So `c(3, 4, 5, 6, 7, 8)` corresponds to the 3rd, 4th, ...., 8th columns in the data set. That didn't quite give us a `year` variable, but we should be excited to see an opportunity to take advantage of `separate()`:
 
 ```{r, appendix = TRUE}
-airlines %>% pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
-                          values_to = "total_num") %>%
+airlines |> pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
+                          values_to = "total_num") |>
   separate(type_year, into = c("type", "year"), sep = " ")
 ```
 
@@ -328,14 +336,14 @@ Is this the format that we want the data set to be in? Depending on the task, it
 
 ```{r, appendix = TRUE}
 ## name the long data set
-airlines_long <- airlines %>%
+airlines_long <- airlines |>
   pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
-               values_to = "total_num") %>%
+               values_to = "total_num") |>
   separate(type_year, into = c("type", "year"), sep = " ")
 
 ## use pivot_wider() to create variables for incidents, fatalities, and
 ## fatal_accidents:
-airlines_long %>% pivot_wider(names_from = type,
+airlines_long |> pivot_wider(names_from = type,
                               values_from = total_num)
 ```
 
@@ -346,6 +354,8 @@ airlines_long %>% pivot_wider(names_from = type,
 * `values_from`, the column in the old data set that will provide the values that fill in the new columns
 
 We will see more examples of `pivot_wider()` and `pivot_longer()` in the Exercises. Note that tidy data isn't necessarily always better: you might find cases where you need to "untidy" the data by using `pivot_longer()` or `pivot_wider()`. However, most functions in `R` (and in other languages) work best with tidy data.
+
+There are a few more topics to discuss in tidying data. We have not yet discussed the 4th or 5th characteristics of tidy data (cells should not contain units and there should be no headers or footers), but these are usually dealt with when we read in the data. Therefore, these issues will be covered when we discuss `readr`. 
 
 ### Exercises {#exercise-4-2}
 
@@ -361,7 +371,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 The `UBSprices2` data set contains information on prices of common commodities in cities throughout the world in the years 2003 and 2009. The three commodities in the data set are Rice (1 kg worth), Bread (1 kg worth), and a Big Mac <https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif>
 
 ```{r, message = FALSE}
-prices_df <- read_csv("data/UBSprices2.csv")
+prices_df <- read_csv(here("data/UBSprices2.csv"))
 ```
 
 2. \* Convert the data set to a tidier form so that there is a `year` variable and a `commodity` variable that has 3 values: `"bigmac"`, `"bread"`, and `"rice"`
@@ -387,65 +397,39 @@ If you have time, make these plots!
 ## lines for three different variables separately.
 ```
 
-## Skimming Data with `skimr`
-
-We've now talked about plotting, wrangling, and tidying data. When you first load a data set, it can be helpful to obtain a quick summary of all of the variables in that data set. Doing so gives you an idea about how many observations are missing, which variables are numeric and which are character, and the basic distribution of each variable. 
-
-A helpful function for this is the `skim()` function in the `skimr` package. Load the package with `library(skimr)` and obtain summaries of the data sets we've used so far:
-
-```{r, appendix = TRUE}
-library(skimr)
-skim(airlines)
-```
-
-Find in the output the following:
-
-* the number of rows in the data set and the number of columns
-* the number of missing values for each variable
-* the number of unique values for each character variable
-* the completion rate (the proportion of values that are non-missing).
-
-In the future, we will use `skim()` to get a brief summary of data sets before we begin working with them. 
-
-There are a few more topics to discuss in tidying data. We have not yet discussed the 4th or 5th characteristics of tidy data (cells should not contain units and there should be no headers or footers), but these are usually dealt with when we read in the data. Therefore, these issues will be covered when we discuss `readr`. 
-
-### Exercises {exercise-4-3}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-4).
+__New Data__:
 
 The `under5mortality.csv` file contains data on mortality for people under the age of 5 in countries around the world (mortality in deaths per 1000 people). The data come from <https://www.gapminder.org/data/>. The data set is __extremely__ wide in its current form, having a column for each year in the data set. Read in the data set with
 
 ```{r, message = FALSE}
-mortality_df <- read_csv("data/under5mortality.csv")
+mortality_df <- read_csv(here("data/under5mortality.csv"))
 head(mortality_df)
 ```
 
-1. \* Use the `skim()` function in `skimr` to obtain some preliminary information about the data set.
-
-2. \* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use `tidyr`, we aren't going to want to type out `c(2, 3, 4, 5, .....)` all the way up to `217`! `R` has short-hand notation that we can use with `:`. For example, type in `4:9` in your console window. Use this notation to tidy the `mortality_df` data set.
+5. \* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use `tidyr`, we aren't going to want to type out `c(2, 3, 4, 5, .....)` all the way up to `217`! `R` has short-hand notation that we can use with `:`. For example, type in `4:9` in your console window. Use this notation to tidy the `mortality_df` data set.
 
 __Note__: You'll need to add something to your `pivot_longer()` function to convert the variable `Year` to numeric. We haven't talked too much about variable types yet so, after your `values_to = "Mortality"` statement, add `, names_transform = list(Year = as.numeric)`, making sure you have a second `)` to close the `pivot_longer()` function.
 
 ```{r, echo = FALSE}
-mortality_long <- mortality_df %>%
+mortality_long <- mortality_df |>
   pivot_longer(cols = 2:217, names_to = "Year",
                values_to = "Mortality",
                names_transform = list(Year = as.numeric))
 ```
 
-3. Make a line plot to look at the overall under 5 mortality trends for each country. 
+6. Make a line plot to look at the overall under 5 mortality trends for each country. 
 
 ```{r, echo = FALSE, fig.keep = "none", warning = FALSE}
 ggplot(data = mortality_long, aes(x = Year, y = Mortality,
   group = `Under five mortality`)) +
   geom_line(alpha = 0.2) +
-  geom_line(data = mortality_long %>%
+  geom_line(data = mortality_long |>
               filter(`Under five mortality` == "Germany"),
             colour = "red") ## can also mess around with colouring the lines
 ## red for specific countries.
 ```
 
-4. What is the overall trend in under 5 mortality? Does every single country follow this trend? What looks strange about the plot, specifically about the data collected before 1900?
+7. What is the overall trend in under 5 mortality? Does every single country follow this trend? What looks strange about the plot, specifically about the data collected before 1900?
 
 ```{r, echo = FALSE}
 ## a decrease in mortality under the age of 5
@@ -461,7 +445,7 @@ ggplot(data = mortality_long, aes(x = Year, y = Mortality,
 ## anything
 ```
 
-5. Write two short paragraphs about an article found on <a href="https://www.r-bloggers.com/" target="_blank">https://www.r-bloggers.com/</a>. The most important thing for this exercise is to __pick an article that interests you__. There are many to choose from, with multiple posts being put up each day. For the purposes of this assignment though, find an article where the author actually provides code (most have this but there are a few that are more "big-picture" views of certain topics).
+8. Write two short paragraphs about an article found on <a href="https://www.r-bloggers.com/" target="_blank">https://www.r-bloggers.com/</a>. The most important thing for this exercise is to __pick an article that interests you__. There are many to choose from, with multiple posts being put up each day. For the purposes of this assignment though, find an article where the author actually provides code (most have this but there are a few that are more "big-picture" views of certain topics).
 
 In the first paragraph, answer the following: (a) What is the main purpose of the blog post? (b) What data is/are the author(s) using? (c) What are the main findings? (d) Why was it important for the author to have data in their main findings?
 
@@ -480,14 +464,13 @@ We are interested in how salaries compare for the top 100 players in each positi
 Read in the data set with
 
 ```{r, message = FALSE}
-nfl_df <- read_csv("data/nfl_salary.csv")
+nfl_df <- read_csv(here("data/nfl_salary.csv"))
 ```
 
-1. Use the `skim()` and `head()` functions to look at the data, and then explain why this data set is __not__ in tidy form.
+1. Use the `head()` functions to look at the data, and then explain why this data set is __not__ in tidy form.
 
 ```{r, echo = FALSE, results = "hide"}
-library(skimr)
-skim(nfl_df)
+head(nfl_df)
 ## the data set is not tidy because each variable is not in its own column:
 ## the variable salary is spread out across many different columns and 
 ## the variable position make up the column titles.
@@ -510,7 +493,7 @@ After adjusting for inflation, how many positions have average higher salaries f
 7. Construct a graph that shows how much salary decreases moving from higher ranked players to lower ranked players for each position in the year 2018. Why do you think the depreciation is so large for Quarterbacks?
 
 ```{r, echo = FALSE, fig.keep = "none", eval = FALSE}
-nfl_2018 <- nfl_long %>% filter(year == 2018)
+nfl_2018 <- nfl_long |> filter(year == 2018)
 ggplot(data = nfl_2018, aes(x = rank, y = salary,
                             colour = position)) + 
   geom_line() + geom_point()
@@ -535,15 +518,15 @@ ggplot(data = nfl_2018, aes(x = rank, y = salary)) +
 * the year range (also currently given in the `Year` column) is split into a variable called `Start` and a variable called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
 
 ```{r, eval = FALSE}
-baseball_df <- baseball_df %>%
-  separate(Years, into = c("Duration", "Range"), sep = " ") %>%
+baseball_df <- baseball_df |>
+  separate(Years, into = c("Duration", "Range"), sep = " ") |>
   separate(Range, into = c("Start", "End"), sep = "-")
 ```
 
 5. \* Using a function from `dplyr`. fix the `End` variable that you created so that, for example, the first observation is `2020` instead of just `20`. 
 
 ```{r, eval = FALSE}
-baseball_df <- baseball_df %>% mutate(End = End + 2000)
+baseball_df <- baseball_df |> mutate(End = End + 2000)
 ```
 
 This is a somewhat lazy way to do this and could get you into trouble (what if one of the years was in the 1990s?) But, it's safe for this particular data set.
@@ -572,8 +555,8 @@ separate(name_of_variable, into = c("newname1", "newname2"), sep = -4)
 ```
 
 ```{r}
-prices_long <- prices_df %>% pivot_longer(cols = c(2, 3, 4, 5, 6, 7),
-  names_to = "commod_year", values_to = "price") %>%
+prices_long <- prices_df |> pivot_longer(cols = c(2, 3, 4, 5, 6, 7),
+  names_to = "commod_year", values_to = "price") |>
   separate(col = "commod_year", into = c("commodity", "year"), sep = -4)
 head(prices_long)
 ```
@@ -581,24 +564,15 @@ head(prices_long)
 3. \* Convert your data set from the previous exercise so that `commodity` is split up into 3 variables: `bigmac` price, `rice` price and `bread` price.
 
 ```{r}
-prices_wide <- prices_long %>%
+prices_wide <- prices_long |>
   pivot_wider(names_from = commodity, values_from = price)
 head(prices_wide)
 ```
 
-### Skimming Data with `skimr()` S
-
-1. \* Use the `skim()` function in `skimr` to obtain some preliminary information about the data set.
-
-```{r, results = "hide"}
-library(skimr)
-skim(mortality_df)
-```
-
-2. \* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use `tidyr`, we aren't going to want to type out `c(2, 3, 4, 5, .....)` all the way up to `217`! `R` has short-hand notation that we can use with `:`. For example, type in `4:9` in your console window. Use this notation to tidy the `mortality_df` data set.
+5. \* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use `tidyr`, we aren't going to want to type out `c(2, 3, 4, 5, .....)` all the way up to `217`! `R` has short-hand notation that we can use with `:`. For example, type in `4:9` in your console window. Use this notation to tidy the `mortality_df` data set.
 
 ```{r}
-mortality_long <- mortality_df %>%
+mortality_long <- mortality_df |>
   pivot_longer(cols = 2:217, names_to = "Year",
                values_to = "Mortality",
                names_transform = list(Year = as.numeric))
@@ -611,7 +585,7 @@ You'll need to add something to your `pivot_longer()` function to convert the va
 2. \* Use a function in `tidyr` to make the data tidy, and give your tidy data set a new name.
 
 ```{r}
-nfl_long <- nfl_df %>%
+nfl_long <- nfl_df |>
   pivot_longer(c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
                names_to = "position", values_to = "salary")
 nfl_long
@@ -622,10 +596,10 @@ nfl_long
 __Hint__:  See Exercise 4 in \@ref(exercise-3-3) for another example on how to do this.
 
 ```{r}
-nfl_long_default <- nfl_long %>% group_by(position, year) %>%
+nfl_long_default <- nfl_long |> group_by(position, year) |>
   mutate(rank = rank(desc(salary)))
 
-nfl_long <- nfl_long %>% group_by(position, year) %>%
+nfl_long <- nfl_long |> group_by(position, year) |>
   mutate(rank = rank(desc(salary), ties.method = "first"))
 ```
 
@@ -636,7 +610,7 @@ In the second ranking method, the first observation in the data set gets the "hi
 4. \* Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better?
 
 ```{r}
-nfl_max <- nfl_long %>% group_by(position, year) %>%
+nfl_max <- nfl_long |> group_by(position, year) |>
   summarise(maxsal = max(salary, na.rm = TRUE))
 
 ggplot(data = nfl_max,
@@ -653,8 +627,8 @@ With this number of levels, I personally prefer the faceted graph for its cleane
 5. \* The maximum salary is very dependent on one specific player. Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you're a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years.
 
 ```{r}
-nfl_rank <- nfl_long %>% filter(rank <= 20) %>%
-  group_by(position, year) %>%
+nfl_rank <- nfl_long |> filter(rank <= 20) |>
+  group_by(position, year) |>
   summarise(mean20 = mean(salary, na.rm = TRUE))
 
 ggplot(data = nfl_rank, aes(x = year, y = mean20)) +
@@ -670,12 +644,12 @@ After adjusting for inflation, how many positions have average higher salaries f
 
 ```{r}
 ## 11.6% from 2011 to 2018.
-nfl_inf <- nfl_long %>%
+nfl_inf <- nfl_long |>
   mutate(salary_inf = if_else(year == 2011,
                               true = salary * 1.116,
-                              false = salary)) %>% 
-  filter(year == 2011 | year == 2018) %>% 
-  filter(rank <= 20) %>% group_by(position, year) %>%
+                              false = salary)) |> 
+  filter(year == 2011 | year == 2018) |> 
+  filter(rank <= 20) |> group_by(position, year) |>
   summarise(mean20 = mean(salary, na.rm = TRUE)) 
 
 ggplot(data = nfl_inf, aes(x = year, y = mean20)) +

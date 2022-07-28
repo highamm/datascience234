@@ -26,8 +26,9 @@ Then, read in the data sets, and look at how many columns each has.
 
 ```{r, message = FALSE, warning = FALSE, results = "hide", appendix = TRUE}
 library(tidyverse)
-atp_2019 <- read_csv("data/atp_matches_2019.csv")
-atp_2018 <- read_csv("data/atp_matches_2018.csv")
+library(here)
+atp_2019 <- read_csv(here("data/atp_matches_2019.csv"))
+atp_2018 <- read_csv(here("data/atp_matches_2018.csv"))
 head(atp_2019) 
 head(atp_2018)
 ```
@@ -47,7 +48,7 @@ spec(atp_2018)
 to get the full column specifications and use your `readr` knowledge to change a couple of the column types. We also did not discuss this, but, when using the `col_type` argument in `read_csv()`, you don't need to specify all of the column types. Just specifying the ones that you want to change works too. The following code forces the seed variables in the 2018 data set to be characters.
 
 ```{r, message = FALSE, appendix = TRUE}
-atp_2018 <- read_csv("data/atp_matches_2018.csv",
+atp_2018 <- read_csv(here("data/atp_matches_2018.csv"),
                      col_types = cols(winner_seed = col_character(),
                                       loser_seed = col_character()))
 ```
@@ -188,8 +189,8 @@ Which join function we use will depend on the context of the data and what quest
 The key variable is very important for joining and is not always available in a "perfect" form. Recall the college majors data sets we have, called `slumajors_df`, which information on majors at SLU. Another data set, `collegemajors_df`, has different statistics on college majors nationwide. There's lots of interesting variables in these data sets, but we'll focus on the `Major` variable here. Read in and examine the two data sets with:
 
 ```{r, message = FALSE, appendix = TRUE}
-slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
-collegemajors_df <- read_csv("data/college-majors.csv")
+slumajors_df <- read_csv(here("data/SLU_Majors_15_19.csv"))
+collegemajors_df <- read_csv(here("data/college-majors.csv"))
 head(slumajors_df)
 head(collegemajors_df)
 ```
@@ -205,7 +206,7 @@ Why did the `collegemajors_df` give only `NA` values when we tried to merge by m
 This example underscores the importance of having a key that matches __exactly__. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the `stringr` package (discussed in a few weeks). For example, the capitalization issue can be solved with the `str_to_title()` function, which converts that all-caps majors in `collegemajors_df` to majors where only the first letter of each word is capitalized:
 
 ```{r, appendix = TRUE}
-collegemajors_df <- collegemajors_df %>%
+collegemajors_df <- collegemajors_df |>
   mutate(Major = str_to_title(Major))
 left_join(slumajors_df, collegemajors_df)
 ```
@@ -234,8 +235,8 @@ Filtering joins (`semi_join()` and `anti_join()`) are useful if you would only l
 Consider again the two data sets on men's tennis matches in 2018 and in 2019.
 
 ```{r, message = FALSE, appendix = TRUE}
-atp_2019 <- read_csv("data/atp_matches_2019.csv")
-atp_2018 <- read_csv("data/atp_matches_2018.csv")
+atp_2019 <- read_csv(here("data/atp_matches_2019.csv"))
+atp_2018 <- read_csv(here("data/atp_matches_2018.csv"))
 atp_2019
 atp_2018
 ```
@@ -247,8 +248,8 @@ Suppose that we only want to keep matches in 2019 where the winning player had 1
 To accomplish this, we can first create a data set that has the names of all of the players that won 10 or more matches in 2018, using functions that we learned from `dplyr` earlier in the semester:
 
 ```{r, appendix = TRUE}
-win10 <- atp_2018 %>% group_by(winner_name) %>%
-  summarise(nwin = n()) %>% 
+win10 <- atp_2018 |> group_by(winner_name) |>
+  summarise(nwin = n()) |> 
   filter(nwin >= 10)
 win10
 ```
@@ -276,8 +277,8 @@ new_winners$winner_name
 We can then examine how many wins each of these "new" (or perhaps previously injured) players had in 2019:
 
 ```{r, appendix = TRUE}
-new_winners %>% group_by(winner_name) %>%
-  summarise(nwin = n()) %>%
+new_winners |> group_by(winner_name) |>
+  summarise(nwin = n()) |>
   arrange(desc(nwin))
 ```
 
@@ -303,24 +304,6 @@ tennis_2019_10 <- semi_join(atp_2019, win10,
 tennis_2019_10$winner_name
 ```
 
-## A Note on SQL
-
-All of the `dplyr` functions we've used (both the ones from Week 2 and the Joins from this week) have corresponding components in SQL. The `dbplyr` package is useful if you're interested in learning about SQL more. Given a `dplyr` pipe or base `R` function, `dbplyr` can show you what the equivalent command would be in SQL. In general, SQL code is much harder to read, as SQL isn't designed specifically for data analysis like `dplyr` is. 
-
-Some examples of `dbplyr`'s `translate_sql()` function and its translation of `R` code to SQL is:
-
-```{r, message = FALSE, appendix = TRUE}
-library(dbplyr)
-translate_sql(semi_join(atp_2019, win10,
-                        c("winner_name" = "winner_name")))
-
-translate_sql(atp_2018 %>% group_by(winner_name) %>%
-  summarise(n()) %>% 
-  filter(nwin >= 10))
-```
-
-and a resource for learning more is <a href="https://dbplyr.tidyverse.org/articles/sql-translation.html" target="_blank">https://dbplyr.tidyverse.org/articles/sql-translation.html</a>.
-
 ## Chapter Exercises {#chapexercise-10}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-10).
@@ -329,7 +312,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 ```{r, message = FALSE}
 library(tidyverse)
-mortality_df <- read_csv("data/gun_violence_us.csv")
+mortality_df <- read_csv(here("data/gun_violence_us.csv"))
 ```
 
 ```{r, echo = FALSE, results = "hide"}
@@ -398,14 +381,14 @@ left_join(states_df, all_df, by = c("value" = "state"))
 7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` first to contain only states in the `NE` region.
 
 ```{r, echo = FALSE, message = FALSE, results = "hide"}
-ne_df <- all_df %>% filter(region == "NE")
+ne_df <- all_df |> filter(region == "NE")
 semi_join(states_df, ne_df, by = c("value" = "state"))
 ```
 
 8. \* Do the same thing as Exercise 7, but this time, use `anti_join()`. __Hint__: You'll need to filter `all_df` in a different way to achieve this.
 
 ```{r, echo = FALSE, message = FALSE, results = "hide"}
-notne_df <- all_df %>% filter(region != "NE")
+notne_df <- all_df |> filter(region != "NE")
 anti_join(states_df, notne_df, by = c("value" = "state"))
 ```
 
@@ -473,7 +456,7 @@ bind_rows(df_test1a, df_test1b)
 ## yvar is the same variable as y, then we can rename the columns in
 ## one of the data sets:
 
-df_test1a <- df_test1a %>% rename(x = "xvar", y = "yvar")
+df_test1a <- df_test1a |> rename(x = "xvar", y = "yvar")
 bind_rows(df_test1a, df_test1b)
 ```
 
@@ -513,7 +496,7 @@ final_df <- bind_rows(tennis_2019_10, tennis_temp)
 
 ```{r}
 library(tidyverse)
-mortality_df <- read_csv("data/gun_violence_us.csv")
+mortality_df <- read_csv(here("data/gun_violence_us.csv"))
 ```
 
 ```{r}
@@ -547,14 +530,14 @@ left_join(states_df, all_df, by = c("value" = "state"))
 7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` first to contain only states in the `NE` region.
 
 ```{r}
-ne_df <- all_df %>% filter(region == "NE")
+ne_df <- all_df |> filter(region == "NE")
 semi_join(states_df, ne_df, by = c("value" = "state"))
 ```
 
 8. \* Do the same thing as Exercise 7, but this time, use `anti_join()`. __Hint__: You'll need to filter `all_df` in a different way to achieve this.
 
 ```{r}
-notne_df <- all_df %>% filter(region != "NE")
+notne_df <- all_df |> filter(region != "NE")
 anti_join(states_df, notne_df, by = c("value" = "state"))
 ```
 

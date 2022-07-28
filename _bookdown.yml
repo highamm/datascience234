@@ -6,4 +6,21 @@ language:
   ui:
     chapter_name: " "
 output_dir: "docs"
-
+rmd_files:
+  - index.Rmd
+  - 01-intro.Rmd
+  - 02-ggplot2.Rmd
+  - 03-dplyr.Rmd
+  - 05-comm.Rmd
+  - 14-workflow.Rmd
+  - 04-tidyr.Rmd
+  - 06-basics.Rmd
+  - 07-forcats.Rmd
+  - 08-import.Rmd
+  - 09-ethics.Rmd
+  - 10-merging.Rmd
+  - 11-lubridate.Rmd
+  - 12-stringr.Rmd
+  - 13-knn.Rmd
+  - 15-connections.Rmd
+  - 16-sql.Rmd

@@ -4,21 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title> 14 Predictive Modeling with knn | STAT 234: Data Science</title>
+<title> 15 Predictive Modeling with knn | STAT 234: Data Science</title>
 <meta name="author" content="Matt Higham">
 <meta name="description" content="Goals explain why it’s necessary to use training data and test data when building a predictive model. describe the k-nearest neighbors (knn) procedure. interpret a confusion matrix. use knn to...">
-<meta name="generator" content="bookdown 0.22.17 with bs4_book()">
-<meta property="og:title" content=" 14 Predictive Modeling with knn | STAT 234: Data Science">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 15 Predictive Modeling with knn | STAT 234: Data Science">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://highamm.github.io/datascience234/predictive-modeling-with-knn.html">
 <meta property="og:description" content="Goals explain why it’s necessary to use training data and test data when building a predictive model. describe the k-nearest neighbors (knn) procedure. interpret a confusion matrix. use knn to...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 14 Predictive Modeling with knn | STAT 234: Data Science">
+<meta name="twitter:title" content=" 15 Predictive Modeling with knn | STAT 234: Data Science">
 <meta name="twitter:description" content="Goals explain why it’s necessary to use training data and test data when building a predictive model. describe the k-nearest neighbors (knn) procedure. interpret a confusion matrix. use knn to...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -41,19 +45,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
 <li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
 <li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
 <li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
-<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">5</span> Tidying with tidyr</a></li>
-<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">6</span> Communication with RMarkdown</a></li>
-<li><a class="" href="r-basics.html"><span class="header-section-number">7</span> R Basics</a></li>
-<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">8</span> Factors with forcats</a></li>
-<li><a class="" href="reprexes-and-import.html"><span class="header-section-number">9</span> Reprexes and Import</a></li>
-<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
-<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">11</span> Merging with dplyr</a></li>
-<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">12</span> Dates with lubridate</a></li>
-<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">13</span> Text Data with tidytext and stringr</a></li>
-<li><a class="active" href="predictive-modeling-with-knn.html"><span class="header-section-number">14</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">5</span> Communication with RMarkdown</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="" href="reprexes-and-import.html"><span class="header-section-number">10</span> Reprexes and Import</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">11</span> Data Ethics</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="active" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
 </ul>
 
         <div class="book-extra">
@@ -61,9 +71,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="predictive-modeling-with-knn" class="section level1" number="14">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="predictive-modeling-with-knn" class="section level1" number="15">
 <h1>
-<span class="header-section-number"> 14</span> Predictive Modeling with knn<a class="anchor" aria-label="anchor" href="#predictive-modeling-with-knn"><i class="fas fa-link"></i></a>
+<span class="header-section-number"> 15</span> Predictive Modeling with knn<a class="anchor" aria-label="anchor" href="#predictive-modeling-with-knn"><i class="fas fa-link"></i></a>
 </h1>
 <p><strong>Goals</strong></p>
 <ul>
@@ -72,32 +82,33 @@
 <li>interpret a <em>confusion matrix</em>.</li>
 <li>use knn to predict a the level of a categorical response variable.</li>
 </ul>
-<div id="introduction-to-classification" class="section level2" number="14.1">
+<div id="introduction-to-classification" class="section level2" number="15.1">
 <h2>
-<span class="header-section-number">14.1</span> Introduction to Classification<a class="anchor" aria-label="anchor" href="#introduction-to-classification"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.1</span> Introduction to Classification<a class="anchor" aria-label="anchor" href="#introduction-to-classification"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>k-nearest neighbors</strong> (or <strong>knn</strong>) is an introductory supervised machine learning algorithm, most commonly used as a classification algorithm. Classification refers to prediction of a categorical response variable with two or more categories. For example, for a data set with SLU students, we might be interested in predicting whether or not each student graduates in four years (so the response has two categories: graduates in 4 years or doesn’t). We might want to classify this response based on various student characteristics like anticipated major, GPA, standardized test scores, etc. knn can also be used to predict a quantitative response, but we’ll focus on categorical responses throughout this section.</p>
 <p>If you’ve had STAT 213, you might try to draw some parallels to knn and classification using logistic regression. Note, however, that logistic regression required the response to have <strong>two</strong> levels while knn can classify a response variable that has <strong>two or more</strong> levels.</p>
 <p>To introduce this, we will be using <code>pokemon_full.csv</code> data. Pokemon have different Types: we will use <code>Type</code> as a categorical response that we are interested in predicting. For simplicity, we will only use Pokemon’s primary type and we will only use <strong>4</strong> different types:</p>
-<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1119</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">pokemon</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/pokemon_full.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span>
+<span class="va">pokemon</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/pokemon_full.csv"</span><span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Steel"</span>, <span class="st">"Dark"</span>, <span class="st">"Fire"</span>, <span class="st">"Ice"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Our goal is to develop a k-nearest-neighbors model that is able to classify/predict Pokemon <code>Type</code> from a set of predictors, like Pokemon <code>HP</code>, <code>Attack</code>, <code>Defense</code>, etc.</p>
-<div id="training-and-test-data" class="section level3" number="14.1.1">
+<div id="training-and-test-data" class="section level3" number="15.1.1">
 <h3>
-<span class="header-section-number">14.1.1</span> Training and Test Data<a class="anchor" aria-label="anchor" href="#training-and-test-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.1.1</span> Training and Test Data<a class="anchor" aria-label="anchor" href="#training-and-test-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>In order to develop our knn model (note that we still haven’t discussed what knn actually is yet!), we first need to discuss terms that applies to almost <strong>all</strong> predictive/classification modeling: training and test data. A <strong>training</strong> data set is a subset of the full data set used to fit various models. For the example below, the training data set will be just 15 observations for pedagogical purposes. More commonly, the training data set will contain 50%-80% of the observations in the full data set.</p>
 <p>A <strong>test</strong> data set consists of the remaining 20%-50% of the observations not in the training data set. A test data set is used to assess different the performances of various models that were fit using the training data set. Why do we need to do this division? Using the full data set for both training a model and testing that model is “cheating:” the model will perform better than it should because we are using each observation twice: once for fitting and once for testing. Having a separate test data set that wasn’t used to fit the model gives the model a more “fair” test, as these observations are supposed to be new data that the model hasn’t yet seen.</p>
 <p>The following code uses that <code>sample_n()</code> function to randomly select 15 observations to be in the training data set. <code>anti_join()</code> then makes a test data set without the 15 pokemon in the training data set.</p>
-<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">train_sample</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">train_sample</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> |&gt;
   <span class="fu">sample_n</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>
 <span class="va">test_sample</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">pokemon</span>, <span class="va">train_sample</span><span class="op">)</span>
 
-<span class="va">train_sample</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">train_sample</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 14</span>
 <span class="co">#&gt;    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -110,7 +121,7 @@
 <span class="co">#&gt; # … with 5 more variables: Generation &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   Legendary &lt;lgl&gt;, height &lt;dbl&gt;, weight &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   base_experience &lt;dbl&gt;</span>
-<span class="va">test_sample</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">test_sample</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 14</span>
 <span class="co">#&gt;    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -125,34 +136,34 @@
 <span class="co">#&gt; #   base_experience &lt;dbl&gt;</span></code></pre></div>
 <p>The ideas of a training data set and test data set are pervasive in predictive and classification models, including models not related to knn. Note that we are going to do this method because it’s the simplest: if you wanted to take this a step further, you’d repeat the training and test process 5 or 10 times, using what’s known as <strong>k-fold cross-validation.</strong></p>
 </div>
-<div id="exercise-13-1" class="section level3" number="14.1.2">
+<div id="exercise-13-1" class="section level3" number="15.1.2">
 <h3>
-<span class="header-section-number">14.1.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-13-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.1.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-13-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="predictive-modeling-with-knn.html#solutions-13">14.5</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="predictive-modeling-with-knn.html#solutions-13">15.5</a>.</p>
 <ol style="list-style-type: decimal">
 <li>Explain what <code>anti_join()</code> joins on when <code>by</code> isn’t specified and why not specifying a <code>by</code> argument works for this example.</li>
 </ol>
 </div>
 </div>
-<div id="knn-introduction" class="section level2" number="14.2">
+<div id="knn-introduction" class="section level2" number="15.2">
 <h2>
-<span class="header-section-number">14.2</span> knn Introduction<a class="anchor" aria-label="anchor" href="#knn-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.2</span> knn Introduction<a class="anchor" aria-label="anchor" href="#knn-introduction"><i class="fas fa-link"></i></a>
 </h2>
-<div id="knn-with-k-1-and-1-predictor" class="section level3" number="14.2.1">
+<div id="knn-with-k-1-and-1-predictor" class="section level3" number="15.2.1">
 <h3>
-<span class="header-section-number">14.2.1</span> knn with k = 1 and 1 Predictor<a class="anchor" aria-label="anchor" href="#knn-with-k-1-and-1-predictor"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.2.1</span> knn with k = 1 and 1 Predictor<a class="anchor" aria-label="anchor" href="#knn-with-k-1-and-1-predictor"><i class="fas fa-link"></i></a>
 </h3>
 <p>Suppose that we have just those <strong>15</strong> pokemon in our training data set. We want to predict <code>Type</code> from just one predictor, <code>Defense</code>. Below is a plot that shows the defenses of the 15 pokemon in our training data set, and has points coloured by Type and with different shapes for Type.</p>
-<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
         axis.text.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
         axis.ticks.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
 <p>We see from the plot that <code>Steel</code> type Pokemon tend to have pretty high defense values. Now suppose that we want to predict the <code>Type</code> for one of the Pokemon in our test data set, <code>Dialga</code>. We know that Dialga has a <code>Defense</code> stat of 120: the plot below shows Dialga marked with a large black X.</p>
-<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dialga</span> <span class="op">&lt;-</span> <span class="va">test_sample</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">63</span><span class="op">)</span>
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dialga</span> <span class="op">&lt;-</span> <span class="va">test_sample</span> |&gt; <span class="fu">slice</span><span class="op">(</span><span class="fl">63</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
         axis.text.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
@@ -161,32 +172,32 @@
 <div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
 <p>What would your prediction for <code>Dialga</code> be? Why? According to knn with <code>k = 1</code>, we would predict <code>Dialga</code> to be <code>Fire</code> type. <code>k = 1</code> means that we are using the <strong>1st</strong> nearest neighbor: in this case the point that is closest to <code>Dialga</code> is a green triangle, corresponding to a <code>Fire</code> type Pokemon.</p>
 </div>
-<div id="knn-with-k-1-and-one-predictor" class="section level3" number="14.2.2">
+<div id="knn-with-k-1-and-one-predictor" class="section level3" number="15.2.2">
 <h3>
-<span class="header-section-number">14.2.2</span> knn with k &gt; 1 and One Predictor<a class="anchor" aria-label="anchor" href="#knn-with-k-1-and-one-predictor"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.2.2</span> knn with k &gt; 1 and One Predictor<a class="anchor" aria-label="anchor" href="#knn-with-k-1-and-one-predictor"><i class="fas fa-link"></i></a>
 </h3>
 <p>But, we might not necessarily want to predict the response value based on the single nearest neighbor. <code>Dialga</code> is also near many purple plus signs: should those factor in at all? We can extend <code>knn</code> to different values for k. For example, <span class="math inline">\(k = 3\)</span> looks at the 3 nearest neighbors, and assigns a prediction as the category that appears the <strong>most</strong> among those 3 nearest neighbors.</p>
 <p>Using <code>k = 3</code>, what would the prediction for Dialga be? Why?</p>
 </div>
-<div id="knn-with-k-1-and-more-than-one-predictor" class="section level3" number="14.2.3">
+<div id="knn-with-k-1-and-more-than-one-predictor" class="section level3" number="15.2.3">
 <h3>
-<span class="header-section-number">14.2.3</span> knn with k &gt; 1 and More Than One Predictor<a class="anchor" aria-label="anchor" href="#knn-with-k-1-and-more-than-one-predictor"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.2.3</span> knn with k &gt; 1 and More Than One Predictor<a class="anchor" aria-label="anchor" href="#knn-with-k-1-and-more-than-one-predictor"><i class="fas fa-link"></i></a>
 </h3>
 <p>We can increase the number of predictors in our <code>knn</code> model as well. We can generally include as many predictors as we would like, but visualizing becomes challenging with more than 2 predictors and nearly impossible with more than 3 predictors. For the case of two predictors, suppose that we want to use Defense and Speed as our predictors for Type. <code>Dialga</code>, the Pokemon we want to predict for, is again marked with a large black X.</p>
-<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="va">Speed</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dialga</span>, colour <span class="op">=</span> <span class="st">"black"</span>, shape <span class="op">=</span> <span class="fl">4</span>, size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
 <p>For <span class="math inline">\(k = 1\)</span>, we would predict the <code>Dialga</code> is Steel, as the closest point is the purple <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> sign in the top-left corner of the graph. For <span class="math inline">\(k = 3\)</span>, what <code>Type</code> would you predict for Dialga? For this question, it’s a little hard to tell which three points are closest to <code>Dialga</code> without computing the distances numerically, which is something we will let <code>R</code> do with the <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> function.</p>
 </div>
-<div id="scaling-predictor-variables-before-using-knn" class="section level3" number="14.2.4">
+<div id="scaling-predictor-variables-before-using-knn" class="section level3" number="15.2.4">
 <h3>
-<span class="header-section-number">14.2.4</span> Scaling Predictor Variables before Using knn<a class="anchor" aria-label="anchor" href="#scaling-predictor-variables-before-using-knn"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.2.4</span> Scaling Predictor Variables before Using knn<a class="anchor" aria-label="anchor" href="#scaling-predictor-variables-before-using-knn"><i class="fas fa-link"></i></a>
 </h3>
 <p>In general, we want to scale any quantitative predictors when using knn because it relies on distances between points in its predictions. This is easiest to see with an example. Suppose, in our Pokemon example, that we want to use <code>height</code> and <code>weight</code> as our predictors in the <code>knn</code> model. We just have 2 observations in our training data set: a Dark Type pokemon with a height of 15 centimeters and a weight of 505 pounds, and a Fire Type Pokemon with a height of 9 centimeters and a weight of 250 pounds.</p>
-<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">train_tiny</span> <span class="op">&lt;-</span> <span class="va">train_sample</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">train_tiny</span> <span class="op">&lt;-</span> <span class="va">train_sample</span> |&gt; <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
 <span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>height <span class="op">=</span> <span class="fl">15</span>, weight <span class="op">=</span> <span class="fl">350</span>, Type <span class="op">=</span> <span class="st">"Unknown"</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_tiny</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, y <span class="op">=</span> <span class="va">weight</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span>, <span class="fu">aes</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">17</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">550</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -199,8 +210,8 @@
 scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 \]</span></p>
 <p>For example, scaling <code>weight</code> for the 15 original pokemon:</p>
-<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">train_sample</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">train_sample</span> |&gt; <span class="fu">select</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 1</span>
 <span class="co">#&gt;   weight</span>
 <span class="co">#&gt;    &lt;dbl&gt;</span>
@@ -211,10 +222,10 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="co">#&gt; 5    815</span>
 <span class="co">#&gt; 6    370</span></code></pre></div>
 <p>puts all weights between 0 and 1:</p>
-<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">train_sample</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>weight_s <span class="op">=</span> <span class="op">(</span><span class="va">weight</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> 
-                          <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="va">weight_s</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">train_sample</span> |&gt; <span class="fu">mutate</span><span class="op">(</span>weight_s <span class="op">=</span> <span class="op">(</span><span class="va">weight</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> 
+                          <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
+  <span class="fu">select</span><span class="op">(</span><span class="va">weight_s</span><span class="op">)</span> |&gt;
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 1</span>
 <span class="co">#&gt;   weight_s</span>
@@ -227,12 +238,12 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="co">#&gt; 6   0.132</span></code></pre></div>
 <p>If we do the same with <code>height</code>, then the variables will contribute more “equally” to the distance metric used in knn.</p>
 <p>The code below scales all numeric variables in a data set, using the <code>across()</code> function. <code>across()</code> applies a transformation to every column in a data set that satisfies the condition given in the <code>where</code> argument.</p>
-<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ?across</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span>
-<span class="va">train_sample</span> <span class="op">%&gt;%</span>
+<span class="va">train_sample</span> |&gt;
   <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="op">(</span><span class="va">.x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span>
-                                 <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                                 <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 14</span>
 <span class="co">#&gt;    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef</span>
@@ -244,15 +255,15 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="co">#&gt; #   Legendary &lt;lgl&gt;, height &lt;dbl&gt;, weight &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   base_experience &lt;dbl&gt;</span></code></pre></div>
 </div>
-<div id="exercise-13-2" class="section level3" number="14.2.5">
+<div id="exercise-13-2" class="section level3" number="15.2.5">
 <h3>
-<span class="header-section-number">14.2.5</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-13-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.2.5</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-13-2"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="predictive-modeling-with-knn.html#solutions-13">14.5</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="predictive-modeling-with-knn.html#solutions-13">15.5</a>.</p>
 <ol style="list-style-type: decimal">
 <li>* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
 </ol>
-<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_tiny</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, y <span class="op">=</span> <span class="va">weight</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span>, <span class="fu">aes</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">17</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">550</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -263,7 +274,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <li><p>* After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn’t give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is “closer” to the Dark type pokemon by numerically computing distances.</p></li>
 <li><p>Consider again the example with 15 pokemon in the training data set and a single predictor, <code>Defense</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
         axis.text.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
@@ -277,13 +288,13 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 </ol>
 </div>
 </div>
-<div id="choosing-predictors-and-k" class="section level2" number="14.3">
+<div id="choosing-predictors-and-k" class="section level2" number="15.3">
 <h2>
-<span class="header-section-number">14.3</span> Choosing Predictors and k<a class="anchor" aria-label="anchor" href="#choosing-predictors-and-k"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.3</span> Choosing Predictors and k<a class="anchor" aria-label="anchor" href="#choosing-predictors-and-k"><i class="fas fa-link"></i></a>
 </h2>
 <p>We now know how knn classifies observations in the test data set, but how do we choose which predictors should be used by the knn algorithm? And how do we choose the number of neighbors, k? We want to measure how “good” models with different predictors and different k’s do, but we first need to define what “good” means.</p>
 <p>Much of the “choosing predictors” part will be trial and error by evaluating different models with a criterion that we will talk about in the next section. However, it is always helpful to explore the data set with graphics to get us to a good starting point. A <strong>scatterplot matrix</strong> is a useful exploratory tool. The following is a scatterplot matrix with the response variable, <code>Type</code>, and just three candidate predictors, <code>HP</code>, <code>Attack</code>, and <code>Defense</code>, created with the <code>GGally</code> (“g-g-ally”) package.</p>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## install.packages("GGally")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 method overwritten by 'GGally':</span>
@@ -300,43 +311,45 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <p>The <code>lower</code> argument changes the number of bins in the faceted histograms in the bottom row. You can mostly ignore this.</p>
 <p>The <code>columns</code> argument <strong>is</strong> important: it allows you to specify which columns you want to look at. I prefer putting the response, <code>Type</code> (column <code>3</code>) in the last slot.</p>
 <p>We can examine this to see which variables seem to have a relationship with <code>Type</code>. Where would we want to look for this?</p>
-<div id="the-confusion-matrix" class="section level3" number="14.3.1">
+<div id="the-confusion-matrix" class="section level3" number="15.3.1">
 <h3>
-<span class="header-section-number">14.3.1</span> The Confusion Matrix<a class="anchor" aria-label="anchor" href="#the-confusion-matrix"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.3.1</span> The Confusion Matrix<a class="anchor" aria-label="anchor" href="#the-confusion-matrix"><i class="fas fa-link"></i></a>
 </h3>
 <p>But, we still need a metric to evaluate models with different predictors. One definition of a “good” model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a “good” model correctly classifies most <code>Dark</code> pokemon as <code>Dark</code>, most <code>Fire</code> pokemon as <code>Fire</code>, etc.</p>
 <p>In order to examine the performance of a particular model, we’ll create a <strong>confusion matrix</strong> that shows the results of the model’s classification on observations in the test data set. Note that in STAT 213, we didn’t call this a confusion matrix; we instead called this a classification table.</p>
 <p>The following video explains confusion matrices in more detail and should also cement the ideas of training and test data. <a href="https://www.youtube.com/watch?v=Kdsp6soqA7o" target="_blank">https://www.youtube.com/watch?v=Kdsp6soqA7o</a>.</p>
 </div>
-<div id="using-knn-in-r" class="section level3" number="14.3.2">
+<div id="using-knn-in-r" class="section level3" number="15.3.2">
 <h3>
-<span class="header-section-number">14.3.2</span> Using knn in <code>R</code><a class="anchor" aria-label="anchor" href="#using-knn-in-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.3.2</span> Using knn in <code>R</code><a class="anchor" aria-label="anchor" href="#using-knn-in-r"><i class="fas fa-link"></i></a>
 </h3>
 <p>To make a confusion matrix for a model using the pokemon data set, we first need to obtain predictions from a model. We’ll use the <code>class</code> library to fit a knn model to the pokemon data. Note that, instead of having 15 Pokemon in our training data set, we now have <strong>70</strong> pokemon to give a more reasonable number. The test set has the remaining <strong>50</strong> pokemon.</p>
 <p>The following code chunk sets a seed so that we all get the same training and test samples, scales all numeric variables in the pokemon data set, and then randomly selects 70 pokemon to be in the training sample.</p>
-<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">11232020</span><span class="op">)</span> <span class="co">## run this line so that you get the same </span>
 <span class="co">## results as I do!</span>
 
 <span class="co">## scale the quantitative predictors</span>
-<span class="va">pokemon_scaled</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> <span class="op">%&gt;%</span>
+<span class="va">pokemon_scaled</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> |&gt;
     <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="op">(</span><span class="va">.x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span>
                                  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> 
 
-<span class="va">train_sample_2</span> <span class="op">&lt;-</span> <span class="va">pokemon_scaled</span> <span class="op">%&gt;%</span>
+<span class="va">train_sample_2</span> <span class="op">&lt;-</span> <span class="va">pokemon_scaled</span> |&gt;
   <span class="fu">sample_n</span><span class="op">(</span><span class="fl">70</span><span class="op">)</span>
 <span class="va">test_sample_2</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">pokemon_scaled</span>, <span class="va">train_sample_2</span><span class="op">)</span>
-<span class="co">#&gt; Joining, by = c("...1", "Name", "Type", "HP", "Attack", "Defense", "Speed", "SpAtk", "SpDef", "Generation", "Legendary", "height", "weight", "base_experience")</span></code></pre></div>
+<span class="co">#&gt; Joining, by = c("...1", "Name", "Type", "HP", "Attack",</span>
+<span class="co">#&gt; "Defense", "Speed", "SpAtk", "SpDef", "Generation",</span>
+<span class="co">#&gt; "Legendary", "height", "weight", "base_experience")</span></code></pre></div>
 <p>The first knn model we will investigate will have <code>HP</code>, <code>Attack</code>, <code>Defense</code>, and <code>Speed</code> as predictors. The <code>class</code> library can fit knn models with a <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> function but requires the training and test data sets to have <strong>only</strong> the predictors that we want to use to fit the model. The <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> function also requires the response variable, <code>Type</code>, to be given as a vector.</p>
-<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## install.packages("class")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">class</a></span><span class="op">)</span>
 
 <span class="co">## create a data frame that only has the predictors</span>
 <span class="co">## that we will use</span>
-<span class="va">train_small</span> <span class="op">&lt;-</span> <span class="va">train_sample_2</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span>
-<span class="va">test_small</span> <span class="op">&lt;-</span> <span class="va">test_sample_2</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span>
+<span class="va">train_small</span> <span class="op">&lt;-</span> <span class="va">train_sample_2</span> |&gt; <span class="fu">select</span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span>
+<span class="va">test_small</span> <span class="op">&lt;-</span> <span class="va">test_sample_2</span> |&gt; <span class="fu">select</span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span>
 
 <span class="co">## put our response variable into a vector</span>
 <span class="va">train_cat</span> <span class="op">&lt;-</span> <span class="va">train_sample_2</span><span class="op">$</span><span class="va">Type</span>
@@ -352,7 +365,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <li>
 <code>k</code>, the number of nearest neighbors.</li>
 </ul>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## fit the knn model with 9 nearest neighbors</span>
 <span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_small</span>, test <span class="op">=</span> <span class="va">test_small</span>,
                cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span>
@@ -365,7 +378,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="co">#&gt; [46] Fire  Fire  Fire  Ice   Fire </span>
 <span class="co">#&gt; Levels: Dark Fire Ice Steel</span></code></pre></div>
 <p>The output of <code>knn_mod</code> gives the predicted categories for the <strong>test</strong> sample. We can compare the predictions from the knn model with the actual pokemon <code>Type</code>s in the test sample with <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>, which makes a confusion matrix:</p>
-<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span> 
 <span class="co">#&gt;        test_cat</span>
 <span class="co">#&gt; knn_mod Dark Fire Ice Steel</span>
@@ -375,49 +388,49 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="co">#&gt;   Steel    0    1   0     3</span></code></pre></div>
 <p>The columns of the confusion matrix give the actual Pokemon types in the test data while the rows give the predicted types from our knn model. The above table tells us that there were 0 pokemon that were Dark type that our knn model correctly classified as Dark. There were 6 pokemon that were Dark type that our knn model incorrectly classified as Fire. There were 5 pokemon that were Dark type and that our knn model incorrectly classified as Ice. In other words, correct predictions appear on the diagonal, while incorrect predictions appear on the off-diagonal.</p>
 <p>One common metric used to assess overall model performance is the model’s <strong>classification rate</strong>, which is computed as the number of correct classifications divided by the total number of observations in the test data set. In this case, our classification rate is</p>
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="fl">13</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="fl">50</span>
 <span class="co">#&gt; [1] 0.36</span></code></pre></div>
 <p>Code to automatically obtain the classification rate from a confusion matrix is</p>
-<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span> 
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.36</span></code></pre></div>
 <p>What does <code><a href="https://rdrr.io/r/base/diag.html">diag()</a></code> seem to do in the code above?</p>
 </div>
-<div id="exercise-13-3" class="section level3" number="14.3.3">
+<div id="exercise-13-3" class="section level3" number="15.3.3">
 <h3>
-<span class="header-section-number">14.3.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-13-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.3.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-13-3"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="predictive-modeling-with-knn.html#solutions-13">14.5</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="predictive-modeling-with-knn.html#solutions-13">15.5</a>.</p>
 <ol style="list-style-type: decimal">
 <li>Change the predictors used or change k to improve the classification rate of the model with <code>k = 9</code> and <code>Attack</code>, <code>Defense</code>, <code>HP</code>, and <code>Speed</code> as predictors.</li>
 </ol>
 </div>
 </div>
-<div id="chapexercise-13" class="section level2" number="14.4">
+<div id="chapexercise-13" class="section level2" number="15.4">
 <h2>
-<span class="header-section-number">14.4</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-13"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.4</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-13"><i class="fas fa-link"></i></a>
 </h2>
 <p>There will be no chapter exercises for this section. Instead, we’ll devote some in-class time for you to begin work on your final project.</p>
 </div>
-<div id="solutions-13" class="section level2" number="14.5">
+<div id="solutions-13" class="section level2" number="15.5">
 <h2>
-<span class="header-section-number">14.5</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-13"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.5</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-13"><i class="fas fa-link"></i></a>
 </h2>
-<div id="introduction-to-classification-s" class="section level3" number="14.5.1">
+<div id="introduction-to-classification-s" class="section level3" number="15.5.1">
 <h3>
-<span class="header-section-number">14.5.1</span> Introduction to Classification S<a class="anchor" aria-label="anchor" href="#introduction-to-classification-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.5.1</span> Introduction to Classification S<a class="anchor" aria-label="anchor" href="#introduction-to-classification-s"><i class="fas fa-link"></i></a>
 </h3>
 </div>
-<div id="knn-introduction-s" class="section level3" number="14.5.2">
+<div id="knn-introduction-s" class="section level3" number="15.5.2">
 <h3>
-<span class="header-section-number">14.5.2</span> knn Introduction S<a class="anchor" aria-label="anchor" href="#knn-introduction-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.5.2</span> knn Introduction S<a class="anchor" aria-label="anchor" href="#knn-introduction-s"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
 </ol>
-<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_tiny</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, y <span class="op">=</span> <span class="va">weight</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span>, <span class="fu">aes</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">17</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">550</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -428,32 +441,33 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <li>* After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn’t give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is “closer” to the Dark type pokemon bu numerically computing distances.</li>
 </ol>
 </div>
-<div id="choosing-predictors-and-k-s" class="section level3" number="14.5.3">
+<div id="choosing-predictors-and-k-s" class="section level3" number="15.5.3">
 <h3>
-<span class="header-section-number">14.5.3</span> Choosing Predictors and k S<a class="anchor" aria-label="anchor" href="#choosing-predictors-and-k-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.5.3</span> Choosing Predictors and k S<a class="anchor" aria-label="anchor" href="#choosing-predictors-and-k-s"><i class="fas fa-link"></i></a>
 </h3>
 </div>
 </div>
-<div id="rcode-13" class="section level2" number="14.6">
+<div id="rcode-13" class="section level2" number="15.6">
 <h2>
-<span class="header-section-number">14.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-13"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-13"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1119</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">pokemon</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/pokemon_full.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span>
+<span class="va">pokemon</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/pokemon_full.csv"</span><span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Steel"</span>, <span class="st">"Dark"</span>, <span class="st">"Fire"</span>, <span class="st">"Ice"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">train_sample</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> <span class="op">%&gt;%</span>
+<span class="va">train_sample</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> |&gt;
   <span class="fu">sample_n</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>
 <span class="va">test_sample</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">pokemon</span>, <span class="va">train_sample</span><span class="op">)</span>
 
-<span class="va">train_sample</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">test_sample</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">train_sample</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">test_sample</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
         axis.text.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
         axis.ticks.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="va">dialga</span> <span class="op">&lt;-</span> <span class="va">test_sample</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">63</span><span class="op">)</span>
+<span class="va">dialga</span> <span class="op">&lt;-</span> <span class="va">test_sample</span> |&gt; <span class="fu">slice</span><span class="op">(</span><span class="fl">63</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
         axis.text.y<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
@@ -462,21 +476,21 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Defense</span>, y <span class="op">=</span> <span class="va">Speed</span>, colour <span class="op">=</span> <span class="va">Type</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dialga</span>, colour <span class="op">=</span> <span class="st">"black"</span>, shape <span class="op">=</span> <span class="fl">4</span>, size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">train_tiny</span> <span class="op">&lt;-</span> <span class="va">train_sample</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">train_tiny</span> <span class="op">&lt;-</span> <span class="va">train_sample</span> |&gt; <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
 <span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>height <span class="op">=</span> <span class="fl">15</span>, weight <span class="op">=</span> <span class="fl">350</span>, Type <span class="op">=</span> <span class="st">"Unknown"</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_tiny</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, y <span class="op">=</span> <span class="va">weight</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span>, <span class="fu">aes</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">17</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">550</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">newobs</span>, shape <span class="op">=</span> <span class="fl">4</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-<span class="va">train_sample</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">train_sample</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>weight_s <span class="op">=</span> <span class="op">(</span><span class="va">weight</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> 
-                          <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="va">weight_s</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">train_sample</span> |&gt; <span class="fu">select</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">train_sample</span> |&gt; <span class="fu">mutate</span><span class="op">(</span>weight_s <span class="op">=</span> <span class="op">(</span><span class="va">weight</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> 
+                          <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
+  <span class="fu">select</span><span class="op">(</span><span class="va">weight_s</span><span class="op">)</span> |&gt;
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">## ?across</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span>
-<span class="va">train_sample</span> <span class="op">%&gt;%</span>
+<span class="va">train_sample</span> |&gt;
   <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="op">(</span><span class="va">.x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span>
-                                 <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                                 <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
 <span class="co">## install.packages("GGally")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span>
@@ -487,11 +501,11 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span class="co">## results as I do!</span>
 
 <span class="co">## scale the quantitative predictors</span>
-<span class="va">pokemon_scaled</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> <span class="op">%&gt;%</span>
+<span class="va">pokemon_scaled</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> |&gt;
     <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="op">(</span><span class="va">.x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span>
                                  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> 
 
-<span class="va">train_sample_2</span> <span class="op">&lt;-</span> <span class="va">pokemon_scaled</span> <span class="op">%&gt;%</span>
+<span class="va">train_sample_2</span> <span class="op">&lt;-</span> <span class="va">pokemon_scaled</span> |&gt;
   <span class="fu">sample_n</span><span class="op">(</span><span class="fl">70</span><span class="op">)</span>
 <span class="va">test_sample_2</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">pokemon_scaled</span>, <span class="va">train_sample_2</span><span class="op">)</span>
 <span class="co">## install.packages("class")</span>
@@ -499,8 +513,8 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 
 <span class="co">## create a data frame that only has the predictors</span>
 <span class="co">## that we will use</span>
-<span class="va">train_small</span> <span class="op">&lt;-</span> <span class="va">train_sample_2</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span>
-<span class="va">test_small</span> <span class="op">&lt;-</span> <span class="va">test_sample_2</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span>
+<span class="va">train_small</span> <span class="op">&lt;-</span> <span class="va">train_sample_2</span> |&gt; <span class="fu">select</span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span>
+<span class="va">test_small</span> <span class="op">&lt;-</span> <span class="va">test_sample_2</span> |&gt; <span class="fu">select</span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span>
 
 <span class="co">## put our response variable into a vector</span>
 <span class="va">train_cat</span> <span class="op">&lt;-</span> <span class="va">train_sample_2</span><span class="op">$</span><span class="va">Type</span>
@@ -517,43 +531,43 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">13</span> Text Data with tidytext and stringr</a></div>
-<div class="empty"></div>
+<div class="prev"><a href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></div>
+<div class="next"><a href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#predictive-modeling-with-knn"><span class="header-section-number">14</span> Predictive Modeling with knn</a></li>
+<li><a class="nav-link" href="#predictive-modeling-with-knn"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
 <li>
-<a class="nav-link" href="#introduction-to-classification"><span class="header-section-number">14.1</span> Introduction to Classification</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#training-and-test-data"><span class="header-section-number">14.1.1</span> Training and Test Data</a></li>
-<li><a class="nav-link" href="#exercise-13-1"><span class="header-section-number">14.1.2</span> Exercises</a></li>
+<a class="nav-link" href="#introduction-to-classification"><span class="header-section-number">15.1</span> Introduction to Classification</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#training-and-test-data"><span class="header-section-number">15.1.1</span> Training and Test Data</a></li>
+<li><a class="nav-link" href="#exercise-13-1"><span class="header-section-number">15.1.2</span> Exercises</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#knn-introduction"><span class="header-section-number">14.2</span> knn Introduction</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#knn-with-k-1-and-1-predictor"><span class="header-section-number">14.2.1</span> knn with k = 1 and 1 Predictor</a></li>
-<li><a class="nav-link" href="#knn-with-k-1-and-one-predictor"><span class="header-section-number">14.2.2</span> knn with k &gt; 1 and One Predictor</a></li>
-<li><a class="nav-link" href="#knn-with-k-1-and-more-than-one-predictor"><span class="header-section-number">14.2.3</span> knn with k &gt; 1 and More Than One Predictor</a></li>
-<li><a class="nav-link" href="#scaling-predictor-variables-before-using-knn"><span class="header-section-number">14.2.4</span> Scaling Predictor Variables before Using knn</a></li>
-<li><a class="nav-link" href="#exercise-13-2"><span class="header-section-number">14.2.5</span> Exercises</a></li>
+<a class="nav-link" href="#knn-introduction"><span class="header-section-number">15.2</span> knn Introduction</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#knn-with-k-1-and-1-predictor"><span class="header-section-number">15.2.1</span> knn with k = 1 and 1 Predictor</a></li>
+<li><a class="nav-link" href="#knn-with-k-1-and-one-predictor"><span class="header-section-number">15.2.2</span> knn with k &gt; 1 and One Predictor</a></li>
+<li><a class="nav-link" href="#knn-with-k-1-and-more-than-one-predictor"><span class="header-section-number">15.2.3</span> knn with k &gt; 1 and More Than One Predictor</a></li>
+<li><a class="nav-link" href="#scaling-predictor-variables-before-using-knn"><span class="header-section-number">15.2.4</span> Scaling Predictor Variables before Using knn</a></li>
+<li><a class="nav-link" href="#exercise-13-2"><span class="header-section-number">15.2.5</span> Exercises</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#choosing-predictors-and-k"><span class="header-section-number">14.3</span> Choosing Predictors and k</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#the-confusion-matrix"><span class="header-section-number">14.3.1</span> The Confusion Matrix</a></li>
-<li><a class="nav-link" href="#using-knn-in-r"><span class="header-section-number">14.3.2</span> Using knn in R</a></li>
-<li><a class="nav-link" href="#exercise-13-3"><span class="header-section-number">14.3.3</span> Exercises</a></li>
+<a class="nav-link" href="#choosing-predictors-and-k"><span class="header-section-number">15.3</span> Choosing Predictors and k</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-confusion-matrix"><span class="header-section-number">15.3.1</span> The Confusion Matrix</a></li>
+<li><a class="nav-link" href="#using-knn-in-r"><span class="header-section-number">15.3.2</span> Using knn in R</a></li>
+<li><a class="nav-link" href="#exercise-13-3"><span class="header-section-number">15.3.3</span> Exercises</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#chapexercise-13"><span class="header-section-number">14.4</span> Chapter Exercises</a></li>
+<li><a class="nav-link" href="#chapexercise-13"><span class="header-section-number">15.4</span> Chapter Exercises</a></li>
 <li>
-<a class="nav-link" href="#solutions-13"><span class="header-section-number">14.5</span> Exercise Solutions</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#introduction-to-classification-s"><span class="header-section-number">14.5.1</span> Introduction to Classification S</a></li>
-<li><a class="nav-link" href="#knn-introduction-s"><span class="header-section-number">14.5.2</span> knn Introduction S</a></li>
-<li><a class="nav-link" href="#choosing-predictors-and-k-s"><span class="header-section-number">14.5.3</span> Choosing Predictors and k S</a></li>
+<a class="nav-link" href="#solutions-13"><span class="header-section-number">15.5</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#introduction-to-classification-s"><span class="header-section-number">15.5.1</span> Introduction to Classification S</a></li>
+<li><a class="nav-link" href="#knn-introduction-s"><span class="header-section-number">15.5.2</span> knn Introduction S</a></li>
+<li><a class="nav-link" href="#choosing-predictors-and-k-s"><span class="header-section-number">15.5.3</span> Choosing Predictors and k S</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#rcode-13"><span class="header-section-number">14.6</span> Non-Exercise R Code</a></li>
+<li><a class="nav-link" href="#rcode-13"><span class="header-section-number">15.6</span> Non-Exercise R Code</a></li>
 </ul>
 
       <div class="book-extra">
@@ -570,7 +584,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-11-16.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-07-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

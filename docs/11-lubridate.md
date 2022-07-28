@@ -1,3 +1,5 @@
+# (PART) Special Topics {-}
+
 # Dates with `lubridate`
 
 __Goals__:
@@ -14,11 +16,20 @@ To begin, install the `lubridate` package, and load the package with `library()`
 
 ```r
 library(tidyverse)
+#> Warning: replacing previous import
+#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
+#> loading 'pillar'
+#> Warning: replacing previous import
+#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
+#> loading 'tibble'
+#> Warning: replacing previous import
+#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
+#> loading 'hms'
 library(lubridate)
 today()
-#> [1] "2021-11-16"
+#> [1] "2022-07-28"
 now()
-#> [1] "2021-11-16 11:33:19 EST"
+#> [1] "2022-07-28 14:31:35 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
@@ -30,7 +41,8 @@ Read in the data set with
 
 
 ```r
-holiday_df <- read_csv("data/animal_crossing_holidays.csv")
+library(here)
+holiday_df <- read_csv(here("data/animal_crossing_holidays.csv"))
 holiday_df
 #> # A tibble: 6 x 10
 #>   Holiday  Date1  Date2  Date3 Date4 Date5 Month  Year   Day
@@ -62,7 +74,7 @@ Let's try it out on `Date1` and `Date2`:
 
 
 ```r
-holiday_df %>% mutate(Date_test = dmy(Date1)) %>%
+holiday_df |> mutate(Date_test = dmy(Date1)) |>
   select(Date_test, everything())
 #> # A tibble: 6 x 11
 #>   Date_test  Holiday   Date1  Date2  Date3 Date4 Date5 Month
@@ -75,7 +87,7 @@ holiday_df %>% mutate(Date_test = dmy(Date1)) %>%
 #> 6 2020-04-22 Earth Day 22-Ap… Apr-2… 4/22… 2020… 2020…     4
 #> # … with 3 more variables: Year <dbl>, Day <dbl>,
 #> #   Month2 <chr>
-holiday_df %>% mutate(Date_test = mdy(Date2)) %>%
+holiday_df |> mutate(Date_test = mdy(Date2)) |>
   select(Date_test, everything())
 #> # A tibble: 6 x 11
 #>   Date_test  Holiday   Date1  Date2  Date3 Date4 Date5 Month
@@ -101,7 +113,7 @@ ggplot(data = holiday_df, aes(x = Date1, y = Holiday)) +
 ![](11-lubridate_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
 
 ```r
-holiday_df <- holiday_df %>% mutate(Date_test_plot = dmy(Date1)) %>%
+holiday_df <- holiday_df |> mutate(Date_test_plot = dmy(Date1)) |>
   select(Date_test_plot, everything())
 ggplot(data = holiday_df, aes(x = Date_test_plot, y = Holiday)) +
   geom_point()
@@ -117,9 +129,9 @@ Another way to create a Date object is to assemble it with `make_date()` from a 
 
 
 ```r
-holiday_df %>% mutate(Date_test2 = make_date(year = Year,
+holiday_df |> mutate(Date_test2 = make_date(year = Year,
                                              month = Month,
-                                             day = Day)) %>%
+                                             day = Day)) |>
   select(Date_test2, everything())
 #> # A tibble: 6 x 12
 #>   Date_test2 Date_test_plot Holiday  Date1 Date2 Date3 Date4
@@ -138,9 +150,9 @@ But, when `Month` is stored as a character (e.g. `February`) instead of a number
 
 
 ```r
-holiday_df %>% mutate(Date_test2 = make_date(year = Year,
+holiday_df |> mutate(Date_test2 = make_date(year = Year,
                                              month = Month2,
-                                             day = Day)) %>%
+                                             day = Day)) |>
   select(Date_test2, everything())
 #> Warning in make_date(year = Year, month = Month2, day =
 #> Day): NAs introduced by coercion
@@ -167,7 +179,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 
 ```r
-holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
+holiday_df |> mutate(Date_test = ymd(Date4)) |>
   select(Date_test, everything())
 #> Warning: 3 failed to parse.
 #> # A tibble: 6 x 12
@@ -193,6 +205,7 @@ Once an object is in the `<date>` format, there are some special functions in `l
 ```r
 ## install.packages("quantmod")
 library(quantmod)
+#> Warning: package 'quantmod' was built under R version 4.1.2
 
 start <- ymd("2011-01-01")
 end <- ymd("2021-5-19")
@@ -200,7 +213,7 @@ getSymbols(c("AAPL", "NTDOY", "CMG", "SPY"), src = "yahoo",
            from = start, to = end)
 #> [1] "AAPL"  "NTDOY" "CMG"   "SPY"
 
-date_tib <- as_tibble(index(AAPL)) %>%
+date_tib <- as_tibble(index(AAPL)) |>
   rename(start_date = value)
 app_tib <- as_tibble(AAPL)
 nint_tib <- as_tibble(NTDOY)
@@ -208,10 +221,10 @@ chip_tib <- as_tibble(CMG)
 spy_tib <- as_tibble(SPY)
 all_stocks <- bind_cols(date_tib, app_tib, nint_tib, chip_tib, spy_tib)
 
-stocks_long <- all_stocks %>%
+stocks_long <- all_stocks |>
   select(start_date, AAPL.Adjusted, NTDOY.Adjusted,
-                      CMG.Adjusted, SPY.Adjusted) %>%
-  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") %>%
+                      CMG.Adjusted, SPY.Adjusted) |>
+  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") |>
   mutate(Stock_Type = fct_recode(Stock_Type,
                                  Apple = "AAPL.Adjusted",
                                  Nintendo = "NTDOY.Adjusted",
@@ -223,11 +236,11 @@ tail(stocks_long)
 #>   start_date Stock_Type  Price
 #>   <date>     <fct>       <dbl>
 #> 1 2021-05-17 Chipotle   1332. 
-#> 2 2021-05-17 S & P 500   413. 
+#> 2 2021-05-17 S & P 500   408. 
 #> 3 2021-05-18 Apple       124. 
 #> 4 2021-05-18 Nintendo     70.4
 #> 5 2021-05-18 Chipotle   1325. 
-#> 6 2021-05-18 S & P 500   409.
+#> 6 2021-05-18 S & P 500   405.
 ```
 
 You'll have a chance in the Exercises to choose your own stocks to investigate. For now, I've made a data set with three variables:
@@ -240,7 +253,7 @@ First, let's make a line plot that shows how the S & P 500 has changed over time
 
 
 ```r
-stocks_sp <- stocks_long %>% filter(Stock_Type == "S & P 500")
+stocks_sp <- stocks_long |> filter(Stock_Type == "S & P 500")
 ggplot(data = stocks_sp, aes(x = start_date, y = Price)) +
   geom_line()
 ```
@@ -255,9 +268,9 @@ The functions `year()`, `month()`, and `mday()` can grab the year, month, and da
 
 
 ```r
-stocks_long %>% mutate(year_stock = year(start_date))
-stocks_long %>% mutate(month_stock = month(start_date))
-stocks_long %>% mutate(day_stock = mday(start_date))
+stocks_long |> mutate(year_stock = year(start_date))
+stocks_long |> mutate(month_stock = month(start_date))
+stocks_long |> mutate(day_stock = mday(start_date))
 ```
 
 ### `yday()` and `wday()`
@@ -275,18 +288,18 @@ returns `309`, indicating that November 4th is the 309th day of the year 2020. U
 
 
 ```r
-stocks_long %>% mutate(day_in_year = yday(start_date))
+stocks_long |> mutate(day_in_year = yday(start_date))
 #> # A tibble: 10,444 x 4
 #>    start_date Stock_Type Price day_in_year
 #>    <date>     <fct>      <dbl>       <dbl>
 #>  1 2011-01-03 Apple       10.1           3
 #>  2 2011-01-03 Nintendo    36.7           3
 #>  3 2011-01-03 Chipotle   224.            3
-#>  4 2011-01-03 S & P 500  103.            3
+#>  4 2011-01-03 S & P 500  102.            3
 #>  5 2011-01-04 Apple       10.1           4
 #>  6 2011-01-04 Nintendo    35.5           4
 #>  7 2011-01-04 Chipotle   222.            4
-#>  8 2011-01-04 S & P 500  103.            4
+#>  8 2011-01-04 S & P 500  102.            4
 #>  9 2011-01-05 Apple       10.2           5
 #> 10 2011-01-05 Nintendo    34.6           5
 #> # … with 10,434 more rows
@@ -296,8 +309,8 @@ Finally, the function `wday()` grabs the day of the week from a `<date>`. By def
 
 
 ```r
-stocks_long %>% mutate(day_of_week = wday(start_date))
-stocks_long %>% mutate(day_of_week = wday(start_date,
+stocks_long |> mutate(day_of_week = wday(start_date))
+stocks_long |> mutate(day_of_week = wday(start_date,
                                           label = TRUE, abbr = FALSE))
 ```
 
@@ -330,7 +343,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 
 ```r
-stocks_long %>% mutate(month_stock = month(start_date))
+stocks_long |> mutate(month_stock = month(start_date))
 ```
 
 ## Chapter Exercises {#chapexercise-11}
@@ -365,7 +378,7 @@ Examine the `ds_google.csv`, which contains
 ```r
 library(tidyverse)
 library(lubridate)
-ds_df <- read_csv("data/ds_google.csv")
+ds_df <- read_csv(here("data/ds_google.csv"))
 ds_df
 #> # A tibble: 202 x 2
 #>    Month   Data_Science
@@ -438,7 +451,7 @@ Explore the stock data that you chose, constructing a line plot of the price thr
 
 
 ```r
-holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
+holiday_df |> mutate(Date_test = ymd(Date4)) |>
   select(Date_test, everything())
 #> Warning: 3 failed to parse.
 #> # A tibble: 6 x 12
@@ -464,7 +477,7 @@ holiday_df %>% mutate(Date_test = ymd(Date4)) %>%
 
 
 ```r
-holiday_df %>% mutate(Date_test = mdy(Date3)) %>%
+holiday_df |> mutate(Date_test = mdy(Date3)) |>
   select(Date_test, everything())
 #> # A tibble: 6 x 12
 #>   Date_test  Date_test_plot Holiday  Date1 Date2 Date3 Date4
@@ -477,7 +490,7 @@ holiday_df %>% mutate(Date_test = mdy(Date3)) %>%
 #> 6 2020-04-22 2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
 #> # … with 5 more variables: Date5 <chr>, Month <dbl>,
 #> #   Year <dbl>, Day <dbl>, Month2 <chr>
-holiday_df %>% mutate(Date_test = ymd(Date5)) %>%
+holiday_df |> mutate(Date_test = ymd(Date5)) |>
   select(Date_test, everything())
 #> # A tibble: 6 x 12
 #>   Date_test  Date_test_plot Holiday  Date1 Date2 Date3 Date4
@@ -500,7 +513,7 @@ holiday_df %>% mutate(Date_test = ymd(Date5)) %>%
 
 
 ```r
-ds_df <- ds_df %>% mutate(Month = ymd(Month, truncated = 1))
+ds_df <- ds_df |> mutate(Month = ymd(Month, truncated = 1))
 ds_df
 ```
 
@@ -528,7 +541,7 @@ In the top-right window of the graph, you should click the down arrow to downloa
 
 
 ```r
-videogame_df <- read_csv("data/smash_animal_crossing.csv")
+videogame_df <- read_csv(here("data/smash_animal_crossing.csv"))
 #> Rows: 203 Columns: 3
 #> ── Column specification ────────────────────────────────────
 #> Delimiter: ","
@@ -537,14 +550,14 @@ videogame_df <- read_csv("data/smash_animal_crossing.csv")
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-videogame_df <- videogame_df %>% mutate(date = ymd(Month, truncated = 1))
+videogame_df <- videogame_df |> mutate(date = ymd(Month, truncated = 1))
 ```
 
 4. \* Make a plot of your Popularity variables through time. __Hint__: Does the data set need to be tidied at all first?
 
 
 ```r
-videogame_long <- videogame_df %>%
+videogame_long <- videogame_df |>
   pivot_longer(cols = c("super_smash", "animal_crossing"),
                               names_to = "game",
                               values_to = "popularity")
@@ -565,7 +578,7 @@ Again, click the download button again and read in the data to `R`. Convert the 
 
 
 ```r
-steelers_df <- read_csv("data/steelers.csv")
+steelers_df <- read_csv(here("data/steelers.csv"))
 #> Rows: 91 Columns: 2
 #> ── Column specification ────────────────────────────────────
 #> Delimiter: ","
@@ -574,7 +587,7 @@ steelers_df <- read_csv("data/steelers.csv")
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-steelers_df <- steelers_df %>% mutate(day_var = mdy(Day))
+steelers_df <- steelers_df |> mutate(day_var = mdy(Day))
 ```
 
 7. \* Make a plot of your popularity variable through time, adding a smoother.
@@ -598,25 +611,26 @@ library(tidyverse)
 library(lubridate)
 today()
 now()
-holiday_df <- read_csv("data/animal_crossing_holidays.csv")
+library(here)
+holiday_df <- read_csv(here("data/animal_crossing_holidays.csv"))
 holiday_df
-holiday_df %>% mutate(Date_test = dmy(Date1)) %>%
+holiday_df |> mutate(Date_test = dmy(Date1)) |>
   select(Date_test, everything())
-holiday_df %>% mutate(Date_test = mdy(Date2)) %>%
+holiday_df |> mutate(Date_test = mdy(Date2)) |>
   select(Date_test, everything())
 ggplot(data = holiday_df, aes(x = Date1, y = Holiday)) +
   geom_point()
-holiday_df <- holiday_df %>% mutate(Date_test_plot = dmy(Date1)) %>%
+holiday_df <- holiday_df |> mutate(Date_test_plot = dmy(Date1)) |>
   select(Date_test_plot, everything())
 ggplot(data = holiday_df, aes(x = Date_test_plot, y = Holiday)) +
   geom_point()
-holiday_df %>% mutate(Date_test2 = make_date(year = Year,
+holiday_df |> mutate(Date_test2 = make_date(year = Year,
                                              month = Month,
-                                             day = Day)) %>%
+                                             day = Day)) |>
   select(Date_test2, everything())
-holiday_df %>% mutate(Date_test2 = make_date(year = Year,
+holiday_df |> mutate(Date_test2 = make_date(year = Year,
                                              month = Month2,
-                                             day = Day)) %>%
+                                             day = Day)) |>
   select(Date_test2, everything())
 ## install.packages("quantmod")
 library(quantmod)
@@ -626,7 +640,7 @@ end <- ymd("2021-5-19")
 getSymbols(c("AAPL", "NTDOY", "CMG", "SPY"), src = "yahoo",
            from = start, to = end)
 
-date_tib <- as_tibble(index(AAPL)) %>%
+date_tib <- as_tibble(index(AAPL)) |>
   rename(start_date = value)
 app_tib <- as_tibble(AAPL)
 nint_tib <- as_tibble(NTDOY)
@@ -634,10 +648,10 @@ chip_tib <- as_tibble(CMG)
 spy_tib <- as_tibble(SPY)
 all_stocks <- bind_cols(date_tib, app_tib, nint_tib, chip_tib, spy_tib)
 
-stocks_long <- all_stocks %>%
+stocks_long <- all_stocks |>
   select(start_date, AAPL.Adjusted, NTDOY.Adjusted,
-                      CMG.Adjusted, SPY.Adjusted) %>%
-  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") %>%
+                      CMG.Adjusted, SPY.Adjusted) |>
+  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") |>
   mutate(Stock_Type = fct_recode(Stock_Type,
                                  Apple = "AAPL.Adjusted",
                                  Nintendo = "NTDOY.Adjusted",
@@ -645,17 +659,17 @@ stocks_long <- all_stocks %>%
                                  `S & P 500` = "SPY.Adjusted"
                                  ))
 tail(stocks_long)
-stocks_sp <- stocks_long %>% filter(Stock_Type == "S & P 500")
+stocks_sp <- stocks_long |> filter(Stock_Type == "S & P 500")
 ggplot(data = stocks_sp, aes(x = start_date, y = Price)) +
   geom_line()
-stocks_long %>% mutate(year_stock = year(start_date))
-stocks_long %>% mutate(month_stock = month(start_date))
-stocks_long %>% mutate(day_stock = mday(start_date))
+stocks_long |> mutate(year_stock = year(start_date))
+stocks_long |> mutate(month_stock = month(start_date))
+stocks_long |> mutate(day_stock = mday(start_date))
 test <- mdy("November 4, 2020")
 yday(test)
-stocks_long %>% mutate(day_in_year = yday(start_date))
-stocks_long %>% mutate(day_of_week = wday(start_date))
-stocks_long %>% mutate(day_of_week = wday(start_date,
+stocks_long |> mutate(day_in_year = yday(start_date))
+stocks_long |> mutate(day_of_week = wday(start_date))
+stocks_long |> mutate(day_of_week = wday(start_date,
                                           label = TRUE, abbr = FALSE))
 ```
 

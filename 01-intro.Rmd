@@ -1,3 +1,5 @@
+# (PART) The Core: `tidyverse` Basics {-}
+
 # Getting Started with `R` and `R Studio` {#intro}
 
 __Goals__:
@@ -25,7 +27,7 @@ Next, create a subfolder within your STAT_234 folder. Title it _Notes_ (or whate
 
 Then, create an `R Project` by Clicking File -> New Project -> Existing  Directory,  navigate to the _Notes_ folder, and click _Create Project_. 
 
-Within this folder, click the _New Folder_ button in your bottom-left window and name a new folder _data_. Then, download the data.zip file from Sakai (in Resources). Upload that file in to the server by clicking "Upload" in the bottom right panel. In the dialog box that appears, you can click "Choose File" and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.
+Within this folder, click the _New Folder_ button in your bottom-left window and name a new folder _data_. Then, download the data.zip file from Canvas (in Resources). Upload that file in to the server by clicking "Upload" in the bottom right panel. In the dialog box that appears, you can click "Choose File" and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.
 
 Finally, we want to create a new `R Markdown` file by clicking File -> New File -> `R Markdown`. You can give your new `R Markdown` file a title if you want, and then click okay.
 
@@ -129,7 +131,7 @@ ggplot(data = alcohol_data,
 I now want to see where the United States (`USA`) falls on this distribution by drawing a red vertical line for the total litres of alcohol consumed in the United States. To do so, I'll first use the `filter()` function in the `dplyr` package (again, we will learn about that function in detail later). Copy and paste the following lines of code into a new `R` chunk. Then, run the lines.
 
 ```{r, fig.keep = "none"}
-small_df <- alcohol_data %>% filter(country == "USA")
+small_df <- alcohol_data |> filter(country == "USA")
 ggplot(data = alcohol_data,
        mapping = aes(total_litres_of_pure_alcohol)) +
   geom_histogram(colour = "black", fill = "white", bins = 15) +
@@ -141,7 +143,7 @@ ggplot(data = alcohol_data,
 It looks like there are some countries that consume little to no alcohol. We might want to know what these countries are: 
 
 ```{r}
-alcohol_data %>% filter(total_litres_of_pure_alcohol == 0)
+alcohol_data |> filter(total_litres_of_pure_alcohol == 0)
 ```
 
 It looks like there are 13 countries in the data set that consume no alcohol. Note that, in the chunk above, we have to use in `total_litres_of_pure_alcohol` as the variable name because this is the name of the variable in the data set. Even something like spelling litres in the American English liters (`total_liters_of_pure_alcohol`) would throw an error because this isn't the exact name of the variable in the data set. This is something that can be very aggravating when you are first learning any coding language. 
@@ -149,27 +151,27 @@ It looks like there are 13 countries in the data set that consume no alcohol. No
 Now suppose that we want to know the 3 countries that consume the most beer, the 3 countries that consume the most spirits, and the 3 countries that consume the most wine per person. If you're a trivia person, you can form some guesses. Without cheating, I am going to guess (Germany, USA, and UK) for beer, (Spain, Italy, and USA) for wine, and (Russia, Poland, and Lithuania) for spirits. Let's do beer first!
 
 ```{r, results = "hide"}
-alcohol_data %>% mutate(rankbeer = rank(desc(beer_servings))) %>%
-  arrange(rankbeer) %>% 
+alcohol_data |> mutate(rankbeer = rank(desc(beer_servings))) |>
+  arrange(rankbeer) |> 
   filter(rankbeer <= 3)
 ```
 
 Let's do the same thing for Wine and Spirits:
 
 ```{r, results = "hide"}
-alcohol_data %>% mutate(rankwine = rank(desc(wine_servings))) %>%
-  arrange(rankwine) %>% 
+alcohol_data |> mutate(rankwine = rank(desc(wine_servings))) |>
+  arrange(rankwine) |> 
   filter(rankwine <= 3)
 
-alcohol_data %>% mutate(rankspirits = rank(desc(spirit_servings))) %>%
-  arrange(rankspirits) %>% 
+alcohol_data |> mutate(rankspirits = rank(desc(spirit_servings))) |>
+  arrange(rankspirits) |> 
   filter(rankspirits <= 3)
 ```
 
 Finally, suppose that I want to know which country consumes the most wine relative to their beer consumption? Let's first look at this question graphically. I need to tidy the data first with the `pivot_longer()` function from the `tidyr` package:
 
 ```{r}
-onecountry_df <- alcohol_data %>% 
+onecountry_df <- alcohol_data |> 
   filter(country == "Denmark")
 
 library(ggrepel)
@@ -187,9 +189,9 @@ The x-axis corresponds to beer servings while the y-axis corresponds to wine ser
 We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:
 
 ```{r}
-alcohol_data %>%
-  mutate(wbratio = wine_servings / beer_servings) %>%
-  arrange(desc(wbratio)) %>%
+alcohol_data |>
+  mutate(wbratio = wine_servings / beer_servings) |>
+  arrange(desc(wbratio)) |>
   select(country, beer_servings, wine_servings, wbratio)
 ```
 
@@ -250,16 +252,16 @@ Do you see anything strange with the scatterplot? What do you think the y-axis t
 Now let's see if we can count the number of athletes in the Top 100 that are in my personal favourite sport, Tennis:
 
 ```{r}
-athletes %>% group_by(Sport) %>%
-  summarise(counts = n()) %>%
+athletes |> group_by(Sport) |>
+  summarise(counts = n()) |>
   filter(Sport == "Tennis")
 ```
 
 It looks like there are 6 athletes: we can see who they are and sort them by their `Rank` with:
 
 ```{r}
-athletes %>%
-  filter(Sport == "Tennis") %>%
+athletes |>
+  filter(Sport == "Tennis") |>
   arrange(Rank)
 ```
 
@@ -267,8 +269,11 @@ athletes %>%
 Finally, let's see if we can compare the ratio of endorsements (from commercials and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).
 
 ```{r}
-athletes %>% filter(Sport == "Football" | Sport == "Basketball") %>%
-  ggplot(data = ., aes(x = Sport, y = endorsements / salary)) + 
+football_basketball <- athletes |>
+  filter(Sport == "Football" | Sport == "Basketball")
+
+ggplot(data = football_basketball,
+       aes(x = Sport, y = endorsements / salary)) + 
   geom_boxplot() +
   labs(y = "Endorsements / Salary")
 ```
@@ -324,7 +329,7 @@ ggplot(data = athletes aes(x = Sport, y = salary)) +
 3. Capitalization Issues
 
 ```{r, eval = FALSE}
-athletes %>% filter(sport == "Tennis")
+athletes |> filter(sport == "Tennis")
 ```
 
 In the original data set, the variable `Sport` is capitalized. Not capitalizing it means that `R` won't be able to find it and proclaims that "object sport not found".
@@ -400,7 +405,7 @@ k. What are your expectations for this class and/or what do you hope to gain fro
 
 <br>
 
-Knit your .Rmd file into an .html file and submit your knitted .html file to Sakai. If your file won't knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Sakai. Use the following steps to do so:
+Knit your .Rmd file into an .html file and submit your knitted .html file to Canvas. If your file won't knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:
 
 1. Click the checkbox next to your knitted .html file. 
 
@@ -408,7 +413,7 @@ Knit your .Rmd file into an .html file and submit your knitted .html file to Sak
 
 3. If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .Rmd).
 
-4. After you export it, the file should appear in your downloads folder. Now, go to Sakai -> Assignments -> Week 0 Exercises and complete the upload process.
+4. After you export it, the file should appear in your downloads folder. Now, go to Canvas -> Assignments and complete the upload process.
 
 Nice work: we will dive into `ggplot()` in the `ggplot2` package next!
 

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 13 Text Data with tidytext and stringr | STAT 234: Data Science</title>
+<meta name="author" content="Matt Higham">
+<meta name="description" content="Goals: use functions in the stringr package and in the tidytext package to analyze text data. introduce some of the issues with manipulating strings that don’t pertain to numeric or factor data....">
+<meta name="generator" content="bookdown 0.22.17 with bs4_book()">
+<meta property="og:title" content=" 13 Text Data with tidytext and stringr | STAT 234: Data Science">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://highamm.github.io/datascience234/text-data-with-tidytext-and-stringr.html">
+<meta property="og:description" content="Goals: use functions in the stringr package and in the tidytext package to analyze text data. introduce some of the issues with manipulating strings that don’t pertain to numeric or factor data....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 13 Text Data with tidytext and stringr | STAT 234: Data Science">
+<meta name="twitter:description" content="Goals: use functions in the stringr package and in the tidytext package to analyze text data. introduce some of the issues with manipulating strings that don’t pertain to numeric or factor data....">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT 234: Data Science</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">5</span> Tidying with tidyr</a></li>
+<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">6</span> Communication with RMarkdown</a></li>
+<li><a class="" href="r-basics.html"><span class="header-section-number">7</span> R Basics</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">8</span> Factors with forcats</a></li>
+<li><a class="" href="reprexes-and-import.html"><span class="header-section-number">9</span> Reprexes and Import</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">11</span> Merging with dplyr</a></li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">12</span> Dates with lubridate</a></li>
+<li><a class="active" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">13</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">14</span> Predictive Modeling with knn</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="text-data-with-tidytext-and-stringr" class="section level1" number="13">
+<h1>
+<span class="header-section-number"> 13</span> Text Data with <code>tidytext</code> and <code>stringr</code><a class="anchor" aria-label="anchor" href="#text-data-with-tidytext-and-stringr"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li>use functions in the <code>stringr</code> package and in the <code>tidytext</code> package to analyze text data.</li>
+<li>introduce some of the issues with manipulating strings that don’t pertain to numeric or factor data.</li>
+<li>perform a basic sentiment analysis.</li>
+</ul>
+<div id="text-analysis" class="section level2" number="13.1">
+<h2>
+<span class="header-section-number">13.1</span> Text Analysis<a class="anchor" aria-label="anchor" href="#text-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p>Beyonce is a legend. For this example, we will work through a text analysis on lyrics from songs from Beyonce’s albums, utilizing functions from both <code>stringr</code> to parse strings and <code>tidytext</code> to convert text data into a tidy format. To begin, read in a data set of Beyonce’s lyrics:</p>
+<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="va">beyonce</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/beyonce_lyrics.csv"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">beyonce</span><span class="op">)</span></code></pre></div>
+<p>We will be most focused on the <code>line</code> variable, as each value for this variable contains a line from a Beyonce song. There’s other variables present as well, such as the <code>song_name</code> and the <code>artist_name</code> (the data set originally came from a data set with artists other than Beyonce).</p>
+<p>You can look at the first 4 values of <code>line</code> with</p>
+<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">beyonce</span><span class="op">$</span><span class="va">line</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
+<span class="co">#&gt; [1] "If I ain't got nothing, I got you"                       </span>
+<span class="co">#&gt; [2] "If I ain't got something, I don't give a damn"           </span>
+<span class="co">#&gt; [3] "'Cause I got it with you"                                </span>
+<span class="co">#&gt; [4] "I don't know much about algebra, but I know 1+1 equals 2"</span></code></pre></div>
+<p>Our end goal is to construct a plot that shows the most popular words in Beyonce’s albums. This is much more challenging than it sounds because we will have to deal with the nuances of working with text data.</p>
+<p>The <code>tidytext</code> package makes it a lot easier to work with text data in many regards. Let’s use the <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code> functions from <code>tidytext</code> to separate the lines into individual words. We’ll name this new data set <code>beyonce_unnest</code>:</p>
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
+<span class="va">beyonce_unnest</span> <span class="op">&lt;-</span> <span class="va">beyonce</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"word"</span>, input <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span>
+<span class="va">beyonce_unnest</span>
+<span class="co">#&gt; # A tibble: 164,740 x 6</span>
+<span class="co">#&gt;    song_id song_name artist_id artist_name song_line word   </span>
+<span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  </span>
+<span class="co">#&gt;  1   50396 1+1             498 Beyoncé             1 if     </span>
+<span class="co">#&gt;  2   50396 1+1             498 Beyoncé             1 i      </span>
+<span class="co">#&gt;  3   50396 1+1             498 Beyoncé             1 ain't  </span>
+<span class="co">#&gt;  4   50396 1+1             498 Beyoncé             1 got    </span>
+<span class="co">#&gt;  5   50396 1+1             498 Beyoncé             1 nothing</span>
+<span class="co">#&gt;  6   50396 1+1             498 Beyoncé             1 i      </span>
+<span class="co">#&gt;  7   50396 1+1             498 Beyoncé             1 got    </span>
+<span class="co">#&gt;  8   50396 1+1             498 Beyoncé             1 you    </span>
+<span class="co">#&gt;  9   50396 1+1             498 Beyoncé             2 if     </span>
+<span class="co">#&gt; 10   50396 1+1             498 Beyoncé             2 i      </span>
+<span class="co">#&gt; # … with 164,730 more rows</span></code></pre></div>
+<p>We’ll want to make sure that either all words are capitalized or no words are capitalized, for consistency (remember that <code>R</code> is case-sensitive). To that end, we’ll modify the <code>word</code> variable and use <code>stringr</code>’s <code>str_to_lower()</code> to change all letters to lower-case:</p>
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">beyonce_unnest</span> <span class="op">&lt;-</span> <span class="va">beyonce_unnest</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>word <span class="op">=</span> <span class="fu">str_to_lower</span><span class="op">(</span><span class="va">word</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Let’s try counting up Beyonce’s most popular words from the data set we just made:</p>
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">beyonce_unnest</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">word</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6,469 x 2</span>
+<span class="co">#&gt;    word      n</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 you    7693</span>
+<span class="co">#&gt;  2 i      6669</span>
+<span class="co">#&gt;  3 the    4719</span>
+<span class="co">#&gt;  4 me     3774</span>
+<span class="co">#&gt;  5 to     3070</span>
+<span class="co">#&gt;  6 it     2999</span>
+<span class="co">#&gt;  7 a      2798</span>
+<span class="co">#&gt;  8 my     2676</span>
+<span class="co">#&gt;  9 and    2385</span>
+<span class="co">#&gt; 10 on     2344</span>
+<span class="co">#&gt; # … with 6,459 more rows</span></code></pre></div>
+<p>What’s the issue here?</p>
+<p>To remedy this, we can use what are called <strong>stop words</strong>: words that are very common and carry little to no meaningful information. For example <em>the</em>, <em>it</em>, <em>are</em>, etc. are all <strong>stop words</strong>. We need to eliminate these from the data set before we continue on. Luckily, the <code>tidytext</code> package also provides a data set of common stop words in a data set named <code>stop_words</code>:</p>
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="co">#&gt;   word      lexicon</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;  </span>
+<span class="co">#&gt; 1 a         SMART  </span>
+<span class="co">#&gt; 2 a's       SMART  </span>
+<span class="co">#&gt; 3 able      SMART  </span>
+<span class="co">#&gt; 4 about     SMART  </span>
+<span class="co">#&gt; 5 above     SMART  </span>
+<span class="co">#&gt; 6 according SMART</span></code></pre></div>
+<p>Let’s join the Beyonce lyrics data set to the stop words data set and elminate any stop words:</p>
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">beyonce_stop</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">beyonce_unnest</span>, <span class="va">stop_words</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"word"</span> <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Then, we can re-make the table with the stop words removed:</p>
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">beyonce_sum</span> <span class="op">&lt;-</span> <span class="va">beyonce_stop</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">word</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://docs.ropensci.org/skimr/reference/print.html">print</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 5,937 x 2</span>
+<span class="co">#&gt;    word        n</span>
+<span class="co">#&gt;    &lt;chr&gt;   &lt;int&gt;</span>
+<span class="co">#&gt;  1 love     1362</span>
+<span class="co">#&gt;  2 baby     1024</span>
+<span class="co">#&gt;  3 girl      592</span>
+<span class="co">#&gt;  4 wanna     564</span>
+<span class="co">#&gt;  5 hey       499</span>
+<span class="co">#&gt;  6 boy       494</span>
+<span class="co">#&gt;  7 yeah      491</span>
+<span class="co">#&gt;  8 feel      488</span>
+<span class="co">#&gt;  9 time      452</span>
+<span class="co">#&gt; 10 uh        408</span>
+<span class="co">#&gt; 11 halo      383</span>
+<span class="co">#&gt; 12 check     366</span>
+<span class="co">#&gt; 13 tonight   342</span>
+<span class="co">#&gt; 14 girls     341</span>
+<span class="co">#&gt; 15 ya        327</span>
+<span class="co">#&gt; 16 run       325</span>
+<span class="co">#&gt; 17 crazy     308</span>
+<span class="co">#&gt; 18 world     301</span>
+<span class="co">#&gt; 19 body      287</span>
+<span class="co">#&gt; 20 ooh       281</span>
+<span class="co">#&gt; 21 ladies    269</span>
+<span class="co">#&gt; 22 top       241</span>
+<span class="co">#&gt; 23 gotta     240</span>
+<span class="co">#&gt; 24 beyoncé   238</span>
+<span class="co">#&gt; 25 night     213</span>
+<span class="co">#&gt; # … with 5,912 more rows</span>
+<span class="va">beyonce_sum</span>
+<span class="co">#&gt; # A tibble: 5,937 x 2</span>
+<span class="co">#&gt;    word      n</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 love   1362</span>
+<span class="co">#&gt;  2 baby   1024</span>
+<span class="co">#&gt;  3 girl    592</span>
+<span class="co">#&gt;  4 wanna   564</span>
+<span class="co">#&gt;  5 hey     499</span>
+<span class="co">#&gt;  6 boy     494</span>
+<span class="co">#&gt;  7 yeah    491</span>
+<span class="co">#&gt;  8 feel    488</span>
+<span class="co">#&gt;  9 time    452</span>
+<span class="co">#&gt; 10 uh      408</span>
+<span class="co">#&gt; # … with 5,927 more rows</span></code></pre></div>
+<p>Looking through the list, there are <strong>still</strong> some stop words in there that were not picked up on in the <code>stop_words</code> data set. We will address these, as well as make a plot, in the exercises.</p>
+<div id="exercise-12-1" class="section level3" number="13.1.1">
+<h3>
+<span class="header-section-number">13.1.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-12-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="text-data-with-tidytext-and-stringr.html#solutions-12">13.4</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the <code>tidytext</code> package? Create a tibble with a few of the remaining stop words (like <code>ooh</code>, <code>gotta</code>, <code>ya</code>, <code>uh</code>, and <code>yeah</code>) not picked up by the <code>tidytext</code> package, and use a join function to drop these words from the data set.</p></li>
+<li><p>With the new data set, construct a point plot or a bar plot that shows the 20 most common words Beyonce uses, as well as the number of times each word is used.</p></li>
+<li><p>Use the <code><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">wordcloud()</a></code> function in the <code>wordcloud</code> library and the code below to make a wordcloud of Beyonce’s words.</p></li>
+</ol>
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## install.packages("wordcloud")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://blog.fellstat.com/?cat=11">wordcloud</a></span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: RColorBrewer</span>
+<span class="va">beyonce_small</span> <span class="op">&lt;-</span> <span class="va">beyonce_sum</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">wordcloud</a></span><span class="op">(</span><span class="va">beyonce_small</span><span class="op">$</span><span class="va">word</span>, <span class="va">beyonce_small</span><span class="op">$</span><span class="va">n</span>, 
+          colors <span class="op">=</span> <span class="fu">brewer.pal</span><span class="op">(</span><span class="fl">8</span>, <span class="st">"Dark2"</span><span class="op">)</span>, scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">.2</span><span class="op">)</span>,
+          random.order <span class="op">=</span> <span class="cn">FALSE</span>, random.color <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>Then, use <code><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">?wordcloud</a></code> to read about what the various arguments like <code>random.order</code>, <code>scale</code>, and <code>random.color</code> do.</p>
+<p>If you want to delve into text data more, you’ll need to learn about <em>regular expressions</em> , or <em>regexes</em>. If interested, you can read more in the <a href="https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions" target="_blank">R4DS textbook</a>. Starting out is not too bad, but learning about escaping special characters in <code>R</code> can be much more challenging!</p>
+<p>We analyzed a short text data set, but, you can imagine extending this type of analysis to things like:</p>
+<ul>
+<li>song lyrics, if you have the lyrics to all of the songs from an artist <a href="https://rpubs.com/RosieB/taylorswiftlyricanalysis" class="uri">https://rpubs.com/RosieB/taylorswiftlyricanalysis</a>
+</li>
+<li>book analysis, if you have the text of an entire book or series of books</li>
+<li>tv analysis, if you have the scripts to all episodes of a tv show</li>
+</ul>
+<p>If you were doing one of these analyses, there are lots of cool functions in <code>tidytext</code> to help you out! We will do one more example, this time looking at Donald Trump’s twitter account in 2016.</p>
+</div>
+</div>
+<div id="basic-sentiment-analysis" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> Basic Sentiment Analysis<a class="anchor" aria-label="anchor" href="#basic-sentiment-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p>We will use a provided .Rmd file to replicate a sentiment analysis on Trump’s twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.</p>
+<p>The .Rmd file used for this is posted on Sakai. We will see more uses of <code>stringr</code> for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike all previous sections, you will not be expected to do a sentiment analysis on your own.</p>
+<!-- see below: sentiment analysis for the friends package -->
+<!-- https://amirdjv.netlify.app/post/rating-and-sentiment-analysis-for-friends/ -->
+<!-- additional resource: https://www.tidytextmining.com/tidytext.html -->
+</div>
+<div id="chapexercise-12" class="section level2" number="13.3">
+<h2>
+<span class="header-section-number">13.3</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-12"><i class="fas fa-link"></i></a>
+</h2>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="text-data-with-tidytext-and-stringr.html#solutions-12">13.4</a>.</p>
+<p>There are no Chapter Exercises.</p>
+</div>
+<div id="solutions-12" class="section level2" number="13.4">
+<h2>
+<span class="header-section-number">13.4</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-12"><i class="fas fa-link"></i></a>
+</h2>
+<div id="text-analysis-s" class="section level3" number="13.4.1">
+<h3>
+<span class="header-section-number">13.4.1</span> Text Analysis S<a class="anchor" aria-label="anchor" href="#text-analysis-s"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are no solutions.</p>
+</div>
+<div id="second-example-s" class="section level3" number="13.4.2">
+<h3>
+<span class="header-section-number">13.4.2</span> Second Example S<a class="anchor" aria-label="anchor" href="#second-example-s"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are no solutions.</p>
+</div>
+<div id="chapexercise-12-S" class="section level3" number="13.4.3">
+<h3>
+<span class="header-section-number">13.4.3</span> Chapter Exercises S<a class="anchor" aria-label="anchor" href="#chapexercise-12-S"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are no solutions.</p>
+</div>
+</div>
+<div id="rcode-12" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-12"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="va">beyonce</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/beyonce_lyrics.csv"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">beyonce</span><span class="op">)</span>
+<span class="va">beyonce</span><span class="op">$</span><span class="va">line</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
+<span class="va">beyonce_unnest</span> <span class="op">&lt;-</span> <span class="va">beyonce</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"word"</span>, input <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span>
+<span class="va">beyonce_unnest</span>
+<span class="va">beyonce_unnest</span> <span class="op">&lt;-</span> <span class="va">beyonce_unnest</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>word <span class="op">=</span> <span class="fu">str_to_lower</span><span class="op">(</span><span class="va">word</span><span class="op">)</span><span class="op">)</span>
+<span class="va">beyonce_unnest</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">word</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span>
+<span class="va">beyonce_stop</span> <span class="op">&lt;-</span> <span class="fu">anti_join</span><span class="op">(</span><span class="va">beyonce_unnest</span>, <span class="va">stop_words</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"word"</span> <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">beyonce_sum</span> <span class="op">&lt;-</span> <span class="va">beyonce_stop</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">word</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://docs.ropensci.org/skimr/reference/print.html">print</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>
+<span class="va">beyonce_sum</span>
+<span class="co">## install.packages("wordcloud")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://blog.fellstat.com/?cat=11">wordcloud</a></span><span class="op">)</span>
+<span class="va">beyonce_small</span> <span class="op">&lt;-</span> <span class="va">beyonce_sum</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">wordcloud</a></span><span class="op">(</span><span class="va">beyonce_small</span><span class="op">$</span><span class="va">word</span>, <span class="va">beyonce_small</span><span class="op">$</span><span class="va">n</span>, 
+          colors <span class="op">=</span> <span class="fu">brewer.pal</span><span class="op">(</span><span class="fl">8</span>, <span class="st">"Dark2"</span><span class="op">)</span>, scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">.2</span><span class="op">)</span>,
+          random.order <span class="op">=</span> <span class="cn">FALSE</span>, random.color <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="dates-with-lubridate.html"><span class="header-section-number">12</span> Dates with lubridate</a></div>
+<div class="next"><a href="predictive-modeling-with-knn.html"><span class="header-section-number">14</span> Predictive Modeling with knn</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#text-data-with-tidytext-and-stringr"><span class="header-section-number">13</span> Text Data with tidytext and stringr</a></li>
+<li>
+<a class="nav-link" href="#text-analysis"><span class="header-section-number">13.1</span> Text Analysis</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-12-1"><span class="header-section-number">13.1.1</span> Exercises</a></li></ul>
+</li>
+<li><a class="nav-link" href="#basic-sentiment-analysis"><span class="header-section-number">13.2</span> Basic Sentiment Analysis</a></li>
+<li><a class="nav-link" href="#chapexercise-12"><span class="header-section-number">13.3</span> Chapter Exercises</a></li>
+<li>
+<a class="nav-link" href="#solutions-12"><span class="header-section-number">13.4</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#text-analysis-s"><span class="header-section-number">13.4.1</span> Text Analysis S</a></li>
+<li><a class="nav-link" href="#second-example-s"><span class="header-section-number">13.4.2</span> Second Example S</a></li>
+<li><a class="nav-link" href="#chapexercise-12-S"><span class="header-section-number">13.4.3</span> Chapter Exercises S</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#rcode-12"><span class="header-section-number">13.5</span> Non-Exercise R Code</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-11-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

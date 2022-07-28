@@ -7,7 +7,7 @@
 <title> 2 Getting Started with R and R Studio | STAT 234: Data Science</title>
 <meta name="author" content="Matt Higham">
 <meta name="description" content="Goals: Use R Studio on the server Use R Markdown and code chunks Load in data to R Studio Run code and change a few things within that code Correct some common errors when running code in R  2.1...">
-<meta name="generator" content="bookdown 0.22.17 with bs4_book()">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content=" 2 Getting Started with R and R Studio | STAT 234: Data Science">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://highamm.github.io/datascience234/intro.html">
@@ -15,10 +15,14 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 2 Getting Started with R and R Studio | STAT 234: Data Science">
 <meta name="twitter:description" content="Goals: Use R Studio on the server Use R Markdown and code chunks Load in data to R Studio Run code and change a few things within that code Correct some common errors when running code in R  2.1...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -41,19 +45,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
 <li><a class="active" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
 <li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
 <li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
-<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">5</span> Tidying with tidyr</a></li>
-<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">6</span> Communication with RMarkdown</a></li>
-<li><a class="" href="r-basics.html"><span class="header-section-number">7</span> R Basics</a></li>
-<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">8</span> Factors with forcats</a></li>
-<li><a class="" href="reprexes-and-import.html"><span class="header-section-number">9</span> Reprexes and Import</a></li>
-<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
-<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">11</span> Merging with dplyr</a></li>
-<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">12</span> Dates with lubridate</a></li>
-<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">13</span> Text Data with tidytext and stringr</a></li>
-<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">14</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">5</span> Communication with RMarkdown</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="" href="reprexes-and-import.html"><span class="header-section-number">10</span> Reprexes and Import</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">11</span> Data Ethics</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
 </ul>
 
         <div class="book-extra">
@@ -84,7 +94,7 @@
 &lt;&gt; for Macs and <a href="https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118" target="_blank">https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118 </a> for Windows.</p>
 <p>Next, create a subfolder within your STAT_234 folder. Title it <em>Notes</em> (or whatever you want really).</p>
 <p>Then, create an <code>R Project</code> by Clicking File -&gt; New Project -&gt; Existing Directory, navigate to the <em>Notes</em> folder, and click <em>Create Project</em>.</p>
-<p>Within this folder, click the <em>New Folder</em> button in your bottom-left window and name a new folder <em>data</em>. Then, download the data.zip file from Sakai (in Resources). Upload that file in to the server by clicking “Upload” in the bottom right panel. In the dialog box that appears, you can click “Choose File” and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.</p>
+<p>Within this folder, click the <em>New Folder</em> button in your bottom-left window and name a new folder <em>data</em>. Then, download the data.zip file from Canvas (in Resources). Upload that file in to the server by clicking “Upload” in the bottom right panel. In the dialog box that appears, you can click “Choose File” and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.</p>
 <p>Finally, we want to create a new <code>R Markdown</code> file by clicking File -&gt; New File -&gt; <code>R Markdown</code>. You can give your new <code>R Markdown</code> file a title if you want, and then click okay.</p>
 <p>Before moving on, click the <strong>Knit</strong> button in the top-left window at the top of the menu bar (look for the knitting needle icon). Make sure that the file knits to a pretty-looking .html file. The newly knitted .html file can now be found in your folder with your <code>R</code> project.</p>
 </div>
@@ -136,8 +146,17 @@
 <li><p>(Recommended) Clicking “Command + Enter” on a Mac or “Control + Enter” on a PC.</p></li>
 </ol>
 <p>Note that all code appears in grey boxes surrounded by three backticks while normal text has a different colour background with no backticks.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning: replacing previous import</span>
+<span class="co">#&gt; 'lifecycle::last_warnings' by 'rlang::last_warnings' when</span>
+<span class="co">#&gt; loading 'pillar'</span>
+<span class="co">#&gt; Warning: replacing previous import</span>
+<span class="co">#&gt; 'lifecycle::last_warnings' by 'rlang::last_warnings' when</span>
+<span class="co">#&gt; loading 'tibble'</span>
+<span class="co">#&gt; Warning: replacing previous import</span>
+<span class="co">#&gt; 'lifecycle::last_warnings' by 'rlang::last_warnings' when</span>
+<span class="co">#&gt; loading 'hms'</span></code></pre></div>
 <p>When you run the previous line, some text will appear in the bottom-left window. We won’t worry too much about what this text means now, but we also won’t ignore it completely. You should be able to spot the 8 core <code>tidyverse</code> packages listed above as well as some numbers that follow each package. The numbers correspond to the package version. There’s some other things too, but as long as this text does not start with “Error:” you’re good to go!</p>
 <p>Congrats on running your first line of code for this class! This particular code isn’t particularly exciting because it doesn’t really do anything that we can see.</p>
 <p>We have run <code>R</code> code using an <code>R</code> chunk. In your <code>R</code> chunk, on a new line, try typing in a basic calculation, like <code>71 + 9</code> or <code>4 / 3</code>, them run the line and observe the result.</p>
@@ -150,15 +169,15 @@
 <p>We will be looking at two data sets just to get a little bit of a preview of things we will be working on for the rest of the semester. <strong>Important</strong>: Do not worry about understanding what the following code is doing at this point. There will be plenty of time to understand this in the weeks ahead. The purpose of this section is just to get used to using <code>R</code>: there will be more detailed explanations and exercises about the functions used and various options in the coming weeks. In particular, the following code uses the <code>ggplot2</code>, <code>dplyr</code>, and <code>tidyr</code> packages, which we will cover in detail throughout the first ~ 3-4 weeks of this course.</p>
 <p>Data for this first part was obtained from fivethirtyeight at <a href="https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption" target="_blank">Five Thirty Eight GitHub page</a>.</p>
 <p>The first step is to read the data set into <code>R</code>. Though you have already downloaded alcohol.csv in the data zip, we still need to load it into <code>R</code>. Check to make sure the alcohol.csv is in the data folder in your bottom-right hand window. The following code can be copied to an <code>R</code> code chunk to read in the data:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/alcohol.csv"</span><span class="op">)</span></code></pre></div>
 <p>Note that we do not need the full file extension <strong>if</strong> we have the data set in an <code>R</code> project.</p>
 <p>Did something show up in your console window? If so, great! If not, make sure that the data set is in the data folder and that you have an <code>R</code> project set up.</p>
 <p>We would like to name our data set something so that we could easily reference it later, so name your data set using the <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> operator, as in</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alcohol_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/alcohol.csv"</span><span class="op">)</span></code></pre></div>
 <p>You can name your data set whatever you want to (with a few restrictions). I’ve named it <code>alcohol_data</code>. Now, if you run the line of code above where you name the data set, and run <code>alcohol_data</code>, you should see the data set appear:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alcohol_data</span>
 <span class="co">#&gt; # A tibble: 193 x 5</span>
 <span class="co">#&gt;    country       beer_servings spirit_servings wine_servings</span>
@@ -189,14 +208,14 @@
 <code>total_litres_of_pure_alcohol</code>: the average total litres of pure alcohol consumed per person per year.</li>
 </ul>
 <p>One goal of this class is for you to be able to pose questions about a data set and then use the tools we will learn to answer those questions. For example, we might want to know what the distribution of total litres of alcohol consumed per person looks like across countries. To do this, we can make a plot with the <code>ggplot2</code> package, one of the packages that automatically loads with <code>tidyverse</code>. We might start by constructing the following plot. <strong>Reminder</strong>: the goal of this is not for everyone to understand the code in this plot, so don’t worry too much about that.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">alcohol_data</span>,
        mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span><span class="va">total_litres_of_pure_alcohol</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"white"</span>, bins <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="01-intro_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
 <p>I now want to see where the United States (<code>USA</code>) falls on this distribution by drawing a red vertical line for the total litres of alcohol consumed in the United States. To do so, I’ll first use the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function in the <code>dplyr</code> package (again, we will learn about that function in detail later). Copy and paste the following lines of code into a new <code>R</code> chunk. Then, run the lines.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">small_df</span> <span class="op">&lt;-</span> <span class="va">alcohol_data</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"USA"</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">small_df</span> <span class="op">&lt;-</span> <span class="va">alcohol_data</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"USA"</span><span class="op">)</span>
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">alcohol_data</span>,
        mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span><span class="va">total_litres_of_pure_alcohol</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"white"</span>, bins <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">+</span>
@@ -204,8 +223,8 @@
              <span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">total_litres_of_pure_alcohol</span><span class="op">)</span>,
              colour <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
 <p>It looks like there are some countries that consume little to no alcohol. We might want to know what these countries are:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">alcohol_data</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">total_litres_of_pure_alcohol</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alcohol_data</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">total_litres_of_pure_alcohol</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 13 x 5</span>
 <span class="co">#&gt;    country       beer_servings spirit_servings wine_servings</span>
 <span class="co">#&gt;    &lt;chr&gt;                 &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;</span>
@@ -226,22 +245,22 @@
 <span class="co">#&gt; #   total_litres_of_pure_alcohol &lt;dbl&gt;</span></code></pre></div>
 <p>It looks like there are 13 countries in the data set that consume no alcohol. Note that, in the chunk above, we have to use in <code>total_litres_of_pure_alcohol</code> as the variable name because this is the name of the variable in the data set. Even something like spelling litres in the American English liters (<code>total_liters_of_pure_alcohol</code>) would throw an error because this isn’t the exact name of the variable in the data set. This is something that can be very aggravating when you are first learning any coding language.</p>
 <p>Now suppose that we want to know the 3 countries that consume the most beer, the 3 countries that consume the most spirits, and the 3 countries that consume the most wine per person. If you’re a trivia person, you can form some guesses. Without cheating, I am going to guess (Germany, USA, and UK) for beer, (Spain, Italy, and USA) for wine, and (Russia, Poland, and Lithuania) for spirits. Let’s do beer first!</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">alcohol_data</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>rankbeer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">beer_servings</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">arrange</span><span class="op">(</span><span class="va">rankbeer</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alcohol_data</span> |&gt; <span class="fu">mutate</span><span class="op">(</span>rankbeer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">beer_servings</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">rankbeer</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">rankbeer</span> <span class="op">&lt;=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p>Let’s do the same thing for Wine and Spirits:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">alcohol_data</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>rankwine <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">wine_servings</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">arrange</span><span class="op">(</span><span class="va">rankwine</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alcohol_data</span> |&gt; <span class="fu">mutate</span><span class="op">(</span>rankwine <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">wine_servings</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">rankwine</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">rankwine</span> <span class="op">&lt;=</span> <span class="fl">3</span><span class="op">)</span>
 
-<span class="va">alcohol_data</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>rankspirits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">spirit_servings</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">arrange</span><span class="op">(</span><span class="va">rankspirits</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">alcohol_data</span> |&gt; <span class="fu">mutate</span><span class="op">(</span>rankspirits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">spirit_servings</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">rankspirits</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">rankspirits</span> <span class="op">&lt;=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p>Finally, suppose that I want to know which country consumes the most wine relative to their beer consumption? Let’s first look at this question graphically. I need to tidy the data first with the <code>pivot_longer()</code> function from the <code>tidyr</code> package:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">onecountry_df</span> <span class="op">&lt;-</span> <span class="va">alcohol_data</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">onecountry_df</span> <span class="op">&lt;-</span> <span class="va">alcohol_data</span> |&gt; 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"Denmark"</span><span class="op">)</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span>
@@ -256,10 +275,10 @@
 <div class="inline-figure"><img src="01-intro_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
 <p>The x-axis corresponds to beer servings while the y-axis corresponds to wine servings. A reference line is given so with countries above the line consuming more wine than beer. We will get into how to make a plot like this later: for now, copy the code chunk and change the labeled point so that it corresponds to a country that interests you (other than Denmark).
 We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">alcohol_data</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>wbratio <span class="op">=</span> <span class="va">wine_servings</span> <span class="op">/</span> <span class="va">beer_servings</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">wbratio</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alcohol_data</span> |&gt;
+  <span class="fu">mutate</span><span class="op">(</span>wbratio <span class="op">=</span> <span class="va">wine_servings</span> <span class="op">/</span> <span class="va">beer_servings</span><span class="op">)</span> |&gt;
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">wbratio</span><span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu">select</span><span class="op">(</span><span class="va">country</span>, <span class="va">beer_servings</span>, <span class="va">wine_servings</span>, <span class="va">wbratio</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 193 x 4</span>
 <span class="co">#&gt;    country             beer_servings wine_servings wbratio</span>
@@ -285,7 +304,7 @@ We might be able to better answer the original question numerically by computing
 <li><p>In the histogram of total alcohol consumption, pick a country other than the USA that interests you. See if you can change the code in the chunk that made the histogram so that the red vertical line is drawn for the country that interests you.</p></li>
 </ol>
 <p>Hint: Use the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> function to look at the alcohol data set by typing <code><a href="https://rdrr.io/r/utils/View.html">View(alcohol_data)</a></code> in your bottom-left window to help you see which countries are in the data set.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">alcohol_data</span><span class="op">)</span></code></pre></div>
 <p>Note: careful about capitalization: <code>R</code> is case sensitive so USA is different than usa.</p>
 <ol start="3" style="list-style-type: decimal">
@@ -320,7 +339,7 @@ We might be able to better answer the original question numerically by computing
 <code>Gender</code> (Male or Female)</li>
 </ul>
 <p>We will first read in the data set below and name it <code>athletes</code>. We can then use the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function to look at the first few rows of the data set.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">athletes</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/athletesdata.csv"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">athletes</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 9</span>
@@ -334,25 +353,25 @@ We might be able to better answer the original question numerically by computing
 <span class="co">#&gt; 6     6 Amar…    27 Bask…      5000000 26700000 2.17e7    32</span>
 <span class="co">#&gt; # … with 1 more variable: Gender &lt;chr&gt;</span></code></pre></div>
 <p>There are many different interesting questions to answer with this data set. First, we might be interested in the relationship between athlete age and salary for the top 100 athletes. Recall from an earlier stat course that one appropriate graphic to examine this relationship is a scatterplot:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">athletes</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">age</span>, y <span class="op">=</span> <span class="va">salary</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_smooth</span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="01-intro_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
 <p>Do you see anything strange with the scatterplot? What do you think the y-axis tick labels of 2.5e+07, 5.0e+07, etc. mean?</p>
 <p>Now let’s see if we can count the number of athletes in the Top 100 that are in my personal favourite sport, Tennis:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">athletes</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">Sport</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarise</span><span class="op">(</span>counts <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">athletes</span> |&gt; <span class="fu">group_by</span><span class="op">(</span><span class="va">Sport</span><span class="op">)</span> |&gt;
+  <span class="fu">summarise</span><span class="op">(</span>counts <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Sport</span> <span class="op">==</span> <span class="st">"Tennis"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 2</span>
 <span class="co">#&gt;   Sport  counts</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt;</span>
 <span class="co">#&gt; 1 Tennis      6</span></code></pre></div>
 <p>It looks like there are 6 athletes: we can see who they are and sort them by their <code>Rank</code> with:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">athletes</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Sport</span> <span class="op">==</span> <span class="st">"Tennis"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">athletes</span> |&gt;
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Sport</span> <span class="op">==</span> <span class="st">"Tennis"</span><span class="op">)</span> |&gt;
   <span class="fu">arrange</span><span class="op">(</span><span class="va">Rank</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 9</span>
 <span class="co">#&gt;    ...1 Name   Rank Sport endorsements totalpay salary   age</span>
@@ -365,9 +384,12 @@ We might be able to better answer the original question numerically by computing
 <span class="co">#&gt; 6    89 Sere…    55 Tenn…     11000000 22000000 1.1 e7    33</span>
 <span class="co">#&gt; # … with 1 more variable: Gender &lt;chr&gt;</span></code></pre></div>
 <p>Finally, let’s see if we can compare the ratio of endorsements (from commercials and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">athletes</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Sport</span> <span class="op">==</span> <span class="st">"Football"</span> <span class="op">|</span> <span class="va">Sport</span> <span class="op">==</span> <span class="st">"Basketball"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">.</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sport</span>, y <span class="op">=</span> <span class="va">endorsements</span> <span class="op">/</span> <span class="va">salary</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">football_basketball</span> <span class="op">&lt;-</span> <span class="va">athletes</span> |&gt;
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Sport</span> <span class="op">==</span> <span class="st">"Football"</span> <span class="op">|</span> <span class="va">Sport</span> <span class="op">==</span> <span class="st">"Basketball"</span><span class="op">)</span>
+
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">football_basketball</span>,
+       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sport</span>, y <span class="op">=</span> <span class="va">endorsements</span> <span class="op">/</span> <span class="va">salary</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Endorsements / Salary"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="01-intro_files/figure-html/unnamed-chunk-17-1.png" width="672"></div>
@@ -399,8 +421,8 @@ We might be able to better answer the original question numerically by computing
 <ol style="list-style-type: decimal">
 <li>A missing parenthesis: any open parenthesis <code>(</code> <strong>needs</strong> to close <code>)</code>. Try running the following code chunk without fixing anything.</li>
 </ol>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> salary) <span class="sc">+</span> </span>
-<span id="cb18-2"><a href="intro.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> salary) <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="intro.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p>Notice in your bottom-left window that the <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> symbol that starts a line changes to a <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>. This is generally bad!! It means that you forgot to close a parenthesis <code>)</code> or a quote (<code>'</code> or <code>"</code>). No code will run since <code>R</code> thinks you are still trying to type something into a function. To fix this issue, click your cursor into the bottom-left window and press Esc. Then, try to find the error in the code chunk.</p>
 <ul>
 <li>Can you find the missing closing parenthesis above?</li>
@@ -408,8 +430,8 @@ We might be able to better answer the original question numerically by computing
 <ol start="2" style="list-style-type: decimal">
 <li>Missing Comma. Try running the following code chunk without fixing anything.</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> salary)) <span class="sc">+</span> </span>
-<span id="cb19-2"><a href="intro.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> salary)) <span class="sc">+</span> </span>
+<span id="cb20-2"><a href="intro.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><code>R</code> gives you an “Error: unexpected symbol in ….” Oftentimes, this means that there is a missing comma or that you spelled a variable name incorrectly.</p>
 <ul>
 <li>Can you find the missed comma above?</li>
@@ -417,21 +439,21 @@ We might be able to better answer the original question numerically by computing
 <ol start="3" style="list-style-type: decimal">
 <li>Capitalization Issues</li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">athletes</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">sport</span> <span class="op">==</span> <span class="st">"Tennis"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">athletes</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">sport</span> <span class="op">==</span> <span class="st">"Tennis"</span><span class="op">)</span></code></pre></div>
 <p>In the original data set, the variable <code>Sport</code> is capitalized. Not capitalizing it means that <code>R</code> won’t be able to find it and proclaims that “object sport not found.”</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Forgetting Quotes. Character strings need to have quotation marks around them. We will discuss more of this later, but graph labels and titles need to have quotes around them since they don’t directly refer to columns or rows in our data set:</li>
 </ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> endorsements)) <span class="sc">+</span> </span>
-<span id="cb21-2"><a href="intro.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">xlab</span>(Popularity Measure)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> athletes, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> endorsements)) <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="intro.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">xlab</span>(Popularity Measure)</span></code></pre></div>
 <p>The error for forgetting quotes is typically an “Unexpected Symbol” though this error is also given for other issues.</p>
 <ul>
 <li>Where are the quotes missing in the code chunk above?</li>
 </ul>
 <p><br></p>
 <p>Finally, you can add a comment to a code chunk with the <code>#</code> symbol (I always use double <code>##</code> for some reason though). This allows you to type a comment into a code chunk that <strong>isn’t</strong> code:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## this is a comment</span>
 <span class="co">## this calculation might be useful later</span>
 <span class="fl">7</span> <span class="op">*</span> <span class="fl">42</span>
@@ -468,12 +490,12 @@ We might be able to better answer the original question numerically by computing
 <li><p>What are your expectations for this class and/or what do you hope to gain from this class?</p></li>
 </ol>
 <p><br></p>
-<p>Knit your .Rmd file into an .html file and submit your knitted .html file to Sakai. If your file won’t knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Sakai. Use the following steps to do so:</p>
+<p>Knit your .Rmd file into an .html file and submit your knitted .html file to Canvas. If your file won’t knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:</p>
 <ol style="list-style-type: decimal">
 <li><p>Click the checkbox next to your knitted .html file.</p></li>
 <li><p>Click the Gear Icon “More” -&gt; Export</p></li>
 <li><p>If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .Rmd).</p></li>
-<li><p>After you export it, the file should appear in your downloads folder. Now, go to Sakai -&gt; Assignments -&gt; Week 0 Exercises and complete the upload process.</p></li>
+<li><p>After you export it, the file should appear in your downloads folder. Now, go to Canvas -&gt; Assignments and complete the upload process.</p></li>
 </ol>
 <p>Nice work: we will dive into <code>ggplot()</code> in the <code>ggplot2</code> package next!</p>
 <p><br></p>
@@ -523,7 +545,7 @@ We might be able to better answer the original question numerically by computing
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-11-16.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-07-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

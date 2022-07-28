@@ -1,16 +1,14 @@
-# `R` Basics
+# Coding in Base `R`
 
 __Goals__:
 
 * describe common classes for variables in a data set.
 * explain why some `R` errors come about from class misspecifications.
 * use indexing to reference rows, columns, or specific observations in a `tibble` or data set.
-* explain when you can and cannot use piping.
-* describe what a server is, when you have to install packages, and what the benefit is of using `R` Projects.
 
 __Motivation__
 
-Why is the chapter on `R` basics not the first chapter that we discuss? There certainly are advantages of doing things that way, but there are also advantages of not starting out with something like "classes of variables in `R`." 
+"Base `R`" generally refers to `R` code that we can use without loading in any outside packages (so this code is __not__ in the `tidyverse` family of packages). Why is the chapter on `R` basics not the first chapter that we discuss? There certainly are advantages of doing things that way, but there are also advantages of not starting out with something like "classes of variables in `R`." 
 
 First, it's not the most inherently interesting thing to look at. It's a lot more fun to make plots and wrangle data. As long as someone makes sure that the variables are already of the "correct" class, then there's no need to talk about this.
 
@@ -39,7 +37,8 @@ Run the code in the following `R` chunk to read in the data.
 
 ```{r, message = FALSE, appendix = TRUE}
 library(tidyverse)
-videogame_df <- read_csv("data/videogame_clean.csv")
+library(here)
+videogame_df <- read_csv(here("data/videogame_clean.csv"))
 head(videogame_df)
 ```
 
@@ -48,7 +47,7 @@ A data frame or tibble holds variables that are allowed to be different classes.
 Run the following lines of code. In some cases, we are only using the first 100 observations in `videogame_small`. Otherwise, the code would take a __very__ long time to run.
 
 ```{r, appendix = TRUE}
-videogame_small <- videogame_df %>% slice(1:100)
+videogame_small <- videogame_df |> slice(1:100)
 ggplot(data = videogame_small, aes(x = release_date, y = price)) +
   geom_point() 
 
@@ -109,7 +108,7 @@ With the character class, `R` will give you a warning and/or a missing value if 
 
 ```{r, appendix = TRUE}
 mean(videogame_df$game)
-videogame_df %>% summarise(maxgame = max(game))
+videogame_df |> summarise(maxgame = max(game))
 ```
 
 You also can't convert a character class to numeric. You can, however, convert a character class to a `<fct>` class, using `as.factor()`. The `<fct>` class will be useful when we discuss the `forcats` package, but isn't particularly useful now.
@@ -122,7 +121,7 @@ class(as.factor(videogame_df$meta_cat))
 In general, `as._____` will lets you convert between classes. Note, however, that we aren't saving our converted variable anywhere. If we wanted the conversion to the factor to be saved in the data set, we can use `mutate()`:
 
 ```{r, appendix = TRUE}
-videogame_df <- videogame_df %>%
+videogame_df <- videogame_df |>
   mutate(meta_cat_factor = as.factor(meta_cat))
 str(videogame_df$meta_cat_factor)
 ```
@@ -178,7 +177,7 @@ str(as.factor(videogame_df$price_cat))
 This is the cause of the odd colour scale that we encountered earlier and can be fixed by converting `price_cat` to a factor:
 
 ```{r, appendix = TRUE}
-videogame_df <- videogame_df %>%
+videogame_df <- videogame_df |>
   mutate(price_factor = as.factor(price_cat)) 
 ggplot(data = videogame_df, aes(x = release_date2, y = metascore)) +
   geom_point(aes(colour = price_factor))
@@ -213,7 +212,7 @@ We will use the fitness data set again for this set of exercises, as the data se
 
 ```{r, message = FALSE}
 library(tidyverse)
-fitness_df <- read_csv("data/higham_fitness_notclean.csv")
+fitness_df <- read_csv(here("data/higham_fitness_notclean.csv"))
 ```
 
 1. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
@@ -350,201 +349,18 @@ b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind`
 2 %in% c(3, 4, 5, 6)
 ```
 
-## Piping with `magrittr`
-
-The pipe `%>%` is loaded automatically when the `tidyverse` library is loaded, but the operator comes from the `magrittr` package. We've been using the pipe quite a bit, but let's delve a little deeper into what it's actually doing.
-
-Let's say you want to `filter()` the data set to include only observations with a `metascore` that isn't missing. We've been using:
-
-```{r, results = "hide", appendix = TRUE}
-videogame_df %>% filter(!is.na(metascore))
-```
-
-What the pipe is doing is putting `videogame_df` as the first argument in the `filter()` function so that the piping statement in the chunk above is equivalent to:
-
-```{r, results = "hide", appendix = TRUE}
-filter(videogame_df, !is.na(metascore))
-```
-
-If we want to first filter out games with a non-missing metascore, get rid of all observations with a median play time of 0, and then obtain the "median" `median_playtime` for each of the 3 price categories, we would typically use
-
-```{r, results = "hide", appendix = TRUE}
-videogame_df %>% filter(!is.na(metascore)) %>%
-  filter(median_playtime > 0) %>%
-  group_by(price_cat) %>%
-  summarise(avg_med_time = median(median_playtime, na.rm = TRUE))
-```
-
-We see from the summary that, in general, games do tend to give you more "bang for the buck": more expensive games tend to have a larger median play time. Consecutive pipes build on each other: we can slowly build out what the pipe is doing step-by-step. Starting from the top, `videogame_df` is the first argument in the `filter(!is.na(metascore))` function:
-
-```{r, results = "hide", appendix = TRUE}
-filter(videogame_df, !is.na(metascore))
-```
-
-`filter(videogame_df, !is.na(metascore))` is the first argument in `filter(median_playtime > 0)`:
-
-```{r, results = "hide", appendix = TRUE}
-filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0)
-```
-
-`filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0)` is the first argument in `group_by(price_cat)`:
-
-```{r, results = "hide", appendix = TRUE}
-group_by(filter(filter(videogame_df, !is.na(metascore)),
-                median_playtime > 0),
-  price_cat)
-```
-
-and `group_by(filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0), price_cat)` is the first argument of `summarise(avg_med_time = median(median_playtime, na.rm = TRUE))`:
-
-```{r, results = "hide", appendix = TRUE}
-summarise(group_by(filter(filter(videogame_df, !is.na(metascore)),
-  median_playtime > 0), price_cat), 
-  avg_med_time = median(median_playtime, na.rm = TRUE))
-```
-
-and we obtain the same result without the `%>%` pipe. The example shows that, for our purposes, the pipe is most useful in aiding the readability of our code. It's a lot easier to see what's happening in the code chunk with the pipes than it is in the previous code chunk without the pipe. 
-
-### When You Can't Use the Pipe
-
-So, the pipe is a convenient way to put what precedes the pipe as the first argument to the function that follows the pipe. It's important to understand this as you learn more about `R` because, while the functions in `tidyverse` are purposefully made to make good use of the pipe, not all functions in `R` utilize the pipe. Most of the functions in the `tidyverse` have a first argument that is a data set (which is why we can use pipes consecutively), but this isn't the case with all `R` functions.
-
-For example, if you have taken STAT 213, you've used `lm()` to fit many different types of linear models. If you haven't taken STAT 213, `lm(response ~ explanatory)` stands for "linear model" and can be used to fit the simple linear regression model that you learned about in STAT 113. You might expect something like this to work:
-
-```{r, error = TRUE}
-videogame_df %>% lm(metascore ~ price)
-```
-
-But it throws us an error. Typing in `?lm` reveals that its first argument is a `formula` to fit the model, not a data set. So the function is trying to run
-
-```{r, error = TRUE}
-lm(videogame_df, metascore ~ price)
-```
-
-which doesn't work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).
-
-### Exercises {#exercise-6-4}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
-
-1. \* Recode the following to look cleaner by using the pipe `%>%`:
-
-```{r}
-summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
-                   month),
-          meanweekend = mean(distance, na.rm = TRUE)) 
-```
-
-2. Explain why the following code gives a warning message and returns `NA`. Use the list of Arguments in `?mean` in your explanation.
-
-```{r, echo = TRUE}
-fitness_df %>% mean(distance, na.rm = TRUE)
-```
-
-```{r, echo = FALSE}
-## the first argument of mean() is not a data set or `tibble`. Therefore,
-## fitness_df %>% mean(distance, na.rm = TRUE), which is equivalent to
-## mean(fitness_df, distance, na.rm = TRUE)
-## doesn't make any sense.
-```
-
-## `R` Cleanup: Other Topics
-
-### `R Projects` and Working Directories
-
-`R Projects` are a convenient way to keep related code, data sets, and analyses together. Read this very short introduction in `R` for Data Science here: <a href="https://r4ds.had.co.nz/workflow-projects.html#paths-and-directories" target="_blank">https://r4ds.had.co.nz/workflow-projects.html#paths-and-directories</a> and <a href="https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects" target="_blank">https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects</a>.
-
-Why should you rarely use an absolute directory?
-
-Look at the top of your bottom-left terminal window. If you've made an `R project` (which you should have!), you should see that a file path that is the current folder you're working in. This is where `R Studio` will look for files by default. So,
-
-```{r, results = "hide", appendix = TRUE}
-fitness_df <- read_csv("data/higham_fitness_notclean.csv")
-```
-
-starts at the path given in the console, looks for a folder called `data` in that path and looks for a file called `higham_fitness_notclean.csv` in the data folder. 
-
-If you zipped up your project and sent it to someone else, they'd be able to open it and read that data file without needing to change any directory code!
-
-### `R Studio` Server
-
-The `R Studio` server is a computer that is set-up to carry out any `R`-based analyses for students with remote access to the computer (in our case, through SLU Login credentials). It might be helpful to think about the server as a large machine with no keyboard and no screen: it's only purpose is to execute the code.  
-
-`R` and `R Studio` are completely free, so you can install both on most computers (not Chromebooks though). The `R Studio` server has a couple of advantages, particularly for a classroom or workshop setting:
-
-* using the server ensures that we are all using the same version of `R`. In theory, if one person gets an error, then everyone should get that same error.
-
-* installing `R` and `R Studio` on your personal device is much easier after you've had some experience using it through the server.
-
-* you don't need a computer that is capable of running `R` to use the server (you can use a tablet or a Chromebook since the server does all of the actual computation).
-
-This week, however, we will move away from the server and, if you have a device that can install `R` (pretty much any computer that isn't a Chromebook), you will install `R` on your own device. Though the server does have some advantages, there are also some disadvantages:
-
-* you won't have your SLU login forever, so, if you wanted to use `R` post graduation, you'd need to know how to install it.
-
-* you haven't had experience installing `R` packages. This is quite easy to do, but I've installed all necessary `R` packages on the server for us so you haven't had to worry about this step.
-
-* the server requires good Internet access and also has the potential to crash.
-
-### Installing `R` Packages
-
-So far, either myself or one of the other statistics faculty members have installed all packages that we've needed to use on the server globally. These packages include `tidyverse`, `ggthemes`, and `ggrepel`. However, if you want to use a package that isn't installed on the server, or, you want to use a package using `R Studio` on your own personal computer, you need to install it first. 
-
-Installation only needs to happen once (or until you upgrade `R`, which usually doesn't happen too often), whereas the package needs to be loaded with `library()` __every__ time you open `R`. The analogy of a  <a href="https://hbctraining.github.io/Intro-to-R/img/install_vs_library.jpeg" target="_blank">lightbulb might be helpful</a>. You only need to screw in the lightbulb into a socket once, but, every time you want the lightbulb to provide light, you need to flip the light switch.
-
-In the lightbulb analogy, what does putting the lightbulb into the socket correspond to? What does flipping the light switch correspond to?
-
-When you have `R` on your own computer, you'll need to install __all__ packages that you want to use (but, remember that you just need to install each package once). 
-
-### Exercises {#exercise-6-5}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
-
-1. \* Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
-
-2. Occasionally, something odd will happen in your `R` session where a "turn it off and turn it back on" strategy is the best fix. Save your current file, and restart `R` by clicking Session -> Restart R. 
-
-3. We've seen how `R Projects` are useful for keeping a data analysis organized. For large-scale data analysis projects, it's usually nice to have a a specific folder for "data" within the `R Project` folder. Thus far, we have used a data folder, but you could also put a data set in the same directory as an `R Project`. Move the fitness data set out of the data folder and into the folder of your current `R Project`.
-To do so, click the checkbox next to the video games data set and the fitness data set, click "More" -> Move and select the main folder.
-
-4. Now that your data set is in a different spot, you'll need to let `R` know as well in your `read_csv()` statements! To do so, simply remove the `data/` before the name of the file in your `read_csv()` statement in this current .Rmd file for any statement involving the fitness data.
-
 ## Chapter Exercises {#chapexercise-6}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
 
-In class, we will work on installing `R` and `R Studio` to your personal laptop. If you already have `R` and `R Studio` installed and you have all of the basic packages working (from having STAT 213 in the Covid Spring 2020 or from some other class), then you can come to class ~ 30 minutes late (though you're also welcome to come on time and work on other things for the first 45 minutes). If you're unsure about whether your device can install `R` or `R Studio`, shoot me an email. It probably can, unless it's a Chromebook.
-
-Step 1. Installing R: <a href="https://cran.rstudio.com/" target="_blank">https://cran.rstudio.com/</a> and choose the appropriate version. Go through all of the installation steps.
-
-Step 2. This isn't necessary, but it's interesting to see what the basic `R` interface looks like without `R Studio`. Open up `R` and you should pretty much just see something that resembles the lower-left window of `R Studio`.
-
-Step 3. Installing R Studio: <a href="https://rstudio.com/products/rstudio/download/" target="_blank">https://rstudio.com/products/rstudio/download/</a>. Choose the free version and then choose either the Mac version or Windows version (assuming you don't have Linux). Go through all of the installation steps.
-
-Step 4a. Open `R Studio`. Recall that one thing that we did on the server was change an `R Markdown` option so that results and plots wouldn't appear in-line. To change this, click R Studio -> Preferences -> R Markdown and then uncheck "Show output inline for all R Markdown documents".
-
-Step 4b. Change your colour theme! This is fun, at least for me....Go to R Studio -> Preferences -> Appearance and choose a theme that you like. I've had mine on Cobalt for a really long time, but the Vibrant Ink theme is always there, tempting me.
-
-Step 5. If you want your STAT 234 materials off of the server (which you should!), then you'll need to download them to your personal device. Click the checkbox next to the STAT 234 folder, and then click More -> Export -> Download. There should now be a zipped folder of your materials in your Downloads folder. Double click to unzip the folder and then move the STAT 234 folder to a place that's convenient for you (since you'll be using it a lot this semester, one place you could put it is your Desktop).
-
-Verify that the contents downloaded by opening up the Week5_R_Basics `R Project` by double clicking the `R Project` icon in the Week5 folder. 
-
-Step 6. There's a lot of packages that we've used that were already installed on the server. By far, the largest package (and the one that's most likely to give you an error in installation) is the `tidyverse` package. Install this package using
-
-```{r, eval = FALSE, echo = TRUE}
-install.packages("tidyverse")
-```
-
-Step 7. Open your Week4 Project in a new window and verify that your .Rmd files can knit (you'll at least need to install `ggthemes` and `ggrepel` and possibly a couple of other packages that I'm not thinking of).
-
-Once `R` is installed and ready to go, work through the following exercises pertaining to the video game data set.
+Work through the following exercises pertaining to the video game data set.
 
 1. \* Read in the data set and use `filter()` to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.
 
 __Note__: We usually don't want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn't "major" enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren't enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.
 
 ```{r, message = FALSE}
-videogame_df <- read_csv("data/videogame_clean.csv")
+videogame_df <- read_csv(here("data/videogame_clean.csv"))
 ```
 
 2. \* Make a scatterplot with `median_playtime` on the y-axis and `metascore` on the x-axis with the filtered data set. 
@@ -584,7 +400,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 The issue is that weekday should be a factor, not numeric.
 
 ```{r}
-fitness_df <- fitness_df %>% mutate(weekday_cat = as.factor(weekday))
+fitness_df <- fitness_df |> mutate(weekday_cat = as.factor(weekday))
 ggplot(data = fitness_df, aes(x = active_cals)) +
   geom_freqpoly(aes(group = weekday_cat, colour = weekday_cat)) +
   scale_colour_viridis_d()
@@ -619,38 +435,16 @@ b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind`
 ```
 
 ```{r}
-fitness_df %>%
+fitness_df |>
   mutate(weekend_ind = case_when(weekday %in% vecweekend ~ "weekend",
-                                 weekday %in% vecweekday ~ "weekday")) %>%
+                                 weekday %in% vecweekday ~ "weekday")) |>
   select(weekend_ind, everything())
 
 ## can also use if_else, which is actually a little simpler in this case:
-fitness_df %>% mutate(weekend_ind = if_else(weekday %in% vecweekend,
-  true = "weekend", false = "weekday")) %>%
+fitness_df |> mutate(weekend_ind = if_else(weekday %in% vecweekend,
+  true = "weekend", false = "weekday")) |>
   select(weekend_ind, everything())
 ```
-
-### Piping S
-
-1. \* Recode the following to look cleaner by using the pipe `%>%`:
-
-```{r}
-summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
-                   month),
-          meanweekend = mean(distance, na.rm = TRUE)) 
-```
-
-```{r}
-fitness_df %>% filter(weekday == 1 | weekday == 7) %>%
-  group_by(month) %>%
-  summarise(meanweekend = mean(distance, na.rm = TRUE)) 
-```
-
-### Other R Topics S
-
-1. \* Click the "Packages" button in the lower-right hand windown to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
-
-If I loaded a package by checking the box, did some analysis, and gave my code to someone else, that person couldn't easily see which packages I loaded in. Therefore, they wouldn't necessarily be able to reproduce my results exactly.
 
 ### Chapter Exercises S {#chapexercise-6-S}
 
@@ -659,11 +453,11 @@ If I loaded a package by checking the box, did some analysis, and gave my code t
 __Note__: We usually don't want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn't "major" enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren't enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.
 
 ```{r, message = FALSE}
-videogame_df <- read_csv("data/videogame_clean.csv")
+videogame_df <- read_csv(here("data/videogame_clean.csv"))
 ```
 
 ```{r}
-videogame_nomiss <- videogame_df %>%
+videogame_nomiss <- videogame_df |>
   filter(!is.na(median_playtime) &
            !is.na(metascore) &
            median_playtime != 0)
@@ -700,7 +494,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
 
 ```{r}
 library(ggrepel)
-videogame_long <- videogame_nomiss %>% filter(median_playtime > 1500)
+videogame_long <- videogame_nomiss |> filter(median_playtime > 1500)
 ggplot(data = videogame_nomiss,
        aes(x = metascore, y = median_playtime)) + 
   geom_jitter(alpha = 0.4) +

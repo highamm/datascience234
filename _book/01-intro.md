@@ -25,7 +25,7 @@ Next, create a subfolder within your STAT_234 folder. Title it _Notes_ (or whate
 
 Then, create an `R Project` by Clicking File -> New Project -> Existing  Directory,  navigate to the _Notes_ folder, and click _Create Project_. 
 
-Within this folder, click the _New Folder_ button in your bottom-left window and name a new folder _data_. Then, download the data.zip file from Sakai (in Resources). Upload that file in to the server by clicking "Upload" in the bottom right panel. In the dialog box that appears, you can click "Choose File" and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.
+Within this folder, click the _New Folder_ button in your bottom-left window and name a new folder _data_. Then, download the data.zip file from Canvas (in Resources). Upload that file in to the server by clicking "Upload" in the bottom right panel. In the dialog box that appears, you can click "Choose File" and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.
 
 Finally, we want to create a new `R Markdown` file by clicking File -> New File -> `R Markdown`. You can give your new `R Markdown` file a title if you want, and then click okay.
 
@@ -151,7 +151,7 @@ I now want to see where the United States (`USA`) falls on this distribution by 
 
 
 ```r
-small_df <- alcohol_data %>% filter(country == "USA")
+small_df <- alcohol_data |> filter(country == "USA")
 ggplot(data = alcohol_data,
        mapping = aes(total_litres_of_pure_alcohol)) +
   geom_histogram(colour = "black", fill = "white", bins = 15) +
@@ -164,7 +164,7 @@ It looks like there are some countries that consume little to no alcohol. We mig
 
 
 ```r
-alcohol_data %>% filter(total_litres_of_pure_alcohol == 0)
+alcohol_data |> filter(total_litres_of_pure_alcohol == 0)
 #> # A tibble: 13 x 5
 #>    country       beer_servings spirit_servings wine_servings
 #>    <chr>                 <dbl>           <dbl>         <dbl>
@@ -191,8 +191,8 @@ Now suppose that we want to know the 3 countries that consume the most beer, the
 
 
 ```r
-alcohol_data %>% mutate(rankbeer = rank(desc(beer_servings))) %>%
-  arrange(rankbeer) %>% 
+alcohol_data |> mutate(rankbeer = rank(desc(beer_servings))) |>
+  arrange(rankbeer) |> 
   filter(rankbeer <= 3)
 ```
 
@@ -200,12 +200,12 @@ Let's do the same thing for Wine and Spirits:
 
 
 ```r
-alcohol_data %>% mutate(rankwine = rank(desc(wine_servings))) %>%
-  arrange(rankwine) %>% 
+alcohol_data |> mutate(rankwine = rank(desc(wine_servings))) |>
+  arrange(rankwine) |> 
   filter(rankwine <= 3)
 
-alcohol_data %>% mutate(rankspirits = rank(desc(spirit_servings))) %>%
-  arrange(rankspirits) %>% 
+alcohol_data |> mutate(rankspirits = rank(desc(spirit_servings))) |>
+  arrange(rankspirits) |> 
   filter(rankspirits <= 3)
 ```
 
@@ -213,7 +213,7 @@ Finally, suppose that I want to know which country consumes the most wine relati
 
 
 ```r
-onecountry_df <- alcohol_data %>% 
+onecountry_df <- alcohol_data |> 
   filter(country == "Denmark")
 
 library(ggrepel)
@@ -234,9 +234,9 @@ We might be able to better answer the original question numerically by computing
 
 
 ```r
-alcohol_data %>%
-  mutate(wbratio = wine_servings / beer_servings) %>%
-  arrange(desc(wbratio)) %>%
+alcohol_data |>
+  mutate(wbratio = wine_servings / beer_servings) |>
+  arrange(desc(wbratio)) |>
   select(country, beer_servings, wine_servings, wbratio)
 #> # A tibble: 193 x 4
 #>    country             beer_servings wine_servings wbratio
@@ -327,8 +327,8 @@ Now let's see if we can count the number of athletes in the Top 100 that are in 
 
 
 ```r
-athletes %>% group_by(Sport) %>%
-  summarise(counts = n()) %>%
+athletes |> group_by(Sport) |>
+  summarise(counts = n()) |>
   filter(Sport == "Tennis")
 #> # A tibble: 1 x 2
 #>   Sport  counts
@@ -340,8 +340,8 @@ It looks like there are 6 athletes: we can see who they are and sort them by the
 
 
 ```r
-athletes %>%
-  filter(Sport == "Tennis") %>%
+athletes |>
+  filter(Sport == "Tennis") |>
   arrange(Rank)
 #> # A tibble: 6 x 9
 #>      X1 Name   Rank Sport endorsements totalpay salary   age
@@ -360,7 +360,7 @@ Finally, let's see if we can compare the ratio of endorsements (from commercials
 
 
 ```r
-athletes %>% filter(Sport == "Football" | Sport == "Basketball") %>%
+athletes |> filter(Sport == "Football" | Sport == "Basketball") |>
   ggplot(data = ., aes(x = Sport, y = endorsements / salary)) + 
   geom_boxplot() +
   labs(y = "Endorsements / Salary")
@@ -422,7 +422,7 @@ ggplot(data = athletes aes(x = Sport, y = salary)) +
 
 
 ```r
-athletes %>% filter(sport == "Tennis")
+athletes |> filter(sport == "Tennis")
 ```
 
 In the original data set, the variable `Sport` is capitalized. Not capitalizing it means that `R` won't be able to find it and proclaims that "object sport not found".
@@ -501,7 +501,7 @@ k. What are your expectations for this class and/or what do you hope to gain fro
 
 <br>
 
-Knit your .Rmd file into an .html file and submit your knitted .html file to Sakai. If your file won't knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Sakai. Use the following steps to do so:
+Knit your .Rmd file into an .html file and submit your knitted .html file to Canvas. If your file won't knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:
 
 1. Click the checkbox next to your knitted .html file. 
 
@@ -509,7 +509,7 @@ Knit your .Rmd file into an .html file and submit your knitted .html file to Sak
 
 3. If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .Rmd).
 
-4. After you export it, the file should appear in your downloads folder. Now, go to Sakai -> Assignments -> Week 0 Exercises and complete the upload process.
+4. After you export it, the file should appear in your downloads folder. Now, go to Canvas -> Assignments -> Week 0 Exercises and complete the upload process.
 
 Nice work: we will dive into `ggplot()` in the `ggplot2` package next!
 

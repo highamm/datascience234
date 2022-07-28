@@ -21,16 +21,15 @@ __Instructor Information__
 * Professor: Matt Higham
 * Office: Bewkes 123
 * Email: mhigham@stlawu.edu
-* Semester: Fall 2021
-* Office Hours: 
-    + Tuesday 1:30 - 3:30 
-    + Wednesday 2:30 - 3:30
-    + Friday 10:00 - 11:00
-    + other times by appointment
-    + all in-person, unless otherwise requested
-<!-- * Zoom Link: <https://stlawu.zoom.us/j/98496966102> -->
+* Semester: Fall 2022
 * Sections:
-    + MW 8:50 - 10:20
+    + MW 2:30 - 4:00
+* Office Hours: 15 minute slots bookable at <https://calendly.com/mhigham/prof-higham-office-hours>
+    + Monday 1:30 - 3:30 
+    + Tuesday 2:30 - 3:30
+    + Wednesday 
+    + Thursday 10:00 - 11:00
+    + Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
     
 __Course Materials__
 
@@ -47,7 +46,7 @@ __Course Materials__
 
 Welcome to STAT 234! The overall purpose of this course is learn the data science skills necessary to complete large-scale data analysis projects. The tool that we will be using to achieve this goal is the statistical software language `R`. We will work with a wide variety of interesting data sets throughout the semester to build our `R` skills. In particular, we will focus on the Data Analysis Life Cycle (Grolemund and Wickham 2020): 
 
-![](other/data-science.png)
+![](data-science.png)
 
 We will put more emphasis on the _Import, Tidy, Transform, Visualize, and Communicate_ parts of the cycle, as an introduction to _Modeling_ part is covered in STAT 213.
 
@@ -88,54 +87,56 @@ To paraphrase the _R for Data Science_ textbook, about 80% of the skills necessa
 
 The components to your grade are described below:
 
+* Modules
+
+Each week, you will submit a 50-point Module, consisting of the following:
+
+    * an __Exercise Set__ (10 points): Due Mondays and usually from our <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. Exercises are graded for completion only and solutions are typically provided after you submit to Canvas. Collaboration is allowed.
+    * a __Take-Home Quiz__ (15 points): Due Wednesdays. Take-Home quizzes are graded for correctness. Collaboration is allowed.
+    * an __In-Class Quiz__ (25 points): Given on Wednesdays at the start of class. In-Class quizzes are graded for correctness. Collaboration is not allowed. Some questions on the in-class quiz will be based on exercises we complete in class, the exercise sets you complete, and the take-home quiz questions.
+    
+There are 13 modules in total. The lowest module will be dropped from your grade so the total number of points available is `12 * 50 = 600` points. 
+
+Additionally, for one module, you are permitted to take the in-class quiz as a take-home and turn it in the following Monday.
+
+Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second and third-lowest module scores.
+
+* Projects
+
+There are 3 Projects scattered throughout the semester that are worth 50 points each. Each Project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.
+
 * Class
 
-Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. Additionally, there will be a 10-point "share something interesting you found with the class" assignment on nearly every day of class, where a student will volunteer to....share something interesting that they found with the data set we were working with with the rest of the class. The rubric used will be shared on the first day of class, and more information about the extra 10 points will also be given on the first day of class.
-
-* Exercises
-
-There are about 14 sets of weekly exercises that often require you to read some of the sections in the <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a> first. These are worth either 10 or 5 points, depending on the length of the exercises, for a total of 100 points. Details of which sections to complete are posted in the weekly checklists. Most weeks toward the beginning of the semester will be 10 point weeks because we won't have any projects to work on. Exercises are graded __for completion only__: for many exercises, the solutions are provided in our course materials. 
-
-* Quizzes
-
-There will be 10 Quizzes, each worth 20 points for a total of 180 points with one dropped quiz. The purpose of the quizzes are for you to practice what you've learned for the week in a short, concise format. Quizzes will consist of two parts: (1) a take-home component and (2) an in-class component. The take-home component should take about 15 minutes. You are allowed use any course materials and you are allowed to work with other students in this course, as long as you list the names of those students at the top of your quiz. The in-class component will be 5 minutes. You will be asked to do a simple task with pen and paper, without using any course notes or materials. 
-
-<!-- If you need to miss class on the day of the quiz, a make-up will be given during the first Friday office hours that you are available. The make-up quiz will be oral.  -->
-
-* Mini Projects
-
-There are 3 mini-projects scattered throughout the semester that are worth 60 points each. Each mini-project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.
-
-In order to get experience with oral presentations of results, each student will give a short oral presentation on __1__ mini-project. Use of `R Markdown` is required for this presentation (as opposed to PowerPoint or Prezi). More details will be given later in the semester.
-
-* Midterm Exams
-
-There will be two midterm exams, each worth 150 points. More information will be given about these later.
+Class participation will be assessed twice throughout the semester in a 25 point rubric for a total of 50 points. The rubric used will be shared on the first day of class.
 
 * Final Project
 
-There is one final project, worth 150 points. The primary purpose of the final project is to give you an opportunity to assemble topics throughout the course into one coherent data analysis. More information about the final project will be given later. 
+There is one final project, worth 100 points. The primary purpose of the final project is to give you an opportunity to assemble topics throughout the course into one coherent data analysis. You will be able to choose the data set you use for your final project, so you might begin thinking about a particular topic or data set you are interested in exploring. The final project will be presented in a format to be decided later in the semester. 
 
-There will be no Final Exam for this course.
+* Final Exam
+
+There is an optional Final Exam, worth 100 points total, consisting of 20 points of Exercises (graded for completeness), 20 points for a take-home portion, and 60 points for the in-class portion. You __must__ be on campus for our final exam time to take the final exam.
+
+There are two options for the final exam:
+
+* Option 1: Skip the final exam (skip all components: exercises, take-home, and in-class) and assign the average percentage of your 12 highest modules to be your score for the 100 point final. For example, suppose your 13 module scores are: `50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 33, 30, 0`. Then, you would drop your lowest score (the `0`) and your score for the final would be: `(50 + 50 + 49 + 48 + 47 + 43 + 43 + 43 + 43 + 35 + 33 + 30) / 600 * 100` = `86` points.
+
+* Option 2: Take the final exam, which consists of 20 points of Exercises, a 30 point Take-Home portion, and a 50 point In-Class portion. Your score on these items will be used for the 100 points devoted to the final exam. Additionally, if your final exam score is better than your 2nd and 3rd lowest module grades, the will be replaced with your final exam score. For example, suppose your 13 module scores are: `50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 33, 30, 0`. You take the final exam and score a `90 / 100`. Then, your score for the final is `90` points and your new module scores would be: `50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 45, 45, 0`. The `0` would still be dropped as your lowest module score.
 
 ### Breakdown
 
-* 70 points for Class
-* 100 points for Exercises
-* 180 points for Quizzes
-* 180 points for Mini-Projects + 20 points for Presentation
-* 150 points for Midterm 1
-* 150 points for Midterm 2
-* 150 points for Final Project
+* 600 points for Modules
+* 150 points for Projects
+* 50 points for Class Participation
+* 100 points for the Final Project
+* 100 points for the (optional) in-person Final Exam
 
 Points add up to 1000 so your grade at the end of the semester will be the number of points you've earned across all categories divided by 1000.
 
-* The tutorials should help you complete the exercises sets, which should
+* What we do in class should help you complete the exercises sets, which should
     * help you to do well on the quizzes, which should
-        * help you complete the mini-projects, which should 
-            * help you to do well on the midterm exams.
-
-Then, everything together should help you create an awesome final project!
+        * help you complete the projects, which should 
+            * help you to do well on the final exam and final project.
 
 ### Grading Scale
 
@@ -152,7 +153,7 @@ The following is a _rough_ grading scale. I reserve the right to make any change
 
 ### Rules for Collaboration
 
-Collaboration with your classmates on handouts, tutorials, and projects is encouraged, but you must follow these guidelines:
+Collaboration with your classmates on exercises, take-home quizzes, and projects is encouraged, but you must follow these guidelines:
 
 * you must state the name(s) of who you collaborated with at the top of each assessment.
 * all work must be your own. This means that you should __never__ send someone your code via email or let someone directly type code off of your screen. Instead, you can talk about strategies for solving problems and help or ask someone about a coding error.
@@ -214,24 +215,23 @@ _Please note that in addition the above, any assignments in which your score is 
 
 | Week | Date | Topics |
 | ---- | ------ | ---- | --------------------------------------------------- |
-| 0 | 8/25  | Introduction to `R`, `R Studio`|
-| 1 | 8/30 | Graphics with `ggplot2` |
-| 2 | 9/6 | Data Wrangling and Transformation with `dplyr` |
-| 3 | 9/13 | Data Tidying with `tidyr` |
-| 4 | 9/20 | Communication with `R Markdown` and `ggplot2` |
-| 5 | 9/27| Basic Coding in `R`|
-| 6 | 10/4 | Catch-up and Midterm 1 |
+| 0 | 8/24  | Introduction to `R`, `R Studio`|
+| 1 | 8/29 | Graphics with `ggplot2` |
+| 2 | 9/5 | Data Wrangling and Transformation with `dplyr` |
+| 3 | 9/12 | Communication with `R Markdown` and `ggplot2` |
+| 4 | 9/19\* | Soft Skills and Workflow |
+| 5 | 9/26 | Data Tidying with `tidyr` |
+| 6 | 10/3 | Base `R` |
 ||||
-| 7 | 10/11 | Factors with `forcats` and Data Ethics  |
-| 8 | 10/18 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble`|
-| 9 | 10/25 | Data Merging with `dplyr` |
-| 10 | 11/1 | Dates and Times with `lubridate` |
-| 11 | 11/8 | Strings with `stringr` |
-| 12 | 11/15 | Catch-up and Midterm 2|
+| 7 | 10/10\* | Factors with `forcats` and Data Ethics  |
+| 8 | 10/17 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble`|
+| 9 | 10/24 | Data Merging with `dplyr` |
+| 10 | 10/31\* | Dates and Times with `lubridate` |
+| 11 | 11/7 | Text Data with `tidytext` and `stringr` |
+| 12 | 11/14 | Intro to Statistical/Machine Learning with knn |
 ||||
-| 13 | 11/22 | Thanksgiving Break |
-| 14 | 11/29 | Predictive Modeling Final Project |
-| 14 | 12/6 | Final Project |
+| 13 | 11/21 | Thanksgiving Break |
+| 14 | 11/28 | Connections to STAT and CS |
+| 14 | 12/5 | Databases and SQL with `dbplyr` |
 
-* The three mini-projects are tentatively scheduled to be due on September 27, October 25, and November 8, though these are subject to change.
-* There will be no Final Exam, but keep your schedule open at our Final Exam time in case we decide to use it for something. 
+* The three projects are tentatively scheduled to be due on September 21, October 12, and November 2, though these are subject to change. 

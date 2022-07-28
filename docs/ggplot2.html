@@ -7,7 +7,7 @@
 <title> 3 Plotting with ggplot2 | STAT 234: Data Science</title>
 <meta name="author" content="Matt Higham">
 <meta name="description" content="Goals: Use the ggplot2 package to make exploratory plots from STAT 113 of a single quantitative variable, two quantitative variables, a quantitative and a categorical variable, a single...">
-<meta name="generator" content="bookdown 0.22.17 with bs4_book()">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content=" 3 Plotting with ggplot2 | STAT 234: Data Science">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://highamm.github.io/datascience234/ggplot2.html">
@@ -15,10 +15,14 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 3 Plotting with ggplot2 | STAT 234: Data Science">
 <meta name="twitter:description" content="Goals: Use the ggplot2 package to make exploratory plots from STAT 113 of a single quantitative variable, two quantitative variables, a quantitative and a categorical variable, a single...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -41,19 +45,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
 <li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
 <li><a class="active" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
 <li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
-<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">5</span> Tidying with tidyr</a></li>
-<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">6</span> Communication with RMarkdown</a></li>
-<li><a class="" href="r-basics.html"><span class="header-section-number">7</span> R Basics</a></li>
-<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">8</span> Factors with forcats</a></li>
-<li><a class="" href="reprexes-and-import.html"><span class="header-section-number">9</span> Reprexes and Import</a></li>
-<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
-<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">11</span> Merging with dplyr</a></li>
-<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">12</span> Dates with lubridate</a></li>
-<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">13</span> Text Data with tidytext and stringr</a></li>
-<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">14</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">5</span> Communication with RMarkdown</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="" href="reprexes-and-import.html"><span class="header-section-number">10</span> Reprexes and Import</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">11</span> Data Ethics</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
 </ul>
 
         <div class="book-extra">
@@ -103,7 +113,7 @@
 <li><p>Create a new .Rmd file in the same folder as your Notes <code>R Project</code> using File -&gt; New File -&gt; <code>R Markdown</code>.</p></li>
 <li><p>Finally, read in and name the data set <code>pres_df</code>, and take a look at the data set by running the <code><a href="https://rdrr.io/r/utils/head.html">head(pres_df)</a></code> line, which shows the first few observations of the data set:</p></li>
 </ol>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">pres_df</span> <span class="op">&lt;-</span> <span class="fu">read_table</span><span class="op">(</span><span class="st">"data/PRES2000.txt"</span><span class="op">)</span> 
 <span class="co">## don't worry about the `read_table` function....yet</span>
@@ -137,12 +147,12 @@
 <li>a <code>geom_    ()</code> component, specifying the geometric shape used to display the data.</li>
 </ul>
 <p>The components are combined in the following form:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ggplot2.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> name_of_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> name_of_x_var, </span>
-<span id="cb24-2"><a href="ggplot2.html#cb24-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">y =</span> name_of_y_var,</span>
-<span id="cb24-3"><a href="ggplot2.html#cb24-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colour =</span> name_of_colour_var,</span>
-<span id="cb24-4"><a href="ggplot2.html#cb24-4" aria-hidden="true" tabindex="-1"></a>                                          etc.)) <span class="sc">+</span></span>
-<span id="cb24-5"><a href="ggplot2.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nameofgeom</span>() <span class="sc">+</span></span>
-<span id="cb24-6"><a href="ggplot2.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  .....<span class="sc">&lt;</span>other stuff<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ggplot2.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> name_of_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> name_of_x_var, </span>
+<span id="cb25-2"><a href="ggplot2.html#cb25-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">y =</span> name_of_y_var,</span>
+<span id="cb25-3"><a href="ggplot2.html#cb25-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colour =</span> name_of_colour_var,</span>
+<span id="cb25-4"><a href="ggplot2.html#cb25-4" aria-hidden="true" tabindex="-1"></a>                                          etc.)) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="ggplot2.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nameofgeom</span>() <span class="sc">+</span></span>
+<span id="cb25-6"><a href="ggplot2.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  .....<span class="sc">&lt;</span>other stuff<span class="sc">&gt;</span></span></code></pre></div>
 <p>The structure of <code>ggplot()</code> plots is based on the Grammar of Graphics <a href="https://www.springer.com/gp/book/9780387245447" target="_blank">https://www.springer.com/gp/book/9780387245447</a>. As with most new things, the components above will be easier to think about with some examples.</p>
 </div>
 <div id="graphing-a-single-variable" class="section level2" number="3.3">
@@ -154,7 +164,7 @@
 <span class="header-section-number">3.3.1</span> Histograms and Frequency Plots for a Quantitative Variable<a class="anchor" aria-label="anchor" href="#histograms-and-frequency-plots-for-a-quantitative-variable"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let’s go ahead and begin our exploration of the data by making a histogram of the number of people who voted for <code>Gore</code> in each county. Recall that a histogram is useful if we would like a graph of a single quantitative variable. Copy the following code to an <code>R</code> chunk and run the code:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">pres_df</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Gore</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">"Votes for Gore in Florida"</span><span class="op">)</span>
@@ -167,7 +177,7 @@
 <p>There are a couple of observations with very high vote values. What could explain these large outliers?</p>
 <p><br></p>
 <p>Another graph useful in visualizing a single quantitative variable is a frequency plot. The code to make a frequency plot is given below. We are simply replacing <code>geom_histogram()</code> with <code>geom_freqpoly()</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">pres_df</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Gore</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_freqpoly</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">"Votes for Gore in Florida"</span><span class="op">)</span> 
@@ -175,7 +185,7 @@
 <span class="co">#&gt; `binwidth`.</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
 <p>The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including <strong>both</strong> a geom_freqpoly() and a geom_histogram() in your plot, though it doesn’t make for the prettiest graph:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">pres_df</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Gore</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_freqpoly</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">"Votes for Gore in Florida"</span><span class="op">)</span> <span class="op">+</span>
@@ -192,10 +202,10 @@
 </h3>
 <p>We want our code to be as readable as possible. This not only benefits other people who may read your code (like me), but it also benefits you, particularly if you read your own code in the future. I try to follow the Style Guide in the Advanced <code>R</code> book: <a href="http://adv-r.had.co.nz/Style.html" target="_blank">http://adv-r.had.co.nz/Style.html</a>. Feel free to skim through that, but you don’t need to worry about it too much: you should be able to pick up on some important elements just from going through this course. You might actually end up having better code style if you <em>haven’t</em> had any previous coding experience.</p>
 <p>As a quick example of why code style can be important, consider the following two code chunks, both of which produce the same graph.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data<span class="op">=</span><span class="va">pres_df</span>,mapping<span class="op">=</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">Gore</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu">geom_histogram</span><span class="op">(</span>colour<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">"Votes for Gore in Florida"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">pres_df</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Gore</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">"Votes for Gore in Florida"</span><span class="op">)</span></code></pre></div>
@@ -206,7 +216,7 @@
 <span class="header-section-number">3.3.3</span> Bar Plots for a Categorical Variable<a class="anchor" aria-label="anchor" href="#bar-plots-for-a-categorical-variable"><i class="fas fa-link"></i></a>
 </h3>
 <p>Recall from STAT 113 that bar plots are useful if you want to examine the distribution of one categorical variable. Side-by-side bar plots or stacked bar plots are plots that are useful for looking at the relationship between two categorical variables. There actually aren’t any categorical variables that would be interesting to plot in this data set, so we’ll make one, called <code>winner</code> using code that we don’t need to understand until next week. <code>winner</code> will be <code>"Gore"</code> if Gore won the county and <code>"Bush"</code> if Bush won the county. We’ll name this new data set <code>pres_cat</code>.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pres_cat</span> <span class="op">&lt;-</span> <span class="va">pres_df</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>winner <span class="op">=</span> <span class="fu">if_else</span><span class="op">(</span><span class="va">Gore</span> <span class="op">&gt;</span> <span class="va">Bush</span>,
                                                 true <span class="op">=</span> <span class="st">"Gore"</span>,
                                                 false <span class="op">=</span> <span class="st">"Bush"</span><span class="op">)</span><span class="op">)</span>
@@ -226,12 +236,12 @@
 <span class="co">#&gt; 10  14632  41736      186   562   237 CLAY      Bush  </span>
 <span class="co">#&gt; # … with 57 more rows</span></code></pre></div>
 <p>Using this data set, we can make a bar plot with <code>geom_bar()</code>. The beauty of <code>ggplot()</code> is that the code is super-similar to what we used for histograms and frequency plots!</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">pres_cat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">winner</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
 <p>Note that, sometimes, data are in format such that one column contains the <em>levels</em> of the categorical variable while another column contains the counts directly. For example, we can create such a data set using code that we will learn next week:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pres_cat2</span> <span class="op">&lt;-</span> <span class="va">pres_cat</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">winner</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>nwins <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">pres_cat2</span>
@@ -241,11 +251,11 @@
 <span class="co">#&gt; 1 Bush      51</span>
 <span class="co">#&gt; 2 Gore      16</span></code></pre></div>
 <p>This data set has just two observations and contains a column for the two major presidential candidates and a column for the number of counties that each candidate won. If we wanted to make a barplot showing the number of wins for each candidate, we can’t use <code>geom_bar()</code>. Predict what the result will be from running the following code.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">pres_cat2</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">winner</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Instead, we can use <code>geom_col()</code>, which takes an <code>x</code> aesthetic giving the column with names of the levels of our categorical variable, and a <code>y</code> aesthetic giving the column with the counts:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">pres_cat2</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">winner</span>, y <span class="op">=</span> <span class="va">nwins</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
@@ -261,7 +271,7 @@
 <li><p>It looks like Bush won a lot more….does that necessarily mean that Bush won more votes in total in Florida? Why or why not?</p></li>
 </ol>
 <p>We will be using survey data from STAT 113 in the 2018-2019 academic year for many exercises in this section. For those who may not have taken STAT 113 from having AP credit or another reason, the STAT 113 survey is given to all students in STAT 113 across all sections. Some analyses in Intro Stat are then carried out using the survey.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">stat113_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/stat113.csv"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stat113_df</span><span class="op">)</span>
@@ -321,7 +331,7 @@
 </h3>
 <p>Moving back to the 2000 presidential election data set, thus far, we’ve figured out that there a couple of counties with very large numbers of votes for Gore and very large number of votes for Bush. We don’t know the reason for this (if some counties are very democratic, very republican, or if some counties are just more populous). Do the counties that have a large number of votes for Bush also tend to have a large number of votes for Gore? And what about the other candidates: do they have any interesting patterns?</p>
 <p>Let’s start by making a scatterplot of the number of votes for Gore and the number of votes for Bush. Note that the <code>geom_</code> for making a scatterplot is called <code>geom_point()</code> because we are adding a layer of points to the plot.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">pres_df</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Gore</span>, y <span class="op">=</span> <span class="va">Bush</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
@@ -359,7 +369,7 @@
 <li>
 <code>weekend_ind</code>, a variable for whether or not the day of the week was a weekend day (Saturday or Sunday) or a weekday (Monday - Friday).</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">fitness_full</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/higham_fitness_clean.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>weekend_ind <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span> <span class="op">~</span> <span class="st">"weekend"</span>,
   <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"weekday"</span><span class="op">)</span><span class="op">)</span>
@@ -373,45 +383,45 @@
 <span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
 <span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></code></pre></div>
 <p>First, let’s make a basic scatterplot to illustrate why it’s so important to plot your data. I’ll use the variable <code>distance</code> as the x-variable and <code>active_cals</code> as the y-variable.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672"></div>
 <p>One aspect of the plot that you may notice is that there are observations where I burned 0 or very few active calories, yet walked/jogged/ran/moved some distance. Is it possible to not burn any calories and move ~ 4 miles? Probably not, so let’s drop these observations from the data set and make a note of why we dropped those observations. Unfortunately, we don’t have the tools to do this yet, so just run the following chunk of code without worrying too much about the syntax.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## drop observations that have active calories &lt; 50. </span>
 <span class="co">## assuming that these are data errors or </span>
 <span class="co">## days where the Apple Watch wasn't worn.</span>
 <span class="va">fitness</span> <span class="op">&lt;-</span> <span class="va">fitness_full</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">active_cals</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span></code></pre></div>
 <p>Let’s make the plot again with the <code>fitness</code> data set instead of <code>fitness_full</code> to see if the outliers are actually gone. This time, we will put the <code>aes()</code> in the <code>geom_point()</code> function:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
 <p>Putting the <code>aes()</code> in <code>ggplot()</code> and putting the <code>aes()</code> in <code>geom_point()</code> results in the same graph in this case. When you put the <code>aes()</code> in <code>ggplot()</code>, <code>R</code> perpetuates these <code>aes()</code> aesthetics in all <code>geom_</code>s in your plotting command. However, if you put your <code>aes()</code> in <code>geom_point()</code>, then any future <code>geom</code>s that you use will need you to re-specify different <code>aes()</code>. We’ll see an example of this in the exercises.</p>
 <p><strong>Other <code>aes()</code> Options</strong></p>
 <p>In addition to <code>x</code> and <code>y</code>, we can also use <code>aes()</code> to map variables to things like <code>colour</code>, <code>size</code>, and <code>shape</code>. For example, we might make a scatterplot with <code>Start</code> on the x-axis (for the date) and <code>active_cals</code> on the y-axis, colouring by whether or not the day of the week was a weekend.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="va">weekend_ind</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672"></div>
 <p>Is there anything useful that you notice about the plot? Is there anything about the plot that could be improved?</p>
 <p>Instead of using colour, you can also specify the point shape. This could be useful, for example, if you are printing something in black and white.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, shape <span class="op">=</span> <span class="va">weekend_ind</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
 <p>Do you prefer the colour or the shape? Why?</p>
 <p>Finally, another common <code>aes()</code> is <code>size</code>. For example, we could make the size of the points in the scatterplot change depending on how many <code>flights</code> of stairs I climbed.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, size <span class="op">=</span> <span class="va">flights</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-23-1.png" width="672"></div>
 <p>I don’t think any of the previous three plots are necessarily the “best” and need some work, but, part of the fun of exploratory data analysis is making trying out different plots to see what “works.”</p>
 <p><strong>Inside vs Outside <code>aes()</code></strong></p>
 <p>We’ve changed the colour of the points to correspond to <code>weekend_ind</code>, but what if we just wanted to change the colour of points to all be the same colour, <code>"purple"</code>. Try running the following code chunk:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-24-1.png" width="672"></div>
@@ -422,7 +432,7 @@
 <li><p>When we assign fixed characteristics that don’t come from the data, we put them <strong>outside</strong> the <code>aes()</code>, as in <code>geom_point(colour = "purple")</code>.</p></li>
 </ul>
 <p>You can also change the overall point size and shape. The standard size is <code>1</code> so the following code chunk makes the points bigger. The standard shape is <code>19</code>: you can try changing that to other integers to see what other shapes you can get.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1.5</span>, shape <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-25-1.png" width="672"></div>
@@ -432,14 +442,14 @@
 <span class="header-section-number">3.4.3</span> Using More Than One <code>geom()</code><a class="anchor" aria-label="anchor" href="#using-more-than-one-geom"><i class="fas fa-link"></i></a>
 </h3>
 <p>We might also be interested in fitting a smooth curve to our scatterplot. When we want to put more than one “geom” on our plot, we can use multiple <code>geoms</code>. Since I want the <code>aes()</code> to apply to <strong>both</strong> <code>geom_point()</code> and <code>geom_smooth()</code>, I am going to move the <code>aes()</code> command to the overall <code>ggplot()</code> line of code:</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_smooth</span><span class="op">(</span>span <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>
 <span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-26-1.png" width="672"></div>
 <p>Within <code>geom_smooth()</code>, you can set <code>se = FALSE</code> to get rid of the grey standard errors around each of the lines, and you can set<code>method = "lm"</code> to fit straight linear regression lines instead of smooth curves:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_smooth</span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span>
@@ -452,12 +462,12 @@
 <span class="header-section-number">3.4.4</span> Line Plots with <code>geom_line()</code><a class="anchor" aria-label="anchor" href="#line-plots-with-geom_line"><i class="fas fa-link"></i></a>
 </h3>
 <p>Line plots are often useful when you have a quantitative variable that you’d like to explore over time. The y-axis is the quantitative variable while the x-axis is typically time. More generally, line plots are often used when the x-axis variable has one discrete value for each y-axis variable. For example, suppose we want to explore how my step count has changed through time over the past couple of years. Compare the standard scatterplot with the following line plot: which do you prefer?</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">xlab</span><span class="op">(</span><span class="st">"Date"</span><span class="op">)</span>
 <span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-28-1.png" width="672"></div>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">xlab</span><span class="op">(</span><span class="st">"Date"</span><span class="op">)</span>
 <span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></code></pre></div>
@@ -469,7 +479,7 @@
 <span class="header-section-number">3.4.5</span> Faceting<a class="anchor" aria-label="anchor" href="#faceting"><i class="fas fa-link"></i></a>
 </h3>
 <p>Using colour to colour points of different levels of a categorical variable is generally fine when there are just a couple of levels and/or there is little overlap among the levels. But, what if there are a lot more than two categories to colour by. For example, let’s move back to the STAT 113 survey data set and investigate the relationship between <code>Pulse</code> and <code>Exercise</code> for different class <code>Year</code>’s. We might hypothesize that students who get more exercise tend to have lower pulse rates.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Exercise</span>, y <span class="op">=</span> <span class="va">Pulse</span>,
                            colour <span class="op">=</span> <span class="va">Year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -481,7 +491,7 @@
 <span class="co">#&gt; (geom_point).</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="672"></div>
 <p>When there are many different categories for a categorical variable (there are only 4 categories for <code>Year</code>, but this particular plot is still a bit difficult to read), it can sometimes be useful to <code>facet</code> the plot by that variable instead of trying to use different <code>colour</code>s or <code>shape</code>s.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Exercise</span>, y <span class="op">=</span> <span class="va">Pulse</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_smooth</span><span class="op">(</span>se <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
@@ -521,7 +531,7 @@
 <span class="header-section-number">3.5.1</span> Graphing a Quant. Variable vs. a Cat. Variable<a class="anchor" aria-label="anchor" href="#graphing-a-quant.-variable-vs.-a-cat.-variable"><i class="fas fa-link"></i></a>
 </h3>
 <p>Another common plot used in Intro Stat courses is a boxplot. Side-by-side boxplots are particularly useful if you want to compare a quantitative response variable across two or more levels of a categorical variable. Let’s stick with the STAT 113 survey data to examine the relationship between <code>Exercise</code> and <code>Award</code> preference.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Award</span>, y <span class="op">=</span> <span class="va">Exercise</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 7 rows containing non-finite values</span>
@@ -530,7 +540,7 @@
 <p>What can you conclude from the plot?</p>
 <p><br></p>
 <p>An alternative to side-by-side boxplots are violin plots:</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Award</span>, y <span class="op">=</span> <span class="va">Exercise</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_violin</span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 7 rows containing non-finite values</span>
@@ -544,7 +554,7 @@
 </h3>
 <p>The only combination of two variables that we have yet to explore are two variables that are both categorical. Let’s look at the relationship between <code>Year</code> and <code>SocialMedia</code> first using a stacked bar plot.</p>
 <p>To make the graph, we specify <code>position = "fill"</code> so that the bars are “filled” by <code>stepgoal</code>.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Year</span>, fill <span class="op">=</span> <span class="va">SocialMedia</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ylab</span><span class="op">(</span><span class="st">"Proportion"</span><span class="op">)</span></code></pre></div>
@@ -572,11 +582,8 @@
 <ol style="list-style-type: decimal">
 <li><p>* The default of <code>geom_smooth()</code> is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.</p></li>
 <li><p>* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.</p></li>
-<li><p>* In Intro-Stat, boxplots are typically introduced using the <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> symbol to identify outliers. Using a combination of the help <code>?geom_boxplot</code> and Googling “R point shapes,” figure out how to modify your side-by-side boxplots so that the outliers are shown using <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>, not the default dots.</p></li>
-</ol>
-<p>Then, using Google, figure out how to add the mean to each boxplot as a “darkgreen” diamond-shaped symbol with <code>stat_summary()</code>.</p>
-<ol start="4" style="list-style-type: decimal">
-<li>A common theme that we’ll see throughout the course is that it’s advantageous to know as much background information as possible about the data set we are analyzing. Data sets will be easier to analyze and pose questions about if you’re familiar with the subject matter.</li>
+<li><p>* In Intro-Stat, boxplots are typically introduced using the <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> symbol to identify outliers. Using a combination of the help <code>?geom_boxplot</code> and Googling “R point shapes,” figure out how to modify your side-by-side boxplots so that the outliers are shown using <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>, not the default dots. Then, using Google, figure out how to add the mean to each boxplot as a “darkgreen” diamond-shaped symbol with <code>stat_summary()</code>.</p></li>
+<li><p>A common theme that we’ll see throughout the course is that it’s advantageous to know as much background information as possible about the data set we are analyzing. Data sets will be easier to analyze and pose questions about if you’re familiar with the subject matter.</p></li>
 </ol>
 <p>Give an example of something that you know about STAT 113 and the survey data set that helped you answer or pose a question that someone from another university (and therefore unfamiliar with our intro stat course) wouldn’t know.</p>
 <p>Give an example of something that you don’t know about the fitness data set that the person who owns the fitness data would know. Why does that give an advantage to the person who is more familiar with the fitness data?</p>
@@ -602,7 +609,7 @@
 <ol start="4" style="list-style-type: decimal">
 <li>* Create a histogram of the <code>Exercise</code> variable, change the x-axis label to be “Exercise (hours per typical week),” change the number of <code>bins</code> to <code>14</code>, and change the <code>fill</code> of the bins to be “lightpink2” and the outline <code>colour</code> of the bins to be black.</li>
 </ol>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Exercise</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">14</span>, fill <span class="op">=</span> <span class="st">"lightpink2"</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">"Exercise (hours per typical week)"</span><span class="op">)</span>
@@ -612,7 +619,7 @@
 <ol start="5" style="list-style-type: decimal">
 <li>* We can change the y-axis of a histogram to be “density” instead of a raw count. This means that each bar shows a <strong>proportion</strong> of cases instead of a raw count. Google something like “geom_histogram with density” to figure out how to create a y <code>aes()</code> to show density instead of count.</li>
 </ol>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Exercise</span>, y <span class="op">=</span> <span class="va">..density..</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">14</span>, fill <span class="op">=</span> <span class="st">"lightpink2"</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">"Exercise (hours per typical week)"</span><span class="op">)</span>
@@ -627,12 +634,12 @@
 <ol start="4" style="list-style-type: decimal">
 <li>* Make a scatterplot of <code>Hgt</code> on the y-axis and <code>Wgt</code> on the x-axis, colouring by <code>Sport</code>. Add a smooth fitted curve to your scatterplot. Then, move <code>colour = Sport</code> from an <code>aes()</code> in the <code>ggplot()</code> function to an <code>aes()</code> in the <code>geom_point()</code> function. What changes in the plot? Can you give an explanation as to why that change occurs?</li>
 </ol>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Wgt</span>, y <span class="op">=</span> <span class="va">Hgt</span>, colour <span class="op">=</span> <span class="va">Sport</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_smooth</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Wgt</span>, y <span class="op">=</span> <span class="va">Hgt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">Sport</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -643,7 +650,7 @@
 <li>* Faceting can be used for other types of plots too! Make a pair of faceted histograms for a quantitative variable of your choosing that are faceted by a categorical variable of your choosing.</li>
 </ol>
 <p>Answers will vary:</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">GPA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span> <span class="op">~</span> <span class="va">Sport</span><span class="op">)</span></code></pre></div>
@@ -656,7 +663,7 @@
 <ol style="list-style-type: decimal">
 <li>* Change the colour of the inside of the boxplots in the Exercise vs. Award graph to be <code>"blue"</code>. Do you think you’ll use <code>colour = "blue"</code> or <code>fill = "blue"</code>?</li>
 </ol>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Award</span>, y <span class="op">=</span> <span class="va">Exercise</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_boxplot</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 7 rows containing non-finite values</span>
@@ -666,7 +673,7 @@
 <ol start="2" style="list-style-type: decimal">
 <li>* Create a side-by-side boxplot that compares the <code>GPA</code>s of students who prefer different <code>Award</code>s. Then change the fill of the boxplot to be a colour of your choice. What do you notice in the plot?</li>
 </ol>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Award</span>, y <span class="op">=</span> <span class="va">GPA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_boxplot</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"lightpink1"</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 70 rows containing non-finite values</span>
@@ -681,7 +688,7 @@
 <li>* Make a stacked bar plot for two variables of your choosing in the STAT 113 data set. Comment on something that you notice in the plot.</li>
 </ol>
 <p>Answers will vary.</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sport</span>, fill <span class="op">=</span> <span class="va">Award</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
@@ -698,7 +705,7 @@
 <ol start="2" style="list-style-type: decimal">
 <li>* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.</li>
 </ol>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Sport</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op">)</span>,
   <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Exercise</span>, y <span class="op">=</span> <span class="va">GPA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -713,7 +720,7 @@
 <li>* In Intro-Stat, boxplots are typically introduced using the <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> symbol to identify outliers. Using a combination of the help <code>?geom_boxplot</code> and Googling “R point shapes,” figure out how to modify your side-by-side boxplots so that the outliers are shown using <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>, not the default dots.</li>
 </ol>
 <p>Then, using Google, figure out how to add the mean to each boxplot as a “darkgreen” diamond-shaped symbol with <code>stat_summary()</code>.</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">stat113_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sex</span>, y <span class="op">=</span> <span class="va">GPA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_boxplot</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"lightpink1"</span>, outlier.shape <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">stat_summary</span><span class="op">(</span>fun <span class="op">=</span> <span class="va">mean</span>, shape <span class="op">=</span> <span class="fl">18</span>, colour <span class="op">=</span> <span class="st">"darkgreen"</span><span class="op">)</span>
@@ -730,7 +737,7 @@
 <h2>
 <span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-2"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">pres_df</span> <span class="op">&lt;-</span> <span class="fu">read_table</span><span class="op">(</span><span class="st">"data/PRES2000.txt"</span><span class="op">)</span> 
 <span class="co">## don't worry about the `read_table` function....yet</span>
@@ -872,7 +879,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2021-11-16.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-07-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

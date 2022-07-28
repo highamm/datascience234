@@ -488,9 +488,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 2. \* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.
 
-3. \* In Intro-Stat, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. 
-
-Then, using Google, figure out how to add the mean to each boxplot as a "darkgreen" diamond-shaped symbol with `stat_summary()`.
+3. \* In Intro-Stat, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. Then, using Google, figure out how to add the mean to each boxplot as a "darkgreen" diamond-shaped symbol with `stat_summary()`.
 
 4. A common theme that we'll see throughout the course is that it's advantageous to know as much background information as possible about the data set we are analyzing. Data sets will be easier to analyze and pose questions about if you're familiar with the subject matter. 
 

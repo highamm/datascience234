@@ -171,7 +171,7 @@ Recall from STAT 113 that bar plots are useful if you want to examine the distri
 
 
 ```r
-pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
+pres_cat <- pres_df |> mutate(winner = if_else(Gore > Bush,
                                                 true = "Gore",
                                                 false = "Bush"))
 pres_cat
@@ -205,7 +205,7 @@ Note that, sometimes, data are in format such that one column contains the _leve
 
 
 ```r
-pres_cat2 <- pres_cat %>% group_by(winner) %>%
+pres_cat2 <- pres_cat |> group_by(winner) |>
   summarise(nwins = n())
 pres_cat2
 #> # A tibble: 2 x 2
@@ -338,7 +338,7 @@ For the remainder of this chapter, we will work with some fitness data collected
 
 ```r
 library(tidyverse)
-fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+fitness_full <- read_csv("data/higham_fitness_clean.csv") |> mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
   TRUE ~ "weekday"))
 #> 
 #> ── Column specification ────────────────────────────────────
@@ -372,7 +372,7 @@ One aspect of the plot that you may notice is that there are observations where 
 ## drop observations that have active calories < 50. 
 ## assuming that these are data errors or 
 ## days where the Apple Watch wasn't worn.
-fitness <- fitness_full %>%
+fitness <- fitness_full |>
   filter(active_cals > 50)
 ```
 
@@ -777,7 +777,7 @@ Loess uses a bunch of local regressions to predict the y-variable at each point,
 
 
 ```r
-ggplot(data = stat113_df %>% filter(!is.na(Sport) & !is.na(Sex)),
+ggplot(data = stat113_df |> filter(!is.na(Sport) & !is.na(Sex)),
   aes(x = Exercise, y = GPA)) + 
   geom_point() + geom_smooth() +
   facet_grid(Sex ~ Sport)
@@ -827,13 +827,13 @@ ggplot(data = pres_df, mapping = aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") +
   geom_histogram() 
-pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
+pres_cat <- pres_df |> mutate(winner = if_else(Gore > Bush,
                                                 true = "Gore",
                                                 false = "Bush"))
 pres_cat
 ggplot(data = pres_cat, aes(x = winner)) +
   geom_bar()
-pres_cat2 <- pres_cat %>% group_by(winner) %>%
+pres_cat2 <- pres_cat |> group_by(winner) |>
   summarise(nwins = n())
 pres_cat2
 ggplot(pres_cat2, aes(x = winner)) +
@@ -843,14 +843,14 @@ ggplot(pres_cat2, aes(x = winner, y = nwins)) +
 ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
   geom_point()
 library(tidyverse)
-fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+fitness_full <- read_csv("data/higham_fitness_clean.csv") |> mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
   TRUE ~ "weekday"))
 ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
   geom_point()
 ## drop observations that have active calories < 50. 
 ## assuming that these are data errors or 
 ## days where the Apple Watch wasn't worn.
-fitness <- fitness_full %>%
+fitness <- fitness_full |>
   filter(active_cals > 50)
 ggplot(data = fitness) +
   geom_point(aes(x = distance, y = active_cals))

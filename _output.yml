@@ -1,5 +1,8 @@
 bookdown::bs4_book:
   css: bs4_style.css
+  # config:
+  #   toc:
+  #     collapse: subsection
   theme:
     primary: "#720909"
   # repo: https://github.com/highamm/datascience234
