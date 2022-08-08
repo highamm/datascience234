@@ -152,7 +152,7 @@ We've already seen that Figures will pop up automatically (unless we set `fig.ke
 
 Delete the `results = 'hide'` option that you added earlier. When you knit your .Rmd file now, results tables from `head(cars)` and `summary(cars)` look kind of ugly. We will focus on using the `kable()` function from the `knitr` package to make these tables much more aesthetically pleasing. Another option is to use the `pander()` function in the `pander` package. Both `pander()` and `kable()` are very simple functions to generate tables but will be more than sufficient for our purposes. To generate more complicated tables, see the `xtable` package.
 
-To use these functions, simply replace add a `%>%` pipe with the name of the table function you want to use. `head(cars) %>% kable()` will make a nice-looking table with `kable` and `head(cars) %>% pander()` will use `pander()`. Before using `kable()`, you'll need to load its library by adding the line `library(knitr)` above `head(cars) %>% kable()`. Before using `pander()`, you'll need to load its library by adding the line `library(pander)` above `head(cars) %>% pander()`. Try these out in your `R Markdown` file.
+To use these functions, simply replace add a `|>` pipe with the name of the table function you want to use. `head(cars) |> kable()` will make a nice-looking table with `kable` and `head(cars) |> pander()` will use `pander()`. Before using `kable()`, you'll need to load its library by adding the line `library(knitr)` above `head(cars) |> kable()`. Before using `pander()`, you'll need to load its library by adding the line `library(pander)` above `head(cars) |> pander()`. Try these out in your `R Markdown` file.
 
 Which table do you like better in this case?
 
@@ -439,7 +439,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
 Yikes! It's quite uncommon to want to label __all__ of the points. Let's see if we can instead label each country with the best HPI in that country's region. To do so, we first need to use our `dplyr` skills to create a new data set that has these 7 "best" countries. When we used `group_by()`, we typically used `summarise()` afterward. But, `group_by()` works with `filter()` as well!
 
 ```{r, appendix = TRUE}
-plot_df <- hpi_df %>% group_by(Region) %>%
+plot_df <- hpi_df |> group_by(Region) |>
   filter(HPIRank == min(HPIRank))
 ```
 
@@ -494,7 +494,7 @@ In the code above, `shape = 1` says that the new point should be an open circle 
 You can use this same strategy to label specific countries. I'm interested in where the United States of America falls on this graph because I'm from the U.S. I'm also interested in where Denmark falls because that's the country I'm most interested in visiting. Feel free to replace those countries with any that you're interested in!
 
 ```{r, appendix = TRUE}
-plot_df_us <- hpi_df %>%
+plot_df_us <- hpi_df |>
   filter(Country == "United States of America" | Country == "Denmark")
 
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
@@ -585,7 +585,7 @@ Explore the data set with `head()`, `skim()`, and `?gapminder` before proceeding
 3. \* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use `filter()` to create a data set that only has these 3 countries. Then, use `geom_label()` to label all three countries on your plot.
 
 ```{r, echo = FALSE, fig.keep = "none"}
-interest_countries <- country_df %>% filter((year == 1952 & continent == "Europe" &
+interest_countries <- country_df |> filter((year == 1952 & continent == "Europe" &
     lifeExp < 50) | (year == 1992 & continent == "Africa" &
     lifeExp < 30) | (year == 1977 & continent == "Asia" & 
     lifeExp < 35))
@@ -603,7 +603,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
 4. Google the history of the countries in Africa and Asia that you just labeled. Add a very short description of why each country experienced a dip in life expectancy as a caption in your graph.
 
 ```{r, echo = FALSE, fig.keep = "none"}
-interest_countries <- country_df %>% filter((year == 1952 & continent == "Europe" &
+interest_countries <- country_df |> filter((year == 1952 & continent == "Europe" &
     lifeExp < 50) | (year == 1992 & continent == "Africa" &
     lifeExp < 30) | (year == 1977 & continent == "Asia" & 
     lifeExp < 35))
@@ -632,7 +632,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
 6. Suppose that we want the legend to appear on the bottom of the graph. Without using an entirely different theme, use Google to figure out how to move the legend from the right-hand side to the bottom.
 
 ```{r, echo = FALSE, fig.keep = "none"}
-interest_countries <- country_df %>% filter((year == 1952 & continent == "Europe" &
+interest_countries <- country_df |> filter((year == 1952 & continent == "Europe" &
     lifeExp < 50) | (year == 1992 & continent == "Africa" &
     lifeExp < 30) | (year == 1977 & continent == "Asia" & 
     lifeExp < 35))
@@ -713,10 +713,10 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
 library(knitr)
 library(pander)
 library(tidyverse)
-mpg_df <- mtcars %>% group_by(cyl) %>%
+mpg_df <- mtcars |> group_by(cyl) |>
   summarise(meanmpg = mean(mpg))
-mpg_df %>% kable()
-mpg_df %>% pander()
+mpg_df |> kable()
+mpg_df |> pander()
 ```
 
 2. \* Type `?kable` into your console window and scroll through the Help file. Change the rounding of the mean so that it only displays one number after the decimal. Then, add a caption to the table that says "My First Table Caption!!"
@@ -771,7 +771,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
 3. \* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expxectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use `filter()` to create a data set that only has these 3 countries. Then, use `geom_label()` to label all three countries on your plot.
 
 ```{r}
-interest_countries <- country_df %>% filter((year == 1952 & continent == "Europe" &
+interest_countries <- country_df |> filter((year == 1952 & continent == "Europe" &
     lifeExp < 50) | (year == 1992 & continent == "Africa" &
     lifeExp < 30) | (year == 1977 & continent == "Asia" & 
     lifeExp < 35))

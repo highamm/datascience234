@@ -140,7 +140,7 @@ Which code chunk would you want to read two years from now? Which code chunk wou
 Recall from STAT 113 that bar plots are useful if you want to examine the distribution of one categorical variable. Side-by-side bar plots or stacked bar plots are plots that are useful for looking at the relationship between two categorical variables. There actually aren't any categorical variables that would be interesting to plot in this data set, so we'll make one, called `winner` using code that we don't need to understand until next week. `winner` will be `"Gore"` if Gore won the county and `"Bush"` if Bush won the county. We'll name this new data set `pres_cat`.
 
 ```{r, appendix = TRUE}
-pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
+pres_cat <- pres_df |> mutate(winner = if_else(Gore > Bush,
                                                 true = "Gore",
                                                 false = "Bush"))
 pres_cat
@@ -156,7 +156,7 @@ ggplot(data = pres_cat, aes(x = winner)) +
 Note that, sometimes, data are in format such that one column contains the _levels_ of the categorical variable while another column contains the counts directly. For example, we can create such a data set using code that we will learn next week:
 
 ```{r, appendix = TRUE}
-pres_cat2 <- pres_cat %>% group_by(winner) %>%
+pres_cat2 <- pres_cat |> group_by(winner) |>
   summarise(nwins = n())
 pres_cat2
 ```
@@ -270,7 +270,7 @@ For the remainder of this chapter, we will work with some fitness data collected
 
 ```{r, appendix = TRUE}
 library(tidyverse)
-fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+fitness_full <- read_csv("data/higham_fitness_clean.csv") |> mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
   TRUE ~ "weekday"))
 ```
 
@@ -287,7 +287,7 @@ One aspect of the plot that you may notice is that there are observations where 
 ## drop observations that have active calories < 50. 
 ## assuming that these are data errors or 
 ## days where the Apple Watch wasn't worn.
-fitness <- fitness_full %>%
+fitness <- fitness_full |>
   filter(active_cals > 50)
 ```
 
@@ -590,7 +590,7 @@ Loess uses a bunch of local regressions to predict the y-variable at each point,
 2. \* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.
 
 ```{r, echo = TRUE}
-ggplot(data = stat113_df %>% filter(!is.na(Sport) & !is.na(Sex)),
+ggplot(data = stat113_df |> filter(!is.na(Sport) & !is.na(Sex)),
   aes(x = Exercise, y = GPA)) + 
   geom_point() + geom_smooth() +
   facet_grid(Sex ~ Sport)

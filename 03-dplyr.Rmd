@@ -529,7 +529,7 @@ lm(videogame_df, metascore ~ price)
 
 which doesn't work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).
 
-For one final note about the pipe, note that the pipe operator `|>` is relatively new. Previously, the primary pipe operator used was `%>%` and came from the `magrittr` package. For almost all cases, the two operators are equivalent. However, when scanning the Internet for help with code, you will probably see `%>%` used in many of people's responses on sites like StackOverflow.
+For one final note about the pipe, note that the pipe operator `|>` is relatively new. Previously, the primary pipe operator used was `|>` and came from the `magrittr` package. For almost all cases, the two operators are equivalent. However, when scanning the Internet for help with code, you will probably see `|>` used in many of people's responses on sites like StackOverflow.
 
 ### Exercises {#exercise-3-4}
 
@@ -576,13 +576,13 @@ c. Create a bar plot that shows the 10 most popular names as well as the count f
 4. \* In some cases throughout this chapter, we've renamed data sets using `<-` with the same name like
 
 ```{r}
-toy_df <- toy_df %>% mutate(newvar = x / y)
+toy_df <- toy_df |> mutate(newvar = x / y)
 ```
 
 In other cases, we've given the data set a new name, like
 
 ```{r}
-toy_small <- toy_df %>% filter(!is.na(x))
+toy_small <- toy_df |> filter(!is.na(x))
 ```
 
 For which of the functions below is a generally "safe" to name the data set using the same name after using the function. Why?
@@ -606,11 +606,11 @@ e. `select()`
 2. \* Create a new variable that is called `major_size` and is "large" when the total number of majors is 100 or more and "small" when the total number of majors is less than 100.
 
 ```{r}
-slumajors_df %>% mutate(major_size = if_else(ntotal >= 100,
+slumajors_df |> mutate(major_size = if_else(ntotal >= 100,
                                              true = "large",
                                              false = "small"))
 ## OR
-slumajors_df %>%
+slumajors_df |>
   mutate(major_size = case_when(ntotal >= 100 ~ "large",
                                 ntotal < 100 ~ "small"))
 ```
@@ -618,7 +618,7 @@ slumajors_df %>%
 5. \* Investigate what happens with `case_when()` when you give overlapping conditions and when you give conditions that don't cover all observations. For overlapping conditions, create a variable `testcase` that is `"Yes"` when `percfemale` is greater than or equal to 40 and `"No"` when `percfemale` is greater than 60 For conditions that don't cover all observations, create a variable `testcase2` that is `"Yes"` when `percefemale` is greater than or equal to 55 and `"No"` when `percfemale` is less than 35.
 
 ```{r, echo = FALSE}
-slumajors_df %>%
+slumajors_df |>
   mutate(testcase = case_when(percfemale >= 55 ~ "Yes",
   percfemale > 65 ~ "No"),
   testcase2 = case_when(percfemale >= 55 ~ "Yes",
@@ -634,14 +634,14 @@ For non-coverage, any observation that is not covered is given an NA.
 2. \* Use `select()` and `everything()` to put the `large_majority` variable as the first column in the `slumajors_df` data set.
 
 ```{r}
-slumajors_df %>% select(large_majority, everything())
+slumajors_df |> select(large_majority, everything())
 ```
 
 3. \* In the `babynames` data set, use `filter()`, `mutate()` with `rank()`, and `arrange()` to print the 10 most popular Male babynames in 2017.
 
 ```{r}
-babynames %>% filter(sex == "M" & year == 2017) %>%
-  mutate(rankname = rank(desc(n))) %>%
+babynames |> filter(sex == "M" & year == 2017) |>
+  mutate(rankname = rank(desc(n))) |>
   filter(rankname <= 10)
 ```
 
@@ -650,38 +650,38 @@ babynames %>% filter(sex == "M" & year == 2017) %>%
 3. \* Create a data set that has a column for `name` and a column that shows the total number of births for that name across all years and both sexes.
 
 ```{r}
-babynames %>% group_by(name) %>%
+babynames |> group_by(name) |>
   summarise(totalbirths = sum(n))
 ```
 
 4. \* `group_by()` can also be used with other functions, including `mutate()`. Use `group_by()` and `mutate()` to rank the names from most to least popular in each year-sex combination.
 
 ```{r}
-ranked_babynames <- babynames %>% group_by(year, sex) %>%
+ranked_babynames <- babynames |> group_by(year, sex) |>
   mutate(rankname = rank((desc(n))))
 ```
 
 5. \* From the data set in 4, `filter()` the data to keep only the most popular name in each year-sex combination and then construct a summary table showing how many times each name appears as the most popular name.
 
 ```{r}
-ranked_babynames %>% filter(rankname == 1) %>%
-  group_by(name) %>%
-  summarise(nappear = n()) %>%
+ranked_babynames |> filter(rankname == 1) |>
+  group_by(name) |>
+  summarise(nappear = n()) |>
   arrange(desc(nappear))
 ```
 
 6. \* Run the following code. Intuitively, a `slice(1, 2, 3, 4, 5)` should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. Try to figure out what the issue is by using Google to search something like "`dplyr` not slicing correctly after using group by." What do you find?
 
 ```{r}
-babynames_test <- babynames %>%
-  group_by(year, sex) %>% mutate(ntest = n / prop)
-babynames_test %>% slice(1, 2, 3, 4, 5)
+babynames_test <- babynames |>
+  group_by(year, sex) |> mutate(ntest = n / prop)
+babynames_test |> slice(1, 2, 3, 4, 5)
 ```
 
 Functions like `slice()` and `rank()` operate on defined groups in the data set if using a function like `group_by()` first. Sometimes this feature is quite convenient. But, if we no longer want `slice()` or `rank()` or other functions to account for these groups, we need to add an `ungroup()` pipe, which simply drops the groups that we had formed:
 
 ```{r}
-babynames_test %>% ungroup() %>% slice(1:5)
+babynames_test |> ungroup() |> slice(1:5)
 ```
 
 ### Missing Values S
@@ -689,7 +689,7 @@ babynames_test %>% ungroup() %>% slice(1:5)
 1. \* `mutate()`. Try to create a new variable with `mutate()` involving `x`. What does `R` do with the missing value?
 
 ```{r}
-toy_df %>% mutate(xy = x * y)
+toy_df |> mutate(xy = x * y)
 ```
 
 `R` puts another `NA` in place of x times y for the observation with the missing x.
@@ -720,10 +720,10 @@ b. Use `group_by()` and `summarise()` to add together the number of Females and 
 c. Make a line plot showing the popularity of these 5 names over time. 
 
 ```{r}
-baby5 <- babynames %>% filter(name == "Matthew" | name == "Ivan" |
+baby5 <- babynames |> filter(name == "Matthew" | name == "Ivan" |
                                 name == "Jessica" | name == "Robin" |
                                 name == "Michael")
-baby5_tot <- baby5 %>% group_by(year, name) %>%
+baby5_tot <- baby5 |> group_by(year, name) |>
   summarise(ntot = sum(n))
 ggplot(data = baby5_tot, aes(x = year, y = ntot, colour = name)) +
   geom_line()
@@ -732,13 +732,13 @@ ggplot(data = baby5_tot, aes(x = year, y = ntot, colour = name)) +
 4. \* In some cases throughout this chapter, we've renamed data sets using `<-` with the same name like
 
 ```{r}
-toy_df <- toy_df %>% mutate(newvar = x / y)
+toy_df <- toy_df |> mutate(newvar = x / y)
 ```
 
 In other cases, we've given the data set a new name, like
 
 ```{r}
-toy_small <- toy_df %>% filter(!is.na(x))
+toy_small <- toy_df |> filter(!is.na(x))
 ```
 
 For which of the functions below is a generally "safe" to name the data set using the same name after using the function. Why?
@@ -760,7 +760,7 @@ d. `summarise()`
 Usually not the best practice. Again, naming the summarized data set the same as the original data means that you lose the original data, unless you re-read it in at the beginning. For example,
 
 ```{r}
-toy_df <- toy_df %>% summarise(meanx = mean(x))
+toy_df <- toy_df |> summarise(meanx = mean(x))
 toy_df
 ```
 

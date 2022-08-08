@@ -225,13 +225,13 @@ str_detect(med_djok_df$point, pattern = "^4")
 
 Detect which points end with an `@` using `$` to denote "at the end" (this is safer than what we did in the code above, where we just assumed that `@` did not appear anywhere else in the string except at the end).
 
-```{r, appendix = TRUE}
+```{r, results = "hide", appendix = TRUE}
 str_detect(med_djok_df$point, pattern = "@$")
 ```
 
 We can also extract all of the forehand shots that were hit with `str_extract_all()`. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.
 
-```{r, appendix = TRUE}
+```{r, results = "hide", appendix = TRUE}
 str_extract_all(med_djok_df$point, pattern = "f[:digit:]+")
 ```
 

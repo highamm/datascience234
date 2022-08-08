@@ -302,7 +302,7 @@ library(rvest)
 
 url_SLU <- "https://saintsathletics.com/sports/baseball/stats/2022"
 tab_SLU <- read_html(url_SLU) |> html_nodes("table")
-SLU_Hitting <- tab_SLU[[1]] %>% html_table(fill = TRUE) |>
+SLU_Hitting <- tab_SLU[[1]] |> html_table(fill = TRUE) |>
   head(-2) |>
   select(-23) |>
   mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 * (H-`2B`-`3B`-`HR`) + 1.27 * `2B` + 1.62 * `3B` + 2.10 * HR) / (AB + BB + SF + HBP))
@@ -359,7 +359,8 @@ get_hitting_data <- function(url_name) {
   hitting <- tab[[1]] |> html_table(fill = TRUE) |>
     head(-2) |>
     select(-23) |>
-    mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 * (H- `2B` - `3B` - `HR`) +
+    mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 *
+                     (H- `2B` - `3B` - `HR`) +
                      1.27 * `2B` + 1.62 * `3B` + 2.10 * HR) / 
              (AB + BB + SF + HBP),
            url_name = url_name)
@@ -379,7 +380,8 @@ get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2
 Now suppose that we want to use our function to scrape the 2022 baseball statistics for all teams in the Liberty League. There are 10 teams in total. The websites for each team's statistics as well as the school name is given in the `tibble` below:
 
 ```{r, appendix = TRUE}
-school_df <- tibble(school_name = c("SLU", "Clarkson", "Rochester", "RIT", "Ithaca", "Skidmore", "RPI", "Union", "Bard", "Vassar"), hitting_web_url = c("https://saintsathletics.com/sports/baseball/stats/2022",
+school_df <- tibble(school_name = c("SLU", "Clarkson", "Rochester", "RIT", "Ithaca", "Skidmore", "RPI", "Union", "Bard", "Vassar"),
+                    hitting_web_url = c("https://saintsathletics.com/sports/baseball/stats/2022",
                  "https://clarksonathletics.com/sports/baseball/stats/2022", 
                  "https://uofrathletics.com/sports/baseball/stats/2022",
                  "https://ritathletics.com/sports/baseball/stats/2022",
@@ -470,7 +472,7 @@ url <- paste0("https://en.wikipedia.org/wiki/Billboard_Year-End_Hot_100_singles_
 billboard_tab <- read_html(url) |> html_nodes("table")
 
 ## grabs the tables
-billboard_df <- billboard_tab[[1]] %>% html_table() |>
+billboard_df <- billboard_tab[[1]] |> html_table() |>
   mutate(year = year_scrape)
 billboard_df
 ```

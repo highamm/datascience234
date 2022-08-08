@@ -24,11 +24,12 @@ __Instructor Information__
 * Semester: Fall 2022
 * Sections:
     + MW 2:30 - 4:00
-* Office Hours: 15 minute slots bookable at <https://calendly.com/mhigham/prof-higham-office-hours>
-    + Monday 1:30 - 3:30 
-    + Tuesday 2:30 - 3:30
+* Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
+    + Monday 
+    + Tuesday 
     + Wednesday 
-    + Thursday 10:00 - 11:00
+    + Thursday 
+    + Friday
     + Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
     
 __Course Materials__
@@ -89,25 +90,21 @@ The components to your grade are described below:
 
 * Modules
 
-Each week, you will submit a 50-point Module, consisting of the following:
+Each week, you will submit a 60-point Module, consisting of the following:
 
-    * an __Exercise Set__ (10 points): Due Mondays and usually from our <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. Exercises are graded for completion only and solutions are typically provided after you submit to Canvas. Collaboration is allowed.
-    * a __Take-Home Quiz__ (15 points): Due Wednesdays. Take-Home quizzes are graded for correctness. Collaboration is allowed.
-    * an __In-Class Quiz__ (25 points): Given on Wednesdays at the start of class. In-Class quizzes are graded for correctness. Collaboration is not allowed. Some questions on the in-class quiz will be based on exercises we complete in class, the exercise sets you complete, and the take-home quiz questions.
+* an __Exercise Set__ (10 points): Due Mondays and usually from our <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. Exercises are graded for completion only and solutions are typically provided after you submit to Canvas. Collaboration is allowed.
+* a __Take-Home Quiz__ (20 points): Due Wednesdays. Take-Home quizzes are graded for correctness. Collaboration is allowed.
+* an __In-Class Quiz__ (30 points): Given on Wednesdays at the start of class. In-Class quizzes are graded for correctness. Collaboration is not allowed. Some questions on the in-class quiz will be based on exercises we complete in class, the exercise sets you complete, and the take-home quiz questions.
     
-There are 13 modules in total. The lowest module will be dropped from your grade so the total number of points available is `12 * 50 = 600` points. 
+There are 13 modules in total. In three modules, the two quizzes will be replaced by a Project, which will have some tasks for you to complete for a particular data set. The lowest module will be dropped from your grade so the total number of points available is `12 * 60 = 720` points. 
 
 Additionally, for one module, you are permitted to take the in-class quiz as a take-home and turn it in the following Monday.
 
 Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second and third-lowest module scores.
 
-* Projects
-
-There are 3 Projects scattered throughout the semester that are worth 50 points each. Each Project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.
-
 * Class
 
-Class participation will be assessed twice throughout the semester in a 25 point rubric for a total of 50 points. The rubric used will be shared on the first day of class.
+Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. The rubric used will be shared on the first day of class.
 
 * Final Project
 
@@ -115,28 +112,22 @@ There is one final project, worth 100 points. The primary purpose of the final p
 
 * Final Exam
 
-There is an optional Final Exam, worth 100 points total, consisting of 20 points of Exercises (graded for completeness), 20 points for a take-home portion, and 60 points for the in-class portion. You __must__ be on campus for our final exam time to take the final exam.
+There is an optional Final Exam, worth 120 points total, consisting of 20 points of Exercises (graded for completeness), 40 points for a take-home portion, and 60 points for the in-class portion. You __must__ be on campus for our final exam time to take the final exam.
 
 There are two options for the final exam:
 
-* Option 1: Skip the final exam (skip all components: exercises, take-home, and in-class) and assign the average percentage of your 12 highest modules to be your score for the 100 point final. For example, suppose your 13 module scores are: `50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 33, 30, 0`. Then, you would drop your lowest score (the `0`) and your score for the final would be: `(50 + 50 + 49 + 48 + 47 + 43 + 43 + 43 + 43 + 35 + 33 + 30) / 600 * 100` = `86` points.
+* Option 1: Skip the final exam (skip all components: exercises, take-home, and in-class) and assign the average percentage of your 12 highest modules to be your percentage score for the 120 point final. For example, suppose your 13 module scores are: `60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 43, 30, 0`. Then, you would drop your lowest score (the `0`) and your score for the final would be: `(60 + 60 + 59 + 58 + 57 + 53 + 53 + 53 + 53 + 45 + 43 + 30 + 30) / 720 * 120` = `109 / 120` points.
 
-* Option 2: Take the final exam, which consists of 20 points of Exercises, a 30 point Take-Home portion, and a 50 point In-Class portion. Your score on these items will be used for the 100 points devoted to the final exam. Additionally, if your final exam score is better than your 2nd and 3rd lowest module grades, the will be replaced with your final exam score. For example, suppose your 13 module scores are: `50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 33, 30, 0`. You take the final exam and score a `90 / 100`. Then, your score for the final is `90` points and your new module scores would be: `50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 45, 45, 0`. The `0` would still be dropped as your lowest module score.
+* Option 2: Take the final exam, which consists of 20 points of Exercises, a 30 point Take-Home portion, and a 50 point In-Class portion. Your score on these items will be used for the 100 points devoted to the final exam. Additionally, if your final exam score is better than your 2nd and 3rd lowest module grades, the will be replaced with your final exam score. For example, suppose your 13 module scores are: `60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 43, 30, 0`. You take the final exam and score a `110 / 120`. Then, your score for the final is `110 / 120` points and your new module scores would be: `60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 55, 55, 0`. The `0` would still be dropped as your lowest module score.
 
 ### Breakdown
 
-* 600 points for Modules
-* 150 points for Projects
-* 50 points for Class Participation
+* 720 points for Modules
+* 60 points for Class Participation
 * 100 points for the Final Project
-* 100 points for the (optional) in-person Final Exam
+* 120 points for the (optional) in-person Final Exam
 
 Points add up to 1000 so your grade at the end of the semester will be the number of points you've earned across all categories divided by 1000.
-
-* What we do in class should help you complete the exercises sets, which should
-    * help you to do well on the quizzes, which should
-        * help you complete the projects, which should 
-            * help you to do well on the final exam and final project.
 
 ### Grading Scale
 
@@ -219,12 +210,12 @@ _Please note that in addition the above, any assignments in which your score is 
 | 1 | 8/29 | Graphics with `ggplot2` |
 | 2 | 9/5 | Data Wrangling and Transformation with `dplyr` |
 | 3 | 9/12 | Communication with `R Markdown` and `ggplot2` |
-| 4 | 9/19\* | Soft Skills and Workflow |
-| 5 | 9/26 | Data Tidying with `tidyr` |
+| 4 | 9/19 | Soft Skills and Workflow |
+| 5 | 9/26\* | Data Tidying with `tidyr` |
 | 6 | 10/3 | Base `R` |
 ||||
-| 7 | 10/10\* | Factors with `forcats` and Data Ethics  |
-| 8 | 10/17 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble`|
+| 7 | 10/10 | Factors with `forcats` and Data Ethics  |
+| 8 | 10/17\* | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble`|
 | 9 | 10/24 | Data Merging with `dplyr` |
 | 10 | 10/31\* | Dates and Times with `lubridate` |
 | 11 | 11/7 | Text Data with `tidytext` and `stringr` |
@@ -234,4 +225,4 @@ _Please note that in addition the above, any assignments in which your score is 
 | 14 | 11/28 | Connections to STAT and CS |
 | 14 | 12/5 | Databases and SQL with `dbplyr` |
 
-* The three projects are tentatively scheduled to be due on September 21, October 12, and November 2, though these are subject to change. 
+* The three projects are tentatively scheduled to be due on September 28, October 19, and November 2, though these are subject to change. 
