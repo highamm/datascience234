@@ -85,15 +85,6 @@ Lines 8-10 are the set-up chunk. Again, we'll come back to this in a bit. For no
 
 ```r
 library(tidyverse)
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'pillar'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'tibble'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'hms'
 head(cars)
 ggplot(data = cars, aes(x = speed, y = dist)) +
   geom_point()
@@ -138,7 +129,7 @@ We've already seen that Figures will pop up automatically (unless we set `fig.ke
 
 Delete the `results = 'hide'` option that you added earlier. When you knit your .Rmd file now, results tables from `head(cars)` and `summary(cars)` look kind of ugly. We will focus on using the `kable()` function from the `knitr` package to make these tables much more aesthetically pleasing. Another option is to use the `pander()` function in the `pander` package. Both `pander()` and `kable()` are very simple functions to generate tables but will be more than sufficient for our purposes. To generate more complicated tables, see the `xtable` package.
 
-To use these functions, simply replace add a `%>%` pipe with the name of the table function you want to use. `head(cars) %>% kable()` will make a nice-looking table with `kable` and `head(cars) %>% pander()` will use `pander()`. Before using `kable()`, you'll need to load its library by adding the line `library(knitr)` above `head(cars) %>% kable()`. Before using `pander()`, you'll need to load its library by adding the line `library(pander)` above `head(cars) %>% pander()`. Try these out in your `R Markdown` file.
+To use these functions, simply replace add a `|>` pipe with the name of the table function you want to use. `head(cars) |> kable()` will make a nice-looking table with `kable` and `head(cars) |> pander()` will use `pander()`. Before using `kable()`, you'll need to load its library by adding the line `library(knitr)` above `head(cars) |> kable()`. Before using `pander()`, you'll need to load its library by adding the line `library(pander)` above `head(cars) |> pander()`. Try these out in your `R Markdown` file.
 
 Which table do you like better in this case?
 
@@ -321,18 +312,21 @@ Read in the data set with
 library(tidyverse)
 hpi_df <- read_csv("data/hpi-tidy.csv")
 head(hpi_df)
-#> # A tibble: 6 x 11
-#>   HPIRank Country    LifeExpectancy Wellbeing HappyLifeYears
-#>     <dbl> <chr>               <dbl>     <dbl>          <dbl>
-#> 1     109 Afghanist…           48.7      4.76           29.0
-#> 2      18 Albania              76.9      5.27           48.8
-#> 3      26 Algeria              73.1      5.24           46.2
-#> 4     127 Angola               51.1      4.21           28.2
-#> 5      17 Argentina            75.9      6.44           55.0
-#> 6      53 Armenia              74.2      4.37           41.9
-#> # … with 6 more variables: Footprint <dbl>,
-#> #   HappyPlanetIndex <dbl>, Population <dbl>,
-#> #   GDPcapita <dbl>, GovernanceRank <chr>, Region <chr>
+#> # A tibble: 6 × 11
+#>   HPIRank Country    LifeE…¹ Wellb…² Happy…³ Footp…⁴ Happy…⁵
+#>     <dbl> <chr>        <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+#> 1     109 Afghanist…    48.7    4.76    29.0   0.540    36.8
+#> 2      18 Albania       76.9    5.27    48.8   1.81     54.1
+#> 3      26 Algeria       73.1    5.24    46.2   1.65     52.2
+#> 4     127 Angola        51.1    4.21    28.2   0.891    33.2
+#> 5      17 Argentina     75.9    6.44    55.0   2.71     54.1
+#> 6      53 Armenia       74.2    4.37    41.9   1.73     46.0
+#> # … with 4 more variables: Population <dbl>,
+#> #   GDPcapita <dbl>, GovernanceRank <chr>, Region <chr>,
+#> #   and abbreviated variable names ¹​LifeExpectancy,
+#> #   ²​Wellbeing, ³​HappyLifeYears, ⁴​Footprint,
+#> #   ⁵​HappyPlanetIndex
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Let's look at the relationship between `HappyLifeYears` and `Footprint` for countries of different `Region`s of the world.
@@ -344,7 +338,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_point()
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-12-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 Which region seems to have the most variability in their Ecological Footprint?
 
@@ -368,7 +362,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
        colour = "World Region") ## change label of colour legend
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-13-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 Any `aes()` that you use in your plot gets its own label and can be changed by `name_of_aethetic = "Your Label"`. In the example above, we changed all three `aes()` labels: `x`, `y`, and `colour`.
 
@@ -386,7 +380,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   ylim(c(0, 70))
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-14-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 In this case, it makes the points on the plot a bit harder to see. You can also change where and how often tick marks appear on the x and y-axes. For special things like this, I think it's best to just resort to Google ("ggplot how to change x-axis breaks tick marks" should help).
 
@@ -410,7 +404,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   scale_colour_brewer(palette = "Accent")
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-15-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 Try changing the palette to something else besides `"Accent"`. Do you like the new palette better or worse?
 
@@ -424,7 +418,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   scale_colour_viridis_d(option = "plasma")
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-16-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 A drawback of the `viridis` package is that the yellow can be really hard to see (at least for me).
 
@@ -447,13 +441,13 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_label(aes(label = Country))
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-17-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 Yikes! It's quite uncommon to want to label __all__ of the points. Let's see if we can instead label each country with the best HPI in that country's region. To do so, we first need to use our `dplyr` skills to create a new data set that has these 7 "best" countries. When we used `group_by()`, we typically used `summarise()` afterward. But, `group_by()` works with `filter()` as well!
 
 
 ```r
-plot_df <- hpi_df %>% group_by(Region) %>%
+plot_df <- hpi_df |> group_by(Region) |>
   filter(HPIRank == min(HPIRank))
 ```
 
@@ -470,7 +464,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_label(data = plot_df, aes(label = Country))
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-19-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 Why do you think the colour legend changed to showing the letter "a" for each region?
 
@@ -483,7 +477,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_label(data = plot_df, aes(label = Country), show.legend = FALSE)
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 Why does the code chunk above change all of the "a"'s back to points?
 
@@ -500,7 +494,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                    show.legend = FALSE) 
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 And a final issue with the plot is that it's not always very clear which point on the plot is being labeled. A trick used in the _R for Data Science_ book is to surround the points that are being labeled with an open circle using an extra `geom_point()` function:
 
@@ -513,7 +507,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears, colour = Region)) +
   geom_point(data = plot_df, size = 3, shape = 1, show.legend = FALSE) 
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-22-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 In the code above, `shape = 1` says that the new point should be an open circle and `size = 3` makes the point bigger, ensuring that it goes around the original point. `show.legend = FALSE` ensures that the larger open circles don't become part of the legend.
 
@@ -521,7 +515,7 @@ You can use this same strategy to label specific countries. I'm interested in wh
 
 
 ```r
-plot_df_us <- hpi_df %>%
+plot_df_us <- hpi_df |>
   filter(Country == "United States of America" | Country == "Denmark")
 
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
@@ -534,7 +528,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                    show.legend = FALSE)
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-23-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 ### Plot Themes 
 
@@ -587,7 +581,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_point()
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-25-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 
 We will practice more with communicating with plots in the chapter exercises.
 
@@ -666,12 +660,11 @@ Explore the data set with `head()`, `skim()`, and `?gapminder` before proceeding
 
 ```r
 library(knitr)
-#> Warning: package 'knitr' was built under R version 4.1.2
 library(pander)
 library(tidyverse)
-mpg_df <- mtcars %>% group_by(cyl) %>%
+mpg_df <- mtcars |> group_by(cyl) |>
   summarise(meanmpg = mean(mpg))
-mpg_df %>% kable()
+mpg_df |> kable()
 ```
 
 
@@ -683,7 +676,7 @@ mpg_df %>% kable()
 |   8| 15.10000|
 
 ```r
-mpg_df %>% pander()
+mpg_df |> pander()
 ```
 
 
@@ -748,7 +741,7 @@ Table: (\#tab:unnamed-chunk-36)My First Table Caption!!
 
 
 ```r
-interest_countries <- country_df %>% filter((year == 1952 & continent == "Europe" &
+interest_countries <- country_df |> filter((year == 1952 & continent == "Europe" &
     lifeExp < 50) | (year == 1992 & continent == "Africa" &
     lifeExp < 30) | (year == 1977 & continent == "Asia" & 
     lifeExp < 35))
@@ -763,7 +756,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
     nudge_x = 7)
 ```
 
-![](05-comm_files/figure-epub3/unnamed-chunk-39-1.png)<!-- -->
+<img src="05-comm_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 ## Non-Exercise `R` Code {#rcode-5}
 
@@ -804,7 +797,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
   geom_label(aes(label = Country))
-plot_df <- hpi_df %>% group_by(Region) %>%
+plot_df <- hpi_df |> group_by(Region) |>
   filter(HPIRank == min(HPIRank))
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
@@ -828,7 +821,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears, colour = Region)) +
   scale_colour_brewer(palette = "Dark2") +
   geom_label_repel(data = plot_df, aes(label = Country), show.legend = FALSE) +
   geom_point(data = plot_df, size = 3, shape = 1, show.legend = FALSE) 
-plot_df_us <- hpi_df %>%
+plot_df_us <- hpi_df |>
   filter(Country == "United States of America" | Country == "Denmark")
 
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,

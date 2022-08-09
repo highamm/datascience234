@@ -38,32 +38,25 @@ Run the code in the following `R` chunk to read in the data.
 
 ```r
 library(tidyverse)
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'pillar'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'tibble'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'hms'
 library(here)
 videogame_df <- read_csv(here("data/videogame_clean.csv"))
 head(videogame_df)
-#> # A tibble: 6 x 15
-#>   game          release_date release_date2 price owners     
-#>   <chr>         <chr>        <date>        <dbl> <chr>      
-#> 1 Half-Life 2   Nov 16, 2004 2004-11-16     9.99 10,000,000…
-#> 2 Counter-Stri… Nov 1, 2004  2004-11-01     9.99 10,000,000…
-#> 3 Counter-Stri… Mar 1, 2004  2004-03-01     9.99 10,000,000…
-#> 4 Half-Life 2:… Nov 1, 2004  2004-11-01     4.99 5,000,000 …
-#> 5 Half-Life: S… Jun 1, 2004  2004-06-01     9.99 2,000,000 …
-#> 6 CS2D          Dec 24, 2004 2004-12-24    NA    1,000,000 …
-#> # … with 10 more variables: median_playtime <dbl>,
-#> #   metascore <dbl>, price_cat <dbl>, meta_cat <chr>,
+#> # A tibble: 6 × 15
+#>   game       relea…¹ release_…² price owners media…³ metas…⁴
+#>   <chr>      <chr>   <date>     <dbl> <chr>    <dbl>   <dbl>
+#> 1 Half-Life… Nov 16… 2004-11-16  9.99 10,00…      66      96
+#> 2 Counter-S… Nov 1,… 2004-11-01  9.99 10,00…     128      88
+#> 3 Counter-S… Mar 1,… 2004-03-01  9.99 10,00…       3      65
+#> 4 Half-Life… Nov 1,… 2004-11-01  4.99 5,000…       0      NA
+#> 5 Half-Life… Jun 1,… 2004-06-01  9.99 2,000…       0      NA
+#> 6 CS2D       Dec 24… 2004-12-24 NA    1,000…      10      NA
+#> # … with 8 more variables: price_cat <dbl>, meta_cat <chr>,
 #> #   playtime_miss <lgl>, number <dbl>, developer <chr>,
 #> #   publisher <chr>, average_playtime <dbl>,
-#> #   meta_cat_factor <chr>
+#> #   meta_cat_factor <chr>, and abbreviated variable names
+#> #   ¹​release_date, ²​release_date2, ³​median_playtime,
+#> #   ⁴​metascore
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 A data frame or tibble holds variables that are allowed to be different classes. If a variable is a different class than you would expect, you'll get some strange errors or results when trying to wrangle the data or make graphics. 
@@ -75,21 +68,17 @@ Run the following lines of code. In some cases, we are only using the first 100 
 videogame_small <- videogame_df |> slice(1:100)
 ggplot(data = videogame_small, aes(x = release_date, y = price)) +
   geom_point() 
-#> Warning: Removed 5 rows containing missing values
-#> (geom_point).
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-2-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 ```r
 
 ggplot(data = videogame_small, aes(x = release_date2, y = metascore)) +
   geom_point(aes(colour = price_cat))
-#> Warning: Removed 43 rows containing missing values
-#> (geom_point).
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-2-2.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-2-2.png" width="672" />
 
 In the first plot, `release_date` isn't ordered according to how you would expect (by date). Instead, `R` orders it alphabetically.
 
@@ -104,20 +93,22 @@ If you examine the output of the following line of code
 
 ```r
 head(videogame_df)
-#> # A tibble: 6 x 15
-#>   game          release_date release_date2 price owners     
-#>   <chr>         <chr>        <date>        <dbl> <chr>      
-#> 1 Half-Life 2   Nov 16, 2004 2004-11-16     9.99 10,000,000…
-#> 2 Counter-Stri… Nov 1, 2004  2004-11-01     9.99 10,000,000…
-#> 3 Counter-Stri… Mar 1, 2004  2004-03-01     9.99 10,000,000…
-#> 4 Half-Life 2:… Nov 1, 2004  2004-11-01     4.99 5,000,000 …
-#> 5 Half-Life: S… Jun 1, 2004  2004-06-01     9.99 2,000,000 …
-#> 6 CS2D          Dec 24, 2004 2004-12-24    NA    1,000,000 …
-#> # … with 10 more variables: median_playtime <dbl>,
-#> #   metascore <dbl>, price_cat <dbl>, meta_cat <chr>,
+#> # A tibble: 6 × 15
+#>   game       relea…¹ release_…² price owners media…³ metas…⁴
+#>   <chr>      <chr>   <date>     <dbl> <chr>    <dbl>   <dbl>
+#> 1 Half-Life… Nov 16… 2004-11-16  9.99 10,00…      66      96
+#> 2 Counter-S… Nov 1,… 2004-11-01  9.99 10,00…     128      88
+#> 3 Counter-S… Mar 1,… 2004-03-01  9.99 10,00…       3      65
+#> 4 Half-Life… Nov 1,… 2004-11-01  4.99 5,000…       0      NA
+#> 5 Half-Life… Jun 1,… 2004-06-01  9.99 2,000…       0      NA
+#> 6 CS2D       Dec 24… 2004-12-24 NA    1,000…      10      NA
+#> # … with 8 more variables: price_cat <dbl>, meta_cat <chr>,
 #> #   playtime_miss <lgl>, number <dbl>, developer <chr>,
 #> #   publisher <chr>, average_playtime <dbl>,
-#> #   meta_cat_factor <chr>
+#> #   meta_cat_factor <chr>, and abbreviated variable names
+#> #   ¹​release_date, ²​release_date2, ³​median_playtime,
+#> #   ⁴​metascore
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 you'll see that, at the very top of the output, right below the variable names, `R` provides you with the classes of variables in the `tibble`. 
@@ -165,11 +156,9 @@ With the character class, `R` will give you a warning and/or a missing value if 
 
 ```r
 mean(videogame_df$game)
-#> Warning in mean.default(videogame_df$game): argument is not
-#> numeric or logical: returning NA
 #> [1] NA
 videogame_df |> summarise(maxgame = max(game))
-#> # A tibble: 1 x 1
+#> # A tibble: 1 × 1
 #>   maxgame
 #>   <chr>  
 #> 1 <NA>
@@ -265,11 +254,9 @@ videogame_df <- videogame_df |>
   mutate(price_factor = as.factor(price_cat)) 
 ggplot(data = videogame_df, aes(x = release_date2, y = metascore)) +
   geom_point(aes(colour = price_factor))
-#> Warning: Removed 23838 rows containing missing values
-#> (geom_point).
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-16-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 ### `<lgl>` Class
 
@@ -319,7 +306,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 #> `binwidth`.
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 2. \* What is another variable in the data set that has an incorrect `class`?
 
@@ -347,7 +334,7 @@ We will have a small section on `tibble`s in the coming weeks so we won't focus 
 
 ```r
 videogame_df[5, 3]
-#> # A tibble: 1 x 1
+#> # A tibble: 1 × 1
 #>   release_date2
 #>   <date>       
 #> 1 2004-06-01
@@ -450,7 +437,7 @@ testlist
 #> [1] 1 4 2 6
 #> 
 #> [[4]]
-#> # A tibble: 2 x 2
+#> # A tibble: 2 × 2
 #>       x     y
 #>   <dbl> <dbl>
 #> 1     1     3
@@ -530,7 +517,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 #> `binwidth`.
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-35-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 
 The issue is that weekday should be a factor, not numeric.
 
@@ -544,7 +531,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 #> `binwidth`.
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-36-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 2. \* What is another variable in the data set that has an incorrect `class`?
 
@@ -585,43 +572,47 @@ fitness_df |>
   mutate(weekend_ind = case_when(weekday %in% vecweekend ~ "weekend",
                                  weekday %in% vecweekday ~ "weekday")) |>
   select(weekend_ind, everything())
-#> # A tibble: 993 x 11
-#>    weekend_ind Start      active_cals distance flights
-#>    <chr>       <date>           <dbl>    <dbl>   <dbl>
-#>  1 weekday     2018-11-28        57.8    0.930       0
-#>  2 weekday     2018-11-29       509.     4.64       18
-#>  3 weekday     2018-11-30       599.     6.05       12
-#>  4 weekend     2018-12-01       661.     6.80        6
-#>  5 weekend     2018-12-02       527.     4.61        1
-#>  6 weekday     2018-12-03       550.     3.96        2
-#>  7 weekday     2018-12-04       670.     6.60        5
-#>  8 weekday     2018-12-05       557.     4.91        6
-#>  9 weekday     2018-12-06       997.     7.50       13
-#> 10 weekday     2018-12-07       533.     4.27        8
-#> # … with 983 more rows, and 6 more variables: steps <dbl>,
-#> #   month <dbl>, weekday <dbl>, dayofyear <dbl>,
-#> #   stepgoal <dbl>, weekday_cat <fct>
+#> # A tibble: 993 × 11
+#>    weekend…¹ Start      activ…² dista…³ flights  steps month
+#>    <chr>     <date>       <dbl>   <dbl>   <dbl>  <dbl> <dbl>
+#>  1 weekday   2018-11-28    57.8   0.930       0  1885.    11
+#>  2 weekday   2018-11-29   509.    4.64       18  8953.    11
+#>  3 weekday   2018-11-30   599.    6.05       12 11665     11
+#>  4 weekend   2018-12-01   661.    6.80        6 12117     12
+#>  5 weekend   2018-12-02   527.    4.61        1  8925.    12
+#>  6 weekday   2018-12-03   550.    3.96        2  7205     12
+#>  7 weekday   2018-12-04   670.    6.60        5 12483.    12
+#>  8 weekday   2018-12-05   557.    4.91        6  9258.    12
+#>  9 weekday   2018-12-06   997.    7.50       13 14208     12
+#> 10 weekday   2018-12-07   533.    4.27        8  8269.    12
+#> # … with 983 more rows, 4 more variables: weekday <dbl>,
+#> #   dayofyear <dbl>, stepgoal <dbl>, weekday_cat <fct>, and
+#> #   abbreviated variable names ¹​weekend_ind, ²​active_cals,
+#> #   ³​distance
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 
 ## can also use if_else, which is actually a little simpler in this case:
 fitness_df |> mutate(weekend_ind = if_else(weekday %in% vecweekend,
   true = "weekend", false = "weekday")) |>
   select(weekend_ind, everything())
-#> # A tibble: 993 x 11
-#>    weekend_ind Start      active_cals distance flights
-#>    <chr>       <date>           <dbl>    <dbl>   <dbl>
-#>  1 weekday     2018-11-28        57.8    0.930       0
-#>  2 weekday     2018-11-29       509.     4.64       18
-#>  3 weekday     2018-11-30       599.     6.05       12
-#>  4 weekend     2018-12-01       661.     6.80        6
-#>  5 weekend     2018-12-02       527.     4.61        1
-#>  6 weekday     2018-12-03       550.     3.96        2
-#>  7 weekday     2018-12-04       670.     6.60        5
-#>  8 weekday     2018-12-05       557.     4.91        6
-#>  9 weekday     2018-12-06       997.     7.50       13
-#> 10 weekday     2018-12-07       533.     4.27        8
-#> # … with 983 more rows, and 6 more variables: steps <dbl>,
-#> #   month <dbl>, weekday <dbl>, dayofyear <dbl>,
-#> #   stepgoal <dbl>, weekday_cat <fct>
+#> # A tibble: 993 × 11
+#>    weekend…¹ Start      activ…² dista…³ flights  steps month
+#>    <chr>     <date>       <dbl>   <dbl>   <dbl>  <dbl> <dbl>
+#>  1 weekday   2018-11-28    57.8   0.930       0  1885.    11
+#>  2 weekday   2018-11-29   509.    4.64       18  8953.    11
+#>  3 weekday   2018-11-30   599.    6.05       12 11665     11
+#>  4 weekend   2018-12-01   661.    6.80        6 12117     12
+#>  5 weekend   2018-12-02   527.    4.61        1  8925.    12
+#>  6 weekday   2018-12-03   550.    3.96        2  7205     12
+#>  7 weekday   2018-12-04   670.    6.60        5 12483.    12
+#>  8 weekday   2018-12-05   557.    4.91        6  9258.    12
+#>  9 weekday   2018-12-06   997.    7.50       13 14208     12
+#> 10 weekday   2018-12-07   533.    4.27        8  8269.    12
+#> # … with 983 more rows, 4 more variables: weekday <dbl>,
+#> #   dayofyear <dbl>, stepgoal <dbl>, weekday_cat <fct>, and
+#> #   abbreviated variable names ¹​weekend_ind, ²​active_cals,
+#> #   ³​distance
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ### Chapter Exercises S {#chapexercise-6-S}
@@ -652,7 +643,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_point()
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-42-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 
 3. \* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is _discrete_: `metascore` can only take on integer values in this case. Change `geom_point()` in your previous plot to `geom_jitter()`. Then, use the help to write a sentence about what `geom_jitter()` does.
 
@@ -663,7 +654,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter()
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-43-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 `geom_jitter()` adds a small amount of "noise" to each data point so that points don't overlap quite as much.
 
@@ -676,7 +667,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter(alpha = 0.4)
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-44-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-44-1.png" width="672" />
 
 ```r
 ## can see a lot of ponits have median playtimes close to 0
@@ -694,7 +685,7 @@ ggplot(data = videogame_nomiss,
   geom_label_repel(data = videogame_long, aes(label = game))
 ```
 
-![](06-basics_files/figure-epub3/unnamed-chunk-45-1.png)<!-- -->
+<img src="06-basics_files/figure-html/unnamed-chunk-45-1.png" width="672" />
 
 ## Non-Exercise `R` Code {#rcode-6}
 

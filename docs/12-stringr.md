@@ -13,15 +13,6 @@ Beyonce is a legend. For this example, we will work through a text analysis on l
 
 ```r
 library(tidyverse)
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'pillar'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'tibble'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'hms'
 library(here)
 beyonce <- read_csv(here("data/beyonce_lyrics.csv"))
 head(beyonce)
@@ -49,7 +40,7 @@ The `tidytext` package makes it a lot easier to work with text data in many rega
 library(tidytext)
 beyonce_unnest <- beyonce |> unnest_tokens(output = "word", input = "line")
 beyonce_unnest
-#> # A tibble: 164,740 x 6
+#> # A tibble: 164,740 × 6
 #>    song_id song_name artist_id artist_name song_line word   
 #>      <dbl> <chr>         <dbl> <chr>           <dbl> <chr>  
 #>  1   50396 1+1             498 Beyoncé             1 if     
@@ -63,6 +54,7 @@ beyonce_unnest
 #>  9   50396 1+1             498 Beyoncé             2 if     
 #> 10   50396 1+1             498 Beyoncé             2 i      
 #> # … with 164,730 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 We'll want to make sure that either all words are capitalized or no words are capitalized, for consistency (remember that `R` is case-sensitive). To that end, we'll modify the `word` variable and use `stringr`'s `str_to_lower()` to change all letters to lower-case:
@@ -79,7 +71,7 @@ Let's try counting up Beyonce's most popular words from the data set we just mad
 beyonce_unnest |> group_by(word) |>
   summarise(n = n()) |>
   arrange(desc(n))
-#> # A tibble: 6,469 x 2
+#> # A tibble: 6,469 × 2
 #>    word      n
 #>    <chr> <int>
 #>  1 you    7693
@@ -93,6 +85,7 @@ beyonce_unnest |> group_by(word) |>
 #>  9 and    2385
 #> 10 on     2344
 #> # … with 6,459 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 What's the issue here?
@@ -102,7 +95,7 @@ To remedy this, we can use what are called __stop words__: words that are very c
 
 ```r
 head(stop_words)
-#> # A tibble: 6 x 2
+#> # A tibble: 6 × 2
 #>   word      lexicon
 #>   <chr>     <chr>  
 #> 1 a         SMART  
@@ -128,7 +121,7 @@ beyonce_sum <- beyonce_stop |> group_by(word) |>
   summarise(n = n()) |>
   arrange(desc(n)) |>
   print(n = 25)
-#> # A tibble: 5,937 x 2
+#> # A tibble: 5,937 × 2
 #>    word        n
 #>    <chr>   <int>
 #>  1 love     1362
@@ -157,8 +150,9 @@ beyonce_sum <- beyonce_stop |> group_by(word) |>
 #> 24 beyoncé   238
 #> 25 night     213
 #> # … with 5,912 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 beyonce_sum
-#> # A tibble: 5,937 x 2
+#> # A tibble: 5,937 × 2
 #>    word      n
 #>    <chr> <int>
 #>  1 love   1362
@@ -172,6 +166,7 @@ beyonce_sum
 #>  9 time    452
 #> 10 uh      408
 #> # … with 5,927 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Looking through the list, there are __still__ some stop words in there that were not picked up on in the `stop_words` data set. We will address these, as well as make a plot, in the exercises.
@@ -242,26 +237,23 @@ med_djok_df <- read_csv(here("data/med_djok.csv"))
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 head(med_djok_df)
-#> # A tibble: 6 x 46
-#>   point Serving match_id    Pt  Set1  Set2   Gm1   Gm2 Pts  
-#>   <chr> <chr>   <chr>    <dbl> <dbl> <dbl> <dbl> <dbl> <chr>
-#> 1 4f2d@ ND      2021091…     1     0     0     0     0 0-0  
-#> 2 6d    ND      2021091…     2     0     0     0     0 15-0 
-#> 3 6b29… ND      2021091…     3     0     0     0     0 15-15
-#> 4 4b28… ND      2021091…     4     0     0     0     0 30-15
-#> 5 5b37… ND      2021091…     5     0     0     0     0 40-15
-#> 6 6f28… ND      2021091…     6     0     0     0     0 40-30
-#> # … with 37 more variables: Gm# <chr>, TbSet <dbl>,
-#> #   TB? <dbl>, TBpt <lgl>, Svr <dbl>, Ret <dbl>, 1st <chr>,
-#> #   2nd <chr>, Notes <chr>, 1stSV <dbl>, 2ndSV <dbl>,
-#> #   1stIn <dbl>, 2ndIn <dbl>, isAce <lgl>, isUnret <lgl>,
-#> #   isRallyWinner <lgl>, isForced <lgl>, isUnforced <lgl>,
-#> #   isDouble <lgl>, PtWinner <dbl>, isSvrWinner <dbl>,
-#> #   rallyCount <dbl>, Player 1 <chr>, Player 2 <chr>,
-#> #   Pl 1 hand <chr>, Pl 2 hand <chr>, Gender <chr>,
-#> #   Date <dbl>, Tournament <chr>, Round <lgl>, Time <chr>,
-#> #   Court <chr>, Surface <chr>, Umpire <chr>,
-#> #   Best of <dbl>, Final TB? <dbl>, Charted by <chr>
+#> # A tibble: 6 × 46
+#>   point  Serving match…¹    Pt  Set1  Set2   Gm1   Gm2 Pts  
+#>   <chr>  <chr>   <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <chr>
+#> 1 4f2d@  ND      202109…     1     0     0     0     0 0-0  
+#> 2 6d     ND      202109…     2     0     0     0     0 15-0 
+#> 3 6b29f… ND      202109…     3     0     0     0     0 15-15
+#> 4 4b28f… ND      202109…     4     0     0     0     0 30-15
+#> 5 5b37b… ND      202109…     5     0     0     0     0 40-15
+#> 6 6f28f… ND      202109…     6     0     0     0     0 40-30
+#> # … with 37 more variables: `Gm#` <chr>, TbSet <dbl>,
+#> #   `TB?` <dbl>, TBpt <lgl>, Svr <dbl>, Ret <dbl>,
+#> #   `1st` <chr>, `2nd` <chr>, Notes <chr>, `1stSV` <dbl>,
+#> #   `2ndSV` <dbl>, `1stIn` <dbl>, `2ndIn` <dbl>,
+#> #   isAce <lgl>, isUnret <lgl>, isRallyWinner <lgl>,
+#> #   isForced <lgl>, isUnforced <lgl>, isDouble <lgl>,
+#> #   PtWinner <dbl>, isSvrWinner <dbl>, rallyCount <dbl>, …
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The observations of the data set correspond to points played (so there is one row per point). There are a ton of variables in this data set, but the most important variable is the first variable, `point`, which contains a string with information about the types of shots that were played during the point. The coding of the `point` variable includes:
@@ -378,31 +370,27 @@ We can combine the `stringr` functions with `dplyr` functions that we already kn
 
 ```r
 med_djok_df |> filter(str_detect(point, pattern = "@") == TRUE)
-#> # A tibble: 63 x 46
-#>    point   Serving match_id       Pt  Set1  Set2   Gm1   Gm2
-#>    <chr>   <chr>   <chr>       <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 4f2d@   ND      20210912-M…     1     0     0     0     0
-#>  2 6b29f3… ND      20210912-M…     3     0     0     0     0
-#>  3 5b37b3… ND      20210912-M…     5     0     0     0     0
-#>  4 4f18f1… ND      20210912-M…     7     0     0     0     0
-#>  5 5b28f1… ND      20210912-M…     8     0     0     0     0
-#>  6 6b27f2… DM      20210912-M…    13     0     0     0     1
-#>  7 6b38y1… ND      20210912-M…    14     0     0     0     2
-#>  8 5b28f1… ND      20210912-M…    16     0     0     0     2
-#>  9 6f38b3… ND      20210912-M…    17     0     0     0     2
-#> 10 5b1w@   ND      20210912-M…    28     0     0     1     3
-#> # … with 53 more rows, and 38 more variables: Pts <chr>,
-#> #   Gm# <chr>, TbSet <dbl>, TB? <dbl>, TBpt <lgl>,
-#> #   Svr <dbl>, Ret <dbl>, 1st <chr>, 2nd <chr>,
-#> #   Notes <chr>, 1stSV <dbl>, 2ndSV <dbl>, 1stIn <dbl>,
-#> #   2ndIn <dbl>, isAce <lgl>, isUnret <lgl>,
+#> # A tibble: 63 × 46
+#>    point Serving match…¹    Pt  Set1  Set2   Gm1   Gm2 Pts  
+#>    <chr> <chr>   <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <chr>
+#>  1 4f2d@ ND      202109…     1     0     0     0     0 0-0  
+#>  2 6b29… ND      202109…     3     0     0     0     0 15-15
+#>  3 5b37… ND      202109…     5     0     0     0     0 40-15
+#>  4 4f18… ND      202109…     7     0     0     0     0 40-40
+#>  5 5b28… ND      202109…     8     0     0     0     0 40-AD
+#>  6 6b27… DM      202109…    13     0     0     0     1 40-15
+#>  7 6b38… ND      202109…    14     0     0     0     2 0-0  
+#>  8 5b28… ND      202109…    16     0     0     0     2 0-30 
+#>  9 6f38… ND      202109…    17     0     0     0     2 15-30
+#> 10 5b1w@ ND      202109…    28     0     0     1     3 30-0 
+#> # … with 53 more rows, 37 more variables: `Gm#` <chr>,
+#> #   TbSet <dbl>, `TB?` <dbl>, TBpt <lgl>, Svr <dbl>,
+#> #   Ret <dbl>, `1st` <chr>, `2nd` <chr>, Notes <chr>,
+#> #   `1stSV` <dbl>, `2ndSV` <dbl>, `1stIn` <dbl>,
+#> #   `2ndIn` <dbl>, isAce <lgl>, isUnret <lgl>,
 #> #   isRallyWinner <lgl>, isForced <lgl>, isUnforced <lgl>,
-#> #   isDouble <lgl>, PtWinner <dbl>, isSvrWinner <dbl>,
-#> #   rallyCount <dbl>, Player 1 <chr>, Player 2 <chr>,
-#> #   Pl 1 hand <chr>, Pl 2 hand <chr>, Gender <chr>,
-#> #   Date <dbl>, Tournament <chr>, Round <lgl>, Time <chr>,
-#> #   Court <chr>, Surface <chr>, Umpire <chr>,
-#> #   Best of <dbl>, Final TB? <dbl>, Charted by <chr>
+#> #   isDouble <lgl>, PtWinner <dbl>, isSvrWinner <dbl>, …
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 We can then use `mutate()` with `case_when()` to create a variable corresponding to error type and then `summarise()` the error types made from the two players.
@@ -417,7 +405,7 @@ med_djok_df |> filter(str_detect(point, pattern = "@") == TRUE) |>
   summarise(n_errors = n())
 #> `summarise()` has grouped output by 'PtWinner'. You can
 #> override using the `.groups` argument.
-#> # A tibble: 7 x 3
+#> # A tibble: 7 × 3
 #> # Groups:   PtWinner [2]
 #>   PtWinner error_type n_errors
 #>      <dbl> <chr>         <int>
@@ -495,27 +483,6 @@ Detect which points end with an `@` using `$` to denote "at the end" (this is sa
 
 ```r
 str_detect(med_djok_df$point, pattern = "@$")
-#>   [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE
-#>  [10] FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE
-#>  [19] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>  [28]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE
-#>  [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-#>  [46] FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-#>  [55]  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE
-#>  [64]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
-#>  [73] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-#>  [82]  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
-#>  [91]  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE
-#> [100]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [109]  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
-#> [118] FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
-#> [127] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> [136]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE
-#> [145] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> [154] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE
-#> [163] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
-#> [172] FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE
-#> [181] FALSE FALSE
 ```
 
 We can also extract all of the forehand shots that were hit with `str_extract_all()`. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.
@@ -523,554 +490,6 @@ We can also extract all of the forehand shots that were hit with `str_extract_al
 
 ```r
 str_extract_all(med_djok_df$point, pattern = "f[:digit:]+")
-#> [[1]]
-#> [1] "f2"
-#> 
-#> [[2]]
-#> character(0)
-#> 
-#> [[3]]
-#> [1] "f3" "f3" "f1" "f3"
-#> 
-#> [[4]]
-#> [1] "f1" "f2"
-#> 
-#> [[5]]
-#> [1] "f2" "f2" "f2"
-#> 
-#> [[6]]
-#>  [1] "f28" "f1"  "f1"  "f3"  "f1"  "f1"  "f2"  "f3"  "f1" 
-#> [10] "f1" 
-#> 
-#> [[7]]
-#> [1] "f18" "f1"  "f2"  "f1" 
-#> 
-#> [[8]]
-#> [1] "f1" "f2" "f3"
-#> 
-#> [[9]]
-#> [1] "f3"
-#> 
-#> [[10]]
-#> character(0)
-#> 
-#> [[11]]
-#> character(0)
-#> 
-#> [[12]]
-#> character(0)
-#> 
-#> [[13]]
-#> [1] "f2" "f2" "f3" "f3" "f3"
-#> 
-#> [[14]]
-#> character(0)
-#> 
-#> [[15]]
-#> character(0)
-#> 
-#> [[16]]
-#> [1] "f1" "f2"
-#> 
-#> [[17]]
-#> [1] "f38" "f1" 
-#> 
-#> [[18]]
-#> [1] "f38"
-#> 
-#> [[19]]
-#> [1] "f28"
-#> 
-#> [[20]]
-#> character(0)
-#> 
-#> [[21]]
-#> character(0)
-#> 
-#> [[22]]
-#> character(0)
-#> 
-#> [[23]]
-#> character(0)
-#> 
-#> [[24]]
-#> character(0)
-#> 
-#> [[25]]
-#> [1] "f1"
-#> 
-#> [[26]]
-#> character(0)
-#> 
-#> [[27]]
-#> character(0)
-#> 
-#> [[28]]
-#> character(0)
-#> 
-#> [[29]]
-#> character(0)
-#> 
-#> [[30]]
-#> [1] "f2"
-#> 
-#> [[31]]
-#> character(0)
-#> 
-#> [[32]]
-#> character(0)
-#> 
-#> [[33]]
-#> [1] "f3" "f3" "f1" "f2" "f3"
-#> 
-#> [[34]]
-#> character(0)
-#> 
-#> [[35]]
-#> [1] "f1"
-#> 
-#> [[36]]
-#> character(0)
-#> 
-#> [[37]]
-#> [1] "f28"
-#> 
-#> [[38]]
-#> character(0)
-#> 
-#> [[39]]
-#> character(0)
-#> 
-#> [[40]]
-#> [1] "f27" "f1" 
-#> 
-#> [[41]]
-#> character(0)
-#> 
-#> [[42]]
-#> [1] "f3"
-#> 
-#> [[43]]
-#> character(0)
-#> 
-#> [[44]]
-#> [1] "f2" "f2" "f2" "f1" "f1"
-#> 
-#> [[45]]
-#> character(0)
-#> 
-#> [[46]]
-#> [1] "f27"
-#> 
-#> [[47]]
-#> character(0)
-#> 
-#> [[48]]
-#> [1] "f18"
-#> 
-#> [[49]]
-#> character(0)
-#> 
-#> [[50]]
-#> [1] "f2"
-#> 
-#> [[51]]
-#> character(0)
-#> 
-#> [[52]]
-#> character(0)
-#> 
-#> [[53]]
-#> character(0)
-#> 
-#> [[54]]
-#> character(0)
-#> 
-#> [[55]]
-#> [1] "f28" "f2"  "f3" 
-#> 
-#> [[56]]
-#> [1] "f27" "f1" 
-#> 
-#> [[57]]
-#> character(0)
-#> 
-#> [[58]]
-#> character(0)
-#> 
-#> [[59]]
-#> [1] "f28"
-#> 
-#> [[60]]
-#> character(0)
-#> 
-#> [[61]]
-#> [1] "f1" "f1" "f3" "f3"
-#> 
-#> [[62]]
-#> [1] "f37" "f3" 
-#> 
-#> [[63]]
-#> character(0)
-#> 
-#> [[64]]
-#> [1] "f3" "f2" "f2"
-#> 
-#> [[65]]
-#> character(0)
-#> 
-#> [[66]]
-#> character(0)
-#> 
-#> [[67]]
-#> [1] "f1"
-#> 
-#> [[68]]
-#> [1] "f2" "f3" "f2" "f1" "f3"
-#> 
-#> [[69]]
-#> [1] "f28" "f1"  "f1"  "f3" 
-#> 
-#> [[70]]
-#> [1] "f28" "f3"  "f2"  "f1"  "f2"  "f2"  "f1"  "f3" 
-#> 
-#> [[71]]
-#> [1] "f1" "f1" "f3"
-#> 
-#> [[72]]
-#> character(0)
-#> 
-#> [[73]]
-#> character(0)
-#> 
-#> [[74]]
-#> [1] "f1" "f1" "f3"
-#> 
-#> [[75]]
-#> [1] "f28" "f2"  "f2"  "f1"  "f2"  "f3" 
-#> 
-#> [[76]]
-#> character(0)
-#> 
-#> [[77]]
-#> [1] "f27"
-#> 
-#> [[78]]
-#> [1] "f2"
-#> 
-#> [[79]]
-#> [1] "f18" "f2" 
-#> 
-#> [[80]]
-#> character(0)
-#> 
-#> [[81]]
-#>  [1] "f3" "f1" "f1" "f1" "f1" "f2" "f1" "f1" "f2" "f3" "f1"
-#> [12] "f2"
-#> 
-#> [[82]]
-#> [1] "f3" "f3" "f1" "f2"
-#> 
-#> [[83]]
-#> [1] "f3"
-#> 
-#> [[84]]
-#> [1] "f27"
-#> 
-#> [[85]]
-#> [1] "f27" "f3" 
-#> 
-#> [[86]]
-#> character(0)
-#> 
-#> [[87]]
-#> [1] "f1"
-#> 
-#> [[88]]
-#> character(0)
-#> 
-#> [[89]]
-#> character(0)
-#> 
-#> [[90]]
-#> [1] "f3" "f1" "f2" "f3"
-#> 
-#> [[91]]
-#> [1] "f18" "f3" 
-#> 
-#> [[92]]
-#> [1] "f3"
-#> 
-#> [[93]]
-#> [1] "f2"
-#> 
-#> [[94]]
-#> [1] "f28" "f1"  "f2" 
-#> 
-#> [[95]]
-#> character(0)
-#> 
-#> [[96]]
-#> [1] "f28" "f2"  "f1"  "f3"  "f1"  "f2"  "f3" 
-#> 
-#> [[97]]
-#> [1] "f3"
-#> 
-#> [[98]]
-#> [1] "f27" "f3"  "f2" 
-#> 
-#> [[99]]
-#> character(0)
-#> 
-#> [[100]]
-#> [1] "f2" "f1"
-#> 
-#> [[101]]
-#> [1] "f1"
-#> 
-#> [[102]]
-#> [1] "f28" "f3"  "f1"  "f2"  "f2" 
-#> 
-#> [[103]]
-#> character(0)
-#> 
-#> [[104]]
-#> [1] "f1"
-#> 
-#> [[105]]
-#> [1] "f2"
-#> 
-#> [[106]]
-#> character(0)
-#> 
-#> [[107]]
-#> [1] "f3" "f1" "f1" "f3" "f1"
-#> 
-#> [[108]]
-#> [1] "f1" "f3" "f3"
-#> 
-#> [[109]]
-#> character(0)
-#> 
-#> [[110]]
-#> [1] "f1"
-#> 
-#> [[111]]
-#> character(0)
-#> 
-#> [[112]]
-#> [1] "f17" "f1"  "f2" 
-#> 
-#> [[113]]
-#> character(0)
-#> 
-#> [[114]]
-#> character(0)
-#> 
-#> [[115]]
-#> character(0)
-#> 
-#> [[116]]
-#> character(0)
-#> 
-#> [[117]]
-#> [1] "f18" "f3"  "f3" 
-#> 
-#> [[118]]
-#> character(0)
-#> 
-#> [[119]]
-#> [1] "f3" "f2" "f1" "f2" "f3"
-#> 
-#> [[120]]
-#> [1] "f27"
-#> 
-#> [[121]]
-#> [1] "f28" "f3" 
-#> 
-#> [[122]]
-#> [1] "f28" "f3"  "f1" 
-#> 
-#> [[123]]
-#> [1] "f18" "f2"  "f1" 
-#> 
-#> [[124]]
-#> [1] "f2"
-#> 
-#> [[125]]
-#> character(0)
-#> 
-#> [[126]]
-#> [1] "f38" "f2"  "f3"  "f1"  "f3" 
-#> 
-#> [[127]]
-#> [1] "f3" "f2"
-#> 
-#> [[128]]
-#> character(0)
-#> 
-#> [[129]]
-#> character(0)
-#> 
-#> [[130]]
-#> [1] "f3"
-#> 
-#> [[131]]
-#> [1] "f2" "f1" "f1"
-#> 
-#> [[132]]
-#> [1] "f28" "f3" 
-#> 
-#> [[133]]
-#> [1] "f2"
-#> 
-#> [[134]]
-#> [1] "f1" "f1" "f1" "f2" "f1" "f2"
-#> 
-#> [[135]]
-#> character(0)
-#> 
-#> [[136]]
-#> [1] "f3" "f2" "f2"
-#> 
-#> [[137]]
-#> [1] "f27"
-#> 
-#> [[138]]
-#> character(0)
-#> 
-#> [[139]]
-#> [1] "f28"
-#> 
-#> [[140]]
-#> [1] "f38"
-#> 
-#> [[141]]
-#> [1] "f28" "f1"  "f3" 
-#> 
-#> [[142]]
-#> character(0)
-#> 
-#> [[143]]
-#> [1] "f2"
-#> 
-#> [[144]]
-#> character(0)
-#> 
-#> [[145]]
-#> character(0)
-#> 
-#> [[146]]
-#> [1] "f2"
-#> 
-#> [[147]]
-#> character(0)
-#> 
-#> [[148]]
-#> character(0)
-#> 
-#> [[149]]
-#> [1] "f3"
-#> 
-#> [[150]]
-#> [1] "f1"
-#> 
-#> [[151]]
-#> character(0)
-#> 
-#> [[152]]
-#> [1] "f1"
-#> 
-#> [[153]]
-#> character(0)
-#> 
-#> [[154]]
-#> character(0)
-#> 
-#> [[155]]
-#> [1] "f2"
-#> 
-#> [[156]]
-#> [1] "f28" "f2"  "f1"  "f1"  "f1"  "f3" 
-#> 
-#> [[157]]
-#> [1] "f2"
-#> 
-#> [[158]]
-#> character(0)
-#> 
-#> [[159]]
-#> [1] "f28" "f3"  "f2" 
-#> 
-#> [[160]]
-#> character(0)
-#> 
-#> [[161]]
-#> [1] "f28" "f3" 
-#> 
-#> [[162]]
-#> character(0)
-#> 
-#> [[163]]
-#> character(0)
-#> 
-#> [[164]]
-#> [1] "f1" "f1"
-#> 
-#> [[165]]
-#> character(0)
-#> 
-#> [[166]]
-#> character(0)
-#> 
-#> [[167]]
-#> character(0)
-#> 
-#> [[168]]
-#> [1] "f18" "f2"  "f1"  "f1"  "f2" 
-#> 
-#> [[169]]
-#> character(0)
-#> 
-#> [[170]]
-#> character(0)
-#> 
-#> [[171]]
-#> [1] "f28" "f3" 
-#> 
-#> [[172]]
-#> [1] "f38"
-#> 
-#> [[173]]
-#> [1] "f2" "f2" "f1" "f1" "f1"
-#> 
-#> [[174]]
-#> [1] "f18" "f3" 
-#> 
-#> [[175]]
-#> [1] "f18" "f2"  "f3" 
-#> 
-#> [[176]]
-#> [1] "f1"
-#> 
-#> [[177]]
-#>  [1] "f2" "f1" "f1" "f3" "f1" "f1" "f3" "f1" "f2" "f3" "f1"
-#> [12] "f3"
-#> 
-#> [[178]]
-#> [1] "f2" "f3" "f3" "f1" "f1" "f3"
-#> 
-#> [[179]]
-#> [1] "f38" "f1" 
-#> 
-#> [[180]]
-#> [1] "f3"
-#> 
-#> [[181]]
-#> character(0)
-#> 
-#> [[182]]
-#> character(0)
 ```
 
 The purpose of these examples is just to show that things can get complicated with strings. For the purposes of assessment in this course, you are only responsible for the relatively simple cases discussed earlier in the section and in the exercises.

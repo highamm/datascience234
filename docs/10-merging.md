@@ -39,7 +39,7 @@ To combine results from both data sets,
 
 ```r
 atp_df <- bind_rows(atp_2018, atp_2019)
-#> Error in `stop_vctrs()`:
+#> Error in `bind_rows()`:
 #> ! Can't combine `winner_seed` <double> and `winner_seed` <character>.
 ```
 
@@ -78,7 +78,7 @@ Now run the following and look at the output.
 df_test2a <- tibble(xvar = c(1, 2))
 df_test2b <- tibble(xvar = c(1, 2), y = c(5, 1))
 bind_rows(df_test2a, df_test2b)
-#> # A tibble: 4 x 2
+#> # A tibble: 4 × 2
 #>    xvar     y
 #>   <dbl> <dbl>
 #> 1     1    NA
@@ -102,7 +102,7 @@ We will use a couple of test data sets, `df_test1a` and `df_test1b`, to see it i
 df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
 df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
 bind_cols(df_test1a, df_test1b)
-#> # A tibble: 2 x 4
+#> # A tibble: 2 × 4
 #>    xvar  yvar     x     y
 #>   <dbl> <dbl> <dbl> <dbl>
 #> 1     1     5     1     5
@@ -122,7 +122,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
 df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
 bind_rows(df_test1a, df_test1b)
-#> # A tibble: 4 x 4
+#> # A tibble: 4 × 4
 #>    xvar  yvar     x     y
 #>   <dbl> <dbl> <dbl> <dbl>
 #> 1     1     5    NA    NA
@@ -177,7 +177,7 @@ Suppose that you want to combine the `births` data set with the `babynames` data
 ```r
 combined_left <- left_join(babynames_df, birth_df, by = c("year" = "year"))
 head(combined_left)
-#> # A tibble: 6 x 6
+#> # A tibble: 6 × 6
 #>    year sex   name          n   prop births
 #>   <dbl> <chr> <chr>     <int>  <dbl>  <int>
 #> 1  1880 F     Mary       7065 0.0724     NA
@@ -187,7 +187,7 @@ head(combined_left)
 #> 5  1880 F     Minnie     1746 0.0179     NA
 #> 6  1880 F     Margaret   1578 0.0162     NA
 tail(combined_left)
-#> # A tibble: 6 x 6
+#> # A tibble: 6 × 6
 #>    year sex   name       n       prop  births
 #>   <dbl> <chr> <chr>  <int>      <dbl>   <int>
 #> 1  2017 M     Zyhier     5 0.00000255 3855500
@@ -208,7 +208,7 @@ Recall from the accompanying handout that there is no need to ever use `right_jo
 ```r
 ## these will always do the same exact thing
 right_join(babynames_df, birth_df, by = c("year" = "year"))
-#> # A tibble: 1,839,952 x 6
+#> # A tibble: 1,839,952 × 6
 #>     year sex   name          n   prop  births
 #>    <dbl> <chr> <chr>     <int>  <dbl>   <int>
 #>  1  1909 F     Mary      19259 0.0523 2718000
@@ -222,8 +222,9 @@ right_join(babynames_df, birth_df, by = c("year" = "year"))
 #>  9  1909 F     Marie      4301 0.0117 2718000
 #> 10  1909 F     Alice      4170 0.0113 2718000
 #> # … with 1,839,942 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 left_join(birth_df, babynames_df, by = c("year" = "year"))
-#> # A tibble: 1,839,952 x 6
+#> # A tibble: 1,839,952 × 6
 #>     year  births sex   name          n   prop
 #>    <dbl>   <int> <chr> <chr>     <int>  <dbl>
 #>  1  1909 2718000 F     Mary      19259 0.0523
@@ -237,6 +238,7 @@ left_join(birth_df, babynames_df, by = c("year" = "year"))
 #>  9  1909 2718000 F     Marie      4301 0.0117
 #> 10  1909 2718000 F     Alice      4170 0.0113
 #> # … with 1,839,942 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Therefore, it's usually easier to just always use `left_join()` and ignore `right_join()` completely. 
@@ -257,7 +259,7 @@ We can also keep only rows with matching keys with `inner_join()`. For this join
 
 ```r
 inner_join(babynames_df, birth_df, by = c("year" = "year"))
-#> # A tibble: 1,839,952 x 6
+#> # A tibble: 1,839,952 × 6
 #>     year sex   name          n   prop  births
 #>    <dbl> <chr> <chr>     <int>  <dbl>   <int>
 #>  1  1909 F     Mary      19259 0.0523 2718000
@@ -271,6 +273,7 @@ inner_join(babynames_df, birth_df, by = c("year" = "year"))
 #>  9  1909 F     Marie      4301 0.0117 2718000
 #> 10  1909 F     Alice      4170 0.0113 2718000
 #> # … with 1,839,942 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 <br>
@@ -288,7 +291,7 @@ The key variable is very important for joining and is not always available in a 
 slumajors_df <- read_csv(here("data/SLU_Majors_15_19.csv"))
 collegemajors_df <- read_csv(here("data/college-majors.csv"))
 head(slumajors_df)
-#> # A tibble: 6 x 3
+#> # A tibble: 6 × 3
 #>   Major                        nfemales nmales
 #>   <chr>                           <dbl>  <dbl>
 #> 1 Anthropology                       34     15
@@ -298,18 +301,20 @@ head(slumajors_df)
 #> 5 Business in the Liberal Arts      135    251
 #> 6 Chemistry                          26     14
 head(collegemajors_df)
-#> # A tibble: 6 x 12
-#>   Major  Total   Men Women Major_category Employed Full_time
-#>   <chr>  <dbl> <dbl> <dbl> <chr>             <dbl>     <dbl>
-#> 1 PETRO…  2339  2057   282 Engineering        1976      1849
-#> 2 MININ…   756   679    77 Engineering         640       556
-#> 3 METAL…   856   725   131 Engineering         648       558
-#> 4 NAVAL…  1258  1123   135 Engineering         758      1069
-#> 5 CHEMI… 32260 21239 11021 Engineering       25694     23170
-#> 6 NUCLE…  2573  2200   373 Engineering        1857      2038
-#> # … with 5 more variables: Part_time <dbl>,
-#> #   Unemployed <dbl>, Median <dbl>, P25th <dbl>,
-#> #   P75th <dbl>
+#> # A tibble: 6 × 12
+#>   Major    Total   Men Women Major…¹ Emplo…² Full_…³ Part_…⁴
+#>   <chr>    <dbl> <dbl> <dbl> <chr>     <dbl>   <dbl>   <dbl>
+#> 1 PETROLE…  2339  2057   282 Engine…    1976    1849     270
+#> 2 MINING …   756   679    77 Engine…     640     556     170
+#> 3 METALLU…   856   725   131 Engine…     648     558     133
+#> 4 NAVAL A…  1258  1123   135 Engine…     758    1069     150
+#> 5 CHEMICA… 32260 21239 11021 Engine…   25694   23170    5180
+#> 6 NUCLEAR…  2573  2200   373 Engine…    1857    2038     264
+#> # … with 4 more variables: Unemployed <dbl>, Median <dbl>,
+#> #   P25th <dbl>, P75th <dbl>, and abbreviated variable
+#> #   names ¹​Major_category, ²​Employed, ³​Full_time,
+#> #   ⁴​Part_time
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The most logical key for joining these two data sets is `Major`,  but joining the data sets won't actually work. The following is an attempt at using `Major` as the key.
@@ -317,23 +322,24 @@ The most logical key for joining these two data sets is `Major`,  but joining th
 
 ```r
 left_join(slumajors_df, collegemajors_df, by = c("Major" = "Major"))
-#> # A tibble: 27 x 14
-#>    Major    nfemales nmales Total   Men Women Major_category
-#>    <chr>       <dbl>  <dbl> <dbl> <dbl> <dbl> <chr>         
-#>  1 Anthrop…       34     15    NA    NA    NA <NA>          
-#>  2 Art & A…       65     11    NA    NA    NA <NA>          
-#>  3 Biochem…       14     11    NA    NA    NA <NA>          
-#>  4 Biology       162     67    NA    NA    NA <NA>          
-#>  5 Busines…      135    251    NA    NA    NA <NA>          
-#>  6 Chemist…       26     14    NA    NA    NA <NA>          
-#>  7 Compute…       21     47    NA    NA    NA <NA>          
-#>  8 Conserv…       38     20    NA    NA    NA <NA>          
-#>  9 Economi…      128    349    NA    NA    NA <NA>          
-#> 10 English       131     54    NA    NA    NA <NA>          
-#> # … with 17 more rows, and 7 more variables:
-#> #   Employed <dbl>, Full_time <dbl>, Part_time <dbl>,
-#> #   Unemployed <dbl>, Median <dbl>, P25th <dbl>,
-#> #   P75th <dbl>
+#> # A tibble: 27 × 14
+#>    Major    nfema…¹ nmales Total   Men Women Major…² Emplo…³
+#>    <chr>      <dbl>  <dbl> <dbl> <dbl> <dbl> <chr>     <dbl>
+#>  1 Anthrop…      34     15    NA    NA    NA <NA>         NA
+#>  2 Art & A…      65     11    NA    NA    NA <NA>         NA
+#>  3 Biochem…      14     11    NA    NA    NA <NA>         NA
+#>  4 Biology      162     67    NA    NA    NA <NA>         NA
+#>  5 Busines…     135    251    NA    NA    NA <NA>         NA
+#>  6 Chemist…      26     14    NA    NA    NA <NA>         NA
+#>  7 Compute…      21     47    NA    NA    NA <NA>         NA
+#>  8 Conserv…      38     20    NA    NA    NA <NA>         NA
+#>  9 Economi…     128    349    NA    NA    NA <NA>         NA
+#> 10 English      131     54    NA    NA    NA <NA>         NA
+#> # … with 17 more rows, 6 more variables: Full_time <dbl>,
+#> #   Part_time <dbl>, Unemployed <dbl>, Median <dbl>,
+#> #   P25th <dbl>, P75th <dbl>, and abbreviated variable
+#> #   names ¹​nfemales, ²​Major_category, ³​Employed
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Why did the `collegemajors_df` give only `NA` values when we tried to merge by major?
@@ -346,23 +352,24 @@ collegemajors_df <- collegemajors_df |>
   mutate(Major = str_to_title(Major))
 left_join(slumajors_df, collegemajors_df)
 #> Joining, by = "Major"
-#> # A tibble: 27 x 14
-#>    Major nfemales nmales  Total    Men  Women Major_category
-#>    <chr>    <dbl>  <dbl>  <dbl>  <dbl>  <dbl> <chr>         
-#>  1 Anth…       34     15     NA     NA     NA <NA>          
-#>  2 Art …       65     11     NA     NA     NA <NA>          
-#>  3 Bioc…       14     11     NA     NA     NA <NA>          
-#>  4 Biol…      162     67 280709 111762 168947 Biology & Lif…
-#>  5 Busi…      135    251     NA     NA     NA <NA>          
-#>  6 Chem…       26     14  66530  32923  33607 Physical Scie…
-#>  7 Comp…       21     47 128319  99743  28576 Computers & M…
-#>  8 Cons…       38     20     NA     NA     NA <NA>          
-#>  9 Econ…      128    349 139247  89749  49498 Social Science
-#> 10 Engl…      131     54     NA     NA     NA <NA>          
-#> # … with 17 more rows, and 7 more variables:
-#> #   Employed <dbl>, Full_time <dbl>, Part_time <dbl>,
-#> #   Unemployed <dbl>, Median <dbl>, P25th <dbl>,
-#> #   P75th <dbl>
+#> # A tibble: 27 × 14
+#>    Major nfema…¹ nmales  Total    Men  Women Major…² Emplo…³
+#>    <chr>   <dbl>  <dbl>  <dbl>  <dbl>  <dbl> <chr>     <dbl>
+#>  1 Anth…      34     15     NA     NA     NA <NA>         NA
+#>  2 Art …      65     11     NA     NA     NA <NA>         NA
+#>  3 Bioc…      14     11     NA     NA     NA <NA>         NA
+#>  4 Biol…     162     67 280709 111762 168947 Biolog…  182295
+#>  5 Busi…     135    251     NA     NA     NA <NA>         NA
+#>  6 Chem…      26     14  66530  32923  33607 Physic…   48535
+#>  7 Comp…      21     47 128319  99743  28576 Comput…  102087
+#>  8 Cons…      38     20     NA     NA     NA <NA>         NA
+#>  9 Econ…     128    349 139247  89749  49498 Social…  104117
+#> 10 Engl…     131     54     NA     NA     NA <NA>         NA
+#> # … with 17 more rows, 6 more variables: Full_time <dbl>,
+#> #   Part_time <dbl>, Unemployed <dbl>, Median <dbl>,
+#> #   P25th <dbl>, P75th <dbl>, and abbreviated variable
+#> #   names ¹​nfemales, ²​Major_category, ³​Employed
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 As we can see, this solves the issue for some majors but others still have different naming conventions in the two data sets.
@@ -376,7 +383,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 ```r
 left_join(babynames_df, birth_df, by = c("year" = "year"))
-#> # A tibble: 1,924,665 x 6
+#> # A tibble: 1,924,665 × 6
 #>     year sex   name          n   prop births
 #>    <dbl> <chr> <chr>     <int>  <dbl>  <int>
 #>  1  1880 F     Mary       7065 0.0724     NA
@@ -390,8 +397,9 @@ left_join(babynames_df, birth_df, by = c("year" = "year"))
 #>  9  1880 F     Bertha     1320 0.0135     NA
 #> 10  1880 F     Sarah      1288 0.0132     NA
 #> # … with 1,924,655 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 left_join(birth_df, babynames_df, by = c("year" = "year"))
-#> # A tibble: 1,839,952 x 6
+#> # A tibble: 1,839,952 × 6
 #>     year  births sex   name          n   prop
 #>    <dbl>   <int> <chr> <chr>     <int>  <dbl>
 #>  1  1909 2718000 F     Mary      19259 0.0523
@@ -405,6 +413,7 @@ left_join(birth_df, babynames_df, by = c("year" = "year"))
 #>  9  1909 2718000 F     Marie      4301 0.0117
 #> 10  1909 2718000 F     Alice      4170 0.0113
 #> # … with 1,839,942 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 2. Evaluate whether the following statement is true or false: an `inner_join()` will always result in a data set with the same or fewer rows than a `full_join()`.
@@ -422,65 +431,49 @@ Consider again the two data sets on men's tennis matches in 2018 and in 2019.
 atp_2019 <- read_csv(here("data/atp_matches_2019.csv"))
 atp_2018 <- read_csv(here("data/atp_matches_2018.csv"))
 atp_2019
-#> # A tibble: 2,781 x 49
-#>    tourney_id tourney_name surface draw_size tourney_level
-#>    <chr>      <chr>        <chr>       <dbl> <chr>        
-#>  1 2019-M020  Brisbane     Hard           32 A            
-#>  2 2019-M020  Brisbane     Hard           32 A            
-#>  3 2019-M020  Brisbane     Hard           32 A            
-#>  4 2019-M020  Brisbane     Hard           32 A            
-#>  5 2019-M020  Brisbane     Hard           32 A            
-#>  6 2019-M020  Brisbane     Hard           32 A            
-#>  7 2019-M020  Brisbane     Hard           32 A            
-#>  8 2019-M020  Brisbane     Hard           32 A            
-#>  9 2019-M020  Brisbane     Hard           32 A            
-#> 10 2019-M020  Brisbane     Hard           32 A            
-#> # … with 2,771 more rows, and 44 more variables:
-#> #   tourney_date <dbl>, match_num <dbl>, winner_id <dbl>,
-#> #   winner_seed <chr>, winner_entry <chr>,
+#> # A tibble: 2,781 × 49
+#>    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶
+#>    <chr>     <chr>   <chr>     <dbl> <chr>     <dbl>   <dbl>
+#>  1 2019-M020 Brisba… Hard         32 A        2.02e7     300
+#>  2 2019-M020 Brisba… Hard         32 A        2.02e7     299
+#>  3 2019-M020 Brisba… Hard         32 A        2.02e7     298
+#>  4 2019-M020 Brisba… Hard         32 A        2.02e7     297
+#>  5 2019-M020 Brisba… Hard         32 A        2.02e7     296
+#>  6 2019-M020 Brisba… Hard         32 A        2.02e7     295
+#>  7 2019-M020 Brisba… Hard         32 A        2.02e7     294
+#>  8 2019-M020 Brisba… Hard         32 A        2.02e7     293
+#>  9 2019-M020 Brisba… Hard         32 A        2.02e7     292
+#> 10 2019-M020 Brisba… Hard         32 A        2.02e7     291
+#> # … with 2,771 more rows, 42 more variables:
+#> #   winner_id <dbl>, winner_seed <chr>, winner_entry <chr>,
 #> #   winner_name <chr>, winner_hand <chr>, winner_ht <dbl>,
 #> #   winner_ioc <chr>, winner_age <dbl>, loser_id <dbl>,
 #> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <dbl>, loser_ioc <chr>,
-#> #   loser_age <dbl>, score <chr>, best_of <dbl>,
-#> #   round <chr>, minutes <dbl>, w_ace <dbl>, w_df <dbl>,
-#> #   w_svpt <dbl>, w_1stIn <dbl>, w_1stWon <dbl>,
-#> #   w_2ndWon <dbl>, w_SvGms <dbl>, w_bpSaved <dbl>,
-#> #   w_bpFaced <dbl>, l_ace <dbl>, l_df <dbl>, l_svpt <dbl>,
-#> #   l_1stIn <dbl>, l_1stWon <dbl>, l_2ndWon <dbl>,
-#> #   l_SvGms <dbl>, l_bpSaved <dbl>, l_bpFaced <dbl>,
-#> #   winner_rank <dbl>, winner_rank_points <dbl>,
-#> #   loser_rank <dbl>, loser_rank_points <dbl>
+#> #   loser_age <dbl>, score <chr>, best_of <dbl>, …
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 atp_2018
-#> # A tibble: 2,889 x 49
-#>    tourney_id tourney_name surface draw_size tourney_level
-#>    <chr>      <chr>        <chr>       <dbl> <chr>        
-#>  1 2018-M020  Brisbane     Hard           32 A            
-#>  2 2018-M020  Brisbane     Hard           32 A            
-#>  3 2018-M020  Brisbane     Hard           32 A            
-#>  4 2018-M020  Brisbane     Hard           32 A            
-#>  5 2018-M020  Brisbane     Hard           32 A            
-#>  6 2018-M020  Brisbane     Hard           32 A            
-#>  7 2018-M020  Brisbane     Hard           32 A            
-#>  8 2018-M020  Brisbane     Hard           32 A            
-#>  9 2018-M020  Brisbane     Hard           32 A            
-#> 10 2018-M020  Brisbane     Hard           32 A            
-#> # … with 2,879 more rows, and 44 more variables:
-#> #   tourney_date <dbl>, match_num <dbl>, winner_id <dbl>,
-#> #   winner_seed <dbl>, winner_entry <chr>,
+#> # A tibble: 2,889 × 49
+#>    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶
+#>    <chr>     <chr>   <chr>     <dbl> <chr>     <dbl>   <dbl>
+#>  1 2018-M020 Brisba… Hard         32 A        2.02e7     271
+#>  2 2018-M020 Brisba… Hard         32 A        2.02e7     272
+#>  3 2018-M020 Brisba… Hard         32 A        2.02e7     273
+#>  4 2018-M020 Brisba… Hard         32 A        2.02e7     275
+#>  5 2018-M020 Brisba… Hard         32 A        2.02e7     276
+#>  6 2018-M020 Brisba… Hard         32 A        2.02e7     277
+#>  7 2018-M020 Brisba… Hard         32 A        2.02e7     278
+#>  8 2018-M020 Brisba… Hard         32 A        2.02e7     279
+#>  9 2018-M020 Brisba… Hard         32 A        2.02e7     280
+#> 10 2018-M020 Brisba… Hard         32 A        2.02e7     282
+#> # … with 2,879 more rows, 42 more variables:
+#> #   winner_id <dbl>, winner_seed <dbl>, winner_entry <chr>,
 #> #   winner_name <chr>, winner_hand <chr>, winner_ht <dbl>,
 #> #   winner_ioc <chr>, winner_age <dbl>, loser_id <dbl>,
 #> #   loser_seed <dbl>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <dbl>, loser_ioc <chr>,
-#> #   loser_age <dbl>, score <chr>, best_of <dbl>,
-#> #   round <chr>, minutes <dbl>, w_ace <dbl>, w_df <dbl>,
-#> #   w_svpt <dbl>, w_1stIn <dbl>, w_1stWon <dbl>,
-#> #   w_2ndWon <dbl>, w_SvGms <dbl>, w_bpSaved <dbl>,
-#> #   w_bpFaced <dbl>, l_ace <dbl>, l_df <dbl>, l_svpt <dbl>,
-#> #   l_1stIn <dbl>, l_1stWon <dbl>, l_2ndWon <dbl>,
-#> #   l_SvGms <dbl>, l_bpSaved <dbl>, l_bpFaced <dbl>,
-#> #   winner_rank <dbl>, winner_rank_points <dbl>,
-#> #   loser_rank <dbl>, loser_rank_points <dbl>
+#> #   loser_age <dbl>, score <chr>, best_of <dbl>, …
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ### Filtering with `semi_join()` 
@@ -495,7 +488,7 @@ win10 <- atp_2018 |> group_by(winner_name) |>
   summarise(nwin = n()) |> 
   filter(nwin >= 10)
 win10
-#> # A tibble: 93 x 2
+#> # A tibble: 93 × 2
 #>    winner_name       nwin
 #>    <chr>            <int>
 #>  1 Adrian Mannarino    26
@@ -509,6 +502,7 @@ win10
 #>  9 Borna Coric         40
 #> 10 Cameron Norrie      19
 #> # … with 83 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Next, we apply `semi_join()`, which takes the names of two data sets (the second is the one that contains information about how the first should be "filtered"). The third argument gives the name of the key (`winner_name`) in this case.
@@ -540,7 +534,7 @@ We can then examine how many wins each of these "new" (or perhaps previously inj
 new_winners |> group_by(winner_name) |>
   summarise(nwin = n()) |>
   arrange(desc(nwin))
-#> # A tibble: 59 x 2
+#> # A tibble: 59 × 2
 #>    winner_name           nwin
 #>    <chr>                <int>
 #>  1 Christian Garin         32
@@ -554,6 +548,7 @@ new_winners |> group_by(winner_name) |>
 #>  9 Soon Woo Kwon            7
 #> 10 Gregoire Barrere         6
 #> # … with 49 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.
@@ -611,7 +606,7 @@ bind_rows(mortality_df, test2)
 test3 <- tibble(state = "Washington D.C.", mortality_rate = "16.7",
        ownership_rate = "0.087", region = "NE")
 bind_rows(mortality_df, test3)
-#> Error in `stop_vctrs()`:
+#> Error in `bind_rows()`:
 #> ! Can't combine `mortality_rate` <double> and `mortality_rate` <character>.
 ```
 
@@ -622,23 +617,24 @@ bind_rows(mortality_df, test3)
 df1 <- as_tibble(state.x77)
 df2 <- as_tibble(state.abb)
 df1
-#> # A tibble: 50 x 8
-#>    Population Income Illiteracy `Life Exp` Murder `HS Grad`
-#>         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl>
-#>  1       3615   3624        2.1       69.0   15.1      41.3
-#>  2        365   6315        1.5       69.3   11.3      66.7
-#>  3       2212   4530        1.8       70.6    7.8      58.1
-#>  4       2110   3378        1.9       70.7   10.1      39.9
-#>  5      21198   5114        1.1       71.7   10.3      62.6
-#>  6       2541   4884        0.7       72.1    6.8      63.9
-#>  7       3100   5348        1.1       72.5    3.1      56  
-#>  8        579   4809        0.9       70.1    6.2      54.6
-#>  9       8277   4815        1.3       70.7   10.7      52.6
-#> 10       4931   4091        2         68.5   13.9      40.6
-#> # … with 40 more rows, and 2 more variables: Frost <dbl>,
-#> #   Area <dbl>
+#> # A tibble: 50 × 8
+#>    Population Income Illiteracy Life …¹ Murder HS Gr…² Frost
+#>         <dbl>  <dbl>      <dbl>   <dbl>  <dbl>   <dbl> <dbl>
+#>  1       3615   3624        2.1    69.0   15.1    41.3    20
+#>  2        365   6315        1.5    69.3   11.3    66.7   152
+#>  3       2212   4530        1.8    70.6    7.8    58.1    15
+#>  4       2110   3378        1.9    70.7   10.1    39.9    65
+#>  5      21198   5114        1.1    71.7   10.3    62.6    20
+#>  6       2541   4884        0.7    72.1    6.8    63.9   166
+#>  7       3100   5348        1.1    72.5    3.1    56     139
+#>  8        579   4809        0.9    70.1    6.2    54.6   103
+#>  9       8277   4815        1.3    70.7   10.7    52.6    11
+#> 10       4931   4091        2      68.5   13.9    40.6    60
+#> # … with 40 more rows, 1 more variable: Area <dbl>, and
+#> #   abbreviated variable names ¹​`Life Exp`, ²​`HS Grad`
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 df2
-#> # A tibble: 50 x 1
+#> # A tibble: 50 × 1
 #>    value
 #>    <chr>
 #>  1 AL   
@@ -652,6 +648,7 @@ df2
 #>  9 FL   
 #> 10 GA   
 #> # … with 40 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Combine the two data sets with `bind_cols()`. What are you assuming about the data sets in order to use this function? 
@@ -747,7 +744,7 @@ f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" 
 df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
 df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
 bind_rows(df_test1a, df_test1b)
-#> # A tibble: 4 x 4
+#> # A tibble: 4 × 4
 #>    xvar  yvar     x     y
 #>   <dbl> <dbl> <dbl> <dbl>
 #> 1     1     5    NA    NA
@@ -765,7 +762,7 @@ bind_rows(df_test1a, df_test1b)
 
 df_test1a <- df_test1a |> rename(x = "xvar", y = "yvar")
 bind_rows(df_test1a, df_test1b)
-#> # A tibble: 4 x 2
+#> # A tibble: 4 × 2
 #>       x     y
 #>   <dbl> <dbl>
 #> 1     1     5
@@ -804,13 +801,13 @@ tennis_temp <- anti_join(tennis_2019_10_lose, tennis_2019_10)
 #> "winner_id", "winner_seed", "winner_entry", "winner_name",
 #> "winner_hand", "winner_ht", "winner_ioc", "winner_age",
 #> "loser_id", "loser_seed", "loser_entry", "loser_name",
-#> "loser_hand", "loser_ht", "loser_ioc", "loser_age", "score",
-#> "best_of", "round", "minutes", "w_ace", "w_df", "w_svpt",
-#> "w_1stIn", "w_1stWon", "w_2ndWon", "w_SvGms", "w_bpSaved",
-#> "w_bpFaced", "l_ace", "l_df", "l_svpt", "l_1stIn",
-#> "l_1stWon", "l_2ndWon", "l_SvGms", "l_bpSaved", "l_bpFaced",
-#> "winner_rank", "winner_rank_points", "loser_rank",
-#> "loser_rank_points")
+#> "loser_hand", "loser_ht", "loser_ioc", "loser_age",
+#> "score", "best_of", "round", "minutes", "w_ace", "w_df",
+#> "w_svpt", "w_1stIn", "w_1stWon", "w_2ndWon", "w_SvGms",
+#> "w_bpSaved", "w_bpFaced", "l_ace", "l_df", "l_svpt",
+#> "l_1stIn", "l_1stWon", "l_2ndWon", "l_SvGms", "l_bpSaved",
+#> "l_bpFaced", "winner_rank", "winner_rank_points",
+#> "loser_rank", "loser_rank_points")
 tennis_temp
 ## there are 383 matches in the lose data set that aren't in the 
 ## win data set. Now, we can bind_rows():
@@ -855,40 +852,44 @@ bind_cols(mortality_df, states_df)
 
 ```r
 left_join(all_df, states_df, by = c("state" = "value"))
-#> # A tibble: 51 x 12
-#>    state mortality_rate ownership_rate region Population
-#>    <chr>          <dbl>          <dbl> <chr>       <dbl>
-#>  1 AL              16.7          0.489 South        3615
-#>  2 AK              18.8          0.617 West          365
-#>  3 AZ              13.4          0.323 West         2212
-#>  4 AR              16.4          0.579 South        2110
-#>  5 CA               7.4          0.201 West        21198
-#>  6 CO              12.1          0.343 West         2541
-#>  7 CT               4.9          0.166 NE           3100
-#>  8 DE              11.1          0.052 NE            579
-#>  9 FL              11.5          0.325 South        8277
-#> 10 GA              13.7          0.316 South        4931
-#> # … with 41 more rows, and 7 more variables: Income <dbl>,
-#> #   Illiteracy <dbl>, Life Exp <dbl>, Murder <dbl>,
-#> #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
+#> # A tibble: 51 × 12
+#>    state mortality_r…¹ owner…² region Popul…³ Income Illit…⁴
+#>    <chr>         <dbl>   <dbl> <chr>    <dbl>  <dbl>   <dbl>
+#>  1 AL             16.7   0.489 South     3615   3624     2.1
+#>  2 AK             18.8   0.617 West       365   6315     1.5
+#>  3 AZ             13.4   0.323 West      2212   4530     1.8
+#>  4 AR             16.4   0.579 South     2110   3378     1.9
+#>  5 CA              7.4   0.201 West     21198   5114     1.1
+#>  6 CO             12.1   0.343 West      2541   4884     0.7
+#>  7 CT              4.9   0.166 NE        3100   5348     1.1
+#>  8 DE             11.1   0.052 NE         579   4809     0.9
+#>  9 FL             11.5   0.325 South     8277   4815     1.3
+#> 10 GA             13.7   0.316 South     4931   4091     2  
+#> # … with 41 more rows, 5 more variables: `Life Exp` <dbl>,
+#> #   Murder <dbl>, `HS Grad` <dbl>, Frost <dbl>, Area <dbl>,
+#> #   and abbreviated variable names ¹​mortality_rate,
+#> #   ²​ownership_rate, ³​Population, ⁴​Illiteracy
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ## or
 full_join(all_df, states_df, by = c("state" = "value"))
-#> # A tibble: 51 x 12
-#>    state mortality_rate ownership_rate region Population
-#>    <chr>          <dbl>          <dbl> <chr>       <dbl>
-#>  1 AL              16.7          0.489 South        3615
-#>  2 AK              18.8          0.617 West          365
-#>  3 AZ              13.4          0.323 West         2212
-#>  4 AR              16.4          0.579 South        2110
-#>  5 CA               7.4          0.201 West        21198
-#>  6 CO              12.1          0.343 West         2541
-#>  7 CT               4.9          0.166 NE           3100
-#>  8 DE              11.1          0.052 NE            579
-#>  9 FL              11.5          0.325 South        8277
-#> 10 GA              13.7          0.316 South        4931
-#> # … with 41 more rows, and 7 more variables: Income <dbl>,
-#> #   Illiteracy <dbl>, Life Exp <dbl>, Murder <dbl>,
-#> #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
+#> # A tibble: 51 × 12
+#>    state mortality_r…¹ owner…² region Popul…³ Income Illit…⁴
+#>    <chr>         <dbl>   <dbl> <chr>    <dbl>  <dbl>   <dbl>
+#>  1 AL             16.7   0.489 South     3615   3624     2.1
+#>  2 AK             18.8   0.617 West       365   6315     1.5
+#>  3 AZ             13.4   0.323 West      2212   4530     1.8
+#>  4 AR             16.4   0.579 South     2110   3378     1.9
+#>  5 CA              7.4   0.201 West     21198   5114     1.1
+#>  6 CO             12.1   0.343 West      2541   4884     0.7
+#>  7 CT              4.9   0.166 NE        3100   5348     1.1
+#>  8 DE             11.1   0.052 NE         579   4809     0.9
+#>  9 FL             11.5   0.325 South     8277   4815     1.3
+#> 10 GA             13.7   0.316 South     4931   4091     2  
+#> # … with 41 more rows, 5 more variables: `Life Exp` <dbl>,
+#> #   Murder <dbl>, `HS Grad` <dbl>, Frost <dbl>, Area <dbl>,
+#> #   and abbreviated variable names ¹​mortality_rate,
+#> #   ²​ownership_rate, ³​Population, ⁴​Illiteracy
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()` ing it out explictly).
@@ -896,40 +897,44 @@ full_join(all_df, states_df, by = c("state" = "value"))
 
 ```r
 inner_join(all_df, states_df, by = c("state" = "value"))
-#> # A tibble: 50 x 12
-#>    state mortality_rate ownership_rate region Population
-#>    <chr>          <dbl>          <dbl> <chr>       <dbl>
-#>  1 AL              16.7          0.489 South        3615
-#>  2 AK              18.8          0.617 West          365
-#>  3 AZ              13.4          0.323 West         2212
-#>  4 AR              16.4          0.579 South        2110
-#>  5 CA               7.4          0.201 West        21198
-#>  6 CO              12.1          0.343 West         2541
-#>  7 CT               4.9          0.166 NE           3100
-#>  8 DE              11.1          0.052 NE            579
-#>  9 FL              11.5          0.325 South        8277
-#> 10 GA              13.7          0.316 South        4931
-#> # … with 40 more rows, and 7 more variables: Income <dbl>,
-#> #   Illiteracy <dbl>, Life Exp <dbl>, Murder <dbl>,
-#> #   HS Grad <dbl>, Frost <dbl>, Area <dbl>
+#> # A tibble: 50 × 12
+#>    state mortality_r…¹ owner…² region Popul…³ Income Illit…⁴
+#>    <chr>         <dbl>   <dbl> <chr>    <dbl>  <dbl>   <dbl>
+#>  1 AL             16.7   0.489 South     3615   3624     2.1
+#>  2 AK             18.8   0.617 West       365   6315     1.5
+#>  3 AZ             13.4   0.323 West      2212   4530     1.8
+#>  4 AR             16.4   0.579 South     2110   3378     1.9
+#>  5 CA              7.4   0.201 West     21198   5114     1.1
+#>  6 CO             12.1   0.343 West      2541   4884     0.7
+#>  7 CT              4.9   0.166 NE        3100   5348     1.1
+#>  8 DE             11.1   0.052 NE         579   4809     0.9
+#>  9 FL             11.5   0.325 South     8277   4815     1.3
+#> 10 GA             13.7   0.316 South     4931   4091     2  
+#> # … with 40 more rows, 5 more variables: `Life Exp` <dbl>,
+#> #   Murder <dbl>, `HS Grad` <dbl>, Frost <dbl>, Area <dbl>,
+#> #   and abbreviated variable names ¹​mortality_rate,
+#> #   ²​ownership_rate, ³​Population, ⁴​Illiteracy
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ## or
 left_join(states_df, all_df, by = c("value" = "state"))
-#> # A tibble: 50 x 12
-#>    Population Income Illiteracy `Life Exp` Murder `HS Grad`
-#>         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl>
-#>  1       3615   3624        2.1       69.0   15.1      41.3
-#>  2        365   6315        1.5       69.3   11.3      66.7
-#>  3       2212   4530        1.8       70.6    7.8      58.1
-#>  4       2110   3378        1.9       70.7   10.1      39.9
-#>  5      21198   5114        1.1       71.7   10.3      62.6
-#>  6       2541   4884        0.7       72.1    6.8      63.9
-#>  7       3100   5348        1.1       72.5    3.1      56  
-#>  8        579   4809        0.9       70.1    6.2      54.6
-#>  9       8277   4815        1.3       70.7   10.7      52.6
-#> 10       4931   4091        2         68.5   13.9      40.6
-#> # … with 40 more rows, and 6 more variables: Frost <dbl>,
-#> #   Area <dbl>, value <chr>, mortality_rate <dbl>,
-#> #   ownership_rate <dbl>, region <chr>
+#> # A tibble: 50 × 12
+#>    Population Income Illiteracy Life …¹ Murder HS Gr…² Frost
+#>         <dbl>  <dbl>      <dbl>   <dbl>  <dbl>   <dbl> <dbl>
+#>  1       3615   3624        2.1    69.0   15.1    41.3    20
+#>  2        365   6315        1.5    69.3   11.3    66.7   152
+#>  3       2212   4530        1.8    70.6    7.8    58.1    15
+#>  4       2110   3378        1.9    70.7   10.1    39.9    65
+#>  5      21198   5114        1.1    71.7   10.3    62.6    20
+#>  6       2541   4884        0.7    72.1    6.8    63.9   166
+#>  7       3100   5348        1.1    72.5    3.1    56     139
+#>  8        579   4809        0.9    70.1    6.2    54.6   103
+#>  9       8277   4815        1.3    70.7   10.7    52.6    11
+#> 10       4931   4091        2      68.5   13.9    40.6    60
+#> # … with 40 more rows, 5 more variables: Area <dbl>,
+#> #   value <chr>, mortality_rate <dbl>,
+#> #   ownership_rate <dbl>, region <chr>, and abbreviated
+#> #   variable names ¹​`Life Exp`, ²​`HS Grad`
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` first to contain only states in the `NE` region.
@@ -938,21 +943,23 @@ left_join(states_df, all_df, by = c("value" = "state"))
 ```r
 ne_df <- all_df |> filter(region == "NE")
 semi_join(states_df, ne_df, by = c("value" = "state"))
-#> # A tibble: 10 x 9
-#>    Population Income Illiteracy `Life Exp` Murder `HS Grad`
-#>         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl>
-#>  1       3100   5348        1.1       72.5    3.1      56  
-#>  2        579   4809        0.9       70.1    6.2      54.6
-#>  3       1058   3694        0.7       70.4    2.7      54.7
-#>  4       4122   5299        0.9       70.2    8.5      52.3
-#>  5       5814   4755        1.1       71.8    3.3      58.5
-#>  6        812   4281        0.7       71.2    3.3      57.6
-#>  7       7333   5237        1.1       70.9    5.2      52.5
-#>  8      18076   4903        1.4       70.6   10.9      52.7
-#>  9        931   4558        1.3       71.9    2.4      46.4
-#> 10        472   3907        0.6       71.6    5.5      57.1
-#> # … with 3 more variables: Frost <dbl>, Area <dbl>,
-#> #   value <chr>
+#> # A tibble: 10 × 9
+#>    Popul…¹ Income Illit…² Life …³ Murder HS Gr…⁴ Frost  Area
+#>      <dbl>  <dbl>   <dbl>   <dbl>  <dbl>   <dbl> <dbl> <dbl>
+#>  1    3100   5348     1.1    72.5    3.1    56     139  4862
+#>  2     579   4809     0.9    70.1    6.2    54.6   103  1982
+#>  3    1058   3694     0.7    70.4    2.7    54.7   161 30920
+#>  4    4122   5299     0.9    70.2    8.5    52.3   101  9891
+#>  5    5814   4755     1.1    71.8    3.3    58.5   103  7826
+#>  6     812   4281     0.7    71.2    3.3    57.6   174  9027
+#>  7    7333   5237     1.1    70.9    5.2    52.5   115  7521
+#>  8   18076   4903     1.4    70.6   10.9    52.7    82 47831
+#>  9     931   4558     1.3    71.9    2.4    46.4   127  1049
+#> 10     472   3907     0.6    71.6    5.5    57.1   168  9267
+#> # … with 1 more variable: value <chr>, and abbreviated
+#> #   variable names ¹​Population, ²​Illiteracy, ³​`Life Exp`,
+#> #   ⁴​`HS Grad`
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 8. \* Do the same thing as Exercise 7, but this time, use `anti_join()`. __Hint__: You'll need to filter `all_df` in a different way to achieve this.
@@ -961,21 +968,23 @@ semi_join(states_df, ne_df, by = c("value" = "state"))
 ```r
 notne_df <- all_df |> filter(region != "NE")
 anti_join(states_df, notne_df, by = c("value" = "state"))
-#> # A tibble: 10 x 9
-#>    Population Income Illiteracy `Life Exp` Murder `HS Grad`
-#>         <dbl>  <dbl>      <dbl>      <dbl>  <dbl>     <dbl>
-#>  1       3100   5348        1.1       72.5    3.1      56  
-#>  2        579   4809        0.9       70.1    6.2      54.6
-#>  3       1058   3694        0.7       70.4    2.7      54.7
-#>  4       4122   5299        0.9       70.2    8.5      52.3
-#>  5       5814   4755        1.1       71.8    3.3      58.5
-#>  6        812   4281        0.7       71.2    3.3      57.6
-#>  7       7333   5237        1.1       70.9    5.2      52.5
-#>  8      18076   4903        1.4       70.6   10.9      52.7
-#>  9        931   4558        1.3       71.9    2.4      46.4
-#> 10        472   3907        0.6       71.6    5.5      57.1
-#> # … with 3 more variables: Frost <dbl>, Area <dbl>,
-#> #   value <chr>
+#> # A tibble: 10 × 9
+#>    Popul…¹ Income Illit…² Life …³ Murder HS Gr…⁴ Frost  Area
+#>      <dbl>  <dbl>   <dbl>   <dbl>  <dbl>   <dbl> <dbl> <dbl>
+#>  1    3100   5348     1.1    72.5    3.1    56     139  4862
+#>  2     579   4809     0.9    70.1    6.2    54.6   103  1982
+#>  3    1058   3694     0.7    70.4    2.7    54.7   161 30920
+#>  4    4122   5299     0.9    70.2    8.5    52.3   101  9891
+#>  5    5814   4755     1.1    71.8    3.3    58.5   103  7826
+#>  6     812   4281     0.7    71.2    3.3    57.6   174  9027
+#>  7    7333   5237     1.1    70.9    5.2    52.5   115  7521
+#>  8   18076   4903     1.4    70.6   10.9    52.7    82 47831
+#>  9     931   4558     1.3    71.9    2.4    46.4   127  1049
+#> 10     472   3907     0.6    71.6    5.5    57.1   168  9267
+#> # … with 1 more variable: value <chr>, and abbreviated
+#> #   variable names ¹​Population, ²​Illiteracy, ³​`Life Exp`,
+#> #   ⁴​`HS Grad`
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ## Non-Exercise `R` Code {#rcode-10}

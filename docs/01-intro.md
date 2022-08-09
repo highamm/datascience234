@@ -75,15 +75,6 @@ Note that all code appears in grey boxes surrounded by three backticks while nor
 
 ```r
 library(tidyverse)
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'pillar'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'tibble'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'hms'
 ```
 
 When you run the previous line, some text will appear in the bottom-left window. We won't worry too much about what this text means now, but we also won't ignore it completely. You should be able to spot the 8 core `tidyverse` packages listed above as well as some numbers that follow each package. The numbers correspond to the package version. There's some other things too, but as long as this text does not start with "Error:", you're good to go!
@@ -123,21 +114,23 @@ You can name your data set whatever you want to (with a few restrictions). I've 
 
 ```r
 alcohol_data
-#> # A tibble: 193 x 5
-#>    country       beer_servings spirit_servings wine_servings
-#>    <chr>                 <dbl>           <dbl>         <dbl>
-#>  1 Afghanistan               0               0             0
-#>  2 Albania                  89             132            54
-#>  3 Algeria                  25               0            14
-#>  4 Andorra                 245             138           312
-#>  5 Angola                  217              57            45
-#>  6 Antigua & Ba…           102             128            45
-#>  7 Argentina               193              25           221
-#>  8 Armenia                  21             179            11
-#>  9 Australia               261              72           212
-#> 10 Austria                 279              75           191
-#> # … with 183 more rows, and 1 more variable:
-#> #   total_litres_of_pure_alcohol <dbl>
+#> # A tibble: 193 × 5
+#>    country           beer_servings spirit_…¹ wine_…² total…³
+#>    <chr>                     <dbl>     <dbl>   <dbl>   <dbl>
+#>  1 Afghanistan                   0         0       0     0  
+#>  2 Albania                      89       132      54     4.9
+#>  3 Algeria                      25         0      14     0.7
+#>  4 Andorra                     245       138     312    12.4
+#>  5 Angola                      217        57      45     5.9
+#>  6 Antigua & Barbuda           102       128      45     4.9
+#>  7 Argentina                   193        25     221     8.3
+#>  8 Armenia                      21       179      11     3.8
+#>  9 Australia                   261        72     212    10.4
+#> 10 Austria                     279        75     191     9.7
+#> # … with 183 more rows, and abbreviated variable names
+#> #   ¹​spirit_servings, ²​wine_servings,
+#> #   ³​total_litres_of_pure_alcohol
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 What's in this data set? We see a few _variables_ on the columns:
@@ -157,7 +150,7 @@ ggplot(data = alcohol_data,
   geom_histogram(colour = "black", fill = "white", bins = 15)
 ```
 
-![](01-intro_files/figure-epub3/unnamed-chunk-5-1.png)<!-- -->
+<img src="01-intro_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 I now want to see where the United States (`USA`) falls on this distribution by drawing a red vertical line for the total litres of alcohol consumed in the United States. To do so, I'll first use the `filter()` function in the `dplyr` package (again, we will learn about that function in detail later). Copy and paste the following lines of code into a new `R` chunk. Then, run the lines.
 
@@ -177,24 +170,24 @@ It looks like there are some countries that consume little to no alcohol. We mig
 
 ```r
 alcohol_data |> filter(total_litres_of_pure_alcohol == 0)
-#> # A tibble: 13 x 5
-#>    country       beer_servings spirit_servings wine_servings
-#>    <chr>                 <dbl>           <dbl>         <dbl>
-#>  1 Afghanistan               0               0             0
-#>  2 Bangladesh                0               0             0
-#>  3 North Korea               0               0             0
-#>  4 Iran                      0               0             0
-#>  5 Kuwait                    0               0             0
-#>  6 Libya                     0               0             0
-#>  7 Maldives                  0               0             0
-#>  8 Marshall Isl…             0               0             0
-#>  9 Mauritania                0               0             0
-#> 10 Monaco                    0               0             0
-#> 11 Pakistan                  0               0             0
-#> 12 San Marino                0               0             0
-#> 13 Somalia                   0               0             0
-#> # … with 1 more variable:
-#> #   total_litres_of_pure_alcohol <dbl>
+#> # A tibble: 13 × 5
+#>    country          beer_servings spirit_s…¹ wine_…² total…³
+#>    <chr>                    <dbl>      <dbl>   <dbl>   <dbl>
+#>  1 Afghanistan                  0          0       0       0
+#>  2 Bangladesh                   0          0       0       0
+#>  3 North Korea                  0          0       0       0
+#>  4 Iran                         0          0       0       0
+#>  5 Kuwait                       0          0       0       0
+#>  6 Libya                        0          0       0       0
+#>  7 Maldives                     0          0       0       0
+#>  8 Marshall Islands             0          0       0       0
+#>  9 Mauritania                   0          0       0       0
+#> 10 Monaco                       0          0       0       0
+#> 11 Pakistan                     0          0       0       0
+#> 12 San Marino                   0          0       0       0
+#> 13 Somalia                      0          0       0       0
+#> # … with abbreviated variable names ¹​spirit_servings,
+#> #   ²​wine_servings, ³​total_litres_of_pure_alcohol
 ```
 
 It looks like there are 13 countries in the data set that consume no alcohol. Note that, in the chunk above, we have to use in `total_litres_of_pure_alcohol` as the variable name because this is the name of the variable in the data set. Even something like spelling litres in the American English liters (`total_liters_of_pure_alcohol`) would throw an error because this isn't the exact name of the variable in the data set. This is something that can be very aggravating when you are first learning any coding language. 
@@ -239,7 +232,7 @@ ggplot(data = alcohol_data,
   geom_abline(aes(slope = 1, intercept = 0), alpha = 0.3)
 ```
 
-![](01-intro_files/figure-epub3/unnamed-chunk-10-1.png)<!-- -->
+<img src="01-intro_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 The x-axis corresponds to beer servings while the y-axis corresponds to wine servings. A reference line is given so with countries above the line consuming more wine than beer. We will get into how to make a plot like this later: for now, copy the code chunk and change the labeled point so that it corresponds to a country that interests you (other than Denmark). 
 We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:
@@ -250,7 +243,7 @@ alcohol_data |>
   mutate(wbratio = wine_servings / beer_servings) |>
   arrange(desc(wbratio)) |>
   select(country, beer_servings, wine_servings, wbratio)
-#> # A tibble: 193 x 4
+#> # A tibble: 193 × 4
 #>    country             beer_servings wine_servings wbratio
 #>    <chr>                       <dbl>         <dbl>   <dbl>
 #>  1 Cook Islands                    0            74  Inf   
@@ -264,6 +257,7 @@ alcohol_data |>
 #>  9 Equatorial Guinea              92           233    2.53
 #> 10 Sao Tome & Principe            56           140    2.5 
 #> # … with 183 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Why is one of the ratios `Inf`? 
@@ -310,16 +304,18 @@ We will first read in the data set below and name it `athletes`. We can then use
 ```r
 athletes <- read_csv("data/athletesdata.csv")
 head(athletes)
-#> # A tibble: 6 x 9
-#>    ...1 Name   Rank Sport endorsements totalpay salary   age
-#>   <dbl> <chr> <dbl> <chr>        <dbl>    <dbl>  <dbl> <dbl>
-#> 1     1 Aaro…    55 Foot…      7500000 22000000 1.45e7    31
-#> 2     2 Adam…    95 Golf       9000000 17700000 8.7 e6    34
-#> 3     3 Adri…    60 Base…       400000 21500000 2.11e7    32
-#> 4     4 Alex…    48 Base…       300000 22900000 2.26e7    39
-#> 5     5 Alfo…    93 Base…        50000 18050000 1.8 e7    38
-#> 6     6 Amar…    27 Bask…      5000000 26700000 2.17e7    32
-#> # … with 1 more variable: Gender <chr>
+#> # A tibble: 6 × 9
+#>    ...1 Name         Rank Sport endor…¹ total…² salary   age
+#>   <dbl> <chr>       <dbl> <chr>   <dbl>   <dbl>  <dbl> <dbl>
+#> 1     1 Aaron Rodg…    55 Foot… 7500000  2.2 e7 1.45e7    31
+#> 2     2 Adam Scott     95 Golf  9000000  1.77e7 8.7 e6    34
+#> 3     3 Adrian Gon…    60 Base…  400000  2.15e7 2.11e7    32
+#> 4     4 Alex Rodri…    48 Base…  300000  2.29e7 2.26e7    39
+#> 5     5 Alfonso So…    93 Base…   50000  1.80e7 1.8 e7    38
+#> 6     6 Amar'e Sto…    27 Bask… 5000000  2.67e7 2.17e7    32
+#> # … with 1 more variable: Gender <chr>, and abbreviated
+#> #   variable names ¹​endorsements, ²​totalpay
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 There are many different interesting questions to answer with this data set. First, we might be interested in the relationship between athlete age and salary for the top 100 athletes. Recall from an earlier stat course that one appropriate graphic to examine this relationship is a scatterplot:
@@ -331,7 +327,7 @@ ggplot(data = athletes, mapping = aes(x = age, y = salary)) +
   geom_smooth(se = FALSE)
 ```
 
-![](01-intro_files/figure-epub3/unnamed-chunk-14-1.png)<!-- -->
+<img src="01-intro_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 Do you see anything strange with the scatterplot? What do you think the y-axis tick labels of 2.5e+07, 5.0e+07, etc. mean?
 
@@ -342,7 +338,7 @@ Now let's see if we can count the number of athletes in the Top 100 that are in 
 athletes |> group_by(Sport) |>
   summarise(counts = n()) |>
   filter(Sport == "Tennis")
-#> # A tibble: 1 x 2
+#> # A tibble: 1 × 2
 #>   Sport  counts
 #>   <chr>   <int>
 #> 1 Tennis      6
@@ -355,16 +351,18 @@ It looks like there are 6 athletes: we can see who they are and sort them by the
 athletes |>
   filter(Sport == "Tennis") |>
   arrange(Rank)
-#> # A tibble: 6 x 9
-#>    ...1 Name   Rank Sport endorsements totalpay salary   age
-#>   <dbl> <chr> <dbl> <chr>        <dbl>    <dbl>  <dbl> <dbl>
-#> 1    82 Roge…     7 Tenn…     52000000 56200000 4.2 e6    33
-#> 2    78 Rafa…     9 Tenn…     30000000 44500000 1.45e7    28
-#> 3    72 Nova…    17 Tenn…     21000000 33100000 1.21e7    27
-#> 4    64 Mari…    34 Tenn…     22000000 24400000 2.4 e6    27
-#> 5    60 Li Na    41 Tenn…     18000000 23600000 5.6 e6    32
-#> 6    89 Sere…    55 Tenn…     11000000 22000000 1.1 e7    33
-#> # … with 1 more variable: Gender <chr>
+#> # A tibble: 6 × 9
+#>    ...1 Name         Rank Sport endor…¹ total…² salary   age
+#>   <dbl> <chr>       <dbl> <chr>   <dbl>   <dbl>  <dbl> <dbl>
+#> 1    82 Roger Fede…     7 Tenn…   5.2e7  5.62e7 4.2 e6    33
+#> 2    78 Rafael Nad…     9 Tenn…   3  e7  4.45e7 1.45e7    28
+#> 3    72 Novak Djok…    17 Tenn…   2.1e7  3.31e7 1.21e7    27
+#> 4    64 Maria Shar…    34 Tenn…   2.2e7  2.44e7 2.4 e6    27
+#> 5    60 Li Na          41 Tenn…   1.8e7  2.36e7 5.6 e6    32
+#> 6    89 Serena Wil…    55 Tenn…   1.1e7  2.2 e7 1.1 e7    33
+#> # … with 1 more variable: Gender <chr>, and abbreviated
+#> #   variable names ¹​endorsements, ²​totalpay
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 
@@ -381,7 +379,7 @@ ggplot(data = football_basketball,
   labs(y = "Endorsements / Salary")
 ```
 
-![](01-intro_files/figure-epub3/unnamed-chunk-17-1.png)<!-- -->
+<img src="01-intro_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 In the graph an endorsements / salary ratio of 1 indicates that the person makes half of their overall pay from endorsements and half of their overall pay from salary.
 
@@ -512,7 +510,7 @@ j. Take a look at the learning outcomes listed on the syllabus. Which are you mo
 
 k. What are your expectations for this class and/or what do you hope to gain from this class?
 
-
+l. Take a moment to scroll through the advice from students who took this course in the Fall semester of 2021. What is one piece of advice that you hope to apply to our course this semester?
 
 <br>
 

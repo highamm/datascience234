@@ -190,7 +190,7 @@ change-factor-levels-s
 reorder-factor-levels-s
 chapexercise-7-S
 rcode-7
-reprexes-and-import
+data-import
 readr-to-read-in-data
 read_csv-options
 exercise-8-2

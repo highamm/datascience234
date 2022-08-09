@@ -38,7 +38,6 @@ We first load in the `duckdb` and `DBI` libraries and make a connection to the d
 ```r
 library(DBI)
 library(duckdb)
-#> Warning: package 'duckdb' was built under R version 4.1.2
 con <- DBI::dbConnect(duckdb::duckdb())
 ```
 
@@ -47,7 +46,7 @@ We can type in `con` to see what it stores:
 
 ```r
 con
-#> <duckdb_connection ec7c0 driver=<duckdb_driver c1b90 dbdir=':memory:' read_only=FALSE>>
+#> <duckdb_connection cab80 driver=<duckdb_driver a04d0 dbdir=':memory:' read_only=FALSE>>
 ```
 
 We've created a brand-new database, so we can next add some data tables with the `duckdb_read_csv()` function. Compared to `read_csv()` from the `readr` package, `duckdb_read_csv()` has a couple of extra arguments: a `conn` argument giving the database management connection and a `name` argument giving the name that we want to give to the data table:
@@ -87,23 +86,14 @@ To use raw SQL code and query the database that we just created, we can create a
 
 ```r
 library(tidyverse)
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'pillar'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'tibble'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'hms'
-#> ── Attaching packages ─────────────────── tidyverse 1.3.1 ──
-#> ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-#> ✓ tibble  3.1.2     ✓ dplyr   1.0.7
-#> ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-#> ✓ readr   2.0.2     ✓ forcats 0.5.1
+#> ── Attaching packages ─────────────────── tidyverse 1.3.2 ──
+#> ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+#> ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+#> ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+#> ✔ readr   2.1.2     ✔ forcats 0.5.1
 #> ── Conflicts ────────────────────── tidyverse_conflicts() ──
-#> x dplyr::filter() masks stats::filter()
-#> x dplyr::lag()    masks stats::lag()
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
 
 sql <- "
   SELECT surface, winner_name, loser_name, w_ace, l_ace, minutes
@@ -112,20 +102,22 @@ sql <- "
 "
 dbGetQuery(con, sql)|>
   as_tibble()
-#> # A tibble: 30 x 6
-#>    surface winner_name     loser_name    w_ace l_ace minutes
-#>    <chr>   <chr>           <chr>         <int> <int>   <int>
-#>  1 Hard    Joao Sousa      Guido Pella      19    18     241
-#>  2 Hard    Jeremy Chardy   Ugo Humbert      29    20     244
-#>  3 Hard    Roberto Bautis… Andy Murray       7    19     249
-#>  4 Hard    Joao Sousa      Philipp Kohl…    28    20     258
-#>  5 Hard    Alex Bolt       Gilles Simon     11    14     244
-#>  6 Hard    Milos Raonic    Stan Wawrinka    39    28     241
-#>  7 Hard    Marin Cilic     Fernando Ver…     8    27     258
-#>  8 Hard    Kei Nishikori   Pablo Carren…    15     5     305
-#>  9 Hard    Frances Tiafoe  David Goffin      3    11     244
-#> 10 Clay    Alexander Zver… John Millman     17     0     248
-#> # … with 20 more rows
+#> # A tibble: 30 × 6
+#>    surface winner_name           loser…¹ w_ace l_ace minutes
+#>    <chr>   <chr>                 <chr>   <int> <int>   <int>
+#>  1 Hard    Joao Sousa            Guido …    19    18     241
+#>  2 Hard    Jeremy Chardy         Ugo Hu…    29    20     244
+#>  3 Hard    Roberto Bautista Agut Andy M…     7    19     249
+#>  4 Hard    Joao Sousa            Philip…    28    20     258
+#>  5 Hard    Alex Bolt             Gilles…    11    14     244
+#>  6 Hard    Milos Raonic          Stan W…    39    28     241
+#>  7 Hard    Marin Cilic           Fernan…     8    27     258
+#>  8 Hard    Kei Nishikori         Pablo …    15     5     305
+#>  9 Hard    Frances Tiafoe        David …     3    11     244
+#> 10 Clay    Alexander Zverev      John M…    17     0     248
+#> # … with 20 more rows, and abbreviated variable name
+#> #   ¹​loser_name
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ### Exercises {#exercise-16-1}
@@ -153,36 +145,27 @@ library(dbplyr)
 tennis_db <- tbl(con, "tennis2019")
 tennis_db
 #> # Source:   table<tennis2019> [?? x 49]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R
-#> #   4.1.0/:memory:]
-#>    tourney_id tourney_name surface draw_size tourney_level
-#>    <chr>      <chr>        <chr>       <int> <chr>        
-#>  1 2019-M020  Brisbane     Hard           32 A            
-#>  2 2019-M020  Brisbane     Hard           32 A            
-#>  3 2019-M020  Brisbane     Hard           32 A            
-#>  4 2019-M020  Brisbane     Hard           32 A            
-#>  5 2019-M020  Brisbane     Hard           32 A            
-#>  6 2019-M020  Brisbane     Hard           32 A            
-#>  7 2019-M020  Brisbane     Hard           32 A            
-#>  8 2019-M020  Brisbane     Hard           32 A            
-#>  9 2019-M020  Brisbane     Hard           32 A            
-#> 10 2019-M020  Brisbane     Hard           32 A            
-#> # … with more rows, and 44 more variables:
-#> #   tourney_date <int>, match_num <int>, winner_id <int>,
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#>    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶
+#>    <chr>     <chr>   <chr>     <int> <chr>     <int>   <int>
+#>  1 2019-M020 Brisba… Hard         32 A        2.02e7     300
+#>  2 2019-M020 Brisba… Hard         32 A        2.02e7     299
+#>  3 2019-M020 Brisba… Hard         32 A        2.02e7     298
+#>  4 2019-M020 Brisba… Hard         32 A        2.02e7     297
+#>  5 2019-M020 Brisba… Hard         32 A        2.02e7     296
+#>  6 2019-M020 Brisba… Hard         32 A        2.02e7     295
+#>  7 2019-M020 Brisba… Hard         32 A        2.02e7     294
+#>  8 2019-M020 Brisba… Hard         32 A        2.02e7     293
+#>  9 2019-M020 Brisba… Hard         32 A        2.02e7     292
+#> 10 2019-M020 Brisba… Hard         32 A        2.02e7     291
+#> # … with more rows, 42 more variables: winner_id <int>,
 #> #   winner_seed <chr>, winner_entry <chr>,
 #> #   winner_name <chr>, winner_hand <chr>, winner_ht <int>,
 #> #   winner_ioc <chr>, winner_age <dbl>, loser_id <int>,
 #> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <int>, loser_ioc <chr>,
-#> #   loser_age <dbl>, score <chr>, best_of <int>,
-#> #   round <chr>, minutes <int>, w_ace <int>, w_df <int>,
-#> #   w_svpt <int>, w_1stIn <int>, w_1stWon <int>,
-#> #   w_2ndWon <int>, w_SvGms <int>, w_bpSaved <int>,
-#> #   w_bpFaced <int>, l_ace <int>, l_df <int>, l_svpt <int>,
-#> #   l_1stIn <int>, l_1stWon <int>, l_2ndWon <int>,
-#> #   l_SvGms <int>, l_bpSaved <int>, l_bpFaced <int>,
-#> #   winner_rank <int>, winner_rank_points <int>,
-#> #   loser_rank <int>, loser_rank_points <int>
+#> #   loser_age <dbl>, score <chr>, best_of <int>, …
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Examine the print for `tennis_db`, which should look similar to the print for a `tibble` or `data.frame`. Let's use some `dplyr` code to obtain only the matches that lasted longer than `240` minutes and keep only a few of the columns. We will name the result `tennis_query1`:
@@ -193,22 +176,23 @@ tennis_query1 <- tennis_db |>
   filter(minutes > 240) |> 
   select(minutes, winner_name, loser_name, minutes, tourney_name)
 tennis_query1
-#> # Source:   lazy query [?? x 4]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R
-#> #   4.1.0/:memory:]
-#>    minutes winner_name       loser_name        tourney_name 
-#>      <int> <chr>             <chr>             <chr>        
-#>  1     241 Joao Sousa        Guido Pella       Australian O…
-#>  2     244 Jeremy Chardy     Ugo Humbert       Australian O…
-#>  3     249 Roberto Bautista… Andy Murray       Australian O…
-#>  4     258 Joao Sousa        Philipp Kohlschr… Australian O…
-#>  5     244 Alex Bolt         Gilles Simon      Australian O…
-#>  6     241 Milos Raonic      Stan Wawrinka     Australian O…
-#>  7     258 Marin Cilic       Fernando Verdasco Australian O…
-#>  8     305 Kei Nishikori     Pablo Carreno Bu… Australian O…
-#>  9     244 Frances Tiafoe    David Goffin      Miami Masters
-#> 10     248 Alexander Zverev  John Millman      Roland Garros
-#> # … with more rows
+#> # Source:   SQL [?? x 4]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#>    minutes winner_name           loser_name          tourn…¹
+#>      <int> <chr>                 <chr>               <chr>  
+#>  1     241 Joao Sousa            Guido Pella         Austra…
+#>  2     244 Jeremy Chardy         Ugo Humbert         Austra…
+#>  3     249 Roberto Bautista Agut Andy Murray         Austra…
+#>  4     258 Joao Sousa            Philipp Kohlschrei… Austra…
+#>  5     244 Alex Bolt             Gilles Simon        Austra…
+#>  6     241 Milos Raonic          Stan Wawrinka       Austra…
+#>  7     258 Marin Cilic           Fernando Verdasco   Austra…
+#>  8     305 Kei Nishikori         Pablo Carreno Busta Austra…
+#>  9     244 Frances Tiafoe        David Goffin        Miami …
+#> 10     248 Alexander Zverev      John Millman        Roland…
+#> # … with more rows, and abbreviated variable name
+#> #   ¹​tourney_name
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 We should note that the result is still a database object: it's not our "usual" `tibble`. One major difference between the database object and the usual `tibble` is that our `tennis_query1` does not tell us how many rows are in the data (see the `??` and the specification `with more rows`). The code that we wrote is not actually looking in the entire data set for matches that are longer than 240 minutes: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run. 
@@ -219,20 +203,22 @@ If we want to obtain the result of our query as a `tibble`, we can use the `coll
 ```r
 tennis_query1 |>
   collect()
-#> # A tibble: 30 x 4
-#>    minutes winner_name       loser_name        tourney_name 
-#>      <int> <chr>             <chr>             <chr>        
-#>  1     241 Joao Sousa        Guido Pella       Australian O…
-#>  2     244 Jeremy Chardy     Ugo Humbert       Australian O…
-#>  3     249 Roberto Bautista… Andy Murray       Australian O…
-#>  4     258 Joao Sousa        Philipp Kohlschr… Australian O…
-#>  5     244 Alex Bolt         Gilles Simon      Australian O…
-#>  6     241 Milos Raonic      Stan Wawrinka     Australian O…
-#>  7     258 Marin Cilic       Fernando Verdasco Australian O…
-#>  8     305 Kei Nishikori     Pablo Carreno Bu… Australian O…
-#>  9     244 Frances Tiafoe    David Goffin      Miami Masters
-#> 10     248 Alexander Zverev  John Millman      Roland Garros
-#> # … with 20 more rows
+#> # A tibble: 30 × 4
+#>    minutes winner_name           loser_name          tourn…¹
+#>      <int> <chr>                 <chr>               <chr>  
+#>  1     241 Joao Sousa            Guido Pella         Austra…
+#>  2     244 Jeremy Chardy         Ugo Humbert         Austra…
+#>  3     249 Roberto Bautista Agut Andy Murray         Austra…
+#>  4     258 Joao Sousa            Philipp Kohlschrei… Austra…
+#>  5     244 Alex Bolt             Gilles Simon        Austra…
+#>  6     241 Milos Raonic          Stan Wawrinka       Austra…
+#>  7     258 Marin Cilic           Fernando Verdasco   Austra…
+#>  8     305 Kei Nishikori         Pablo Carreno Busta Austra…
+#>  9     244 Frances Tiafoe        David Goffin        Miami …
+#> 10     248 Alexander Zverev      John Millman        Roland…
+#> # … with 20 more rows, and abbreviated variable name
+#> #   ¹​tourney_name
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 The result is a `tibble` that we can now use any `R` functions on (not just functions from `dplyr` and a few other packages).
@@ -260,9 +246,8 @@ medvedev_query <- tennis_db |>
   group_by(win_loss) |>
   summarise(win_loss_count = n())
 medvedev_query
-#> # Source:   lazy query [?? x 2]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R
-#> #   4.1.0/:memory:]
+#> # Source:   SQL [2 x 2]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
 #>   win_loss    win_loss_count
 #>   <chr>                <dbl>
 #> 1 winner_name             59
@@ -270,11 +255,115 @@ medvedev_query
 show_query(medvedev_query)
 #> <SQL>
 #> SELECT "win_loss", COUNT(*) AS "win_loss_count"
-#> FROM ((SELECT "tourney_id", "tourney_name", "surface", "draw_size", "tourney_level", "tourney_date", "match_num", "winner_id", "winner_seed", "winner_entry", "winner_hand", "winner_ht", "winner_ioc", "winner_age", "loser_id", "loser_seed", "loser_entry", "loser_hand", "loser_ht", "loser_ioc", "loser_age", "score", "best_of", "round", "minutes", "w_ace", "w_df", "w_svpt", "w_1stIn", "w_1stWon", "w_2ndWon", "w_SvGms", "w_bpSaved", "w_bpFaced", "l_ace", "l_df", "l_svpt", "l_1stIn", "l_1stWon", "l_2ndWon", "l_SvGms", "l_bpSaved", "l_bpFaced", "winner_rank", "winner_rank_points", "loser_rank", "loser_rank_points", 'winner_name' AS "win_loss", "winner_name" AS "player"
-#> FROM "tennis2019")
-#> UNION ALL
-#> (SELECT "tourney_id", "tourney_name", "surface", "draw_size", "tourney_level", "tourney_date", "match_num", "winner_id", "winner_seed", "winner_entry", "winner_hand", "winner_ht", "winner_ioc", "winner_age", "loser_id", "loser_seed", "loser_entry", "loser_hand", "loser_ht", "loser_ioc", "loser_age", "score", "best_of", "round", "minutes", "w_ace", "w_df", "w_svpt", "w_1stIn", "w_1stWon", "w_2ndWon", "w_SvGms", "w_bpSaved", "w_bpFaced", "l_ace", "l_df", "l_svpt", "l_1stIn", "l_1stWon", "l_2ndWon", "l_SvGms", "l_bpSaved", "l_bpFaced", "winner_rank", "winner_rank_points", "loser_rank", "loser_rank_points", 'loser_name' AS "win_loss", "loser_name" AS "player"
-#> FROM "tennis2019")) "q01"
+#> FROM (
+#>   (
+#>     SELECT
+#>       "tourney_id",
+#>       "tourney_name",
+#>       "surface",
+#>       "draw_size",
+#>       "tourney_level",
+#>       "tourney_date",
+#>       "match_num",
+#>       "winner_id",
+#>       "winner_seed",
+#>       "winner_entry",
+#>       "winner_hand",
+#>       "winner_ht",
+#>       "winner_ioc",
+#>       "winner_age",
+#>       "loser_id",
+#>       "loser_seed",
+#>       "loser_entry",
+#>       "loser_hand",
+#>       "loser_ht",
+#>       "loser_ioc",
+#>       "loser_age",
+#>       "score",
+#>       "best_of",
+#>       "round",
+#>       "minutes",
+#>       "w_ace",
+#>       "w_df",
+#>       "w_svpt",
+#>       "w_1stIn",
+#>       "w_1stWon",
+#>       "w_2ndWon",
+#>       "w_SvGms",
+#>       "w_bpSaved",
+#>       "w_bpFaced",
+#>       "l_ace",
+#>       "l_df",
+#>       "l_svpt",
+#>       "l_1stIn",
+#>       "l_1stWon",
+#>       "l_2ndWon",
+#>       "l_SvGms",
+#>       "l_bpSaved",
+#>       "l_bpFaced",
+#>       "winner_rank",
+#>       "winner_rank_points",
+#>       "loser_rank",
+#>       "loser_rank_points",
+#>       'winner_name' AS "win_loss",
+#>       "winner_name" AS "player"
+#>     FROM "tennis2019"
+#>   )
+#>   UNION ALL
+#>   (
+#>     SELECT
+#>       "tourney_id",
+#>       "tourney_name",
+#>       "surface",
+#>       "draw_size",
+#>       "tourney_level",
+#>       "tourney_date",
+#>       "match_num",
+#>       "winner_id",
+#>       "winner_seed",
+#>       "winner_entry",
+#>       "winner_hand",
+#>       "winner_ht",
+#>       "winner_ioc",
+#>       "winner_age",
+#>       "loser_id",
+#>       "loser_seed",
+#>       "loser_entry",
+#>       "loser_hand",
+#>       "loser_ht",
+#>       "loser_ioc",
+#>       "loser_age",
+#>       "score",
+#>       "best_of",
+#>       "round",
+#>       "minutes",
+#>       "w_ace",
+#>       "w_df",
+#>       "w_svpt",
+#>       "w_1stIn",
+#>       "w_1stWon",
+#>       "w_2ndWon",
+#>       "w_SvGms",
+#>       "w_bpSaved",
+#>       "w_bpFaced",
+#>       "l_ace",
+#>       "l_df",
+#>       "l_svpt",
+#>       "l_1stIn",
+#>       "l_1stWon",
+#>       "l_2ndWon",
+#>       "l_SvGms",
+#>       "l_bpSaved",
+#>       "l_bpFaced",
+#>       "winner_rank",
+#>       "winner_rank_points",
+#>       "loser_rank",
+#>       "loser_rank_points",
+#>       'loser_name' AS "win_loss",
+#>       "loser_name" AS "player"
+#>     FROM "tennis2019"
+#>   )
+#> ) "q01"
 #> WHERE ("player" = 'Daniil Medvedev')
 #> GROUP BY "win_loss"
 ```
@@ -289,9 +378,8 @@ over20aces <- tennis_db |> filter(w_ace > 20) |>
   summarise(nmatch = n()) |>
   arrange(desc(nmatch))
 over20aces
-#> # Source:     lazy query [?? x 2]
-#> # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R
-#> #   4.1.0/:memory:]
+#> # Source:     SQL [?? x 2]
+#> # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
 #> # Ordered by: desc(nmatch)
 #>    winner_name        nmatch
 #>    <chr>               <dbl>
@@ -306,13 +394,16 @@ over20aces
 #>  9 Jo-Wilfried Tsonga      4
 #> 10 Alexander Zverev        4
 #> # … with more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 
 over20aces |> show_query()
 #> <SQL>
 #> SELECT "winner_name", COUNT(*) AS "nmatch"
-#> FROM (SELECT "w_ace", "winner_name"
-#> FROM "tennis2019"
-#> WHERE ("w_ace" > 20.0)) "q01"
+#> FROM (
+#>   SELECT "w_ace", "winner_name"
+#>   FROM "tennis2019"
+#>   WHERE ("w_ace" > 20.0)
+#> ) "q01"
 #> GROUP BY "winner_name"
 #> ORDER BY "nmatch" DESC
 ```
@@ -396,7 +487,56 @@ tennis_db |> select(1:4) |> show_query()
 tennis_db |> rename(tournament = tourney_name) |>
   show_query()
 #> <SQL>
-#> SELECT "tourney_id", "tourney_name" AS "tournament", "surface", "draw_size", "tourney_level", "tourney_date", "match_num", "winner_id", "winner_seed", "winner_entry", "winner_name", "winner_hand", "winner_ht", "winner_ioc", "winner_age", "loser_id", "loser_seed", "loser_entry", "loser_name", "loser_hand", "loser_ht", "loser_ioc", "loser_age", "score", "best_of", "round", "minutes", "w_ace", "w_df", "w_svpt", "w_1stIn", "w_1stWon", "w_2ndWon", "w_SvGms", "w_bpSaved", "w_bpFaced", "l_ace", "l_df", "l_svpt", "l_1stIn", "l_1stWon", "l_2ndWon", "l_SvGms", "l_bpSaved", "l_bpFaced", "winner_rank", "winner_rank_points", "loser_rank", "loser_rank_points"
+#> SELECT
+#>   "tourney_id",
+#>   "tourney_name" AS "tournament",
+#>   "surface",
+#>   "draw_size",
+#>   "tourney_level",
+#>   "tourney_date",
+#>   "match_num",
+#>   "winner_id",
+#>   "winner_seed",
+#>   "winner_entry",
+#>   "winner_name",
+#>   "winner_hand",
+#>   "winner_ht",
+#>   "winner_ioc",
+#>   "winner_age",
+#>   "loser_id",
+#>   "loser_seed",
+#>   "loser_entry",
+#>   "loser_name",
+#>   "loser_hand",
+#>   "loser_ht",
+#>   "loser_ioc",
+#>   "loser_age",
+#>   "score",
+#>   "best_of",
+#>   "round",
+#>   "minutes",
+#>   "w_ace",
+#>   "w_df",
+#>   "w_svpt",
+#>   "w_1stIn",
+#>   "w_1stWon",
+#>   "w_2ndWon",
+#>   "w_SvGms",
+#>   "w_bpSaved",
+#>   "w_bpFaced",
+#>   "l_ace",
+#>   "l_df",
+#>   "l_svpt",
+#>   "l_1stIn",
+#>   "l_1stWon",
+#>   "l_2ndWon",
+#>   "l_SvGms",
+#>   "l_bpSaved",
+#>   "l_bpFaced",
+#>   "winner_rank",
+#>   "winner_rank_points",
+#>   "loser_rank",
+#>   "loser_rank_points"
 #> FROM "tennis2019"
 ```
 
@@ -418,9 +558,6 @@ tennis_db |> mutate(prop_first_won = w_1stIn / w_1stWon) |>
 ```r
 tennis_db |> summarise(mean_length = mean(minutes)) |>
   show_query()
-#> Warning: Missing values are always removed in SQL.
-#> Use `mean(x, na.rm = TRUE)` to silence this warning
-#> This warning is displayed only once per session.
 #> <SQL>
 #> SELECT AVG("minutes") AS "mean_length"
 #> FROM "tennis2019"
@@ -556,9 +693,8 @@ The code is keeping any matches that are longer than 240 minutes. It is also get
 
 ```r
 tennis_db |> group_by(surface) |> summarise(nmatch = n())
-#> # Source:   lazy query [?? x 2]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R
-#> #   4.1.0/:memory:]
+#> # Source:   SQL [3 x 2]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
 #>   surface nmatch
 #>   <chr>    <dbl>
 #> 1 Hard      1626
@@ -588,37 +724,28 @@ WHERE ("tourney_name" = 'Wimbledon')
 ```r
 tennis_db |>
   filter(tourney_name == "Wimbledon")
-#> # Source:   lazy query [?? x 49]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R
-#> #   4.1.0/:memory:]
-#>    tourney_id tourney_name surface draw_size tourney_level
-#>    <chr>      <chr>        <chr>       <int> <chr>        
-#>  1 2019-540   Wimbledon    Grass         128 G            
-#>  2 2019-540   Wimbledon    Grass         128 G            
-#>  3 2019-540   Wimbledon    Grass         128 G            
-#>  4 2019-540   Wimbledon    Grass         128 G            
-#>  5 2019-540   Wimbledon    Grass         128 G            
-#>  6 2019-540   Wimbledon    Grass         128 G            
-#>  7 2019-540   Wimbledon    Grass         128 G            
-#>  8 2019-540   Wimbledon    Grass         128 G            
-#>  9 2019-540   Wimbledon    Grass         128 G            
-#> 10 2019-540   Wimbledon    Grass         128 G            
-#> # … with more rows, and 44 more variables:
-#> #   tourney_date <int>, match_num <int>, winner_id <int>,
+#> # Source:   SQL [?? x 49]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#>    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶
+#>    <chr>     <chr>   <chr>     <int> <chr>     <int>   <int>
+#>  1 2019-540  Wimble… Grass       128 G        2.02e7     100
+#>  2 2019-540  Wimble… Grass       128 G        2.02e7     101
+#>  3 2019-540  Wimble… Grass       128 G        2.02e7     102
+#>  4 2019-540  Wimble… Grass       128 G        2.02e7     103
+#>  5 2019-540  Wimble… Grass       128 G        2.02e7     104
+#>  6 2019-540  Wimble… Grass       128 G        2.02e7     105
+#>  7 2019-540  Wimble… Grass       128 G        2.02e7     106
+#>  8 2019-540  Wimble… Grass       128 G        2.02e7     107
+#>  9 2019-540  Wimble… Grass       128 G        2.02e7     108
+#> 10 2019-540  Wimble… Grass       128 G        2.02e7     109
+#> # … with more rows, 42 more variables: winner_id <int>,
 #> #   winner_seed <chr>, winner_entry <chr>,
 #> #   winner_name <chr>, winner_hand <chr>, winner_ht <int>,
 #> #   winner_ioc <chr>, winner_age <dbl>, loser_id <int>,
 #> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <int>, loser_ioc <chr>,
-#> #   loser_age <dbl>, score <chr>, best_of <int>,
-#> #   round <chr>, minutes <int>, w_ace <int>, w_df <int>,
-#> #   w_svpt <int>, w_1stIn <int>, w_1stWon <int>,
-#> #   w_2ndWon <int>, w_SvGms <int>, w_bpSaved <int>,
-#> #   w_bpFaced <int>, l_ace <int>, l_df <int>, l_svpt <int>,
-#> #   l_1stIn <int>, l_1stWon <int>, l_2ndWon <int>,
-#> #   l_SvGms <int>, l_bpSaved <int>, l_bpFaced <int>,
-#> #   winner_rank <int>, winner_rank_points <int>,
-#> #   loser_rank <int>, loser_rank_points <int>
+#> #   loser_age <dbl>, score <chr>, best_of <int>, …
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 
 ## check query:
 tennis_db |>
@@ -647,36 +774,27 @@ The result is an error. Only functions compatible with the `dbplyr` package can 
 tennis_db |> collect() |>
   mutate(tourney_name_reorder = fct_reorder(tourney_name, 
                                                        draw_size))
-#> # A tibble: 2,781 x 50
-#>    tourney_id tourney_name surface draw_size tourney_level
-#>    <chr>      <chr>        <chr>       <int> <chr>        
-#>  1 2019-M020  Brisbane     Hard           32 A            
-#>  2 2019-M020  Brisbane     Hard           32 A            
-#>  3 2019-M020  Brisbane     Hard           32 A            
-#>  4 2019-M020  Brisbane     Hard           32 A            
-#>  5 2019-M020  Brisbane     Hard           32 A            
-#>  6 2019-M020  Brisbane     Hard           32 A            
-#>  7 2019-M020  Brisbane     Hard           32 A            
-#>  8 2019-M020  Brisbane     Hard           32 A            
-#>  9 2019-M020  Brisbane     Hard           32 A            
-#> 10 2019-M020  Brisbane     Hard           32 A            
-#> # … with 2,771 more rows, and 45 more variables:
-#> #   tourney_date <int>, match_num <int>, winner_id <int>,
-#> #   winner_seed <chr>, winner_entry <chr>,
+#> # A tibble: 2,781 × 50
+#>    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶
+#>    <chr>     <chr>   <chr>     <int> <chr>     <int>   <int>
+#>  1 2019-M020 Brisba… Hard         32 A        2.02e7     300
+#>  2 2019-M020 Brisba… Hard         32 A        2.02e7     299
+#>  3 2019-M020 Brisba… Hard         32 A        2.02e7     298
+#>  4 2019-M020 Brisba… Hard         32 A        2.02e7     297
+#>  5 2019-M020 Brisba… Hard         32 A        2.02e7     296
+#>  6 2019-M020 Brisba… Hard         32 A        2.02e7     295
+#>  7 2019-M020 Brisba… Hard         32 A        2.02e7     294
+#>  8 2019-M020 Brisba… Hard         32 A        2.02e7     293
+#>  9 2019-M020 Brisba… Hard         32 A        2.02e7     292
+#> 10 2019-M020 Brisba… Hard         32 A        2.02e7     291
+#> # … with 2,771 more rows, 43 more variables:
+#> #   winner_id <int>, winner_seed <chr>, winner_entry <chr>,
 #> #   winner_name <chr>, winner_hand <chr>, winner_ht <int>,
 #> #   winner_ioc <chr>, winner_age <dbl>, loser_id <int>,
 #> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <int>, loser_ioc <chr>,
-#> #   loser_age <dbl>, score <chr>, best_of <int>,
-#> #   round <chr>, minutes <int>, w_ace <int>, w_df <int>,
-#> #   w_svpt <int>, w_1stIn <int>, w_1stWon <int>,
-#> #   w_2ndWon <int>, w_SvGms <int>, w_bpSaved <int>,
-#> #   w_bpFaced <int>, l_ace <int>, l_df <int>, l_svpt <int>,
-#> #   l_1stIn <int>, l_1stWon <int>, l_2ndWon <int>,
-#> #   l_SvGms <int>, l_bpSaved <int>, l_bpFaced <int>,
-#> #   winner_rank <int>, winner_rank_points <int>,
-#> #   loser_rank <int>, loser_rank_points <int>,
-#> #   tourney_name_reorder <fct>
+#> #   loser_age <dbl>, score <chr>, best_of <int>, …
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ## Non-Exercise `R` Code {#rcode-16}

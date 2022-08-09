@@ -41,7 +41,7 @@ train_sample <- pokemon |>
 test_sample <- anti_join(pokemon, train_sample)
 
 train_sample |> head()
-#> # A tibble: 6 x 14
+#> # A tibble: 6 × 14
 #>    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef
 #>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
 #> 1   491 Darkrai Dark     70     90      90   125   135    90
@@ -53,8 +53,9 @@ train_sample |> head()
 #> # … with 5 more variables: Generation <dbl>,
 #> #   Legendary <lgl>, height <dbl>, weight <dbl>,
 #> #   base_experience <dbl>
+#> # ℹ Use `colnames()` to see all variable names
 test_sample |> head()
-#> # A tibble: 6 x 14
+#> # A tibble: 6 × 14
 #>    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef
 #>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
 #> 1     4 Charma… Fire     39     52      43    65    60    50
@@ -66,6 +67,7 @@ test_sample |> head()
 #> # … with 5 more variables: Generation <dbl>,
 #> #   Legendary <lgl>, height <dbl>, weight <dbl>,
 #> #   base_experience <dbl>
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The ideas of a training data set and test data set are pervasive in predictive and classification models, including models not related to knn. Note that we are going to do this method because it's the simplest: if you wanted to take this a step further, you'd repeat the training and test process 5 or 10 times, using what's known as __k-fold cross-validation.__
@@ -90,7 +92,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
         axis.ticks.y = element_blank())
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
+<img src="13-knn_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 We see from the plot that `Steel` type Pokemon tend to have pretty high defense values. Now suppose that we want to predict the `Type` for one of the Pokemon in our test data set, `Dialga`. We know that Dialga has a `Defense` stat of 120: the plot below shows Dialga marked with a large black X.
 
@@ -104,7 +106,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
   geom_point(data = dialga, colour = "black", shape = 4, size = 7)
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
+<img src="13-knn_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 What would your prediction for `Dialga` be? Why? According to knn with `k = 1`, we would predict `Dialga` to be `Fire` type. `k = 1` means that we are using the __1st__ nearest neighbor: in this case the point that is closest to `Dialga` is a green triangle, corresponding to a `Fire` type Pokemon.
 
@@ -125,7 +127,7 @@ ggplot(data = train_sample, aes(x = Defense, y = Speed, colour = Type, shape = T
   geom_point(data = dialga, colour = "black", shape = 4, size = 5)
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-5-1.png)<!-- -->
+<img src="13-knn_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 For $k = 1$, we would predict the `Dialga` is Steel, as the closest point is the purple `+` sign in the top-left corner of the graph. For $k = 3$, what `Type` would you predict for Dialga? For this question, it's a little hard to tell which three points are closest to `Dialga` without computing the distances numerically, which is something we will let `R` do with the `knn()` function.
 
@@ -142,7 +144,7 @@ ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
   geom_point(data = newobs, shape = 4, size = 10)
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-6-1.png)<!-- -->
+<img src="13-knn_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 On the plot is also given a Pokemon in our test data set that we wish to predict the `Type` of, marked with a black X. Upon visual inspection, with `k = 1`, it looks like we would classify this pokemon as Dark. However, the units of weight and height are on very different scales. We will compute the actual distances in class to see if the conclusion from the calculation matches with the visual conclusion.
 
@@ -159,7 +161,7 @@ For example, scaling `weight` for the 15 original pokemon:
 
 ```r
 train_sample |> select(weight) |> head()
-#> # A tibble: 6 x 1
+#> # A tibble: 6 × 1
 #>   weight
 #>    <dbl>
 #> 1    505
@@ -178,7 +180,7 @@ train_sample |> mutate(weight_s = (weight - min(weight)) /
                           (max(weight) - min(weight))) |>
   select(weight_s) |>
   head()
-#> # A tibble: 6 x 1
+#> # A tibble: 6 × 1
 #>   weight_s
 #>      <dbl>
 #> 1   0.187 
@@ -201,7 +203,7 @@ train_sample |>
   mutate(across(where(is.numeric), ~ (.x - min(.x)) /
                                  (max(.x) - min(.x)))) |>
   slice(1:3)
-#> # A tibble: 3 x 14
+#> # A tibble: 3 × 14
 #>    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef
 #>   <dbl> <chr>   <chr> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>
 #> 1 0.720 Darkrai Dark  0.417  0.444     0.4 1     1     0.658
@@ -210,6 +212,7 @@ train_sample |>
 #> # … with 5 more variables: Generation <dbl>,
 #> #   Legendary <lgl>, height <dbl>, weight <dbl>,
 #> #   base_experience <dbl>
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ### Exercises {#exercise-13-2}
@@ -226,7 +229,7 @@ ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
   geom_point(data = newobs, shape = 4, size = 10)
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-10-1.png)<!-- -->
+<img src="13-knn_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks "closer" to the Dark type pokemon. Verify that this is __not__ actually the case by computing the actual distances numerically.
 
@@ -247,7 +250,7 @@ ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)
   geom_point(data = dialga, colour = "black", shape = 4, size = 7)
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-13-1.png)<!-- -->
+<img src="13-knn_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 With k = 2, there is a tie between Fire and Steel. Come up with a way in which you might break ties in a knn algorithm.
 
@@ -277,7 +280,7 @@ ggpairs(data = train_sample, columns = c(4, 5, 6, 3),
         lower = list(combo = wrap(ggally_facethist, bins = 15)))
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-14-1.png)<!-- -->
+<img src="13-knn_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 The `lower` argument changes the number of bins in the faceted histograms in the bottom row. You can mostly ignore this.
 
@@ -417,7 +420,7 @@ ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
   geom_point(data = newobs, shape = 4, size = 10)
 ```
 
-![](13-knn_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
+<img src="13-knn_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks "closer" to the Dark type pokemon. Verify that this is __not__ the case by computing the actual distances numerically.
 

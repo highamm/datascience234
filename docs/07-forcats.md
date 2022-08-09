@@ -28,7 +28,7 @@ One easy way to get a quick summary of a `factor` variable is to use `group_by()
 ```r
 pokemon_df |> group_by(`Type 1`) |>
   summarise(counttype = n())
-#> # A tibble: 18 x 2
+#> # A tibble: 18 × 2
 #>    `Type 1` counttype
 #>    <chr>        <int>
 #>  1 Bug             75
@@ -66,7 +66,7 @@ ggplot(data = pokemon_legend, aes(x = Generation_cat, y = nlegend)) +
   geom_col()
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 We've discussed how to change many aspects of `ggplot2` graphs, but we haven't discussed how to rename the labels of levels of a categorical variable, whether those appear in the x-axis or in a separate legend. The easiest way to do this is to rename the levels in the factor itself using `fct_recode()`. Suppose, for example, that we want to relabel the Generation number with the actual region corresponding to each game (Kanto, Johto, Hoenn, Sinnoh, Unova, and Kalos). The function `fct_recode()` takes the name of a factor already present in the data set as its first argument and then a series of renaming schemes (new_name = "old_name") as its remaining arguments.
 
@@ -79,7 +79,7 @@ pokemon_legend <- pokemon_legend |>
                                       Kalos = "6")) |>
   select(Generation_cat2, everything())
 head(pokemon_legend)
-#> # A tibble: 6 x 3
+#> # A tibble: 6 × 3
 #>   Generation_cat2 Generation_cat nlegend
 #>   <fct>           <fct>            <int>
 #> 1 Kanto           1                    6
@@ -93,7 +93,7 @@ ggplot(data = pokemon_legend,
   geom_col()
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 ### Collapsing Many Levels Into Fewer Levels with `fct_collapse()`
 
@@ -108,25 +108,26 @@ pokemon_long |>
   mutate(new_type = fct_collapse(Type, Coolest = c("Ice", "Dark"),
                                  Least_Cool = c("Fire", "Fighting", "Poison"))) |>
   select(new_type, Type, everything())
-#> # A tibble: 1,894 x 22
-#>    new_type  Type     `#` Name    Total    HP Attack Defense
-#>    <fct>     <chr>  <dbl> <chr>   <dbl> <dbl>  <dbl>   <dbl>
-#>  1 Grass     Grass      1 Bulbas…   318    45     49      49
-#>  2 Least_Co… Poison     1 Bulbas…   318    45     49      49
-#>  3 Grass     Grass      2 Ivysaur   405    60     62      63
-#>  4 Least_Co… Poison     2 Ivysaur   405    60     62      63
-#>  5 Grass     Grass      3 Venusa…   525    80     82      83
-#>  6 Least_Co… Poison     3 Venusa…   525    80     82      83
-#>  7 Grass     Grass      3 Venusa…   525    80     82      83
-#>  8 Least_Co… Poison     3 Venusa…   525    80     82      83
-#>  9 Least_Co… Fire       4 Charma…   309    39     52      43
-#> 10 <NA>      <NA>       4 Charma…   309    39     52      43
+#> # A tibble: 1,894 × 22
+#>    new_type   Type     `#` Name   Total    HP Attack Defense
+#>    <fct>      <chr>  <dbl> <chr>  <dbl> <dbl>  <dbl>   <dbl>
+#>  1 Grass      Grass      1 Bulba…   318    45     49      49
+#>  2 Least_Cool Poison     1 Bulba…   318    45     49      49
+#>  3 Grass      Grass      2 Ivysa…   405    60     62      63
+#>  4 Least_Cool Poison     2 Ivysa…   405    60     62      63
+#>  5 Grass      Grass      3 Venus…   525    80     82      83
+#>  6 Least_Cool Poison     3 Venus…   525    80     82      83
+#>  7 Grass      Grass      3 Venus…   525    80     82      83
+#>  8 Least_Cool Poison     3 Venus…   525    80     82      83
+#>  9 Least_Cool Fire       4 Charm…   309    39     52      43
+#> 10 <NA>       <NA>       4 Charm…   309    39     52      43
 #> # … with 1,884 more rows, and 14 more variables:
-#> #   Sp. Atk <dbl>, Sp. Def <dbl>, Speed <dbl>,
+#> #   `Sp. Atk` <dbl>, `Sp. Def` <dbl>, Speed <dbl>,
 #> #   Generation <dbl>, Legendary <lgl>, id <chr>,
 #> #   identifier <chr>, height <dbl>, weight <dbl>,
 #> #   base_experience <dbl>, order <dbl>, is_default <dbl>,
 #> #   Generation_cat <fct>, Number <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 What happens to the levels that aren't being re-specified?
@@ -171,7 +172,7 @@ ggplot(data = pokemon_sum, aes(x = Type,
   coord_flip()  ## flips the x and y axes
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-6-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 How does `R` order the levels of the `Type` factor, by default? How might you like them to be ordered to make the graph more readable?
 
@@ -189,7 +190,7 @@ ggplot(data = pokemon_sum, aes(x = Type_ordered,
   coord_flip()
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-7-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 `fct_reorder()` also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the `Defense` stat changes for different Pokemon types
 
@@ -205,7 +206,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
   coord_flip()
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-8-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 The following code makes a point plot that shows the median defense for each type instead of boxplots.
 
@@ -220,7 +221,7 @@ ggplot(data = pokemon_med, aes(x = med_def, y = Type_Deford)) +
   geom_point()
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-9-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 Do you have a preference between the boxplot graph and the point plot?
 
@@ -251,7 +252,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-11-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 Notice the order of the levels in the legend. Most people would prefer the order to actually match up with where the lines in the plot end, not for the order to be alphabetical. To achieve this, we can use `fct_reorder2()` to change the order of the factor levels:
 
@@ -267,7 +268,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-12-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 Did it change the order of the levels how you would expect? `fct_reorder2()` actually looks at __points__, not lines, when determining the ordering. If you want the levels to match up exactly, then we'll have to reorder the levels manually with `fct_relevel()`:
 
@@ -285,7 +286,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-13-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 Reordering the levels of a factor manually might also be useful in fitting linear models. Recall that, by default, `R` makes the __reference group__ in a linear model the first level alphabetically. If you'd like a different reference group, you can reorder the levels of the factor:
 
@@ -322,7 +323,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
   coord_flip()
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-15-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 Why aren't the types ordered by median defense anymore? 
 
@@ -512,7 +513,7 @@ ggplot(data = relig_summary, aes(tvhours, relig)) +
   geom_point()
 ```
 
-![](07-forcats_files/figure-epub3/unnamed-chunk-24-1.png)<!-- -->
+<img src="07-forcats_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
 4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):
 

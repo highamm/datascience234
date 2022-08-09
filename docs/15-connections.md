@@ -17,46 +17,31 @@ The data set is called `resume` in the `openintro` package: you'll need to insta
 
 ```r
 library(openintro)
-#> Warning: package 'openintro' was built under R version 4.1.2
 #> Loading required package: airports
 #> Loading required package: cherryblossom
 #> Loading required package: usdata
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'tibble'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'pillar'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'hms'
 resume
-#> # A tibble: 4,870 x 30
-#>    job_ad_id job_city job_industry job_type job_fed_contrac…
-#>        <dbl> <chr>    <chr>        <chr>               <dbl>
-#>  1       384 Chicago  manufacturi… supervi…               NA
-#>  2       384 Chicago  manufacturi… supervi…               NA
-#>  3       384 Chicago  manufacturi… supervi…               NA
-#>  4       384 Chicago  manufacturi… supervi…               NA
-#>  5       385 Chicago  other_servi… secreta…                0
-#>  6       386 Chicago  wholesale_a… sales_r…                0
-#>  7       386 Chicago  wholesale_a… sales_r…                0
-#>  8       385 Chicago  other_servi… secreta…                0
-#>  9       386 Chicago  wholesale_a… sales_r…                0
-#> 10       386 Chicago  wholesale_a… sales_r…                0
-#> # … with 4,860 more rows, and 25 more variables:
-#> #   job_equal_opp_employer <dbl>, job_ownership <chr>,
+#> # A tibble: 4,870 × 30
+#>    job_ad_id job_c…¹ job_i…² job_t…³ job_f…⁴ job_e…⁵ job_o…⁶
+#>        <dbl> <chr>   <chr>   <chr>     <dbl>   <dbl> <chr>  
+#>  1       384 Chicago manufa… superv…      NA       1 unknown
+#>  2       384 Chicago manufa… superv…      NA       1 unknown
+#>  3       384 Chicago manufa… superv…      NA       1 unknown
+#>  4       384 Chicago manufa… superv…      NA       1 unknown
+#>  5       385 Chicago other_… secret…       0       1 nonpro…
+#>  6       386 Chicago wholes… sales_…       0       1 private
+#>  7       386 Chicago wholes… sales_…       0       1 private
+#>  8       385 Chicago other_… secret…       0       1 nonpro…
+#>  9       386 Chicago wholes… sales_…       0       1 private
+#> 10       386 Chicago wholes… sales_…       0       1 private
+#> # … with 4,860 more rows, 23 more variables:
 #> #   job_req_any <dbl>, job_req_communication <dbl>,
 #> #   job_req_education <dbl>, job_req_min_experience <chr>,
 #> #   job_req_computer <dbl>, job_req_organization <dbl>,
 #> #   job_req_school <chr>, received_callback <dbl>,
 #> #   firstname <chr>, race <chr>, gender <chr>,
-#> #   years_college <int>, college_degree <dbl>,
-#> #   honors <int>, worked_during_school <int>,
-#> #   years_experience <int>, computer_skills <int>,
-#> #   special_skills <int>, volunteer <int>, military <int>,
-#> #   employment_holes <int>, has_email_address <int>,
-#> #   resume_quality <chr>
+#> #   years_college <int>, college_degree <dbl>, …
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ### Chi-square Test of Association
@@ -74,26 +59,26 @@ Next, we can construct a summary graphic. One graphic to explore two categorical
 
 ```r
 library(tidyverse)
-#> ── Attaching packages ─────────────────── tidyverse 1.3.1 ──
-#> ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-#> ✓ tibble  3.1.2     ✓ dplyr   1.0.7
-#> ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-#> ✓ readr   2.0.2     ✓ forcats 0.5.1
+#> ── Attaching packages ─────────────────── tidyverse 1.3.2 ──
+#> ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+#> ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+#> ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+#> ✔ readr   2.1.2     ✔ forcats 0.5.1
 #> ── Conflicts ────────────────────── tidyverse_conflicts() ──
-#> x dplyr::filter() masks stats::filter()
-#> x dplyr::lag()    masks stats::lag()
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
 resume_sum <- resume |> 
   mutate(received_callback = received_callback) |>
            group_by(race, received_callback) |>
   summarise(count = n())
-#> `summarise()` has grouped output by 'race'. You can override
-#> using the `.groups` argument.
+#> `summarise()` has grouped output by 'race'. You can
+#> override using the `.groups` argument.
 ggplot(data = resume_sum, aes(x = race, y = count)) +
   geom_col(aes(fill = received_callback)) +
   scale_fill_viridis_c()
 ```
 
-![](15-connections_files/figure-epub3/unnamed-chunk-2-1.png)<!-- -->
+<img src="15-connections_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 What do you notice about the `recieved_callback` variable scale? How could we fix that?
 
@@ -104,14 +89,14 @@ resume <- resume |>
 resume_sum <- resume |> 
            group_by(race, received_callback) |>
   summarise(count = n())
-#> `summarise()` has grouped output by 'race'. You can override
-#> using the `.groups` argument.
+#> `summarise()` has grouped output by 'race'. You can
+#> override using the `.groups` argument.
 ggplot(data = resume_sum, aes(x = race, y = count)) +
   geom_col(aes(fill = received_callback)) +
   scale_fill_viridis_d()
 ```
 
-![](15-connections_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
+<img src="15-connections_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 We might also want to generate a two-way table:
 
@@ -121,9 +106,9 @@ resume |> group_by(race, received_callback) |>
   summarise(count = n()) |>
   pivot_wider(names_from = c("race"),
               values_from = "count")
-#> `summarise()` has grouped output by 'race'. You can override
-#> using the `.groups` argument.
-#> # A tibble: 2 x 3
+#> `summarise()` has grouped output by 'race'. You can
+#> override using the `.groups` argument.
+#> # A tibble: 2 × 3
 #>   received_callback black white
 #>   <fct>             <int> <int>
 #> 1 0                  2278  2200
@@ -172,7 +157,7 @@ ggplot(data = resume, aes(x = fct_rev(fct_infreq(job_type)))) +
   labs(x = "Job Type")
 ```
 
-![](15-connections_files/figure-epub3/unnamed-chunk-6-1.png)<!-- -->
+<img src="15-connections_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 In the code, `fct_infreq()` orders the levels of `job_type` from the highest count/frequency to the lowest. `fct_rev()` reverses the order so that, on the resulting bar plot, the level with the highest count appears first.
 
@@ -184,7 +169,7 @@ ggplot(data = resume, aes(x = fct_rev(fct_infreq(job_industry)))) +
   labs(x = "Job Industry")
 ```
 
-![](15-connections_files/figure-epub3/unnamed-chunk-7-1.png)<!-- -->
+<img src="15-connections_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 
 To answer the question about whether some first names are more biased than others, we might make a graph of the proportion of resumes that received a callback for each first name.
@@ -203,7 +188,7 @@ ggplot(data = resume_firstname, aes(x = gender_race, y = propcallback)) +
   geom_point()
 ```
 
-![](15-connections_files/figure-epub3/unnamed-chunk-8-1.png)<!-- -->
+<img src="15-connections_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 We can the label the name with the lowest callback rate and the name with the highest callback rate.
 
@@ -219,7 +204,7 @@ ggplot(data = resume_firstname, aes(x = gender_race, y = propcallback)) +
   geom_label_repel(data = label_df, aes(label = firstname))
 ```
 
-![](15-connections_files/figure-epub3/unnamed-chunk-9-1.png)<!-- -->
+<img src="15-connections_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 ### Exercises {#exercise-15-1}
 
@@ -330,7 +315,7 @@ summary(coffee_mod)$coefficients["moisture", 4]
 
 ```r
 tidy(coffee_mod)
-#> # A tibble: 6 x 5
+#> # A tibble: 6 × 5
 #>   term           estimate std.error statistic   p.value
 #>   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
 #> 1 (Intercept)        7.04    0.774       9.10 3.23e- 19
@@ -346,7 +331,7 @@ The advantage of this format of output is that we can now use other `tidyverse` 
 
 ```r
 tidy(coffee_mod) |> select(p.value)
-#> # A tibble: 6 x 1
+#> # A tibble: 6 × 1
 #>     p.value
 #>       <dbl>
 #> 1 3.23e- 19
@@ -362,7 +347,7 @@ or, to grab the output for a particular variable of interest:
 
 ```r
 tidy(coffee_mod) |> filter(term == "aroma")
-#> # A tibble: 1 x 5
+#> # A tibble: 1 × 5
 #>   term  estimate std.error statistic  p.value
 #>   <chr>    <dbl>     <dbl>     <dbl>    <dbl>
 #> 1 aroma     1.95     0.146      13.4 1.82e-38
@@ -375,13 +360,14 @@ __`glance()`__
 
 ```r
 glance(coffee_mod)
-#> # A tibble: 1 x 12
-#>   r.squared adj.r.squared sigma statistic p.value    df
-#>       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>
-#> 1     0.889         0.889  1.17     2137.       0     5
-#> # … with 6 more variables: logLik <dbl>, AIC <dbl>,
-#> #   BIC <dbl>, deviance <dbl>, df.residual <int>,
-#> #   nobs <int>
+#> # A tibble: 1 × 12
+#>   r.squared adj.r…¹ sigma stati…² p.value    df logLik   AIC
+#>       <dbl>   <dbl> <dbl>   <dbl>   <dbl> <dbl>  <dbl> <dbl>
+#> 1     0.889   0.889  1.17   2137.       0     5 -2105. 4224.
+#> # … with 4 more variables: BIC <dbl>, deviance <dbl>,
+#> #   df.residual <int>, nobs <int>, and abbreviated variable
+#> #   names ¹​adj.r.squared, ²​statistic
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 you should notice a lot of statistics that you are familiar with from STAT 213, including `r.squared`, `adj.r.squared`, `sigma` (the residual standard error), `statistic` (the overall F-statistic), `AIC`, and `BIC`.
@@ -393,22 +379,24 @@ __`augment()`__
 
 ```r
 augment(coffee_mod)
-#> # A tibble: 1,339 x 12
-#>    total_cup_points species aroma flavor sweetness moisture
-#>               <dbl> <chr>   <dbl>  <dbl>     <dbl>    <dbl>
-#>  1             90.6 Arabica  8.67   8.83     10        0.12
-#>  2             89.9 Arabica  8.75   8.67     10        0.12
-#>  3             89.8 Arabica  8.42   8.5      10        0   
-#>  4             89   Arabica  8.17   8.58     10        0.11
-#>  5             88.8 Arabica  8.25   8.5      10        0.12
-#>  6             88.8 Arabica  8.58   8.42     10        0.11
-#>  7             88.8 Arabica  8.42   8.5      10        0.11
-#>  8             88.7 Arabica  8.25   8.33      9.33     0.03
-#>  9             88.4 Arabica  8.67   8.67      9.33     0.03
-#> 10             88.2 Arabica  8.08   8.58     10        0.1 
-#> # … with 1,329 more rows, and 6 more variables:
-#> #   .fitted <dbl>, .resid <dbl>, .hat <dbl>, .sigma <dbl>,
-#> #   .cooksd <dbl>, .std.resid <dbl>
+#> # A tibble: 1,339 × 12
+#>    total_cup_…¹ species aroma flavor sweet…² moist…³ .fitted
+#>           <dbl> <chr>   <dbl>  <dbl>   <dbl>   <dbl>   <dbl>
+#>  1         90.6 Arabica  8.67   8.83   10       0.12    91.1
+#>  2         89.9 Arabica  8.75   8.67   10       0.12    90.5
+#>  3         89.8 Arabica  8.42   8.5    10       0       89.2
+#>  4         89   Arabica  8.17   8.58   10       0.11    88.9
+#>  5         88.8 Arabica  8.25   8.5    10       0.12    88.6
+#>  6         88.8 Arabica  8.58   8.42   10       0.11    88.9
+#>  7         88.8 Arabica  8.42   8.5    10       0.11    89.0
+#>  8         88.7 Arabica  8.25   8.33    9.33    0.03    86.4
+#>  9         88.4 Arabica  8.67   8.67    9.33    0.03    89.0
+#> 10         88.2 Arabica  8.08   8.58   10       0.1     88.7
+#> # … with 1,329 more rows, 5 more variables: .resid <dbl>,
+#> #   .hat <dbl>, .sigma <dbl>, .cooksd <dbl>,
+#> #   .std.resid <dbl>, and abbreviated variable names
+#> #   ¹​total_cup_points, ²​sweetness, ³​moisture
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 `augment()` the data set makes it really easy to do things like:
@@ -419,13 +407,15 @@ augment(coffee_mod)
 ```r
 augment_df <- augment(coffee_mod)
 augment_df |> filter(.cooksd > 1)
-#> # A tibble: 1 x 12
-#>   total_cup_points species aroma flavor sweetness moisture
-#>              <dbl> <chr>   <dbl>  <dbl>     <dbl>    <dbl>
-#> 1                0 Arabica     0      0         0     0.12
-#> # … with 6 more variables: .fitted <dbl>, .resid <dbl>,
-#> #   .hat <dbl>, .sigma <dbl>, .cooksd <dbl>,
-#> #   .std.resid <dbl>
+#> # A tibble: 1 × 12
+#>   total_cup_p…¹ species aroma flavor sweet…² moist…³ .fitted
+#>           <dbl> <chr>   <dbl>  <dbl>   <dbl>   <dbl>   <dbl>
+#> 1             0 Arabica     0      0       0    0.12    6.81
+#> # … with 5 more variables: .resid <dbl>, .hat <dbl>,
+#> #   .sigma <dbl>, .cooksd <dbl>, .std.resid <dbl>, and
+#> #   abbreviated variable names ¹​total_cup_points,
+#> #   ²​sweetness, ³​moisture
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 We see right away that there is a potentially influential observation with `0` `total_cup_points`. Examining this variable further, we see that it is probably a data entry error that can be removed from the data.
@@ -436,21 +426,23 @@ ggplot(data = coffee_df, aes(x = total_cup_points)) +
   geom_histogram(bins = 15, fill = "white", colour = "black")
 ```
 
-![](15-connections_files/figure-epub3/unnamed-chunk-19-1.png)<!-- -->
+<img src="15-connections_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 We could also find observations with high leverage
 
 
 ```r
 augment_df |> filter(.hat > 0.2)
-#> # A tibble: 2 x 12
-#>   total_cup_points species aroma flavor sweetness moisture
-#>              <dbl> <chr>   <dbl>  <dbl>     <dbl>    <dbl>
-#> 1             59.8 Arabica   7.5   6.67      1.33     0.1 
-#> 2              0   Arabica   0     0         0        0.12
-#> # … with 6 more variables: .fitted <dbl>, .resid <dbl>,
-#> #   .hat <dbl>, .sigma <dbl>, .cooksd <dbl>,
-#> #   .std.resid <dbl>
+#> # A tibble: 2 × 12
+#>   total_cup_p…¹ species aroma flavor sweet…² moist…³ .fitted
+#>           <dbl> <chr>   <dbl>  <dbl>   <dbl>   <dbl>   <dbl>
+#> 1          59.8 Arabica   7.5   6.67    1.33    0.1    58.4 
+#> 2           0   Arabica   0     0       0       0.12    6.81
+#> # … with 5 more variables: .resid <dbl>, .hat <dbl>,
+#> #   .sigma <dbl>, .cooksd <dbl>, .std.resid <dbl>, and
+#> #   abbreviated variable names ¹​total_cup_points,
+#> #   ²​sweetness, ³​moisture
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 or observations that are outliers:
@@ -458,22 +450,24 @@ or observations that are outliers:
 
 ```r
 augment_df |> filter(.std.resid > 3 | .std.resid < -3)
-#> # A tibble: 25 x 12
-#>    total_cup_points species aroma flavor sweetness moisture
-#>               <dbl> <chr>   <dbl>  <dbl>     <dbl>    <dbl>
-#>  1             82.8 Arabica  8.08   8.17     10        0.12
-#>  2             82.4 Arabica  5.08   7.75     10        0.11
-#>  3             82.3 Arabica  7.75   8.08      6.67     0.11
-#>  4             80.7 Arabica  7.67   7.5       6.67     0   
-#>  5             80   Arabica  7.58   7.75     10        0   
-#>  6             79.9 Arabica  7.83   7.67     10        0   
-#>  7             79.2 Arabica  7.17   7.42      6.67     0.1 
-#>  8             78.6 Arabica  7.92   7.58     10        0.1 
-#>  9             78.3 Arabica  7.17   6.08     10        0.11
-#> 10             77.6 Arabica  7.58   7.67      6        0.12
-#> # … with 15 more rows, and 6 more variables: .fitted <dbl>,
-#> #   .resid <dbl>, .hat <dbl>, .sigma <dbl>, .cooksd <dbl>,
-#> #   .std.resid <dbl>
+#> # A tibble: 25 × 12
+#>    total_cup_…¹ species aroma flavor sweet…² moist…³ .fitted
+#>           <dbl> <chr>   <dbl>  <dbl>   <dbl>   <dbl>   <dbl>
+#>  1         82.8 Arabica  8.08   8.17   10       0.12    86.6
+#>  2         82.4 Arabica  5.08   7.75   10       0.11    78.6
+#>  3         82.3 Arabica  7.75   8.08    6.67    0.11    78.1
+#>  4         80.7 Arabica  7.67   7.5     6.67    0       75.2
+#>  5         80   Arabica  7.58   7.75   10       0       83.7
+#>  6         79.9 Arabica  7.83   7.67   10       0       83.8
+#>  7         79.2 Arabica  7.17   7.42    6.67    0.1     73.6
+#>  8         78.6 Arabica  7.92   7.58   10       0.1     83.3
+#>  9         78.3 Arabica  7.17   6.08   10       0.11    74.2
+#> 10         77.6 Arabica  7.58   7.67    6       0.12    74.1
+#> # … with 15 more rows, 5 more variables: .resid <dbl>,
+#> #   .hat <dbl>, .sigma <dbl>, .cooksd <dbl>,
+#> #   .std.resid <dbl>, and abbreviated variable names
+#> #   ¹​total_cup_points, ²​sweetness, ³​moisture
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Finally, we can use our `ggplot2` skills to construct plots like a residuals versus fitted values plot (filtering out the outlying observation first):
@@ -484,7 +478,7 @@ ggplot(data = augment_df |> filter(.fitted > 25), aes(x = .fitted, y = .resid)) 
   geom_point() 
 ```
 
-![](15-connections_files/figure-epub3/unnamed-chunk-22-1.png)<!-- -->
+<img src="15-connections_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 ### Exercises {#exercise-15-2}
 
@@ -520,7 +514,7 @@ library(rvest)
 
 url_SLU <- "https://saintsathletics.com/sports/baseball/stats/2022"
 tab_SLU <- read_html(url_SLU) |> html_nodes("table")
-SLU_Hitting <- tab_SLU[[1]] %>% html_table(fill = TRUE) |>
+SLU_Hitting <- tab_SLU[[1]] |> html_table(fill = TRUE) |>
   head(-2) |>
   select(-23) |>
   mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 * (H-`2B`-`3B`-`HR`) + 1.27 * `2B` + 1.62 * `3B` + 2.10 * HR) / (AB + BB + SF + HBP))
@@ -531,7 +525,7 @@ We can make sure that the statistic was calculated with:
 
 ```r
 SLU_Hitting |> select(wOBA, everything()) |> arrange(desc(wOBA))
-#> # A tibble: 20 x 23
+#> # A tibble: 20 × 23
 #>     wOBA   `#` Player    AVG   OPS `GP-GS`    AB     R     H
 #>    <dbl> <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int>
 #>  1 0.514     7 "Brink… 0.556 1.16  5-1         9     3     5
@@ -554,10 +548,11 @@ SLU_Hitting |> select(wOBA, everything()) |> arrange(desc(wOBA))
 #> 18 0.285    41 "Comer… 0.222 0.582 31-21      72    16    16
 #> 19 0.154    24 "Colan… 0.095 0.295 15-3       21     6     2
 #> 20 0        36 "Boldu… 0     0     2-0         2     0     0
-#> # … with 14 more variables: 2B <int>, 3B <int>, HR <int>,
-#> #   RBI <int>, TB <int>, SLG% <dbl>, BB <int>, HBP <int>,
-#> #   SO <int>, GDP <int>, OB% <dbl>, SF <int>, SH <int>,
-#> #   SB-ATT <chr>
+#> # … with 14 more variables: `2B` <int>, `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ### Functions
@@ -610,7 +605,8 @@ get_hitting_data <- function(url_name) {
   hitting <- tab[[1]] |> html_table(fill = TRUE) |>
     head(-2) |>
     select(-23) |>
-    mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 * (H- `2B` - `3B` - `HR`) +
+    mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 *
+                     (H- `2B` - `3B` - `HR`) +
                      1.27 * `2B` + 1.62 * `3B` + 2.10 * HR) / 
              (AB + BB + SF + HBP),
            url_name = url_name)
@@ -624,7 +620,7 @@ We can then test our function on the SLU url:
 
 ```r
 get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2022")
-#> # A tibble: 20 x 24
+#> # A tibble: 20 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1     6 "Clark… 0.367 1.02  29-19      79    24    29     5
@@ -647,10 +643,11 @@ get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2
 #> 18    24 "Colan… 0.095 0.295 15-3       21     6     2     0
 #> 19     3 "Haun,… 0     0.5   11-0        2     1     0     0
 #> 20    36 "Boldu… 0     0     2-0         2     0     0     0
-#> # … with 15 more variables: 3B <int>, HR <int>, RBI <int>,
-#> #   TB <int>, SLG% <dbl>, BB <int>, HBP <int>, SO <int>,
-#> #   GDP <int>, OB% <dbl>, SF <int>, SH <int>, SB-ATT <chr>,
-#> #   wOBA <dbl>, url_name <chr>
+#> # … with 15 more variables: `3B` <int>, HR <int>,
+#> #   RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>, HBP <int>,
+#> #   SO <int>, GDP <int>, `OB%` <dbl>, SF <int>, SH <int>,
+#> #   `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ### Iteration
@@ -659,7 +656,8 @@ Now suppose that we want to use our function to scrape the 2022 baseball statist
 
 
 ```r
-school_df <- tibble(school_name = c("SLU", "Clarkson", "Rochester", "RIT", "Ithaca", "Skidmore", "RPI", "Union", "Bard", "Vassar"), hitting_web_url = c("https://saintsathletics.com/sports/baseball/stats/2022",
+school_df <- tibble(school_name = c("SLU", "Clarkson", "Rochester", "RIT", "Ithaca", "Skidmore", "RPI", "Union", "Bard", "Vassar"),
+                    hitting_web_url = c("https://saintsathletics.com/sports/baseball/stats/2022",
                  "https://clarksonathletics.com/sports/baseball/stats/2022", 
                  "https://uofrathletics.com/sports/baseball/stats/2022",
                  "https://ritathletics.com/sports/baseball/stats/2022",
@@ -670,7 +668,7 @@ school_df <- tibble(school_name = c("SLU", "Clarkson", "Rochester", "RIT", "Itha
                  "https://bardathletics.com/sports/baseball/stats/2022",
                  "https://www.vassarathletics.com/sports/baseball/stats/2022"))
 school_df
-#> # A tibble: 10 x 2
+#> # A tibble: 10 × 2
 #>    school_name hitting_web_url                              
 #>    <chr>       <chr>                                        
 #>  1 SLU         https://saintsathletics.com/sports/baseball/…
@@ -690,7 +688,7 @@ One option we have to obtain the hitting statistics for all 10 teams and calcula
 
 ```r
 get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2022")
-#> # A tibble: 20 x 24
+#> # A tibble: 20 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1     6 "Clark… 0.367 1.02  29-19      79    24    29     5
@@ -713,12 +711,13 @@ get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2
 #> 18    24 "Colan… 0.095 0.295 15-3       21     6     2     0
 #> 19     3 "Haun,… 0     0.5   11-0        2     1     0     0
 #> 20    36 "Boldu… 0     0     2-0         2     0     0     0
-#> # … with 15 more variables: 3B <int>, HR <int>, RBI <int>,
-#> #   TB <int>, SLG% <dbl>, BB <int>, HBP <int>, SO <int>,
-#> #   GDP <int>, OB% <dbl>, SF <int>, SH <int>, SB-ATT <chr>,
-#> #   wOBA <dbl>, url_name <chr>
+#> # … with 15 more variables: `3B` <int>, HR <int>,
+#> #   RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>, HBP <int>,
+#> #   SO <int>, GDP <int>, `OB%` <dbl>, SF <int>, SH <int>,
+#> #   `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `colnames()` to see all variable names
 get_hitting_data(url_name = "https://clarksonathletics.com/sports/baseball/stats/2022")
-#> # A tibble: 26 x 24
+#> # A tibble: 26 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    32 "Wilso… 0.349 0.933 31-30     126    32    44    10
@@ -731,12 +730,13 @@ get_hitting_data(url_name = "https://clarksonathletics.com/sports/baseball/stats
 #>  8    28 "Canto… 0.833 1.83  4-0         6     3     5     1
 #>  9    20 "Cuyle… 0.5   1     2-0         2     1     1     0
 #> 10    16 "Price… 0.4   1.1   4-1         5     2     2     1
-#> # … with 16 more rows, and 15 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>
+#> # … with 16 more rows, and 15 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 get_hitting_data(url_name = "https://uofrathletics.com/sports/baseball/stats/2022")
-#> # A tibble: 25 x 24
+#> # A tibble: 25 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    22 "Piont… 0.39  1.05  35-31     100    28    39     9
@@ -749,10 +749,11 @@ get_hitting_data(url_name = "https://uofrathletics.com/sports/baseball/stats/202
 #>  8     1 "Cappe… 0.281 0.845 37-35     114    21    32     7
 #>  9     6 "Karpi… 1     2     20-0        1     0     1     0
 #> 10    33 "Const… 0.409 1.07  10-5       22     6     9     1
-#> # … with 15 more rows, and 15 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>
+#> # … with 15 more rows, and 15 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 For just 10 teams, this approach is certainly doable but is a bit annoying. And, what if we wanted to do this type of calculation for a league with more teams, such as the MLB (Major League Baseball)? Or, for multiple years for each team? 
@@ -792,7 +793,7 @@ Then, we apply `map()` with the first argument being the `url_vec` and the secon
 hitting_list <- map(url_vec, get_hitting_data)
 hitting_list
 #> [[1]]
-#> # A tibble: 20 x 24
+#> # A tibble: 20 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1     6 "Clark… 0.367 1.02  29-19      79    24    29     5
@@ -815,13 +816,14 @@ hitting_list
 #> 18    24 "Colan… 0.095 0.295 15-3       21     6     2     0
 #> 19     3 "Haun,… 0     0.5   11-0        2     1     0     0
 #> 20    36 "Boldu… 0     0     2-0         2     0     0     0
-#> # … with 15 more variables: 3B <int>, HR <int>, RBI <int>,
-#> #   TB <int>, SLG% <dbl>, BB <int>, HBP <int>, SO <int>,
-#> #   GDP <int>, OB% <dbl>, SF <int>, SH <int>, SB-ATT <chr>,
-#> #   wOBA <dbl>, url_name <chr>
+#> # … with 15 more variables: `3B` <int>, HR <int>,
+#> #   RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>, HBP <int>,
+#> #   SO <int>, GDP <int>, `OB%` <dbl>, SF <int>, SH <int>,
+#> #   `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `colnames()` to see all variable names
 #> 
 #> [[2]]
-#> # A tibble: 26 x 24
+#> # A tibble: 26 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    32 "Wilso… 0.349 0.933 31-30     126    32    44    10
@@ -834,13 +836,14 @@ hitting_list
 #>  8    28 "Canto… 0.833 1.83  4-0         6     3     5     1
 #>  9    20 "Cuyle… 0.5   1     2-0         2     1     1     0
 #> 10    16 "Price… 0.4   1.1   4-1         5     2     2     1
-#> # … with 16 more rows, and 15 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>
+#> # … with 16 more rows, and 15 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 #> 
 #> [[3]]
-#> # A tibble: 25 x 24
+#> # A tibble: 25 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    22 "Piont… 0.39  1.05  35-31     100    28    39     9
@@ -853,13 +856,14 @@ hitting_list
 #>  8     1 "Cappe… 0.281 0.845 37-35     114    21    32     7
 #>  9     6 "Karpi… 1     2     20-0        1     0     1     0
 #> 10    33 "Const… 0.409 1.07  10-5       22     6     9     1
-#> # … with 15 more rows, and 15 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>
+#> # … with 15 more rows, and 15 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 #> 
 #> [[4]]
-#> # A tibble: 17 x 24
+#> # A tibble: 17 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1     7 "Libby… 0.303 0.881 38-38     145    26    44    14
@@ -879,13 +883,14 @@ hitting_list
 #> 15    44 "Wozny… 0     0.25  4-1         3     0     0     0
 #> 16     6 "Sempe… 0     0     2-0         2     0     0     0
 #> 17    36 "Fland… 0     0.5   2-0         1     0     0     0
-#> # … with 15 more variables: 3B <int>, HR <int>, RBI <int>,
-#> #   TB <int>, SLG% <dbl>, BB <int>, HBP <int>, SO <int>,
-#> #   GDP <int>, OB% <dbl>, SF <int>, SH <int>, SB-ATT <chr>,
-#> #   wOBA <dbl>, url_name <chr>
+#> # … with 15 more variables: `3B` <int>, HR <int>,
+#> #   RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>, HBP <int>,
+#> #   SO <int>, GDP <int>, `OB%` <dbl>, SF <int>, SH <int>,
+#> #   `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `colnames()` to see all variable names
 #> 
 #> [[5]]
-#> # A tibble: 19 x 24
+#> # A tibble: 19 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    29 "Shirl… 0.417 1.24  44-44     156    48    65    23
@@ -907,13 +912,14 @@ hitting_list
 #> 17    31 "Guidi… 0.182 0.582 4-4        11     3     2     0
 #> 18    35 "MacDo… 0.125 0.347 7-1         8     1     1     0
 #> 19    28 "Ruffn… 0     0     1-0         1     0     0     0
-#> # … with 15 more variables: 3B <int>, HR <int>, RBI <int>,
-#> #   TB <int>, SLG% <dbl>, BB <int>, HBP <int>, SO <int>,
-#> #   GDP <int>, OB% <dbl>, SF <int>, SH <int>, SB-ATT <chr>,
-#> #   wOBA <dbl>, url_name <chr>
+#> # … with 15 more variables: `3B` <int>, HR <int>,
+#> #   RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>, HBP <int>,
+#> #   SO <int>, GDP <int>, `OB%` <dbl>, SF <int>, SH <int>,
+#> #   `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `colnames()` to see all variable names
 #> 
 #> [[6]]
-#> # A tibble: 21 x 24
+#> # A tibble: 21 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    15 "Hornu… 0.46  1.30  37-37     150    54    69    17
@@ -926,13 +932,14 @@ hitting_list
 #>  8     2 "Pedem… 0.4   0.9   17-4       20     9     8     0
 #>  9    17 "Pelc,… 0.333 1.17  11-1       12     6     4     1
 #> 10    25 "Korne… 0.3   0.867 23-8       30     6     9     2
-#> # … with 11 more rows, and 15 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>
+#> # … with 11 more rows, and 15 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 #> 
 #> [[7]]
-#> # A tibble: 22 x 24
+#> # A tibble: 22 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    33 "Lives… 0.365 1.01  27-27     104    25    38     8
@@ -945,13 +952,14 @@ hitting_list
 #>  8    40 "Raine… 0.253 0.673 30-30      99    18    25     7
 #>  9    38 "Scarp… 0.6   1.2   5-1         5     1     3     0
 #> 10     1 "Hicks… 0.364 0.876 20-10      33    10    12     0
-#> # … with 12 more rows, and 15 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>
+#> # … with 12 more rows, and 15 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 #> 
 #> [[8]]
-#> # A tibble: 21 x 24
+#> # A tibble: 21 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    55 "Mentz… 0.366 1.00  34-34     112    27    41     9
@@ -964,13 +972,14 @@ hitting_list
 #>  8     6 "Ruzzo… 0.476 1.13  13-5       21     5    10     1
 #>  9    13 "Nash,… 0.435 1.20  15-12      46    13    20     3
 #> 10    39 "Zieno… 0.333 0.666 7-1         9     0     3     0
-#> # … with 11 more rows, and 15 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>
+#> # … with 11 more rows, and 15 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 #> 
 #> [[9]]
-#> # A tibble: 17 x 24
+#> # A tibble: 17 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    37 "Toby,… 0.402 1.14  32-30     107    27    43    11
@@ -990,13 +999,14 @@ hitting_list
 #> 15    18 "Hubbe… 0.182 0.572 9-6        22     3     4     1
 #> 16    13 "Lynch… 0.148 0.435 11-6       27     3     4     1
 #> 17    22 "Rober… 0.139 0.562 18-10      36     7     5     0
-#> # … with 15 more variables: 3B <int>, HR <int>, RBI <int>,
-#> #   TB <int>, SLG% <dbl>, BB <int>, HBP <int>, SO <int>,
-#> #   GDP <int>, OB% <dbl>, SF <int>, SH <int>, SB-ATT <chr>,
-#> #   wOBA <dbl>, url_name <chr>
+#> # … with 15 more variables: `3B` <int>, HR <int>,
+#> #   RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>, HBP <int>,
+#> #   SO <int>, GDP <int>, `OB%` <dbl>, SF <int>, SH <int>,
+#> #   `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `colnames()` to see all variable names
 #> 
 #> [[10]]
-#> # A tibble: 25 x 24
+#> # A tibble: 25 × 24
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1    23 "Kanel… 0.336 1.07  35-35     128    35    43    13
@@ -1009,10 +1019,11 @@ hitting_list
 #>  8    25 "Green… 0.262 0.976 28-21      61    18    16     4
 #>  9     8 "Brins… 0.25  0.765 29-19      52     6    13     5
 #> 10     1 "Herri… 0.22  0.59  31-15      50     5    11     1
-#> # … with 15 more rows, and 15 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>
+#> # … with 15 more rows, and 15 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Scraping and performing the `wOBA` calculation will take a few seconds. The output is a list of 10 tibbles. The `bind_rows()` function that we used to stack rows of different data frames or tibbles can also be used to stack rows of data frames or tibbles given in a list. We apply the function to the scraped data and then add the name of the school to the data frame with a `left_join()`:
@@ -1022,7 +1033,7 @@ Scraping and performing the `wOBA` calculation will take a few seconds. The outp
 hitting_ll <- hitting_list |> bind_rows() |>
   left_join(school_df, by = c("url_name" = "hitting_web_url"))
 hitting_ll
-#> # A tibble: 213 x 25
+#> # A tibble: 213 × 25
 #>      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`
 #>    <int> <chr>   <dbl> <dbl> <chr>   <int> <int> <int> <int>
 #>  1     6 "Clark… 0.367 1.02  29-19      79    24    29     5
@@ -1035,11 +1046,12 @@ hitting_ll
 #>  8    11 "Circe… 0.252 1.00  35-33     111    27    28     9
 #>  9     8 "Forgi… 0.244 0.799 27-27      86    22    21     4
 #> 10    41 "Comer… 0.222 0.582 31-21      72    16    16     0
-#> # … with 203 more rows, and 16 more variables: 3B <int>,
-#> #   HR <int>, RBI <int>, TB <int>, SLG% <dbl>, BB <int>,
-#> #   HBP <int>, SO <int>, GDP <int>, OB% <dbl>, SF <int>,
-#> #   SH <int>, SB-ATT <chr>, wOBA <dbl>, url_name <chr>,
+#> # … with 203 more rows, and 16 more variables: `3B` <int>,
+#> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
+#> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
+#> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>,
 #> #   school_name <chr>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 With this data set, we can now do things like figure out the top 3 hitters from each team, according to the `wOBA` metric:
@@ -1050,21 +1062,23 @@ hitting_ll |> group_by(school_name) |>
   arrange(desc(wOBA)) |>
   slice(1:3) |>
   select(Player, school_name, wOBA)
-#> # A tibble: 30 x 3
+#> # A tibble: 30 × 3
 #> # Groups:   school_name [10]
-#>    Player                                  school_name  wOBA
-#>    <chr>                                   <chr>       <dbl>
-#>  1 "Toby, Jared\r\n                      … Bard        0.488
-#>  2 "Dumper, Sam\r\n                      … Bard        0.475
-#>  3 "Myers, Jordan\r\n                    … Bard        0.431
-#>  4 "Cantor, Danny\r\n                    … Clarkson    0.805
-#>  5 "Price, Grant\r\n                     … Clarkson    0.475
-#>  6 "Doyle, Caleb\r\n                     … Clarkson    0.473
-#>  7 "Shirley, Buzz\r\n                    … Ithaca      0.524
-#>  8 "Fabbo, Louis\r\n                     … Ithaca      0.465
-#>  9 "Fabian, Matt\r\n                     … Ithaca      0.428
-#> 10 "Blackall, Patrick \r\n               … RIT         0.399
-#> # … with 20 more rows
+#>    Player                                      schoo…¹  wOBA
+#>    <chr>                                       <chr>   <dbl>
+#>  1 "Toby, Jared\r\n                          … Bard    0.488
+#>  2 "Dumper, Sam\r\n                          … Bard    0.475
+#>  3 "Myers, Jordan\r\n                        … Bard    0.431
+#>  4 "Cantor, Danny\r\n                        … Clarks… 0.805
+#>  5 "Price, Grant\r\n                         … Clarks… 0.475
+#>  6 "Doyle, Caleb\r\n                         … Clarks… 0.473
+#>  7 "Shirley, Buzz\r\n                        … Ithaca  0.524
+#>  8 "Fabbo, Louis\r\n                         … Ithaca  0.465
+#>  9 "Fabian, Matt\r\n                         … Ithaca  0.428
+#> 10 "Blackall, Patrick \r\n                   … RIT     0.399
+#> # … with 20 more rows, and abbreviated variable name
+#> #   ¹​school_name
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 or find the players on each team with the most at bats `AB`:
@@ -1075,21 +1089,23 @@ hitting_ll |> group_by(school_name) |>
   arrange(desc(AB)) |>
   slice(1:3) |>
   select(Player, school_name, AB)
-#> # A tibble: 30 x 3
+#> # A tibble: 30 × 3
 #> # Groups:   school_name [10]
-#>    Player                                  school_name    AB
-#>    <chr>                                   <chr>       <int>
-#>  1 "Toby, Jared\r\n                      … Bard          107
-#>  2 "Myers, Jordan\r\n                    … Bard          107
-#>  3 "Luscher, Alex\r\n                    … Bard          101
-#>  4 "Brouillette, Colby\r\n               … Clarkson      127
-#>  5 "Wilson, Kent\r\n                     … Clarkson      126
-#>  6 "Doyle, Caleb\r\n                     … Clarkson      103
-#>  7 "Pedersen, Connor\r\n                 … Ithaca        207
-#>  8 "Cutaia, Nicholas\r\n                 … Ithaca        180
-#>  9 "Merod, Gil\r\n                       … Ithaca        169
-#> 10 "Reilly, Chris\r\n                    … RIT           152
-#> # … with 20 more rows
+#>    Player                                      schoo…¹    AB
+#>    <chr>                                       <chr>   <int>
+#>  1 "Toby, Jared\r\n                          … Bard      107
+#>  2 "Myers, Jordan\r\n                        … Bard      107
+#>  3 "Luscher, Alex\r\n                        … Bard      101
+#>  4 "Brouillette, Colby\r\n                   … Clarks…   127
+#>  5 "Wilson, Kent\r\n                         … Clarks…   126
+#>  6 "Doyle, Caleb\r\n                         … Clarks…   103
+#>  7 "Pedersen, Connor\r\n                     … Ithaca    207
+#>  8 "Cutaia, Nicholas\r\n                     … Ithaca    180
+#>  9 "Merod, Gil\r\n                           … Ithaca    169
+#> 10 "Reilly, Chris\r\n                        … RIT       152
+#> # … with 20 more rows, and abbreviated variable name
+#> #   ¹​school_name
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ### Exercises {#exercise-15-3}
@@ -1110,23 +1126,25 @@ url <- paste0("https://en.wikipedia.org/wiki/Billboard_Year-End_Hot_100_singles_
 billboard_tab <- read_html(url) |> html_nodes("table")
 
 ## grabs the tables
-billboard_df <- billboard_tab[[1]] %>% html_table() |>
+billboard_df <- billboard_tab[[1]] |> html_table() |>
   mutate(year = year_scrape)
 billboard_df
-#> # A tibble: 100 x 4
-#>      No. Title              `Artist(s)`                 year
-#>    <int> <chr>              <chr>                      <dbl>
-#>  1     1 "\"Levitating\""   Dua Lipa                    2021
-#>  2     2 "\"Save Your Tear… The Weeknd and Ariana Gra…  2021
-#>  3     3 "\"Blinding Light… The Weeknd                  2021
-#>  4     4 "\"Mood\""         24kGoldn featuring Iann D…  2021
-#>  5     5 "\"Good 4 U\""     Olivia Rodrigo              2021
-#>  6     6 "\"Kiss Me More\"" Doja Cat featuring SZA      2021
-#>  7     7 "\"Leave the Door… Silk Sonic (Bruno Mars an…  2021
-#>  8     8 "\"Drivers Licens… Olivia Rodrigo              2021
-#>  9     9 "\"Montero (Call … Lil Nas X                   2021
-#> 10    10 "\"Peaches\""      Justin Bieber featuring D…  2021
-#> # … with 90 more rows
+#> # A tibble: 100 × 4
+#>      No. Title                                Artist…¹  year
+#>    <int> <chr>                                <chr>    <dbl>
+#>  1     1 "\"Levitating\""                     Dua Lipa  2021
+#>  2     2 "\"Save Your Tears\""                The Wee…  2021
+#>  3     3 "\"Blinding Lights\""                The Wee…  2021
+#>  4     4 "\"Mood\""                           24kGold…  2021
+#>  5     5 "\"Good 4 U\""                       Olivia …  2021
+#>  6     6 "\"Kiss Me More\""                   Doja Ca…  2021
+#>  7     7 "\"Leave the Door Open\""            Silk So…  2021
+#>  8     8 "\"Drivers License\""                Olivia …  2021
+#>  9     9 "\"Montero (Call Me by Your Name)\"" Lil Nas…  2021
+#> 10    10 "\"Peaches\""                        Justin …  2021
+#> # … with 90 more rows, and abbreviated variable name
+#> #   ¹​`Artist(s)`
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 1. Wrap the code above in a function that scrapes data from Wikipedia for a user-provided `year_scrape` argument.
@@ -1232,7 +1250,7 @@ library(rvest)
 
 url_SLU <- "https://saintsathletics.com/sports/baseball/stats/2022"
 tab_SLU <- read_html(url_SLU) |> html_nodes("table")
-SLU_Hitting <- tab_SLU[[1]] %>% html_table(fill = TRUE) |>
+SLU_Hitting <- tab_SLU[[1]] |> html_table(fill = TRUE) |>
   head(-2) |>
   select(-23) |>
   mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 * (H-`2B`-`3B`-`HR`) + 1.27 * `2B` + 1.62 * `3B` + 2.10 * HR) / (AB + BB + SF + HBP))
@@ -1251,7 +1269,8 @@ get_hitting_data <- function(url_name) {
   hitting <- tab[[1]] |> html_table(fill = TRUE) |>
     head(-2) |>
     select(-23) |>
-    mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 * (H- `2B` - `3B` - `HR`) +
+    mutate(wOBA = (0.69 * BB + 0.72 * HBP + 0.89 *
+                     (H- `2B` - `3B` - `HR`) +
                      1.27 * `2B` + 1.62 * `3B` + 2.10 * HR) / 
              (AB + BB + SF + HBP),
            url_name = url_name)
@@ -1259,7 +1278,8 @@ get_hitting_data <- function(url_name) {
   return(hitting)
 }
 get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2022")
-school_df <- tibble(school_name = c("SLU", "Clarkson", "Rochester", "RIT", "Ithaca", "Skidmore", "RPI", "Union", "Bard", "Vassar"), hitting_web_url = c("https://saintsathletics.com/sports/baseball/stats/2022",
+school_df <- tibble(school_name = c("SLU", "Clarkson", "Rochester", "RIT", "Ithaca", "Skidmore", "RPI", "Union", "Bard", "Vassar"),
+                    hitting_web_url = c("https://saintsathletics.com/sports/baseball/stats/2022",
                  "https://clarksonathletics.com/sports/baseball/stats/2022", 
                  "https://uofrathletics.com/sports/baseball/stats/2022",
                  "https://ritathletics.com/sports/baseball/stats/2022",

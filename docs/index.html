@@ -55,7 +55,7 @@
 <li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
 <li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
 <li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
-<li><a class="" href="reprexes-and-import.html"><span class="header-section-number">10</span> Reprexes and Import</a></li>
+<li><a class="" href="data-import.html"><span class="header-section-number">10</span> Data Import</a></li>
 <li><a class="" href="data-ethics.html"><span class="header-section-number">11</span> Data Ethics</a></li>
 <li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
 <li class="book-part">Special Topics</li>
@@ -91,12 +91,12 @@
 <li>MW 2:30 - 4:00</li>
 </ul>
 </li>
-<li>Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" class="uri">https://calendly.com/mhigham/prof-higham-office-hours</a>
+<li>Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
 <ul>
-<li>Monday 1:30 - 3:30</li>
-<li>Tuesday 2:30 - 3:30</li>
-<li>Wednesday</li>
-<li>Thursday 10:00 - 11:00</li>
+<li>Monday 9:00 - 10:00</li>
+<li>Tuesday 9:00 - 11:00, 2:00 - 3:00</li>
+<li>Thursday 1:00 - 2:00</li>
+<li>Friday 10:00 - 11:00</li>
 <li>Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.</li>
 </ul>
 </li>
@@ -164,21 +164,19 @@
 <ul>
 <li>Modules</li>
 </ul>
-<p>Each week, you will submit a 50-point Module, consisting of the following:</p>
-<pre><code>* an __Exercise Set__ (10 points): Due Mondays and usually from our &lt;a href="https://highamm.github.io/datascience234/" target="_blank"&gt;STAT 234 Materials Bundle&lt;/a&gt;. Exercises are graded for completion only and solutions are typically provided after you submit to Canvas. Collaboration is allowed.
-* a __Take-Home Quiz__ (15 points): Due Wednesdays. Take-Home quizzes are graded for correctness. Collaboration is allowed.
-* an __In-Class Quiz__ (25 points): Given on Wednesdays at the start of class. In-Class quizzes are graded for correctness. Collaboration is not allowed. Some questions on the in-class quiz will be based on exercises we complete in class, the exercise sets you complete, and the take-home quiz questions.</code></pre>
-<p>There are 13 modules in total. The lowest module will be dropped from your grade so the total number of points available is <code>12 * 50 = 600</code> points.</p>
+<p>Each week, you will submit a 60-point Module, consisting of the following:</p>
+<ul>
+<li>an <strong>Exercise Set</strong> (10 points): Due Mondays and usually from our <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. Exercises are graded for completion only and solutions are typically provided after you submit to Canvas. Collaboration is allowed.</li>
+<li>a <strong>Take-Home Quiz</strong> (20 points): Due Wednesdays. Take-Home quizzes are graded for correctness. Collaboration is allowed.</li>
+<li>an <strong>In-Class Quiz</strong> (30 points): Given on Wednesdays at the start of class. In-Class quizzes are graded for correctness. Collaboration is not allowed. Some questions on the in-class quiz will be based on exercises we complete in class, the exercise sets you complete, and the take-home quiz questions.</li>
+</ul>
+<p>There are 13 modules in total. In three modules, the two quizzes will be replaced by a Project, which will have some tasks for you to complete for a particular data set. The lowest module will be dropped from your grade so the total number of points available is <code>12 * 60 = 720</code> points.</p>
 <p>Additionally, for one module, you are permitted to take the in-class quiz as a take-home and turn it in the following Monday.</p>
 <p>Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second and third-lowest module scores.</p>
 <ul>
-<li>Projects</li>
-</ul>
-<p>There are 3 Projects scattered throughout the semester that are worth 50 points each. Each Project will have some prescriptive tasks and questions that you will investigate as well as a section where you come up with and subsequently answer your own questions relating to the data set.</p>
-<ul>
 <li>Class</li>
 </ul>
-<p>Class participation will be assessed twice throughout the semester in a 25 point rubric for a total of 50 points. The rubric used will be shared on the first day of class.</p>
+<p>Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. The rubric used will be shared on the first day of class.</p>
 <ul>
 <li>Final Project</li>
 </ul>
@@ -186,39 +184,23 @@
 <ul>
 <li>Final Exam</li>
 </ul>
-<p>There is an optional Final Exam, worth 100 points total, consisting of 20 points of Exercises (graded for completeness), 20 points for a take-home portion, and 60 points for the in-class portion. You <strong>must</strong> be on campus for our final exam time to take the final exam.</p>
+<p>There is an optional Final Exam, worth 120 points total, consisting of 20 points of Exercises (graded for completeness), 40 points for a take-home portion, and 60 points for the in-class portion. You <strong>must</strong> be on campus for our final exam time to take the final exam.</p>
 <p>There are two options for the final exam:</p>
 <ul>
-<li><p>Option 1: Skip the final exam (skip all components: exercises, take-home, and in-class) and assign the average percentage of your 12 highest modules to be your score for the 100 point final. For example, suppose your 13 module scores are: <code>50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 33, 30, 0</code>. Then, you would drop your lowest score (the <code>0</code>) and your score for the final would be: <code>(50 + 50 + 49 + 48 + 47 + 43 + 43 + 43 + 43 + 35 + 33 + 30) / 600 * 100</code> = <code>86</code> points.</p></li>
-<li><p>Option 2: Take the final exam, which consists of 20 points of Exercises, a 30 point Take-Home portion, and a 50 point In-Class portion. Your score on these items will be used for the 100 points devoted to the final exam. Additionally, if your final exam score is better than your 2nd and 3rd lowest module grades, the will be replaced with your final exam score. For example, suppose your 13 module scores are: <code>50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 33, 30, 0</code>. You take the final exam and score a <code>90 / 100</code>. Then, your score for the final is <code>90</code> points and your new module scores would be: <code>50, 50, 49, 48, 47, 43, 43, 43, 43, 35, 45, 45, 0</code>. The <code>0</code> would still be dropped as your lowest module score.</p></li>
+<li><p>Option 1: Skip the final exam (skip all components: exercises, take-home, and in-class) and assign the average percentage of your 12 highest modules to be your percentage score for the 120 point final. For example, suppose your 13 module scores are: <code>60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 43, 30, 0</code>. Then, you would drop your lowest score (the <code>0</code>) and your score for the final would be: <code>(60 + 60 + 59 + 58 + 57 + 53 + 53 + 53 + 53 + 45 + 43 + 30 + 30) / 720 * 120</code> = <code>109 / 120</code> points.</p></li>
+<li><p>Option 2: Take the final exam, which consists of 20 points of Exercises, a 30 point Take-Home portion, and a 50 point In-Class portion. Your score on these items will be used for the 100 points devoted to the final exam. Additionally, if your final exam score is better than your 2nd and 3rd lowest module grades, the will be replaced with your final exam score. For example, suppose your 13 module scores are: <code>60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 43, 30, 0</code>. You take the final exam and score a <code>110 / 120</code>. Then, your score for the final is <code>110 / 120</code> points and your new module scores would be: <code>60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 55, 55, 0</code>. The <code>0</code> would still be dropped as your lowest module score.</p></li>
 </ul>
 <div id="breakdown" class="section level3" number="1.4.1">
 <h3>
 <span class="header-section-number">1.4.1</span> Breakdown<a class="anchor" aria-label="anchor" href="#breakdown"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
-<li>600 points for Modules</li>
-<li>150 points for Projects</li>
-<li>50 points for Class Participation</li>
+<li>720 points for Modules</li>
+<li>60 points for Class Participation</li>
 <li>100 points for the Final Project</li>
-<li>100 points for the (optional) in-person Final Exam</li>
+<li>120 points for the (optional) in-person Final Exam</li>
 </ul>
 <p>Points add up to 1000 so your grade at the end of the semester will be the number of points you’ve earned across all categories divided by 1000.</p>
-<ul>
-<li>What we do in class should help you complete the exercises sets, which should
-<ul>
-<li>help you to do well on the quizzes, which should
-<ul>
-<li>help you complete the projects, which should
-<ul>
-<li>help you to do well on the final exam and final project.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 </div>
 <div id="grading-scale" class="section level3" number="1.4.2">
 <h3>
@@ -350,6 +332,12 @@
 <span class="header-section-number">1.6</span> Tentative Schedule<a class="anchor" aria-label="anchor" href="#tentative-schedule"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="6%">
+<col width="9%">
+<col width="6%">
+<col width="78%">
+</colgroup>
 <thead><tr class="header">
 <th>Week</th>
 <th>Date</th>
@@ -387,13 +375,13 @@
 </tr>
 <tr class="odd">
 <td>4</td>
-<td>9/19*</td>
+<td>9/19</td>
 <td>Soft Skills and Workflow</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>5</td>
-<td>9/26</td>
+<td>9/26*</td>
 <td>Data Tidying with <code>tidyr</code>
 </td>
 <td></td>
@@ -413,13 +401,13 @@
 </tr>
 <tr class="odd">
 <td>7</td>
-<td>10/10*</td>
+<td>10/10</td>
 <td>Factors with <code>forcats</code> and Data Ethics</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>8</td>
-<td>10/17</td>
+<td>10/17*</td>
 <td>Data Import with <code>readr</code>, <code>jsonlite</code>, <code>rvest</code>, and <code>tibble</code>
 </td>
 <td></td>
@@ -479,7 +467,7 @@
 </tbody>
 </table></div>
 <ul>
-<li>The three projects are tentatively scheduled to be due on September 21, October 12, and November 2, though these are subject to change.</li>
+<li>The three projects are tentatively scheduled to be due on September 28, October 19, and November 2, though these are subject to change.</li>
 </ul>
 </div>
 </div>
@@ -529,7 +517,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-07-28.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

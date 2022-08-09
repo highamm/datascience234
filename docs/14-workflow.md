@@ -80,34 +80,25 @@ here()
 
 ```r
 library(tidyverse)
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'pillar'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'tibble'
-#> Warning: replacing previous import
-#> 'lifecycle::last_warnings' by 'rlang::last_warnings' when
-#> loading 'hms'
-#> ── Attaching packages ─────────────────── tidyverse 1.3.1 ──
-#> ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-#> ✓ tibble  3.1.2     ✓ dplyr   1.0.7
-#> ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-#> ✓ readr   2.0.2     ✓ forcats 0.5.1
+#> ── Attaching packages ─────────────────── tidyverse 1.3.2 ──
+#> ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+#> ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+#> ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+#> ✔ readr   2.1.2     ✔ forcats 0.5.1
 #> ── Conflicts ────────────────────── tidyverse_conflicts() ──
-#> x dplyr::filter() masks stats::filter()
-#> x dplyr::lag()    masks stats::lag()
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
 athletes_df <- read_csv("data/athletesdata.csv")
 #> New names:
-#> * `` -> ...1
 #> Rows: 100 Columns: 9
-#> ── Column specification ────────────────────────────────────
-#> Delimiter: ","
-#> chr (3): Name, Sport, Gender
-#> dbl (6): ...1, Rank, endorsements, totalpay, salary, age
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> ── Column specification
+#> ──────────────────────────────────── Delimiter: "," chr
+#> (3): Name, Sport, Gender dbl (6): ...1, Rank, endorsements,
+#> totalpay, salary, age
+#> ℹ Use `spec()` to retrieve the full column specification
+#> for this data. ℹ Specify the column types or set
+#> `show_col_types = FALSE` to quiet this message.
+#> • `` -> `...1`
 ```
 
 `R` can read in this data set successfully: it starts at the path given in the console that was printed from `here()`, looks for a folder called `data` in that path and looks for a file called `athletesdata.csv` in the data folder. 
@@ -124,15 +115,15 @@ To fix the issue, we could specify the entire file path to the `data/` file. But
 ```r
 athletes_test_read <- read_csv(here("data/athletesdata.csv"))
 #> New names:
-#> * `` -> ...1
 #> Rows: 100 Columns: 9
-#> ── Column specification ────────────────────────────────────
-#> Delimiter: ","
-#> chr (3): Name, Sport, Gender
-#> dbl (6): ...1, Rank, endorsements, totalpay, salary, age
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> ── Column specification
+#> ──────────────────────────────────── Delimiter: "," chr
+#> (3): Name, Sport, Gender dbl (6): ...1, Rank, endorsements,
+#> totalpay, salary, age
+#> ℹ Use `spec()` to retrieve the full column specification
+#> for this data. ℹ Specify the column types or set
+#> `show_col_types = FALSE` to quiet this message.
+#> • `` -> `...1`
 ```
 
 This allows us to have `R Markdown` files within folders in our `R` project.
@@ -193,7 +184,7 @@ ggplot(data=mtcars,aes(x=wt,y=drat))+geom_point()+geom_smooth(method="lm",se=FAL
 #> `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-7-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 A couple of conventions can help: (1) spaces around any equal sign, plus sign, and after any comma and (2) putting code after each plus sign on a different line.
 
@@ -205,7 +196,7 @@ geom_smooth(method = "lm", se = FALSE)
 #> `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-8-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 Indenting subsequent lines in `ggplot2` code or in a `dplyr` pipeline shows that the subsequent lines "go with" the first line:
 
@@ -217,7 +208,7 @@ ggplot(data = mtcars, aes(x = wt, y = drat)) +
 #> `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-9-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 The same concepts of using multiple lines holds for a piping statement as well. In general,
 
@@ -226,7 +217,7 @@ The same concepts of using multiple lines holds for a piping statement as well. 
 mtcars |> filter(cyl == 4) |>
   group_by(vs) |>
   summarise(mean_mpg = mean(mpg, na.rm = TRUE))
-#> # A tibble: 2 x 2
+#> # A tibble: 2 × 2
 #>      vs mean_mpg
 #>   <dbl>    <dbl>
 #> 1     0     26  
@@ -238,7 +229,7 @@ is easier to read than
 
 ```r
 mtcars |> filter(cyl == 4) |> group_by(vs) |> summarise(mean_mpg = mean(mpg, na.rm = TRUE))
-#> # A tibble: 2 x 2
+#> # A tibble: 2 × 2
 #>      vs mean_mpg
 #>   <dbl>    <dbl>
 #> 1     0     26  
@@ -271,7 +262,7 @@ dataset <- mtcars |> group_by(am) |>
 ggplot(data=mtcars,aes(x = mpg))+geom_histogram(colour="black",fill="white",bins=15) + facet_wrap(~cyl, ncol=1)
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-14-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 ## Debugging Code
 
@@ -374,7 +365,7 @@ ggplot(data = cyl4_df, aes(x = mpg)) +
 #> `binwidth`.
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-24-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
 But, later we delete the line creating `cyl4_df`. The plot will still work because `cyl4_df` is already in our environment but the file will not knit because we are missing that crucial line of code. Restarting `R` can help us identify this issue because the plot will no longer work and we will get a sensible error message like `cyl4_df` not found.
 
@@ -438,17 +429,17 @@ majors_df <- read_csv(here("data/majors.csv")) |>
   mutate(year = as.numeric(year)) |>
   rename(major = `...1`)
 #> New names:
-#> * `` -> ...1
 #> Rows: 63 Columns: 17
-#> ── Column specification ────────────────────────────────────
-#> Delimiter: ","
-#> chr  (1): ...1
-#> dbl (16): 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012...
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> ── Column specification
+#> ──────────────────────────────────── Delimiter: "," chr
+#> (1): ...1 dbl (16): 2005, 2006, 2007, 2008, 2009, 2010,
+#> 2011, 2012...
+#> ℹ Use `spec()` to retrieve the full column specification
+#> for this data. ℹ Specify the column types or set
+#> `show_col_types = FALSE` to quiet this message.
+#> • `` -> `...1`
 head(majors_df)
-#> # A tibble: 6 x 3
+#> # A tibble: 6 × 3
 #>   major         year n_majors
 #>   <chr>        <dbl>    <dbl>
 #> 1 Biochemistry  2005        2
@@ -472,7 +463,7 @@ ggplot(data = spanish_df, aes(x = year, y = n_majors)) +
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-29-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 What would we conclude based on this plot?
 
@@ -489,7 +480,7 @@ ggplot(data = int_econ_df, aes(x = year, y = n_majors)) +
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-30-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 How does the new contextual information about the International Economics major influence your conclusions about the popularity of Spanish studies at SLU?
 
@@ -615,7 +606,7 @@ So, suppose we are interested in exploring what the "typical" metascore is. We c
 ```r
 videogame_df |> summarise(mean_meta = mean(metascore, na.rm = TRUE),
                           med_meta = median(metascore, na.rm = TRUE))
-#> # A tibble: 1 x 2
+#> # A tibble: 1 × 2
 #>   mean_meta med_meta
 #>       <dbl>    <dbl>
 #> 1      71.9       73
@@ -635,13 +626,9 @@ ggplot(data = videogame_df, aes(x = metascore, y = median_playtime)) +
   geom_point() +
   geom_smooth()
 #> `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
-#> Warning: Removed 23843 rows containing non-finite values
-#> (stat_smooth).
-#> Warning: Removed 23843 rows containing missing values
-#> (geom_point).
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-33-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 We see some clear outliers, which we will talk about next, but would the missing values for `metascore` affect conclusions we draw from the graph? The answer would be "yes" if we think videogames with missing metascores would follow a different overall trend than those with non-missing metascores and "no" if we think that, if the videogames with missing metascores were rated, they would follow a similar trend as those already in the graph. 
 
@@ -659,13 +646,9 @@ ggplot(data = videogame_df, aes(x = metascore, y = median_playtime)) +
   geom_point() +
   geom_smooth()
 #> `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
-#> Warning: Removed 23843 rows containing non-finite values
-#> (stat_smooth).
-#> Warning: Removed 23843 rows containing missing values
-#> (geom_point).
 ```
 
-![](14-workflow_files/figure-epub3/unnamed-chunk-34-1.png)<!-- -->
+<img src="14-workflow_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 We see some clear outliers in `median_playtime`: games with a median playtime of thousands of hours. Once again, having some knowledge about videogames can help us determine what to do with these outliers. 
 
@@ -712,7 +695,7 @@ The following code chunk is __not__ a reprex because people would not necessaril
 library(tidyverse)
 test_df <- read_csv(here("data/parsedf.csv"))
 head(test_df)
-#> # A tibble: 3 x 2
+#> # A tibble: 3 × 2
 #>   x                   y
 #>   <chr>           <dbl>
 #> 1 20,000 dollars      1
@@ -730,7 +713,7 @@ library(tidyverse)
 test_df2 <- tibble(xvar = c("20,000 dollars", "40 dollars"),
                    yvar = c(1, 2))
 test_df2
-#> # A tibble: 2 x 2
+#> # A tibble: 2 × 2
 #>   xvar            yvar
 #>   <chr>          <dbl>
 #> 1 20,000 dollars     1
@@ -761,7 +744,7 @@ For reference, the `across()` function can be used to answer our question (thoug
 
 ```r
 sum_df |> summarise(across(where(is.numeric), mean))
-#> # A tibble: 1 x 3
+#> # A tibble: 1 × 3
 #>    yvar  zvar   tvar
 #>   <dbl> <dbl>  <dbl>
 #> 1   2.5   1.5 50050.
@@ -780,18 +763,20 @@ For Project 2, we will work with some course evaluation data for a professor at 
 library(tidyverse)
 evals_df <- read_csv(here("data/evals_prof_S21.csv"))
 head(evals_df)
-#> # A tibble: 6 x 10
-#>   Term  Course Question               `Agree strongly` Agree
-#>   <chr> <chr>  <chr>                             <dbl> <dbl>
-#> 1 F19   113-02 1. Course has been a …                9     9
-#> 2 F19   113-02 2. Effectively Organi…               12     8
-#> 3 F19   113-02 3. Environment Conduc…               11     8
-#> 4 F19   113-02 5a. Fair Assessment o…                5    13
-#> 5 F19   113-02 5b. Timely Assessment…                8    12
-#> 6 F19   113-02 5c. Constructive Asse…                5     8
-#> # … with 5 more variables: Agree Somewhat <dbl>,
-#> #   Neutral <dbl>, Disagree Somewhat <dbl>, Disagree <dbl>,
-#> #   Disagree Strongly <dbl>
+#> # A tibble: 6 × 10
+#>   Term  Course Quest…¹ Agree…² Agree Agree…³ Neutral Disag…⁴
+#>   <chr> <chr>  <chr>     <dbl> <dbl>   <dbl>   <dbl>   <dbl>
+#> 1 F19   113-02 1. Cou…       9     9       1       5       0
+#> 2 F19   113-02 2. Eff…      12     8       1       2       1
+#> 3 F19   113-02 3. Env…      11     8       2       3       0
+#> 4 F19   113-02 5a. Fa…       5    13       3       1       1
+#> 5 F19   113-02 5b. Ti…       8    12       1       2       1
+#> 6 F19   113-02 5c. Co…       5     8       4       6       1
+#> # … with 2 more variables: Disagree <dbl>,
+#> #   `Disagree Strongly` <dbl>, and abbreviated variable
+#> #   names ¹​Question, ²​`Agree strongly`, ³​`Agree Somewhat`,
+#> #   ⁴​`Disagree Somewhat`
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Put together a reprex using `tibble()` that someone would be able to run to help you figure out your question.
@@ -827,18 +812,20 @@ If I loaded a package by checking the box, did some analysis, and gave my code t
 library(tidyverse)
 evals_df <- read_csv(here("data/evals_prof_S21.csv"))
 head(evals_df)
-#> # A tibble: 6 x 10
-#>   Term  Course Question               `Agree strongly` Agree
-#>   <chr> <chr>  <chr>                             <dbl> <dbl>
-#> 1 F19   113-02 1. Course has been a …                9     9
-#> 2 F19   113-02 2. Effectively Organi…               12     8
-#> 3 F19   113-02 3. Environment Conduc…               11     8
-#> 4 F19   113-02 5a. Fair Assessment o…                5    13
-#> 5 F19   113-02 5b. Timely Assessment…                8    12
-#> 6 F19   113-02 5c. Constructive Asse…                5     8
-#> # … with 5 more variables: Agree Somewhat <dbl>,
-#> #   Neutral <dbl>, Disagree Somewhat <dbl>, Disagree <dbl>,
-#> #   Disagree Strongly <dbl>
+#> # A tibble: 6 × 10
+#>   Term  Course Quest…¹ Agree…² Agree Agree…³ Neutral Disag…⁴
+#>   <chr> <chr>  <chr>     <dbl> <dbl>   <dbl>   <dbl>   <dbl>
+#> 1 F19   113-02 1. Cou…       9     9       1       5       0
+#> 2 F19   113-02 2. Eff…      12     8       1       2       1
+#> 3 F19   113-02 3. Env…      11     8       2       3       0
+#> 4 F19   113-02 5a. Fa…       5    13       3       1       1
+#> 5 F19   113-02 5b. Ti…       8    12       1       2       1
+#> 6 F19   113-02 5c. Co…       5     8       4       6       1
+#> # … with 2 more variables: Disagree <dbl>,
+#> #   `Disagree Strongly` <dbl>, and abbreviated variable
+#> #   names ¹​Question, ²​`Agree strongly`, ³​`Agree Somewhat`,
+#> #   ⁴​`Disagree Somewhat`
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Put together a reprex using `tibble()` that someone would be able to run to help you figure out your question.

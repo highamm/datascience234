@@ -1,4 +1,4 @@
-# Reprexes and Import
+# Data Import
 
 __Goals:__
 
@@ -22,17 +22,19 @@ library(tidyverse)
 library(here)
 cars_df <- read_csv(here("data/mtcarsex.csv"))
 head(cars_df)
-#> # A tibble: 6 x 11
-#>   `This is a data… ...2  ...3  ...4  ...5  ...6  ...7  ...8 
-#>   <chr>            <chr> <chr> <chr> <chr> <chr> <chr> <chr>
-#> 1 "I'm a na\x95ve… <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
-#> 2 "mpg"            cyl   disp  hp    drat  wt    qsec  vs   
-#> 3  <NA>            <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
-#> 4  <NA>            <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
-#> 5 "-999"           6     160   110   3.9   2.62  16.46 0    
-#> 6 "21"             6     160   110   3.9   2.875 17.02 0    
-#> # … with 3 more variables: ...9 <chr>, ...10 <chr>,
-#> #   ...11 <chr>
+#> # A tibble: 6 × 11
+#>   This is …¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9 
+#>   <chr>      <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
+#> 1 "I'm a na… <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
+#> 2 "mpg"      cyl   disp  hp    drat  wt    qsec  vs    am   
+#> 3  <NA>      <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
+#> 4  <NA>      <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA>  <NA> 
+#> 5 "-999"     6     160   110   3.9   2.62  16.46 0     1    
+#> 6 "21"       6     160   110   3.9   2.875 17.02 0     1    
+#> # … with 2 more variables: ...10 <chr>, ...11 <chr>, and
+#> #   abbreviated variable name
+#> #   ¹​`This is a data set about cars.`
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of `R`.
@@ -46,7 +48,7 @@ Let's start with `skip` so that we aren't reading in the first two rows of the d
 cars_df <- read_csv(here("data/mtcarsex.csv"), skip = 2)
 ## first two lines will be skipped
 head(cars_df)
-#> # A tibble: 6 x 11
+#> # A tibble: 6 × 11
 #>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am
 #>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 #> 1   NA      NA    NA    NA NA    NA     NA      NA    NA
@@ -56,6 +58,7 @@ head(cars_df)
 #> 5   22.8     4   108    93  3.85  2.32  18.6     1     1
 #> 6   21.4     6   258   110  3.08  3.22  19.4     1     0
 #> # … with 2 more variables: gear <dbl>, carb <dbl>
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 That looks better, but there are still a couple of problems. What do you notice?
@@ -66,7 +69,7 @@ Go the help and read about the `na` argument. Let's add that as an option to fix
 ```r
 cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2)
 head(cars_df)
-#> # A tibble: 6 x 11
+#> # A tibble: 6 × 11
 #>   mpg   cyl   disp  hp    drat  wt    qsec  vs    am   
 #>   <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
 #> 1 NA    NA    NA    NA    NA    NA    NA    NA    NA   
@@ -76,6 +79,7 @@ head(cars_df)
 #> 5 22.8  4     108   93    3.85  2.32  18.61 1     1    
 #> 6 21.4  6     258   110   3.08  3.215 19.44 1     0    
 #> # … with 2 more variables: gear <chr>, carb <chr>
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Now look at the classes of each variable. Which classes look like they are incorrect?
@@ -120,7 +124,7 @@ cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2,
 )) |>
   slice(-(1:2))
 head(cars_df)
-#> # A tibble: 6 x 11
+#> # A tibble: 6 × 11
 #>     mpg cyl    disp    hp  drat    wt  qsec vs       am
 #>   <dbl> <fct> <dbl> <dbl> <dbl> <dbl> <dbl> <fct> <dbl>
 #> 1  NA   6       160   110  3.9   2.62  16.5 0         1
@@ -130,6 +134,7 @@ head(cars_df)
 #> 5  NA   8       360   175  3.15  3.44  17.0 0         0
 #> 6  18.1 6       225   105  2.76  3.46  20.2 1         0
 #> # … with 2 more variables: gear <dbl>, carb <dbl>
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 There are __many__ other possible file formats for data storage. For example, there is a data set called `oscars.tsv`, which is a tab-separated file. You can read it in with `read_tsv()` instead of `read_csv()`. 
@@ -138,36 +143,23 @@ There are __many__ other possible file formats for data storage. For example, th
 ```r
 oscars_df <- read_tsv(here("data/oscars.tsv"))
 head(oscars_df)
-#> # A tibble: 6 x 51
-#>   FilmName            OscarYear Duration Rating DirectorName
-#>   <chr>                   <dbl>    <dbl>  <dbl> <chr>       
-#> 1 Crash                    2006      113      4 Haggis      
-#> 2 Brokeback Mountain       2006      134      4 Lee         
-#> 3 Capote                   2006      114      4 Miller      
-#> 4 Good Night, and Go…      2006       93      2 Clooney     
-#> 5 Munich                   2006      164      4 Spielberg   
-#> 6 The Departed             2007      151      4 Scorsese    
-#> # … with 46 more variables: DirectorGender <dbl>,
-#> #   OscarWinner <dbl>, GenreName <chr>, Genre_Drama <dbl>,
-#> #   Genre_Bio <dbl>, CountryName <chr>,
+#> # A tibble: 6 × 51
+#>   FilmName    Oscar…¹ Durat…² Rating Direc…³ Direc…⁴ Oscar…⁵
+#>   <chr>         <dbl>   <dbl>  <dbl> <chr>     <dbl>   <dbl>
+#> 1 Crash          2006     113      4 Haggis        0       1
+#> 2 Brokeback …    2006     134      4 Lee           0       0
+#> 3 Capote         2006     114      4 Miller        0       0
+#> 4 Good Night…    2006      93      2 Clooney       0       0
+#> 5 Munich         2006     164      4 Spielb…       0       0
+#> 6 The Depart…    2007     151      4 Scorse…       0       1
+#> # … with 44 more variables: GenreName <chr>,
+#> #   Genre_Drama <dbl>, Genre_Bio <dbl>, CountryName <chr>,
 #> #   ForeignandUSA <dbl>, ProductionName <chr>,
 #> #   ProductionCompany <dbl>, BudgetRevised <chr>,
 #> #   Budget <chr>, DomesticBoxOffice <dbl>,
 #> #   WorldwideRevised <dbl>, WorldwideBoxOffice <dbl>,
-#> #   DomesticPercent <dbl>, LimitedOpeningWnd <dbl>,
-#> #   LimitedTheaters <dbl>, LimitedAveragePThtr <dbl>,
-#> #   WideOpeningWkd <dbl>, WideTheaters <dbl>,
-#> #   WideTheaterAverage <dbl>, WidestTheaters <dbl>,
-#> #   Days <chr>, Rotten <dbl>, Metacritic <dbl>, IMDb <dbl>,
-#> #   CriticAverage <dbl>, MPrinicpalCast <dbl>,
-#> #   FPrincipalCast <dbl>, FPercentPrincipalCast <dbl>,
-#> #   MLeadTime <dbl>, FLeadTime <dbl>, GuestMLeadTIme <dbl>,
-#> #   GuestFLEadTime <dbl>, MLeadPercentinFilm <dbl>,
-#> #   FLeadPercentinFilm <dbl>, GMLeadPerinFilm <chr>,
-#> #   GFLeadPerinFilm <chr>, M/FDifference <dbl>,
-#> #   F/MRatio <dbl>, M/FPercentMore <dbl>, FHighLow <dbl>,
-#> #   LeadTime <dbl>, MorF <dbl>, MaleLAA <dbl>,
-#> #   FemaleLAA <dbl>
+#> #   DomesticPercent <dbl>, LimitedOpeningWnd <dbl>, …
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 You'll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet. 
@@ -178,7 +170,7 @@ The final issue that we will discuss in this section occurs when a data set has 
 ```r
 test_df <- read_csv(here("data/parsedf.csv"))
 head(test_df)
-#> # A tibble: 3 x 2
+#> # A tibble: 3 × 2
 #>   x                   y
 #>   <chr>           <dbl>
 #> 1 20,000 dollars      1
@@ -191,7 +183,7 @@ The `parse_number()` function is really useful if you just want the number (no c
 
 ```r
 test_df |> mutate(x2 = parse_number(x))
-#> # A tibble: 3 x 3
+#> # A tibble: 3 × 3
 #>   x                   y    x2
 #>   <chr>           <dbl> <dbl>
 #> 1 20,000 dollars      1 20000
@@ -325,15 +317,16 @@ library(tidyverse)
 cr_cards_flat <- cr_cards[["cards"]]
 cr_cards_df <- as_tibble(cr_cards_flat)
 head(cr_cards_df)
-#> # A tibble: 6 x 8
-#>   key    name  elixir type  rarity arena description      id
-#>   <chr>  <chr>  <int> <chr> <chr>  <int> <chr>         <int>
-#> 1 knight Knig…      3 Troop Common     0 A tough mel… 2.6 e7
-#> 2 arche… Arch…      3 Troop Common     0 A pair of l… 2.60e7
-#> 3 gobli… Gobl…      2 Troop Common     1 Three fast,… 2.60e7
-#> 4 giant  Giant      5 Troop Rare       0 Slow but du… 2.60e7
-#> 5 pekka  P.E.…      7 Troop Epic       4 A heavily a… 2.60e7
-#> 6 minio… Mini…      3 Troop Common     0 Three fast,… 2.60e7
+#> # A tibble: 6 × 8
+#>   key     name      elixir type  rarity arena descr…¹     id
+#>   <chr>   <chr>      <int> <chr> <chr>  <int> <chr>    <int>
+#> 1 knight  Knight         3 Troop Common     0 A toug… 2.6 e7
+#> 2 archers Archers        3 Troop Common     0 A pair… 2.60e7
+#> 3 goblins Goblins        2 Troop Common     1 Three … 2.60e7
+#> 4 giant   Giant          5 Troop Rare       0 Slow b… 2.60e7
+#> 5 pekka   P.E.K.K.A      7 Troop Epic       4 A heav… 2.60e7
+#> 6 minions Minions        3 Troop Common     0 Three … 2.60e7
+#> # … with abbreviated variable name ¹​description
 ```
 
 The second method uses the `flatten()` function from the `purrr` package, the only package in the core `tidyverse` that we do not talk about in detail in this class. There is also a different `flatten()` function in the `jsonlite` package. In the code below, we specify that we want to use `flatten()` from `purrr` with `purrr::flatten()`. If we wanted to use `flatten()` from `jsonlite`, we'd use `jsonlite::flatten()`
@@ -343,15 +336,16 @@ The second method uses the `flatten()` function from the `purrr` package, the on
 cr_cards_flat2 <- purrr::flatten(cr_cards)
 cr_cards_df2 <- as_tibble(cr_cards_flat2)
 head(cr_cards_df2)
-#> # A tibble: 6 x 8
-#>   key    name  elixir type  rarity arena description      id
-#>   <chr>  <chr>  <int> <chr> <chr>  <int> <chr>         <int>
-#> 1 knight Knig…      3 Troop Common     0 A tough mel… 2.6 e7
-#> 2 arche… Arch…      3 Troop Common     0 A pair of l… 2.60e7
-#> 3 gobli… Gobl…      2 Troop Common     1 Three fast,… 2.60e7
-#> 4 giant  Giant      5 Troop Rare       0 Slow but du… 2.60e7
-#> 5 pekka  P.E.…      7 Troop Epic       4 A heavily a… 2.60e7
-#> 6 minio… Mini…      3 Troop Common     0 Three fast,… 2.60e7
+#> # A tibble: 6 × 8
+#>   key     name      elixir type  rarity arena descr…¹     id
+#>   <chr>   <chr>      <int> <chr> <chr>  <int> <chr>    <int>
+#> 1 knight  Knight         3 Troop Common     0 A toug… 2.6 e7
+#> 2 archers Archers        3 Troop Common     0 A pair… 2.60e7
+#> 3 goblins Goblins        2 Troop Common     1 Three … 2.60e7
+#> 4 giant   Giant          5 Troop Rare       0 Slow b… 2.60e7
+#> 5 pekka   P.E.K.K.A      7 Troop Epic       4 A heav… 2.60e7
+#> 6 minions Minions        3 Troop Common     0 Three … 2.60e7
+#> # … with abbreviated variable name ¹​description
 ```
 
 Both methods give a `tibble` that we can then use our usual `tidyverse` tools `ggplot2`, `dplyr`, `tidyr`, etc. on.

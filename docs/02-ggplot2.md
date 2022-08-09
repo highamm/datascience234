@@ -43,7 +43,7 @@ library(tidyverse)
 pres_df <- read_table("data/PRES2000.txt") 
 ## don't worry about the `read_table` function....yet
 head(pres_df)
-#> # A tibble: 6 x 6
+#> # A tibble: 6 × 6
 #>     Gore   Bush Buchanan Nader Other County  
 #>    <dbl>  <dbl>    <dbl> <dbl> <dbl> <chr>   
 #> 1  47365  34124      263  3226   751 ALACHUA 
@@ -103,7 +103,7 @@ ggplot(data = pres_df, mapping = aes(x = Gore)) +
 #> `binwidth`.
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 What do the 1e+05, 2e+05, etc. labels on the x-axis mean?
 
@@ -126,7 +126,7 @@ ggplot(data = pres_df, mapping = aes(x = Gore)) +
 #> `binwidth`.
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including __both__ a geom_freqpoly() and a geom_histogram() in your plot, though it doesn't make for the prettiest graph:
 
@@ -142,7 +142,7 @@ ggplot(data = pres_df, mapping = aes(x = Gore)) +
 #> `binwidth`.
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-5-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 ### `R` Code Style
 
@@ -171,11 +171,11 @@ Recall from STAT 113 that bar plots are useful if you want to examine the distri
 
 
 ```r
-pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
+pres_cat <- pres_df |> mutate(winner = if_else(Gore > Bush,
                                                 true = "Gore",
                                                 false = "Bush"))
 pres_cat
-#> # A tibble: 67 x 7
+#> # A tibble: 67 × 7
 #>      Gore   Bush Buchanan Nader Other County    winner
 #>     <dbl>  <dbl>    <dbl> <dbl> <dbl> <chr>     <chr> 
 #>  1  47365  34124      263  3226   751 ALACHUA   Gore  
@@ -189,6 +189,7 @@ pres_cat
 #>  9  25525  29765      270  1379   261 CITRUS    Bush  
 #> 10  14632  41736      186   562   237 CLAY      Bush  
 #> # … with 57 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Using this data set, we can make a bar plot with `geom_bar()`. The beauty of `ggplot()` is that the code is super-similar to what we used for histograms and frequency plots!
@@ -199,16 +200,16 @@ ggplot(data = pres_cat, aes(x = winner)) +
   geom_bar()
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-9-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 Note that, sometimes, data are in format such that one column contains the _levels_ of the categorical variable while another column contains the counts directly. For example, we can create such a data set using code that we will learn next week:
 
 
 ```r
-pres_cat2 <- pres_cat %>% group_by(winner) %>%
+pres_cat2 <- pres_cat |> group_by(winner) |>
   summarise(nwins = n())
 pres_cat2
-#> # A tibble: 2 x 2
+#> # A tibble: 2 × 2
 #>   winner nwins
 #>   <chr>  <int>
 #> 1 Bush      51
@@ -231,7 +232,7 @@ ggplot(pres_cat2, aes(x = winner, y = nwins)) +
   geom_col()
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-12-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 ### Exercises {#exercise-2-1}
 
@@ -250,17 +251,19 @@ We will be using survey data from STAT 113 in the 2018-2019 academic year for ma
 library(tidyverse)
 stat113_df <- read_csv("data/stat113.csv")
 head(stat113_df)
-#> # A tibble: 6 x 12
-#>   Year  Sex     Hgt   Wgt Haircut   GPA Exercise Sport    TV
-#>   <chr> <chr> <dbl> <dbl>   <dbl> <dbl>    <dbl> <chr> <dbl>
-#> 1 Soph… M        66   155       0  2.9        15 Yes       8
-#> 2 Firs… F        69   170      17  3.87       14 Yes      12
-#> 3 Firs… F        64   130      40  3.3         5 No        5
-#> 4 Firs… M        68   157      35  3.21       10 Yes      15
-#> 5 Firs… M        72   175      20  3.1         2 No        5
-#> 6 Juni… F        62   150      50  3.3         8 Yes       5
+#> # A tibble: 6 × 12
+#>   Year   Sex     Hgt   Wgt Haircut   GPA Exerc…¹ Sport    TV
+#>   <chr>  <chr> <dbl> <dbl>   <dbl> <dbl>   <dbl> <chr> <dbl>
+#> 1 Sopho… M        66   155       0  2.9       15 Yes       8
+#> 2 First… F        69   170      17  3.87      14 Yes      12
+#> 3 First… F        64   130      40  3.3        5 No        5
+#> 4 First… M        68   157      35  3.21      10 Yes      15
+#> 5 First… M        72   175      20  3.1        2 No        5
+#> 6 Junior F        62   150      50  3.3        8 Yes       5
 #> # … with 3 more variables: Award <chr>, Pulse <dbl>,
-#> #   SocialMedia <chr>
+#> #   SocialMedia <chr>, and abbreviated variable name
+#> #   ¹​Exercise
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The data set contains the following variables:
@@ -306,7 +309,7 @@ ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
   geom_point()
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-16-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 What patterns do you see in the scatterplot?
 
@@ -338,7 +341,7 @@ For the remainder of this chapter, we will work with some fitness data collected
 
 ```r
 library(tidyverse)
-fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+fitness_full <- read_csv("data/higham_fitness_clean.csv") |> mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
   TRUE ~ "weekday"))
 #> Rows: 993 Columns: 9
 #> ── Column specification ────────────────────────────────────
@@ -359,7 +362,7 @@ ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
   geom_point()
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-18-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 One aspect of the plot that you may notice is that there are observations where I burned 0 or very few active calories, yet walked/jogged/ran/moved some distance. Is it possible to not burn any calories and move ~ 4 miles? Probably not, so let's drop these observations from the data set and make a note of why we dropped those observations. Unfortunately, we don't have the tools to do this yet, so just run the following chunk of code without worrying too much about the syntax.
 
@@ -368,7 +371,7 @@ One aspect of the plot that you may notice is that there are observations where 
 ## drop observations that have active calories < 50. 
 ## assuming that these are data errors or 
 ## days where the Apple Watch wasn't worn.
-fitness <- fitness_full %>%
+fitness <- fitness_full |>
   filter(active_cals > 50)
 ```
 
@@ -380,7 +383,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = distance, y = active_cals))
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 Putting the `aes()` in `ggplot()` and putting the `aes()` in `geom_point()` results in the same graph in this case. When you put the `aes()` in `ggplot()`,  `R` perpetuates these `aes()` aesthetics in all `geom_    `s in your plotting command. However, if you put your `aes()` in `geom_point()`, then any future `geom    `s that you use will need you to re-specify different `aes()`. We'll see an example of this in the exercises.
 
@@ -394,7 +397,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, colour = weekend_ind))
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 Is there anything useful that you notice about the plot? Is there anything about the plot that could be improved?
 
@@ -406,7 +409,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, shape = weekend_ind))
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-22-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 Do you prefer the colour or the shape? Why?
 
@@ -418,7 +421,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, size = flights))
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-23-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 I don't think any of the previous three plots are necessarily the "best" and need some work, but, part of the fun of exploratory data analysis is making trying out different plots to see what "works."
 
@@ -432,7 +435,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals, colour = "purple"))
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-24-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
 What does the graph look like? Did it do what you expected?
 
@@ -450,7 +453,7 @@ ggplot(data = fitness) +
   geom_point(aes(x = Start, y = active_cals), size = 1.5, shape = 19)
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-25-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 
 ### Using More Than One `geom()`
 
@@ -464,7 +467,7 @@ ggplot(data = fitness, aes(x = Start, y = active_cals)) +
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-26-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 Within `geom_smooth()`, you can set `se = FALSE` to get rid of the grey standard errors around each of the lines, and you can set`method = "lm"` to fit straight linear regression lines instead of smooth curves:
 
@@ -476,7 +479,7 @@ ggplot(data = fitness, aes(x = Start, y = active_cals)) +
 #> `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-27-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
 Does it look like there is an increasing overall trend? decreasing? Does it make sense to use a line to model the relationship or did you prefer the smooth curve?
 
@@ -491,7 +494,7 @@ ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-28-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 ```r
 ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
@@ -499,7 +502,7 @@ ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-28-2.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-28-2.png" width="672" />
 
 Can you spot the start of the pandemic in the graph? What seemed to happen with the step count?
 
@@ -514,13 +517,9 @@ ggplot(data = stat113_df, aes(x = Exercise, y = Pulse,
   geom_point() +
   geom_smooth(se = TRUE)
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-#> Warning: Removed 40 rows containing non-finite values
-#> (stat_smooth).
-#> Warning: Removed 40 rows containing missing values
-#> (geom_point).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-29-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 When there are many different categories for a categorical variable (there are only 4 categories for `Year`, but this particular plot is still a bit difficult to read), it can sometimes be useful to `facet` the plot by that variable instead of trying to use different `colour`s or `shape`s.
 
@@ -531,13 +530,9 @@ ggplot(data = stat113_df, aes(x = Exercise, y = Pulse)) +
   geom_smooth(se = TRUE) +
   facet_wrap(~ Year)
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-#> Warning: Removed 40 rows containing non-finite values
-#> (stat_smooth).
-#> Warning: Removed 40 rows containing missing values
-#> (geom_point).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-30-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 We have eliminated the `colour = ` argument and added `facet_wrap( ~ name_of_facet_variable)`. Doing so creates a different scatterplot and smooth line for each level of `name_of_facet_variable`. 
 
@@ -573,11 +568,9 @@ Another common plot used in Intro Stat courses is a boxplot. Side-by-side boxplo
 ```r
 ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
   geom_boxplot()
-#> Warning: Removed 7 rows containing non-finite values
-#> (stat_boxplot).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-31-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
 What can you conclude from the plot?
 
@@ -589,11 +582,9 @@ An alternative to side-by-side boxplots are violin plots:
 ```r
 ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
   geom_violin()
-#> Warning: Removed 7 rows containing non-finite values
-#> (stat_ydensity).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-32-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
 Read about Violin plots by typing `?geom_violin` into your console (bottom-left window). How are they different than boxplots?
 
@@ -610,7 +601,7 @@ ggplot(data = stat113_df, aes(x = Year, fill = SocialMedia)) +
   ylab("Proportion")
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-33-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 What patterns do you notice from the plot? Is there anything about the plot that could be improved?
 
@@ -657,11 +648,9 @@ Give an example of something that you don't know about the fitness data set that
 ggplot(data = stat113_df, aes(x = Exercise)) +
   geom_histogram(bins = 14, fill = "lightpink2", colour = "black") +
   xlab("Exercise (hours per typical week)")
-#> Warning: Removed 7 rows containing non-finite values
-#> (stat_bin).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-34-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 5. \* We can change the y-axis of a histogram to be "density" instead of a raw count. This means that each bar shows a __proportion__ of cases instead of a raw count. Google something like "geom_histogram with density" to figure out how to create a y `aes()` to show density instead of count.
 
@@ -670,11 +659,9 @@ ggplot(data = stat113_df, aes(x = Exercise)) +
 ggplot(data = stat113_df, aes(x = Exercise, y = ..density..)) +
   geom_histogram(bins = 14, fill = "lightpink2", colour = "black") +
   xlab("Exercise (hours per typical week)")
-#> Warning: Removed 7 rows containing non-finite values
-#> (stat_bin).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-35-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 
 ### Graphing Two Quant. etc. S
 
@@ -687,7 +674,7 @@ ggplot(data = stat113_df, aes(x = Wgt, y = Hgt, colour = Sport)) +
   geom_smooth()
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-36-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 ```r
 
@@ -696,7 +683,7 @@ ggplot(data = stat113_df, aes(x = Wgt, y = Hgt)) +
   geom_smooth()
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-36-2.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-36-2.png" width="672" />
 
 The points are now coloured by `Sport` but there is only one smooth fitted line. This makes sense because `geom_point()` now has the two global aesthetics x and y, as well as the colour aesthetic. `geom_smooth()` no longer has the colour aesthetic but still inherits the two global aesthetics, x and y.
 
@@ -711,7 +698,7 @@ ggplot(data = stat113_df, aes(x = GPA)) +
   facet_wrap( ~ Sport)
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-37-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 ### Boxplots, Stacked, etc. S
 
@@ -721,11 +708,9 @@ ggplot(data = stat113_df, aes(x = GPA)) +
 ```r
 ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
   geom_boxplot(fill = "blue")
-#> Warning: Removed 7 rows containing non-finite values
-#> (stat_boxplot).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-38-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 `fill` because it's the inside of the boxplots that we want to modify. `colour` will modify the outline colour. 
 
@@ -735,11 +720,9 @@ ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
 ```r
 ggplot(data = stat113_df, aes(x = Award, y = GPA)) +
   geom_boxplot(fill = "lightpink1")
-#> Warning: Removed 70 rows containing non-finite values
-#> (stat_boxplot).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-39-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 There are a few outlier students, but the three groups overall seem to have similar GPAs.
 
@@ -757,7 +740,7 @@ ggplot(data = stat113_df, aes(x = Sport, fill = Award)) +
   geom_bar(position = "fill")
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-40-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an Olympic medal, compared with students who do not play a sport.
 
@@ -771,18 +754,14 @@ Loess uses a bunch of local regressions to predict the y-variable at each point,
 
 
 ```r
-ggplot(data = stat113_df %>% filter(!is.na(Sport) & !is.na(Sex)),
+ggplot(data = stat113_df |> filter(!is.na(Sport) & !is.na(Sex)),
   aes(x = Exercise, y = GPA)) + 
   geom_point() + geom_smooth() +
   facet_grid(Sex ~ Sport)
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-#> Warning: Removed 71 rows containing non-finite values
-#> (stat_smooth).
-#> Warning: Removed 71 rows containing missing values
-#> (geom_point).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-41-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 3. \* In Intro-Stat, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. 
 
@@ -793,15 +772,9 @@ Then, using Google, figure out how to add the mean to each boxplot as a "darkgre
 ggplot(data = stat113_df, aes(x = Sex, y = GPA)) +
   geom_boxplot(fill = "lightpink1", outlier.shape = 8) +
   stat_summary(fun = mean, shape = 18, colour = "darkgreen")
-#> Warning: Removed 70 rows containing non-finite values
-#> (stat_boxplot).
-#> Warning: Removed 70 rows containing non-finite values
-#> (stat_summary).
-#> Warning: Removed 3 rows containing missing values
-#> (geom_segment).
 ```
 
-![](02-ggplot2_files/figure-epub3/unnamed-chunk-42-1.png)<!-- -->
+<img src="02-ggplot2_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 
 ## Non-Exercise `R` Code {#rcode-2}
 
@@ -821,13 +794,13 @@ ggplot(data = pres_df, mapping = aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") +
   geom_histogram() 
-pres_cat <- pres_df %>% mutate(winner = if_else(Gore > Bush,
+pres_cat <- pres_df |> mutate(winner = if_else(Gore > Bush,
                                                 true = "Gore",
                                                 false = "Bush"))
 pres_cat
 ggplot(data = pres_cat, aes(x = winner)) +
   geom_bar()
-pres_cat2 <- pres_cat %>% group_by(winner) %>%
+pres_cat2 <- pres_cat |> group_by(winner) |>
   summarise(nwins = n())
 pres_cat2
 ggplot(pres_cat2, aes(x = winner)) +
@@ -837,14 +810,14 @@ ggplot(pres_cat2, aes(x = winner, y = nwins)) +
 ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
   geom_point()
 library(tidyverse)
-fitness_full <- read_csv("data/higham_fitness_clean.csv") %>% mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+fitness_full <- read_csv("data/higham_fitness_clean.csv") |> mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
   TRUE ~ "weekday"))
 ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
   geom_point()
 ## drop observations that have active calories < 50. 
 ## assuming that these are data errors or 
 ## days where the Apple Watch wasn't worn.
-fitness <- fitness_full %>%
+fitness <- fitness_full |>
   filter(active_cals > 50)
 ggplot(data = fitness) +
   geom_point(aes(x = distance, y = active_cals))
