@@ -213,7 +213,7 @@ We will explore our original "service patterns" question in the exercises. To cl
 
 * Detect which points are aces, which are coded in the variable as `*`. Regexes have "special characters, like `\`, `*`, `.`, which, if present in the variable need to be "escaped" with a backslash. But, the backslash is a special character, so it needs to be escaped too: so we need two `\\` in front of `*` to pull the points with a `*`.
 
-```{r, appendix = TRUE}
+```{r, appendix = TRUE, results = "hide"}
 str_detect(med_djok_df$point, pattern = "\\*")
 ```
 
@@ -221,7 +221,7 @@ str_detect(med_djok_df$point, pattern = "\\*")
 
 * Detect which points start with a `4` using `^` to denote "at the beginning":
 
-```{r, appendix = TRUE}
+```{r, appendix = TRUE, results = "hide"}
 str_detect(med_djok_df$point, pattern = "^4")
 ```
 
