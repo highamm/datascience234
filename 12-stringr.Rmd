@@ -164,7 +164,7 @@ str_detect(med_djok_df$point, pattern = "f")
 
 returns a `TRUE` if the letter `f` appears anywhere in the string and a `FALSE` if it does not. So, we can examine how many points a forehand was hit in the Medvedev Djokovic match. As a second example,
 
-```{r, appendix = TRUE}
+```{r, appendix = TRUE, results = "hide"}
 str_detect(med_djok_df$point, pattern = "d@")
 ```
 
@@ -211,25 +211,30 @@ In the output above, a `PtWinner` of `1` corresponds to points that Djokovic won
 
 We will explore our original "service patterns" question in the exercises. To close out this section, we will just emphasize that we have done a __very__ simple introduction into regexes. These can get very cumbersome, especially as the patterns you want to extract get more complicated. Consider the examples below.
 
-Detect which points are aces, which are coded in the variable as `*`. Regexes have "special characters, like `\`, `*`, `.`, which, if present in the variable need to be "escaped" with a backslash. But, the backslash is a special character, so it needs to be escaped too: so we need two `\\` in front of `*` to pull the points with a `*`.
+* Detect which points are aces, which are coded in the variable as `*`. Regexes have "special characters, like `\`, `*`, `.`, which, if present in the variable need to be "escaped" with a backslash. But, the backslash is a special character, so it needs to be escaped too: so we need two `\\` in front of `*` to pull the points with a `*`.
 
 ```{r, appendix = TRUE}
 str_detect(med_djok_df$point, pattern = "\\*")
 ```
 
-Detect which points start with a `4` using `^` to denote "at the beginning":
+<br>
+
+* Detect which points start with a `4` using `^` to denote "at the beginning":
 
 ```{r, appendix = TRUE}
 str_detect(med_djok_df$point, pattern = "^4")
 ```
 
-Detect which points end with an `@` using `$` to denote "at the end" (this is safer than what we did in the code above, where we just assumed that `@` did not appear anywhere else in the string except at the end).
+<br>
+
+* Detect which points end with an `@` using `$` to denote "at the end" (this is safer than what we did in the code above, where we just assumed that `@` did not appear anywhere else in the string except at the end).
 
 ```{r, results = "hide", appendix = TRUE}
 str_detect(med_djok_df$point, pattern = "@$")
 ```
 
-We can also extract all of the forehand shots that were hit with `str_extract_all()`. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.
+<br>
+* Extract all of the forehand shots that were hit with `str_extract_all()`. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.
 
 ```{r, results = "hide", appendix = TRUE}
 str_extract_all(med_djok_df$point, pattern = "f[:digit:]+")

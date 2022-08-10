@@ -314,27 +314,6 @@ returns a `TRUE` if the letter `f` appears anywhere in the string and a `FALSE` 
 
 ```r
 str_detect(med_djok_df$point, pattern = "d@")
-#>   [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
-#>  [10] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
-#>  [19] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>  [28] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
-#>  [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>  [46] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
-#>  [55] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-#>  [64] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>  [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-#>  [82] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
-#>  [91] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [100] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [109]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> [118] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-#> [127] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [136]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [145] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> [154] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [163] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#> [172] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#> [181] FALSE FALSE
 ```
 
 returns `TRUE` if `d@` appears in a string and `FALSE` if not. Note that `d@` must appear __together__ and __in that order__ to return a `TRUE`. This lets us examine how many points a ball is hit deep and is recorded an unforced error. It looks like
@@ -422,7 +401,7 @@ In the output above, a `PtWinner` of `1` corresponds to points that Djokovic won
 
 We will explore our original "service patterns" question in the exercises. To close out this section, we will just emphasize that we have done a __very__ simple introduction into regexes. These can get very cumbersome, especially as the patterns you want to extract get more complicated. Consider the examples below.
 
-Detect which points are aces, which are coded in the variable as `*`. Regexes have "special characters, like `\`, `*`, `.`, which, if present in the variable need to be "escaped" with a backslash. But, the backslash is a special character, so it needs to be escaped too: so we need two `\\` in front of `*` to pull the points with a `*`.
+* Detect which points are aces, which are coded in the variable as `*`. Regexes have "special characters, like `\`, `*`, `.`, which, if present in the variable need to be "escaped" with a backslash. But, the backslash is a special character, so it needs to be escaped too: so we need two `\\` in front of `*` to pull the points with a `*`.
 
 
 ```r
@@ -450,7 +429,9 @@ str_detect(med_djok_df$point, pattern = "\\*")
 #> [181] FALSE FALSE
 ```
 
-Detect which points start with a `4` using `^` to denote "at the beginning":
+<br>
+
+* Detect which points start with a `4` using `^` to denote "at the beginning":
 
 
 ```r
@@ -478,14 +459,17 @@ str_detect(med_djok_df$point, pattern = "^4")
 #> [181]  TRUE  TRUE
 ```
 
-Detect which points end with an `@` using `$` to denote "at the end" (this is safer than what we did in the code above, where we just assumed that `@` did not appear anywhere else in the string except at the end).
+<br>
+
+* Detect which points end with an `@` using `$` to denote "at the end" (this is safer than what we did in the code above, where we just assumed that `@` did not appear anywhere else in the string except at the end).
 
 
 ```r
 str_detect(med_djok_df$point, pattern = "@$")
 ```
 
-We can also extract all of the forehand shots that were hit with `str_extract_all()`. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.
+<br>
+* Extract all of the forehand shots that were hit with `str_extract_all()`. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.
 
 
 ```r

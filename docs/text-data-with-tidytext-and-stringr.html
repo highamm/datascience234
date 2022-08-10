@@ -352,28 +352,7 @@
 <span><span class="co">#&gt; [181] FALSE FALSE</span></span></code></pre></div>
 <p>returns a <code>TRUE</code> if the letter <code>f</code> appears anywhere in the string and a <code>FALSE</code> if it does not. So, we can examine how many points a forehand was hit in the Medvedev Djokovic match. As a second example,</p>
 <div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"d@"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [10] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [19] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [28] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [46] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [55] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [64] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE</span></span>
-<span><span class="co">#&gt;  [82] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span><span class="co">#&gt;  [91] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [100] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [109]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [118] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE</span></span>
-<span><span class="co">#&gt; [127] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [136]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [145] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [154] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [163] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [172] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span><span class="co">#&gt; [181] FALSE FALSE</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"d@"</span><span class="op">)</span></span></code></pre></div>
 <p>returns <code>TRUE</code> if <code>d@</code> appears in a string and <code>FALSE</code> if not. Note that <code>d@</code> must appear <strong>together</strong> and <strong>in that order</strong> to return a <code>TRUE</code>. This lets us examine how many points a ball is hit deep and is recorded an unforced error. It looks like</p>
 <div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"d@"</span><span class="op">)</span><span class="op">)</span></span>
@@ -439,7 +418,9 @@
 <span><span class="co">#&gt; 7        2 &lt;NA&gt;              1</span></span></code></pre></div>
 <p>In the output above, a <code>PtWinner</code> of <code>1</code> corresponds to points that Djokovic won (and therefore points where Medvedev made the unforced error) while a <code>PtWinner</code> of <code>2</code> corresponds to points that Medvedev won (and therefore points where Djokovic made the unforced error). So we see that, in this match, Djokovic had more unforced errors overall. Medvedev’s unforced errors tended to be deep or wide while the highest proportion of Djokovic’s unforced errors were balls that went into the net.</p>
 <p>We will explore our original “service patterns” question in the exercises. To close out this section, we will just emphasize that we have done a <strong>very</strong> simple introduction into regexes. These can get very cumbersome, especially as the patterns you want to extract get more complicated. Consider the examples below.</p>
-<p>Detect which points are aces, which are coded in the variable as <code>*</code>. Regexes have “special characters, like <code>\</code>, <code>*</code>, <code>.</code>, which, if present in the variable need to be”escaped” with a backslash. But, the backslash is a special character, so it needs to be escaped too: so we need two <code>\\</code> in front of <code>*</code> to pull the points with a <code>*</code>.</p>
+<ul>
+<li>Detect which points are aces, which are coded in the variable as <code>*</code>. Regexes have “special characters, like <code>\</code>, <code>*</code>, <code>.</code>, which, if present in the variable need to be”escaped” with a backslash. But, the backslash is a special character, so it needs to be escaped too: so we need two <code>\\</code> in front of <code>*</code> to pull the points with a <code>*</code>.</li>
+</ul>
 <div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"\\*"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE</span></span>
@@ -463,7 +444,10 @@
 <span><span class="co">#&gt; [163] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
 <span><span class="co">#&gt; [172] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE</span></span>
 <span><span class="co">#&gt; [181] FALSE FALSE</span></span></code></pre></div>
-<p>Detect which points start with a <code>4</code> using <code>^</code> to denote “at the beginning”:</p>
+<p><br></p>
+<ul>
+<li>Detect which points start with a <code>4</code> using <code>^</code> to denote “at the beginning”:</li>
+</ul>
 <div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"^4"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   [1]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE</span></span>
@@ -487,10 +471,14 @@
 <span><span class="co">#&gt; [163]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE</span></span>
 <span><span class="co">#&gt; [172]  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE</span></span>
 <span><span class="co">#&gt; [181]  TRUE  TRUE</span></span></code></pre></div>
-<p>Detect which points end with an <code>@</code> using <code>$</code> to denote “at the end” (this is safer than what we did in the code above, where we just assumed that <code>@</code> did not appear anywhere else in the string except at the end).</p>
+<p><br></p>
+<ul>
+<li>Detect which points end with an <code>@</code> using <code>$</code> to denote “at the end” (this is safer than what we did in the code above, where we just assumed that <code>@</code> did not appear anywhere else in the string except at the end).</li>
+</ul>
 <div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"@$"</span><span class="op">)</span></span></code></pre></div>
-<p>We can also extract all of the forehand shots that were hit with <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all()</a></code>. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.</p>
+<p><br>
+* Extract all of the forehand shots that were hit with <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all()</a></code>. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.</p>
 <div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"f[:digit:]+"</span><span class="op">)</span></span></code></pre></div>
 <p>The purpose of these examples is just to show that things can get complicated with strings. For the purposes of assessment in this course, you are only responsible for the relatively simple cases discussed earlier in the section and in the exercises.</p>
