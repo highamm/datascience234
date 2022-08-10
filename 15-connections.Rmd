@@ -379,7 +379,7 @@ get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2
 
 Now suppose that we want to use our function to scrape the 2022 baseball statistics for all teams in the Liberty League. There are 10 teams in total. The websites for each team's statistics as well as the school name is given in the `tibble` below:
 
-```{r, appendix = TRUE}
+```{r, appendix = TRUE, results = "hide"}
 school_df <- tibble(school_name = c("SLU", "Clarkson", "Rochester", "RIT", "Ithaca", "Skidmore", "RPI", "Union", "Bard", "Vassar"),
                     hitting_web_url = c("https://saintsathletics.com/sports/baseball/stats/2022",
                  "https://clarksonathletics.com/sports/baseball/stats/2022", 
@@ -396,7 +396,7 @@ school_df
 
 One option we have to obtain the hitting statistics for all 10 teams and calculating the `wOBA` (assuming that the tables are structured the same way on each web page) would be to apply our function 10 times and then bind together the results. The first three applications of the function are shown below.
 
-```{r, appendix = TRUE}
+```{r, appendix = TRUE, results = "hide"}
 get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2022")
 get_hitting_data(url_name = "https://clarksonathletics.com/sports/baseball/stats/2022")
 get_hitting_data(url_name = "https://uofrathletics.com/sports/baseball/stats/2022")
@@ -415,7 +415,6 @@ map(num_list, get_sum_squares)
 
 The output is a list of sums of squares calculated with our `get_sum_squares()` function.
 
-
 To apply the `map()` approach to iteration to our baseball web urls, we will create an object called `url_vec` that has the urls of each school.
 
 ```{r, appendix = TRUE}
@@ -424,7 +423,7 @@ url_vec <- school_df$hitting_web_url
 
 Then, we apply `map()` with the first argument being the `url_vec` and the second argument being the function `get_hitting_data()` that we wrote earlier.
 
-```{r, appendix = TRUE}
+```{r, appendix = TRUE, results = "hide"}
 hitting_list <- map(url_vec, get_hitting_data)
 hitting_list
 ```
