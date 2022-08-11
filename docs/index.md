@@ -1,7 +1,7 @@
 --- 
 title: "STAT 234: Data Science"
 author: "Matt Higham"
-date: "2022-08-10"
+date: "2022-08-11"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -72,7 +72,7 @@ _Note_: It's always nice to start assignments and projects as early as possible,
 
 4. _Communicate_ the results of your analysis to a target audience with a written report, or, possibly an oral presentation.
 
-5. Practice reproducible statistical practices through the use of `R Markdown` for data analysis projects. 
+5. Practice reproducible statistical practices through the use of `Quarto` for data analysis projects. 
 
 6. Explain why it is ethically important to consider the context that a data set comes in.
 
@@ -208,7 +208,7 @@ _Please note that in addition the above, any assignments in which your score is 
 | 0 | 8/24  | Introduction to `R`, `R Studio`|
 | 1 | 8/29 | Graphics with `ggplot2` |
 | 2 | 9/5 | Data Wrangling and Transformation with `dplyr` |
-| 3 | 9/12 | Communication with `R Markdown` and `ggplot2` |
+| 3 | 9/12 | Communication with `Quarto` and `ggplot2` |
 | 4 | 9/19 | Soft Skills and Workflow |
 | 5 | 9/26\* | Data Tidying with `tidyr` |
 | 6 | 10/3 | Base `R` |

@@ -1,12 +1,14 @@
-# Communication with `RMarkdown`
+# Communication with `Quarto`
+
+__Special Note__: `Quarto` and `.qmd` files and `R Markdown` and `.qmd` files are extremely similar. In the previous version of this section, I used `R Markdown`. Quarto has an advantage in that `.qmd` files also work with Python and Julia, so they are generally better for an all-purpose data scientist. If you spot any references to `R Markdown` or a `.qmd` file, just convert `R Markdown` to `Quarto` and `.qmd` to `qmd`.
 
 __Goals__:
 
 * Explain what _reproducibility_ means and explain why it's important for analyses to be reproducible.
 
-* Explain why `R Markdown` provides more tools for making analyses reproducible than base `R` with Microsoft Word and than Microsoft Excel.
+* Explain why `Quarto` provides more tools for making analyses reproducible than base `R` with Microsoft Word and than Microsoft Excel.
 
-* Use the Code Options and the `Markdown` Text Options to modify an `R Markdown` file so that it knits to a readable, professional .html file.
+* Use the Code Options and the `Quarto` Text Options to modify an `Quarto` file so that it renders to a readable, professional .html file.
 
 * Use titles, labels, colour scales, annotations, and themes to make your plots easy to read, including for people with Colour Vision Deficiency.
 
@@ -14,45 +16,45 @@ Overall: If you're making some quick plots just for you, some of the things on c
 
 ## Reproducbility
 
-We've been using `R Markdown` for a while now, but have not yet talked about any of its features or how to do anything except insert a new code chunk. By the end of this section, we want to be able to use some of the `R Markdown` options to make a nice-looking document (so that you can implement some of these options in your first mini-project). 
+We've been using `Quarto` for a while now, but have not yet talked about any of its features or how to do anything except insert a new code chunk. By the end of this section, we want to be able to use some of the `Quarto` options to make a nice-looking document (so that you can implement some of these options in your first mini-project). 
 
 __Reproducibility__ is a concept that has recently gained popularity in the sciences for describing analyses that another researcher is able to repeat. That is, an analysis is __reproducible__ if you provide enough information that the person sitting next to you can obtain identical results as long as they follow your procedures. An analysis is not reproducible if this isn't the case. 
-`R Markdown` makes it easy for you to make your analysis reproducible for a couple of reasons:
+`Quarto` makes it easy for you to make your analysis reproducible for a couple of reasons:
 
-* an `R Markdown` file will not knit unless all of your code runs, meaning that you won't accidentally give someone code that doesn't work.
+* an `Quarto` file will not render unless all of your code runs, meaning that you won't accidentally give someone code that doesn't work.
 
-* `R Markdown` combines the "coding" steps with the "write-up" steps into one coherent document that contains the code, all figures and tables, and any explanations.
+* `Quarto` combines the "coding" steps with the "write-up" steps into one coherent document that contains the code, all figures and tables, and any explanations.
 
-### `R` Scripts vs. `R Markdown`
+### `R` Scripts vs. `Quarto`
 
-We've been using `R Markdown` for the entirety of this course. But, you may have noticed that when you go to File -> New File to open a new `R Markdown` file, there are a ton of other options. The first option is `R Script`. Go ahead and open a new `R Script` file now.
+We've been using `Quarto` for the entirety of this course. But, you may have noticed that when you go to File -> New File to open a new `Quarto Document` file, there are a ton of other options. The first option is `R Script`. Go ahead and open a new `R Script` file now.
 
-The file you open should be completely blank. An `R Script` is a file that reads __only__ `R` code. It cannot have any text in it at all, unless that text is commented out with a `#`. For example, you could copy and paste all of the code that is inside a code chunk in a .Rmd file to the .R file and run it line by line.
+The file you open should be completely blank. An `R Script` is a file that reads __only__ `R` code. It cannot have any text in it at all, unless that text is commented out with a `#`. For example, you could copy and paste all of the code that is inside a code chunk in a .qmd file to the .R file and run it line by line.
 
-So, what are the advantages and disadvantages of using an `R Script` file compared to using an `R Markdown` file? Let's start with the advantages of `R Markdown`. `R Markdown` allows you to fully integrate text explanations of the code and results, the actual tables and figures themselves, and the code to make those tables and figures in one cohesive document. As we will see, if using `R Script`s to write-up an analysis in Word, there is a lot of copy-pasting involved of results. For this reason, using `R Markdown` often results in more reproducible analyses.
+So, what are the advantages and disadvantages of using an `R Script` file compared to using an `Quarto` file? Let's start with the advantages of `Quarto`. `Quarto` allows you to fully integrate text explanations of the code and results, the actual tables and figures themselves, and the code to make those tables and figures in one cohesive document. As we will see, if using `R Script`s to write-up an analysis in Word, there is a lot of copy-pasting involved of results. For this reason, using `Quarto` often results in more reproducible analyses.
 
-The advantage of an `R` Script would be in a situation where you really aren't presenting results to anyone and you also don't need any text explanations. This often occurs in two situations. (1) There are a lot of data preparation steps. In this case, you would typically complete all of these data prep steps in an `R script` and then write the resulting clean data to a .csv that you'd import in an `R Markdown` file. (2) What you're doing is complicated statistically. If this is the case, then the code is much more of a focus than the text or creating figures so you'd use an `R` Script. 
+The advantage of an `R` Script would be in a situation where you really aren't presenting results to anyone and you also don't need any text explanations. This often occurs in two situations. (1) There are a lot of data preparation steps. In this case, you would typically complete all of these data prep steps in an `R script` and then write the resulting clean data to a .csv that you'd import in an `Quarto` file. (2) What you're doing is complicated statistically. If this is the case, then the code is much more of a focus than the text or creating figures so you'd use an `R` Script. 
 
 We will "demo" a reproducible analysis in class.
 
 
 ### Spell-Checking
 
-If using `R Markdown` for communication, you probably want to utilize its spell-check feature. Go to Edit -> Check Spelling, and you'll be presented with a spell-checker that lets you change the spelling of any words you may have misspelled. 
+If using `Quarto` for communication, you probably want to utilize its spell-check feature. Go to Edit -> Check Spelling, and you'll be presented with a spell-checker that lets you change the spelling of any words you may have misspelled. 
 
 ### Exercises {#exercise-5-1}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-5).
 
-1. What's the difference between `R` and `R Markdown`?
+1. What's the difference between `R` and `Quarto`?
 
 
 
-2. Why is an `R Markdown` analysis more reproducible than the base `R` script analysis?
+2. Why is an `Quarto` analysis more reproducible than the base `R` script analysis?
 
 
 
-3. Why is an `R Markdown` analysis easier to make more reproducible than an analysis with Excel?
+3. Why is an `Quarto` analysis easier to make more reproducible than an analysis with Excel?
 
 
 
@@ -72,15 +74,15 @@ State 2 aspects of Chaz's analysis that are __not__ reproducible.
 
 
 
-## `R Markdown` Files
+## `Quarto` Files
 
-Let's talk a bit more about the components of the `R Markdown` file used to make the reproducible analysis shown in class.
+Let's talk a bit more about the components of the `Quarto` file used to make the reproducible analysis shown in class.
 
-First, open a new `R Markdown` file by clicking File -> New File -> `R Markdown` and keep the new file so that it knits to HTML for now. 
+First, open a new `Quarto` file by clicking File -> New File -> `Quarto Document` and keep the new file so that it renders to HTML for now. 
 
-The first six lines at the top of the file make up the YAML (Yet Another Markup Language) header. We'll come back to this at the end, as it's the more frustrating part to learn.
+The first four to five lines at the top of the file make up the YAML (__Yet Another Markup Language__) header. We'll come back to this at the end, as it's the more frustrating part to learn.
 
-Lines 8-10 are the set-up chunk. Again, we'll come back to this in a bit. For now, just delete lines 12-30 and copy and paste the following code chunks to your clean .Rmd file:
+Delete the code below the YAML header and then paste the following code chunks to your clean .qmd file:
 
 
 ```r
@@ -99,37 +101,72 @@ The `cars` data set is built into `R` so there's no need to do anything to read 
 
 ### Code Chunk Options
 
-First, knit, your new file (and give it a name, when prompted). You should see some code, a couple of results tables, and a scatterplot.
+First, render your new file (and give it a name, when prompted). You should see some code, a couple of results tables, and a scatterplot.
 
-Chunk options allow you to have some control over what gets printed to the file that you knit. For example, you may or may not want: the code to be printed, the figure to be printed, the results to be printed, the `tidyverse` message to be printed, etc. See page 2 as a reference for `R` chunk options: <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf" target="_blank">https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf</a>. There's a ton of them! We are going to just focus on a few that are more commonly used. 
+Chunk options allow you to have some control over what gets printed to the file that you render. For example, you may or may not want: the code to be printed, the figure to be printed, the tables to be printed, the `tidyverse` message to be printed, etc. There are a ton of chunk options to give us control over the code and output that is shown! We are going to just focus on a few that are more commonly used. 
 
-* `echo`. This is set to either `TRUE` to print the code or `FALSE` to not print the code. After the `r` in the first line of your first code chunk, add a `, echo = FALSE` inside the curly braces and reknit to see what happens!
+The options below are common `execute` options in `Quarto`. 
 
-You can keep adding other options, each separated by a comma. Some other options include:
+* `echo`. This is set to either `true` to print the code or `false` to not print the code. In a blank line after ` ```{r} `, insert the following, which tells `Quarto` not to print the code in that chunk: `#| echo: false`. Then, re-render your document to make sure that the code making the plot is actually hidden in the .html output.
 
-* `message`. This is set to either `TRUE` to print messages or `FALSE` to not print messages. When you load in the `tidyverse`, a message automatically prints out. In that same code chunk, add a `, message = FALSE` to get rid of the message. Re-knit to make sure the message is actually gone.
+You can keep adding other options on new lines. Some other options include:
 
-* `warning`. This is set to either `TRUE` to print warnings or `FALSE` to not print warnings. We don't have any warnings so changing this in our current code chunks won't do anything.
+* `warning`. This is set to either `true` to print warnings and messages or `false` to not print warnings and messages. For example, when we load in the `tidyverse`, a message automatically prints out. In that same code chunk, add a new line with `#| warning: false` to get rid of the message. Re-render to make sure the message is actually gone.
 
-* `results`. By default, this is set to 'markup' and shows results of tables. Change this to 'hide' to not print the results. Practice adding a `, results = 'hide'` to the code chunk in your `R Markdown` file with `summary(cars)` and re-knit to make sure the results from `summary(cars)` are gone.
+* `output`. By default, this is set to `true` and shows output of tables and figures. Change this to `false` to not print any output from running code. Practice adding a `#| output: false` to the code chunk in your `Quarto` file with `summary(cars)` and re-render to make sure the output from `summary(cars)` is gone.
 
-* `fig.keep`. Add `fig.keep = 'none'` to not print a figure. Practice adding a `, fig.keep = 'none'` to the code chunk options with the scatterplot and re-knit to make sure the figure is gone. `fig.keep` can also be set to `'last'`, in which case `R` will only keep the last figure created in a code chunk.
+* `eval`. `eval` is set to `true` if the code is to be evaluated and `false` if not. 
 
-* `fig.height` and `fig.width` control the height and width of figures. By default, these are both 7, but I often change the `fig.height` to make figures shorter (`fig.height = 5`, for example).
+Besides `execute` options, there are also options pertaining to the size of figures and figure captions. Some common examples include
 
-* `fig.cap` adds a figure caption to your figure. Try inserting `, fig.cap = "Figure 1: caption text blah blah blah"` to your chunk options. 
+* `fig-height` and `fig-width` control the height and width of figures. By default, these are both 7, but we can change the `fig-height` and `fig-width` to make  figures take up less space in the rendered .html document (`fig-height: 5`, for example).
 
-* `include`, `eval`, and `collapse` are also sometimes useful: check these out in the reference guide!
+* `fig-cap` adds a figure caption to your figure. Try inserting `#| fig-cap: "Figure 1: caption text blah blah blah"` to your chunk options for the chunk with the plot. 
 
-Finally, you'll notice that each time you make a new document, there is a code chunk at the beginning called "setup". By default, setup has `echo = TRUE` as a __global option__. A __global option__ is something that gets applied to all code chunks in the entire document. So, having `echo = TRUE` means that all code chunks will have their code printed, __unless specifically overridden in that particular chunk__. So, having `echo = TRUE` means that all code will print, except in chunks where you have set `echo = FALSE`. You can add other options to the global chunk like `fig.height = 5` to make __all__ figures in __all__ chunks have a height of `5` instead of adding this option to each and every chunk.
+### Global Options
+
+What we have discussed so far is how to change code and output options for individual chunks of code. But, it can be a pain to add a certain option to every single chunk of code that we want the option to apply to. What we can do instead is change the __global option__ for the code and/or output options so that they apply to all code chunks, unless specifically overwritten in that chunk.
+
+We can change the `execute` options (`echo`, `warning`, `eval`, `output`, and more) globally by adding a line to the YAML header at the top of your `Quarto` file. Try adding
+
+```
+execute: 
+  echo: false
+```
+
+as two new lines in between the `title` and `format` lines of the YAML header. This tells `Quarto` to not `echo` __any__ code in any code chunk. However, note that you can change a local code chunk to have `#| echo: true` to override the global setting for that chunk.
+
+Additional global `execute` options go on new lines:
+
+```
+execute: 
+  echo: false
+  warning: false
+```
+
+The non-`execute` options pertaining to figure size can be changed globally by specifying the option after the `html` part of the YAML header. The following changes all figure heights to be `2`, unless a chunk overrides the global setting:
+
+```
+---
+title: "Quarto Test"
+execute: 
+  echo: false
+format: 
+  html:
+    fig-height: 2
+---
+```
+
+
+__Important Note__: We need to pay particular attention to the spacing of things in the YAML header. Notice, for example, that `echo: false` is indented by exactly two spaces. Try adding a space or deleting a space, and you'll get an error!
 
 ### Figures and Tables
 
-We've already seen that Figures will pop up automatically (unless we set `fig.keep = 'none'`), which is quite convenient. Making tables that look nice requires one extra step.
+We've already seen that Figures will pop up automatically (unless we set `output: false`), which is quite convenient. Making tables that look nice requires one extra step.
 
-Delete the `results = 'hide'` option that you added earlier. When you knit your .Rmd file now, results tables from `head(cars)` and `summary(cars)` look kind of ugly. We will focus on using the `kable()` function from the `knitr` package to make these tables much more aesthetically pleasing. Another option is to use the `pander()` function in the `pander` package. Both `pander()` and `kable()` are very simple functions to generate tables but will be more than sufficient for our purposes. To generate more complicated tables, see the `xtable` package.
+Delete the `output: false` option that you added earlier to the chunk with `summary(cars)`. When you render your .qmd file now, results tables from `head(cars)` and `summary(cars)` look kind of ugly. We will focus on using the `kable()` function from the `knitr` package to make these tables much more aesthetically pleasing. Another option is to use the `pander()` function in the `pander` package. Both `pander()` and `kable()` are very simple functions to generate tables but will be more than sufficient for our purposes. To generate more complicated tables, see the `xtable` package.
 
-To use these functions, simply replace add a `|>` pipe with the name of the table function you want to use. `head(cars) |> kable()` will make a nice-looking table with `kable` and `head(cars) |> pander()` will use `pander()`. Before using `kable()`, you'll need to load its library by adding the line `library(knitr)` above `head(cars) |> kable()`. Before using `pander()`, you'll need to load its library by adding the line `library(pander)` above `head(cars) |> pander()`. Try these out in your `R Markdown` file.
+To use these functions, simply add a `|>` pipe with the name of the table function you want to use. `head(cars) |> kable()` will make a nice-looking table with `kable` and `head(cars) |> pander()` will use `pander()`. Before using `kable()`, you'll need to load its library by adding the line `library(knitr)` above `head(cars) |> kable()`. Before using `pander()`, you'll need to load its library by adding the line `library(pander)` above `head(cars) |> pander()`. Try these out in your `Quarto` file.
 
 Which table do you like better in this case?
 
@@ -137,7 +174,7 @@ There are plenty of options for making tables look presentable, which we will di
 
 ### Non-Code Options
 
-`R Markdown` combines `R` (in the code chunks, which we've already discussed) with the `Markdown` syntax, which comprises the stuff outside the code chunks, like what you're reading right now!
+`Quarto` combines `R` (in the code chunks, which we've already discussed) with the `Markdown` syntax, which comprises the stuff outside the code chunks, like what you're reading right now!
 
 There are so many `Markdown` options, but most of the time, if you want to do something specific, you can just Google it. The purpose of what follows is just to get us familiar with the very basics and things you will probably use most often.
 
@@ -166,7 +203,7 @@ __Bold, Italics, Code__. Surround text with `__bold text__` to make text bold, `
 
 __Links__: The simplest way to create a link to something on the web is to surround it with `< >` as in `<https://www.youtube.com/watch?v=gJf_DDAfDXs>`
 
-If you want to name you link something other than the web address, use `[name of link](https://www.youtube.com/watch?v=gJf_DDAfDXs)`, which should show up in your knitted document as "name of link" and, when clicked on, take you to the youtube video.
+If you want to name you link something other than the web address, use `[name of link](https://www.youtube.com/watch?v=gJf_DDAfDXs)`, which should show up in your rendered document as "name of link" and, when clicked on, take you to the youtube video.
 
 __Headers__: Headers are created with `##` with fewer hashtags resulting in a bigger Header. Typing in `#Big Header` at the beginning of a line would make a big header, `### Medium Header` would make a medium header, and `##### Small Header` would make a small header. Headers are important because they get mapped to a table of contents.
 
@@ -176,43 +213,43 @@ But, if you want to do something other than the basics, Google will definitely h
 
 ### YAML
 
-Finally, we can return to what's given at the top of every .Rmd file: a YAML header. The YAML header is the most frustrating part to change because it's the most particular with spacing.
+We have briefly discussed what's given at the top of every .qmd file: the YAML header. The YAML header is the most frustrating part to change because it's the most particular with spacing.
 
-The biggest thing that you can take advantage of with YAML is themes that other people have written for `R Markdown`. By default, we're just using `R Markdown`'s default theme, which looks okay. 
+In addition to controlling global chunk options, we can also use the YAML header to specify a theme from <a href="https://quarto.org/docs/output-formats/html-themes.html" target="_blank"> Bootswatch.</a>
 
-One package that you can use to make a "pretty" themed document easily is the `rmdformats` package using the `readthedown` theme. This does a lot of the heavy lifting in making the resulting .html file super nice to look at. 
-
-For example, paste the following lines over your YAML header in your current .Rmd file.
+There are 25 themes in the `Bootswatch` project. The YAML header below uses the `darkly` theme. Try pasting in this YAML header and rendering the document to see the outputted theme.
 
 ```
 ---
-title: "Week 4: Communication with `R Markdown` and `ggplot2`"
-author: "Matt Higham"
-output: 
-  rmdformats::readthedown:
-    toc_depth: 5
+title: "Quarto Test"
+execute: 
+  echo: false
+  warning: false
+format: 
+  html:
+    fig-height: 2
+    theme: darkly
 ---
 ```
 
-The `toc_depth: 5` controls the required number of header `#####` for something to appear in the Table of Contents (toc). The document you just knitted won't have anything in the table of contents because you haven't included any headers with _5_ or fewer hashtags.
-
-As mentioned before, the spacing with these YAML headers is __extremely important__. For example, delete one of the spaces at the beginning of the line for `toc_depth: 5` in the `R Markdown` file you created. The file should no longer knit, all because we deleted a single space. 
-
-Another package that you could use to create a pretty .html file is the `prettydoc` package (you might recall using this package for reports if you took STAT 213 with Professor Higham). Try copying and pasting the following over your .Rmd YAML header in the `R Markdown` file you created:
+We can also add a table of contents, which will create a table of contents based on headers you have created with `##`. 
 
 ```
 ---
-title: "Title"
-author: "Name"
-date: "Put Today's Date"
-output: 
-  prettydoc::html_pretty:
-    theme: hpstr
+title: "Quarto Test"
+execute: 
+  echo: false
+  warning: false
+format: 
+  html:
+    fig-height: 2
+    theme: darkly
     toc: true
 ---
 ```
 
-`prettydoc` has 5 themes for you to choose from. The YAML header above uses `hpstr`. Other choices are `cayman`, `tactile`, `architect`, and `leonids`.
+There are __so__ many other options available for theming, and, if you know any `css`, you can provide your own `.css` file to customize the theme.
+
 
 ### Exercises {#exercise-5-2}
 
@@ -264,15 +301,15 @@ ggplot(data = mtcars, aes(x = factor(cyl), y = mpg)) +
   geom_boxplot()
 ```
 
-Modify the `R` chunk so that: (a) the figure height is 3, (b) the code from the `R` chunk shows in the .html file, (c) the results from running `head(cars)` are hidden in the .html file. Make (b) and (c) a __local__ chunk option, but set (a) as a __global__ option that applies to all of your `R` chunks.
+Modify the `R` chunk so that: (a) the figure height is 3, (b) the code from the `R` chunk shows in the .html file, (c) the table from running `head(cars)` are hidden in the .html file. Make (b) and (c) a __local__ chunk option, but set (a) as a __global__ option that applies to all of your `R` chunks.
 
 
 
-6. Change your global options in your mini-project to (a) hide messages from loading in the `tidyverse` and (b) show all code.
+6. Change your global options in your first project to (a) hide messages from loading in the `tidyverse` and (b) show all code.
 
-7. Use bullet points in the Introduction in your first mini-project that explains what a few of the important variables are. Then, add a header to your mini-project that marks the Introduction.
+7. Use bullet points in the Introduction in your first mini-project that explains what a few of the important variables are. Then, add a header to your project that marks the Introduction.
 
-8. Change the YAML header in your mini-project so that you are the Author and so that the file uses either one of the `prettydoc` themes or the `readthedown` theme.
+8. Change the YAML header in your project so that you are the Author (with something like `author: "Your Name"` and so that the file uses a theme from `Bootswatch` other than the default theme.
 
 ## `ggplot2` Communication
 
@@ -635,25 +672,23 @@ Explore the data set with `head()`, `skim()`, and `?gapminder` before proceeding
 
 
 
-9. Modify your .Rmd file so that:
+9. Modify your .qmd file so that:
 
 * only the figure that you made in Exercise 8 prints on your .html file. (Hint: use global options to help with this).
 
 * none of the code gets printed.
 
-* the messages that `R` prints by default are hidden in all code chunks.
+* the warnings/messages that `R` prints by default are hidden in all code chunks.
 
 * the figure height is 5 instead of the default 7.
 
-10. Create a new .Rmd file and knit this file to PDF. Then, knit this file to Microsoft Word. Which output format do you like the best? Note that PDF only supports some `R Markdown` theme options while Word supports very few theme options.
-
-11. Read the following up to "How can software tools make our research more reproducible?" <a href="https://ropensci.github.io/reproducibility-guide/sections/introduction/" target="_blank">https://ropensci.github.io/reproducibility-guide/sections/introduction/</a>. How does what is discussed in the article related to `R Markdown`?
+10. Read the following up to "How can software tools make our research more reproducible?" <a href="https://ropensci.github.io/reproducibility-guide/sections/introduction/" target="_blank">https://ropensci.github.io/reproducibility-guide/sections/introduction/</a>. How does what is discussed in the article related to `Quarto`?
 
 ## Exercise Solutions {#solutions-5}
 
 ### Reproducibility S
 
-### `R Markdown` Files S
+### `Quarto` Files S
 
 1. \* Create a table showing the mean `mpg` for each `cyl` group (`cyl` stands for cylinder and can be 4-cylinder, 6-cylinder, or 8-cylinder) with both `kable()` and `pander()`. Hint: remember to call the `knitr` library and the `pander` library.
 

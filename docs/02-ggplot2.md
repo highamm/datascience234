@@ -33,7 +33,7 @@ To get started exploring the data, complete the following steps that you learned
 
 1. Log-on to the SLU `R Studio` server <a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a>
 
-1. Create a new .Rmd file in the same folder as your Notes `R Project` using File -> New File -> `R Markdown`.
+1. Create a new .qmd file in the same folder as your Notes `R Project` using File -> New File -> `Quarto`.
 
 1. Finally, read in and name the data set `pres_df`, and take a look at the data set by running the `head(pres_df)` line, which shows the first few observations of the data set:
 

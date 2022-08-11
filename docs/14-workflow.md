@@ -105,9 +105,9 @@ athletes_df <- read_csv("data/athletesdata.csv")
 
 So, if you zipped up your project and sent it to someone else, they'd be able to open it and read that data file without needing to change any directory code!
 
-The `here()` function from the `here` package can be used for more than just printing out the current working directory. To see its usefulness, suppose that, in the folder that has your current `R` project, you want to make a folder called `Quizzes` that has your `.Rmd` files for your quizzes in this class. Make this folder, create a new `.Rmd` file, paste in the `R` chunk that reads in the `athletesdata.csv` data set, save the file, and then try to knit the file. 
+The `here()` function from the `here` package can be used for more than just printing out the current working directory. To see its usefulness, suppose that, in the folder that has your current `R` project, you want to make a folder called `Quizzes` that has your `.qmd` files for your quizzes in this class. Make this folder, create a new `.qmd` file, paste in the `R` chunk that reads in the `athletesdata.csv` data set, save the file, and then try to render the file. 
 
-You should get an error that the `athletesdata.csv` data file is not found. When knitting a `.Rmd` file, `R` looks for the `data/` folder __within the folder that contains the .Rmd file__. Since the `data/` folder is in the folder with your `R` Project, not in the folder with your `.Rmd` file, `R` can't find it.
+You should get an error that the `athletesdata.csv` data file is not found. When rendering a `.qmd` file, `R` looks for the `data/` folder __within the folder that contains the .qmd file__. Since the `data/` folder is in the folder with your `R` Project, not in the folder with your `.qmd` file, `R` can't find it.
 
 To fix the issue, we could specify the entire file path to the `data/` file. But, a better fix would be to use the `here()` function, which tells `R` to start looking for folders and files in the folder with our `R` Project:
 
@@ -126,7 +126,7 @@ athletes_test_read <- read_csv(here("data/athletesdata.csv"))
 #> • `` -> `...1`
 ```
 
-This allows us to have `R Markdown` files within folders in our `R` project.
+This allows us to have `Quarto` files within folders in our `R` project.
 
 ### Exercises {#exercise-14-2}
 
@@ -270,7 +270,7 @@ The previous section on code readability can be seen as one step to helping with
 
 ### Identify the Problem
 
-We run `R` code for our data analyses from "top to bottom," which makes it a bit easier to identify where the problem code is occurring. We can run our code from the top of our `.Rmd` file, line by line, until we see the red `Error` message. 
+We run `R` code for our data analyses from "top to bottom," which makes it a bit easier to identify where the problem code is occurring. We can run our code from the top of our `.qmd` file, line by line, until we see the red `Error` message. 
 
 Often this `Error` message will occur in a `ggplot` statement or a piping statement. If this is the case, then a further strategy is to run the `ggplot` statement `+` sign by `+` sign or to run the piping statement pipe by pipe to further isolate the error. For example, take the following `ggplot` code, which generates a somewhat cryptic error.
 
@@ -353,7 +353,7 @@ We get an `NA` value, and we have isolated the issue to something with `summaris
 
 In addition to isolating the coding issue, a couple of other very basic strategies for trying to fix problematic code are to use a search engine like google to see if anyone else has a similar error message to the one you may have and to restart `R` to make sure that you are working from a clean slate.
 
-The "restart `R`" strategy can be particularly helpful if you have code that will run but your `.Rmd` file will not knit. This can happen if you have, for example, created a data set that you use in a later chunk of code but have since deleted the code that created that data set. For example, suppose we create `cyl4_df` and make a plot:
+The "restart `R`" strategy can be particularly helpful if you have code that will run but your `.qmd` file will not render. This can happen if you have, for example, created a data set that you use in a later chunk of code but have since deleted the code that created that data set. For example, suppose we create `cyl4_df` and make a plot:
 
 
 ```r
@@ -367,7 +367,7 @@ ggplot(data = cyl4_df, aes(x = mpg)) +
 
 <img src="14-workflow_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
-But, later we delete the line creating `cyl4_df`. The plot will still work because `cyl4_df` is already in our environment but the file will not knit because we are missing that crucial line of code. Restarting `R` can help us identify this issue because the plot will no longer work and we will get a sensible error message like `cyl4_df` not found.
+But, later we delete the line creating `cyl4_df`. The plot will still work because `cyl4_df` is already in our environment but the file will not render because we are missing that crucial line of code. Restarting `R` can help us identify this issue because the plot will no longer work and we will get a sensible error message like `cyl4_df` not found.
 
 ### Exercises {#exercise-14-4}
 

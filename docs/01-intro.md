@@ -6,7 +6,7 @@ __Goals__:
 
 1. Use `R Studio` on the server
 
-2. Use `R Markdown` and code chunks
+2. Use `Quarto` and code chunks
 
 3. Load in data to `R Studio`
 
@@ -16,7 +16,7 @@ __Goals__:
 
 ## Intro to `R` and `R Studio`
 
-`R` is a statistical computing software used by many statisticians as well as professionals in other fields, such as biology, ecology, business, and psychology. The goal of Week 0 is to provide basic familiarity with `R` and `R Markdown`, which we will be using for the entire semester.
+`R` is a statistical computing software used by many statisticians as well as professionals in other fields, such as biology, ecology, business, and psychology. The goal of Week 0 is to provide basic familiarity with `R` and `Quarto`, which we will be using for the entire semester.
 
 Open `R Studio` on the SLU `R Studio` server at
 <a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a> and create a folder called STAT_234 or some other meaningful title to you. Note that you must be on campus to use the `R Studio` server, unless you use a VPN. Directions on how to set-up VPN are
@@ -29,11 +29,11 @@ Then, create an `R Project` by Clicking File -> New Project -> Existing  Directo
 
 Within this folder, click the _New Folder_ button in your bottom-left window and name a new folder _data_. Then, download the data.zip file from Canvas (in Resources). Upload that file in to the server by clicking "Upload" in the bottom right panel. In the dialog box that appears, you can click "Choose File" and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.
 
-Finally, we want to create a new `R Markdown` file by clicking File -> New File -> `R Markdown`. You can give your new `R Markdown` file a title if you want, and then click okay.
+Finally, we want to create a new `Quarto` file by clicking File -> New File -> `Quarto Document`. You can give your new `Quarto` file a title if you want, and then click okay.
 
-Before moving on, click the **Knit** button in the top-left window at the top of the menu bar (look for the knitting needle icon). Make sure that the file knits to a pretty-looking .html file. The newly knitted .html file can now be found in your folder with your `R` project.
+Before moving on, click the **Render** button in the top-left window at the top of the menu bar. Make sure that the file renders to a pretty-looking .html file. The newly rendered .html file can now be found in your folder with your `R` project.
 
-## What are `R`, `R Studio`, and `R Markdown`?
+## What are `R`, `R Studio`, and `Quarto`?
 
 The distinction between the 3 will become more clear later on. For now, 
 
@@ -41,7 +41,7 @@ The distinction between the 3 will become more clear later on. For now,
 
 * `R Studio` is a nice IDE (Integrated Development Environment) for `R` that has a lot of convenient features. Think of this as just a convenient User Interface.
 
-* `R Mardkown` allows users to mix regular Microsoft-Word-style text with code. The `.Rmd` file ending denotes an `R Mardkown` file. `R Markdown` has many options that we will use heavily throughout the semester, but there's no need to worry about these now.
+* `Quarto` allows users to mix regular Microsoft-Word-style text with code. The `.qmd` file ending denotes an `Quarto` file. `Quarto` has many options that we will use heavily throughout the semester, but there's no need to worry about these now.
 
 ### `R` Packages and the `tidyverse`
 
@@ -60,9 +60,9 @@ The `tidyverse` is a series of `R` packages that are useful for data science. In
 
 We will use packages outside of the core `tidyverse` as well, but the `tidyverse` is the main focus. 
 
-We are going to change one option before proceeding. In the top file menu, click Tools -> Global Options -> R Markdown and then uncheck the box that says "Show output inline for all R Markdown documents". Don't worry about this for now, but changing this option just means that code results will appear in the bottom-left window and graphs will appear in the bottom-right window of `R Studio`.
+<!-- We are going to change one option before proceeding. In the top file menu, click Tools -> Global Options -> R Markdown and then uncheck the box that says "Show output inline for all R Markdown documents". Don't worry about this for now, but changing this option just means that code results will appear in the bottom-left window and graphs will appear in the bottom-right window of `R Studio`. -->
 
-## Putting Code in a `.Rmd` File
+## Putting Code in a `.qmd` File
 
 The first thing that we will do that involves code is to load a package into `R` with the `library()` function. A package is just an `R` add-on that lets you do more than you could with just `R` on its own. Load the `tidyverse` package into `R` by typing and running the `library(tidyverse)` line. To create a code chunk, click _Insert_ -> `R`. Within this code chunk, type in `library(tidyverse)` and run the code by either
 
@@ -466,17 +466,17 @@ Finally, you can add a comment to a code chunk with the `#` symbol (I always use
 
 Comments are most useful for longer code chunks, as they allow you to remember why you did something. They also tell someone whom you've shared your code with why you did something.
 
-Save this file by clicking File -> Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit button in the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!
+Save this file by clicking File -> Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Render this file by clicking the Render button in the top-left window. You should see a .html file pop up, if there are no errors in your code!
 
 ## Chapter Exercises {#chapexercise-1}
 
 __Note__: Usually, exercises will ask you to write code on your own using the week's chapter as a reference. However, for this initial chapter, we will do something a little different.
 
-Open a new .Rmd file (File -> New File -> `R Markdown` -> OK) and delete the text explaining what `R Markdown` is in lines 10 and below. Then, complete the following exercises.
+Open a new .qmd file (File -> New File -> `Quarto Document` -> OK) and delete the text explaining what `Quarto` is in lines 10 and below. Then, complete the following exercises.
 
-Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `R Markdown` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
+Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `Quarto` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
 
-Answer the following questions by typing answers in your .Rmd document. You should not need to make any new code chunks, as the questions don't ask you to do any coding! 
+Answer the following questions by typing answers in your .qmd document. You should not need to make any new code chunks, as the questions don't ask you to do any coding! 
 
 1. What are the two major areas that the `tidyverse` __doesn't__ provide tools for?
 
@@ -486,7 +486,7 @@ Answer the following questions by typing answers in your .Rmd document. You shou
 
 4. In about 2 sentences, describe the data science "cycle" given in the diagram at the top of page 3. 
 
-Exercise 2. You may continue to use the same .Rmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
+Exercise 2. You may continue to use the same .qmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
 
 a. What is your name and what is your class year (first-year, sophomore, junior, senior)?
 
@@ -514,13 +514,13 @@ l. Take a moment to scroll through the advice from students who took this course
 
 <br>
 
-Knit your .Rmd file into an .html file and submit your knitted .html file to Canvas. If your file won't knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:
+Render your .qmd file into an .html file and submit your rendered .html file to Canvas. If your file won't render, then submit the .qmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:
 
-1. Click the checkbox next to your knitted .html file. 
+1. Click the checkbox next to your rendered .html file. 
 
 2. Click the Gear Icon "More" -> Export
 
-3. If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .Rmd).
+3. If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .qmd).
 
 4. After you export it, the file should appear in your downloads folder. Now, go to Canvas -> Assignments and complete the upload process.
 

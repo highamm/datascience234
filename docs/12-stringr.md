@@ -206,9 +206,9 @@ If you were doing one of these analyses, there are lots of cool functions in `ti
 
 ## Basic Sentiment Analysis
 
-We will use a provided .Rmd file to replicate a sentiment analysis on Trump's twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.
+We will use a provided .qmd file to replicate a sentiment analysis on Trump's twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.
 
-The .Rmd file used for this is posted on Canvas. We will see more uses of `stringr` for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike all previous sections, you will not be expected to do a sentiment analysis on your own.
+The .qmd file used for this is posted on Canvas. We will see more uses of `stringr` for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike all previous sections, you will not be expected to do a sentiment analysis on your own.
 
 <!-- see below: sentiment analysis for the friends package -->
 

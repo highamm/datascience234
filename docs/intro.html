@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 2 Getting Started with R and R Studio | STAT 234: Data Science</title>
 <meta name="author" content="Matt Higham">
-<meta name="description" content="Goals: Use R Studio on the server Use R Markdown and code chunks Load in data to R Studio Run code and change a few things within that code Correct some common errors when running code in R  2.1...">
+<meta name="description" content="Goals: Use R Studio on the server Use Quarto and code chunks Load in data to R Studio Run code and change a few things within that code Correct some common errors when running code in R  2.1 Intro...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content=" 2 Getting Started with R and R Studio | STAT 234: Data Science">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://highamm.github.io/datascience234/intro.html">
-<meta property="og:description" content="Goals: Use R Studio on the server Use R Markdown and code chunks Load in data to R Studio Run code and change a few things within that code Correct some common errors when running code in R  2.1...">
+<meta property="og:description" content="Goals: Use R Studio on the server Use Quarto and code chunks Load in data to R Studio Run code and change a few things within that code Correct some common errors when running code in R  2.1 Intro...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 2 Getting Started with R and R Studio | STAT 234: Data Science">
-<meta name="twitter:description" content="Goals: Use R Studio on the server Use R Markdown and code chunks Load in data to R Studio Run code and change a few things within that code Correct some common errors when running code in R  2.1...">
+<meta name="twitter:description" content="Goals: Use R Studio on the server Use Quarto and code chunks Load in data to R Studio Run code and change a few things within that code Correct some common errors when running code in R  2.1 Intro...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -49,7 +49,7 @@
 <li><a class="active" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
 <li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
 <li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
-<li><a class="" href="communication-with-rmarkdown.html"><span class="header-section-number">5</span> Communication with RMarkdown</a></li>
+<li><a class="" href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></li>
 <li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
 <li class="book-part">Data Wrangling</li>
 <li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
@@ -78,7 +78,7 @@
 <p><strong>Goals</strong>:</p>
 <ol style="list-style-type: decimal">
 <li><p>Use <code>R Studio</code> on the server</p></li>
-<li><p>Use <code>R Markdown</code> and code chunks</p></li>
+<li><p>Use <code>Quarto</code> and code chunks</p></li>
 <li><p>Load in data to <code>R Studio</code></p></li>
 <li><p>Run code and change a few things within that code</p></li>
 <li><p>Correct some common errors when running code in <code>R</code></p></li>
@@ -87,7 +87,7 @@
 <h2>
 <span class="header-section-number">2.1</span> Intro to <code>R</code> and <code>R Studio</code><a class="anchor" aria-label="anchor" href="#intro-to-r-and-r-studio"><i class="fas fa-link"></i></a>
 </h2>
-<p><code>R</code> is a statistical computing software used by many statisticians as well as professionals in other fields, such as biology, ecology, business, and psychology. The goal of Week 0 is to provide basic familiarity with <code>R</code> and <code>R Markdown</code>, which we will be using for the entire semester.</p>
+<p><code>R</code> is a statistical computing software used by many statisticians as well as professionals in other fields, such as biology, ecology, business, and psychology. The goal of Week 0 is to provide basic familiarity with <code>R</code> and <code>Quarto</code>, which we will be using for the entire semester.</p>
 <p>Open <code>R Studio</code> on the SLU <code>R Studio</code> server at
 <a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a> and create a folder called STAT_234 or some other meaningful title to you. Note that you must be on campus to use the <code>R Studio</code> server, unless you use a VPN. Directions on how to set-up VPN are
 <a href="https://infotech.stlawu.edu/support/content/11269" target="_blank">https://infotech.stlawu.edu/support/content/11269 </a>
@@ -95,18 +95,18 @@
 <p>Next, create a subfolder within your STAT_234 folder. Title it <em>Notes</em> (or whatever you want really).</p>
 <p>Then, create an <code>R Project</code> by Clicking File -&gt; New Project -&gt; Existing Directory, navigate to the <em>Notes</em> folder, and click <em>Create Project</em>.</p>
 <p>Within this folder, click the <em>New Folder</em> button in your bottom-left window and name a new folder <em>data</em>. Then, download the data.zip file from Canvas (in Resources). Upload that file in to the server by clicking “Upload” in the bottom right panel. In the dialog box that appears, you can click “Choose File” and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.</p>
-<p>Finally, we want to create a new <code>R Markdown</code> file by clicking File -&gt; New File -&gt; <code>R Markdown</code>. You can give your new <code>R Markdown</code> file a title if you want, and then click okay.</p>
-<p>Before moving on, click the <strong>Knit</strong> button in the top-left window at the top of the menu bar (look for the knitting needle icon). Make sure that the file knits to a pretty-looking .html file. The newly knitted .html file can now be found in your folder with your <code>R</code> project.</p>
+<p>Finally, we want to create a new <code>Quarto</code> file by clicking File -&gt; New File -&gt; <code>Quarto Document</code>. You can give your new <code>Quarto</code> file a title if you want, and then click okay.</p>
+<p>Before moving on, click the <strong>Render</strong> button in the top-left window at the top of the menu bar. Make sure that the file renders to a pretty-looking .html file. The newly rendered .html file can now be found in your folder with your <code>R</code> project.</p>
 </div>
-<div id="what-are-r-r-studio-and-r-markdown" class="section level2" number="2.2">
+<div id="what-are-r-r-studio-and-quarto" class="section level2" number="2.2">
 <h2>
-<span class="header-section-number">2.2</span> What are <code>R</code>, <code>R Studio</code>, and <code>R Markdown</code>?<a class="anchor" aria-label="anchor" href="#what-are-r-r-studio-and-r-markdown"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2</span> What are <code>R</code>, <code>R Studio</code>, and <code>Quarto</code>?<a class="anchor" aria-label="anchor" href="#what-are-r-r-studio-and-quarto"><i class="fas fa-link"></i></a>
 </h2>
 <p>The distinction between the 3 will become more clear later on. For now,</p>
 <ul>
 <li><p><code>R</code> is a statistical coding software used heavily for data analysis and statistical procedures.</p></li>
 <li><p><code>R Studio</code> is a nice IDE (Integrated Development Environment) for <code>R</code> that has a lot of convenient features. Think of this as just a convenient User Interface.</p></li>
-<li><p><code>R Mardkown</code> allows users to mix regular Microsoft-Word-style text with code. The <code>.Rmd</code> file ending denotes an <code>R Mardkown</code> file. <code>R Markdown</code> has many options that we will use heavily throughout the semester, but there’s no need to worry about these now.</p></li>
+<li><p><code>Quarto</code> allows users to mix regular Microsoft-Word-style text with code. The <code>.qmd</code> file ending denotes an <code>Quarto</code> file. <code>Quarto</code> has many options that we will use heavily throughout the semester, but there’s no need to worry about these now.</p></li>
 </ul>
 <div id="r-packages-and-the-tidyverse" class="section level3" number="2.2.1">
 <h3>
@@ -133,12 +133,12 @@
 <code>purrr</code>, for functional programming, the only one of these core 8 that we won’t get to use</li>
 </ol>
 <p>We will use packages outside of the core <code>tidyverse</code> as well, but the <code>tidyverse</code> is the main focus.</p>
-<p>We are going to change one option before proceeding. In the top file menu, click Tools -&gt; Global Options -&gt; R Markdown and then uncheck the box that says “Show output inline for all R Markdown documents”. Don’t worry about this for now, but changing this option just means that code results will appear in the bottom-left window and graphs will appear in the bottom-right window of <code>R Studio</code>.</p>
+<!-- We are going to change one option before proceeding. In the top file menu, click Tools -> Global Options -> R Markdown and then uncheck the box that says "Show output inline for all R Markdown documents". Don't worry about this for now, but changing this option just means that code results will appear in the bottom-left window and graphs will appear in the bottom-right window of `R Studio`. -->
 </div>
 </div>
-<div id="putting-code-in-a-.rmd-file" class="section level2" number="2.3">
+<div id="putting-code-in-a-.qmd-file" class="section level2" number="2.3">
 <h2>
-<span class="header-section-number">2.3</span> Putting Code in a <code>.Rmd</code> File<a class="anchor" aria-label="anchor" href="#putting-code-in-a-.rmd-file"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3</span> Putting Code in a <code>.qmd</code> File<a class="anchor" aria-label="anchor" href="#putting-code-in-a-.qmd-file"><i class="fas fa-link"></i></a>
 </h2>
 <p>The first thing that we will do that involves code is to load a package into <code>R</code> with the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function. A package is just an <code>R</code> add-on that lets you do more than you could with just <code>R</code> on its own. Load the <code>tidyverse</code> package into <code>R</code> by typing and running the <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> line. To create a code chunk, click <em>Insert</em> -&gt; <code>R</code>. Within this code chunk, type in <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> and run the code by either</p>
 <ol style="list-style-type: decimal">
@@ -457,23 +457,23 @@ We might be able to better answer the original question numerically by computing
 <span><span class="fl">7</span> <span class="op">*</span> <span class="fl">42</span></span>
 <span><span class="co">#&gt; [1] 294</span></span></code></pre></div>
 <p>Comments are most useful for longer code chunks, as they allow you to remember why you did something. They also tell someone whom you’ve shared your code with why you did something.</p>
-<p>Save this file by clicking File -&gt; Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Knit this file by clicking the Knit button in the top-left window (with the knitting needles). You should see a .html file pop up, if there are no errors in your code!</p>
+<p>Save this file by clicking File -&gt; Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Render this file by clicking the Render button in the top-left window. You should see a .html file pop up, if there are no errors in your code!</p>
 </div>
 <div id="chapexercise-1" class="section level2" number="2.7">
 <h2>
 <span class="header-section-number">2.7</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-1"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Note</strong>: Usually, exercises will ask you to write code on your own using the week’s chapter as a reference. However, for this initial chapter, we will do something a little different.</p>
-<p>Open a new .Rmd file (File -&gt; New File -&gt; <code>R Markdown</code> -&gt; OK) and delete the text explaining what <code>R Markdown</code> is in lines 10 and below. Then, complete the following exercises.</p>
-<p>Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the <code>tidyverse</code>, and answer the questions below in your <code>R Markdown</code> file. I’m imagining this whole exercise should only take you ~ 20-25 minutes.</p>
-<p>Answer the following questions by typing answers in your .Rmd document. You should not need to make any new code chunks, as the questions don’t ask you to do any coding!</p>
+<p>Open a new .qmd file (File -&gt; New File -&gt; <code>Quarto Document</code> -&gt; OK) and delete the text explaining what <code>Quarto</code> is in lines 10 and below. Then, complete the following exercises.</p>
+<p>Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the <code>tidyverse</code>, and answer the questions below in your <code>Quarto</code> file. I’m imagining this whole exercise should only take you ~ 20-25 minutes.</p>
+<p>Answer the following questions by typing answers in your .qmd document. You should not need to make any new code chunks, as the questions don’t ask you to do any coding!</p>
 <ol style="list-style-type: decimal">
 <li><p>What are the two major areas that the <code>tidyverse</code> <strong>doesn’t</strong> provide tools for?</p></li>
 <li><p>How do the authors define “tidy”?</p></li>
 <li><p>What does it mean for the <code>tidyverse</code> to be “human-centred”?</p></li>
 <li><p>In about 2 sentences, describe the data science “cycle” given in the diagram at the top of page 3.</p></li>
 </ol>
-<p>Exercise 2. You may continue to use the same .Rmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.</p>
+<p>Exercise 2. You may continue to use the same .qmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>What is your name and what is your class year (first-year, sophomore, junior, senior)?</p></li>
 <li><p>What is/are your major(s) and minor(s), either actual or intended?</p></li>
@@ -489,11 +489,11 @@ We might be able to better answer the original question numerically by computing
 <li><p>Take a moment to scroll through the advice from students who took this course in the Fall semester of 2021. What is one piece of advice that you hope to apply to our course this semester?</p></li>
 </ol>
 <p><br></p>
-<p>Knit your .Rmd file into an .html file and submit your knitted .html file to Canvas. If your file won’t knit, then submit the .Rmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:</p>
+<p>Render your .qmd file into an .html file and submit your rendered .html file to Canvas. If your file won’t render, then submit the .qmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:</p>
 <ol style="list-style-type: decimal">
-<li><p>Click the checkbox next to your knitted .html file.</p></li>
+<li><p>Click the checkbox next to your rendered .html file.</p></li>
 <li><p>Click the Gear Icon “More” -&gt; Export</p></li>
-<li><p>If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .Rmd).</p></li>
+<li><p>If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .qmd).</p></li>
 <li><p>After you export it, the file should appear in your downloads folder. Now, go to Canvas -&gt; Assignments and complete the upload process.</p></li>
 </ol>
 <p>Nice work: we will dive into <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> in the <code>ggplot2</code> package next!</p>
@@ -516,9 +516,9 @@ We might be able to better answer the original question numerically by computing
 <li><a class="nav-link" href="#intro"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
 <li><a class="nav-link" href="#intro-to-r-and-r-studio"><span class="header-section-number">2.1</span> Intro to R and R Studio</a></li>
 <li>
-<a class="nav-link" href="#what-are-r-r-studio-and-r-markdown"><span class="header-section-number">2.2</span> What are R, R Studio, and R Markdown?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#r-packages-and-the-tidyverse"><span class="header-section-number">2.2.1</span> R Packages and the tidyverse</a></li></ul>
+<a class="nav-link" href="#what-are-r-r-studio-and-quarto"><span class="header-section-number">2.2</span> What are R, R Studio, and Quarto?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#r-packages-and-the-tidyverse"><span class="header-section-number">2.2.1</span> R Packages and the tidyverse</a></li></ul>
 </li>
-<li><a class="nav-link" href="#putting-code-in-a-.rmd-file"><span class="header-section-number">2.3</span> Putting Code in a .Rmd File</a></li>
+<li><a class="nav-link" href="#putting-code-in-a-.qmd-file"><span class="header-section-number">2.3</span> Putting Code in a .qmd File</a></li>
 <li>
 <a class="nav-link" href="#alcohol-data-example"><span class="header-section-number">2.4</span> Alcohol Data Example</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-1-1"><span class="header-section-number">2.4.1</span> Exercises</a></li></ul>
 </li>
@@ -544,7 +544,7 @@ We might be able to better answer the original question numerically by computing
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-10.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

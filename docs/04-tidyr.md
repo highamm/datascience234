@@ -40,7 +40,7 @@ We will begin by focusing on the first characteristic: every variable in a the d
 
 ## `separate()` and `unite()` Columns
 
-In a fresh .Rmd file (File -> New File -> R Markdown) that is in your Notes project, copy and paste the following code into an `R` chunk:
+In a fresh .qmd file (File -> New File -> Quarto) that is in your Notes project, copy and paste the following code into an `R` chunk:
 
 
 ```r
