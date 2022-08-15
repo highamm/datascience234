@@ -218,7 +218,7 @@ The .qmd file used for this is posted on Canvas. We will see more uses of `strin
 
 ## Introduction to `stringr`
 
-In the previous examples, the string data that we had consisted primarily of __words__. The tools in `tidytext` make working with data consisting of words not too painful. However, some data exists as strings that are __not__ words. For a non-trivial example, consider data sets obtained from <https://github.com/JeffSackmann/tennis_MatchChartingProject>, a repository for professional tennis match charting put together by Jeff Sackmann.
+In the previous examples, the string data that we had consisted primarily of __words__. The tools in `tidytext` make working with data consisting of words not too painful. However, some data exists as strings that are __not__ words. For a non-trivial example, consider data sets obtained from <https://github.com/JeffSackmann/tennis_MatchChartingProject>, a repository for professional tennis match charting put together by Jeff Sackmann. Some of the following code was modified from a project completed by James Wolpe in a data visualization course.
 
 From this repository, I have put together a data set on one particular tennis match to make it a bit easier for us to get started. The match I have chosen is the 2021 U.S. Open Final between Daniil Medvedev and Novak Djokovic. Why this match? This was arguably the most important match of Djokovic's career: if he won, he would win all four grand slams in a calendar year. I don't like Djokovic and he lost so looking back at the match brings me joy. Read in the data set with:
 
