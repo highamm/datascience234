@@ -17,8 +17,12 @@ academic-dishonesty
 tentative-schedule
 intro
 intro-to-r-and-r-studio
+installing-r-and-r-studio
+relevant-websites
+creating-an-r-project
 what-are-r-r-studio-and-quarto
 r-packages-and-the-tidyverse
+installing-r-packages
 putting-code-in-a-.qmd-file
 alcohol-data-example
 exercise-1-1
@@ -109,12 +113,8 @@ ggplot2-communication-s
 chapexercise-5-S
 rcode-5
 workflow
-installing-r-and-r-studio
-installing-r-packages
-exercise-14-1
 r-projects-and-file-organization
 exercise-14-2
-code-style
 names
 code-readability
 exercise-14-3
@@ -129,7 +129,6 @@ reprexes-and-tibble
 exercise-14-6
 chapexercise-14
 solutions-14
-installing-r-and-r-studio-s
 r-projects-and-file-organization-s
 code-style-s
 debugging-code-s

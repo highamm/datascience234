@@ -18,20 +18,56 @@ __Goals__:
 
 `R` is a statistical computing software used by many statisticians as well as professionals in other fields, such as biology, ecology, business, and psychology. The goal of Week 0 is to provide basic familiarity with `R` and `Quarto`, which we will be using for the entire semester.
 
-Open `R Studio` on the SLU `R Studio` server at
-<a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a> and create a folder called STAT_234 or some other meaningful title to you. Note that you must be on campus to use the `R Studio` server, unless you use a VPN. Directions on how to set-up VPN are
-<a href="https://infotech.stlawu.edu/support/content/11269" target="_blank">https://infotech.stlawu.edu/support/content/11269 </a>
-<> for Macs and <a href="https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118" target="_blank">https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118 </a> for Windows.
+### Installing `R` and `R Studio`
 
-Next, create a subfolder within your STAT_234 folder. Title it _Notes_ (or whatever you want really). 
+The `R Studio` server is a computer that is set-up to carry out any `R`-based analyses for students with remote access to the computer (in our case, through SLU Login credentials). It might be helpful to think about the server as a large machine with no keyboard and no screen: it's only purpose is to execute the code. You may have used the `R Studio` server in a different stats course. The server does have some benefits, such as 
 
-Then, create an `R Project` by Clicking File -> New Project -> Existing  Directory,  navigate to the _Notes_ folder, and click _Create Project_. 
+* using the server ensures that we are all using the same version of `R`. In theory, if one person gets an error, then everyone should get that same error.
 
-Within this folder, click the _New Folder_ button in your bottom-left window and name a new folder _data_. Then, download the data.zip file from Canvas (in Resources). Upload that file in to the server by clicking "Upload" in the bottom right panel. In the dialog box that appears, you can click "Choose File" and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.
+* installing `R` and `R Studio` on your personal device is much easier after you've had some experience using it through the server.
+
+* you don't need a computer that is capable of running `R` to use the server (you can use a tablet or a Chromebook since the server does all of the actual computation).
+
+We, however, will move away from the server and install `R` and `R Studio` on our own devices. Though the server does have some advantages, there are also some disadvantages:
+
+* you won't have your SLU login forever, so, if you wanted to use `R` post graduation, you'd need to know how to install it.
+
+* you haven't had experience installing `R` packages. This is quite easy to do, but I've installed all necessary `R` packages on the server for us so you haven't had to worry about this step.
+
+* the server requires good Internet access and also has the potential to crash.
+
+In this next section, we will work on installing `R` and `R Studio` to your personal laptop. The following videos provide instructions on how to install `R` and `R Studio` to your laptop computer. It will be easiest if you complete all of these steps consecutively in one sitting.
+
+<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=-WNEPGMpzns" target="_blank">video on installing R</a>. </input>
+
+<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=urw6AMOzAUo" target="_blank">video on installing R Studio</a>. </input>
+
+<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=IaONPkvjNZM" target="_blank">video on installing R packages and changing other options</a>. </input>
+
+### Relevant Websites
+
+* __Install `R`__: <a href="http://lib.stat.cmu.edu/R/CRAN/" target="_blank">http://lib.stat.cmu.edu/R/CRAN/</a>
+
+* __Install `R Studio`__ (the __free__ option): <a href="https://www.rstudio.com/products/rstudio/download/" target="_blank">https://www.rstudio.com/products/rstudio/download/</a>
+
+### Creating an `R` Project
+
+After you have both `R` and `R Studio` installed, open `R Studio` in your Applications. Create a new folder on your Desktop (or some other place that is easy for you to access and remember). Make sure the folder name has no spaces in it.
+
+Then, in `R Studio`, create an `R Project` by Clicking File -> New Project -> Existing  Directory. Navigate to the _DATA234_ folder you made, and click _Create Project_. You should see a new window of `R Studio` open up.
+
+Next, we want to put some data in a folder in the same folder that has our newly created `R` Project. Download the `data.zip` file from Canvas (in Resources) and move the zip file to the folder with your `R` project (you can drag and drop from downloads, copy/paste from downloads, or move it with whatever method you usually move files with). Clicking the data.zip file (either in a window or in the bottom-left window of `R Studio`) will created a `data` folder that has data sets we want to use throughout the semester.
 
 Finally, we want to create a new `Quarto` file by clicking File -> New File -> `Quarto Document`. You can give your new `Quarto` file a title if you want, and then click okay.
 
 Before moving on, click the **Render** button in the top-left window at the top of the menu bar. Make sure that the file renders to a pretty-looking .html file. The newly rendered .html file can now be found in your folder with your `R` project.
+
+
+
+<!-- Open `R Studio` on the SLU `R Studio` server at -->
+<!-- <a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a> and create a folder called STAT_234 or some other meaningful title to you. Note that you must be on campus to use the `R Studio` server, unless you use a VPN. Directions on how to set-up VPN are -->
+<!-- <a href="https://infotech.stlawu.edu/support/content/11269" target="_blank">https://infotech.stlawu.edu/support/content/11269 </a> -->
+<!-- <> for Macs and <a href="https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118" target="_blank">https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118 </a> for Windows. -->
 
 ## What are `R`, `R Studio`, and `Quarto`?
 
@@ -61,6 +97,16 @@ The `tidyverse` is a series of `R` packages that are useful for data science. In
 We will use packages outside of the core `tidyverse` as well, but the `tidyverse` is the main focus. 
 
 <!-- We are going to change one option before proceeding. In the top file menu, click Tools -> Global Options -> R Markdown and then uncheck the box that says "Show output inline for all R Markdown documents". Don't worry about this for now, but changing this option just means that code results will appear in the bottom-left window and graphs will appear in the bottom-right window of `R Studio`. -->
+
+### Installing `R` Packages
+
+On the `R Studio` server, either myself or one of the other statistics faculty members have installed all packages that we've needed to use on the server globally. However, if you want to use a package that isn't installed on the server, or, you want to use a package using `R Studio` on your own personal computer, you need to install it first. 
+
+Installation only needs to happen once (or until you upgrade `R`, which usually doesn't happen too often), whereas the package needs to be loaded with `library()` __every__ time you open `R`. The analogy of a  <a href="https://hbctraining.github.io/Intro-to-R/img/install_vs_library.jpeg" target="_blank">lightbulb might be helpful</a>. You only need to screw in the lightbulb into a socket once, but, every time you want the lightbulb to provide light, you need to flip the light switch.
+
+In the lightbulb analogy, what does putting the lightbulb into the socket correspond to? What does flipping the light switch correspond to?
+
+Now that you have `R` on your own computer, you'll need to install __all__ packages that you want to use (but, remember that you just need to install each package once). 
 
 ## Putting Code in a `.qmd` File
 
@@ -405,15 +451,7 @@ l. Take a moment to scroll through the advice from students who took this course
 
 <br>
 
-Render your .qmd file into an .html file and submit your rendered .html file to Canvas. If your file won't render, then submit the .qmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:
-
-1. Click the checkbox next to your rendered .html file. 
-
-2. Click the Gear Icon "More" -> Export
-
-3. If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .qmd).
-
-4. After you export it, the file should appear in your downloads folder. Now, go to Canvas -> Assignments and complete the upload process.
+Render your .qmd file into an .html file and submit your rendered .html file to Canvas. If your file won't render, then submit the .qmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. 
 
 Nice work: we will dive into `ggplot()` in the `ggplot2` package next!
 

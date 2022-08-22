@@ -88,15 +88,50 @@
 <span class="header-section-number">2.1</span> Intro to <code>R</code> and <code>R Studio</code><a class="anchor" aria-label="anchor" href="#intro-to-r-and-r-studio"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>R</code> is a statistical computing software used by many statisticians as well as professionals in other fields, such as biology, ecology, business, and psychology. The goal of Week 0 is to provide basic familiarity with <code>R</code> and <code>Quarto</code>, which we will be using for the entire semester.</p>
-<p>Open <code>R Studio</code> on the SLU <code>R Studio</code> server at
-<a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a> and create a folder called STAT_234 or some other meaningful title to you. Note that you must be on campus to use the <code>R Studio</code> server, unless you use a VPN. Directions on how to set-up VPN are
-<a href="https://infotech.stlawu.edu/support/content/11269" target="_blank">https://infotech.stlawu.edu/support/content/11269 </a>
-&lt;&gt; for Macs and <a href="https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118" target="_blank">https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118 </a> for Windows.</p>
-<p>Next, create a subfolder within your STAT_234 folder. Title it <em>Notes</em> (or whatever you want really).</p>
-<p>Then, create an <code>R Project</code> by Clicking File -&gt; New Project -&gt; Existing Directory, navigate to the <em>Notes</em> folder, and click <em>Create Project</em>.</p>
-<p>Within this folder, click the <em>New Folder</em> button in your bottom-left window and name a new folder <em>data</em>. Then, download the data.zip file from Canvas (in Resources). Upload that file in to the server by clicking “Upload” in the bottom right panel. In the dialog box that appears, you can click “Choose File” and navigate to the folder where you saved the zip file (probably Downloads by default). The zip file will automatically expand once uploaded. It includes data sets that we will use throughout the course.</p>
+<div id="installing-r-and-r-studio" class="section level3" number="2.1.1">
+<h3>
+<span class="header-section-number">2.1.1</span> Installing <code>R</code> and <code>R Studio</code><a class="anchor" aria-label="anchor" href="#installing-r-and-r-studio"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>R Studio</code> server is a computer that is set-up to carry out any <code>R</code>-based analyses for students with remote access to the computer (in our case, through SLU Login credentials). It might be helpful to think about the server as a large machine with no keyboard and no screen: it’s only purpose is to execute the code. You may have used the <code>R Studio</code> server in a different stats course. The server does have some benefits, such as</p>
+<ul>
+<li><p>using the server ensures that we are all using the same version of <code>R</code>. In theory, if one person gets an error, then everyone should get that same error.</p></li>
+<li><p>installing <code>R</code> and <code>R Studio</code> on your personal device is much easier after you’ve had some experience using it through the server.</p></li>
+<li><p>you don’t need a computer that is capable of running <code>R</code> to use the server (you can use a tablet or a Chromebook since the server does all of the actual computation).</p></li>
+</ul>
+<p>We, however, will move away from the server and install <code>R</code> and <code>R Studio</code> on our own devices. Though the server does have some advantages, there are also some disadvantages:</p>
+<ul>
+<li><p>you won’t have your SLU login forever, so, if you wanted to use <code>R</code> post graduation, you’d need to know how to install it.</p></li>
+<li><p>you haven’t had experience installing <code>R</code> packages. This is quite easy to do, but I’ve installed all necessary <code>R</code> packages on the server for us so you haven’t had to worry about this step.</p></li>
+<li><p>the server requires good Internet access and also has the potential to crash.</p></li>
+</ul>
+<p>In this next section, we will work on installing <code>R</code> and <code>R Studio</code> to your personal laptop. The following videos provide instructions on how to install <code>R</code> and <code>R Studio</code> to your laptop computer. It will be easiest if you complete all of these steps consecutively in one sitting.</p>
+<p><input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=-WNEPGMpzns" target="_blank">video on installing R</a>. </p>
+<p><input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=urw6AMOzAUo" target="_blank">video on installing R Studio</a>. </p>
+<p><input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=IaONPkvjNZM" target="_blank">video on installing R packages and changing other options</a>. </p>
+</div>
+<div id="relevant-websites" class="section level3" number="2.1.2">
+<h3>
+<span class="header-section-number">2.1.2</span> Relevant Websites<a class="anchor" aria-label="anchor" href="#relevant-websites"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p><strong>Install <code>R</code></strong>: <a href="http://lib.stat.cmu.edu/R/CRAN/" target="_blank">http://lib.stat.cmu.edu/R/CRAN/</a></p></li>
+<li><p><strong>Install <code>R Studio</code></strong> (the <strong>free</strong> option): <a href="https://www.rstudio.com/products/rstudio/download/" target="_blank">https://www.rstudio.com/products/rstudio/download/</a></p></li>
+</ul>
+</div>
+<div id="creating-an-r-project" class="section level3" number="2.1.3">
+<h3>
+<span class="header-section-number">2.1.3</span> Creating an <code>R</code> Project<a class="anchor" aria-label="anchor" href="#creating-an-r-project"><i class="fas fa-link"></i></a>
+</h3>
+<p>After you have both <code>R</code> and <code>R Studio</code> installed, open <code>R Studio</code> in your Applications. Create a new folder on your Desktop (or some other place that is easy for you to access and remember). Make sure the folder name has no spaces in it.</p>
+<p>Then, in <code>R Studio</code>, create an <code>R Project</code> by Clicking File -&gt; New Project -&gt; Existing Directory. Navigate to the <em>DATA234</em> folder you made, and click <em>Create Project</em>. You should see a new window of <code>R Studio</code> open up.</p>
+<p>Next, we want to put some data in a folder in the same folder that has our newly created <code>R</code> Project. Download the <code>data.zip</code> file from Canvas (in Resources) and move the zip file to the folder with your <code>R</code> project (you can drag and drop from downloads, copy/paste from downloads, or move it with whatever method you usually move files with). Clicking the data.zip file (either in a window or in the bottom-left window of <code>R Studio</code>) will created a <code>data</code> folder that has data sets we want to use throughout the semester.</p>
 <p>Finally, we want to create a new <code>Quarto</code> file by clicking File -&gt; New File -&gt; <code>Quarto Document</code>. You can give your new <code>Quarto</code> file a title if you want, and then click okay.</p>
 <p>Before moving on, click the <strong>Render</strong> button in the top-left window at the top of the menu bar. Make sure that the file renders to a pretty-looking .html file. The newly rendered .html file can now be found in your folder with your <code>R</code> project.</p>
+<!-- Open `R Studio` on the SLU `R Studio` server at -->
+<!-- <a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a> and create a folder called STAT_234 or some other meaningful title to you. Note that you must be on campus to use the `R Studio` server, unless you use a VPN. Directions on how to set-up VPN are -->
+<!-- <a href="https://infotech.stlawu.edu/support/content/11269" target="_blank">https://infotech.stlawu.edu/support/content/11269 </a> -->
+<!-- <> for Macs and <a href="https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118" target="_blank">https://stlawu.teamdynamix.com/TDClient/1805/Portal/KB/ArticleDet?ID=55118 </a> for Windows. -->
+</div>
 </div>
 <div id="what-are-r-r-studio-and-quarto" class="section level2" number="2.2">
 <h2>
@@ -134,6 +169,15 @@
 </ol>
 <p>We will use packages outside of the core <code>tidyverse</code> as well, but the <code>tidyverse</code> is the main focus.</p>
 <!-- We are going to change one option before proceeding. In the top file menu, click Tools -> Global Options -> R Markdown and then uncheck the box that says "Show output inline for all R Markdown documents". Don't worry about this for now, but changing this option just means that code results will appear in the bottom-left window and graphs will appear in the bottom-right window of `R Studio`. -->
+</div>
+<div id="installing-r-packages" class="section level3" number="2.2.2">
+<h3>
+<span class="header-section-number">2.2.2</span> Installing <code>R</code> Packages<a class="anchor" aria-label="anchor" href="#installing-r-packages"><i class="fas fa-link"></i></a>
+</h3>
+<p>On the <code>R Studio</code> server, either myself or one of the other statistics faculty members have installed all packages that we’ve needed to use on the server globally. However, if you want to use a package that isn’t installed on the server, or, you want to use a package using <code>R Studio</code> on your own personal computer, you need to install it first.</p>
+<p>Installation only needs to happen once (or until you upgrade <code>R</code>, which usually doesn’t happen too often), whereas the package needs to be loaded with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> <strong>every</strong> time you open <code>R</code>. The analogy of a <a href="https://hbctraining.github.io/Intro-to-R/img/install_vs_library.jpeg" target="_blank">lightbulb might be helpful</a>. You only need to screw in the lightbulb into a socket once, but, every time you want the lightbulb to provide light, you need to flip the light switch.</p>
+<p>In the lightbulb analogy, what does putting the lightbulb into the socket correspond to? What does flipping the light switch correspond to?</p>
+<p>Now that you have <code>R</code> on your own computer, you’ll need to install <strong>all</strong> packages that you want to use (but, remember that you just need to install each package once).</p>
 </div>
 </div>
 <div id="putting-code-in-a-.qmd-file" class="section level2" number="2.3">
@@ -489,13 +533,7 @@ We might be able to better answer the original question numerically by computing
 <li><p>Take a moment to scroll through the advice from students who took this course in the Fall semester of 2021. What is one piece of advice that you hope to apply to our course this semester?</p></li>
 </ol>
 <p><br></p>
-<p>Render your .qmd file into an .html file and submit your rendered .html file to Canvas. If your file won’t render, then submit the .qmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. Use the following steps to do so:</p>
-<ol style="list-style-type: decimal">
-<li><p>Click the checkbox next to your rendered .html file.</p></li>
-<li><p>Click the Gear Icon “More” -&gt; Export</p></li>
-<li><p>If you would like, rename your file to something like Week0_YOURLASTNAME.html, but, make sure to keep the correct extension (either .html or .qmd).</p></li>
-<li><p>After you export it, the file should appear in your downloads folder. Now, go to Canvas -&gt; Assignments and complete the upload process.</p></li>
-</ol>
+<p>Render your .qmd file into an .html file and submit your rendered .html file to Canvas. If your file won’t render, then submit the .qmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas.</p>
 <p>Nice work: we will dive into <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> in the <code>ggplot2</code> package next!</p>
 <p><br></p>
 </div>
@@ -514,9 +552,18 @@ We might be able to better answer the original question numerically by computing
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#intro"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
-<li><a class="nav-link" href="#intro-to-r-and-r-studio"><span class="header-section-number">2.1</span> Intro to R and R Studio</a></li>
 <li>
-<a class="nav-link" href="#what-are-r-r-studio-and-quarto"><span class="header-section-number">2.2</span> What are R, R Studio, and Quarto?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#r-packages-and-the-tidyverse"><span class="header-section-number">2.2.1</span> R Packages and the tidyverse</a></li></ul>
+<a class="nav-link" href="#intro-to-r-and-r-studio"><span class="header-section-number">2.1</span> Intro to R and R Studio</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#installing-r-and-r-studio"><span class="header-section-number">2.1.1</span> Installing R and R Studio</a></li>
+<li><a class="nav-link" href="#relevant-websites"><span class="header-section-number">2.1.2</span> Relevant Websites</a></li>
+<li><a class="nav-link" href="#creating-an-r-project"><span class="header-section-number">2.1.3</span> Creating an R Project</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#what-are-r-r-studio-and-quarto"><span class="header-section-number">2.2</span> What are R, R Studio, and Quarto?</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-packages-and-the-tidyverse"><span class="header-section-number">2.2.1</span> R Packages and the tidyverse</a></li>
+<li><a class="nav-link" href="#installing-r-packages"><span class="header-section-number">2.2.2</span> Installing R Packages</a></li>
+</ul>
 </li>
 <li><a class="nav-link" href="#putting-code-in-a-.qmd-file"><span class="header-section-number">2.3</span> Putting Code in a .qmd File</a></li>
 <li>
@@ -544,7 +591,7 @@ We might be able to better answer the original question numerically by computing
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-15.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

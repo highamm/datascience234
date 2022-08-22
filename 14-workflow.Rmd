@@ -2,7 +2,7 @@
 
 __Goals:__
 
-* Describe what a server is, what the benefits and drawbacks are of using a server to run `R Studio`, install `R` and `R Studio` on your own laptop, and install `R` packages. 
+<!-- * Describe what a server is, what the benefits and drawbacks are of using a server to run `R Studio`, install `R` and `R Studio` on your own laptop, and install `R` packages.  -->
 
 * Describe how files are organized in an `R` project, describe the advantage of a common working directory through an `R` Project, and use the `here` package to assist in accessing and reading in files.
 
@@ -13,50 +13,6 @@ __Goals:__
 * Find missing values and outliers, and explain how these might affect conclusions from a data analysis.
 
 * Use `tibble` to create data sets in `R`, and describe the benefits of __reprexes__.
-
-## Installing `R` and `R Studio`
-
-The `R Studio` server is a computer that is set-up to carry out any `R`-based analyses for students with remote access to the computer (in our case, through SLU Login credentials). It might be helpful to think about the server as a large machine with no keyboard and no screen: it's only purpose is to execute the code.  
-
-`R` and `R Studio` are completely free, so you can install both on most computers (not Chromebooks though). The `R Studio` server has a couple of advantages, particularly for a classroom or workshop setting:
-
-* using the server ensures that we are all using the same version of `R`. In theory, if one person gets an error, then everyone should get that same error.
-
-* installing `R` and `R Studio` on your personal device is much easier after you've had some experience using it through the server.
-
-* you don't need a computer that is capable of running `R` to use the server (you can use a tablet or a Chromebook since the server does all of the actual computation).
-
-This week, however, we will move away from the server and, if you have a device that can install `R` (pretty much any computer that isn't a Chromebook), you will install `R` on your own device. Though the server does have some advantages, there are also some disadvantages:
-
-* you won't have your SLU login forever, so, if you wanted to use `R` post graduation, you'd need to know how to install it.
-
-* you haven't had experience installing `R` packages. This is quite easy to do, but I've installed all necessary `R` packages on the server for us so you haven't had to worry about this step.
-
-* the server requires good Internet access and also has the potential to crash.
-
-In this next section, we will work on installing `R` and `R Studio` to your personal laptop. The following videos provide instructions on how to install `R` and `R Studio` to your laptop computer. It will be easiest if you complete all of these steps consecutively in one sitting. So, you should ideally have about 45 minutes to an hour of your time blocked off to complete the "getting started" process using the videos below.
-
-<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=-WNEPGMpzns" target="_blank">video on installing R</a>. </input>
-
-<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=urw6AMOzAUo" target="_blank">video on installing R Studio</a>. </input>
-
-<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=IaONPkvjNZM" target="_blank">video on installing R packages and changing other options</a>. </input>
-
-### Installing `R` Packages
-
-So far, either myself or one of the other statistics faculty members have installed all packages that we've needed to use on the server globally. These packages include `tidyverse`, `ggthemes`, and `ggrepel`. However, if you want to use a package that isn't installed on the server, or, you want to use a package using `R Studio` on your own personal computer, you need to install it first. 
-
-Installation only needs to happen once (or until you upgrade `R`, which usually doesn't happen too often), whereas the package needs to be loaded with `library()` __every__ time you open `R`. The analogy of a  <a href="https://hbctraining.github.io/Intro-to-R/img/install_vs_library.jpeg" target="_blank">lightbulb might be helpful</a>. You only need to screw in the lightbulb into a socket once, but, every time you want the lightbulb to provide light, you need to flip the light switch.
-
-In the lightbulb analogy, what does putting the lightbulb into the socket correspond to? What does flipping the light switch correspond to?
-
-Now that you have `R` on your own computer, you'll need to install __all__ packages that you want to use (but, remember that you just need to install each package once). 
-
-### Exercises {#exercise-14-1}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
-
-1. \* Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
 
 ## `R Projects` and File Organization
 
@@ -102,6 +58,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 1. Take some time to modify your files in this course by creating a few folders to help keep things a bit more organized. You might consider having a `Quizzes` folder, an `Exercises` folder, etc. Move the relevant files to these folders and modify each file to load in the `here` package and use the `here()` function to read in any relevant data sets. 
 
+2. Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
 ## Code Style
 
 Writing code that is "readable" is helpful not only for others but also for yourself, especially if the project you are working on is long-term. What constitutes "readable" code varies a bit, but there are some general principles that are more widely accepted for "good" code. Much of the coding "style" you have seen so far has been imposed by me: I have my own style for writing code so naturally, I use that style in the code I write for our course materials. 
@@ -556,12 +513,6 @@ Put together a reprex using `tibble()` that someone would be able to run to help
 There are no chapter exercises for this section on workflow.
 
 ## Exercise Solutions {#solutions-14}
-
-### Installing `R` and `R Studio` S 
-
-1. \* Click the "Packages" button in the lower-right hand windown to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
-
-If I loaded a package by checking the box, did some analysis, and gave my code to someone else, that person couldn't easily see which packages I loaded in. Therefore, they wouldn't necessarily be able to reproduce my results exactly.
 
 ### `R Projects` and File Organization S
 
