@@ -106,7 +106,12 @@ Installation only needs to happen once (or until you upgrade `R`, which usually 
 
 In the lightbulb analogy, what does putting the lightbulb into the socket correspond to? What does flipping the light switch correspond to?
 
-Now that you have `R` on your own computer, you'll need to install __all__ packages that you want to use (but, remember that you just need to install each package once). 
+Now that you have `R` on your own computer, you'll need to install __all__ packages that you want to use (but, remember that you just need to install each package once). Try installing the `tidyverse` package, a collection of many useful data science packages, with:
+
+
+```r
+install.packages("tidyverse")
+```
 
 ## Putting Code in a `.qmd` File
 
@@ -196,7 +201,7 @@ ggplot(data = alcohol_data,
   geom_histogram(colour = "black", fill = "white", bins = 15)
 ```
 
-<img src="01-intro_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="01-intro_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 I now want to see where the United States (`USA`) falls on this distribution by drawing a red vertical line for the total litres of alcohol consumed in the United States. To do so, I'll first use the `filter()` function in the `dplyr` package (again, we will learn about that function in detail later). Copy and paste the following lines of code into a new `R` chunk. Then, run the lines.
 
@@ -278,7 +283,7 @@ ggplot(data = alcohol_data,
   geom_abline(aes(slope = 1, intercept = 0), alpha = 0.3)
 ```
 
-<img src="01-intro_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="01-intro_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 The x-axis corresponds to beer servings while the y-axis corresponds to wine servings. A reference line is given so with countries above the line consuming more wine than beer. We will get into how to make a plot like this later: for now, copy the code chunk and change the labeled point so that it corresponds to a country that interests you (other than Denmark). 
 We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:
@@ -373,7 +378,7 @@ ggplot(data = athletes, mapping = aes(x = age, y = salary)) +
   geom_smooth(se = FALSE)
 ```
 
-<img src="01-intro_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="01-intro_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 Do you see anything strange with the scatterplot? What do you think the y-axis tick labels of 2.5e+07, 5.0e+07, etc. mean?
 
@@ -425,7 +430,7 @@ ggplot(data = football_basketball,
   labs(y = "Endorsements / Salary")
 ```
 
-<img src="01-intro_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="01-intro_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 In the graph an endorsements / salary ratio of 1 indicates that the person makes half of their overall pay from endorsements and half of their overall pay from salary.
 

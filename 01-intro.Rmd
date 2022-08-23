@@ -106,7 +106,11 @@ Installation only needs to happen once (or until you upgrade `R`, which usually 
 
 In the lightbulb analogy, what does putting the lightbulb into the socket correspond to? What does flipping the light switch correspond to?
 
-Now that you have `R` on your own computer, you'll need to install __all__ packages that you want to use (but, remember that you just need to install each package once). 
+Now that you have `R` on your own computer, you'll need to install __all__ packages that you want to use (but, remember that you just need to install each package once). Try installing the `tidyverse` package, a collection of many useful data science packages, with:
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
 
 ## Putting Code in a `.qmd` File
 
