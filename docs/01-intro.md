@@ -4,7 +4,7 @@
 
 __Goals__:
 
-1. Use `R Studio` on the server
+1. Download `R` and `R Studio`
 
 2. Use `Quarto` and code chunks
 
@@ -60,8 +60,21 @@ Next, we want to put some data in a folder in the same folder that has our newly
 
 Finally, we want to create a new `Quarto` file by clicking File -> New File -> `Quarto Document`. You can give your new `Quarto` file a title if you want, and then click okay.
 
-Before moving on, click the **Render** button in the top-left window at the top of the menu bar. Make sure that the file renders to a pretty-looking .html file. The newly rendered .html file can now be found in your folder with your `R` project.
+We are also going to change one option routinely in our `Quarto` files. Change the first few lines of the file to be something like:
 
+```
+---
+title: "Your Title"
+author: "Your Name"
+format: 
+  html:
+    self-contained: true
+---
+```
+
+Note the `self-contained: true` option that we added. This ensures that all figures, images, tables, etc. are contained in the one `.html` file, which is important because, for quizzes and exercises, you will typically only turn in the `.html` file.
+
+Before moving on, click the **Render** button in the top-left window at the top of the menu bar. Make sure that the file renders to a pretty-looking .html file. The newly rendered .html file can now be found in your folder with your `R` project.
 
 
 <!-- Open `R Studio` on the SLU `R Studio` server at -->
@@ -523,7 +536,19 @@ Save this file by clicking File -> Save or by using the keyboard shortcut Comman
 
 __Note__: Usually, exercises will ask you to write code on your own using the week's chapter as a reference. However, for this initial chapter, we will do something a little different.
 
-Open a new .qmd file (File -> New File -> `Quarto Document` -> OK) and delete the text explaining what `Quarto` is in lines 10 and below. Then, complete the following exercises.
+Open a new .qmd file (File -> New File -> `Quarto Document` -> OK) and delete the text explaining what `Quarto` is. Make sure that your Quarto document is self-contained by using something like the following in the first few lines of the file:
+
+```
+---
+title: "Your Title"
+author: "Your Name"
+format: 
+  html:
+    self-contained: true
+---
+```
+
+Then, complete the following exercises.
 
 Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `Quarto` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
 

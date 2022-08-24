@@ -122,7 +122,7 @@
 <span class="header-section-number">7.2</span> <code>separate()</code> and <code>unite()</code> Columns<a class="anchor" aria-label="anchor" href="#separate-and-unite-columns"><i class="fas fa-link"></i></a>
 </h2>
 <p>In a fresh .qmd file (File -&gt; New File -&gt; Quarto) that is in your Notes project, copy and paste the following code into an <code>R</code> chunk:</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">polls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/rcp-polls.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="st">"--"</span><span class="op">)</span></span>
@@ -140,7 +140,7 @@
 <span><span class="co">#&gt; # … with abbreviated variable names ¹​`Clinton (D)`,</span></span>
 <span><span class="co">#&gt; #   ²​`Trump (R)`, ³​`Johnson (L)`, ⁴​`Stein (G)`</span></span></code></pre></div>
 <p>Suppose that you wanted to know what the average sample size of the polls was. Using <code>dplyr</code> functions,</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meansample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Sample</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>What warning do you get? Why?</p>
 <p>You would get a similar warning (or sometimes an error) any time that you want to try to use <code>Sample</code> size in plotting or summaries. The issue is that the <code>Sample</code> column actually contains two variables so the data set is not tidy.</p>
@@ -149,7 +149,7 @@
 <span class="header-section-number">7.2.1</span> <code>separate()</code> a Column<a class="anchor" aria-label="anchor" href="#separate-a-column"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let’s <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> the two variables into <code>Sample_size</code> and <code>Sample_type</code>:</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Sample</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span><span class="op">)</span>, </span>
 <span>           sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
@@ -174,12 +174,12 @@
 <li><p><code>sep</code> is the character that you want to separate the column by. In this case, the sample size and sample type were separated by whitespace, so our <code>sep = " "</code>, white space.</p></li>
 </ul>
 <p>The <code>sep</code> argument is the newest piece of information here. Note that even using <code>sep = ""</code> will produce an error (there is not a space now, so <code>R</code> doesn’t know what to separate by).</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Sample</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span><span class="op">)</span>, </span>
 <span>           sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <p>Similarly, we would like the <code>Date</code> column to be separated into a poll start date and a poll end date:</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_sep</span> <span class="op">&lt;-</span> <span class="va">polls</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Date</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Start"</span>, <span class="st">"End"</span><span class="op">)</span>,</span>
 <span>           sep <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span></span></code></pre></div>
@@ -191,7 +191,7 @@
 <span class="header-section-number">7.2.2</span> <code>unite()</code> Columns<a class="anchor" aria-label="anchor" href="#unite-columns"><i class="fas fa-link"></i></a>
 </h3>
 <p><code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> is the “opposite” of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>: use it when one variable is stored across multiple columns, but each row still represents a single case. The need to use <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> is less common than <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>. In our current data set, there is no need to use it at all. But, for the sake of seeing an example, let’s separate the <code>Start</code> date into <code>month</code> and <code>day</code> and then use <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> to re-unite those columns:</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_sillytest</span> <span class="op">&lt;-</span> <span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Start</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Start_month"</span>, <span class="st">"Start_day"</span><span class="op">)</span>, </span>
 <span>           sep <span class="op">=</span> <span class="st">"/"</span><span class="op">)</span></span>
@@ -211,7 +211,7 @@
 <span><span class="co">#&gt; #   ¹​Start_month, ²​Start_day, ³​`Clinton (D)`, ⁴​`Trump (R)`</span></span>
 <span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
 <p>This situation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> to combine these two columns into a single <code>Date</code>, called <code>New_start_date</code>:</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_sillytest</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="st">"New_start_date"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Start_month</span>, <span class="va">Start_day</span><span class="op">)</span>,</span>
 <span>        sep <span class="op">=</span> <span class="st">"/"</span><span class="op">)</span></span>
@@ -231,7 +231,7 @@
 <span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
 <p>Note how <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> just switches around the first two arguments of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>. Argument 1 is now the name of the new column and Argument 2 is the names of columns in the data set that you want to combine.</p>
 <p>We have also used the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function in <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code>. While <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> is a very general <code>R</code> function and isn’t specific to tidy data, this is the first time that we’re seeing it in this course. <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> officially stands for concatenate, but, in simpler terms, <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> combines two or more “things”, separated by a comma.</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1 4 2</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"D"</span><span class="op">)</span></span>
@@ -243,7 +243,7 @@
 <span class="header-section-number">7.2.3</span> Column Names and <code>rename()</code><a class="anchor" aria-label="anchor" href="#column-names-and-rename"><i class="fas fa-link"></i></a>
 </h3>
 <p>You might have noticed that the columns with percentage of votes for Clinton, Trump, etc. are surrounded by backticks ` ` when you print <code>polls</code> or <code>polls_sep</code>:</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_sep</span></span>
 <span><span class="co">#&gt; # A tibble: 7 × 9</span></span>
 <span><span class="co">#&gt;   Poll      Start End   Sample   MoE Clint…¹ Trump…² Johns…³</span></span>
@@ -260,13 +260,13 @@
 <span><span class="co">#&gt; #   ²​`Trump (R)`, ³​`Johnson (L)`</span></span>
 <span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
 <p>This happens because the column names have a space in them (this also would occur if the columns started with a number or had odd special characters in them). Then, any time you want to reference a variable, you need the include the backticks:</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanclinton <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu">Clinton</span> <span class="op">(</span><span class="va">D</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co">## throws an error</span></span>
 <span><span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanclinton <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">`Clinton (D)`</span><span class="op">)</span><span class="op">)</span> <span class="co">## backticks save the day!</span></span></code></pre></div>
 <p>Having variable names with spaces doesn’t technically violate any principle of tidy data, but it can be quite annoying. Always using backticks can be a huge pain. We can rename variables easily with <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>, which just takes a series of <code>new_name = old_name</code> arguments.</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_new</span> <span class="op">&lt;-</span> <span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Clinton_D <span class="op">=</span> <span class="va">`Clinton (D)`</span>, Trump_R <span class="op">=</span> <span class="va">`Trump (R)`</span>,</span>
 <span>         Johnson_L <span class="op">=</span> <span class="va">`Johnson (L)`</span>, Stein_G <span class="op">=</span> <span class="va">`Stein (G)`</span><span class="op">)</span></span>
@@ -295,7 +295,7 @@
 <ol style="list-style-type: decimal">
 <li>Read in the data using the following code chunk and write a sentence or two that explains why the data set is not tidy.</li>
 </ol>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mlb2016.csv"</span><span class="op">)</span><span class="op">)</span></span>
@@ -323,7 +323,7 @@
 <li><p>You should have received a warning message. What does this message mean? See if you can figure it out by typing <code>View(baseball_df)</code> in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc.</p></li>
 <li><p>We won’t learn about <code><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number()</a></code> until <code>readr</code>, but the function is straightforward enough to mention here. It’s useful when you have extra characters in the values of a numeric variable (like a <code>$</code> or a <code>(</code>), but you just want to grab the actual number:</p></li>
 </ol>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="va">baseball_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Salary <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Salary</span><span class="op">)</span>,</span>
 <span>         Total.Value <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Total.Value</span><span class="op">)</span>,</span>
@@ -343,7 +343,7 @@
 <span class="header-section-number">7.3</span> Reshaping with <code>pivot_()</code><a class="anchor" aria-label="anchor" href="#reshaping-with-pivot_"><i class="fas fa-link"></i></a>
 </h2>
 <p>We will continue to use the polling data set to introduce the pivoting functions and data reshaping. To make sure that we are all working with the same data set, run the following line of code:</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_clean</span> <span class="op">&lt;-</span> <span class="va">polls</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Sample</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span><span class="op">)</span>, </span>
 <span>           sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>  <span class="op">|&gt;</span></span>
@@ -371,8 +371,8 @@
 <p>For example, one thing we might want to do is to make a plot that has poll <code>Start</code> time on the x-axis, polling numbers on the y-axis, and has candidates represented by different colours. For this small data set, we might not see any trends through time, but you could imagine this graph would be quite useful if we had polling numbers through June, July, August, September, etc.</p>
 <p>Take a moment to think about how you would make this graph in <code>ggplot2</code>: what is your x-axis variable? What variable are you specifying for the y-axis? For the colours?</p>
 <p>A first attempt in making a graph would be:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tidying-with-tidyr.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> polls_clean, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> Clinton_D)) <span class="sc">+</span> </span>
-<span id="cb225-2"><a href="tidying-with-tidyr.html#cb225-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ....??????????))</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="tidying-with-tidyr.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> polls_clean, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> Clinton_D)) <span class="sc">+</span> </span>
+<span id="cb227-2"><a href="tidying-with-tidyr.html#cb227-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ....??????????))</span></code></pre></div>
 <p>And we’re stuck. It’s certainly not impossible to make the graph with the data in its current form (keep adding <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> and re-specifying the aesthetics, then manually specify colours, then manually specify a legend), but it’s definitely a huge pain.</p>
 <p>This is where <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> can help! <a href="https://www.youtube.com/watch?v=8w3wmQAMoxQ" target="_blank">https://www.youtube.com/watch?v=8w3wmQAMoxQ</a></p>
 <div id="pivot_longer-to-gather-columns" class="section level3" number="7.3.1">
@@ -380,7 +380,7 @@
 <span class="header-section-number">7.3.1</span> <code>pivot_longer()</code> to Gather Columns<a class="anchor" aria-label="anchor" href="#pivot_longer-to-gather-columns"><i class="fas fa-link"></i></a>
 </h3>
 <p><code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> “pivots” the data set so that is has more rows (hence the “longer”) by collapsing multiple columns into two columns. One new column is a “key” column, which is the new variable containing the old data set’s column names. The second new column is a “value” column, which is the new variable containing the old data set’s values for each of the old data set’s column names. It’s easier to see this with an example. We know from our plotting exercise above that we’d really like a <code>candidate</code> variable to colour by and a <code>poll_percent</code> variable for the y-axis of our plot. So, we can use <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> to make these two columns:</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_clean</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Clinton_D</span>, <span class="va">Trump_R</span>, <span class="va">Johnson_L</span>, <span class="va">Stein_G</span><span class="op">)</span>,</span>
 <span>               names_to <span class="op">=</span> <span class="st">"candidate"</span>, values_to <span class="op">=</span> <span class="st">"poll_percent"</span><span class="op">)</span></span>
@@ -411,7 +411,7 @@
 </ul>
 <p>What happens when you omit <code>names_to</code> and <code>values_to</code> arguments? Give it a try!</p>
 <p>Now we can make our plot using Week 1 <code>ggplot</code> functions. But don’t forget to give a name to our new “long” data set first!</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_long</span> <span class="op">&lt;-</span> <span class="va">polls_clean</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Clinton_D</span>, <span class="va">Trump_R</span>, <span class="va">Johnson_L</span>, <span class="va">Stein_G</span><span class="op">)</span>,</span>
 <span>               names_to <span class="op">=</span> <span class="st">"candidate"</span>, values_to <span class="op">=</span> <span class="st">"poll_percent"</span><span class="op">)</span></span>
@@ -430,7 +430,7 @@
 <p>The “opposite” of <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> is <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>. We need to use <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> when one case is actually spread across multiple rows. Again, I typically will realize there is an issue with untidy data when I go to do something that should be simple and it’s not.</p>
 <p>Let’s examine some airline safety data that fivethirtyeight used in their Should Travelers Avoid Flying Airlines that Have Had Crashes in the Past? story: <a href="https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/" target="_blank">https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/</a>
 . The raw data can be found <a href="https://github.com/fivethirtyeight/data/tree/master/airline-safety" target="_blank">here</a>.</p>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">airlines</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/airline-safety.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">airlines</span><span class="op">)</span></span>
@@ -504,7 +504,7 @@
 </table></div>
 <p>etc.</p>
 <p>Let’s start with <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> to see if we can get year to be its own variable (We know that a year variable, which is what we want, will make more rows so <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> seems like a good place to start):</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">airlines</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"type_year"</span>,</span>
 <span>  values_to <span class="op">=</span> <span class="st">"total_num"</span><span class="op">)</span> </span>
@@ -525,7 +525,7 @@
 <span><span class="co">#&gt; #   ¹​total_num</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p>Instead of giving <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> names of variables, we gave it the column numbers instead. So <code>c(3, 4, 5, 6, 7, 8)</code> corresponds to the 3rd, 4th, …., 8th columns in the data set. That didn’t quite give us a <code>year</code> variable, but we should be excited to see an opportunity to take advantage of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>:</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">airlines</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"type_year"</span>,</span>
 <span>                          values_to <span class="op">=</span> <span class="st">"total_num"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">type_year</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"type"</span>, <span class="st">"year"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
@@ -546,7 +546,7 @@
 <span><span class="co">#&gt; #   ¹​total_num</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p>Is this the format that we want the data set to be in? Depending on the task, it could be. But, we also might want each of the accident <code>type</code>s to be its own variable. That is, we might want to collapse the data set to have a variable for <code>incidents</code>, a variable for <code>fatal_accidents</code>, and a variable for <code>fatalities</code>. If so, we want to add more columns to the data set, so we need to use <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>.</p>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## name the long data set</span></span>
 <span><span class="va">airlines_long</span> <span class="op">&lt;-</span> <span class="va">airlines</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"type_year"</span>,</span>
@@ -591,14 +591,14 @@
 <li>Once you have a handle on data science terminology, it’s not too difficult to transfer what you’ve learned to a different language. For example, students in computer science might be more familiar with Python. Google something like “pivot from wide to long in python” to find help on achieving the equivalent of <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> in Python.</li>
 </ol>
 <p>The <code>UBSprices2</code> data set contains information on prices of common commodities in cities throughout the world in the years 2003 and 2009. The three commodities in the data set are Rice (1 kg worth), Bread (1 kg worth), and a Big Mac <a href="https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif" class="uri">https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif</a></p>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prices_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/UBSprices2.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>* Convert the data set to a tidier form so that there is a <code>year</code> variable and a <code>commodity</code> variable that has 3 values: <code>"bigmac"</code>, <code>"bread"</code>, and <code>"rice"</code>
 </li>
 </ol>
 <p><strong>Hint</strong>: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you’ll notice this is different than our other uses of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> because there is no “-” or ” ” or “/” to use as a separating character. Look at the help for <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> and scroll down to the <code>sep</code> argument to see if you can figure out this issue. The first code chunk below shows the solution for this particular issue in case you only get stuck on this part while the second code chunk shows the entire solution.</p>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name_of_variable</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"newname1"</span>, <span class="st">"newname2"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="op">-</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li><p>* Convert your data set from the previous exercise so that <code>commodity</code> is split up into 3 variables: <code>bigmac</code> price, <code>rice</code> price and <code>bread</code> price.</p></li>
@@ -607,7 +607,7 @@
 <p>If you have time, make these plots!</p>
 <p><strong>New Data</strong>:</p>
 <p>The <code>under5mortality.csv</code> file contains data on mortality for people under the age of 5 in countries around the world (mortality in deaths per 1000 people). The data come from <a href="https://www.gapminder.org/data/" class="uri">https://www.gapminder.org/data/</a>. The data set is <strong>extremely</strong> wide in its current form, having a column for each year in the data set. Read in the data set with</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/under5mortality.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mortality_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 217</span></span>
@@ -649,7 +649,7 @@
 <p>The data set has the top 100 paid players for each year for each position from 2011 through 2018, broken down by player position. For those unfamiliar with American football, the positions in the data set are Quarterback, Running Back, Wide Receiver, Tight End, and Offensive Lineman for offense, Cornerback, Defensive Lineman, Linebacker, and Safety for Defense, and a separate category for Special Teams players that includes punters and kickers. You can review a summary of player positions <a href="https://i.pinimg.com/originals/56/32/87/56328741cb64cd59dafd200c9d06a301.png" target="_blank"> here</a>.</p>
 <p>We are interested in how salaries compare for the top 100 players in each position and on how salaries have changed through time for each position.</p>
 <p>Read in the data set with</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nfl_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/nfl_salary.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>Use the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> functions to look at the data, and then explain why this data set is <strong>not</strong> in tidy form.</p></li>
@@ -688,20 +688,20 @@
 <code>Duration</code> of the salary contract (currently given in the <code>Year</code> column) is in its own column</li>
 <li>the year range (also currently given in the <code>Year</code> column) is split into a variable called <code>Start</code> and a variable called <code>End</code> year that give the start and end years of the contract. You can still have special characters for now (like <code>(</code> and <code>)</code>) in the start and end year.</li>
 </ul>
-<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="va">baseball_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">Years</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Duration"</span>, <span class="st">"Range"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">Range</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Start"</span>, <span class="st">"End"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>* Using a function from <code>dplyr</code>. fix the <code>End</code> variable that you created so that, for example, the first observation is <code>2020</code> instead of just <code>20</code>.</li>
 </ol>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="va">baseball_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>End <span class="op">=</span> <span class="va">End</span> <span class="op">+</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <p>This is a somewhat lazy way to do this and could get you into trouble (what if one of the years was in the 1990s?) But, it’s safe for this particular data set.</p>
 <ol start="6" style="list-style-type: decimal">
 <li>* <code>tidyr</code> is extremely useful, but it’s not glamorous. What you end up with is a data set that <code>ggplot2</code> and <code>dplyr</code> can use to do cool things. So, let’s do something with our tidy data set to make all that tidying a little worth it before moving on. Make a graphic that investigates how player <code>Salary</code> compares for different <code>POS</code>.</li>
 </ol>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">baseball_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">POS</span>, y <span class="op">=</span> <span class="va">Salary</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">baseball_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Salary</span>, colour <span class="op">=</span> <span class="va">POS</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -720,9 +720,9 @@
 </li>
 </ol>
 <p><strong>Hint</strong>: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you’ll notice this is different than our other uses of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> because there is no “-” or ” ” or “/” to use as a separating character. Look at the help for <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> and scroll down to the <code>sep</code> argument to see if you can figure out this issue. The first code chunk below shows the solution for this particular issue in case you only get stuck on this part while the second code chunk shows the entire solution.</p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name_of_variable</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"newname1"</span>, <span class="st">"newname2"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="op">-</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prices_long</span> <span class="op">&lt;-</span> <span class="va">prices_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span>,</span>
 <span>  names_to <span class="op">=</span> <span class="st">"commod_year"</span>, values_to <span class="op">=</span> <span class="st">"price"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"commod_year"</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"commodity"</span>, <span class="st">"year"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="op">-</span><span class="fl">4</span><span class="op">)</span></span>
@@ -739,7 +739,7 @@
 <ol start="3" style="list-style-type: decimal">
 <li>* Convert your data set from the previous exercise so that <code>commodity</code> is split up into 3 variables: <code>bigmac</code> price, <code>rice</code> price and <code>bread</code> price.</li>
 </ol>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prices_wide</span> <span class="op">&lt;-</span> <span class="va">prices_long</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">commodity</span>, values_from <span class="op">=</span> <span class="va">price</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">prices_wide</span><span class="op">)</span></span>
@@ -755,7 +755,7 @@
 <ol start="5" style="list-style-type: decimal">
 <li>* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use <code>tidyr</code>, we aren’t going to want to type out <code>c(2, 3, 4, 5, .....)</code> all the way up to <code>217</code>! <code>R</code> has short-hand notation that we can use with <code>:</code>. For example, type in <code>4:9</code> in your console window. Use this notation to tidy the <code>mortality_df</code> data set.</li>
 </ol>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mortality_long</span> <span class="op">&lt;-</span> <span class="va">mortality_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">217</span>, names_to <span class="op">=</span> <span class="st">"Year"</span>,</span>
 <span>               values_to <span class="op">=</span> <span class="st">"Mortality"</span>,</span>
@@ -769,7 +769,7 @@
 <ol start="2" style="list-style-type: decimal">
 <li>* Use a function in <code>tidyr</code> to make the data tidy, and give your tidy data set a new name.</li>
 </ol>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nfl_long</span> <span class="op">&lt;-</span> <span class="va">nfl_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>,</span>
 <span>               names_to <span class="op">=</span> <span class="st">"position"</span>, values_to <span class="op">=</span> <span class="st">"salary"</span><span class="op">)</span></span>
@@ -793,7 +793,7 @@
 <li>* To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position so that the highest paid players in each position all receive a <code>1</code>, the second highest paid players receive a <code>2</code>, etc. Compare your results for the default way that <code>R</code> uses to break ties between two salaries that are the same and using <code>ties.method = "first"</code>.</li>
 </ol>
 <p><strong>Hint</strong>: See Exercise 4 in <a href="dplyr.html#exercise-3-3">4.3.2</a> for another example on how to do this.</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nfl_long_default</span> <span class="op">&lt;-</span> <span class="va">nfl_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">position</span>, <span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">salary</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -804,7 +804,7 @@
 <ol start="4" style="list-style-type: decimal">
 <li>* Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better?</li>
 </ol>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nfl_max</span> <span class="op">&lt;-</span> <span class="va">nfl_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">position</span>, <span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>maxsal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">salary</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `summarise()` has grouped output by 'position'. You can</span></span>
@@ -814,7 +814,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">maxsal</span>, group <span class="op">=</span> <span class="va">position</span>, colour <span class="op">=</span> <span class="va">position</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="04-tidyr_files/figure-html/unnamed-chunk-45-1.png" width="672"></div>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nfl_max</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">maxsal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -824,7 +824,7 @@
 <ol start="5" style="list-style-type: decimal">
 <li>* The maximum salary is very dependent on one specific player. Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you’re a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years.</li>
 </ol>
-<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nfl_rank</span> <span class="op">&lt;-</span> <span class="va">nfl_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op">&lt;=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">position</span>, <span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean20 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">salary</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
@@ -840,7 +840,7 @@
 <li>* Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like “inflation rate from 2011 to 2018” and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. Then, make a similar line plot as above but ignore all of the years between 2012 and 2017 (so your line plot will just have 2 points per position).</li>
 </ol>
 <p>After adjusting for inflation, how many positions have average higher salaries for the top 20 players in that position?</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## 11.6% from 2011 to 2018.</span></span>
 <span><span class="va">nfl_inf</span> <span class="op">&lt;-</span> <span class="va">nfl_long</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>salary_inf <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2011</span>,</span>
@@ -864,7 +864,7 @@
 <h2>
 <span class="header-section-number">7.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-4"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">polls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/rcp-polls.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="st">"--"</span><span class="op">)</span></span>
@@ -981,7 +981,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-23.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

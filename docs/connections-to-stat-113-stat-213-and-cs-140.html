@@ -88,7 +88,7 @@
 <p>The example we will use is an experiment designed to assess the effects of race and sex on whether or not an employee received a callback for a job. In order to conduct the experiment, researchers randomly assigned names to resumes with each name associated with a particular race and gender, sent the resumes to employers, and recorded whether or not the resume received a callback. In addition to race, sex, and whether or not an employee received a callback, a few more variables were collected, like resume quality, whether or not the applicant had computer skills, years of experience, etc. A <code>1</code> for the <code>received_callback</code> indicates that the applicant received a callback.</p>
 <p>You may recall this example from STAT 113: we used it to introduce a chi-square test of association. In that example and others like it, an appropriate graphic and summary statistics were provided. Here, we create these ourselves.</p>
 <p>The data set is called <code>resume</code> in the <code>openintro</code> package: you’ll need to install this package with <code>install.packages("openintro")</code>. Then, load in the data with</p>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/">openintro</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: airports</span></span>
 <span><span class="co">#&gt; Loading required package: cherryblossom</span></span>
@@ -124,7 +124,7 @@
 <p><span class="math inline">\(H_0:\)</span> There is no association between <code>race</code> and <code>received_callback</code>.</p>
 <p><span class="math inline">\(H_a:\)</span> There is an association between <code>race</code> and <code>received_callback</code>.</p>
 <p>Next, we can construct a summary graphic. One graphic to explore two categorical variables is a stacked bar plot.</p>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; ── Attaching packages ─────────────────── tidyverse 1.3.2 ──</span></span>
 <span><span class="co">#&gt; ✔ ggplot2 3.3.6     ✔ purrr   0.3.4</span></span>
@@ -145,7 +145,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="15-connections_files/figure-html/unnamed-chunk-2-1.png" width="672"></div>
 <p>What do you notice about the <code>recieved_callback</code> variable scale? How could we fix that?</p>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resume</span> <span class="op">&lt;-</span> <span class="va">resume</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>received_callback <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">received_callback</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">resume_sum</span> <span class="op">&lt;-</span> <span class="va">resume</span> <span class="op">|&gt;</span> </span>
@@ -158,7 +158,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="15-connections_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
 <p>We might also want to generate a two-way table:</p>
-<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resume</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">race</span>, <span class="va">received_callback</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"race"</span><span class="op">)</span>,</span>
@@ -173,7 +173,7 @@
 <p><strong>Check</strong>: The two assumptions for the test are independence of observations and that all expected counts are larger than 5. We don’t have time to discuss these in detail but we will assume that they are satisfied here.</p>
 <p><strong>Calculate</strong>: We next want to calculate a p-value for the hypothesis test. The core <code>tidyverse</code> packages do not offer functionality for hypothesis testing. Instead, there are some functions in base <code>R</code> that perform the various tests. You may have used the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function in STAT 213 to perform hypothesis testing in the regression context. <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> and <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> are a couple of other functions that can perform a one and two-sample t-test (<code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>) or a chi-square goodness-of-fit test and chi-square test of association <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>.
 The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> for a test of association are two vectors. Because the arguments are not <code>data.frame</code>s, we need to specify the appropriate vectors directly with <code>resume$race</code> and <code>resume$received_callback</code>.</p>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">resume</span><span class="op">$</span><span class="va">race</span>, y <span class="op">=</span> <span class="va">resume</span><span class="op">$</span><span class="va">received_callback</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Pearson's Chi-squared test with Yates' continuity</span></span>
@@ -196,21 +196,21 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <li><p>what other variables are associated with whether or not the applicant received a callback?</p></li>
 </ul>
 <p>To answer the question about the distribution of job types and job industries used in the study, we can make a simple bar plot:</p>
-<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">resume</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="va">job_type</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Job Type"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="15-connections_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
 <p>In the code, <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> orders the levels of <code>job_type</code> from the highest count/frequency to the lowest. <code><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev()</a></code> reverses the order so that, on the resulting bar plot, the level with the highest count appears first.</p>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">resume</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="va">job_industry</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Job Industry"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="15-connections_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
 <p>To answer the question about whether some first names are more biased than others, we might make a graph of the proportion of resumes that received a callback for each first name.</p>
-<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resume_firstname</span> <span class="op">&lt;-</span> <span class="va">resume</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">firstname</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>propcallback <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">received_callback</span> <span class="op">==</span> <span class="st">"1"</span><span class="op">)</span>,</span>
@@ -223,7 +223,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="15-connections_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
 <p>We can the label the name with the lowest callback rate and the name with the highest callback rate.</p>
-<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
 <span><span class="va">label_df</span> <span class="op">&lt;-</span> <span class="va">resume_firstname</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">propcallback</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">propcallback</span><span class="op">)</span> <span class="op">|</span></span>
@@ -294,7 +294,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <p><strong><code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code></strong></p>
 <p><code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> is analagous to <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> for a linear model object. Let’s start by fitting a linear model with <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> with <code>total_cup_points</code> as the response and <code>species</code>, <code>aroma</code>, <code>flavor</code>, <code>sweetness</code>, and <code>moisture</code> as predictors.</p>
 <p>Read in the data, load the <code>broom</code> package (and install it with <code>install.packages("broom")</code>), and fit the model with</p>
-<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; here() starts at /Users/highamm/Desktop/datascience234</span></span>
@@ -311,7 +311,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span>                   <span class="va">sweetness</span> <span class="op">+</span> <span class="va">moisture</span>,</span>
 <span>   data <span class="op">=</span> <span class="va">coffee_df</span><span class="op">)</span></span></code></pre></div>
 <p>In STAT 213, you likely used <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> to look at the model output:</p>
-<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:</span></span>
@@ -338,11 +338,11 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; Multiple R-squared:  0.8891, Adjusted R-squared:  0.8887 </span></span>
 <span><span class="co">#&gt; F-statistic:  2137 on 5 and 1333 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
 <p>However, there are a few inconveniences involving <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>. First, it’s just not that nice to look at: the output isn’t formatted in a way that is easy to look at. Second, it can be challenging to pull items from the summary output with code. For example, if you want to pull the p-value for <code>moisture</code>, you would need to write something like:</p>
-<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"moisture"</span>, <span class="fl">4</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 0.005327594</span></span></code></pre></div>
 <p><code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> is an alternative that puts the model coefficients, standard errors, t-stats, and p-values in a tidy tibble:</p>
-<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 5</span></span>
 <span><span class="co">#&gt;   term           estimate std.error statistic   p.value</span></span>
@@ -354,7 +354,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; 5 sweetness          2.24    0.0655     34.2  2.41e-184</span></span>
 <span><span class="co">#&gt; 6 moisture          -1.88    0.674      -2.79 5.33e-  3</span></span></code></pre></div>
 <p>The advantage of this format of output is that we can now use other <code>tidyverse</code> functions on the output. To pull the p-values,</p>
-<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 1</span></span>
 <span><span class="co">#&gt;     p.value</span></span>
@@ -366,7 +366,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; 5 2.41e-184</span></span>
 <span><span class="co">#&gt; 6 5.33e-  3</span></span></code></pre></div>
 <p>or, to grab the output for a particular variable of interest:</p>
-<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span> <span class="op">==</span> <span class="st">"aroma"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 5</span></span>
 <span><span class="co">#&gt;   term  estimate std.error statistic  p.value</span></span>
@@ -374,7 +374,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; 1 aroma     1.95     0.146      13.4 1.82e-38</span></span></code></pre></div>
 <p><strong><code><a href="https://generics.r-lib.org/reference/glance.html">glance()</a></code></strong></p>
 <p><code><a href="https://generics.r-lib.org/reference/glance.html">glance()</a></code> puts some model summary statistics into a tidy tibble. For example, if we run</p>
-<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 12</span></span>
 <span><span class="co">#&gt;   r.squared adj.r…¹ sigma stati…² p.value    df logLik   AIC</span></span>
@@ -387,7 +387,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <p>you should notice a lot of statistics that you are familiar with from STAT 213, including <code>r.squared</code>, <code>adj.r.squared</code>, <code>sigma</code> (the residual standard error), <code>statistic</code> (the overall F-statistic), <code>AIC</code>, and <code>BIC</code>.</p>
 <p><strong><code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code></strong></p>
 <p><code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code> is my personal favourite of the three. The function returns a <code>tibble</code> that contains all of the variables used to fit the model appended with commonly used diagnostic statistics like the fitted values (<code>.fitted)</code>, cook’s distance (<code>.cooksd)</code>, <code>.hat</code> values for leverage, and residuals (<code>.resid</code>).</p>
-<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,339 × 12</span></span>
 <span><span class="co">#&gt;    total_cup_…¹ species aroma flavor sweet…² moist…³ .fitted</span></span>
@@ -412,7 +412,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <li>
 <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> the data set to examine values with high cook’s distance that might be influential</li>
 </ul>
-<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">augment_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span></span>
 <span><span class="va">augment_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.cooksd</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 12</span></span>
@@ -425,12 +425,12 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; #   ²​sweetness, ³​moisture</span></span>
 <span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
 <p>We see right away that there is a potentially influential observation with <code>0</code> <code>total_cup_points</code>. Examining this variable further, we see that it is probably a data entry error that can be removed from the data.</p>
-<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">coffee_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">total_cup_points</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">15</span>, fill <span class="op">=</span> <span class="st">"white"</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="15-connections_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
 <p>We could also find observations with high leverage</p>
-<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">augment_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.hat</span> <span class="op">&gt;</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 12</span></span>
 <span><span class="co">#&gt;   total_cup_p…¹ species aroma flavor sweet…² moist…³ .fitted</span></span>
@@ -443,7 +443,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; #   ²​sweetness, ³​moisture</span></span>
 <span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
 <p>or observations that are outliers:</p>
-<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">augment_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.std.resid</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">|</span> <span class="va">.std.resid</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 25 × 12</span></span>
 <span><span class="co">#&gt;    total_cup_…¹ species aroma flavor sweet…² moist…³ .fitted</span></span>
@@ -464,7 +464,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; #   ¹​total_cup_points, ²​sweetness, ³​moisture</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
 <p>Finally, we can use our <code>ggplot2</code> skills to construct plots like a residuals versus fitted values plot (filtering out the outlying observation first):</p>
-<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">augment_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.fitted</span> <span class="op">&gt;</span> <span class="fl">25</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.fitted</span>, y <span class="op">=</span> <span class="va">.resid</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
 <div class="inline-figure"><img src="15-connections_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
@@ -492,7 +492,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 </ul>
 <p>To start, suppose that we are interested in scraping some hitting data on SLU’s baseball team from the web address <a href="https://saintsathletics.com/sports/baseball/stats/2022" class="uri">https://saintsathletics.com/sports/baseball/stats/2022</a>. After we have the hitting data, we want to create a statistic for each player’s weighted on-base-average (<code>wOBA</code>). Information on what the <code>wOBA</code> is can be found here: <a href="https://www.mlb.com/glossary/advanced-stats/weighted-on-base-average" class="uri">https://www.mlb.com/glossary/advanced-stats/weighted-on-base-average</a>. Some of the following code was modified from a project completed by Jack Sylvia in a data visualization course.</p>
 <p>Code to do such a task is given in the following chunk.</p>
-<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -508,7 +508,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fl">23</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>wOBA <span class="op">=</span> <span class="op">(</span><span class="fl">0.69</span> <span class="op">*</span> <span class="va">BB</span> <span class="op">+</span> <span class="fl">0.72</span> <span class="op">*</span> <span class="va">HBP</span> <span class="op">+</span> <span class="fl">0.89</span> <span class="op">*</span> <span class="op">(</span><span class="va">H</span><span class="op">-</span><span class="va">`2B`</span><span class="op">-</span><span class="va">`3B`</span><span class="op">-</span><span class="va">`HR`</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1.27</span> <span class="op">*</span> <span class="va">`2B`</span> <span class="op">+</span> <span class="fl">1.62</span> <span class="op">*</span> <span class="va">`3B`</span> <span class="op">+</span> <span class="fl">2.10</span> <span class="op">*</span> <span class="va">HR</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">AB</span> <span class="op">+</span> <span class="va">BB</span> <span class="op">+</span> <span class="va">SF</span> <span class="op">+</span> <span class="va">HBP</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We can make sure that the statistic was calculated with:</p>
-<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SLU_Hitting</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">wOBA</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">wOBA</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 20 × 23</span></span>
 <span><span class="co">#&gt;     wOBA   `#` Player    AVG   OPS `GP-GS`    AB     R     H</span></span>
@@ -544,7 +544,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 </h3>
 <p>Now, suppose that we might want to repeat the scraping and calculation of <code>wOBA</code> for other years at SLU or for other teams. We could, of course, obtain the new URL address and copy and paste the code that we used above, replacing the old URL address with the new one. This would be a reasonable thing to do if we only wanted to do this for <em>one</em> other url. But, if we wanted to do this for 10, 20, 50, 1000, urls, we might consider writing a function to scrape the data and calculate the <code>wOBA</code>.</p>
 <p>The format of a function in <code>R</code> is:</p>
-<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">name_of_function</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">argument1</span>, <span class="va">argument2</span>, <span class="va">....</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">body_of_function</span> <span class="co">## performs various tasks with the arguments</span></span>
 <span>  </span>
@@ -552,7 +552,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="op">}</span></span></code></pre></div>
 <p>We have used functions throughout the entire semester, but they have always been functions that others have defined and are imported into <code>R</code> through packages. As we expand our toolbox, we might encounter situations where we want to write our own specialized functions for performing tasks that are not covered by functions that others have written.</p>
 <p>Before we get back to our example, let’s write a very simple function, called <code>get_sum_squares</code>, that computes the sum of squares from a numeric vector argument named <code>x_vec</code>. A sum of squares function would take each number in <code>x_vec</code>, square it, and then add the numbers up.</p>
-<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_sum_squares</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x_vec</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  </span>
 <span>  <span class="va">sum_of_squares</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x_vec</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -560,12 +560,12 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sum_of_squares</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Now, let’s test our function on the numeric vector <code>c(2, 4, 1)</code></p>
-<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">get_sum_squares</span><span class="op">(</span>x_vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 21</span></span></code></pre></div>
 <p>Now, we will move back to our example. We want to write a function called <code>get_hitting_data</code> that takes a <code>url_name</code>, scrapes the data from that url, and calculates the <code>wOBA</code> from the variables that were scraped. Note that our function will only work on urls that contain a data table formatted with the various baseball statistics as column names.</p>
 <p>To create this function, we can simply copy and paste the code above and replace the SLU url web address with the argument <code>url_name</code> in the body of the function.</p>
-<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_hitting_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">url_name</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  </span>
 <span>  <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url_name</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></span>
@@ -582,7 +582,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">hitting</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>We can then test our function on the SLU url:</p>
-<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb492"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">get_hitting_data</span><span class="op">(</span>url_name <span class="op">=</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2022"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 20 × 24</span></span>
 <span><span class="co">#&gt;      `#` Player    AVG   OPS `GP-GS`    AB     R     H  `2B`</span></span>
@@ -618,7 +618,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span class="header-section-number">16.3.2</span> Iteration<a class="anchor" aria-label="anchor" href="#iteration"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now suppose that we want to use our function to scrape the 2022 baseball statistics for all teams in the Liberty League. There are 10 teams in total. The websites for each team’s statistics as well as the school name is given in the <code>tibble</code> below:</p>
-<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">school_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>school_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SLU"</span>, <span class="st">"Clarkson"</span>, <span class="st">"Rochester"</span>, <span class="st">"RIT"</span>, <span class="st">"Ithaca"</span>, <span class="st">"Skidmore"</span>, <span class="st">"RPI"</span>, <span class="st">"Union"</span>, <span class="st">"Bard"</span>, <span class="st">"Vassar"</span><span class="op">)</span>,</span>
 <span>                    hitting_web_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://saintsathletics.com/sports/baseball/stats/2022"</span>,</span>
 <span>                 <span class="st">"https://clarksonathletics.com/sports/baseball/stats/2022"</span>, </span>
@@ -632,14 +632,14 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span>                 <span class="st">"https://www.vassarathletics.com/sports/baseball/stats/2022"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">school_df</span></span></code></pre></div>
 <p>One option we have to obtain the hitting statistics for all 10 teams and calculating the <code>wOBA</code> (assuming that the tables are structured the same way on each web page) would be to apply our function 10 times and then bind together the results. The first three applications of the function are shown below.</p>
-<div class="sourceCode" id="cb492"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb494"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">get_hitting_data</span><span class="op">(</span>url_name <span class="op">=</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2022"</span><span class="op">)</span></span>
 <span><span class="fu">get_hitting_data</span><span class="op">(</span>url_name <span class="op">=</span> <span class="st">"https://clarksonathletics.com/sports/baseball/stats/2022"</span><span class="op">)</span></span>
 <span><span class="fu">get_hitting_data</span><span class="op">(</span>url_name <span class="op">=</span> <span class="st">"https://uofrathletics.com/sports/baseball/stats/2022"</span><span class="op">)</span></span></code></pre></div>
 <p>For just 10 teams, this approach is certainly doable but is a bit annoying. And, what if we wanted to do this type of calculation for a league with more teams, such as the MLB (Major League Baseball)? Or, for multiple years for each team?</p>
 <p>A better approach is to use <strong>iteration</strong> and write code to repeatedly scrape the data from each website and calculate the <code>wOBA</code> statistic with our function. In CS 140, the primary form of iteration you used was probably a <code>for</code> loop. <code>for</code> loops in <code>R</code> have very similar syntax to <code>for</code> loops in Python. However, in general, <code>for</code> loops are clunky, can take up a lot of lines of code, and can be difficult to read.</p>
 <p>For this section, we will instead focus on a <strong>functional programming</strong> approach to iteration through the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> function family in <code>purrr</code>. <code>purrr</code> is part of the core <code>tidyverse</code> so the package gets loaded in with <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>. The <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> function has two arguments: the first is a vector or a list and the second is a function. <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> applies the function in the second argument to <strong>each</strong> element of the vector or list in the first argument. For example, consider applying the <code>get_sum_squares</code> function we wrote earlier to a list of vectors:</p>
-<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">num_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>vec1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>, vec2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">8</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>, vec3 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">num_list</span>, <span class="va">get_sum_squares</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $vec1</span></span>
@@ -652,14 +652,14 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 <p>The output is a list of sums of squares calculated with our <code>get_sum_squares()</code> function.</p>
 <p>To apply the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> approach to iteration to our baseball web urls, we will create an object called <code>url_vec</code> that has the urls of each school.</p>
-<div class="sourceCode" id="cb494"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb496"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">url_vec</span> <span class="op">&lt;-</span> <span class="va">school_df</span><span class="op">$</span><span class="va">hitting_web_url</span></span></code></pre></div>
 <p>Then, we apply <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> with the first argument being the <code>url_vec</code> and the second argument being the function <code>get_hitting_data()</code> that we wrote earlier.</p>
-<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hitting_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">url_vec</span>, <span class="va">get_hitting_data</span><span class="op">)</span></span>
 <span><span class="va">hitting_list</span></span></code></pre></div>
 <p>Scraping and performing the <code>wOBA</code> calculation will take a few seconds. The output is a list of 10 tibbles. The <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> function that we used to stack rows of different data frames or tibbles can also be used to stack rows of data frames or tibbles given in a list. We apply the function to the scraped data and then add the name of the school to the data frame with a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>:</p>
-<div class="sourceCode" id="cb496"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb498"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hitting_ll</span> <span class="op">&lt;-</span> <span class="va">hitting_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">school_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"url_name"</span> <span class="op">=</span> <span class="st">"hitting_web_url"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">hitting_ll</span></span>
@@ -683,7 +683,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; #   school_name &lt;chr&gt;</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
 <p>With this data set, we can now do things like figure out the top 3 hitters from each team, according to the <code>wOBA</code> metric:</p>
-<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hitting_ll</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">school_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">wOBA</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -706,7 +706,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span><span class="co">#&gt; #   ¹​school_name</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p>or find the players on each team with the most at bats <code>AB</code>:</p>
-<div class="sourceCode" id="cb498"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb500"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hitting_ll</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">school_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">AB</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -735,7 +735,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 </h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="connections-to-stat-113-stat-213-and-cs-140.html#solutions-15">16.5</a>.</p>
 <p>The code below scrapes data from a wikipedia page listing the billboard end of year “hot 100” songs for the year 2021</p>
-<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
@@ -807,7 +807,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <h2>
 <span class="header-section-number">16.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-15"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb500"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb502"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/">openintro</a></span><span class="op">)</span></span>
 <span><span class="va">resume</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -997,7 +997,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-23.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
