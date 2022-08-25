@@ -18,9 +18,9 @@ To begin, install the `lubridate` package, and load the package with `library()`
 library(tidyverse)
 library(lubridate)
 today()
-#> [1] "2022-08-24"
+#> [1] "2022-08-25"
 now()
-#> [1] "2022-08-24 09:10:55 EDT"
+#> [1] "2022-08-25 10:20:11 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:

@@ -84,13 +84,14 @@ athletes_test_read <- read_csv(here("data/athletesdata.csv"))
 
 This allows us to have `Quarto` files within folders in our `R` project.
 
-### Exercises {#exercise-14-2}
+### Exercises {#exercise-14-1}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
 1. Take some time to modify your files in this course by creating a few folders to help keep things a bit more organized. You might consider having a `Quizzes` folder, an `Exercises` folder, etc. Move the relevant files to these folders and modify each file to load in the `here` package and use the `here()` function to read in any relevant data sets. 
 
-2. Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
+2. Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using _library(name_of_package)_, you can click the check-box by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
+
 ## Code Style
 
 Writing code that is "readable" is helpful not only for others but also for yourself, especially if the project you are working on is long-term. What constitutes "readable" code varies a bit, but there are some general principles that are more widely accepted for "good" code. Much of the coding "style" you have seen so far has been imposed by me: I have my own style for writing code so naturally, I use that style in the code I write for our course materials. 
@@ -193,7 +194,7 @@ mtcars |> filter(cyl == 4) |> group_by(vs) |> summarise(mean_mpg = mean(mpg, na.
 #> 2     1     26.7
 ```
 
-### Exercises {#exercise-14-3}
+### Exercises {#exercise-14-2}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
@@ -326,7 +327,8 @@ ggplot(data = cyl4_df, aes(x = mpg)) +
 
 But, later we delete the line creating `cyl4_df`. The plot will still work because `cyl4_df` is already in our environment but the file will not render because we are missing that crucial line of code. Restarting `R` can help us identify this issue because the plot will no longer work and we will get a sensible error message like `cyl4_df` not found.
 
-### Exercises {#exercise-14-4}
+
+### Exercises {#exercise-14-3}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
@@ -479,64 +481,8 @@ videogame_df <- read_csv(here("data/videogame_clean.csv"))
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-skim(videogame_df)
+## skim(videogame_df)
 ```
-
-
-Table: (\#tab:unnamed-chunk-31)Data summary
-
-|                         |             |
-|:------------------------|:------------|
-|Name                     |videogame_df |
-|Number of rows           |26688        |
-|Number of columns        |15           |
-|_______________________  |             |
-|Column type frequency:   |             |
-|character                |7            |
-|Date                     |1            |
-|logical                  |1            |
-|numeric                  |6            |
-|________________________ |             |
-|Group variables          |None         |
-
-
-**Variable type: character**
-
-|skim_variable   | n_missing| complete_rate| min| max| empty| n_unique| whitespace|
-|:---------------|---------:|-------------:|---:|---:|-----:|--------:|----------:|
-|game            |         3|          1.00|   1| 212|     0|    26610|          0|
-|release_date    |         0|          1.00|   8|  12|     0|     2977|          0|
-|owners          |         0|          1.00|  11|  26|     0|       13|          0|
-|meta_cat        |     23838|          0.11|  13|  21|     0|        4|          0|
-|developer       |       151|          0.99|   1| 237|     0|    16752|          0|
-|publisher       |        95|          1.00|   1| 131|     0|    13953|          0|
-|meta_cat_factor |     23838|          0.11|  13|  21|     0|        4|          0|
-
-
-**Variable type: Date**
-
-|skim_variable | n_missing| complete_rate|min        |max        |median     | n_unique|
-|:-------------|---------:|-------------:|:----------|:----------|:----------|--------:|
-|release_date2 |         1|             1|2004-01-11 |2018-12-31 |2017-06-09 |     2951|
-
-
-**Variable type: logical**
-
-|skim_variable | n_missing| complete_rate| mean|count                |
-|:-------------|---------:|-------------:|----:|:--------------------|
-|playtime_miss |         0|             1| 0.97|TRU: 25837, FAL: 851 |
-
-
-**Variable type: numeric**
-
-|skim_variable    | n_missing| complete_rate|    mean|      sd|    p0|    p25|     p50|     p75|    p100|hist  |
-|:----------------|---------:|-------------:|-------:|-------:|-----:|------:|-------:|-------:|-------:|:-----|
-|price            |      3095|          0.88|    8.95|   12.16|  0.49|   2.99|    5.99|    9.99|  595.99|▇▁▁▁▁ |
-|median_playtime  |        12|          1.00|    5.16|   68.91|  0.00|   0.00|    0.00|    0.00| 3293.00|▇▁▁▁▁ |
-|metascore        |     23838|          0.11|   71.90|   11.02| 20.00|  66.00|   73.00|   80.00|   98.00|▁▁▃▇▂ |
-|price_cat        |      3095|          0.88|    1.25|    0.49|  1.00|   1.00|    1.00|    1.00|    3.00|▇▁▂▁▁ |
-|number           |         0|          1.00| 2904.19| 2377.07|  1.00| 821.00| 2356.00| 4523.25| 8846.00|▇▅▃▂▁ |
-|average_playtime |         9|          1.00|    9.06|  117.94|  0.00|   0.00|    0.00|    0.00| 5670.00|▇▁▁▁▁ |
 
 See if you can find in the output the following:
 
@@ -613,7 +559,7 @@ The most important thing to do when dealing with outliers is to __be explicit__ 
 
 In this example, a median playtime of `3000+` hours seems a bit excessive, but it's more challenging to determine what a reasonable cutoff for "excessive" is. Is it reasonable for a game to have a median playtime of `1000` hours? What aobut `2000` hours? `500` hours? Choosing which points to keep will affect the fit of the smoother. As you may have learned in STAT 113 or STAT 213, observations that have a high control over the fit of a smoother or regression line are __influential__. 
 
-### Exercises {#exercise-14-5}
+### Exercises {#exercise-14-4}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
@@ -707,7 +653,7 @@ sum_df |> summarise(across(where(is.numeric), mean))
 #> 1   2.5   1.5 50050.
 ```
 
-### Exercises {#exercise-14-6}
+### Exercises {#exercise-14-5}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
@@ -793,7 +739,6 @@ df <- tibble(Term = c("F19", "S20"), x = c(1, 2))
 <!-- 2. \* You should actually be able to answer your own question using a function that we learned a couple of weeks ago. Do so, creating a `Semester` and `Year` variable. -->
 
 
-
 ## Non-Exercise `R` Code {#rcode-14}
 
 
@@ -840,7 +785,7 @@ ggplot(data = int_econ_df, aes(x = year, y = n_majors)) +
 library(skimr)
 library(here)
 videogame_df <- read_csv(here("data/videogame_clean.csv"))
-skim(videogame_df)
+## skim(videogame_df)
 videogame_df |> summarise(mean_meta = mean(metascore, na.rm = TRUE),
                           med_meta = median(metascore, na.rm = TRUE))
 ggplot(data = videogame_df, aes(x = metascore, y = median_playtime)) +

@@ -31,7 +31,7 @@ Florida is typically a highly-contentious "battleground" state. The data set tha
 
 To get started exploring the data, complete the following steps that you learned in Week 0:
 
-1. Log-on to the SLU `R Studio` server <a href="http://rstudio.stlawu.local:8787" target="_blank">http://rstudio.stlawu.local:8787</a>
+1. Open your `R Project` by double clicking the `.RProj` icon in the folder on your desktop, or, by opening `R Studio` and clicking `File -> Open Project`.
 
 1. Create a new .qmd file in the same folder as your Notes `R Project` using File -> New File -> `Quarto`.
 

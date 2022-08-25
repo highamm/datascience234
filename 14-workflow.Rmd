@@ -52,13 +52,14 @@ athletes_test_read <- read_csv(here("data/athletesdata.csv"))
 
 This allows us to have `Quarto` files within folders in our `R` project.
 
-### Exercises {#exercise-14-2}
+### Exercises {#exercise-14-1}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
 1. Take some time to modify your files in this course by creating a few folders to help keep things a bit more organized. You might consider having a `Quizzes` folder, an `Exercises` folder, etc. Move the relevant files to these folders and modify each file to load in the `here` package and use the `here()` function to read in any relevant data sets. 
 
-2. Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using `library(name_of_package)`, you can click the checkbox by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
+2. Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using _library(name_of_package)_, you can click the check-box by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
+
 ## Code Style
 
 Writing code that is "readable" is helpful not only for others but also for yourself, especially if the project you are working on is long-term. What constitutes "readable" code varies a bit, but there are some general principles that are more widely accepted for "good" code. Much of the coding "style" you have seen so far has been imposed by me: I have my own style for writing code so naturally, I use that style in the code I write for our course materials. 
@@ -134,7 +135,7 @@ is easier to read than
 mtcars |> filter(cyl == 4) |> group_by(vs) |> summarise(mean_mpg = mean(mpg, na.rm = TRUE))
 ```
 
-### Exercises {#exercise-14-3}
+### Exercises {#exercise-14-2}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
@@ -248,7 +249,8 @@ ggplot(data = cyl4_df, aes(x = mpg)) +
 
 But, later we delete the line creating `cyl4_df`. The plot will still work because `cyl4_df` is already in our environment but the file will not render because we are missing that crucial line of code. Restarting `R` can help us identify this issue because the plot will no longer work and we will get a sensible error message like `cyl4_df` not found.
 
-### Exercises {#exercise-14-4}
+
+### Exercises {#exercise-14-3}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
@@ -355,11 +357,11 @@ We will talk about the consequences of outliers and missing values next, but fir
 
 The data set was modified from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-07-30" target="_blank">https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-07-30</a>.
 
-```{r, appendix = TRUE}
+```{r, appendix = TRUE, results = "hide"}
 library(skimr)
 library(here)
 videogame_df <- read_csv(here("data/videogame_clean.csv"))
-skim(videogame_df)
+## skim(videogame_df)
 ```
 
 See if you can find in the output the following:
@@ -424,7 +426,7 @@ The most important thing to do when dealing with outliers is to __be explicit__ 
 
 In this example, a median playtime of `3000+` hours seems a bit excessive, but it's more challenging to determine what a reasonable cutoff for "excessive" is. Is it reasonable for a game to have a median playtime of `1000` hours? What aobut `2000` hours? `500` hours? Choosing which points to keep will affect the fit of the smoother. As you may have learned in STAT 113 or STAT 213, observations that have a high control over the fit of a smoother or regression line are __influential__. 
 
-### Exercises {#exercise-14-5}
+### Exercises {#exercise-14-4}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
@@ -490,7 +492,7 @@ For reference, the `across()` function can be used to answer our question (thoug
 sum_df |> summarise(across(where(is.numeric), mean))
 ```
 
-### Exercises {#exercise-14-6}
+### Exercises {#exercise-14-5}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
@@ -547,7 +549,6 @@ df <- tibble(Term = c("F19", "S20"), x = c(1, 2))
 ```{r, echo = FALSE, eval = FALSE}
 new_df <- df |> separate(Term, sep = 1, into = c("Semester", "Year"))
 ```
-
 ## Non-Exercise `R` Code {#rcode-14}
 
 ```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}

@@ -1,7 +1,7 @@
 ---
 title: "STAT 234: Data Science"
 author: "Matt Higham"
-date: "2022-08-24"
+date: "2022-08-25"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -25,10 +25,6 @@ csl: chicago-fullnote-bibliography.csl
 -   Sections:
     -   MW 2:30 - 4:00
 -   Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
-    -   Monday 9:00 - 10:00
-    -   Tuesday 9:00 - 11:00, 2:00 - 3:00
-    -   Thursday 1:00 - 2:00
-    -   Friday 10:00 - 11:00
     -   Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
 
 **Course Materials**

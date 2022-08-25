@@ -136,21 +136,25 @@
 <span><span class="co">#&gt; `show_col_types = FALSE` to quiet this message.</span></span>
 <span><span class="co">#&gt; • `` -&gt; `...1`</span></span></code></pre></div>
 <p>This allows us to have <code>Quarto</code> files within folders in our <code>R</code> project.</p>
-<div id="exercise-14-2" class="section level3" number="6.1.1">
+<div id="exercise-14-1" class="section level3" number="6.1.1">
 <h3>
-<span class="header-section-number">6.1.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.1.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
 <ol style="list-style-type: decimal">
 <li><p>Take some time to modify your files in this course by creating a few folders to help keep things a bit more organized. You might consider having a <code>Quizzes</code> folder, an <code>Exercises</code> folder, etc. Move the relevant files to these folders and modify each file to load in the <code>here</code> package and use the <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function to read in any relevant data sets.</p></li>
-<li><p>Click the “Packages” button in the lower-right hand window to bring up the packages menu. Instead of using <code><a href="https://rdrr.io/r/base/library.html">library(name_of_package)</a></code>, you can click the checkbox by the package name to load it into <code>R</code>. Try it out by un-checking and then re-checking <code>tidyverse</code>. Explain, from a reproducibility perspective, why loading packages this way is <strong>not</strong> good practice.
-## Code Style</p></li>
+<li><p>Click the “Packages” button in the lower-right hand window to bring up the packages menu. Instead of using <em>library(name_of_package)</em>, you can click the check-box by the package name to load it into <code>R</code>. Try it out by un-checking and then re-checking <code>tidyverse</code>. Explain, from a reproducibility perspective, why loading packages this way is <strong>not</strong> good practice.</p></li>
 </ol>
-<p>Writing code that is “readable” is helpful not only for others but also for yourself, especially if the project you are working on is long-term. What constitutes “readable” code varies a bit, but there are some general principles that are more widely accepted for “good” code. Much of the coding “style” you have seen so far has been imposed by me: I have my own style for writing code so naturally, I use that style in the code I write for our course materials.</p>
 </div>
-<div id="names" class="section level3" number="6.1.2">
+</div>
+<div id="code-style" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Code Style<a class="anchor" aria-label="anchor" href="#code-style"><i class="fas fa-link"></i></a>
+</h2>
+<p>Writing code that is “readable” is helpful not only for others but also for yourself, especially if the project you are working on is long-term. What constitutes “readable” code varies a bit, but there are some general principles that are more widely accepted for “good” code. Much of the coding “style” you have seen so far has been imposed by me: I have my own style for writing code so naturally, I use that style in the code I write for our course materials.</p>
+<div id="names" class="section level3" number="6.2.1">
 <h3>
-<span class="header-section-number">6.1.2</span> Names<a class="anchor" aria-label="anchor" href="#names"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2.1</span> Names<a class="anchor" aria-label="anchor" href="#names"><i class="fas fa-link"></i></a>
 </h3>
 <p>Names of objects that we create should be descriptive yet short. Sometimes, thinking of a name that makes sense can be very challenging! Some examples of “bad” names for objects include names that are too generic that we won’t be able to distinguish them later:</p>
 <div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
@@ -169,9 +173,9 @@
 <p>If we mixed, then we always have to keep track of whether an object is named with <code>_</code> or <code>.</code> or with capitalization.</p>
 <p>Finally, you may have noticed that most of our data frames our named with the suffix <code>_df</code>. I have worked that into my own coding style because I like keeping track of what is a dataframe (or <code>tibble</code>) and what isn’t. This is generally more helpful as you encounter different types of objects (model output, lists, matrices, vectors, etc.).</p>
 </div>
-<div id="code-readability" class="section level3" number="6.1.3">
+<div id="code-readability" class="section level3" number="6.2.2">
 <h3>
-<span class="header-section-number">6.1.3</span> Code Readability<a class="anchor" aria-label="anchor" href="#code-readability"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2.2</span> Code Readability<a class="anchor" aria-label="anchor" href="#code-readability"><i class="fas fa-link"></i></a>
 </h3>
 <p>We can also follow some general practices to make our code more “readable.” We have already been employing most of these practices throughout the semester: <code>R Studio</code> generally makes code readable by indenting appropriately.</p>
 <p>Appropriately using spacing can make code much more readable. Consider the following <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> code. For example, the following code chunk executes a scatterplot with a fitted regression line but it’s generally tough to read.</p>
@@ -212,11 +216,11 @@
 <span><span class="co">#&gt; 1     0     26  </span></span>
 <span><span class="co">#&gt; 2     1     26.7</span></span></code></pre></div>
 </div>
-<div id="exercise-14-3" class="section level3" number="6.1.4">
+<div id="exercise-14-2" class="section level3" number="6.2.3">
 <h3>
-<span class="header-section-number">6.1.4</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-2"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
 <ol style="list-style-type: decimal">
 <li>Change the following object names to be “better:”</li>
 </ol>
@@ -235,14 +239,14 @@
 <div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
 </div>
 </div>
-<div id="debugging-code" class="section level2" number="6.2">
+<div id="debugging-code" class="section level2" number="6.3">
 <h2>
-<span class="header-section-number">6.2</span> Debugging Code<a class="anchor" aria-label="anchor" href="#debugging-code"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3</span> Debugging Code<a class="anchor" aria-label="anchor" href="#debugging-code"><i class="fas fa-link"></i></a>
 </h2>
 <p>The previous section on code readability can be seen as one step to helping with code debugging: code that is easier to read is code that is easier to spot errors in. Additionally, there are some other strategies we can take when our code is not working to figure out what the issue is.</p>
-<div id="identify-the-problem" class="section level3" number="6.2.1">
+<div id="identify-the-problem" class="section level3" number="6.3.1">
 <h3>
-<span class="header-section-number">6.2.1</span> Identify the Problem<a class="anchor" aria-label="anchor" href="#identify-the-problem"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3.1</span> Identify the Problem<a class="anchor" aria-label="anchor" href="#identify-the-problem"><i class="fas fa-link"></i></a>
 </h3>
 <p>We run <code>R</code> code for our data analyses from “top to bottom,” which makes it a bit easier to identify where the problem code is occurring. We can run our code from the top of our <code>.qmd</code> file, line by line, until we see the red <code>Error</code> message.</p>
 <p>Often this <code>Error</code> message will occur in a <code>ggplot</code> statement or a piping statement. If this is the case, then a further strategy is to run the <code>ggplot</code> statement <code>+</code> sign by <code>+</code> sign or to run the piping statement pipe by pipe to further isolate the error. For example, take the following <code>ggplot</code> code, which generates a somewhat cryptic error.</p>
@@ -298,11 +302,11 @@
 <div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-24-1.png" width="672"></div>
 <p>But, later we delete the line creating <code>cyl4_df</code>. The plot will still work because <code>cyl4_df</code> is already in our environment but the file will not render because we are missing that crucial line of code. Restarting <code>R</code> can help us identify this issue because the plot will no longer work and we will get a sensible error message like <code>cyl4_df</code> not found.</p>
 </div>
-<div id="exercise-14-4" class="section level3" number="6.2.2">
+<div id="exercise-14-3" class="section level3" number="6.3.2">
 <h3>
-<span class="header-section-number">6.2.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-3"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
 <ol style="list-style-type: decimal">
 <li>Find the error in the following code chunk by running the code “<code>+</code> sign by <code>+</code> sign).</li>
 </ol>
@@ -330,14 +334,14 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count_var <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="context-outliers-and-missing-values" class="section level2" number="6.3">
+<div id="context-outliers-and-missing-values" class="section level2" number="6.4">
 <h2>
-<span class="header-section-number">6.3</span> Context, Outliers, and Missing Values<a class="anchor" aria-label="anchor" href="#context-outliers-and-missing-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4</span> Context, Outliers, and Missing Values<a class="anchor" aria-label="anchor" href="#context-outliers-and-missing-values"><i class="fas fa-link"></i></a>
 </h2>
 <p>The primary purpose of this section is to explore why we should always think critically about the data set we are analyzing as opposed to simply making summary tables without thinking about how they could be interpreted. In other words, we need to both examine the data set to see if there are things like missing values or outliers that could affect interpretation as well as consider the context that the data set comes from.</p>
-<div id="context" class="section level3" number="6.3.1">
+<div id="context" class="section level3" number="6.4.1">
 <h3>
-<span class="header-section-number">6.3.1</span> Context<a class="anchor" aria-label="anchor" href="#context"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.1</span> Context<a class="anchor" aria-label="anchor" href="#context"><i class="fas fa-link"></i></a>
 </h3>
 <p>Considering context includes thinking about questions like:</p>
 <ul>
@@ -394,9 +398,9 @@
 <p>How does the new contextual information about the International Economics major influence your conclusions about the popularity of Spanish studies at SLU?</p>
 <p>You should find throughout the semester that the data sets on topics that you are more familiar with are easier to analyze than the data sets on topics that you are not as familiar with. A large part of the reasoning for this is that you have much more contextual information with data topics that you have prior knowledge on. That extra contextual information generally allows us to pose deeper questions, identify potentially erroneous data, and write more subtle conclusions. We will discuss context more throughout the semester and will also have another focus on context when we discuss data ethics.</p>
 </div>
-<div id="outliers-and-missing-values" class="section level3" number="6.3.2">
+<div id="outliers-and-missing-values" class="section level3" number="6.4.2">
 <h3>
-<span class="header-section-number">6.3.2</span> Outliers and Missing Values<a class="anchor" aria-label="anchor" href="#outliers-and-missing-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.2</span> Outliers and Missing Values<a class="anchor" aria-label="anchor" href="#outliers-and-missing-values"><i class="fas fa-link"></i></a>
 </h3>
 <p>Outliers in a data analysis can affect certain summary statistics, like the mean and the standard deviation (as you learned in STAT 113). They could also be observations that warrant further investigation if we are interested in <em>why</em> a particular point is an outlier.</p>
 <p>Missing values can also cause us to reach a potentially misleading conclusion if we do not carefully consider why such values are missing.</p>
@@ -438,308 +442,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:unnamed-chunk-31">Table 6.1: </span>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">videogame_df</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">26688</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">15</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">character</td>
-<td align="left">7</td>
-</tr>
-<tr class="odd">
-<td align="left">Date</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="left">logical</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">numeric</td>
-<td align="left">6</td>
-</tr>
-<tr class="even">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Group variables</td>
-<td align="left">None</td>
-</tr>
-</tbody>
-</table></div>
-<p><strong>Variable type: character</strong></p>
-<div class="inline-table"><table class="table table-sm">
-<colgroup>
-<col width="21%">
-<col width="13%">
-<col width="18%">
-<col width="5%">
-<col width="5%">
-<col width="8%">
-<col width="12%">
-<col width="14%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">empty</th>
-<th align="right">n_unique</th>
-<th align="right">whitespace</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">game</td>
-<td align="right">3</td>
-<td align="right">1.00</td>
-<td align="right">1</td>
-<td align="right">212</td>
-<td align="right">0</td>
-<td align="right">26610</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">release_date</td>
-<td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">8</td>
-<td align="right">12</td>
-<td align="right">0</td>
-<td align="right">2977</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">owners</td>
-<td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">11</td>
-<td align="right">26</td>
-<td align="right">0</td>
-<td align="right">13</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">meta_cat</td>
-<td align="right">23838</td>
-<td align="right">0.11</td>
-<td align="right">13</td>
-<td align="right">21</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">developer</td>
-<td align="right">151</td>
-<td align="right">0.99</td>
-<td align="right">1</td>
-<td align="right">237</td>
-<td align="right">0</td>
-<td align="right">16752</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">publisher</td>
-<td align="right">95</td>
-<td align="right">1.00</td>
-<td align="right">1</td>
-<td align="right">131</td>
-<td align="right">0</td>
-<td align="right">13953</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">meta_cat_factor</td>
-<td align="right">23838</td>
-<td align="right">0.11</td>
-<td align="right">13</td>
-<td align="right">21</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table></div>
-<p><strong>Variable type: Date</strong></p>
-<div class="inline-table"><table class="table table-sm">
-<colgroup>
-<col width="17%">
-<col width="12%">
-<col width="17%">
-<col width="13%">
-<col width="13%">
-<col width="13%">
-<col width="11%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="left">min</th>
-<th align="left">max</th>
-<th align="left">median</th>
-<th align="right">n_unique</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left">release_date2</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="left">2004-01-11</td>
-<td align="left">2018-12-31</td>
-<td align="left">2017-06-09</td>
-<td align="right">2951</td>
-</tr></tbody>
-</table></div>
-<p><strong>Variable type: logical</strong></p>
-<div class="inline-table"><table class="table table-sm">
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="left">count</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left">playtime_miss</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0.97</td>
-<td align="left">TRU: 25837, FAL: 851</td>
-</tr></tbody>
-</table></div>
-<p><strong>Variable type: numeric</strong></p>
-<div class="inline-table"><table class="table table-sm">
-<colgroup>
-<col width="17%">
-<col width="10%">
-<col width="14%">
-<col width="8%">
-<col width="8%">
-<col width="6%">
-<col width="7%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="6%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">price</td>
-<td align="right">3095</td>
-<td align="right">0.88</td>
-<td align="right">8.95</td>
-<td align="right">12.16</td>
-<td align="right">0.49</td>
-<td align="right">2.99</td>
-<td align="right">5.99</td>
-<td align="right">9.99</td>
-<td align="right">595.99</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">median_playtime</td>
-<td align="right">12</td>
-<td align="right">1.00</td>
-<td align="right">5.16</td>
-<td align="right">68.91</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">3293.00</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">metascore</td>
-<td align="right">23838</td>
-<td align="right">0.11</td>
-<td align="right">71.90</td>
-<td align="right">11.02</td>
-<td align="right">20.00</td>
-<td align="right">66.00</td>
-<td align="right">73.00</td>
-<td align="right">80.00</td>
-<td align="right">98.00</td>
-<td align="left">▁▁▃▇▂</td>
-</tr>
-<tr class="even">
-<td align="left">price_cat</td>
-<td align="right">3095</td>
-<td align="right">0.88</td>
-<td align="right">1.25</td>
-<td align="right">0.49</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">3.00</td>
-<td align="left">▇▁▂▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">number</td>
-<td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">2904.19</td>
-<td align="right">2377.07</td>
-<td align="right">1.00</td>
-<td align="right">821.00</td>
-<td align="right">2356.00</td>
-<td align="right">4523.25</td>
-<td align="right">8846.00</td>
-<td align="left">▇▅▃▂▁</td>
-</tr>
-<tr class="even">
-<td align="left">average_playtime</td>
-<td align="right">9</td>
-<td align="right">1.00</td>
-<td align="right">9.06</td>
-<td align="right">117.94</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">5670.00</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-</tbody>
-</table></div>
+<span><span class="co">## skim(videogame_df)</span></span></code></pre></div>
 <p>See if you can find in the output the following:</p>
 <ul>
 <li>the number of rows in the data set and the number of columns</li>
@@ -786,11 +489,11 @@
 <p>The most important thing to do when dealing with outliers is to <strong>be explicit</strong> about what you, as the analyst, choose to keep in the graph or summary table and what you choose to remove. If you choose to remove values, give your reasoning, and, if there is space, you can also give a second graph that has the data without removing any outliers.</p>
 <p>In this example, a median playtime of <code>3000+</code> hours seems a bit excessive, but it’s more challenging to determine what a reasonable cutoff for “excessive” is. Is it reasonable for a game to have a median playtime of <code>1000</code> hours? What aobut <code>2000</code> hours? <code>500</code> hours? Choosing which points to keep will affect the fit of the smoother. As you may have learned in STAT 113 or STAT 213, observations that have a high control over the fit of a smoother or regression line are <strong>influential</strong>.</p>
 </div>
-<div id="exercise-14-5" class="section level3" number="6.3.3">
+<div id="exercise-14-4" class="section level3" number="6.4.3">
 <h3>
-<span class="header-section-number">6.3.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-4"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
 <ol style="list-style-type: decimal">
 <li>The STAT 113 survey data set contains responses from 397 STAT 113 students from a survey that students take at the beginning of the semester. There are 5 categorical variables and 7 numeric variables. Of the categorical variables, how many variables have <strong>0</strong> missing values? Of the numeric variables, how many variables have <strong>0</strong> missing values?</li>
 </ol>
@@ -812,9 +515,9 @@
 </ol>
 </div>
 </div>
-<div id="reprexes-and-tibble" class="section level2" number="6.4">
+<div id="reprexes-and-tibble" class="section level2" number="6.5">
 <h2>
-<span class="header-section-number">6.4</span> Reprexes and <code>tibble</code><a class="anchor" aria-label="anchor" href="#reprexes-and-tibble"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.5</span> Reprexes and <code>tibble</code><a class="anchor" aria-label="anchor" href="#reprexes-and-tibble"><i class="fas fa-link"></i></a>
 </h2>
 <p>A <em>reproducible example</em>, or <strong>reprex</strong>, is a chunk of code that we can give to someone else that runs without any outside data. These are used often on StackExchange. We can create a data set directly within <code>R</code> with the <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> function in the <code>tibble</code> package. This is most useful when we want to make a small reproducible example so that someone else may help with our code.</p>
 <p>The following code chunk is <strong>not</strong> a reprex because people would not necessarily have the data set <code>parsedf.csv</code>.</p>
@@ -862,11 +565,11 @@
 <span><span class="co">#&gt;    yvar  zvar   tvar</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1   2.5   1.5 50050.</span></span></code></pre></div>
-<div id="exercise-14-6" class="section level3" number="6.4.1">
+<div id="exercise-14-5" class="section level3" number="6.5.1">
 <h3>
-<span class="header-section-number">6.4.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.5.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-5"><i class="fas fa-link"></i></a>
 </h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.6</a>.</p>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
 <p>For Project 2, we will work with some course evaluation data for a professor at SLU. Overall, you’ll answer some questions about how the professor can improve their courses at SLU by looking at course evaluation data. The variables and data set will be described in more detail in the project description.</p>
 <ol style="list-style-type: decimal">
 <li>* Suppose that you can’t figure out how to create a semester variable and a year variable from <code>Term</code> in <code>evals_prof_S21.csv</code>. (You want to split the <code>Term</code> variable into two variables: <code>Semester</code> with levels <code>F</code> and <code>S</code> and <code>Year</code> with levels <code>19</code>, <code>20</code>, and <code>21</code>).</li>
@@ -893,39 +596,39 @@
 <!-- 2. \* You should actually be able to answer your own question using a function that we learned a couple of weeks ago. Do so, creating a `Semester` and `Year` variable. -->
 </div>
 </div>
-<div id="chapexercise-14" class="section level2" number="6.5">
+<div id="chapexercise-14" class="section level2" number="6.6">
 <h2>
-<span class="header-section-number">6.5</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.6</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-14"><i class="fas fa-link"></i></a>
 </h2>
 <p>There are no chapter exercises for this section on workflow.</p>
 </div>
-<div id="solutions-14" class="section level2" number="6.6">
+<div id="solutions-14" class="section level2" number="6.7">
 <h2>
-<span class="header-section-number">6.6</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.7</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-14"><i class="fas fa-link"></i></a>
 </h2>
-<div id="r-projects-and-file-organization-s" class="section level3" number="6.6.1">
+<div id="r-projects-and-file-organization-s" class="section level3" number="6.7.1">
 <h3>
-<span class="header-section-number">6.6.1</span> <code>R Projects</code> and File Organization S<a class="anchor" aria-label="anchor" href="#r-projects-and-file-organization-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.7.1</span> <code>R Projects</code> and File Organization S<a class="anchor" aria-label="anchor" href="#r-projects-and-file-organization-s"><i class="fas fa-link"></i></a>
 </h3>
 </div>
-<div id="code-style-s" class="section level3" number="6.6.2">
+<div id="code-style-s" class="section level3" number="6.7.2">
 <h3>
-<span class="header-section-number">6.6.2</span> Code Style S<a class="anchor" aria-label="anchor" href="#code-style-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.7.2</span> Code Style S<a class="anchor" aria-label="anchor" href="#code-style-s"><i class="fas fa-link"></i></a>
 </h3>
 </div>
-<div id="debugging-code-s" class="section level3" number="6.6.3">
+<div id="debugging-code-s" class="section level3" number="6.7.3">
 <h3>
-<span class="header-section-number">6.6.3</span> Debugging Code S<a class="anchor" aria-label="anchor" href="#debugging-code-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.7.3</span> Debugging Code S<a class="anchor" aria-label="anchor" href="#debugging-code-s"><i class="fas fa-link"></i></a>
 </h3>
 </div>
-<div id="context-outliers-and-missing-values-s" class="section level3" number="6.6.4">
+<div id="context-outliers-and-missing-values-s" class="section level3" number="6.7.4">
 <h3>
-<span class="header-section-number">6.6.4</span> Context, Outliers, and Missing Values S<a class="anchor" aria-label="anchor" href="#context-outliers-and-missing-values-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.7.4</span> Context, Outliers, and Missing Values S<a class="anchor" aria-label="anchor" href="#context-outliers-and-missing-values-s"><i class="fas fa-link"></i></a>
 </h3>
 </div>
-<div id="reprexes-and-tibble-s" class="section level3" number="6.6.5">
+<div id="reprexes-and-tibble-s" class="section level3" number="6.7.5">
 <h3>
-<span class="header-section-number">6.6.5</span> Reprexes and <code>tibble</code> S<a class="anchor" aria-label="anchor" href="#reprexes-and-tibble-s"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.7.5</span> Reprexes and <code>tibble</code> S<a class="anchor" aria-label="anchor" href="#reprexes-and-tibble-s"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>* Suppose that you can’t figure out how to create a semester variable and a year variable from <code>Term</code> in <code>evals_prof_S21.csv</code>. (You want to split the <code>Term</code> variable into two variables: <code>Semester</code> with levels <code>F</code> and <code>S</code> and <code>Year</code> with levels <code>19</code>, <code>20</code>, and <code>21</code>).</li>
@@ -958,9 +661,9 @@
 <!-- 2. \* You should actually be able to answer your own question using a function that we learned a couple of weeks ago. Do so, creating a `Semester` and `Year` variable. -->
 </div>
 </div>
-<div id="rcode-14" class="section level2" number="6.7">
+<div id="rcode-14" class="section level2" number="6.8">
 <h2>
-<span class="header-section-number">6.7</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.8</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-14"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
@@ -1005,7 +708,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">)</span></span>
+<span><span class="co">## skim(videogame_df)</span></span>
 <span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">metascore</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>                          med_meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">metascore</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>, y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1039,40 +742,42 @@
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#workflow"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
 <li>
-<a class="nav-link" href="#r-projects-and-file-organization"><span class="header-section-number">6.1</span> R Projects and File Organization</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exercise-14-2"><span class="header-section-number">6.1.1</span> Exercises</a></li>
-<li><a class="nav-link" href="#names"><span class="header-section-number">6.1.2</span> Names</a></li>
-<li><a class="nav-link" href="#code-readability"><span class="header-section-number">6.1.3</span> Code Readability</a></li>
-<li><a class="nav-link" href="#exercise-14-3"><span class="header-section-number">6.1.4</span> Exercises</a></li>
+<a class="nav-link" href="#r-projects-and-file-organization"><span class="header-section-number">6.1</span> R Projects and File Organization</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-14-1"><span class="header-section-number">6.1.1</span> Exercises</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#code-style"><span class="header-section-number">6.2</span> Code Style</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#names"><span class="header-section-number">6.2.1</span> Names</a></li>
+<li><a class="nav-link" href="#code-readability"><span class="header-section-number">6.2.2</span> Code Readability</a></li>
+<li><a class="nav-link" href="#exercise-14-2"><span class="header-section-number">6.2.3</span> Exercises</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#debugging-code"><span class="header-section-number">6.2</span> Debugging Code</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#identify-the-problem"><span class="header-section-number">6.2.1</span> Identify the Problem</a></li>
-<li><a class="nav-link" href="#exercise-14-4"><span class="header-section-number">6.2.2</span> Exercises</a></li>
+<a class="nav-link" href="#debugging-code"><span class="header-section-number">6.3</span> Debugging Code</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#identify-the-problem"><span class="header-section-number">6.3.1</span> Identify the Problem</a></li>
+<li><a class="nav-link" href="#exercise-14-3"><span class="header-section-number">6.3.2</span> Exercises</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#context-outliers-and-missing-values"><span class="header-section-number">6.3</span> Context, Outliers, and Missing Values</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#context"><span class="header-section-number">6.3.1</span> Context</a></li>
-<li><a class="nav-link" href="#outliers-and-missing-values"><span class="header-section-number">6.3.2</span> Outliers and Missing Values</a></li>
-<li><a class="nav-link" href="#exercise-14-5"><span class="header-section-number">6.3.3</span> Exercises</a></li>
+<a class="nav-link" href="#context-outliers-and-missing-values"><span class="header-section-number">6.4</span> Context, Outliers, and Missing Values</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#context"><span class="header-section-number">6.4.1</span> Context</a></li>
+<li><a class="nav-link" href="#outliers-and-missing-values"><span class="header-section-number">6.4.2</span> Outliers and Missing Values</a></li>
+<li><a class="nav-link" href="#exercise-14-4"><span class="header-section-number">6.4.3</span> Exercises</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#reprexes-and-tibble"><span class="header-section-number">6.4</span> Reprexes and tibble</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-14-6"><span class="header-section-number">6.4.1</span> Exercises</a></li></ul>
+<a class="nav-link" href="#reprexes-and-tibble"><span class="header-section-number">6.5</span> Reprexes and tibble</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-14-5"><span class="header-section-number">6.5.1</span> Exercises</a></li></ul>
 </li>
-<li><a class="nav-link" href="#chapexercise-14"><span class="header-section-number">6.5</span> Chapter Exercises</a></li>
+<li><a class="nav-link" href="#chapexercise-14"><span class="header-section-number">6.6</span> Chapter Exercises</a></li>
 <li>
-<a class="nav-link" href="#solutions-14"><span class="header-section-number">6.6</span> Exercise Solutions</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#r-projects-and-file-organization-s"><span class="header-section-number">6.6.1</span> R Projects and File Organization S</a></li>
-<li><a class="nav-link" href="#code-style-s"><span class="header-section-number">6.6.2</span> Code Style S</a></li>
-<li><a class="nav-link" href="#debugging-code-s"><span class="header-section-number">6.6.3</span> Debugging Code S</a></li>
-<li><a class="nav-link" href="#context-outliers-and-missing-values-s"><span class="header-section-number">6.6.4</span> Context, Outliers, and Missing Values S</a></li>
-<li><a class="nav-link" href="#reprexes-and-tibble-s"><span class="header-section-number">6.6.5</span> Reprexes and tibble S</a></li>
+<a class="nav-link" href="#solutions-14"><span class="header-section-number">6.7</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-projects-and-file-organization-s"><span class="header-section-number">6.7.1</span> R Projects and File Organization S</a></li>
+<li><a class="nav-link" href="#code-style-s"><span class="header-section-number">6.7.2</span> Code Style S</a></li>
+<li><a class="nav-link" href="#debugging-code-s"><span class="header-section-number">6.7.3</span> Debugging Code S</a></li>
+<li><a class="nav-link" href="#context-outliers-and-missing-values-s"><span class="header-section-number">6.7.4</span> Context, Outliers, and Missing Values S</a></li>
+<li><a class="nav-link" href="#reprexes-and-tibble-s"><span class="header-section-number">6.7.5</span> Reprexes and tibble S</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#rcode-14"><span class="header-section-number">6.7</span> Non-Exercise R Code</a></li>
+<li><a class="nav-link" href="#rcode-14"><span class="header-section-number">6.8</span> Non-Exercise R Code</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1089,7 +794,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-24.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
