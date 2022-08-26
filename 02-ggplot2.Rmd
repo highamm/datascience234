@@ -67,7 +67,7 @@ We will use the `ggplot()` function in the `ggplot2` package to construct visual
 The components are combined in the following form:
 
 ```{r, eval = FALSE}
-ggplot(data = name_of_data, mapping = aes(x = name_of_x_var, 
+ggplot(data = name_of_data, aes(x = name_of_x_var, 
                                           y = name_of_y_var,
                                           colour = name_of_colour_var,
                                           etc.)) +
@@ -84,7 +84,7 @@ The structure of `ggplot()` plots is based on the Grammar of Graphics <a href="h
 Let's go ahead and begin our exploration of the data by making a histogram of the number of people who voted for `Gore` in each county. Recall that a histogram is useful if we would like a graph of a single quantitative variable. Copy the following code to an `R` chunk and run the code:
 
 ```{r, warning = TRUE, message = TRUE, appendix = TRUE}
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_histogram(colour = "black", fill = "white") +
   xlab("Votes for Gore in Florida")
 ```
@@ -102,7 +102,7 @@ There are a couple of observations with very high vote values. What could explai
 Another graph useful in visualizing a single quantitative variable is a frequency plot. The code to make a frequency plot is given below. We are simply replacing `geom_histogram()` with `geom_freqpoly()`.
 
 ```{r, appendix = TRUE}
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") 
 ```
@@ -110,7 +110,7 @@ ggplot(data = pres_df, mapping = aes(x = Gore)) +
 The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including __both__ a geom_freqpoly() and a geom_histogram() in your plot, though it doesn't make for the prettiest graph:
 
 ```{r, appendix = TRUE}
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") +
   geom_histogram() 
@@ -128,7 +128,7 @@ ggplot(data=pres_df,mapping=aes(x=Gore))+geom_histogram(colour="black",fill="whi
 ```
 
 ```{r, eval = FALSE}
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_histogram(colour = "black", fill = "white") +
   xlab("Votes for Gore in Florida")
 ```
@@ -237,7 +237,7 @@ Moving back to the 2000 presidential election data set, thus far, we've figured 
 Let's start by making a scatterplot of the number of votes for Gore and the number of votes for Bush. Note that the `geom_` for making a scatterplot is called `geom_point()` because we are adding a layer of points to the plot.
 
 ```{r, appendix = TRUE}
-ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
+ggplot(data = pres_df, aes(x = Gore, y = Bush)) +
   geom_point()
 ```
 
@@ -378,9 +378,9 @@ Does it look like there is an increasing overall trend? decreasing? Does it make
 Line plots are often useful when you have a quantitative variable that you'd like to explore over time. The y-axis is the quantitative variable while the x-axis is typically time. More generally, line plots are often used when the x-axis variable has one discrete value for each y-axis variable. For example, suppose we want to explore how my step count has changed through time over the past couple of years. Compare the standard scatterplot with the following line plot: which do you prefer?
 
 ```{r, appendix = TRUE}
-ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+ggplot(data = fitness, aes(x = Start, y = steps)) +
   geom_point() + geom_smooth() + xlab("Date")
-ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+ggplot(data = fitness, aes(x = Start, y = steps)) +
   geom_line() + geom_smooth() + xlab("Date")
 ```
 

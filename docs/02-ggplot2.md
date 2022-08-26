@@ -78,7 +78,7 @@ The components are combined in the following form:
 
 
 ```r
-ggplot(data = name_of_data, mapping = aes(x = name_of_x_var, 
+ggplot(data = name_of_data, aes(x = name_of_x_var, 
                                           y = name_of_y_var,
                                           colour = name_of_colour_var,
                                           etc.)) +
@@ -96,7 +96,7 @@ Let's go ahead and begin our exploration of the data by making a histogram of th
 
 
 ```r
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_histogram(colour = "black", fill = "white") +
   xlab("Votes for Gore in Florida")
 #> `stat_bin()` using `bins = 30`. Pick better value with
@@ -119,7 +119,7 @@ Another graph useful in visualizing a single quantitative variable is a frequenc
 
 
 ```r
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") 
 #> `stat_bin()` using `bins = 30`. Pick better value with
@@ -132,7 +132,7 @@ The frequency plot is just like a histogram but the counts are connected by a li
 
 
 ```r
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") +
   geom_histogram() 
@@ -158,7 +158,7 @@ ggplot(data=pres_df,mapping=aes(x=Gore))+geom_histogram(colour="black",fill="whi
 
 
 ```r
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_histogram(colour = "black", fill = "white") +
   xlab("Votes for Gore in Florida")
 ```
@@ -305,7 +305,7 @@ Let's start by making a scatterplot of the number of votes for Gore and the numb
 
 
 ```r
-ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
+ggplot(data = pres_df, aes(x = Gore, y = Bush)) +
   geom_point()
 ```
 
@@ -489,7 +489,7 @@ Line plots are often useful when you have a quantitative variable that you'd lik
 
 
 ```r
-ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+ggplot(data = fitness, aes(x = Start, y = steps)) +
   geom_point() + geom_smooth() + xlab("Date")
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
@@ -497,7 +497,7 @@ ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
 <img src="02-ggplot2_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 ```r
-ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+ggplot(data = fitness, aes(x = Start, y = steps)) +
   geom_line() + geom_smooth() + xlab("Date")
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
@@ -784,13 +784,13 @@ library(tidyverse)
 pres_df <- read_table("data/PRES2000.txt") 
 ## don't worry about the `read_table` function....yet
 head(pres_df)
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_histogram(colour = "black", fill = "white") +
   xlab("Votes for Gore in Florida")
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") 
-ggplot(data = pres_df, mapping = aes(x = Gore)) +
+ggplot(data = pres_df, aes(x = Gore)) +
   geom_freqpoly(colour = "black") +
   xlab("Votes for Gore in Florida") +
   geom_histogram() 
@@ -807,7 +807,7 @@ ggplot(pres_cat2, aes(x = winner)) +
   geom_bar()
 ggplot(pres_cat2, aes(x = winner, y = nwins)) +
   geom_col()
-ggplot(data = pres_df, mapping = aes(x = Gore, y = Bush)) +
+ggplot(data = pres_df, aes(x = Gore, y = Bush)) +
   geom_point()
 library(tidyverse)
 fitness_full <- read_csv("data/higham_fitness_clean.csv") |> mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
@@ -837,9 +837,9 @@ ggplot(data = fitness, aes(x = Start, y = active_cals)) +
 ggplot(data = fitness, aes(x = Start, y = active_cals)) +
   geom_point() +
   geom_smooth(se = FALSE, method = "lm")
-ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+ggplot(data = fitness, aes(x = Start, y = steps)) +
   geom_point() + geom_smooth() + xlab("Date")
-ggplot(data = fitness, mapping = aes(x = Start, y = steps)) +
+ggplot(data = fitness, aes(x = Start, y = steps)) +
   geom_line() + geom_smooth() + xlab("Date")
 ggplot(data = stat113_df, aes(x = Exercise, y = Pulse,
                            colour = Year)) +
