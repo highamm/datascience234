@@ -12,7 +12,7 @@ __Goals:__
 
 * Explain what the pipe operator `|>` does and explain when you can and cannot use the pipe operator.
 
-Throughout this chapter, we will use the `babynames` data set in the `babynames` `R` package. To begin, read about the data set, by running 
+Throughout this chapter, we will use the `babynames` data set in the `babynames` `R` package. To begin, install the `babynames` package by typing `install.packages("babynames")` in your bottom-left console winow, and read about the data set by running 
 
 
 ```r
