@@ -160,58 +160,6 @@ slumajors_df <- slumajors_df |>
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
 ```
 
-### A Little More on Piping
-
-We are jumping straight into using piping, but we do want to have an appreciation on how terrible life would be without it. What piping does is make whatever is given before the `|>` pipe the first argument of whatever function follows the `|>`. So 
-
-
-```r
-df |> mutate(x = y + 4)
-```
-
-is equivalent to
-
-
-```r
-mutate(df, x = y + 4)
-```
-
-Piping really isn't that useful if you just have something that can be done with a single `|>`. But, doing our previous example without piping might look like:
-
-
-```r
-mutate(mutate(slumajors_df, ntotal = nfemales + nmales), percfemale = 100 * nfemales / (nfemales + nmales))
-#> # A tibble: 27 × 5
-#>    Major                       nfema…¹ nmales percf…² ntotal
-#>    <chr>                         <dbl>  <dbl>   <dbl>  <dbl>
-#>  1 Anthropology                     34     15    69.4     49
-#>  2 Art & Art History                65     11    85.5     76
-#>  3 Biochemistry                     14     11    56       25
-#>  4 Biology                         162     67    70.7    229
-#>  5 Business in the Liberal Ar…     135    251    35.0    386
-#>  6 Chemistry                        26     14    65       40
-#>  7 Computer Science                 21     47    30.9     68
-#>  8 Conservation Biology             38     20    65.5     58
-#>  9 Economics                       128    349    26.8    477
-#> 10 English                         131     54    70.8    185
-#> # … with 17 more rows, and abbreviated variable names
-#> #   ¹​nfemales, ²​percfemale
-#> # ℹ Use `print(n = ...)` to see more rows
-```
-
-It's still not __that__ bad here because we aren't doing __that__ many operations to the data set, but it's already much harder to read. But we will get to examples where you are using 5+ pipes. 
-
-It might also help to use an analogy when thinking about piping. Consider the Ke$ha's morning routine in the opening of the song Tik Tok. If we were to write her morning routine in terms of piping,
-
-
-```r
-kesha |> wake_up(time = "morning", feels_like = "P-Diddy") |>
-  grab(glasses) |>
-  brush(teeth, item = "jack", unit = "bottle") |> ....
-```
-
-Kesha first wakes up in the morning, _and then_ the Kesha that has woken up grabs her glasses, _and then_ the Kesha who has woken up and has her glasses brushes her teeth, etc.
-
 ### `if_else()` and `case_when()` 
 
 Suppose that you want to make a new variable that is conditional on another variable (or more than one variable) in the data set. Then we would typically use `mutate()` coupled with
@@ -304,7 +252,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 4. About 55% of SLU students identify as female. So, in the definition of the `morewomen` variable, does it make more sense to use 55% as the cutoff or 50%?
 
-5. \* Investigate what happens with `case_when()` when you give overlapping conditions and when you give conditions that don't cover all observations. For overlapping conditions, create a variable `testcase` that is `"Yes"` when `percfemale` is greater than or equal to 40 and `"No"` when `percfemale` is greater than 60 For conditions that don't cover all observations, create a variable `testcase2` that is `"Yes"` when `percefemale` is greater than or equal to 55 and `"No"` when `percfemale` is less than 35.
+5. \* Investigate what happens with `case_when()` when you give overlapping conditions and when you give conditions that don't cover all observations. For overlapping conditions, create a variable `testcase` that is `"Yes"` when `percfemale` is greater than or equal to 40 and `"No"` when `percfemale` is greater than 60 For conditions that don't cover all observations, create a variable `testcase2` that is `"Yes"` when `percfemale` is greater than or equal to 55 and `"No"` when `percfemale` is less than 35.
 
 6. With one or two of the newly created variables from `mutate()`, create a plot that investigates a question of interest you might have about the data.
 
@@ -783,6 +731,31 @@ which says to "keep anything that does not have a missing x value" (recall that 
 
 ## More about the Pipe
 
+We are jumping straight into using piping, but we do want to have an appreciation on how terrible life would be without it. What piping does is make whatever is given before the `|>` pipe the first argument of whatever function follows the `|>`. So 
+
+
+```r
+df |> mutate(x = y + 4)
+```
+
+is equivalent to
+
+
+```r
+mutate(df, x = y + 4)
+```
+
+It might also help to use an analogy when thinking about piping. Consider the Ke$ha's morning routine in the opening of the song Tik Tok. If we were to write her morning routine in terms of piping,
+
+
+```r
+kesha |> wake_up(time = "morning", feels_like = "P-Diddy") |>
+  grab(glasses) |>
+  brush(teeth, item = "jack", unit = "bottle") |> ....
+```
+
+Kesha first wakes up in the morning, _and then_ the Kesha that has woken up grabs her glasses, _and then_ the Kesha who has woken up and has her glasses brushes her teeth, etc.
+
 The pipe operator `|>` is loaded automatically with `R`. We've been using the pipe quite a bit, but let's delve a little deeper into what it's actually doing. We will use the `videogame_clean.csv` data file, which contains variables on video games from 2004 - 2019, including
 
 * `game`, the name of the game
@@ -909,7 +882,7 @@ lm(videogame_df, metascore ~ price)
 
 which doesn't work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).
 
-For one final note about the pipe, note that the pipe operator `|>` is relatively new. Previously, the primary pipe operator used was `|>` and came from the `magrittr` package. For almost all cases, the two operators are equivalent. However, when scanning the Internet for help with code, you will probably see `|>` used in many of people's responses on sites like StackOverflow.
+For one final note about the pipe, note that the pipe operator `|>` is relatively new. Previously, the primary pipe operator used was `%>%` and came from the `magrittr` package. For almost all cases, the two operators are equivalent. However, when scanning the Internet for help with code, you will probably see `|>` used in many of people's responses on sites like StackOverflow.
 
 ### Exercises {#exercise-3-4}
 
@@ -1305,7 +1278,7 @@ ggplot(data = baby5_tot, aes(x = year, y = ntot, colour = name)) +
   geom_line()
 ```
 
-<img src="03-dplyr_files/figure-html/unnamed-chunk-64-1.png" width="672" />
+<img src="03-dplyr_files/figure-html/unnamed-chunk-63-1.png" width="672" />
 
 4. \* In some cases throughout this chapter, we've renamed data sets using `<-` with the same name like
 
@@ -1373,7 +1346,6 @@ slumajors_df <- slumajors_df |> mutate(ntotal = nfemales + nmales)
 slumajors_df <- slumajors_df |>
   mutate(ntotal = nfemales + nmales) |>
   mutate(percfemale = 100 * nfemales / (nfemales + nmales))
-mutate(mutate(slumajors_df, ntotal = nfemales + nmales), percfemale = 100 * nfemales / (nfemales + nmales))
 slumajors_df |> mutate(morewomen = if_else(percfemale > 50,
                                             true = "Yes",
                                             false = "No"))

@@ -108,16 +108,16 @@
 <p><a href="https://r4ds.hadley.nz/databases.html" class="uri">https://r4ds.hadley.nz/databases.html</a>
 SQL is short from Structured Query Language.
 We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make a connection to the database management system, which we will name <code>con</code>:</p>
-<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb502"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://duckdb.org/">duckdb</a></span><span class="op">)</span></span>
 <span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">duckdb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb.html">duckdb</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We can type in <code>con</code> to see what it stores:</p>
-<div class="sourceCode" id="cb504"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">con</span></span>
-<span><span class="co">#&gt; &lt;duckdb_connection 8d7a0 driver=&lt;duckdb_driver a8150 dbdir=':memory:' read_only=FALSE&gt;&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;duckdb_connection 397c0 driver=&lt;duckdb_driver 5f8e0 dbdir=':memory:' read_only=FALSE&gt;&gt;</span></span></code></pre></div>
 <p>We’ve created a brand-new database, so we can next add some data tables with the <code><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv()</a></code> function. Compared to <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> from the <code>readr</code> package, <code><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv()</a></code> has a couple of extra arguments: a <code>conn</code> argument giving the database management connection and a <code>name</code> argument giving the name that we want to give to the data table:</p>
-<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb504"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; here() starts at /Users/highamm/Desktop/datascience234</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2018"</span>, </span>
@@ -125,18 +125,18 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2019"</span>, </span>
 <span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2019.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>doListTables()</code> function lists the names of the data tables in the database we just created:</p>
-<div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html">dbListTables</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "tennis2018" "tennis2019"</span></span></code></pre></div>
 <p>And, <code><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable()</a></code> can be used to examine whether or not a data table exists in the current database:</p>
-<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2020"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>Note that, in many practical situations, the data tables will already exist in the database you are working with, so the step of <code><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv()</a></code> would not be necessary.</p>
 <p>To use raw SQL code and query the database that we just created, we can create a string of SQL code, name it <code>sql</code>, and pass it to the <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code> function. We also load in the <code>tidyverse</code> package here to use the <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> function to convert the <code>data.frame</code> to a <code>tibble</code>.</p>
-<div class="sourceCode" id="cb508"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; ── Attaching packages ─────────────────── tidyverse 1.3.2 ──</span></span>
 <span><span class="co">#&gt; ✔ ggplot2 3.3.6     ✔ purrr   0.3.4</span></span>
@@ -187,7 +187,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 </h2>
 <p><code>dbplyr</code> is a package that will allow us to continue to write <code>dplyr</code>-style code to query databases instead of writing native <code>SQL</code>, as in the code-chunk above.</p>
 <p>We begin by loading in the package and creating a database table object with the <code><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl()</a></code> function. In this case, we create a database table with the <code>tennis2019</code> data and name it <code>tennis_db</code>:</p>
-<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb508"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'dbplyr'</span></span>
@@ -219,7 +219,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;int&gt;, …</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
 <p>Examine the print for <code>tennis_db</code>, which should look similar to the print for a <code>tibble</code> or <code>data.frame</code>. Let’s use some <code>dplyr</code> code to obtain only the matches that lasted longer than <code>240</code> minutes and keep only a few of the columns. We will name the result <code>tennis_query1</code>:</p>
-<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">minutes</span> <span class="op">&gt;</span> <span class="fl">240</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">minutes</span>, <span class="va">winner_name</span>, <span class="va">loser_name</span>, <span class="va">minutes</span>, <span class="va">tourney_name</span><span class="op">)</span></span>
@@ -243,7 +243,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p>We should note that the result is still a database object: it’s not our “usual” <code>tibble</code>. One major difference between the database object and the usual <code>tibble</code> is that our <code>tennis_query1</code> does not tell us how many rows are in the data (see the <code>??</code> and the specification <code>with more rows</code>). The code that we wrote is not actually looking in the entire data set for matches that are longer than 240 minutes: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run.</p>
 <p>If we want to obtain the result of our query as a <code>tibble</code>, we can use the <code><a href="https://dplyr.tidyverse.org/reference/compute.html">collect()</a></code> function:</p>
-<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 30 × 4</span></span>
@@ -264,7 +264,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p>The result is a <code>tibble</code> that we can now use any <code>R</code> functions on (not just functions from <code>dplyr</code> and a few other packages).</p>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function can be used on our <code>tennis_query1</code> to give the SQL code that was executed:</p>
-<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
@@ -272,7 +272,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; FROM "tennis2019"</span></span>
 <span><span class="co">#&gt; WHERE ("minutes" &gt; 240.0)</span></span></code></pre></div>
 <p>To get a better idea about what <code>SQL</code> code looks like, let’s make one more query with <code>dplyr</code> code and use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to give the native <code>SQL</code>:</p>
-<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">medvedev_query</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">winner_name</span>, <span class="va">loser_name</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"win_loss"</span>,</span>
 <span>               values_to <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -401,7 +401,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; WHERE ("player" = 'Daniil Medvedev')</span></span>
 <span><span class="co">#&gt; GROUP BY "win_loss"</span></span></code></pre></div>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> shows the native <code>SQL</code> code for a pivot: yikes! Remember that <code>SQL</code> was <strong>not</strong> designed for data analysis, so it doesn’t always look pretty. We’ll do one more simpler query:</p>
-<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">over20aces</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">w_ace</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">w_ace</span>, <span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -455,13 +455,13 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 </h2>
 <p>The purpose of this section is to explore <code>SQL</code> syntax a little more, focusing on its connections to <code>dplyr</code>. Knowing <code>dplyr</code> is quite helpful in learning this <code>SQL</code> syntax because, while the syntax differs, the concepts are quite similar. Much of the text in this section is paraphrased from the <em>R for Data Science textbook</em>.</p>
 <p>There are five core components of an <code>SQL</code> query. The two most basic are a <code>SELECT</code> statement (similar to <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, and, as discussed below, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>) and a <code>FROM</code> statement (similar to the <code>data</code> argument). Using the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function directly on <code>tennis_db</code> shows an <code>SQL</code> query that <code>SELECT</code>s all columns (denoted by the <code>*</code>), <code>FROM</code> the <code>tennis2019</code> database.</p>
-<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
 <span><span class="co">#&gt; SELECT *</span></span>
 <span><span class="co">#&gt; FROM "tennis2019"</span></span></code></pre></div>
 <p>The <code>WHERE</code> and <code>ORDER BY</code> statements control which rows are returned (similar to <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>) and in what order those rows get returned (similar to <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>):</p>
-<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_hand</span> <span class="op">==</span> <span class="st">"L"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">tourney_date</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -471,7 +471,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; WHERE ("winner_hand" = 'L')</span></span>
 <span><span class="co">#&gt; ORDER BY "tourney_date" DESC</span></span></code></pre></div>
 <p>Finally, <code>GROUP BY</code> is used for aggregation (similar to the <code>dplyr</code> <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> combination).</p>
-<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanace <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">w_ace</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -488,7 +488,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <li>
 <code>SELECT</code> to choose which columns to return:</li>
 </ul>
-<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
 <span><span class="co">#&gt; SELECT "tourney_id", "tourney_name", "surface", "draw_size"</span></span>
@@ -497,7 +497,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <li>
 <code>SELECT</code> to rename columns:</li>
 </ul>
-<div class="sourceCode" id="cb519"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>tournament <span class="op">=</span> <span class="va">tourney_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
@@ -556,7 +556,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <li>
 <code>SELECT</code> to create a new variable</li>
 </ul>
-<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb519"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop_first_won <span class="op">=</span> <span class="va">w_1stIn</span> <span class="op">/</span> <span class="va">w_1stWon</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">prop_first_won</span>, <span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -567,7 +567,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <li>
 <code>SELECT</code> to create a new variable that is a summary:</li>
 </ul>
-<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minutes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
@@ -575,7 +575,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; FROM "tennis2019"</span></span></code></pre></div>
 <p><br></p>
 <p><strong><code>GROUP BY</code></strong>: <code>GROUP BY</code> covers aggregation in a similar way as <code>dplyr</code>’s <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function:</p>
-<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanlength <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minutes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -584,7 +584,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; FROM "tennis2019"</span></span>
 <span><span class="co">#&gt; GROUP BY "winner_name"</span></span></code></pre></div>
 <p><strong><code>WHERE</code></strong>: <code>WHERE</code> is used for <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, though <code>SQL</code> uses different Boolean operators than <code>R</code> (for example, <code>&amp;</code> becomes <code>AND</code>, <code>|</code> becomes <code>or</code>).</p>
-<div class="sourceCode" id="cb523"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_age</span> <span class="op">&gt;</span> <span class="fl">35</span> <span class="op">|</span> <span class="va">loser_age</span> <span class="op">&gt;</span> <span class="fl">35</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
@@ -592,7 +592,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="co">#&gt; FROM "tennis2019"</span></span>
 <span><span class="co">#&gt; WHERE ("winner_age" &gt; 35.0 OR "loser_age" &gt; 35.0)</span></span></code></pre></div>
 <p><strong><code>ORDER BY</code></strong>: <code>ORDER BY</code> is used for <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>. This one is quite straightforward:</p>
-<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb523"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">winner_rank_points</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
@@ -609,21 +609,21 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <ol style="list-style-type: decimal">
 <li>* Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
 </ol>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="introduction-to-sql-with-dbplyr.html#cb525-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="sc">*</span> </span>
-<span id="cb525-2"><a href="introduction-to-sql-with-dbplyr.html#cb525-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb525-3"><a href="introduction-to-sql-with-dbplyr.html#cb525-3" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"tourney_name"</span> <span class="ot">=</span> <span class="st">'Wimbledon'</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="introduction-to-sql-with-dbplyr.html#cb524-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="sc">*</span> </span>
+<span id="cb524-2"><a href="introduction-to-sql-with-dbplyr.html#cb524-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb524-3"><a href="introduction-to-sql-with-dbplyr.html#cb524-3" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"tourney_name"</span> <span class="ot">=</span> <span class="st">'Wimbledon'</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
 </ol>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="introduction-to-sql-with-dbplyr.html#cb526-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"winner_name"</span>, <span class="st">"loser_name"</span>, <span class="st">"w_ace"</span>, <span class="st">"l_ace"</span>, <span class="st">"w_ace"</span> <span class="sc">-</span> <span class="st">"l_ace"</span> AS <span class="st">"ace_diff"</span></span>
-<span id="cb526-2"><a href="introduction-to-sql-with-dbplyr.html#cb526-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb526-3"><a href="introduction-to-sql-with-dbplyr.html#cb526-3" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"ace_diff"</span> DESC</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="introduction-to-sql-with-dbplyr.html#cb525-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"winner_name"</span>, <span class="st">"loser_name"</span>, <span class="st">"w_ace"</span>, <span class="st">"l_ace"</span>, <span class="st">"w_ace"</span> <span class="sc">-</span> <span class="st">"l_ace"</span> AS <span class="st">"ace_diff"</span></span>
+<span id="cb525-2"><a href="introduction-to-sql-with-dbplyr.html#cb525-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb525-3"><a href="introduction-to-sql-with-dbplyr.html#cb525-3" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"ace_diff"</span> DESC</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
 </ol>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="introduction-to-sql-with-dbplyr.html#cb527-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"tourney_name"</span>, <span class="fu">AVG</span>(<span class="st">"minutes"</span>) AS <span class="st">"mean_min"</span></span>
-<span id="cb527-2"><a href="introduction-to-sql-with-dbplyr.html#cb527-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb527-3"><a href="introduction-to-sql-with-dbplyr.html#cb527-3" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"tourney_name"</span></span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="introduction-to-sql-with-dbplyr.html#cb526-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"tourney_name"</span>, <span class="fu">AVG</span>(<span class="st">"minutes"</span>) AS <span class="st">"mean_min"</span></span>
+<span id="cb526-2"><a href="introduction-to-sql-with-dbplyr.html#cb526-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb526-3"><a href="introduction-to-sql-with-dbplyr.html#cb526-3" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"tourney_name"</span></span></code></pre></div>
 </div>
 </div>
 <div id="chapexercise-16" class="section level2" number="17.4">
@@ -634,7 +634,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <ol style="list-style-type: decimal">
 <li>Run the following code:</li>
 </ol>
-<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb527"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">:</span><span class="fl">1005</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Make a hypothesis about why a function like <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> is not compatible with <code>dbplyr</code>.</p>
@@ -642,7 +642,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <li><p>* Try to run a function from <code>lubridate</code> or <code>forcats</code> on <code>tennis_db</code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Does the function work? Did you expect it to work?</p></li>
 <li><p>Run the following code and write how the <code>!</code> is translated to <code>SQL</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb529"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op">!=</span> <span class="st">"Daniil Medvedev"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
@@ -652,7 +652,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <ol start="4" style="list-style-type: decimal">
 <li>Run the following code and write how the <code>%in%</code> symbol is translated to <code>SQL</code>.</li>
 </ol>
-<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb529"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Daniil Medvedev"</span>, <span class="st">"Dominic Thiem"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -681,7 +681,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <ol style="list-style-type: decimal">
 <li>* Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dplyr</code> functions on <code>tennis_db</code>. Then, use <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> to show the corresponding <code>SQL</code> code.</li>
 </ol>
-<div class="sourceCode" id="cb531"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">surface</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nmatch <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Source:   SQL [3 x 2]</span></span>
 <span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]</span></span>
@@ -705,10 +705,10 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <ol style="list-style-type: decimal">
 <li>* Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
 </ol>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="introduction-to-sql-with-dbplyr.html#cb532-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="sc">*</span> </span>
-<span id="cb532-2"><a href="introduction-to-sql-with-dbplyr.html#cb532-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb532-3"><a href="introduction-to-sql-with-dbplyr.html#cb532-3" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"tourney_name"</span> <span class="ot">=</span> <span class="st">'Wimbledon'</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="introduction-to-sql-with-dbplyr.html#cb531-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="sc">*</span> </span>
+<span id="cb531-2"><a href="introduction-to-sql-with-dbplyr.html#cb531-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb531-3"><a href="introduction-to-sql-with-dbplyr.html#cb531-3" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"tourney_name"</span> <span class="ot">=</span> <span class="st">'Wimbledon'</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tourney_name</span> <span class="op">==</span> <span class="st">"Wimbledon"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 49]</span></span>
@@ -750,11 +750,11 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <ol start="2" style="list-style-type: decimal">
 <li>* Try to run a function from <code>lubridate</code> or <code>forcats</code> on <code>tennis_db</code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Does the function work? Did you expect it to work?</li>
 </ol>
-<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>tourney_name_reorder <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">tourney_name</span>, </span>
 <span>                                                       <span class="va">draw_size</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The result is an error. Only functions compatible with the <code>dbplyr</code> package can be used on a database table. Functions specific to <code>R</code>, like those in <code>lubridate</code> and <code>forcats</code> cannot work until we <code><a href="https://dplyr.tidyverse.org/reference/compute.html">collect()</a></code> the database table into a data frame or tibble:</p>
-<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>tourney_name_reorder <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">tourney_name</span>, </span>
 <span>                                                       <span class="va">draw_size</span><span class="op">)</span><span class="op">)</span></span>
@@ -785,7 +785,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <h2>
 <span class="header-section-number">17.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-16"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://duckdb.org/">duckdb</a></span><span class="op">)</span></span>
 <span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">duckdb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb.html">duckdb</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -902,7 +902,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-08-26.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

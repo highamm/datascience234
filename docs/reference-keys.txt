@@ -60,7 +60,6 @@ chapexercise-2-S
 rcode-2
 dplyr
 mutate-create-variables
-a-little-more-on-piping
 if_else-and-case_when
 exercise-3-1
 arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows
