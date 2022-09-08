@@ -192,6 +192,22 @@ ggplot(data = pokemon_sum, aes(x = Type_ordered,
 
 <img src="07-forcats_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
+### Lollipop Plots
+
+Lollipop plots are a popular alternative to bar plots because they often look cleaner with less ink. To make a lollipop plot in `R`, we specify two different geoms: `geom_segment()` to form the stick of the lollipop and `geom_point()` to form the pop part of the lollipop. `geom_segment()` requires 4 aesthetics: `x`, `xend`, `y`, and `yend`.
+
+
+```r
+ggplot(data = pokemon_sum, aes(x = Type_ordered,
+                               y = count_type)) +
+  geom_segment(aes(x = Type_ordered, xend = Type_ordered,
+                   y = 0, yend = count_type)) +
+  geom_point() +
+  coord_flip()
+```
+
+<img src="07-forcats_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
 `fct_reorder()` also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the `Defense` stat changes for different Pokemon types
 
 
@@ -206,7 +222,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
   coord_flip()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="07-forcats_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 The following code makes a point plot that shows the median defense for each type instead of boxplots.
 
@@ -221,9 +237,22 @@ ggplot(data = pokemon_med, aes(x = med_def, y = Type_Deford)) +
   geom_point()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="07-forcats_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
-Do you have a preference between the boxplot graph and the point plot?
+Finally, we can make a lollipop plot of median defense.
+
+
+```r
+ggplot(data = pokemon_med, aes(x = Type_Deford, y = med_def)) +
+  geom_segment(aes(xend = Type_Deford, y = 0, yend = med_def)) +
+  geom_point() +
+  coord_flip()
+```
+
+<img src="07-forcats_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+
+
+Do you have a preference between the boxplot graph, the point plot, and the lollipop plot?
 
 <br>
 
@@ -252,7 +281,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="07-forcats_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 Notice the order of the levels in the legend. Most people would prefer the order to actually match up with where the lines in the plot end, not for the order to be alphabetical. To achieve this, we can use `fct_reorder2()` to change the order of the factor levels:
 
@@ -268,7 +297,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="07-forcats_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 Did it change the order of the levels how you would expect? `fct_reorder2()` actually looks at __points__, not lines, when determining the ordering. If you want the levels to match up exactly, then we'll have to reorder the levels manually with `fct_relevel()`:
 
@@ -286,7 +315,7 @@ ggplot(data = mortality_df,
   geom_smooth(method = "lm")
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="07-forcats_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 Reordering the levels of a factor manually might also be useful in fitting linear models. Recall that, by default, `R` makes the __reference group__ in a linear model the first level alphabetically. If you'd like a different reference group, you can reorder the levels of the factor:
 
@@ -323,7 +352,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
   coord_flip()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="07-forcats_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 Why aren't the types ordered by median defense anymore? 
 
@@ -374,7 +403,7 @@ ggplot(data = relig_summary, aes(tvhours, relig)) +
   geom_point()
 ```
 
-Then, use a `forcats` function create a new variable in the data set that reorders the religion factor levels and remake the barplot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.
+Then, use a `forcats` function create a new variable in the data set that reorders the religion factor levels and make a lollipop plot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.
 
 4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):
 
@@ -509,11 +538,13 @@ Then, use a `forcats` function create a new variable in the data set that reorde
 ```r
 relig_summary <- relig_summary |>
   mutate(relig = fct_reorder(relig, tvhours))
-ggplot(data = relig_summary, aes(tvhours, relig)) +
-  geom_point()
+ggplot(data = relig_summary, aes(x = relig, y = tvhours)) +
+  geom_segment(aes(x = relig, xend = relig, y = 0, yend = tvhours)) +
+  geom_point() +
+  coord_flip()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="07-forcats_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):
 

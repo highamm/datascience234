@@ -84,7 +84,36 @@ head(cars_df)
 
 Now look at the classes of each variable. Which classes look like they are incorrect?
 
-We've talked about how to re-specify classes of variables using `mutate()` and the `as.factor()` or `as.Date()` or `as.numeric()` functions, but sometimes it's easier just to respecify the class when we are reading in the data. Notice how, when we use `read_csv()`, `R` gives us a message about each of the column types. This is actually an argument in `read_csv()` called `col_types`. `R` prints it so that it's easy for us to copy and paste it into `read_csv()` and change any classes. For example, notice how `cyl = col_double()` is changed to `cyl = col_factor()` in the code chunk below:
+We've talked about how to re-specify classes of variables using `mutate()` and the `as.factor()` or `as.Date()` or `as.numeric()` functions, but sometimes it's easier just to respecify the class when we are reading in the data. Notice how, when we use `read_csv()`, `R` gives us a message about each of the column types. This is actually an argument in `read_csv()` called `col_types`. We can add a `|> spec()` piping statement after a `read_csv()` statement to tell `R` to print the `col_types` so that it's easy for us to copy and paste it into `read_csv()` and change any classes.
+
+
+```r
+read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2) |>
+  spec()
+#> Rows: 34 Columns: 11
+#> ── Column specification ────────────────────────────────────
+#> Delimiter: ","
+#> chr (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, ge...
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> cols(
+#>   mpg = col_character(),
+#>   cyl = col_character(),
+#>   disp = col_character(),
+#>   hp = col_character(),
+#>   drat = col_character(),
+#>   wt = col_character(),
+#>   qsec = col_character(),
+#>   vs = col_character(),
+#>   am = col_character(),
+#>   gear = col_character(),
+#>   carb = col_character()
+#> )
+```
+
+
+For example, notice how `cyl = col_double()` is changed to `cyl = col_factor()` in the code chunk below:
 
 
 ```r

@@ -16,8 +16,8 @@ rmd_files:
   - 04-tidyr.Rmd
   - 06-basics.Rmd
   - 07-forcats.Rmd
-  - 08-import.Rmd
   - 09-ethics.Rmd
+  - 08-import.Rmd
   - 10-merging.Rmd
   - 11-lubridate.Rmd
   - 12-stringr.Rmd

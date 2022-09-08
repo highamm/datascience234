@@ -1,6 +1,6 @@
 # Communication with `Quarto`
 
-__Special Note__: `Quarto` and `.qmd` files and `R Markdown` and `.qmd` files are extremely similar. In the previous version of this section, I used `R Markdown`. Quarto has an advantage in that `.qmd` files also work with Python and Julia, so they are generally better for an all-purpose data scientist. If you spot any references to `R Markdown` or a `.qmd` file, just convert `R Markdown` to `Quarto` and `.qmd` to `qmd`.
+__Special Note__: `Quarto` and `.qmd` files and `R Markdown` and `.qmd` files are extremely similar. In the previous version of this section, I used `R Markdown`. Quarto has an advantage in that `.qmd` files also work with Python and Julia, so they are generally better for an all-purpose data scientist. If you spot any references to `R Markdown` or a `.qmd` file, just mentally convert `R Markdown` to `Quarto` and `.rmd` to `qmd`.
 
 __Goals__:
 
@@ -585,7 +585,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 The `theme()` function is a way to really specialise your plot. We will explore some of these in the exercise below.
 
-1. Using only options in `theme()` or options to change colours, shapes, sizes, etc., create the ugliest possible `ggplot2` graph that you can make. You may not change the underlying data for this graph, but your goal is to investigate some of the options given in `theme()`.
+1. Using only options in `theme()` or options to change colours, shapes, sizes, etc., create the ugliest possible `ggplot2` graph that you can make. You may not change the underlying data for this graph, but your goal is to investigate some of the options given in `theme()`. A list of theme options is given <a href="https://ggplot2.tidyverse.org/reference/theme.html"target="_blank">in this link</a>.
 
 ```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,

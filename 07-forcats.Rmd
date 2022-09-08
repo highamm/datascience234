@@ -127,6 +127,19 @@ ggplot(data = pokemon_sum, aes(x = Type_ordered,
   coord_flip()
 ```
 
+### Lollipop Plots
+
+Lollipop plots are a popular alternative to bar plots because they often look cleaner with less ink. To make a lollipop plot in `R`, we specify two different geoms: `geom_segment()` to form the stick of the lollipop and `geom_point()` to form the pop part of the lollipop. `geom_segment()` requires 4 aesthetics: `x`, `xend`, `y`, and `yend`.
+
+```{r}
+ggplot(data = pokemon_sum, aes(x = Type_ordered,
+                               y = count_type)) +
+  geom_segment(aes(x = Type_ordered, xend = Type_ordered,
+                   y = 0, yend = count_type)) +
+  geom_point() +
+  coord_flip()
+```
+
 `fct_reorder()` also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the `Defense` stat changes for different Pokemon types
 
 ```{r, appendix = TRUE}
@@ -152,7 +165,17 @@ ggplot(data = pokemon_med, aes(x = med_def, y = Type_Deford)) +
   geom_point()
 ```
 
-Do you have a preference between the boxplot graph and the point plot?
+Finally, we can make a lollipop plot of median defense.
+
+```{r}
+ggplot(data = pokemon_med, aes(x = Type_Deford, y = med_def)) +
+  geom_segment(aes(xend = Type_Deford, y = 0, yend = med_def)) +
+  geom_point() +
+  coord_flip()
+```
+
+
+Do you have a preference between the boxplot graph, the point plot, and the lollipop plot?
 
 <br>
 
@@ -287,7 +310,7 @@ ggplot(data = relig_summary, aes(tvhours, relig)) +
   geom_point()
 ```
 
-Then, use a `forcats` function create a new variable in the data set that reorders the religion factor levels and remake the barplot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.
+Then, use a `forcats` function create a new variable in the data set that reorders the religion factor levels and make a lollipop plot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.
 
 4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):
 
@@ -391,8 +414,10 @@ Then, use a `forcats` function create a new variable in the data set that reorde
 ```{r}
 relig_summary <- relig_summary |>
   mutate(relig = fct_reorder(relig, tvhours))
-ggplot(data = relig_summary, aes(tvhours, relig)) +
-  geom_point()
+ggplot(data = relig_summary, aes(x = relig, y = tvhours)) +
+  geom_segment(aes(x = relig, xend = relig, y = 0, yend = tvhours)) +
+  geom_point() +
+  coord_flip()
 ```
 
 4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):

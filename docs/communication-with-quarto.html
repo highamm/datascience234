@@ -55,8 +55,8 @@
 <li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
 <li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
 <li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
-<li><a class="" href="data-import.html"><span class="header-section-number">10</span> Data Import</a></li>
-<li><a class="" href="data-ethics.html"><span class="header-section-number">11</span> Data Ethics</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li><a class="" href="data-import.html"><span class="header-section-number">11</span> Data Import</a></li>
 <li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
 <li class="book-part">Special Topics</li>
 <li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
@@ -75,7 +75,7 @@
 <h1>
 <span class="header-section-number"> 5</span> Communication with <code>Quarto</code><a class="anchor" aria-label="anchor" href="#communication-with-quarto"><i class="fas fa-link"></i></a>
 </h1>
-<p><strong>Special Note</strong>: <code>Quarto</code> and <code>.qmd</code> files and <code>R Markdown</code> and <code>.qmd</code> files are extremely similar. In the previous version of this section, I used <code>R Markdown</code>. Quarto has an advantage in that <code>.qmd</code> files also work with Python and Julia, so they are generally better for an all-purpose data scientist. If you spot any references to <code>R Markdown</code> or a <code>.qmd</code> file, just convert <code>R Markdown</code> to <code>Quarto</code> and <code>.qmd</code> to <code>qmd</code>.</p>
+<p><strong>Special Note</strong>: <code>Quarto</code> and <code>.qmd</code> files and <code>R Markdown</code> and <code>.qmd</code> files are extremely similar. In the previous version of this section, I used <code>R Markdown</code>. Quarto has an advantage in that <code>.qmd</code> files also work with Python and Julia, so they are generally better for an all-purpose data scientist. If you spot any references to <code>R Markdown</code> or a <code>.qmd</code> file, just mentally convert <code>R Markdown</code> to <code>Quarto</code> and <code>.rmd</code> to <code>qmd</code>.</p>
 <p><strong>Goals</strong>:</p>
 <ul>
 <li><p>Explain what <em>reproducibility</em> means and explain why it’s important for analyses to be reproducible.</p></li>
@@ -539,7 +539,7 @@ format:
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="communication-with-quarto.html#solutions-5">5.5</a>.</p>
 <p>The <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function is a way to really specialise your plot. We will explore some of these in the exercise below.</p>
 <ol style="list-style-type: decimal">
-<li>Using only options in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> or options to change colours, shapes, sizes, etc., create the ugliest possible <code>ggplot2</code> graph that you can make. You may not change the underlying data for this graph, but your goal is to investigate some of the options given in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>.</li>
+<li>Using only options in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> or options to change colours, shapes, sizes, etc., create the ugliest possible <code>ggplot2</code> graph that you can make. You may not change the underlying data for this graph, but your goal is to investigate some of the options given in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>. A list of theme options is given <a href="https://ggplot2.tidyverse.org/reference/theme.html" target="_blank">in this link</a>.</li>
 </ol>
 <div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
@@ -904,7 +904,7 @@ format:
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-01.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
