@@ -189,7 +189,7 @@ We've already seen that Figures will pop up automatically (unless we set `output
 
 Delete the `output: false` option that you added earlier to the chunk with `summary(cars)`. When you render your .qmd file now, results tables from `head(cars)` and `summary(cars)` look kind of ugly. We will focus on using the `kable()` function from the `knitr` package to make these tables much more aesthetically pleasing. Another option is to use the `pander()` function in the `pander` package. Both `pander()` and `kable()` are very simple functions to generate tables but will be more than sufficient for our purposes. To generate more complicated tables, see the `xtable` package.
 
-To use these functions, simply add a `|>` pipe with the name of the table function you want to use. `head(cars) |> kable()` will make a nice-looking table with `kable` and `head(cars) |> pander()` will use `pander()`. Before using `kable()`, you'll need to load its library by adding the line `library(knitr)` above `head(cars) |> kable()`. Before using `pander()`, you'll need to load its library by adding the line `library(pander)` above `head(cars) |> pander()`. Try these out in your `Quarto` file.
+To use these functions, simply add a `|>` pipe with the name of the table function you want to use. `head(cars) |> kable()` will make a nice-looking table with `kable` and `head(cars) |> pander()` will use `pander()`. Before using `kable()` from the `knitr` package, you'll need to install the `knitr` package with `install.packages("knitr")` and load its library by adding the line `library(knitr)` above `head(cars) |> kable()`. Before using `pander()`, you'll need to install the `pander` package with `install.packages("pander")` and then load its library by adding the line `library(pander)` above `head(cars) |> pander()`. Try these out in your `Quarto` file.
 
 Which table do you like better in this case?
 
@@ -601,7 +601,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 Some data sets exist within specific `R` packages. For example, Jenny Bryan, who is quite famous in the stats/data science community, has put together the `gapminder` package so that users in `R` have access to a specific data set on countries throughout the world. <a href="https://github.com/jennybc/gapminder"target="_blank">https://github.com/jennybc/gapminder</a>.
 
-To load a data set within a specific `R` package, you first need to load the package itself:
+To load a data set within a specific `R` package, you first need to install the package with `install.packages("gapminder")` and load the package itself:
 
 ```{r}
 library(gapminder)

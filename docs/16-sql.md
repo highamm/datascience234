@@ -46,7 +46,7 @@ We can type in `con` to see what it stores:
 
 ```r
 con
-#> <duckdb_connection def20 driver=<duckdb_driver f40e0 dbdir=':memory:' read_only=FALSE>>
+#> <duckdb_connection 86060 driver=<duckdb_driver d41c0 dbdir=':memory:' read_only=FALSE>>
 ```
 
 We've created a brand-new database, so we can next add some data tables with the `duckdb_read_csv()` function. Compared to `read_csv()` from the `readr` package, `duckdb_read_csv()` has a couple of extra arguments: a `conn` argument giving the database management connection and a `name` argument giving the name that we want to give to the data table:
@@ -145,7 +145,7 @@ library(dbplyr)
 tennis_db <- tbl(con, "tennis2019")
 tennis_db
 #> # Source:   table<tennis2019> [?? x 49]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]
 #>    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶
 #>    <chr>     <chr>   <chr>     <int> <chr>     <int>   <int>
 #>  1 2019-M020 Brisba… Hard         32 A        2.02e7     300
@@ -177,7 +177,7 @@ tennis_query1 <- tennis_db |>
   select(minutes, winner_name, loser_name, minutes, tourney_name)
 tennis_query1
 #> # Source:   SQL [?? x 4]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]
 #>    minutes winner_name           loser_name          tourn…¹
 #>      <int> <chr>                 <chr>               <chr>  
 #>  1     241 Joao Sousa            Guido Pella         Austra…
@@ -247,7 +247,7 @@ medvedev_query <- tennis_db |>
   summarise(win_loss_count = n())
 medvedev_query
 #> # Source:   SQL [2 x 2]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]
 #>   win_loss    win_loss_count
 #>   <chr>                <dbl>
 #> 1 winner_name             59
@@ -379,7 +379,7 @@ over20aces <- tennis_db |> filter(w_ace > 20) |>
   arrange(desc(nmatch))
 over20aces
 #> # Source:     SQL [?? x 2]
-#> # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#> # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]
 #> # Ordered by: desc(nmatch)
 #>    winner_name        nmatch
 #>    <chr>               <dbl>
@@ -694,7 +694,7 @@ The code is keeping any matches that are longer than 240 minutes. It is also get
 ```r
 tennis_db |> group_by(surface) |> summarise(nmatch = n())
 #> # Source:   SQL [3 x 2]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]
 #>   surface nmatch
 #>   <chr>    <dbl>
 #> 1 Hard      1626
@@ -725,7 +725,7 @@ WHERE ("tourney_name" = 'Wimbledon')
 tennis_db |>
   filter(tourney_name == "Wimbledon")
 #> # Source:   SQL [?? x 49]
-#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]
+#> # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]
 #>    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶
 #>    <chr>     <chr>   <chr>     <int> <chr>     <int>   <int>
 #>  1 2019-540  Wimble… Grass       128 G        2.02e7     100

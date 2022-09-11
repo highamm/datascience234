@@ -115,7 +115,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <p>We can type in <code>con</code> to see what it stores:</p>
 <div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">con</span></span>
-<span><span class="co">#&gt; &lt;duckdb_connection def20 driver=&lt;duckdb_driver f40e0 dbdir=':memory:' read_only=FALSE&gt;&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;duckdb_connection 86060 driver=&lt;duckdb_driver d41c0 dbdir=':memory:' read_only=FALSE&gt;&gt;</span></span></code></pre></div>
 <p>We’ve created a brand-new database, so we can next add some data tables with the <code><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv()</a></code> function. Compared to <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> from the <code>readr</code> package, <code><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv()</a></code> has a couple of extra arguments: a <code>conn</code> argument giving the database management connection and a <code>name</code> argument giving the name that we want to give to the data table:</p>
 <div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
@@ -197,7 +197,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span><span class="va">tennis_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
 <span><span class="va">tennis_db</span></span>
 <span><span class="co">#&gt; # Source:   table&lt;tennis2019&gt; [?? x 49]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt;    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;     &lt;int&gt;   &lt;int&gt;</span></span>
 <span><span class="co">#&gt;  1 2019-M020 Brisba… Hard         32 A        2.02e7     300</span></span>
@@ -225,7 +225,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">minutes</span>, <span class="va">winner_name</span>, <span class="va">loser_name</span>, <span class="va">minutes</span>, <span class="va">tourney_name</span><span class="op">)</span></span>
 <span><span class="va">tennis_query1</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 4]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt;    minutes winner_name           loser_name          tourn…¹</span></span>
 <span><span class="co">#&gt;      &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;               &lt;chr&gt;  </span></span>
 <span><span class="co">#&gt;  1     241 Joao Sousa            Guido Pella         Austra…</span></span>
@@ -281,7 +281,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>win_loss_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">medvedev_query</span></span>
 <span><span class="co">#&gt; # Source:   SQL [2 x 2]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt;   win_loss    win_loss_count</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 winner_name             59</span></span>
@@ -409,7 +409,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">nmatch</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">over20aces</span></span>
 <span><span class="co">#&gt; # Source:     SQL [?? x 2]</span></span>
-<span><span class="co">#&gt; # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt; # Ordered by: desc(nmatch)</span></span>
 <span><span class="co">#&gt;    winner_name        nmatch</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;               &lt;dbl&gt;</span></span>
@@ -684,7 +684,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">surface</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nmatch <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Source:   SQL [3 x 2]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt;   surface nmatch</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 Hard      1626</span></span>
@@ -712,7 +712,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tourney_name</span> <span class="op">==</span> <span class="st">"Wimbledon"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 49]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt;    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;     &lt;int&gt;   &lt;int&gt;</span></span>
 <span><span class="co">#&gt;  1 2019-540  Wimble… Grass       128 G        2.02e7     100</span></span>
@@ -902,7 +902,7 @@ We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-08.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
