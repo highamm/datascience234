@@ -166,6 +166,8 @@ tibble-and-data.frame
 vectors
 lists
 exercise-6-3
+other-useful-base-r-functions
+exercise-6-4
 chapexercise-6
 solutions-6
 variable-classes-s

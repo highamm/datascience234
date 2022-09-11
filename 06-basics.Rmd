@@ -349,6 +349,59 @@ b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind`
 2 %in% c(3, 4, 5, 6)
 ```
 
+## Other Useful Base `R` Functions
+
+In addition to functions like `%in%` in the previous exercise, there are many other useful base `R` functions. The following give some of the functions that I think are most useful for data science. 
+
+__Generating Data__: `rnorm()`, `sample()`, and `set.seed()`
+
+`rnorm()` can be used to generate a certain number of normal random variables with a given mean and standard deviation. It has three arguments: the sample size, the mean, and the standard deviation.
+
+`sample()` can be used to obtain a sample from a vector, either with or without replacement: it has two required arguments: the vector that we want to sample from and `size`, the size of the sample.
+
+`set.seed()` can be used to fix `R`'s random seed. This can be set so that, for example, each person in our class can get the same random sample as long we all set the same seed.
+
+These can be combined to quickly generate toy data. For example, below we are generating two quantitative variables (that are normally distributed) and two categorical variables:
+
+```{r}
+set.seed(15125141)
+toy_df <- tibble(xvar = rnorm(100, 3, 4),
+                 yvar = rnorm(100, -5, 10),
+                 group1 = sample(c("A", "B", "C"), size = 100, replace = TRUE),
+                 group2 = sample(c("Place1", "Place2", "Place3"), size = 100,
+                                 replace = TRUE))
+toy_df
+```
+
+__Tables__: We can use the `table()` function with the `$` operator to quickly generate tables of categorical variables:
+
+```{r}
+table(toy_df$group1)
+
+table(toy_df$group1, toy_df$group2)
+```
+
+__Others__: There are quite a few other useful base `R` functions. `nrow()` can be used on a data frame to quickly look at the number of rows of the data frame and `summary()` can be used to get a quick summary of a vector:
+  
+```{r}
+nrow(toy_df)
+summary(toy_df$yvar)
+```
+
+We will stop here, but will surely encounter more base `R` functions as we run into different types of problems.
+
+### Exercises {#exercise-6-4}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
+
+1. Use `dplyr` and `tidyr` functions to re-create the tables generated from
+
+```{r}
+table(toy_df$group1)
+
+table(toy_df$group1, toy_df$group2)
+```
+
 ## Chapter Exercises {#chapexercise-6}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).

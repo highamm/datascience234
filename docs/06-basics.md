@@ -470,6 +470,97 @@ b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind`
 2 %in% c(3, 4, 5, 6)
 ```
 
+## Other Useful Base `R` Functions
+
+In addition to functions like `%in%` in the previous exercise, there are many other useful base `R` functions. The following give some of the functions that I think are most useful for data science. 
+
+__Generating Data__: `rnorm()`, `sample()`, and `set.seed()`
+
+`rnorm()` can be used to generate a certain number of normal random variables with a given mean and standard deviation. It has three arguments: the sample size, the mean, and the standard deviation.
+
+`sample()` can be used to obtain a sample from a vector, either with or without replacement: it has two required arguments: the vector that we want to sample from and `size`, the size of the sample.
+
+`set.seed()` can be used to fix `R`'s random seed. This can be set so that, for example, each person in our class can get the same random sample as long we all set the same seed.
+
+These can be combined to quickly generate toy data. For example, below we are generating two quantitative variables (that are normally distributed) and two categorical variables:
+
+
+```r
+set.seed(15125141)
+toy_df <- tibble(xvar = rnorm(100, 3, 4),
+                 yvar = rnorm(100, -5, 10),
+                 group1 = sample(c("A", "B", "C"), size = 100, replace = TRUE),
+                 group2 = sample(c("Place1", "Place2", "Place3"), size = 100,
+                                 replace = TRUE))
+toy_df
+#> # A tibble: 100 × 4
+#>      xvar   yvar group1 group2
+#>     <dbl>  <dbl> <chr>  <chr> 
+#>  1  0.516 -13.5  B      Place2
+#>  2 -0.891 -13.3  A      Place2
+#>  3  5.58  -14.3  B      Place2
+#>  4  2.42   -4.91 C      Place1
+#>  5  1.43   -5.86 B      Place2
+#>  6  6.61   12.7  B      Place2
+#>  7 -2.04   -9.28 A      Place1
+#>  8  7.56    1.89 A      Place3
+#>  9 -0.425 -30.1  C      Place1
+#> 10  4.14    2.65 C      Place2
+#> # … with 90 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
+```
+
+__Tables__: We can use the `table()` function with the `$` operator to quickly generate tables of categorical variables:
+
+
+```r
+table(toy_df$group1)
+#> 
+#>  A  B  C 
+#> 27 39 34
+
+table(toy_df$group1, toy_df$group2)
+#>    
+#>     Place1 Place2 Place3
+#>   A     10      8      9
+#>   B      9     20     10
+#>   C     10     10     14
+```
+
+__Others__: There are quite a few other useful base `R` functions. `nrow()` can be used on a data frame to quickly look at the number of rows of the data frame and `summary()` can be used to get a quick summary of a vector:
+  
+
+```r
+nrow(toy_df)
+#> [1] 100
+summary(toy_df$yvar)
+#>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#> -30.123 -12.938  -5.380  -6.630  -1.298  13.858
+```
+
+We will stop here, but will surely encounter more base `R` functions as we run into different types of problems.
+
+### Exercises {#exercise-6-4}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
+
+1. Use `dplyr` and `tidyr` functions to re-create the tables generated from
+
+
+```r
+table(toy_df$group1)
+#> 
+#>  A  B  C 
+#> 27 39 34
+
+table(toy_df$group1, toy_df$group2)
+#>    
+#>     Place1 Place2 Place3
+#>   A     10      8      9
+#>   B      9     20     10
+#>   C     10     10     14
+```
+
 ## Chapter Exercises {#chapexercise-6}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
@@ -517,7 +608,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 #> `binwidth`.
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 The issue is that weekday should be a factor, not numeric.
 
@@ -531,7 +622,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 #> `binwidth`.
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 2. \* What is another variable in the data set that has an incorrect `class`?
 
@@ -643,7 +734,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_point()
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-46-1.png" width="672" />
 
 3. \* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is _discrete_: `metascore` can only take on integer values in this case. Change `geom_point()` in your previous plot to `geom_jitter()`. Then, use the help to write a sentence about what `geom_jitter()` does.
 
@@ -654,7 +745,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter()
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-47-1.png" width="672" />
 
 `geom_jitter()` adds a small amount of "noise" to each data point so that points don't overlap quite as much.
 
@@ -667,7 +758,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter(alpha = 0.4)
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-48-1.png" width="672" />
 
 ```r
 ## can see a lot of ponits have median playtimes close to 0
@@ -685,7 +776,7 @@ ggplot(data = videogame_nomiss,
   geom_label_repel(data = videogame_long, aes(label = game))
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-49-1.png" width="672" />
 
 ## Non-Exercise `R` Code {#rcode-6}
 
