@@ -538,6 +538,98 @@ summary(toy_df$yvar)
 #> -30.123 -12.938  -5.380  -6.630  -1.298  13.858
 ```
 
+There are also some useful functions for viewing a data frame. `View()` function can be used in your console window on a data frame: `View(toy_df)` to pull up a spreadsheet-like view of the data set in a different window within `R Studio`.
+
+Options to `print()` allow us to view more rows or more columns in the console printout:
+
+
+```r
+toy_df |>
+  print(n = 60) ## print out 60 rows
+#> # A tibble: 100 × 4
+#>      xvar    yvar group1 group2
+#>     <dbl>   <dbl> <chr>  <chr> 
+#>  1  0.516 -13.5   B      Place2
+#>  2 -0.891 -13.3   A      Place2
+#>  3  5.58  -14.3   B      Place2
+#>  4  2.42   -4.91  C      Place1
+#>  5  1.43   -5.86  B      Place2
+#>  6  6.61   12.7   B      Place2
+#>  7 -2.04   -9.28  A      Place1
+#>  8  7.56    1.89  A      Place3
+#>  9 -0.425 -30.1   C      Place1
+#> 10  4.14    2.65  C      Place2
+#> 11  5.03   -8.82  C      Place1
+#> 12  2.98  -22.7   C      Place1
+#> 13  5.97   -2.67  B      Place3
+#> 14  0.882   1.59  A      Place1
+#> 15  2.14   -5.63  B      Place3
+#> 16  7.74    5.79  C      Place3
+#> 17  5.20   -3.17  B      Place2
+#> 18  2.89   -0.697 A      Place1
+#> 19  2.71    1.09  B      Place2
+#> 20  5.87   -4.87  C      Place1
+#> 21  5.65  -10.3   B      Place2
+#> 22 -0.520  -4.77  B      Place3
+#> 23 -0.130 -18.3   B      Place3
+#> 24 -0.174 -18.9   A      Place3
+#> 25  4.33    4.63  A      Place3
+#> 26  0.462 -12.8   A      Place3
+#> 27  5.53   -3.36  C      Place1
+#> 28  1.66   -5.34  A      Place1
+#> 29 -0.469 -13.2   C      Place2
+#> 30  7.51  -13.4   B      Place1
+#> 31 -1.82   -6.47  C      Place3
+#> 32 -2.44   -2.17  C      Place3
+#> 33  1.52  -12.6   C      Place2
+#> 34  4.60   -6.69  A      Place2
+#> 35  3.10  -25.5   A      Place2
+#> 36 -0.682 -20.4   A      Place1
+#> 37 -5.72    2.65  B      Place3
+#> 38  0.976 -12.1   B      Place3
+#> 39  1.39    2.78  B      Place2
+#> 40  6.67  -14.6   A      Place1
+#> 41  3.09  -10.4   B      Place2
+#> 42 -1.98  -12.8   A      Place3
+#> 43  0.225  13.9   C      Place1
+#> 44  5.71   -3.50  A      Place3
+#> 45  5.57   -2.02  B      Place3
+#> 46  8.96   -1.86  B      Place2
+#> 47  3.80  -11.3   C      Place1
+#> 48  7.40   -1.32  C      Place2
+#> 49  0.988   4.04  B      Place2
+#> 50  1.93   -5.24  A      Place2
+#> 51  5.23   13.2   C      Place2
+#> 52 -2.13  -19.6   A      Place2
+#> 53  6.05   -4.42  A      Place3
+#> 54  0.865  -9.47  A      Place1
+#> 55  4.16  -16.4   B      Place1
+#> 56 -2.73   -4.09  B      Place2
+#> 57 -0.532   7.70  C      Place3
+#> 58 -2.96  -11.6   C      Place3
+#> 59  4.34   -5.99  B      Place2
+#> 60  6.72  -13.6   B      Place2
+#> # … with 40 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
+toy_df |>
+  print(width = Inf) ## print out all of the columns
+#> # A tibble: 100 × 4
+#>      xvar   yvar group1 group2
+#>     <dbl>  <dbl> <chr>  <chr> 
+#>  1  0.516 -13.5  B      Place2
+#>  2 -0.891 -13.3  A      Place2
+#>  3  5.58  -14.3  B      Place2
+#>  4  2.42   -4.91 C      Place1
+#>  5  1.43   -5.86 B      Place2
+#>  6  6.61   12.7  B      Place2
+#>  7 -2.04   -9.28 A      Place1
+#>  8  7.56    1.89 A      Place3
+#>  9 -0.425 -30.1  C      Place1
+#> 10  4.14    2.65 C      Place2
+#> # … with 90 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
+```
+
 We will stop here, but will surely encounter more base `R` functions as we run into different types of problems.
 
 ### Exercises {#exercise-6-4}
@@ -608,7 +700,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 #> `binwidth`.
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 The issue is that weekday should be a factor, not numeric.
 
@@ -622,7 +714,7 @@ ggplot(data = fitness_df, aes(x = active_cals)) +
 #> `binwidth`.
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 2. \* What is another variable in the data set that has an incorrect `class`?
 
@@ -734,7 +826,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_point()
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-47-1.png" width="672" />
 
 3. \* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is _discrete_: `metascore` can only take on integer values in this case. Change `geom_point()` in your previous plot to `geom_jitter()`. Then, use the help to write a sentence about what `geom_jitter()` does.
 
@@ -745,7 +837,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter()
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-47-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-48-1.png" width="672" />
 
 `geom_jitter()` adds a small amount of "noise" to each data point so that points don't overlap quite as much.
 
@@ -758,7 +850,7 @@ ggplot(data = videogame_nomiss, aes(x = metascore,
   geom_jitter(alpha = 0.4)
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-48-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-49-1.png" width="672" />
 
 ```r
 ## can see a lot of ponits have median playtimes close to 0
@@ -776,7 +868,7 @@ ggplot(data = videogame_nomiss,
   geom_label_repel(data = videogame_long, aes(label = game))
 ```
 
-<img src="06-basics_files/figure-html/unnamed-chunk-49-1.png" width="672" />
+<img src="06-basics_files/figure-html/unnamed-chunk-50-1.png" width="672" />
 
 ## Non-Exercise `R` Code {#rcode-6}
 
@@ -841,4 +933,20 @@ metavec[100] ## 100th element is missing
 testlist <- list("a", 4, c(1, 4, 2, 6),
                  tibble(x = c(1, 2), y = c(3, 2)))
 testlist
+set.seed(15125141)
+toy_df <- tibble(xvar = rnorm(100, 3, 4),
+                 yvar = rnorm(100, -5, 10),
+                 group1 = sample(c("A", "B", "C"), size = 100, replace = TRUE),
+                 group2 = sample(c("Place1", "Place2", "Place3"), size = 100,
+                                 replace = TRUE))
+toy_df
+table(toy_df$group1)
+
+table(toy_df$group1, toy_df$group2)
+nrow(toy_df)
+summary(toy_df$yvar)
+toy_df |>
+  print(n = 60) ## print out 60 rows
+toy_df |>
+  print(width = Inf) ## print out all of the columns
 ```

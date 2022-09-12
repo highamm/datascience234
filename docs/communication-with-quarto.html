@@ -656,7 +656,7 @@ format:
 <li>* Type <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">?kable</a></code> into your console window and scroll through the Help file. Change the rounding of the mean so that it only displays one number after the decimal. Then, add a caption to the table that says “My First Table Caption!!”</li>
 </ol>
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">mpg_df</span>, digits <span class="op">=</span> <span class="fl">1</span>, caption <span class="op">=</span> <span class="st">"My First Table Caption!!"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mpg_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, caption <span class="op">=</span> <span class="st">"My First Table Caption!!"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
 <span id="tab:unnamed-chunk-35">Table 5.1: </span>My First Table Caption!!</caption>
@@ -683,7 +683,7 @@ format:
 <li>* Google “How to Change Column Names in kable” and replace the column names with “Cylinder Numb.” and “Mean Mileage”.</li>
 </ol>
 <div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">mpg_df</span>, digits <span class="op">=</span> <span class="fl">1</span>, caption <span class="op">=</span> <span class="st">"My First Table Caption!!"</span>,</span>
+<code class="sourceCode R"><span><span class="va">mpg_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, caption <span class="op">=</span> <span class="st">"My First Table Caption!!"</span>,</span>
 <span>  col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cylinder Numb."</span>, <span class="st">"Mean Mileage"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -904,7 +904,7 @@ format:
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-11.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

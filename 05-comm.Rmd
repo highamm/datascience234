@@ -757,13 +757,13 @@ mpg_df |> pander()
 2. \* Type `?kable` into your console window and scroll through the Help file. Change the rounding of the mean so that it only displays one number after the decimal. Then, add a caption to the table that says "My First Table Caption!!"
 
 ```{r}
-kable(mpg_df, digits = 1, caption = "My First Table Caption!!")
+mpg_df |> kable(digits = 1, caption = "My First Table Caption!!")
 ```
 
 3. \* Google "How to Change Column Names in kable" and replace the column names with "Cylinder Numb." and "Mean Mileage".
 
 ```{r}
-kable(mpg_df, digits = 1, caption = "My First Table Caption!!",
+mpg_df |> kable(digits = 1, caption = "My First Table Caption!!",
   col.names = c("Cylinder Numb.", "Mean Mileage"))
 ```
 

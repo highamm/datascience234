@@ -729,7 +729,7 @@ mpg_df |> pander()
 
 
 ```r
-kable(mpg_df, digits = 1, caption = "My First Table Caption!!")
+mpg_df |> kable(digits = 1, caption = "My First Table Caption!!")
 ```
 
 
@@ -746,7 +746,7 @@ Table: (\#tab:unnamed-chunk-35)My First Table Caption!!
 
 
 ```r
-kable(mpg_df, digits = 1, caption = "My First Table Caption!!",
+mpg_df |> kable(digits = 1, caption = "My First Table Caption!!",
   col.names = c("Cylinder Numb.", "Mean Mileage"))
 ```
 

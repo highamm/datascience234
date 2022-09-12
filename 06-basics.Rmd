@@ -363,7 +363,7 @@ __Generating Data__: `rnorm()`, `sample()`, and `set.seed()`
 
 These can be combined to quickly generate toy data. For example, below we are generating two quantitative variables (that are normally distributed) and two categorical variables:
 
-```{r}
+```{r, appendix = TRUE}
 set.seed(15125141)
 toy_df <- tibble(xvar = rnorm(100, 3, 4),
                  yvar = rnorm(100, -5, 10),
@@ -375,7 +375,7 @@ toy_df
 
 __Tables__: We can use the `table()` function with the `$` operator to quickly generate tables of categorical variables:
 
-```{r}
+```{r, appendix = TRUE}
 table(toy_df$group1)
 
 table(toy_df$group1, toy_df$group2)
@@ -383,9 +383,20 @@ table(toy_df$group1, toy_df$group2)
 
 __Others__: There are quite a few other useful base `R` functions. `nrow()` can be used on a data frame to quickly look at the number of rows of the data frame and `summary()` can be used to get a quick summary of a vector:
   
-```{r}
+```{r, appendix = TRUE}
 nrow(toy_df)
 summary(toy_df$yvar)
+```
+
+There are also some useful functions for viewing a data frame. `View()` function can be used in your console window on a data frame: `View(toy_df)` to pull up a spreadsheet-like view of the data set in a different window within `R Studio`.
+
+Options to `print()` allow us to view more rows or more columns in the console printout:
+
+```{r, appendix = TRUE}
+toy_df |>
+  print(n = 60) ## print out 60 rows
+toy_df |>
+  print(width = Inf) ## print out all of the columns
 ```
 
 We will stop here, but will surely encounter more base `R` functions as we run into different types of problems.
