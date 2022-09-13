@@ -613,7 +613,7 @@ Then, name the data set something. In this case, the name of the data set is `ga
 country_df <- gapminder
 ```
 
-Explore the data set with `head()`, `skim()`, and `?gapminder` before proceeding to the following exercises.
+Explore the data set with `head(country_df)` and `?gapminder` before proceeding to the following exercises.
 
 1. \* Make a line graph that shows the relationship between `lifeExp` and `year` for each of the countries in the data set, faceting the graph by continent and also colouring by continent (though this is redundant). Add an x-axis label, a y-axis label, a legend label, and a title to the graph.
 

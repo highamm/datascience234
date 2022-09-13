@@ -266,7 +266,7 @@ ggplot(data = mtcars, aes(x = wt, y = mpg)) +
 
 We have our error. So now, instead of isolating the error to a particular chunk of code, we have isolated the error to a particular __line__ of code: we know the issue is something with how we are using `geom_smooth()`. (We are missing `aes()` to refer to the variable `disp`).
 
-The same strategy can be used with piping. The following code, used to figure out the average bill length to bill depth ratio in Adelie penguins, does not give an error but instead outputs something that we might not expect: a `tibble` with an `NaN` value
+The same strategy can be used with piping. The following code, used to figure out the average bill length to bill depth ratio in Adelie penguins, does not give an error but instead outputs something that we might not expect: a `tibble` with an `NaN` (Not a Number) value (note that you must install the palmerpenguins package `install.packages("palmerpenguins")` before loading the `palmerpenguins` library. 
 
 
 ```r
