@@ -229,6 +229,7 @@ format:
   html:
     fig-height: 2
     theme: darkly
+    self-contained: true
 ---
 ```
 
@@ -245,6 +246,7 @@ format:
     fig-height: 2
     theme: darkly
     toc: true
+    self-contained: true
 ---
 ```
 
