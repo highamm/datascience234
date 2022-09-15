@@ -88,7 +88,7 @@ This allows us to have `Quarto` files within folders in our `R` project.
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-14).
 
-1. Take some time to modify your files in this course by creating a few folders to help keep things a bit more organized. You might consider making a `Quizzes` folder and a `Projects` folder, for example. Move the relevant files to these folders and modify each file to load in the `here` package and use the `here()` function to read in any relevant data sets. 
+1. Take some time to modify your files in this course by creating a few folders to help keep things a bit more organized. You might consider making a `Quizzes` folder and a `Projects` folder, for example. Move the relevant files to these folders and modify each file to load in the `here` package and use the `here()` function to read in any relevant data sets. We've been using the `here()` function quite a bit already so it may already be there!
 
 2. Click the "Packages" button in the lower-right hand window to bring up the packages menu. Instead of using _library(name_of_package)_, you can click the check-box by the package name to load it into `R`. Try it out by un-checking and then re-checking `tidyverse`. Explain, from a reproducibility perspective, why loading packages this way is __not__ good practice.
 
