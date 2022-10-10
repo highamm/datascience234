@@ -798,7 +798,7 @@ nfl_long
 #> # ℹ Use `print(n = ...)` to see more rows
 ```
 
-3. \* To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position so that the highest paid players in each position all receive a `1`, the second highest paid players receive a `2`, etc. Compare your results for the default way that `R` uses to break ties between two salaries that are the same and using `ties.method = "first"`. 
+3. \* To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position in each year so that the highest paid players in each position in each year all receive a `1`, the second highest paid players receive a `2`, etc. Compare your results for the default way that `R` uses to break ties between two salaries that are the same and using `ties.method = "first"`. 
 
 __Hint__:  See Exercise 4 in \@ref(exercise-3-3) for another example on how to do this.
 

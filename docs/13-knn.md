@@ -32,12 +32,12 @@ In order to develop our knn model (note that we still haven't discussed what knn
 
 A __test__ data set consists of the remaining 20%-50% of the observations not in the training data set. A test data set is used to assess different the performances of various models that were fit using the training data set. Why do we need to do this division? Using the full data set for both training a model and testing that model is "cheating:" the model will perform better than it should because we are using each observation twice: once for fitting and once for testing. Having a separate test data set that wasn't used to fit the model gives the model a more "fair" test, as these observations are supposed to be new data that the model hasn't yet seen.
 
-The following code uses that `sample_n()` function to randomly select 15 observations to be in the training data set. `anti_join()` then makes a test data set without the 15 pokemon in the training data set.
+The following code uses that `slice_sample()` function to randomly select 15 observations to be in the training data set. `anti_join()` then makes a test data set without the 15 pokemon in the training data set.
 
 
 ```r
 train_sample <- pokemon |>
-  sample_n(15)
+  slice_sample(n = 15)
 test_sample <- anti_join(pokemon, train_sample)
 
 train_sample |> head()
@@ -314,7 +314,7 @@ pokemon_scaled <- pokemon |>
                                  (max(.x) - min(.x)))) 
 
 train_sample_2 <- pokemon_scaled |>
-  sample_n(70)
+  slice_sample(n = 70)
 test_sample_2 <- anti_join(pokemon_scaled, train_sample_2)
 #> Joining, by = c("...1", "Name", "Type", "HP", "Attack",
 #> "Defense", "Speed", "SpAtk", "SpDef", "Generation",
@@ -442,7 +442,7 @@ library(here)
 pokemon <- read_csv(here("data/pokemon_full.csv")) |>
   filter(Type %in% c("Steel", "Dark", "Fire", "Ice"))
 train_sample <- pokemon |>
-  sample_n(15)
+  slice_sample(n = 15)
 test_sample <- anti_join(pokemon, train_sample)
 
 train_sample |> head()
@@ -490,7 +490,7 @@ pokemon_scaled <- pokemon |>
                                  (max(.x) - min(.x)))) 
 
 train_sample_2 <- pokemon_scaled |>
-  sample_n(70)
+  slice_sample(n = 70)
 test_sample_2 <- anti_join(pokemon_scaled, train_sample_2)
 ## install.packages("class")
 library(class)

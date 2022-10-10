@@ -85,7 +85,7 @@ piping-s
 chapexercise-3-S
 rcode-3
 communication-with-quarto
-reproducbility
+reproducibility
 r-scripts-vs.-quarto
 spell-checking
 exercise-5-1

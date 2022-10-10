@@ -90,9 +90,9 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2022-09-14"</span></span>
+<span><span class="co">#&gt; [1] "2022-10-10"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2022-09-14 22:08:19 EDT"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2022-10-10 09:41:55 EDT"</span></span></code></pre></div>
 <p>This first section will deal with how to convert a variable in <code>R</code> to be a <code>Date</code>. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:</p>
 <ul>
 <li>
@@ -282,11 +282,11 @@
 <span><span class="co">#&gt;   start_date Stock_Type  Price</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;     &lt;fct&gt;       &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2021-05-17 Chipotle   1332. </span></span>
-<span><span class="co">#&gt; 2 2021-05-17 S &amp; P 500   408. </span></span>
+<span><span class="co">#&gt; 2 2021-05-17 S &amp; P 500   407. </span></span>
 <span><span class="co">#&gt; 3 2021-05-18 Apple       124. </span></span>
-<span><span class="co">#&gt; 4 2021-05-18 Nintendo     70.4</span></span>
+<span><span class="co">#&gt; 4 2021-05-18 Nintendo     14.1</span></span>
 <span><span class="co">#&gt; 5 2021-05-18 Chipotle   1325. </span></span>
-<span><span class="co">#&gt; 6 2021-05-18 S &amp; P 500   405.</span></span></code></pre></div>
+<span><span class="co">#&gt; 6 2021-05-18 S &amp; P 500   403.</span></span></code></pre></div>
 <p>You’ll have a chance in the Exercises to choose your own stocks to investigate. For now, I’ve made a data set with three variables:</p>
 <ul>
 <li>
@@ -327,18 +327,18 @@
 <div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_in_year <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">yday</a></span><span class="op">(</span><span class="va">start_date</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 10,444 × 4</span></span>
-<span><span class="co">#&gt;    start_date Stock_Type Price day_in_year</span></span>
-<span><span class="co">#&gt;    &lt;date&gt;     &lt;fct&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 2011-01-03 Apple       10.0           3</span></span>
-<span><span class="co">#&gt;  2 2011-01-03 Nintendo    36.7           3</span></span>
-<span><span class="co">#&gt;  3 2011-01-03 Chipotle   224.            3</span></span>
-<span><span class="co">#&gt;  4 2011-01-03 S &amp; P 500  102.            3</span></span>
-<span><span class="co">#&gt;  5 2011-01-04 Apple       10.1           4</span></span>
-<span><span class="co">#&gt;  6 2011-01-04 Nintendo    35.5           4</span></span>
-<span><span class="co">#&gt;  7 2011-01-04 Chipotle   222.            4</span></span>
-<span><span class="co">#&gt;  8 2011-01-04 S &amp; P 500  102.            4</span></span>
-<span><span class="co">#&gt;  9 2011-01-05 Apple       10.2           5</span></span>
-<span><span class="co">#&gt; 10 2011-01-05 Nintendo    34.6           5</span></span>
+<span><span class="co">#&gt;    start_date Stock_Type  Price day_in_year</span></span>
+<span><span class="co">#&gt;    &lt;date&gt;     &lt;fct&gt;       &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 2011-01-03 Apple       10.0            3</span></span>
+<span><span class="co">#&gt;  2 2011-01-03 Nintendo     7.34           3</span></span>
+<span><span class="co">#&gt;  3 2011-01-03 Chipotle   224.             3</span></span>
+<span><span class="co">#&gt;  4 2011-01-03 S &amp; P 500  102.             3</span></span>
+<span><span class="co">#&gt;  5 2011-01-04 Apple       10.1            4</span></span>
+<span><span class="co">#&gt;  6 2011-01-04 Nintendo     7.1            4</span></span>
+<span><span class="co">#&gt;  7 2011-01-04 Chipotle   222.             4</span></span>
+<span><span class="co">#&gt;  8 2011-01-04 S &amp; P 500  102.             4</span></span>
+<span><span class="co">#&gt;  9 2011-01-05 Apple       10.2            5</span></span>
+<span><span class="co">#&gt; 10 2011-01-05 Nintendo     6.92           5</span></span>
 <span><span class="co">#&gt; # … with 10,434 more rows</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p>Finally, the function <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> grabs the day of the week from a <code>&lt;date&gt;</code>. By default, <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> puts the day of the week as a numeric, but I find this confusing, as I can’t ever remember whether a <code>1</code> means <code>Sunday</code> or a <code>1</code> means <code>Monday</code>. Adding, <code>label = TRUE</code> creates the weekday variable as <code>Sunday</code>, <code>Monday</code>, <code>Tuesday</code>, etc.:</p>
@@ -715,7 +715,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-14.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

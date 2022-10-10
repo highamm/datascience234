@@ -61,17 +61,19 @@ We will explore some of these issues in the following exercises.
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-9).
 
-1. Recall the course evaluations data set, which you used for Mini-Project 2. This might have been obvious, but the course evaluations were my course evaluations from last year, so I felt that it was ethically okay for me to share them. But, data privacy is not always a cut-and-dry issue. Consider the following course evaluation formats, and think about whether or not you would consider it ethically okay for me to share the evaluation information with you:
+<!-- 1. Recall the course evaluations data set, which you used for Mini-Project 2. This might have been obvious, but the course evaluations were my course evaluations from last year, so I felt that it was ethically okay for me to share them. But, data privacy is not always a cut-and-dry issue. Consider the following course evaluation formats, and think about whether or not you would consider it ethically okay for me to share the evaluation information with you: -->
 
-a. I not only gave you the course averages, but I also give you PDFs of each student's written responses. The PDFs are anonymous, but they do have the student's sex, year, and whether they took the course for a Major, Minor, Distribution Requirement, etc. Assume that you also can obtain the class roster for each class.
+<!-- a. I not only gave you the course averages, but I also give you PDFs of each student's written responses. The PDFs are anonymous, but they do have the student's sex, year, and whether they took the course for a Major, Minor, Distribution Requirement, etc. Assume that you also can obtain the class roster for each class. -->
 
-b. I not only gave you the course averages and the PDFs in (a), but I also give you the __grade__ each student received in the course on their PDF list of responses (but they are still anonymous and you can still obtain the class roster).
+<!-- b. I not only gave you the course averages and the PDFs in (a), but I also give you the __grade__ each student received in the course on their PDF list of responses (but they are still anonymous and you can still obtain the class roster). -->
 
-c. Another professor at SLU posts her evaluation averages in a table on a personal website. I scrape the data table and give it to you all, along with the professor's name and courses. I don't ask for permission, but the website that the tables are on is public.
+<!-- c. Another professor at SLU posts her evaluation averages in a table on a personal website. I scrape the data table and give it to you all, along with the professor's name and courses. I don't ask for permission, but the website that the tables are on is public. -->
+
+1. How anonymous are SLU's course evaluations? We will do an in-class activity to investigate this.
 
 2. Suppose that I collect data on students in __this__ Data Science class. In each setting (a) through (d), suppose that I give you a data set with the following variables collected on each student in the class. Which option, if any, would it be ethically okay for me to share the data with all students in the class. 
 
-a. current grade and time spent on the `R Studio` server
+a. current grade and time spent on Canvas.
 
 b. current grade, class year, and whether or not the student is a stat major
 
@@ -79,7 +81,7 @@ c. favorite R package, whether or not the student took STAT 213, whether or not 
 
 d. favorite R package, whether or not the student took STAT 213, whether or not the student took CS 140, and current grade in the course
 
-3. How anonymous are SLU's course evaluations? We will do an in-class activity to investigate this.
+
 
 ## Hypothesis Generation vs. Confirmation 
 

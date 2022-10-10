@@ -14,7 +14,7 @@ __Goals__:
 
 Overall: If you're making some quick plots just for you, some of the things on communication won't apply. But, if you're planning on sharing results (usually you are, eventually), then communication tools become much more important.
 
-## Reproducbility
+## Reproducibility
 
 We've been using `Quarto` for a while now, but have not yet talked about any of its features or how to do anything except insert a new code chunk. By the end of this section, we want to be able to use some of the `Quarto` options to make a nice-looking document (so that you can implement some of these options in your first mini-project). 
 

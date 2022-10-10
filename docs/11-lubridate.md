@@ -18,9 +18,9 @@ To begin, install the `lubridate` package, and load the package with `library()`
 library(tidyverse)
 library(lubridate)
 today()
-#> [1] "2022-09-14"
+#> [1] "2022-10-10"
 now()
-#> [1] "2022-09-14 22:08:19 EDT"
+#> [1] "2022-10-10 09:41:55 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
@@ -229,11 +229,11 @@ tail(stocks_long)
 #>   start_date Stock_Type  Price
 #>   <date>     <fct>       <dbl>
 #> 1 2021-05-17 Chipotle   1332. 
-#> 2 2021-05-17 S & P 500   408. 
+#> 2 2021-05-17 S & P 500   407. 
 #> 3 2021-05-18 Apple       124. 
-#> 4 2021-05-18 Nintendo     70.4
+#> 4 2021-05-18 Nintendo     14.1
 #> 5 2021-05-18 Chipotle   1325. 
-#> 6 2021-05-18 S & P 500   405.
+#> 6 2021-05-18 S & P 500   403.
 ```
 
 You'll have a chance in the Exercises to choose your own stocks to investigate. For now, I've made a data set with three variables:
@@ -283,18 +283,18 @@ returns `309`, indicating that November 4th is the 309th day of the year 2020. U
 ```r
 stocks_long |> mutate(day_in_year = yday(start_date))
 #> # A tibble: 10,444 × 4
-#>    start_date Stock_Type Price day_in_year
-#>    <date>     <fct>      <dbl>       <dbl>
-#>  1 2011-01-03 Apple       10.0           3
-#>  2 2011-01-03 Nintendo    36.7           3
-#>  3 2011-01-03 Chipotle   224.            3
-#>  4 2011-01-03 S & P 500  102.            3
-#>  5 2011-01-04 Apple       10.1           4
-#>  6 2011-01-04 Nintendo    35.5           4
-#>  7 2011-01-04 Chipotle   222.            4
-#>  8 2011-01-04 S & P 500  102.            4
-#>  9 2011-01-05 Apple       10.2           5
-#> 10 2011-01-05 Nintendo    34.6           5
+#>    start_date Stock_Type  Price day_in_year
+#>    <date>     <fct>       <dbl>       <dbl>
+#>  1 2011-01-03 Apple       10.0            3
+#>  2 2011-01-03 Nintendo     7.34           3
+#>  3 2011-01-03 Chipotle   224.             3
+#>  4 2011-01-03 S & P 500  102.             3
+#>  5 2011-01-04 Apple       10.1            4
+#>  6 2011-01-04 Nintendo     7.1            4
+#>  7 2011-01-04 Chipotle   222.             4
+#>  8 2011-01-04 S & P 500  102.             4
+#>  9 2011-01-05 Apple       10.2            5
+#> 10 2011-01-05 Nintendo     6.92           5
 #> # … with 10,434 more rows
 #> # ℹ Use `print(n = ...)` to see more rows
 ```

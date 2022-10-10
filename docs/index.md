@@ -1,7 +1,7 @@
 ---
 title: "STAT 234: Data Science"
 author: "Matt Higham"
-date: "2022-09-14"
+date: "2022-10-10"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -95,7 +95,7 @@ Each week, you will submit a 60-point Module, consisting of the following:
 
 There are 13 modules in total. In three modules, you will complete a 50-point Project instead of the two quizzes. The Project which will have some tasks for you to complete for a particular data set. The lowest module will be dropped from your grade so the total number of points available is `12 * 60 = 720` points.
 
-Additionally, for one module, you are permitted to take the in-class quiz as a take-home and turn it in the following Monday.
+Additionally, for one module, you are permitted to take the in-class quiz as a take-home and turn it in the following Monday. For this quiz, you must let me know that you are doing this before grades are posted, and you are not permitted to collaborate with anyone.
 
 Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second and third-lowest module scores.
 
