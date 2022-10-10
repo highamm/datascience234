@@ -131,7 +131,7 @@ ggplot(data = pokemon_sum, aes(x = Type_ordered,
 
 Lollipop plots are a popular alternative to bar plots because they often look cleaner with less ink. To make a lollipop plot in `R`, we specify two different geoms: `geom_segment()` to form the stick of the lollipop and `geom_point()` to form the pop part of the lollipop. `geom_segment()` requires 4 aesthetics: `x`, `xend`, `y`, and `yend`.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = pokemon_sum, aes(x = Type_ordered,
                                y = count_type)) +
   geom_segment(aes(x = Type_ordered, xend = Type_ordered,
@@ -167,7 +167,7 @@ ggplot(data = pokemon_med, aes(x = med_def, y = Type_Deford)) +
 
 Finally, we can make a lollipop plot of median defense.
 
-```{r}
+```{r, appendix = TRUE}
 ggplot(data = pokemon_med, aes(x = Type_Deford, y = med_def)) +
   geom_segment(aes(xend = Type_Deford, y = 0, yend = med_def)) +
   geom_point() +
@@ -271,6 +271,61 @@ Why aren't the types ordered by median defense anymore?
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-7).
 
+For these chapter exercises, we will use a data set on National Football League standings from 2000 to 2020. Read in the data set with:
+
+```{r}
+library(tidyverse)
+library(here)
+standings_df <- read_csv(here("data/standings.csv"))
+standings_df
+```
+
+The important variables that we will use include:
+
+* `team`, the city where the team is based in
+* `team_name`, the name of the team
+* `playoffs`, whether or not the team made the playoffs that year
+* `sb_winner`, whether or not the team won the superbowl that year
+
+1. Use the `table()` function with `table(name_of_data_frame$name_of_variable)` to make a table of `team_name`. This is useful to use for categorical variables to give a quick summary of what the levels are and how many times each level appears in the data set.
+
+2. Until a couple of years ago, the Washington Commanders team used to be known as the Washington Redskins. Because of the obvious racism the name conveys, in 2022, the name was changed from Redskins to Commanders. Use a `forcats` function to rename the `Redskins` `team_name` to `Commanders`. Note that, usually, we have been renaming the new variable after we use a `forcats` function, but, oftentimes, it makes sense to just overwrite the old variable by using the same name in our `mutate()` statement.
+
+3. Use a function from `tidyr` to combine `team` and `team_name` into a single variable called `franchise`. You may want to specify `sep = " "` for consistency with the city names.
+
+4. There are a couple of franchises in the national football league that moved cities in the late 2010s. In particular, the San Diego Chargers became the Los Angeles Chargers and the St. Louis Rams became the Los Angeles Rams (this is another instance where being familiar with context is helpful here: it may have taken you much longer to figure this out, had you not known much about the NFL). Use a `forcats` function to put the `San Diego Chargers` and `Los Angeles Chargers` into a single level, `San Diego LA Chargers`, and to put the `St. Louis Rams` and `Los Angeles Rams` into a single level, `St. Louis LA Rams`.
+
+5. Using the updated data set, create a lollipop plot of the ten `franchise`s who have made the playoffs most often. You will need to do some work with `dplyr` before making the plot.
+
+```{r, echo = FALSE, eval = FALSE}
+standings_df <- standings_df |> mutate(team_name = fct_recode(team_name,
+                                              Commanders = "Redskins")) |>
+  unite(col = "franchise", c(team, team_name), sep = " ",
+        remove = FALSE) |>
+  mutate(franchise = fct_collapse(franchise,
+                                  `St. Louis LA Rams` =  c("St. Louis Rams", "Los Angeles Rams"),
+                                  `San Diego LA Chargers` = c("Los Angeles Chargers", "San Diego Chargers")))
+
+top_ten <- standings_df |> filter(playoffs == "Playoffs") |>
+  group_by(franchise) |>
+  summarise(n_playoffs = n()) |>
+  arrange(desc(n_playoffs)) |>
+  slice(1:10) |>
+  mutate(franchise = fct_reorder(franchise, n_playoffs))
+ggplot(data = top_ten, aes(x = franchise, y = n_playoffs)) +
+  geom_point() +
+  geom_segment(aes(x = franchise, xend = franchise,
+                   y = 0, yend = n_playoffs)) +
+  coord_flip()
+```
+
+6. Customize your lollipop plot by changing the way the points look at the end and / or the way the "stems" of the lollipops look. You may use <https://r-graph-gallery.com/301-custom-lollipop-chart.html> for inspiration.
+
+<br>
+
+<br>
+
+The following are the old chapter exercises for `forcats`: I've left them in here in case you want some extra practice!
 We will use the general social survey data set, which is in the `forcats` library in `R`. You should some of this Wikipedia page to better understand where this data comes from <a href="https://en.wikipedia.org/wiki/General_Social_Survey" target="_blank">Wikipedia</a>.
 
 Most variables are self-explanatory, but a couple that aren't are:

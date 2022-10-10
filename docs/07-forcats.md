@@ -362,6 +362,71 @@ Why aren't the types ordered by median defense anymore?
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-7).
 
+For these chapter exercises, we will use a data set on National Football League standings from 2000 to 2020. Read in the data set with:
+
+
+```r
+library(tidyverse)
+library(here)
+standings_df <- read_csv(here("data/standings.csv"))
+#> Rows: 638 Columns: 15
+#> ── Column specification ────────────────────────────────────
+#> Delimiter: ","
+#> chr  (4): team, team_name, playoffs, sb_winner
+#> dbl (11): year, wins, loss, points_for, points_against, ...
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+standings_df
+#> # A tibble: 638 × 15
+#>    team    team_…¹  year  wins  loss point…² point…³ point…⁴
+#>    <chr>   <chr>   <dbl> <dbl> <dbl>   <dbl>   <dbl>   <dbl>
+#>  1 Miami   Dolphi…  2000    11     5     323     226      97
+#>  2 Indian… Colts    2000    10     6     429     326     103
+#>  3 New Yo… Jets     2000     9     7     321     321       0
+#>  4 Buffalo Bills    2000     8     8     315     350     -35
+#>  5 New En… Patrio…  2000     5    11     276     338     -62
+#>  6 Tennes… Titans   2000    13     3     346     191     155
+#>  7 Baltim… Ravens   2000    12     4     333     165     168
+#>  8 Pittsb… Steele…  2000     9     7     321     255      66
+#>  9 Jackso… Jaguars  2000     7     9     367     327      40
+#> 10 Cincin… Bengals  2000     4    12     185     359    -174
+#> # … with 628 more rows, 7 more variables:
+#> #   margin_of_victory <dbl>, strength_of_schedule <dbl>,
+#> #   simple_rating <dbl>, offensive_ranking <dbl>,
+#> #   defensive_ranking <dbl>, playoffs <chr>,
+#> #   sb_winner <chr>, and abbreviated variable names
+#> #   ¹​team_name, ²​points_for, ³​points_against,
+#> #   ⁴​points_differential
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
+```
+
+The important variables that we will use include:
+
+* `team`, the city where the team is based in
+* `team_name`, the name of the team
+* `playoffs`, whether or not the team made the playoffs that year
+* `sb_winner`, whether or not the team won the superbowl that year
+
+1. Use the `table()` function with `table(name_of_data_frame$name_of_variable)` to make a table of `team_name`. This is useful to use for categorical variables to give a quick summary of what the levels are and how many times each level appears in the data set.
+
+2. Until a couple of years ago, the Washington Commanders team used to be known as the Washington Redskins. Because of the obvious racism the name conveys, in 2022, the name was changed from Redskins to Commanders. Use a `forcats` function to rename the `Redskins` `team_name` to `Commanders`. Note that, usually, we have been renaming the new variable after we use a `forcats` function, but, oftentimes, it makes sense to just overwrite the old variable by using the same name in our `mutate()` statement.
+
+3. Use a function from `tidyr` to combine `team` and `team_name` into a single variable called `franchise`. You may want to specify `sep = " "` for consistency with the city names.
+
+4. There are a couple of franchises in the national football league that moved cities in the late 2010s. In particular, the San Diego Chargers became the Los Angeles Chargers and the St. Louis Rams became the Los Angeles Rams (this is another instance where being familiar with context is helpful here: it may have taken you much longer to figure this out, had you not known much about the NFL). Use a `forcats` function to put the `San Diego Chargers` and `Los Angeles Chargers` into a single level, `San Diego LA Chargers`, and to put the `St. Louis Rams` and `Los Angeles Rams` into a single level, `St. Louis LA Rams`.
+
+5. Using the updated data set, create a lollipop plot of the ten `franchise`s who have made the playoffs most often. You will need to do some work with `dplyr` before making the plot.
+
+
+
+6. Customize your lollipop plot by changing the way the points look at the end and / or the way the "stems" of the lollipops look. You may use <https://r-graph-gallery.com/301-custom-lollipop-chart.html> for inspiration.
+
+<br>
+
+<br>
+
+The following are the old chapter exercises for `forcats`: I've left them in here in case you want some extra practice!
 We will use the general social survey data set, which is in the `forcats` library in `R`. You should some of this Wikipedia page to better understand where this data comes from <a href="https://en.wikipedia.org/wiki/General_Social_Survey" target="_blank">Wikipedia</a>.
 
 Most variables are self-explanatory, but a couple that aren't are:
@@ -544,7 +609,7 @@ ggplot(data = relig_summary, aes(x = relig, y = tvhours)) +
   coord_flip()
 ```
 
-<img src="07-forcats_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="07-forcats_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):
 
@@ -627,6 +692,12 @@ ggplot(data = pokemon_sum, aes(x = Type_ordered,
                                y = count_type)) +
   geom_col() +
   coord_flip()
+ggplot(data = pokemon_sum, aes(x = Type_ordered,
+                               y = count_type)) +
+  geom_segment(aes(x = Type_ordered, xend = Type_ordered,
+                   y = 0, yend = count_type)) +
+  geom_point() +
+  coord_flip()
 pokemon_long <- pokemon_long |>
   filter(!is.na(Type)) |>
   mutate(Type_Deford = fct_reorder(.f = Type, .x = Defense,
@@ -642,6 +713,10 @@ pokemon_med <- pokemon_long |> group_by(Type_Deford) |>
 
 ggplot(data = pokemon_med, aes(x = med_def, y = Type_Deford)) +
   geom_point()
+ggplot(data = pokemon_med, aes(x = Type_Deford, y = med_def)) +
+  geom_segment(aes(xend = Type_Deford, y = 0, yend = med_def)) +
+  geom_point() +
+  coord_flip()
 mortality_df <- read_csv(here("data/gun_violence_us.csv")) |>
   mutate(region = factor(region))
 ggplot(data = mortality_df,
