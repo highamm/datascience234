@@ -333,7 +333,7 @@
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="data-import.html#solutions-8">11.5</a>.</p>
 <ol style="list-style-type: decimal">
 <li><p>Choose a topic/person/place/etc. that interests you that has tables on Wikipedia and scrape the table that is related to that topic.</p></li>
-<li><p>* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/ir/diversity/faculty" target="_blank">https://www.stlawu.edu/ir/diversity/faculty</a>. Use <code>rvest</code> to scrape the data tables into <code>R</code>.</p></li>
+<li><p>* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/faculty-diversity" target="_blank">https://www.stlawu.edu/offices/institutional-research/faculty-diversity</a>. Use <code>rvest</code> to scrape the data tables into <code>R</code>.</p></li>
 </ol>
 <p><strong>Hint</strong>: You may need to use an extra argument in <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code> like <code>fill</code>.</p>
 </div>
@@ -501,7 +501,7 @@
 <span>    <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">col_number</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"N/A"</span>, <span class="st">"?"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code>install.packages("readxl")</code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, the data set used for Project 2, with the <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> function.</li>
+<li>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code>install.packages("readxl")</code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set with the <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> function.</li>
 </ol>
 <div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## install.packages("readxl")</span></span>
@@ -710,7 +710,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-10.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

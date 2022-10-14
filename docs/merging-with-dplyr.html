@@ -734,6 +734,90 @@
 <li><p>How many rows would be in the data set from <code>semi_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
 <li><p>How many rows would be in the data set from <code>anti_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
 </ol>
+<ol start="10" style="list-style-type: decimal">
+<li>Examine the following data sets (the first is <code>df3</code> and the second is <code>df4</code>) and then, without running any code, answer the following questions. This question is a step up in challenge from Exercise 9 because a few of the levels of the <code>id</code> key have duplicates.</li>
+</ol>
+<div class="inline-table"><table style="width:17%;" class="table table-sm">
+<colgroup>
+<col width="6%">
+<col width="9%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">id</th>
+<th align="center">xvar</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">A</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">A</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">C</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">C</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">6</td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table style="width:17%;" class="table table-sm">
+<colgroup>
+<col width="6%">
+<col width="9%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">id</th>
+<th align="center">yvar</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">A</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">B</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">C</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">D</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">D</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">D</td>
+<td align="center">4</td>
+</tr>
+</tbody>
+</table></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>How many rows would be in the data set from <code>left_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>left_join(df2, df1, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>full_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>inner_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>semi_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>anti_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+</ol>
+<p><br></p>
 </div>
 <div id="solutions-10" class="section level2" number="12.5">
 <h2>
@@ -1111,7 +1195,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-10.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

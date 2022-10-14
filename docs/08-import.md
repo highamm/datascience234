@@ -313,7 +313,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 1. Choose a topic/person/place/etc. that interests you that has tables on Wikipedia and scrape the table that is related to that topic.
 
-2. \* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/ir/diversity/faculty" target="_blank">https://www.stlawu.edu/ir/diversity/faculty</a>. Use `rvest` to scrape the data tables into `R`. 
+2. \* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/faculty-diversity" target="_blank">https://www.stlawu.edu/offices/institutional-research/faculty-diversity</a>. Use `rvest` to scrape the data tables into `R`. 
 
 __Hint__: You may need to use an extra argument in `html_table()` like `fill`.
 
@@ -505,7 +505,7 @@ read_delim(here("data/birthdays.txt"), delim = "-", skip = 4,
   ), na = c("N/A", "?"))
 ```
 
-2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, the data set used for Project 2, with the `read_excel()` function.
+2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set with the `read_excel()` function.
 
 
 ```r

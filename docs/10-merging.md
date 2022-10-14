@@ -733,6 +733,56 @@ f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" 
 
 
 
+10. Examine the following data sets (the first is `df3` and the second is `df4`) and then, without running any code, answer the following questions. This question is a step up in challenge from Exercise 9 because a few of the levels of the `id` key have duplicates.
+
+
+-----------
+ id   xvar 
+---- ------
+ A     1   
+
+ A     2   
+
+ C     3   
+
+ C     1   
+
+ F     2   
+
+ F     6   
+-----------
+
+
+-----------
+ id   yvar 
+---- ------
+ A     2   
+
+ B     1   
+
+ C     2   
+
+ D     1   
+
+ D     1   
+
+ D     4   
+-----------
+
+a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
+
+b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
+
+c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
+
+d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
+
+e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
+
+f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
+
+<br>
+
 ## Exercise Solutions {#solutions-10}
 
 ### `bind_rows()` and `bind_cols()` S

@@ -438,6 +438,30 @@ f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" 
 ## 2
 ```
 
+10. Examine the following data sets (the first is `df3` and the second is `df4`) and then, without running any code, answer the following questions. This question is a step up in challenge from Exercise 9 because a few of the levels of the `id` key have duplicates.
+
+```{r, echo = FALSE, results = "show"}
+df3 <- tibble(id = c("A", "A", "C", "C", "F", "F"), xvar = c(1, 2, 3, 1, 2, 6))
+df4 <- tibble(id = c("A", "B", "C", "D", "D", "D"), yvar = c(2, 1, 2, 1, 1, 4))
+library(pander)
+pander(df3)
+pander(df4)
+```
+
+a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
+
+b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
+
+c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
+
+d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
+
+e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
+
+f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
+
+<br>
+
 ## Exercise Solutions {#solutions-10}
 
 ### `bind_rows()` and `bind_cols()` S
