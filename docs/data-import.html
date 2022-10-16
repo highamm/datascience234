@@ -130,43 +130,43 @@
 <p>That looks better, but there are still a couple of problems. What do you notice?</p>
 <p>Go the help and read about the <code>na</code> argument. Let’s add that as an option to fix the missing value issue.</p>
 <div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
-<span><span class="co">#&gt;   mpg   cyl   disp  hp    drat  wt    qsec  vs    am   </span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
-<span><span class="co">#&gt; 1 NA    NA    NA    NA    NA    NA    NA    NA    NA   </span></span>
-<span><span class="co">#&gt; 2 NA    NA    NA    NA    NA    NA    NA    NA    NA   </span></span>
-<span><span class="co">#&gt; 3 &lt;NA&gt;  6     160   110   3.9   2.62  16.46 0     1    </span></span>
-<span><span class="co">#&gt; 4 21    6     160   110   3.9   2.875 17.02 0     1    </span></span>
-<span><span class="co">#&gt; 5 22.8  4     108   93    3.85  2.32  18.61 1     1    </span></span>
-<span><span class="co">#&gt; 6 21.4  6     258   110   3.08  3.215 19.44 1     0    </span></span>
-<span><span class="co">#&gt; # … with 2 more variables: gear &lt;chr&gt;, carb &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  NA      NA    NA    NA NA    NA     NA      NA    NA</span></span>
+<span><span class="co">#&gt; 2  NA      NA    NA    NA NA    NA     NA      NA    NA</span></span>
+<span><span class="co">#&gt; 3  NA       6   160   110  3.9   2.62  16.5     0     1</span></span>
+<span><span class="co">#&gt; 4  21       6   160   110  3.9   2.88  17.0     0     1</span></span>
+<span><span class="co">#&gt; 5  22.8     4   108    93  3.85  2.32  18.6     1     1</span></span>
+<span><span class="co">#&gt; 6  21.4     6   258   110  3.08  3.22  19.4     1     0</span></span>
+<span><span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
 <p>Now look at the classes of each variable. Which classes look like they are incorrect?</p>
 <p>We’ve talked about how to re-specify classes of variables using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and the <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> or <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> or <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> functions, but sometimes it’s easier just to respecify the class when we are reading in the data. Notice how, when we use <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>, <code>R</code> gives us a message about each of the column types. This is actually an argument in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> called <code>col_types</code>. We can add a <code>|&gt; spec()</code> piping statement after a <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> statement to tell <code>R</code> to print the <code>col_types</code> so that it’s easy for us to copy and paste it into <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> and change any classes.</p>
 <div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/spec.html">spec</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 34 Columns: 11</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Delimiter: ","</span></span>
-<span><span class="co">#&gt; chr (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, ge...</span></span>
+<span><span class="co">#&gt; dbl (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, ge...</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
 <span><span class="co">#&gt; cols(</span></span>
-<span><span class="co">#&gt;   mpg = col_character(),</span></span>
-<span><span class="co">#&gt;   cyl = col_character(),</span></span>
-<span><span class="co">#&gt;   disp = col_character(),</span></span>
-<span><span class="co">#&gt;   hp = col_character(),</span></span>
-<span><span class="co">#&gt;   drat = col_character(),</span></span>
-<span><span class="co">#&gt;   wt = col_character(),</span></span>
-<span><span class="co">#&gt;   qsec = col_character(),</span></span>
-<span><span class="co">#&gt;   vs = col_character(),</span></span>
-<span><span class="co">#&gt;   am = col_character(),</span></span>
-<span><span class="co">#&gt;   gear = col_character(),</span></span>
-<span><span class="co">#&gt;   carb = col_character()</span></span>
+<span><span class="co">#&gt;   mpg = col_double(),</span></span>
+<span><span class="co">#&gt;   cyl = col_double(),</span></span>
+<span><span class="co">#&gt;   disp = col_double(),</span></span>
+<span><span class="co">#&gt;   hp = col_double(),</span></span>
+<span><span class="co">#&gt;   drat = col_double(),</span></span>
+<span><span class="co">#&gt;   wt = col_double(),</span></span>
+<span><span class="co">#&gt;   qsec = col_double(),</span></span>
+<span><span class="co">#&gt;   vs = col_double(),</span></span>
+<span><span class="co">#&gt;   am = col_double(),</span></span>
+<span><span class="co">#&gt;   gear = col_double(),</span></span>
+<span><span class="co">#&gt;   carb = col_double()</span></span>
 <span><span class="co">#&gt; )</span></span></code></pre></div>
 <p>For example, notice how <code>cyl = col_double()</code> is changed to <code>cyl = col_factor()</code> in the code chunk below:</p>
 <div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
@@ -186,7 +186,7 @@
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Finally, there are two rows with all missing values. These aren’t providing anything useful so we can <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> them out:</p>
 <div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,</span>
+<code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span></span>
 <span>  mpg <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  cyl <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -276,7 +276,7 @@
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/birthdays.txt"</span><span class="op">)</span>, delim <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li><p>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code>install.packages("readxl")</code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, the data set used for Project 2, with the <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> function.</p></li>
+<li><p>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code>install.packages("readxl")</code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, a similar data set as the one that will be used for Project 2, with the <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> function.</p></li>
 <li><p>* Now, read in the second sheet in the Excel file, using the help file for <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">?read_excel</a></code> to change one of the arguments.</p></li>
 </ol>
 </div>
@@ -580,7 +580,7 @@
 <span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">## first two lines will be skipped</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
-<span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
 <span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span></span>
@@ -596,7 +596,7 @@
 <span>  gear <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  carb <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,</span>
+<span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span></span>
 <span>  mpg <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  cyl <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -710,7 +710,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-14.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -40,7 +40,7 @@ That looks better, but there are still a couple of problems. What do you notice?
 Go the help and read about the `na` argument. Let's add that as an option to fix the missing value issue.
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
-cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2)
+cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2)
 head(cars_df)
 ```
 
@@ -49,7 +49,7 @@ Now look at the classes of each variable. Which classes look like they are incor
 We've talked about how to re-specify classes of variables using `mutate()` and the `as.factor()` or `as.Date()` or `as.numeric()` functions, but sometimes it's easier just to respecify the class when we are reading in the data. Notice how, when we use `read_csv()`, `R` gives us a message about each of the column types. This is actually an argument in `read_csv()` called `col_types`. We can add a `|> spec()` piping statement after a `read_csv()` statement to tell `R` to print the `col_types` so that it's easy for us to copy and paste it into `read_csv()` and change any classes.
 
 ```{r}
-read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2) |>
+read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2) |>
   spec()
 ```
 
@@ -76,7 +76,7 @@ cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2,
 Finally, there are two rows with all missing values. These aren't providing anything useful so we can `slice()` them out:
 
 ```{r, appendix = TRUE}
-cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2,
+cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2,
   col_types = cols(
   mpg = col_double(),
   cyl = col_factor(),
@@ -136,7 +136,7 @@ df <- read_delim(here("data/birthdays.txt"), delim = " - ")
 head(df)
 ```
 
-2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, the data set used for Project 2, with the `read_excel()` function.
+2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, a similar data set as the one that will be used for Project 2, with the `read_excel()` function.
 
 3. \* Now, read in the second sheet in the Excel file, using the help file for `?read_excel` to change one of the arguments.
 

@@ -67,18 +67,18 @@ Go the help and read about the `na` argument. Let's add that as an option to fix
 
 
 ```r
-cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2)
+cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2)
 head(cars_df)
 #> # A tibble: 6 × 11
-#>   mpg   cyl   disp  hp    drat  wt    qsec  vs    am   
-#>   <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
-#> 1 NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 2 NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 3 <NA>  6     160   110   3.9   2.62  16.46 0     1    
-#> 4 21    6     160   110   3.9   2.875 17.02 0     1    
-#> 5 22.8  4     108   93    3.85  2.32  18.61 1     1    
-#> 6 21.4  6     258   110   3.08  3.215 19.44 1     0    
-#> # … with 2 more variables: gear <chr>, carb <chr>
+#>     mpg   cyl  disp    hp  drat    wt  qsec    vs    am
+#>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1  NA      NA    NA    NA NA    NA     NA      NA    NA
+#> 2  NA      NA    NA    NA NA    NA     NA      NA    NA
+#> 3  NA       6   160   110  3.9   2.62  16.5     0     1
+#> 4  21       6   160   110  3.9   2.88  17.0     0     1
+#> 5  22.8     4   108    93  3.85  2.32  18.6     1     1
+#> 6  21.4     6   258   110  3.08  3.22  19.4     1     0
+#> # … with 2 more variables: gear <dbl>, carb <dbl>
 #> # ℹ Use `colnames()` to see all variable names
 ```
 
@@ -88,27 +88,27 @@ We've talked about how to re-specify classes of variables using `mutate()` and t
 
 
 ```r
-read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2) |>
+read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2) |>
   spec()
 #> Rows: 34 Columns: 11
 #> ── Column specification ────────────────────────────────────
 #> Delimiter: ","
-#> chr (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, ge...
+#> dbl (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, ge...
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 #> cols(
-#>   mpg = col_character(),
-#>   cyl = col_character(),
-#>   disp = col_character(),
-#>   hp = col_character(),
-#>   drat = col_character(),
-#>   wt = col_character(),
-#>   qsec = col_character(),
-#>   vs = col_character(),
-#>   am = col_character(),
-#>   gear = col_character(),
-#>   carb = col_character()
+#>   mpg = col_double(),
+#>   cyl = col_double(),
+#>   disp = col_double(),
+#>   hp = col_double(),
+#>   drat = col_double(),
+#>   wt = col_double(),
+#>   qsec = col_double(),
+#>   vs = col_double(),
+#>   am = col_double(),
+#>   gear = col_double(),
+#>   carb = col_double()
 #> )
 ```
 
@@ -137,7 +137,7 @@ Finally, there are two rows with all missing values. These aren't providing anyt
 
 
 ```r
-cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2,
+cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2,
   col_types = cols(
   mpg = col_double(),
   cyl = col_factor(),
@@ -241,7 +241,7 @@ df <- read_delim(here("data/birthdays.txt"), delim = " - ")
 head(df)
 ```
 
-2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, the data set used for Project 2, with the `read_excel()` function.
+2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, a similar data set as the one that will be used for Project 2, with the `read_excel()` function.
 
 3. \* Now, read in the second sheet in the Excel file, using the help file for `?read_excel` to change one of the arguments.
 
@@ -593,7 +593,7 @@ head(cars_df)
 cars_df <- read_csv(here("data/mtcarsex.csv"), skip = 2)
 ## first two lines will be skipped
 head(cars_df)
-cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2)
+cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2)
 head(cars_df)
 cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2,
   col_types = cols(
@@ -609,7 +609,7 @@ cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2,
   gear = col_double(),
   carb = col_double()
 ))
-cars_df <- read_csv(here("data/mtcarsex.csv"), na = c(NA, "-999"), skip = 2,
+cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2,
   col_types = cols(
   mpg = col_double(),
   cyl = col_factor(),

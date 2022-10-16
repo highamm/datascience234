@@ -177,7 +177,7 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 1. Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the `tidytext` package? Create a tibble with a few of the remaining stop words (like `ooh`, `gotta`, `ya`, `uh`, and `yeah`) not picked up by the `tidytext` package, and use a join function to drop these words from the data set.
 
-2. With the new data set, construct a point plot or a bar plot that shows the 20 most common words Beyonce uses, as well as the number of times each word is used.
+2. With the new data set, construct a lollipop plot or a bar plot that shows the 20 most common words Beyonce uses, as well as the number of times each word is used.
 
 3. Use the `wordcloud()` function in the `wordcloud` library and the code below to make a wordcloud of Beyonce's words.
 
