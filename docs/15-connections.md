@@ -104,8 +104,8 @@ We might also want to generate a two-way table:
 ```r
 resume |> group_by(race, received_callback) |>
   summarise(count = n()) |>
-  pivot_wider(names_from = c("race"),
-              values_from = "count")
+  pivot_wider(names_from = race,
+              values_from = count)
 #> `summarise()` has grouped output by 'race'. You can
 #> override using the `.groups` argument.
 #> # A tibble: 2 × 3
@@ -839,9 +839,16 @@ billboard_df
 
 1. Wrap the code above in a function that scrapes data from Wikipedia for a user-provided `year_scrape` argument.
 
-2. Create either a vector of the years 2014 through 2021 or a list of the years 2014 through 2021. Use your vector or list, along with the function you wrote in Exercise 1, to scrape data tables from each year.
+2. Create either a vector of the years 2014 through 2021 or a list of the years 2014 through 2021. Use your vector or list, along with the function you wrote in Exercise 1 and the `map()` function, to scrape data tables from each year.
 
-3. Combine the data frames you scraped in Exercise 2 and use the combined data set to figure out which artist appears the highest number of times in the billboard hot 100 list within the years 2014 through 2021.
+3. Combine the data frames you scraped in Exercise 2 with `bind_rows()` and use the combined data set to figure out which artist appears the highest number of times in the billboard hot 100 list within the years 2014 through 2021. To save time, once you have the data frames combined you should be able to do something like:
+
+
+```r
+combined_df |> group_by(`Artist(s)`) |>
+  summarise(n_appear = n()) |>
+  arrange(desc(n_appear))
+```
 
 4. \* Note that your solution to Exercise 3 is likely imperfect because of songs that feature another musical artist. Why would such songs present a problem in counting the number of songs for each artist?
 
@@ -885,8 +892,8 @@ ggplot(data = resume_sum, aes(x = race, y = count)) +
   scale_fill_viridis_d()
 resume |> group_by(race, received_callback) |>
   summarise(count = n()) |>
-  pivot_wider(names_from = c("race"),
-              values_from = "count")
+  pivot_wider(names_from = race,
+              values_from = count)
 chisq.test(x = resume$race, y = resume$received_callback)
 ggplot(data = resume, aes(x = fct_rev(fct_infreq(job_type)))) +
   geom_bar() +

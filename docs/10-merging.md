@@ -420,6 +420,8 @@ left_join(birth_df, babynames_df, by = c("year" = "year"))
 
 3. Evaluate whether the following statement is true or false: an `inner_join()` will always result in a data set with the same or fewer rows than a `left_join()`.
 
+4. Evaluate whether the following statement is true or false: a `left_join()` will always result in a data set with the same number of rows as a `semi_join()` on the same two data sets.
+
 ## Filtering Joins
 
 Filtering joins (`semi_join()` and `anti_join()`) are useful if you would only like to keep the variables in one data set, but you want to filter out observations by a variable in the second data set.
@@ -555,25 +557,111 @@ The filtering join functions are useful if you want to filter out observations b
 
 ### Exercises {#exercise-10-3}
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-10).
-
-1. Take the `semi_join()` tennis example, but now suppose that we want to keep only the matches in 2019 where __either__ the winning player or the losing player had 10 or more match wins in 2018. How can you modify the code to achieve that goal?
+1. Examine the following data sets (the first is `df1` and the second is `df2`) and then, without running any code, answer the following questions.
 
 
-```r
-tennis_2019_10 <- semi_join(atp_2019, win10,
-                            by = c("winner_name" = "winner_name"))
-tennis_2019_10$winner_name
-```
+-----------
+ id   xvar 
+---- ------
+ A     1   
 
-2. \* Take the `semi_join()` tennis example, but now suppose that we want to keep only the matches in 2019 where __both__ the winning player and the losing player had 10 or more match wins in 2018. How can you modify the code to achieve that goal?
+ B     2   
+
+ C     3   
+
+ E     1   
+
+ F     2   
+-----------
 
 
-```r
-tennis_2019_10 <- semi_join(atp_2019, win10,
-                            by = c("winner_name" = "winner_name"))
-tennis_2019_10$winner_name
-```
+-----------
+ id   yvar 
+---- ------
+ A     2   
+
+ C     1   
+
+ D     2   
+
+ E     1   
+
+ G     1   
+
+ H     4   
+-----------
+
+a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
+
+
+
+b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
+
+
+
+c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
+
+
+
+d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
+
+
+
+e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
+
+
+
+f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
+
+
+
+2. Examine the following data sets (the first is `df3` and the second is `df4`) and then, without running any code, answer the following questions. This question is a step up in challenge from Exercise 9 because a few of the levels of the `id` key have duplicates.
+
+
+-----------
+ id   xvar 
+---- ------
+ A     1   
+
+ A     2   
+
+ C     3   
+
+ C     1   
+
+ F     2   
+
+ F     6   
+-----------
+
+
+-----------
+ id   yvar 
+---- ------
+ A     2   
+
+ B     1   
+
+ C     2   
+
+ D     1   
+
+ D     1   
+
+ D     4   
+-----------
+
+a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
+
+b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
+
+c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
+
+d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
+
+e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
+
+f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
 
 ## Chapter Exercises {#chapexercise-10}
 
@@ -675,112 +763,6 @@ Combine the two data sets with `bind_cols()`. What are you assuming about the da
 
 
 
-9. Examine the following data sets (the first is `df1` and the second is `df2`) and then, without running any code, answer the following questions.
-
-
------------
- id   xvar 
----- ------
- A     1   
-
- B     2   
-
- C     3   
-
- E     1   
-
- F     2   
------------
-
-
------------
- id   yvar 
----- ------
- A     2   
-
- C     1   
-
- D     2   
-
- E     1   
-
- G     1   
-
- H     4   
------------
-
-a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
-
-
-
-b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
-
-
-
-c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
-
-
-
-d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
-
-
-
-e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
-
-
-
-f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
-
-
-
-10. Examine the following data sets (the first is `df3` and the second is `df4`) and then, without running any code, answer the following questions. This question is a step up in challenge from Exercise 9 because a few of the levels of the `id` key have duplicates.
-
-
------------
- id   xvar 
----- ------
- A     1   
-
- A     2   
-
- C     3   
-
- C     1   
-
- F     2   
-
- F     6   
------------
-
-
------------
- id   yvar 
----- ------
- A     2   
-
- B     1   
-
- C     2   
-
- D     1   
-
- D     1   
-
- D     4   
------------
-
-a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
-
-b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
-
-c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
-
-d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
-
-e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
-
-f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
-
 <br>
 
 ## Exercise Solutions {#solutions-10}
@@ -824,46 +806,6 @@ bind_rows(df_test1a, df_test1b)
 ### Mutating Joins S
 
 ### Filtering Joins S
-
-2. \* Take the `semi_join()` tennis example, but now suppose that we want to keep only the matches in 2019 where __both__ the winning player and the losing player had 10 or more match wins in 2018. How can you modify the code to achieve that goal?
-
-
-```r
-tennis_2019_10 <- semi_join(atp_2019, win10,
-                            by = c("winner_name" = "winner_name"))
-tennis_2019_10$winner_name
-```
-
-
-```r
-## There are many ways to do this, and this solution gives just one way
-## A first step would be to create a data set that keeps only
-## the katches with losing players with 10 or more wins in 2018
-tennis_2019_10_lose <- semi_join(atp_2019, win10,
-                            by = c("loser_name" = "winner_name"))
-
-## Using `bind_rows()` would result in many duplicate matches. A way
-## to avoid duplicates with joining functions is
-
-tennis_temp <- anti_join(tennis_2019_10_lose, tennis_2019_10)
-#> Joining, by = c("tourney_id", "tourney_name", "surface",
-#> "draw_size", "tourney_level", "tourney_date", "match_num",
-#> "winner_id", "winner_seed", "winner_entry", "winner_name",
-#> "winner_hand", "winner_ht", "winner_ioc", "winner_age",
-#> "loser_id", "loser_seed", "loser_entry", "loser_name",
-#> "loser_hand", "loser_ht", "loser_ioc", "loser_age",
-#> "score", "best_of", "round", "minutes", "w_ace", "w_df",
-#> "w_svpt", "w_1stIn", "w_1stWon", "w_2ndWon", "w_SvGms",
-#> "w_bpSaved", "w_bpFaced", "l_ace", "l_df", "l_svpt",
-#> "l_1stIn", "l_1stWon", "l_2ndWon", "l_SvGms", "l_bpSaved",
-#> "l_bpFaced", "winner_rank", "winner_rank_points",
-#> "loser_rank", "loser_rank_points")
-tennis_temp
-## there are 383 matches in the lose data set that aren't in the 
-## win data set. Now, we can bind_rows():
-
-final_df <- bind_rows(tennis_2019_10, tennis_temp)
-```
 
 ### Chapter Exercises S {#chapexercise-10-S}
 

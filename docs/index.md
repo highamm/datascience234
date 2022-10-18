@@ -1,7 +1,7 @@
 ---
 title: "STAT 234: Data Science"
 author: "Matt Higham"
-date: "2022-10-16"
+date: "2022-10-18"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]

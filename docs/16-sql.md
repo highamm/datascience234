@@ -46,7 +46,7 @@ We can type in `con` to see what it stores:
 
 ```r
 con
-#> <duckdb_connection e3b80 driver=<duckdb_driver 60000 dbdir=':memory:' read_only=FALSE>>
+#> <duckdb_connection 95c00 driver=<duckdb_driver a45b0 dbdir=':memory:' read_only=FALSE>>
 ```
 
 We've created a brand-new database, so we can next add some data tables with the `duckdb_read_csv()` function. Compared to `read_csv()` from the `readr` package, `duckdb_read_csv()` has a couple of extra arguments: a `conn` argument giving the database management connection and a `name` argument giving the name that we want to give to the data table:
