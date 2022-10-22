@@ -121,7 +121,6 @@
 <span><span class="co">#&gt; # … with 5 more variables: Generation &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   Legendary &lt;lgl&gt;, height &lt;dbl&gt;, weight &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   base_experience &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span>
 <span><span class="va">test_sample</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 14</span></span>
 <span><span class="co">#&gt;    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef</span></span>
@@ -134,8 +133,7 @@
 <span><span class="co">#&gt; 6    59 Arcani… Fire     90    110      80    95   100    80</span></span>
 <span><span class="co">#&gt; # … with 5 more variables: Generation &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   Legendary &lt;lgl&gt;, height &lt;dbl&gt;, weight &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   base_experience &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   base_experience &lt;dbl&gt;</span></span></code></pre></div>
 <p>The ideas of a training data set and test data set are pervasive in predictive and classification models, including models not related to knn. Note that we are going to do this method because it’s the simplest: if you wanted to take this a step further, you’d repeat the training and test process 5 or 10 times, using what’s known as <strong>k-fold cross-validation.</strong></p>
 </div>
 <div id="exercise-13-1" class="section level3" number="15.1.2">
@@ -255,8 +253,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span><span class="co">#&gt; 3 0.838 Zoroark Dark  0.25   0.611     0.1 0.789 0.857 0.263</span></span>
 <span><span class="co">#&gt; # … with 5 more variables: Generation &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   Legendary &lt;lgl&gt;, height &lt;dbl&gt;, weight &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   base_experience &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   base_experience &lt;dbl&gt;</span></span></code></pre></div>
 </div>
 <div id="exercise-13-2" class="section level3" number="15.2.5">
 <h3>
@@ -272,7 +269,11 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">550</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">newobs</span>, shape <span class="op">=</span> <span class="fl">4</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="13-knn_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
-<p>The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks “closer” to the Dark type pokemon. Verify that this is <strong>not</strong> actually the case by computing the actual distances numerically.</p>
+<p>The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks “closer” to the Dark type pokemon. Verify that this is <strong>not</strong> actually the case by computing the actual distances numerically. Recall that the formula for the distance between two points at (<span class="math inline">\(x1, y1\)</span>) and (<span class="math inline">\(x2, y2\)</span>) is:</p>
+<p><span class="math display">\[
+\sqrt{(x_1 - x_2) ^ 2 + (y1 - y2) ^ 2}
+\]</span></p>
+<p>You’ll need to use this formula twice: once for the distance between the fire pokemon and the test pokemon and once for the distance between the dark pokemon and the test pokemon.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>* After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn’t give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is “closer” to the Dark type pokemon by numerically computing distances.</p></li>
 <li><p>Consider again the example with 15 pokemon in the training data set and a single predictor, <code>Defense</code>.</p></li>
@@ -587,7 +588,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-18.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

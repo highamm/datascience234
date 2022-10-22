@@ -107,8 +107,7 @@
 <span><span class="co">#&gt; 6 "21"       6     160   110   3.9   2.875 17.02 0     1    </span></span>
 <span><span class="co">#&gt; # … with 2 more variables: ...10 &lt;chr&gt;, ...11 &lt;chr&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable name</span></span>
-<span><span class="co">#&gt; #   ¹​`This is a data set about cars.`</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ¹​`This is a data set about cars.`</span></span></code></pre></div>
 <p>What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of <code>R</code>.</p>
 <p>Type in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_csv</a></code> in the bottom-left window and look at some of the options in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. In particular, we will use the <code>na</code> and the <code>skip</code> arguments to fix up our reading.</p>
 <p>Let’s start with <code>skip</code> so that we aren’t reading in the first two rows of the data set:</p>
@@ -125,8 +124,7 @@
 <span><span class="co">#&gt; 4   21       6   160   110  3.9   2.88  17.0     0     1</span></span>
 <span><span class="co">#&gt; 5   22.8     4   108    93  3.85  2.32  18.6     1     1</span></span>
 <span><span class="co">#&gt; 6   21.4     6   258   110  3.08  3.22  19.4     1     0</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></span></code></pre></div>
 <p>That looks better, but there are still a couple of problems. What do you notice?</p>
 <p>Go the help and read about the <code>na</code> argument. Let’s add that as an option to fix the missing value issue.</p>
 <div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
@@ -141,8 +139,7 @@
 <span><span class="co">#&gt; 4  21       6   160   110  3.9   2.88  17.0     0     1</span></span>
 <span><span class="co">#&gt; 5  22.8     4   108    93  3.85  2.32  18.6     1     1</span></span>
 <span><span class="co">#&gt; 6  21.4     6   258   110  3.08  3.22  19.4     1     0</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></span></code></pre></div>
 <p>Now look at the classes of each variable. Which classes look like they are incorrect?</p>
 <p>We’ve talked about how to re-specify classes of variables using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and the <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> or <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> or <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> functions, but sometimes it’s easier just to respecify the class when we are reading in the data. Notice how, when we use <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>, <code>R</code> gives us a message about each of the column types. This is actually an argument in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> called <code>col_types</code>. We can add a <code>|&gt; spec()</code> piping statement after a <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> statement to tell <code>R</code> to print the <code>col_types</code> so that it’s easy for us to copy and paste it into <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> and change any classes.</p>
 <div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
@@ -211,8 +208,7 @@
 <span><span class="co">#&gt; 4  21.4 6       258   110  3.08  3.22  19.4 1         0</span></span>
 <span><span class="co">#&gt; 5  NA   8       360   175  3.15  3.44  17.0 0         0</span></span>
 <span><span class="co">#&gt; 6  18.1 6       225   105  2.76  3.46  20.2 1         0</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span></span></code></pre></div>
 <p>There are <strong>many</strong> other possible file formats for data storage. For example, there is a data set called <code>oscars.tsv</code>, which is a tab-separated file. You can read it in with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv()</a></code> instead of <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>.</p>
 <div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">oscars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/oscars.tsv"</span><span class="op">)</span><span class="op">)</span></span>
@@ -232,8 +228,7 @@
 <span><span class="co">#&gt; #   ProductionCompany &lt;dbl&gt;, BudgetRevised &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Budget &lt;chr&gt;, DomesticBoxOffice &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   WorldwideRevised &lt;dbl&gt;, WorldwideBoxOffice &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   DomesticPercent &lt;dbl&gt;, LimitedOpeningWnd &lt;dbl&gt;, …</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   DomesticPercent &lt;dbl&gt;, LimitedOpeningWnd &lt;dbl&gt;, …</span></span></code></pre></div>
 <p>You’ll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet.</p>
 <p>The final issue that we will discuss in this section occurs when a data set has units within its cells. Consider the earlier example that we used in the reprex section:</p>
 <div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
@@ -710,7 +705,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-18.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

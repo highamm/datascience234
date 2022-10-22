@@ -222,7 +222,6 @@ right_join(babynames_df, birth_df, by = c("year" = "year"))
 #>  9  1909 F     Marie      4301 0.0117 2718000
 #> 10  1909 F     Alice      4170 0.0113 2718000
 #> # … with 1,839,942 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 left_join(birth_df, babynames_df, by = c("year" = "year"))
 #> # A tibble: 1,839,952 × 6
 #>     year  births sex   name          n   prop
@@ -238,7 +237,6 @@ left_join(birth_df, babynames_df, by = c("year" = "year"))
 #>  9  1909 2718000 F     Marie      4301 0.0117
 #> 10  1909 2718000 F     Alice      4170 0.0113
 #> # … with 1,839,942 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Therefore, it's usually easier to just always use `left_join()` and ignore `right_join()` completely. 
@@ -273,7 +271,6 @@ inner_join(babynames_df, birth_df, by = c("year" = "year"))
 #>  9  1909 F     Marie      4301 0.0117 2718000
 #> 10  1909 F     Alice      4170 0.0113 2718000
 #> # … with 1,839,942 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 <br>
@@ -314,7 +311,6 @@ head(collegemajors_df)
 #> #   P25th <dbl>, P75th <dbl>, and abbreviated variable
 #> #   names ¹​Major_category, ²​Employed, ³​Full_time,
 #> #   ⁴​Part_time
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The most logical key for joining these two data sets is `Major`,  but joining the data sets won't actually work. The following is an attempt at using `Major` as the key.
@@ -339,7 +335,6 @@ left_join(slumajors_df, collegemajors_df, by = c("Major" = "Major"))
 #> #   Part_time <dbl>, Unemployed <dbl>, Median <dbl>,
 #> #   P25th <dbl>, P75th <dbl>, and abbreviated variable
 #> #   names ¹​nfemales, ²​Major_category, ³​Employed
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Why did the `collegemajors_df` give only `NA` values when we tried to merge by major?
@@ -369,7 +364,6 @@ left_join(slumajors_df, collegemajors_df)
 #> #   Part_time <dbl>, Unemployed <dbl>, Median <dbl>,
 #> #   P25th <dbl>, P75th <dbl>, and abbreviated variable
 #> #   names ¹​nfemales, ²​Major_category, ³​Employed
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 As we can see, this solves the issue for some majors but others still have different naming conventions in the two data sets.
@@ -397,7 +391,6 @@ left_join(babynames_df, birth_df, by = c("year" = "year"))
 #>  9  1880 F     Bertha     1320 0.0135     NA
 #> 10  1880 F     Sarah      1288 0.0132     NA
 #> # … with 1,924,655 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 left_join(birth_df, babynames_df, by = c("year" = "year"))
 #> # A tibble: 1,839,952 × 6
 #>     year  births sex   name          n   prop
@@ -413,7 +406,6 @@ left_join(birth_df, babynames_df, by = c("year" = "year"))
 #>  9  1909 2718000 F     Marie      4301 0.0117
 #> 10  1909 2718000 F     Alice      4170 0.0113
 #> # … with 1,839,942 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 2. Evaluate whether the following statement is true or false: an `inner_join()` will always result in a data set with the same or fewer rows than a `full_join()`.
@@ -453,7 +445,6 @@ atp_2019
 #> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <dbl>, loser_ioc <chr>,
 #> #   loser_age <dbl>, score <chr>, best_of <dbl>, …
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 atp_2018
 #> # A tibble: 2,889 × 49
 #>    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶
@@ -475,7 +466,6 @@ atp_2018
 #> #   loser_seed <dbl>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <dbl>, loser_ioc <chr>,
 #> #   loser_age <dbl>, score <chr>, best_of <dbl>, …
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ### Filtering with `semi_join()` 
@@ -504,7 +494,6 @@ win10
 #>  9 Borna Coric         40
 #> 10 Cameron Norrie      19
 #> # … with 83 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Next, we apply `semi_join()`, which takes the names of two data sets (the second is the one that contains information about how the first should be "filtered"). The third argument gives the name of the key (`winner_name`) in this case.
@@ -550,7 +539,6 @@ new_winners |> group_by(winner_name) |>
 #>  9 Soon Woo Kwon            7
 #> 10 Gregoire Barrere         6
 #> # … with 49 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.
@@ -720,7 +708,6 @@ df1
 #> 10       4931   4091        2      68.5   13.9    40.6    60
 #> # … with 40 more rows, 1 more variable: Area <dbl>, and
 #> #   abbreviated variable names ¹​`Life Exp`, ²​`HS Grad`
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 df2
 #> # A tibble: 50 × 1
 #>    value
@@ -736,7 +723,6 @@ df2
 #>  9 FL   
 #> 10 GA   
 #> # … with 40 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Combine the two data sets with `bind_cols()`. What are you assuming about the data sets in order to use this function? 
@@ -861,7 +847,6 @@ left_join(all_df, states_df, by = c("state" = "value"))
 #> #   Murder <dbl>, `HS Grad` <dbl>, Frost <dbl>, Area <dbl>,
 #> #   and abbreviated variable names ¹​mortality_rate,
 #> #   ²​ownership_rate, ³​Population, ⁴​Illiteracy
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ## or
 full_join(all_df, states_df, by = c("state" = "value"))
 #> # A tibble: 51 × 12
@@ -881,7 +866,6 @@ full_join(all_df, states_df, by = c("state" = "value"))
 #> #   Murder <dbl>, `HS Grad` <dbl>, Frost <dbl>, Area <dbl>,
 #> #   and abbreviated variable names ¹​mortality_rate,
 #> #   ²​ownership_rate, ³​Population, ⁴​Illiteracy
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()` ing it out explictly).
@@ -906,7 +890,6 @@ inner_join(all_df, states_df, by = c("state" = "value"))
 #> #   Murder <dbl>, `HS Grad` <dbl>, Frost <dbl>, Area <dbl>,
 #> #   and abbreviated variable names ¹​mortality_rate,
 #> #   ²​ownership_rate, ³​Population, ⁴​Illiteracy
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ## or
 left_join(states_df, all_df, by = c("value" = "state"))
 #> # A tibble: 50 × 12
@@ -926,7 +909,6 @@ left_join(states_df, all_df, by = c("value" = "state"))
 #> #   value <chr>, mortality_rate <dbl>,
 #> #   ownership_rate <dbl>, region <chr>, and abbreviated
 #> #   variable names ¹​`Life Exp`, ²​`HS Grad`
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` first to contain only states in the `NE` region.
@@ -951,7 +933,6 @@ semi_join(states_df, ne_df, by = c("value" = "state"))
 #> # … with 1 more variable: value <chr>, and abbreviated
 #> #   variable names ¹​Population, ²​Illiteracy, ³​`Life Exp`,
 #> #   ⁴​`HS Grad`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 8. \* Do the same thing as Exercise 7, but this time, use `anti_join()`. __Hint__: You'll need to filter `all_df` in a different way to achieve this.
@@ -976,7 +957,6 @@ anti_join(states_df, notne_df, by = c("value" = "state"))
 #> # … with 1 more variable: value <chr>, and abbreviated
 #> #   variable names ¹​Population, ²​Illiteracy, ³​`Life Exp`,
 #> #   ⁴​`HS Grad`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ## Non-Exercise `R` Code {#rcode-10}

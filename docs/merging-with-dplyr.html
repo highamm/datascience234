@@ -257,7 +257,6 @@
 <span><span class="co">#&gt;  9  1909 F     Marie      4301 0.0117 2718000</span></span>
 <span><span class="co">#&gt; 10  1909 F     Alice      4170 0.0113 2718000</span></span>
 <span><span class="co">#&gt; # … with 1,839,942 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
 <span><span class="co">#&gt;     year  births sex   name          n   prop</span></span>
@@ -272,8 +271,7 @@
 <span><span class="co">#&gt;  8  1909 2718000 F     Mildred    5054 0.0137</span></span>
 <span><span class="co">#&gt;  9  1909 2718000 F     Marie      4301 0.0117</span></span>
 <span><span class="co">#&gt; 10  1909 2718000 F     Alice      4170 0.0113</span></span>
-<span><span class="co">#&gt; # … with 1,839,942 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 1,839,942 more rows</span></span></code></pre></div>
 <p>Therefore, it’s usually easier to just always use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> and ignore <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> completely.</p>
 </div>
 <div id="keep-all-rows-of-both-data-sets-with-full_join" class="section level3" number="12.2.3">
@@ -304,8 +302,7 @@
 <span><span class="co">#&gt;  8  1909 F     Mildred    5054 0.0137 2718000</span></span>
 <span><span class="co">#&gt;  9  1909 F     Marie      4301 0.0117 2718000</span></span>
 <span><span class="co">#&gt; 10  1909 F     Alice      4170 0.0113 2718000</span></span>
-<span><span class="co">#&gt; # … with 1,839,942 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 1,839,942 more rows</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="which-xxxx_join" class="section level3" number="12.2.5">
@@ -345,8 +342,7 @@
 <span><span class="co">#&gt; # … with 4 more variables: Unemployed &lt;dbl&gt;, Median &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   P25th &lt;dbl&gt;, P75th &lt;dbl&gt;, and abbreviated variable</span></span>
 <span><span class="co">#&gt; #   names ¹​Major_category, ²​Employed, ³​Full_time,</span></span>
-<span><span class="co">#&gt; #   ⁴​Part_time</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ⁴​Part_time</span></span></code></pre></div>
 <p>The most logical key for joining these two data sets is <code>Major</code>, but joining the data sets won’t actually work. The following is an attempt at using <code>Major</code> as the key.</p>
 <div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">slumajors_df</span>, <span class="va">collegemajors_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Major"</span> <span class="op">=</span> <span class="st">"Major"</span><span class="op">)</span><span class="op">)</span></span>
@@ -366,8 +362,7 @@
 <span><span class="co">#&gt; # … with 17 more rows, 6 more variables: Full_time &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   Part_time &lt;dbl&gt;, Unemployed &lt;dbl&gt;, Median &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   P25th &lt;dbl&gt;, P75th &lt;dbl&gt;, and abbreviated variable</span></span>
-<span><span class="co">#&gt; #   names ¹​nfemales, ²​Major_category, ³​Employed</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   names ¹​nfemales, ²​Major_category, ³​Employed</span></span></code></pre></div>
 <p>Why did the <code>collegemajors_df</code> give only <code>NA</code> values when we tried to merge by major?</p>
 <p>This example underscores the importance of having a key that matches <strong>exactly</strong>. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the <code>stringr</code> package (discussed in a few weeks). For example, the capitalization issue can be solved with the <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title()</a></code> function, which converts that all-caps majors in <code>collegemajors_df</code> to majors where only the first letter of each word is capitalized:</p>
 <div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
@@ -391,8 +386,7 @@
 <span><span class="co">#&gt; # … with 17 more rows, 6 more variables: Full_time &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   Part_time &lt;dbl&gt;, Unemployed &lt;dbl&gt;, Median &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   P25th &lt;dbl&gt;, P75th &lt;dbl&gt;, and abbreviated variable</span></span>
-<span><span class="co">#&gt; #   names ¹​nfemales, ²​Major_category, ³​Employed</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   names ¹​nfemales, ²​Major_category, ³​Employed</span></span></code></pre></div>
 <p>As we can see, this solves the issue for some majors but others still have different naming conventions in the two data sets.</p>
 </div>
 <div id="exercise-10-2" class="section level3" number="12.2.7">
@@ -419,7 +413,6 @@
 <span><span class="co">#&gt;  9  1880 F     Bertha     1320 0.0135     NA</span></span>
 <span><span class="co">#&gt; 10  1880 F     Sarah      1288 0.0132     NA</span></span>
 <span><span class="co">#&gt; # … with 1,924,655 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
 <span><span class="co">#&gt;     year  births sex   name          n   prop</span></span>
@@ -434,8 +427,7 @@
 <span><span class="co">#&gt;  8  1909 2718000 F     Mildred    5054 0.0137</span></span>
 <span><span class="co">#&gt;  9  1909 2718000 F     Marie      4301 0.0117</span></span>
 <span><span class="co">#&gt; 10  1909 2718000 F     Alice      4170 0.0113</span></span>
-<span><span class="co">#&gt; # … with 1,839,942 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 1,839,942 more rows</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Evaluate whether the following statement is true or false: an <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> will always result in a data set with the same or fewer rows than a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>.</p></li>
 <li><p>Evaluate whether the following statement is true or false: an <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> will always result in a data set with the same or fewer rows than a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>.</p></li>
@@ -473,7 +465,6 @@
 <span><span class="co">#&gt; #   loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;, loser_name &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   loser_hand &lt;chr&gt;, loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, …</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
 <span><span class="va">atp_2018</span></span>
 <span><span class="co">#&gt; # A tibble: 2,889 × 49</span></span>
 <span><span class="co">#&gt;    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶</span></span>
@@ -494,8 +485,7 @@
 <span><span class="co">#&gt; #   winner_ioc &lt;chr&gt;, winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   loser_seed &lt;dbl&gt;, loser_entry &lt;chr&gt;, loser_name &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   loser_hand &lt;chr&gt;, loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, …</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, …</span></span></code></pre></div>
 <div id="filtering-with-semi_join" class="section level3" number="12.3.1">
 <h3>
 <span class="header-section-number">12.3.1</span> Filtering with <code>semi_join()</code><a class="anchor" aria-label="anchor" href="#filtering-with-semi_join"><i class="fas fa-link"></i></a>
@@ -520,8 +510,7 @@
 <span><span class="co">#&gt;  8 Benoit Paire        27</span></span>
 <span><span class="co">#&gt;  9 Borna Coric         40</span></span>
 <span><span class="co">#&gt; 10 Cameron Norrie      19</span></span>
-<span><span class="co">#&gt; # … with 83 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 83 more rows</span></span></code></pre></div>
 <p>Next, we apply <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code>, which takes the names of two data sets (the second is the one that contains information about how the first should be “filtered”). The third argument gives the name of the key (<code>winner_name</code>) in this case.</p>
 <div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tennis_2019_10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">atp_2019</span>, <span class="va">win10</span>,</span>
@@ -556,8 +545,7 @@
 <span><span class="co">#&gt;  8 Jannik Sinner            7</span></span>
 <span><span class="co">#&gt;  9 Soon Woo Kwon            7</span></span>
 <span><span class="co">#&gt; 10 Gregoire Barrere         6</span></span>
-<span><span class="co">#&gt; # … with 49 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 49 more rows</span></span></code></pre></div>
 <p>The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.</p>
 </div>
 <div id="exercise-10-3" class="section level3" number="12.3.3">
@@ -780,7 +768,6 @@
 <span><span class="co">#&gt; 10       4931   4091        2      68.5   13.9    40.6    60</span></span>
 <span><span class="co">#&gt; # … with 40 more rows, 1 more variable: Area &lt;dbl&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable names ¹​`Life Exp`, ²​`HS Grad`</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
 <span><span class="va">df2</span></span>
 <span><span class="co">#&gt; # A tibble: 50 × 1</span></span>
 <span><span class="co">#&gt;    value</span></span>
@@ -795,8 +782,7 @@
 <span><span class="co">#&gt;  8 DE   </span></span>
 <span><span class="co">#&gt;  9 FL   </span></span>
 <span><span class="co">#&gt; 10 GA   </span></span>
-<span><span class="co">#&gt; # … with 40 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 40 more rows</span></span></code></pre></div>
 <p>Combine the two data sets with <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code>. What are you assuming about the data sets in order to use this function?</p>
 <ol start="4" style="list-style-type: decimal">
 <li><p>* Combine the columns of the states data set you made in Exercise 3 with the mortality data set <strong>without</strong> Washington D.C.</p></li>
@@ -904,7 +890,6 @@
 <span><span class="co">#&gt; #   Murder &lt;dbl&gt;, `HS Grad` &lt;dbl&gt;, Frost &lt;dbl&gt;, Area &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   and abbreviated variable names ¹​mortality_rate,</span></span>
 <span><span class="co">#&gt; #   ²​ownership_rate, ³​Population, ⁴​Illiteracy</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
 <span><span class="co">## or</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">all_df</span>, <span class="va">states_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"state"</span> <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 51 × 12</span></span>
@@ -923,8 +908,7 @@
 <span><span class="co">#&gt; # … with 41 more rows, 5 more variables: `Life Exp` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   Murder &lt;dbl&gt;, `HS Grad` &lt;dbl&gt;, Frost &lt;dbl&gt;, Area &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   and abbreviated variable names ¹​mortality_rate,</span></span>
-<span><span class="co">#&gt; #   ²​ownership_rate, ³​Population, ⁴​Illiteracy</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ²​ownership_rate, ³​Population, ⁴​Illiteracy</span></span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
 <li>* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> ing it out explictly).</li>
 </ol>
@@ -947,7 +931,6 @@
 <span><span class="co">#&gt; #   Murder &lt;dbl&gt;, `HS Grad` &lt;dbl&gt;, Frost &lt;dbl&gt;, Area &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   and abbreviated variable names ¹​mortality_rate,</span></span>
 <span><span class="co">#&gt; #   ²​ownership_rate, ³​Population, ⁴​Illiteracy</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
 <span><span class="co">## or</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">states_df</span>, <span class="va">all_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"value"</span> <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 50 × 12</span></span>
@@ -966,8 +949,7 @@
 <span><span class="co">#&gt; # … with 40 more rows, 5 more variables: Area &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   value &lt;chr&gt;, mortality_rate &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   ownership_rate &lt;dbl&gt;, region &lt;chr&gt;, and abbreviated</span></span>
-<span><span class="co">#&gt; #   variable names ¹​`Life Exp`, ²​`HS Grad`</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   variable names ¹​`Life Exp`, ²​`HS Grad`</span></span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>* Use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> first to contain only states in the <code>NE</code> region.</li>
 </ol>
@@ -989,8 +971,7 @@
 <span><span class="co">#&gt; 10     472   3907     0.6    71.6    5.5    57.1   168  9267</span></span>
 <span><span class="co">#&gt; # … with 1 more variable: value &lt;chr&gt;, and abbreviated</span></span>
 <span><span class="co">#&gt; #   variable names ¹​Population, ²​Illiteracy, ³​`Life Exp`,</span></span>
-<span><span class="co">#&gt; #   ⁴​`HS Grad`</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ⁴​`HS Grad`</span></span></code></pre></div>
 <ol start="8" style="list-style-type: decimal">
 <li>* Do the same thing as Exercise 7, but this time, use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>. <strong>Hint</strong>: You’ll need to filter <code>all_df</code> in a different way to achieve this.</li>
 </ol>
@@ -1012,8 +993,7 @@
 <span><span class="co">#&gt; 10     472   3907     0.6    71.6    5.5    57.1   168  9267</span></span>
 <span><span class="co">#&gt; # … with 1 more variable: value &lt;chr&gt;, and abbreviated</span></span>
 <span><span class="co">#&gt; #   variable names ¹​Population, ²​Illiteracy, ³​`Life Exp`,</span></span>
-<span><span class="co">#&gt; #   ⁴​`HS Grad`</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ⁴​`HS Grad`</span></span></code></pre></div>
 </div>
 </div>
 <div id="rcode-10" class="section level2" number="12.6">
@@ -1148,7 +1128,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-18.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -679,7 +679,6 @@ head(evals_df)
 #> #   `Disagree Strongly` <dbl>, and abbreviated variable
 #> #   names ¹​Question, ²​`Agree strongly`, ³​`Agree Somewhat`,
 #> #   ⁴​`Disagree Somewhat`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Put together a reprex using `tibble()` that someone would be able to run to help you figure out your question.
@@ -722,7 +721,6 @@ head(evals_df)
 #> #   `Disagree Strongly` <dbl>, and abbreviated variable
 #> #   names ¹​Question, ²​`Agree strongly`, ³​`Agree Somewhat`,
 #> #   ⁴​`Disagree Somewhat`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Put together a reprex using `tibble()` that someone would be able to run to help you figure out your question.

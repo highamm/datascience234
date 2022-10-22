@@ -189,7 +189,6 @@ pres_cat
 #>  9  25525  29765      270  1379   261 CITRUS    Bush  
 #> 10  14632  41736      186   562   237 CLAY      Bush  
 #> # … with 57 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Using this data set, we can make a bar plot with `geom_bar()`. The beauty of `ggplot()` is that the code is super-similar to what we used for histograms and frequency plots!
@@ -263,7 +262,6 @@ head(stat113_df)
 #> # … with 3 more variables: Award <chr>, Pulse <dbl>,
 #> #   SocialMedia <chr>, and abbreviated variable name
 #> #   ¹​Exercise
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The data set contains the following variables:

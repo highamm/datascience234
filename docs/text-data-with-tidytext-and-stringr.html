@@ -118,8 +118,7 @@
 <span><span class="co">#&gt;  8   50396 1+1             498 Beyoncé             1 you    </span></span>
 <span><span class="co">#&gt;  9   50396 1+1             498 Beyoncé             2 if     </span></span>
 <span><span class="co">#&gt; 10   50396 1+1             498 Beyoncé             2 i      </span></span>
-<span><span class="co">#&gt; # … with 164,730 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 164,730 more rows</span></span></code></pre></div>
 <p>We’ll want to make sure that either all words are capitalized or no words are capitalized, for consistency (remember that <code>R</code> is case-sensitive). To that end, we’ll modify the <code>word</code> variable and use <code>stringr</code>’s <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower()</a></code> to change all letters to lower-case:</p>
 <div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">beyonce_unnest</span> <span class="op">&lt;-</span> <span class="va">beyonce_unnest</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="va">word</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -141,8 +140,7 @@
 <span><span class="co">#&gt;  8 my     2676</span></span>
 <span><span class="co">#&gt;  9 and    2385</span></span>
 <span><span class="co">#&gt; 10 on     2344</span></span>
-<span><span class="co">#&gt; # … with 6,459 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 6,459 more rows</span></span></code></pre></div>
 <p>What’s the issue here?</p>
 <p>To remedy this, we can use what are called <strong>stop words</strong>: words that are very common and carry little to no meaningful information. For example <em>the</em>, <em>it</em>, <em>are</em>, etc. are all <strong>stop words</strong>. We need to eliminate these from the data set before we continue on. Luckily, the <code>tidytext</code> package also provides a data set of common stop words in a data set named <code>stop_words</code>:</p>
 <div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
@@ -194,7 +192,6 @@
 <span><span class="co">#&gt; 24 beyoncé   238</span></span>
 <span><span class="co">#&gt; 25 night     213</span></span>
 <span><span class="co">#&gt; # … with 5,912 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span>
 <span><span class="va">beyonce_sum</span></span>
 <span><span class="co">#&gt; # A tibble: 5,937 × 2</span></span>
 <span><span class="co">#&gt;    word      n</span></span>
@@ -209,8 +206,7 @@
 <span><span class="co">#&gt;  8 feel    488</span></span>
 <span><span class="co">#&gt;  9 time    452</span></span>
 <span><span class="co">#&gt; 10 uh      408</span></span>
-<span><span class="co">#&gt; # … with 5,927 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 5,927 more rows</span></span></code></pre></div>
 <p>Looking through the list, there are <strong>still</strong> some stop words in there that were not picked up on in the <code>stop_words</code> data set. We will address these, as well as make a plot, in the exercises.</p>
 <div id="exercise-12-1" class="section level3" number="14.1.1">
 <h3>
@@ -287,8 +283,7 @@
 <span><span class="co">#&gt; #   `2ndSV` &lt;dbl&gt;, `1stIn` &lt;dbl&gt;, `2ndIn` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   isAce &lt;lgl&gt;, isUnret &lt;lgl&gt;, isRallyWinner &lt;lgl&gt;,</span></span>
 <span><span class="co">#&gt; #   isForced &lt;lgl&gt;, isUnforced &lt;lgl&gt;, isDouble &lt;lgl&gt;,</span></span>
-<span><span class="co">#&gt; #   PtWinner &lt;dbl&gt;, isSvrWinner &lt;dbl&gt;, rallyCount &lt;dbl&gt;, …</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   PtWinner &lt;dbl&gt;, isSvrWinner &lt;dbl&gt;, rallyCount &lt;dbl&gt;, …</span></span></code></pre></div>
 <p>The observations of the data set correspond to points played (so there is one row per point). There are a ton of variables in this data set, but the most important variable is the first variable, <code>point</code>, which contains a string with information about the types of shots that were played during the point. The coding of the <code>point</code> variable includes:</p>
 <ul>
 <li>
@@ -393,8 +388,7 @@
 <span><span class="co">#&gt; #   `1stSV` &lt;dbl&gt;, `2ndSV` &lt;dbl&gt;, `1stIn` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `2ndIn` &lt;dbl&gt;, isAce &lt;lgl&gt;, isUnret &lt;lgl&gt;,</span></span>
 <span><span class="co">#&gt; #   isRallyWinner &lt;lgl&gt;, isForced &lt;lgl&gt;, isUnforced &lt;lgl&gt;,</span></span>
-<span><span class="co">#&gt; #   isDouble &lt;lgl&gt;, PtWinner &lt;dbl&gt;, isSvrWinner &lt;dbl&gt;, …</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   isDouble &lt;lgl&gt;, PtWinner &lt;dbl&gt;, isSvrWinner &lt;dbl&gt;, …</span></span></code></pre></div>
 <p>We can then use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> to create a variable corresponding to error type and then <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> the error types made from the two players.</p>
 <div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">med_djok_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"@"</span><span class="op">)</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -589,7 +583,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-18.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

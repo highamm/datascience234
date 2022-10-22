@@ -298,6 +298,7 @@ additional-analysis
 exercise-15-1
 stat-213
 broom-package-functions
+exploring-concepts
 exercise-15-2
 cs-140
 functions

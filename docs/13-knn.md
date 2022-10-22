@@ -53,7 +53,6 @@ train_sample |> head()
 #> # … with 5 more variables: Generation <dbl>,
 #> #   Legendary <lgl>, height <dbl>, weight <dbl>,
 #> #   base_experience <dbl>
-#> # ℹ Use `colnames()` to see all variable names
 test_sample |> head()
 #> # A tibble: 6 × 14
 #>    ...1 Name    Type     HP Attack Defense Speed SpAtk SpDef
@@ -67,7 +66,6 @@ test_sample |> head()
 #> # … with 5 more variables: Generation <dbl>,
 #> #   Legendary <lgl>, height <dbl>, weight <dbl>,
 #> #   base_experience <dbl>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The ideas of a training data set and test data set are pervasive in predictive and classification models, including models not related to knn. Note that we are going to do this method because it's the simplest: if you wanted to take this a step further, you'd repeat the training and test process 5 or 10 times, using what's known as __k-fold cross-validation.__
@@ -212,7 +210,6 @@ train_sample |>
 #> # … with 5 more variables: Generation <dbl>,
 #> #   Legendary <lgl>, height <dbl>, weight <dbl>,
 #> #   base_experience <dbl>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ### Exercises {#exercise-13-2}
@@ -231,7 +228,13 @@ ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
 
 <img src="13-knn_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
-The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks "closer" to the Dark type pokemon. Verify that this is __not__ actually the case by computing the actual distances numerically.
+The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks "closer" to the Dark type pokemon. Verify that this is __not__ actually the case by computing the actual distances numerically. Recall that the formula for the distance between two points at ($x1, y1$) and ($x2, y2$) is:
+
+$$
+\sqrt{(x_1 - x_2) ^ 2 + (y1 - y2) ^ 2}
+$$
+
+You'll need to use this formula twice: once for the distance between the fire pokemon and the test pokemon and once for the distance between the dark pokemon and the test pokemon.
 
 
 

@@ -95,7 +95,6 @@ polls |>
 #> # … with 1 more variable: `Stein (G)` <dbl>, and
 #> #   abbreviated variable names ¹​Sample_size, ²​Sample_type,
 #> #   ³​`Clinton (D)`, ⁴​`Trump (R)`, ⁵​`Johnson (L)`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The arguments to `separate()` are fairly easy to learn:
@@ -151,7 +150,6 @@ polls_sillytest
 #> # … with 2 more variables: `Johnson (L)` <dbl>,
 #> #   `Stein (G)` <dbl>, and abbreviated variable names
 #> #   ¹​Start_month, ²​Start_day, ³​`Clinton (D)`, ⁴​`Trump (R)`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 This situation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use `unite()` to combine these two columns into a single `Date`, called `New_start_date`:
@@ -174,7 +172,6 @@ polls_sillytest |>
 #> # … with 1 more variable: `Stein (G)` <dbl>, and
 #> #   abbreviated variable names ¹​New_start_date,
 #> #   ²​`Clinton (D)`, ³​`Trump (R)`, ⁴​`Johnson (L)`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Note how `unite()` just switches around the first two arguments of `separate()`. Argument 1 is now the name of the new column and Argument 2 is the names of columns in the data set that you want to combine.
@@ -211,7 +208,6 @@ polls_sep
 #> # … with 1 more variable: `Stein (G)` <dbl>, and
 #> #   abbreviated variable names ¹​`Clinton (D)`,
 #> #   ²​`Trump (R)`, ³​`Johnson (L)`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 This happens because the column names have a space in them (this also would occur if the columns started with a number or had odd special characters in them). Then, any time you want to reference a variable, you need the include the backticks:
@@ -244,7 +240,6 @@ polls_new
 #> 7 McClatch… 7/5   7/9   1053 …   3        40      35      10
 #> # … with 1 more variable: Stein_G <dbl>, and abbreviated
 #> #   variable names ¹​Clinton_D, ²​Johnson_L
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 `rename()` can also be very useful if you have variable names that are very long to type out. `rename()` is actually from `dplyr`, not `tidyr`, but we didn't have a need for it with any of the `dplyr` data sets. 
@@ -336,7 +331,6 @@ polls_clean
 #> # … with 2 more variables: Johnson_L <dbl>, Stein_G <dbl>,
 #> #   and abbreviated variable names ¹​Sample_size,
 #> #   ²​Sample_type, ³​Clinton_D
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The data set `polls_clean` __still__ isn't tidy!! The `candidate` variable is spread out over 4 different columns and the values in each of these 4 columns actually represent 1 variable: poll percentage. 
@@ -383,7 +377,6 @@ polls_clean |>
 #> 10 ABC Ne… 7/11  7/14  816     RV        4   Trump_R      38
 #> # … with 18 more rows, and abbreviated variable names
 #> #   ¹​Sample_size, ²​Sample_type, ³​candidate, ⁴​poll_percent
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 `pivot_longer()` has three important arguments:
@@ -437,7 +430,6 @@ head(airlines)
 #> #   ²​`incidents 1985_1999`, ³​`fatal_accidents 1985_1999`,
 #> #   ⁴​`fatalities 1985_1999`, ⁵​`incidents 2000_2014`,
 #> #   ⁶​`fatal_accidents 2000_2014`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The data set contains the following columns:
@@ -483,7 +475,6 @@ airlines |>
 #> 10 Aeroflot*              1197672318 incidents 2000…       6
 #> # … with 326 more rows, and abbreviated variable name
 #> #   ¹​total_num
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Instead of giving `pivot_longer()` names of variables, we gave it the column numbers instead. So `c(3, 4, 5, 6, 7, 8)` corresponds to the 3rd, 4th, ...., 8th columns in the data set. That didn't quite give us a `year` variable, but we should be excited to see an opportunity to take advantage of `separate()`:
@@ -508,7 +499,6 @@ airlines |> pivot_longer(c(3, 4, 5, 6, 7, 8), names_to = "type_year",
 #> 10 Aeroflot*              1197672318 incidents 2000…       6
 #> # … with 326 more rows, and abbreviated variable name
 #> #   ¹​total_num
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Is this the format that we want the data set to be in? Depending on the task, it could be. But, we also might want each of the accident `type`s to be its own variable. That is, we might want to collapse the data set to have a variable for `incidents`, a variable for `fatal_accidents`, and a variable for `fatalities`. If so, we want to add more columns to the data set, so we need to use `pivot_wider()`. 
@@ -541,7 +531,6 @@ airlines_long |> pivot_wider(names_from = type,
 #> # … with 102 more rows, and abbreviated variable names
 #> #   ¹​avail_seat_km_per_week, ²​incidents, ³​fatal_accidents,
 #> #   ⁴​fatalities
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 `pivot_wider()` has two main arguments: 
@@ -610,7 +599,6 @@ head(mortality_df)
 #> #   `1821` <dbl>, `1822` <dbl>, `1823` <dbl>, `1824` <dbl>,
 #> #   `1825` <dbl>, `1826` <dbl>, `1827` <dbl>, `1828` <dbl>,
 #> #   `1829` <dbl>, `1830` <dbl>, `1831` <dbl>, …
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 5. \* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use `tidyr`, we aren't going to want to type out `c(2, 3, 4, 5, .....)` all the way up to `217`! `R` has short-hand notation that we can use with `:`. For example, type in `4:9` in your console window. Use this notation to tidy the `mortality_df` data set.
@@ -795,7 +783,6 @@ nfl_long
 #>  9  2011 Tight End          8734375
 #> 10  2011 Wide Receiver     16250000
 #> # … with 7,990 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 3. \* To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position in each year so that the highest paid players in each position in each year all receive a `1`, the second highest paid players receive a `2`, etc. Compare your results for the default way that `R` uses to break ties between two salaries that are the same and using `ties.method = "first"`. 

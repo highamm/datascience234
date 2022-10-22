@@ -62,7 +62,6 @@ slumajors_df
 #>  9 Economics                         128    349
 #> 10 English                           131     54
 #> # … with 17 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 There are many interesting and informative plots that we could make with either data set, but most require some data wrangling first. This chapter will provide the foundation for such wrangling skills.
@@ -98,7 +97,6 @@ slumajors_df |> mutate(ntotal = nfemales + nmales)
 #>  9 Economics                         128    349    477
 #> 10 English                           131     54    185
 #> # … with 17 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 There's a lot to break down in that code chunk: most importantly, we're seeing our first of many, many, many, many, many, many, many instances of using `|>` to pipe! The `|>` operator approximately reads take `slumajors_df` "and then" `mutate()` it.
@@ -135,7 +133,6 @@ slumajors_df |>
 #>  9 Economics                         128    349       26.8
 #> 10 English                           131     54       70.8
 #> # … with 17 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 But what happened to `ntotal`? Is it still in the printout? It's not: when we created the variable `ntotal`, we didn't actually __save__ the new data set as anything. So `R` makes and prints the new variable, but it doesn't get saved to any data set. If we want to save the new data set, then we can use the `<-` operator. Here, we're saving the new data set with the same name as the old data set: `slumajors_df`. Then, we're doing the same thing for the `percfemale` variable. We won't always want to give the new data set the same name as the old one: we'll talk about this more in the chapter exercises.
@@ -189,7 +186,6 @@ slumajors_df |> mutate(morewomen = if_else(percfemale > 50,
 #> 10 English                 131     54    70.8    185 Yes    
 #> # … with 17 more rows, and abbreviated variable names
 #> #   ¹​nfemales, ²​percfemale, ³​morewomen
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 The `mutate()` statement reads: create a new variable called `morewomen` that is equal to `"Yes"` if `percfemale` > `50` is true and is equal to `"No"` if `perfemale` is not > `0.5`. The first argument is the condition, the second is what to name the new variable when the condition holds, and the third is what to name the variable if the condition does not hold.
@@ -221,7 +217,6 @@ slumajors_df |> mutate(large_majority =
 #> 10 English                 131     54    70.8    185 female 
 #> # … with 17 more rows, and abbreviated variable names
 #> #   ¹​nfemales, ²​percfemale, ³​large_majority
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 The `case_when()` function reads "When the percent female is more than or equal to 70, assign the new variable `large_majority` the value of "female", when it's less or equal to 30, assign the more than 30 and less than 70, assign the variable the value of "none" ." The `&` is a boolean operator: we'll talk more about that later so don't worry too much about that for now.
@@ -282,7 +277,6 @@ slumajors_df |> arrange(percfemale)
 #> 10 Government      127    116    52.3    243 Yes     none   
 #> # … with 17 more rows, and abbreviated variable names
 #> #   ¹​nfemales, ²​percfemale, ³​morewomen, ⁴​large_majority
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Which major has the lowest percentage of female graduates?
@@ -307,7 +301,6 @@ slumajors_df |> arrange(desc(percfemale))
 #> 10 English         131     54    70.8    185 Yes     female 
 #> # … with 17 more rows, and abbreviated variable names
 #> #   ¹​nfemales, ²​percfemale, ³​morewomen, ⁴​large_majority
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 What is the major with the highest percentage of women graduates?
@@ -333,7 +326,6 @@ slumajors_df |> select(Major, ntotal)
 #>  9 Economics                       477
 #> 10 English                         185
 #> # … with 17 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 If I wanted to use this data set for anything else, I'd also need to name, or rename, it with `<-`. We would probably want to name it something other than `slumajors_df` so as to not overwrite the original data set, in case we want to use those other variables again later!
@@ -358,7 +350,6 @@ slumajors_df |> select(-ntotal, -nfemales, -nmales)
 #> 10 English                            70.8 Yes       female 
 #> # … with 17 more rows, and abbreviated variable name
 #> #   ¹​large_majority
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 `select()` comes with many useful helper functions, but these are oftentimes not needed. One of the helper functions that __is__ actually often useful is `everything()`. We can, for example, use this after using `mutate()` to put the variable that was just created at the front of the data set to make sure there weren't any unexpected issues:
@@ -383,7 +374,6 @@ slumajors_df |> mutate(propfemale = percfemale / 100) |>
 #> # … with 17 more rows, 1 more variable:
 #> #   large_majority <chr>, and abbreviated variable names
 #> #   ¹​nfemales, ²​percfemale, ³​morewomen
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Verify that `propfemale` now appears first in the data set. `everything()` tacks on all of the remaining variables after `propfemale`. So, in this case, it's a useful way to re-order the columns so that what you might be most interested in appears first.
@@ -441,7 +431,6 @@ babynames
 #>  9  1880 F     Bertha     1320 0.0135
 #> 10  1880 F     Sarah      1288 0.0132
 #> # … with 1,924,655 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 If needed, we can remind ourselves what is in the `babynames` data set by typing `?babynames` in the console window.
@@ -523,7 +512,6 @@ babynames |> group_by(year) |>
 #>  9  1888      299473
 #> 10  1889      288946
 #> # … with 128 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 `group_by()` takes a grouping variable, and then, using `summarise()` computes the given summary function on each group.
@@ -561,7 +549,6 @@ babynames |> group_by(year) |>
 #>  9  1888   2651
 #> 10  1889   2590
 #> # … with 128 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ### Exercises {#exercise-3-3}
@@ -601,7 +588,6 @@ babynames |> group_by(year) |>
 #>  9  1888   2651
 #> 10  1889   2590
 #> # … with 128 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 make a line plot with `ngroup` on the x-axis and `year` on the y-axis. How would you interpret the plot?
@@ -634,7 +620,6 @@ babynames_test |> slice(1, 2, 3, 4, 5)
 #>  9  1880 M     Charles    5348 0.0452 118400.
 #> 10  1880 M     George     5126 0.0433 118400.
 #> # … with 1,370 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ## Missing Values
@@ -800,7 +785,6 @@ head(videogame_df)
 #> #   meta_cat_factor <chr>, and abbreviated variable names
 #> #   ¹​release_date, ²​release_date2, ³​median_playtime,
 #> #   ⁴​metascore
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Let's say we want to `filter()` the data set to include only videogames with a `metascore` that isn't missing. We've been using code like
@@ -1003,7 +987,6 @@ slumajors_df |> mutate(major_size = if_else(ntotal >= 100,
 #> # … with 17 more rows, 1 more variable: major_size <chr>,
 #> #   and abbreviated variable names ¹​nfemales, ²​percfemale,
 #> #   ³​morewomen, ⁴​large_majority
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ## OR
 slumajors_df |>
   mutate(major_size = case_when(ntotal >= 100 ~ "large",
@@ -1024,7 +1007,6 @@ slumajors_df |>
 #> # … with 17 more rows, 1 more variable: major_size <chr>,
 #> #   and abbreviated variable names ¹​nfemales, ²​percfemale,
 #> #   ³​morewomen, ⁴​large_majority
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 5. \* Investigate what happens with `case_when()` when you give overlapping conditions and when you give conditions that don't cover all observations. For overlapping conditions, create a variable `testcase` that is `"Yes"` when `percfemale` is greater than or equal to 40 and `"No"` when `percfemale` is greater than 60 For conditions that don't cover all observations, create a variable `testcase2` that is `"Yes"` when `percefemale` is greater than or equal to 55 and `"No"` when `percfemale` is less than 35.
@@ -1047,7 +1029,6 @@ slumajors_df |>
 #> # … with 17 more rows, 2 more variables: testcase <chr>,
 #> #   testcase2 <chr>, and abbreviated variable names
 #> #   ¹​nfemales, ²​percfemale, ³​morewomen, ⁴​large_majority
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 For overlapping cases, case_when prioritizes the first case given.
@@ -1076,7 +1057,6 @@ slumajors_df |> select(large_majority, everything())
 #> 10 female        Engl…     131     54    70.8    185 Yes    
 #> # … with 17 more rows, and abbreviated variable names
 #> #   ¹​large_majority, ²​nfemales, ³​percfemale, ⁴​morewomen
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 3. \* In the `babynames` data set, use `filter()`, `mutate()` with `rank()`, and `arrange()` to print the 10 most popular Male babynames in 2017.
@@ -1123,7 +1103,6 @@ babynames |> group_by(name) |>
 #>  9 Aadarsh           199
 #> 10 Aaden            4658
 #> # … with 97,300 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 4. \* `group_by()` can also be used with other functions, including `mutate()`. Use `group_by()` and `mutate()` to rank the names from most to least popular in each year-sex combination.
@@ -1187,7 +1166,6 @@ babynames_test |> slice(1, 2, 3, 4, 5)
 #>  9  1880 M     Charles    5348 0.0452 118400.
 #> 10  1880 M     George     5126 0.0433 118400.
 #> # … with 1,370 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Functions like `slice()` and `rank()` operate on defined groups in the data set if using a function like `group_by()` first. Sometimes this feature is quite convenient. But, if we no longer want `slice()` or `rank()` or other functions to account for these groups, we need to add an `ungroup()` pipe, which simply drops the groups that we had formed:
@@ -1244,7 +1222,6 @@ summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
           meanweekend = mean(distance, na.rm = TRUE)) 
 #> # A tibble: 0 × 2
 #> # … with 2 variables: month <chr>, meanweekend <dbl>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 
@@ -1254,7 +1231,6 @@ fitness_df |> filter(weekday == 1 | weekday == 7) |>
   summarise(meanweekend = mean(distance, na.rm = TRUE)) 
 #> # A tibble: 0 × 2
 #> # … with 2 variables: month <chr>, meanweekend <dbl>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ### Chapter Exercises S {#chapexercise-3-S}

@@ -134,8 +134,7 @@
 <span><span class="co">#&gt; #   publisher &lt;chr&gt;, average_playtime &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   meta_cat_factor &lt;chr&gt;, and abbreviated variable names</span></span>
 <span><span class="co">#&gt; #   ¹​release_date, ²​release_date2, ³​median_playtime,</span></span>
-<span><span class="co">#&gt; #   ⁴​metascore</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ⁴​metascore</span></span></code></pre></div>
 <p>A data frame or tibble holds variables that are allowed to be different classes. If a variable is a different class than you would expect, you’ll get some strange errors or results when trying to wrangle the data or make graphics.</p>
 <p>Run the following lines of code. In some cases, we are only using the first 100 observations in <code>videogame_small</code>. Otherwise, the code would take a <strong>very</strong> long time to run.</p>
 <div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
@@ -169,8 +168,7 @@
 <span><span class="co">#&gt; #   publisher &lt;chr&gt;, average_playtime &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   meta_cat_factor &lt;chr&gt;, and abbreviated variable names</span></span>
 <span><span class="co">#&gt; #   ¹​release_date, ²​release_date2, ³​median_playtime,</span></span>
-<span><span class="co">#&gt; #   ⁴​metascore</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ⁴​metascore</span></span></code></pre></div>
 <p>you’ll see that, at the very top of the output, right below the variable names, <code>R</code> provides you with the classes of variables in the <code>tibble</code>.</p>
 <ul>
 <li>
@@ -476,8 +474,7 @@
 <span><span class="co">#&gt;  8  7.56    1.89 A      Place3</span></span>
 <span><span class="co">#&gt;  9 -0.425 -30.1  C      Place1</span></span>
 <span><span class="co">#&gt; 10  4.14    2.65 C      Place2</span></span>
-<span><span class="co">#&gt; # … with 90 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 90 more rows</span></span></code></pre></div>
 <p><strong>Tables</strong>: We can use the <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> function with the <code>$</code> operator to quickly generate tables of categorical variables:</p>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">toy_df</span><span class="op">$</span><span class="va">group1</span><span class="op">)</span></span>
@@ -567,7 +564,6 @@
 <span><span class="co">#&gt; 59  4.34   -5.99  B      Place2</span></span>
 <span><span class="co">#&gt; 60  6.72  -13.6   B      Place2</span></span>
 <span><span class="co">#&gt; # … with 40 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span>
 <span><span class="va">toy_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span> <span class="co">## print out all of the columns</span></span>
 <span><span class="co">#&gt; # A tibble: 100 × 4</span></span>
@@ -583,8 +579,7 @@
 <span><span class="co">#&gt;  8  7.56    1.89 A      Place3</span></span>
 <span><span class="co">#&gt;  9 -0.425 -30.1  C      Place1</span></span>
 <span><span class="co">#&gt; 10  4.14    2.65 C      Place2</span></span>
-<span><span class="co">#&gt; # … with 90 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 90 more rows</span></span></code></pre></div>
 <p>We will stop here, but will surely encounter more base <code>R</code> functions as we run into different types of problems.</p>
 <div id="exercise-6-4" class="section level3" number="8.4.1">
 <h3>
@@ -715,7 +710,6 @@
 <span><span class="co">#&gt; #   dayofyear &lt;dbl&gt;, stepgoal &lt;dbl&gt;, weekday_cat &lt;fct&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable names ¹​weekend_ind, ²​active_cals,</span></span>
 <span><span class="co">#&gt; #   ³​distance</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
 <span></span>
 <span><span class="co">## can also use if_else, which is actually a little simpler in this case:</span></span>
 <span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weekend_ind <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">vecweekend</span>,</span>
@@ -737,8 +731,7 @@
 <span><span class="co">#&gt; # … with 983 more rows, 4 more variables: weekday &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   dayofyear &lt;dbl&gt;, stepgoal &lt;dbl&gt;, weekday_cat &lt;fct&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable names ¹​weekend_ind, ²​active_cals,</span></span>
-<span><span class="co">#&gt; #   ³​distance</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ³​distance</span></span></code></pre></div>
 </div>
 <div id="chapexercise-6-S" class="section level3" number="8.6.4">
 <h3>
@@ -934,7 +927,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-18.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

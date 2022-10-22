@@ -18,9 +18,9 @@ To begin, install the `lubridate` package, and load the package with `library()`
 library(tidyverse)
 library(lubridate)
 today()
-#> [1] "2022-10-18"
+#> [1] "2022-10-22"
 now()
-#> [1] "2022-10-18 15:20:33 EDT"
+#> [1] "2022-10-22 12:33:46 EDT"
 ```
 
 This first section will deal with how to convert a variable in `R` to be a `Date`. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:
@@ -45,7 +45,6 @@ holiday_df
 #> 5 Bunny Day  12-A… Apr-… 4/12… 12/4… 2020…     4  2020    12
 #> 6 Earth Day  22-A… Apr-… 4/22… 2020… 2020…     4  2020    22
 #> # … with 1 more variable: Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Which columns were specified as Dates? In this example, none of the columns have the `<date>` specification: all of the date columns are read in as character variables.
@@ -79,7 +78,6 @@ holiday_df |> mutate(Date_test = dmy(Date1)) |>
 #> 6 2020-04-22 Earth Day   22-A… Apr-… 4/22… 2020… 2020…     4
 #> # … with 3 more variables: Year <dbl>, Day <dbl>,
 #> #   Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 holiday_df |> mutate(Date_test = mdy(Date2)) |>
   select(Date_test, everything())
 #> # A tibble: 6 × 11
@@ -93,7 +91,6 @@ holiday_df |> mutate(Date_test = mdy(Date2)) |>
 #> 6 2020-04-22 Earth Day   22-A… Apr-… 4/22… 2020… 2020…     4
 #> # … with 3 more variables: Year <dbl>, Day <dbl>,
 #> #   Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 __A Reminder__: Why do `<date>` objects even matter? Compare the following two plots: one made where the date is in `<chr>` form and the other where date is in its appropriate `<date>` form. 
@@ -138,7 +135,6 @@ holiday_df |> mutate(Date_test2 = make_date(year = Year,
 #> 6 2020-04-22 2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
 #> # … with 5 more variables: Date5 <chr>, Month <dbl>,
 #> #   Year <dbl>, Day <dbl>, Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 But, when `Month` is stored as a character (e.g. `February`) instead of a number (e.g. `2`), problems arise with the `make_date()` function:
@@ -160,7 +156,6 @@ holiday_df |> mutate(Date_test2 = make_date(year = Year,
 #> 6 NA         2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
 #> # … with 5 more variables: Date5 <chr>, Month <dbl>,
 #> #   Year <dbl>, Day <dbl>, Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 So the `make_date()` function requires a specific format for the year, month, and day columns. It may take a little pre-processing to put a particular data set in that format.
@@ -186,7 +181,6 @@ holiday_df |> mutate(Date_test = ymd(Date4)) |>
 #> 6 NA         2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
 #> # … with 5 more variables: Date5 <chr>, Month <dbl>,
 #> #   Year <dbl>, Day <dbl>, Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 2. \* Practice converting `Date3` and `Date5` to `<date>` variables with `lubridate` functions.
@@ -296,7 +290,6 @@ stocks_long |> mutate(day_in_year = yday(start_date))
 #>  9 2011-01-05 Apple       10.2            5
 #> 10 2011-01-05 Nintendo     6.92           5
 #> # … with 10,434 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Finally, the function `wday()` grabs the day of the week from a `<date>`. By default, `wday()` puts the day of the week as a numeric, but I find this confusing, as I can't ever remember whether a `1` means `Sunday` or a `1` means `Monday`. Adding, `label = TRUE` creates the weekday variable as `Sunday`, `Monday`, `Tuesday`, etc.:
@@ -388,7 +381,6 @@ ds_df
 #>  9 2004-09           13
 #> 10 2004-10           11
 #> # … with 192 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 1. \* Use a `lubridate` function with the `truncated` option to convert the `Month` variable to be in the `<date>` format.
@@ -459,7 +451,6 @@ holiday_df |> mutate(Date_test = ymd(Date4)) |>
 #> 6 NA         2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
 #> # … with 5 more variables: Date5 <chr>, Month <dbl>,
 #> #   Year <dbl>, Day <dbl>, Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 
@@ -485,7 +476,6 @@ holiday_df |> mutate(Date_test = mdy(Date3)) |>
 #> 6 2020-04-22 2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
 #> # … with 5 more variables: Date5 <chr>, Month <dbl>,
 #> #   Year <dbl>, Day <dbl>, Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 holiday_df |> mutate(Date_test = ymd(Date5)) |>
   select(Date_test, everything())
 #> # A tibble: 6 × 12
@@ -499,7 +489,6 @@ holiday_df |> mutate(Date_test = ymd(Date5)) |>
 #> 6 2020-04-22 2020-04-22     Earth D… 22-A… Apr-… 4/22… 2020…
 #> # … with 5 more variables: Date5 <chr>, Month <dbl>,
 #> #   Year <dbl>, Day <dbl>, Month2 <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ### Functions for `<date>` Variables S

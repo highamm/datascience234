@@ -41,7 +41,6 @@ resume
 #> #   job_req_school <chr>, received_callback <dbl>,
 #> #   firstname <chr>, race <chr>, gender <chr>,
 #> #   years_college <int>, college_degree <dbl>, …
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ### Chi-square Test of Association
@@ -367,7 +366,6 @@ glance(coffee_mod)
 #> # … with 4 more variables: BIC <dbl>, deviance <dbl>,
 #> #   df.residual <int>, nobs <int>, and abbreviated variable
 #> #   names ¹​adj.r.squared, ²​statistic
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 you should notice a lot of statistics that you are familiar with from STAT 213, including `r.squared`, `adj.r.squared`, `sigma` (the residual standard error), `statistic` (the overall F-statistic), `AIC`, and `BIC`.
@@ -396,7 +394,6 @@ augment(coffee_mod)
 #> #   .hat <dbl>, .sigma <dbl>, .cooksd <dbl>,
 #> #   .std.resid <dbl>, and abbreviated variable names
 #> #   ¹​total_cup_points, ²​sweetness, ³​moisture
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 `augment()` the data set makes it really easy to do things like:
@@ -415,7 +412,6 @@ augment_df |> filter(.cooksd > 1)
 #> #   .sigma <dbl>, .cooksd <dbl>, .std.resid <dbl>, and
 #> #   abbreviated variable names ¹​total_cup_points,
 #> #   ²​sweetness, ³​moisture
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 We see right away that there is a potentially influential observation with `0` `total_cup_points`. Examining this variable further, we see that it is probably a data entry error that can be removed from the data.
@@ -442,7 +438,6 @@ augment_df |> filter(.hat > 0.2)
 #> #   .sigma <dbl>, .cooksd <dbl>, .std.resid <dbl>, and
 #> #   abbreviated variable names ¹​total_cup_points,
 #> #   ²​sweetness, ³​moisture
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 or observations that are outliers:
@@ -467,7 +462,6 @@ augment_df |> filter(.std.resid > 3 | .std.resid < -3)
 #> #   .hat <dbl>, .sigma <dbl>, .cooksd <dbl>,
 #> #   .std.resid <dbl>, and abbreviated variable names
 #> #   ¹​total_cup_points, ²​sweetness, ³​moisture
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Finally, we can use our `ggplot2` skills to construct plots like a residuals versus fitted values plot (filtering out the outlying observation first):
@@ -480,6 +474,149 @@ ggplot(data = augment_df |> filter(.fitted > 25), aes(x = .fitted, y = .resid)) 
 
 <img src="15-connections_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
+### Exploring Concepts
+
+We can also use our data science skills to explore concepts that you may or may not have found difficult in STAT 213. In this section, we will use plotting to help interpret coefficient estimates in models with two quantitative predictors: one with an interaction and one without an interaction.
+
+First, consider a model with `flavor` and `moisture` as predictors on the coffee data set that removes the observation with a `total_cup_points` rating of `0`:
+
+$Y = \beta_0 + \beta_1 flavor + \beta_2 aroma + \epsilon$
+
+
+```r
+coffee_noout <- coffee_df |> filter(total_cup_points > 0)
+coffee_fa <- lm(total_cup_points ~ flavor + aroma,
+   data = coffee_noout)
+coffee_fa |> tidy()
+#> # A tibble: 3 × 5
+#>   term        estimate std.error statistic   p.value
+#>   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+#> 1 (Intercept)    29.8      1.01      29.6  1.79e-148
+#> 2 flavor          5.55     0.177     31.4  1.33e-162
+#> 3 aroma           1.39     0.191      7.27 6.11e- 13
+```
+
+You might recall that, you can interpret the estimate for $\hat{\beta}_1$ as something like:
+
+"For a one point increase in flavor grade, we expect average coffee score to increase by 5.55 points, if `aroma` is held constant."
+
+(or, if `aroma` does not change, or if `aroma` is fixed).
+
+But, what if someone asked you, what does that mean, "if `aroma` is held constant." Instead of using words to explain, we can use our `ggplot2` skills to construct a plot. The plot that we are going to create is going to show the fitted model for __5__ distinct values of `aroma`: the minimum value, Q1, the median, Q3, and the maximum (though these values can also be chosen arbitrarily). We will make use of the `modelr` package to gather predictions to make the lines in our plot. First, we are creating a grid of values for predictions:
+
+
+```r
+## install.packages("modelr")
+library(modelr)
+#> 
+#> Attaching package: 'modelr'
+#> The following object is masked from 'package:broom':
+#> 
+#>     bootstrap
+grid_vals <- coffee_noout |>
+  modelr::data_grid(
+    flavor = quantile(flavor),
+    aroma = quantile(aroma)
+  )
+grid_vals
+#> # A tibble: 25 × 2
+#>    flavor aroma
+#>     <dbl> <dbl>
+#>  1   6.08  5.08
+#>  2   6.08  7.42
+#>  3   6.08  7.58
+#>  4   6.08  7.75
+#>  5   6.08  8.75
+#>  6   7.33  5.08
+#>  7   7.33  7.42
+#>  8   7.33  7.58
+#>  9   7.33  7.75
+#> 10   7.33  8.75
+#> # … with 15 more rows
+```
+
+We then gather these predictions in a data set, and use that data set to make the lines in our plot. The plot will show `total_cup_points` on the y-axis, `flavor` on the x-axis, and have coloured lines for a few different values of `aroma` that we specified in the grid function:
+
+
+```r
+grid <- grid_vals |>
+  modelr::gather_predictions(coffee_fa)
+grid
+#> # A tibble: 25 × 4
+#>    model     flavor aroma  pred
+#>    <chr>      <dbl> <dbl> <dbl>
+#>  1 coffee_fa   6.08  5.08  70.7
+#>  2 coffee_fa   6.08  7.42  73.9
+#>  3 coffee_fa   6.08  7.58  74.1
+#>  4 coffee_fa   6.08  7.75  74.4
+#>  5 coffee_fa   6.08  8.75  75.8
+#>  6 coffee_fa   7.33  5.08  77.6
+#>  7 coffee_fa   7.33  7.42  80.9
+#>  8 coffee_fa   7.33  7.58  81.1
+#>  9 coffee_fa   7.33  7.75  81.3
+#> 10 coffee_fa   7.33  8.75  82.7
+#> # … with 15 more rows
+```
+
+
+```r
+ggplot(data = coffee_noout, aes(x = flavor, y = total_cup_points)) +
+  geom_point(alpha = 0.2) +
+  geom_line(data = grid, aes(colour = fct_rev(factor(aroma)),
+                             y = pred), size = 1.2) +
+  scale_colour_viridis_d() +
+  labs(colour = "Aroma") +
+  theme_minimal()
+```
+
+<img src="15-connections_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+
+From this model, we might more easily be able to explain that slope interpretation earlier: __for a fixed coloured line of `aroma`__, if flavor increases by one point, we expect coffee rating to increase by 5.55 points, on average. 
+
+But, we can really see the power of `modelr` and plotting models if we fit more complicated models. For example, next, we will fit a model with an interaction between `flavor` and `aroma`. You may recall that an interaction allows the association between one predictor (`flavor`) and the response (`total_cup_points`) to change depending on the value of the other predictor (`aroma`). 
+
+$Y = \beta_0 + \beta_1 flavor + \beta_2 aroma + \beta_3 flavor * aroma + \epsilon$
+
+
+
+```r
+coffee_fa_int <- lm(total_cup_points ~ flavor + aroma + flavor:aroma,
+   data = coffee_noout)
+coffee_fa_int |> tidy()
+#> # A tibble: 4 × 5
+#>   term         estimate std.error statistic  p.value
+#>   <chr>           <dbl>     <dbl>     <dbl>    <dbl>
+#> 1 (Intercept)    -38.5     13.4       -2.88 4.02e- 3
+#> 2 flavor          14.6      1.77       8.24 4.06e-16
+#> 3 aroma           10.5      1.79       5.88 5.26e- 9
+#> 4 flavor:aroma    -1.21     0.235     -5.13 3.34e- 7
+```
+
+You may also recall that, in a model with an interaction between two quantitative variables, the coefficient estimates are not interpretable on their own. We __cannot__ say something like "For a one point increase in flavor, we expect average coffee rating to increase by 14.6 points, as long as `aroma` and the interaction between `flavor` and `aroma` is held constant" because it does not make sense to talk about an increase in one unit of `flavor` while also holding the interaction fixed.
+
+So, for interpreting the model output, we can again use the `modelr` package and out `ggplot2` knowledge to construct a plot that shows the relationship between `total_cup_points` and `flavor` for a few different values of `aroma`:
+
+
+```r
+grid <- coffee_noout |>
+  modelr::data_grid(
+    flavor = quantile(flavor),
+    aroma = quantile(aroma), 
+  ) |>
+  modelr::gather_predictions(coffee_fa_int)
+ggplot(data = coffee_noout, aes(x = flavor, y = total_cup_points)) +
+  geom_point(alpha = 0.2) +
+  geom_line(data = grid, aes(colour = fct_rev(factor(aroma)), y = pred), size = 1.2) +
+  scale_colour_viridis_d() +
+  labs(colour = "Aroma") +
+  theme_minimal()
+```
+
+<img src="15-connections_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+
+From the plot, we can understand the nature of the interaction a little better. It looks like, no matter what the value of `aroma`, `flavor` and `total_cup_points` have a positive association. But, for larger  values of `aroma`, the slope is smaller while, for smaller values of `aroma`, the slope is larger. The model says that, when `aroma` is small, we would expect a larger increase in `total_cup_points` (on average) for a one point increase in `flavor` while, when `aroma` is large, we would expect a smaller increase in `total_cup_points` (on average) for a one point increase in `flavor`.
+
+
 ### Exercises {#exercise-15-2}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-15).
@@ -489,6 +626,8 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 2. For one of your fitted models, construct a histogram of the residuals to assess the normality assumption (using `ggplot2` and `augment()`).
 
 3. Make a table of the 5 coffees that have the highest __predicted__ coffee rating, according to one of your models.
+
+4. Re-examine the interaction model plot that had `total_cup_points` on the y-axis, `flavor` on the x-axis, and coloured liens for `aroma`. Change the plotso that, `aroma` is on the x-axis and the five coloured lines correspond to the quantiles of `flavor`. This allows us to explore how the association between `total_cup_points` and `aroma` changes for different values of `flavor`.
 
 ## CS 140
 
@@ -552,7 +691,6 @@ SLU_Hitting |> select(wOBA, everything()) |> arrange(desc(wOBA))
 #> #   HR <int>, RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>,
 #> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
 #> #   SH <int>, `SB-ATT` <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ### Functions
@@ -647,7 +785,6 @@ get_hitting_data(url_name = "https://saintsathletics.com/sports/baseball/stats/2
 #> #   RBI <int>, TB <int>, `SLG%` <dbl>, BB <int>, HBP <int>,
 #> #   SO <int>, GDP <int>, `OB%` <dbl>, SF <int>, SH <int>,
 #> #   `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 ### Iteration
@@ -741,7 +878,6 @@ hitting_ll
 #> #   HBP <int>, SO <int>, GDP <int>, `OB%` <dbl>, SF <int>,
 #> #   SH <int>, `SB-ATT` <chr>, wOBA <dbl>, url_name <chr>,
 #> #   school_name <chr>
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 With this data set, we can now do things like figure out the top 3 hitters from each team, according to the `wOBA` metric:
@@ -768,7 +904,6 @@ hitting_ll |> group_by(school_name) |>
 #> 10 "Blackall, Patrick \r\n                   … RIT     0.399
 #> # … with 20 more rows, and abbreviated variable name
 #> #   ¹​school_name
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 or find the players on each team with the most at bats `AB`:
@@ -795,7 +930,6 @@ hitting_ll |> group_by(school_name) |>
 #> 10 "Reilly, Chris\r\n                        … RIT       152
 #> # … with 20 more rows, and abbreviated variable name
 #> #   ¹​school_name
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ### Exercises {#exercise-15-3}
@@ -834,7 +968,6 @@ billboard_df
 #> 10    10 "\"Peaches\""                        Justin …  2021
 #> # … with 90 more rows, and abbreviated variable name
 #> #   ¹​`Artist(s)`
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 1. Wrap the code above in a function that scrapes data from Wikipedia for a user-provided `year_scrape` argument.
@@ -942,6 +1075,43 @@ augment_df |> filter(.hat > 0.2)
 augment_df |> filter(.std.resid > 3 | .std.resid < -3)
 ggplot(data = augment_df |> filter(.fitted > 25), aes(x = .fitted, y = .resid)) +
   geom_point() 
+coffee_noout <- coffee_df |> filter(total_cup_points > 0)
+coffee_fa <- lm(total_cup_points ~ flavor + aroma,
+   data = coffee_noout)
+coffee_fa |> tidy()
+## install.packages("modelr")
+library(modelr)
+grid_vals <- coffee_noout |>
+  modelr::data_grid(
+    flavor = quantile(flavor),
+    aroma = quantile(aroma)
+  )
+grid_vals
+grid <- grid_vals |>
+  modelr::gather_predictions(coffee_fa)
+grid
+ggplot(data = coffee_noout, aes(x = flavor, y = total_cup_points)) +
+  geom_point(alpha = 0.2) +
+  geom_line(data = grid, aes(colour = fct_rev(factor(aroma)),
+                             y = pred), size = 1.2) +
+  scale_colour_viridis_d() +
+  labs(colour = "Aroma") +
+  theme_minimal()
+coffee_fa_int <- lm(total_cup_points ~ flavor + aroma + flavor:aroma,
+   data = coffee_noout)
+coffee_fa_int |> tidy()
+grid <- coffee_noout |>
+  modelr::data_grid(
+    flavor = quantile(flavor),
+    aroma = quantile(aroma), 
+  ) |>
+  modelr::gather_predictions(coffee_fa_int)
+ggplot(data = coffee_noout, aes(x = flavor, y = total_cup_points)) +
+  geom_point(alpha = 0.2) +
+  geom_line(data = grid, aes(colour = fct_rev(factor(aroma)), y = pred), size = 1.2) +
+  scale_colour_viridis_d() +
+  labs(colour = "Aroma") +
+  theme_minimal()
 library(tidyverse)
 library(rvest)
 

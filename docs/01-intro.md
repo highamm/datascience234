@@ -194,7 +194,6 @@ alcohol_data
 #> # … with 183 more rows, and abbreviated variable names
 #> #   ¹​spirit_servings, ²​wine_servings,
 #> #   ³​total_litres_of_pure_alcohol
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 What's in this data set? We see a few _variables_ on the columns:
@@ -321,7 +320,6 @@ alcohol_data |>
 #>  9 Equatorial Guinea              92           233    2.53
 #> 10 Sao Tome & Principe            56           140    2.5 
 #> # … with 183 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Why is one of the ratios `Inf`? 
@@ -379,7 +377,6 @@ head(athletes)
 #> 6     6 Amar'e Sto…    27 Bask… 5000000  2.67e7 2.17e7    32
 #> # … with 1 more variable: Gender <chr>, and abbreviated
 #> #   variable names ¹​endorsements, ²​totalpay
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 There are many different interesting questions to answer with this data set. First, we might be interested in the relationship between athlete age and salary for the top 100 athletes. Recall from an earlier stat course that one appropriate graphic to examine this relationship is a scatterplot:
@@ -426,7 +423,6 @@ athletes |>
 #> 6    89 Serena Wil…    55 Tenn…   1.1e7  2.2 e7 1.1 e7    33
 #> # … with 1 more variable: Gender <chr>, and abbreviated
 #> #   variable names ¹​endorsements, ²​totalpay
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 

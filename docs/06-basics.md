@@ -56,7 +56,6 @@ head(videogame_df)
 #> #   meta_cat_factor <chr>, and abbreviated variable names
 #> #   ¹​release_date, ²​release_date2, ³​median_playtime,
 #> #   ⁴​metascore
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 A data frame or tibble holds variables that are allowed to be different classes. If a variable is a different class than you would expect, you'll get some strange errors or results when trying to wrangle the data or make graphics. 
@@ -108,7 +107,6 @@ head(videogame_df)
 #> #   meta_cat_factor <chr>, and abbreviated variable names
 #> #   ¹​release_date, ²​release_date2, ³​median_playtime,
 #> #   ⁴​metascore
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 you'll see that, at the very top of the output, right below the variable names, `R` provides you with the classes of variables in the `tibble`. 
@@ -507,7 +505,6 @@ toy_df
 #>  9 -0.425 -30.1  C      Place1
 #> 10  4.14    2.65 C      Place2
 #> # … with 90 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 __Tables__: We can use the `table()` function with the `$` operator to quickly generate tables of categorical variables:
@@ -610,7 +607,6 @@ toy_df |>
 #> 59  4.34   -5.99  B      Place2
 #> 60  6.72  -13.6   B      Place2
 #> # … with 40 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 toy_df |>
   print(width = Inf) ## print out all of the columns
 #> # A tibble: 100 × 4
@@ -627,7 +623,6 @@ toy_df |>
 #>  9 -0.425 -30.1  C      Place1
 #> 10  4.14    2.65 C      Place2
 #> # … with 90 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 We will stop here, but will surely encounter more base `R` functions as we run into different types of problems.
@@ -772,7 +767,6 @@ fitness_df |>
 #> #   dayofyear <dbl>, stepgoal <dbl>, weekday_cat <fct>, and
 #> #   abbreviated variable names ¹​weekend_ind, ²​active_cals,
 #> #   ³​distance
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 
 ## can also use if_else, which is actually a little simpler in this case:
 fitness_df |> mutate(weekend_ind = if_else(weekday %in% vecweekend,
@@ -795,7 +789,6 @@ fitness_df |> mutate(weekend_ind = if_else(weekday %in% vecweekend,
 #> #   dayofyear <dbl>, stepgoal <dbl>, weekday_cat <fct>, and
 #> #   abbreviated variable names ¹​weekend_ind, ²​active_cals,
 #> #   ³​distance
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ### Chapter Exercises S {#chapexercise-6-S}

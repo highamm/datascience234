@@ -127,7 +127,6 @@ pokemon_long |>
 #> #   identifier <chr>, height <dbl>, weight <dbl>,
 #> #   base_experience <dbl>, order <dbl>, is_default <dbl>,
 #> #   Generation_cat <fct>, Number <chr>
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 What happens to the levels that aren't being re-specified?
@@ -398,7 +397,6 @@ standings_df
 #> #   sb_winner <chr>, and abbreviated variable names
 #> #   ¹​team_name, ²​points_for, ³​points_against,
 #> #   ⁴​points_differential
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 The important variables that we will use include:

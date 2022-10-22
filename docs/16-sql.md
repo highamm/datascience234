@@ -46,7 +46,7 @@ We can type in `con` to see what it stores:
 
 ```r
 con
-#> <duckdb_connection 95c00 driver=<duckdb_driver a45b0 dbdir=':memory:' read_only=FALSE>>
+#> <duckdb_connection b4dc0 driver=<duckdb_driver c4150 dbdir=':memory:' read_only=FALSE>>
 ```
 
 We've created a brand-new database, so we can next add some data tables with the `duckdb_read_csv()` function. Compared to `read_csv()` from the `readr` package, `duckdb_read_csv()` has a couple of extra arguments: a `conn` argument giving the database management connection and a `name` argument giving the name that we want to give to the data table:
@@ -117,7 +117,6 @@ dbGetQuery(con, sql)|>
 #> 10 Clay    Alexander Zverev      John M…    17     0     248
 #> # … with 20 more rows, and abbreviated variable name
 #> #   ¹​loser_name
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ### Exercises {#exercise-16-1}
@@ -165,7 +164,6 @@ tennis_db
 #> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <int>, loser_ioc <chr>,
 #> #   loser_age <dbl>, score <chr>, best_of <int>, …
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Examine the print for `tennis_db`, which should look similar to the print for a `tibble` or `data.frame`. Let's use some `dplyr` code to obtain only the matches that lasted longer than `240` minutes and keep only a few of the columns. We will name the result `tennis_query1`:
@@ -192,7 +190,6 @@ tennis_query1
 #> 10     248 Alexander Zverev      John Millman        Roland…
 #> # … with more rows, and abbreviated variable name
 #> #   ¹​tourney_name
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 We should note that the result is still a database object: it's not our "usual" `tibble`. One major difference between the database object and the usual `tibble` is that our `tennis_query1` does not tell us how many rows are in the data (see the `??` and the specification `with more rows`). The code that we wrote is not actually looking in the entire data set for matches that are longer than 240 minutes: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run. 
@@ -218,7 +215,6 @@ tennis_query1 |>
 #> 10     248 Alexander Zverev      John Millman        Roland…
 #> # … with 20 more rows, and abbreviated variable name
 #> #   ¹​tourney_name
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 The result is a `tibble` that we can now use any `R` functions on (not just functions from `dplyr` and a few other packages).
@@ -394,7 +390,6 @@ over20aces
 #>  9 Jo-Wilfried Tsonga      4
 #> 10 Alexander Zverev        4
 #> # … with more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 
 over20aces |> show_query()
 #> <SQL>
@@ -745,7 +740,6 @@ tennis_db |>
 #> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <int>, loser_ioc <chr>,
 #> #   loser_age <dbl>, score <chr>, best_of <int>, …
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 
 ## check query:
 tennis_db |>
@@ -794,7 +788,6 @@ tennis_db |> collect() |>
 #> #   loser_seed <chr>, loser_entry <chr>, loser_name <chr>,
 #> #   loser_hand <chr>, loser_ht <int>, loser_ioc <chr>,
 #> #   loser_age <dbl>, score <chr>, best_of <int>, …
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ## Non-Exercise `R` Code {#rcode-16}

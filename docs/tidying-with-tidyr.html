@@ -165,8 +165,7 @@
 <span><span class="co">#&gt; 7 McCla… 7/5 … 1053    RV        3        40      35      10</span></span>
 <span><span class="co">#&gt; # … with 1 more variable: `Stein (G)` &lt;dbl&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable names ¹​Sample_size, ²​Sample_type,</span></span>
-<span><span class="co">#&gt; #   ³​`Clinton (D)`, ⁴​`Trump (R)`, ⁵​`Johnson (L)`</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ³​`Clinton (D)`, ⁴​`Trump (R)`, ⁵​`Johnson (L)`</span></span></code></pre></div>
 <p>The arguments to <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> are fairly easy to learn:</p>
 <ul>
 <li><p><code>col</code> is the name of the column in the data set you want to separate.</p></li>
@@ -208,8 +207,7 @@
 <span><span class="co">#&gt; 7 McClat… 7       5       7/9   1053 …   3        40      35</span></span>
 <span><span class="co">#&gt; # … with 2 more variables: `Johnson (L)` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `Stein (G)` &lt;dbl&gt;, and abbreviated variable names</span></span>
-<span><span class="co">#&gt; #   ¹​Start_month, ²​Start_day, ³​`Clinton (D)`, ⁴​`Trump (R)`</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ¹​Start_month, ²​Start_day, ³​`Clinton (D)`, ⁴​`Trump (R)`</span></span></code></pre></div>
 <p>This situation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> to combine these two columns into a single <code>Date</code>, called <code>New_start_date</code>:</p>
 <div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_sillytest</span> <span class="op">|&gt;</span></span>
@@ -227,8 +225,7 @@
 <span><span class="co">#&gt; 7 McClat… 7/5     7/9   1053 …   3        40      35      10</span></span>
 <span><span class="co">#&gt; # … with 1 more variable: `Stein (G)` &lt;dbl&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable names ¹​New_start_date,</span></span>
-<span><span class="co">#&gt; #   ²​`Clinton (D)`, ³​`Trump (R)`, ⁴​`Johnson (L)`</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ²​`Clinton (D)`, ³​`Trump (R)`, ⁴​`Johnson (L)`</span></span></code></pre></div>
 <p>Note how <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> just switches around the first two arguments of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>. Argument 1 is now the name of the new column and Argument 2 is the names of columns in the data set that you want to combine.</p>
 <p>We have also used the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function in <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code>. While <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> is a very general <code>R</code> function and isn’t specific to tidy data, this is the first time that we’re seeing it in this course. <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> officially stands for concatenate, but, in simpler terms, <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> combines two or more “things”, separated by a comma.</p>
 <div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
@@ -257,8 +254,7 @@
 <span><span class="co">#&gt; 7 McClatch… 7/5   7/9   1053 …   3        40      35      10</span></span>
 <span><span class="co">#&gt; # … with 1 more variable: `Stein (G)` &lt;dbl&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable names ¹​`Clinton (D)`,</span></span>
-<span><span class="co">#&gt; #   ²​`Trump (R)`, ³​`Johnson (L)`</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ²​`Trump (R)`, ³​`Johnson (L)`</span></span></code></pre></div>
 <p>This happens because the column names have a space in them (this also would occur if the columns started with a number or had odd special characters in them). Then, any time you want to reference a variable, you need the include the backticks:</p>
 <div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
@@ -282,8 +278,7 @@
 <span><span class="co">#&gt; 6 Associat… 7/7   7/11  837 RV  NA        40      36       6</span></span>
 <span><span class="co">#&gt; 7 McClatch… 7/5   7/9   1053 …   3        40      35      10</span></span>
 <span><span class="co">#&gt; # … with 1 more variable: Stein_G &lt;dbl&gt;, and abbreviated</span></span>
-<span><span class="co">#&gt; #   variable names ¹​Clinton_D, ²​Johnson_L</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   variable names ¹​Clinton_D, ²​Johnson_L</span></span></code></pre></div>
 <p><code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> can also be very useful if you have variable names that are very long to type out. <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> is actually from <code>dplyr</code>, not <code>tidyr</code>, but we didn’t have a need for it with any of the <code>dplyr</code> data sets.</p>
 </div>
 <div id="exercise-4-1" class="section level3" number="7.2.4">
@@ -364,8 +359,7 @@
 <span><span class="co">#&gt; 7 McClatc… 7/5   7/9   1053    RV        3        40      35</span></span>
 <span><span class="co">#&gt; # … with 2 more variables: Johnson_L &lt;dbl&gt;, Stein_G &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   and abbreviated variable names ¹​Sample_size,</span></span>
-<span><span class="co">#&gt; #   ²​Sample_type, ³​Clinton_D</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ²​Sample_type, ³​Clinton_D</span></span></code></pre></div>
 <p>The data set <code>polls_clean</code> <strong>still</strong> isn’t tidy!! The <code>candidate</code> variable is spread out over 4 different columns and the values in each of these 4 columns actually represent 1 variable: poll percentage.</p>
 <p>Thinking about data “tidyness” using the definitions above can sometimes be a little bit confusing. In practice, oftentimes we will usually realize that a data set is untidy when we go to do something that should be super simple but that something turns out to not be super simple at all when the data is in its current form.</p>
 <p>For example, one thing we might want to do is to make a plot that has poll <code>Start</code> time on the x-axis, polling numbers on the y-axis, and has candidates represented by different colours. For this small data set, we might not see any trends through time, but you could imagine this graph would be quite useful if we had polling numbers through June, July, August, September, etc.</p>
@@ -398,8 +392,7 @@
 <span><span class="co">#&gt;  9 ABC Ne… 7/11  7/14  816     RV        4   Clinto…      42</span></span>
 <span><span class="co">#&gt; 10 ABC Ne… 7/11  7/14  816     RV        4   Trump_R      38</span></span>
 <span><span class="co">#&gt; # … with 18 more rows, and abbreviated variable names</span></span>
-<span><span class="co">#&gt; #   ¹​Sample_size, ²​Sample_type, ³​candidate, ⁴​poll_percent</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ¹​Sample_size, ²​Sample_type, ³​candidate, ⁴​poll_percent</span></span></code></pre></div>
 <p><code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> has three important arguments:</p>
 <ul>
 <li>
@@ -447,8 +440,7 @@
 <span><span class="co">#&gt; #   abbreviated variable names ¹​avail_seat_km_per_week,</span></span>
 <span><span class="co">#&gt; #   ²​`incidents 1985_1999`, ³​`fatal_accidents 1985_1999`,</span></span>
 <span><span class="co">#&gt; #   ⁴​`fatalities 1985_1999`, ⁵​`incidents 2000_2014`,</span></span>
-<span><span class="co">#&gt; #   ⁶​`fatal_accidents 2000_2014`</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ⁶​`fatal_accidents 2000_2014`</span></span></code></pre></div>
 <p>The data set contains the following columns:</p>
 <ul>
 <li>
@@ -522,8 +514,7 @@
 <span><span class="co">#&gt;  9 Aeroflot*              1197672318 fatalities 198…     128</span></span>
 <span><span class="co">#&gt; 10 Aeroflot*              1197672318 incidents 2000…       6</span></span>
 <span><span class="co">#&gt; # … with 326 more rows, and abbreviated variable name</span></span>
-<span><span class="co">#&gt; #   ¹​total_num</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ¹​total_num</span></span></code></pre></div>
 <p>Instead of giving <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> names of variables, we gave it the column numbers instead. So <code>c(3, 4, 5, 6, 7, 8)</code> corresponds to the 3rd, 4th, …., 8th columns in the data set. That didn’t quite give us a <code>year</code> variable, but we should be excited to see an opportunity to take advantage of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>:</p>
 <div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">airlines</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"type_year"</span>,</span>
@@ -543,8 +534,7 @@
 <span><span class="co">#&gt;  9 Aeroflot*              1197672318 fataliti… 1985…     128</span></span>
 <span><span class="co">#&gt; 10 Aeroflot*              1197672318 incidents 2000…       6</span></span>
 <span><span class="co">#&gt; # … with 326 more rows, and abbreviated variable name</span></span>
-<span><span class="co">#&gt; #   ¹​total_num</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ¹​total_num</span></span></code></pre></div>
 <p>Is this the format that we want the data set to be in? Depending on the task, it could be. But, we also might want each of the accident <code>type</code>s to be its own variable. That is, we might want to collapse the data set to have a variable for <code>incidents</code>, a variable for <code>fatal_accidents</code>, and a variable for <code>fatalities</code>. If so, we want to add more columns to the data set, so we need to use <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>.</p>
 <div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## name the long data set</span></span>
@@ -572,8 +562,7 @@
 <span><span class="co">#&gt; 10 Air Canada           1.87e9 2000…       2       0       0</span></span>
 <span><span class="co">#&gt; # … with 102 more rows, and abbreviated variable names</span></span>
 <span><span class="co">#&gt; #   ¹​avail_seat_km_per_week, ²​incidents, ³​fatal_accidents,</span></span>
-<span><span class="co">#&gt; #   ⁴​fatalities</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ⁴​fatalities</span></span></code></pre></div>
 <p><code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> has two main arguments:</p>
 <ul>
 <li><p><code>names_from</code>, the column in the old data set that will provide the names of the new columns and</p></li>
@@ -625,8 +614,7 @@
 <span><span class="co">#&gt; #   `1817` &lt;dbl&gt;, `1818` &lt;dbl&gt;, `1819` &lt;dbl&gt;, `1820` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `1821` &lt;dbl&gt;, `1822` &lt;dbl&gt;, `1823` &lt;dbl&gt;, `1824` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `1825` &lt;dbl&gt;, `1826` &lt;dbl&gt;, `1827` &lt;dbl&gt;, `1828` &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   `1829` &lt;dbl&gt;, `1830` &lt;dbl&gt;, `1831` &lt;dbl&gt;, …</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   `1829` &lt;dbl&gt;, `1830` &lt;dbl&gt;, `1831` &lt;dbl&gt;, …</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use <code>tidyr</code>, we aren’t going to want to type out <code>c(2, 3, 4, 5, .....)</code> all the way up to <code>217</code>! <code>R</code> has short-hand notation that we can use with <code>:</code>. For example, type in <code>4:9</code> in your console window. Use this notation to tidy the <code>mortality_df</code> data set.</li>
 </ol>
@@ -787,8 +775,7 @@
 <span><span class="co">#&gt;  8  2011 Special Teamer     4300000</span></span>
 <span><span class="co">#&gt;  9  2011 Tight End          8734375</span></span>
 <span><span class="co">#&gt; 10  2011 Wide Receiver     16250000</span></span>
-<span><span class="co">#&gt; # … with 7,990 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 7,990 more rows</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>* To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position in each year so that the highest paid players in each position in each year all receive a <code>1</code>, the second highest paid players receive a <code>2</code>, etc. Compare your results for the default way that <code>R</code> uses to break ties between two salaries that are the same and using <code>ties.method = "first"</code>.</li>
 </ol>
@@ -981,7 +968,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-18.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -274,6 +274,93 @@ ggplot(data = augment_df |> filter(.fitted > 25), aes(x = .fitted, y = .resid)) 
   geom_point() 
 ```
 
+### Exploring Concepts
+
+We can also use our data science skills to explore concepts that you may or may not have found difficult in STAT 213. In this section, we will use plotting to help interpret coefficient estimates in models with two quantitative predictors: one with an interaction and one without an interaction.
+
+First, consider a model with `flavor` and `moisture` as predictors on the coffee data set that removes the observation with a `total_cup_points` rating of `0`:
+
+$Y = \beta_0 + \beta_1 flavor + \beta_2 aroma + \epsilon$
+
+```{r, appendix = TRUE}
+coffee_noout <- coffee_df |> filter(total_cup_points > 0)
+coffee_fa <- lm(total_cup_points ~ flavor + aroma,
+   data = coffee_noout)
+coffee_fa |> tidy()
+```
+
+You might recall that, you can interpret the estimate for $\hat{\beta}_1$ as something like:
+
+"For a one point increase in flavor grade, we expect average coffee score to increase by 5.55 points, if `aroma` is held constant."
+
+(or, if `aroma` does not change, or if `aroma` is fixed).
+
+But, what if someone asked you, what does that mean, "if `aroma` is held constant." Instead of using words to explain, we can use our `ggplot2` skills to construct a plot. The plot that we are going to create is going to show the fitted model for __5__ distinct values of `aroma`: the minimum value, Q1, the median, Q3, and the maximum (though these values can also be chosen arbitrarily). We will make use of the `modelr` package to gather predictions to make the lines in our plot. First, we are creating a grid of values for predictions:
+
+```{r, appendix = TRUE}
+## install.packages("modelr")
+library(modelr)
+grid_vals <- coffee_noout |>
+  modelr::data_grid(
+    flavor = quantile(flavor),
+    aroma = quantile(aroma)
+  )
+grid_vals
+```
+
+We then gather these predictions in a data set, and use that data set to make the lines in our plot. The plot will show `total_cup_points` on the y-axis, `flavor` on the x-axis, and have coloured lines for a few different values of `aroma` that we specified in the grid function:
+
+```{r, appendix = TRUE}
+grid <- grid_vals |>
+  modelr::gather_predictions(coffee_fa)
+grid
+```
+
+```{r, appendix = TRUE}
+ggplot(data = coffee_noout, aes(x = flavor, y = total_cup_points)) +
+  geom_point(alpha = 0.2) +
+  geom_line(data = grid, aes(colour = fct_rev(factor(aroma)),
+                             y = pred), size = 1.2) +
+  scale_colour_viridis_d() +
+  labs(colour = "Aroma") +
+  theme_minimal()
+```
+
+From this model, we might more easily be able to explain that slope interpretation earlier: __for a fixed coloured line of `aroma`__, if flavor increases by one point, we expect coffee rating to increase by 5.55 points, on average. 
+
+But, we can really see the power of `modelr` and plotting models if we fit more complicated models. For example, next, we will fit a model with an interaction between `flavor` and `aroma`. You may recall that an interaction allows the association between one predictor (`flavor`) and the response (`total_cup_points`) to change depending on the value of the other predictor (`aroma`). 
+
+$Y = \beta_0 + \beta_1 flavor + \beta_2 aroma + \beta_3 flavor * aroma + \epsilon$
+
+
+```{r, appendix = TRUE}
+coffee_fa_int <- lm(total_cup_points ~ flavor + aroma + flavor:aroma,
+   data = coffee_noout)
+coffee_fa_int |> tidy()
+```
+
+You may also recall that, in a model with an interaction between two quantitative variables, the coefficient estimates are not interpretable on their own. We __cannot__ say something like "For a one point increase in flavor, we expect average coffee rating to increase by 14.6 points, as long as `aroma` and the interaction between `flavor` and `aroma` is held constant" because it does not make sense to talk about an increase in one unit of `flavor` while also holding the interaction fixed.
+
+So, for interpreting the model output, we can again use the `modelr` package and out `ggplot2` knowledge to construct a plot that shows the relationship between `total_cup_points` and `flavor` for a few different values of `aroma`:
+
+```{r, appendix = TRUE}
+grid <- coffee_noout |>
+  modelr::data_grid(
+    flavor = quantile(flavor),
+    aroma = quantile(aroma), 
+  ) |>
+  modelr::gather_predictions(coffee_fa_int)
+ggplot(data = coffee_noout, aes(x = flavor, y = total_cup_points)) +
+  geom_point(alpha = 0.2) +
+  geom_line(data = grid, aes(colour = fct_rev(factor(aroma)), y = pred), size = 1.2) +
+  scale_colour_viridis_d() +
+  labs(colour = "Aroma") +
+  theme_minimal()
+```
+
+From the plot, we can understand the nature of the interaction a little better. It looks like, no matter what the value of `aroma`, `flavor` and `total_cup_points` have a positive association. But, for larger  values of `aroma`, the slope is smaller while, for smaller values of `aroma`, the slope is larger. The model says that, when `aroma` is small, we would expect a larger increase in `total_cup_points` (on average) for a one point increase in `flavor` while, when `aroma` is large, we would expect a smaller increase in `total_cup_points` (on average) for a one point increase in `flavor`.
+
+
 ### Exercises {#exercise-15-2}
 
 Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-15).
@@ -283,6 +370,8 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 2. For one of your fitted models, construct a histogram of the residuals to assess the normality assumption (using `ggplot2` and `augment()`).
 
 3. Make a table of the 5 coffees that have the highest __predicted__ coffee rating, according to one of your models.
+
+4. Re-examine the interaction model plot that had `total_cup_points` on the y-axis, `flavor` on the x-axis, and coloured liens for `aroma`. Change the plotso that, `aroma` is on the x-axis and the five coloured lines correspond to the quantiles of `flavor`. This allows us to explore how the association between `total_cup_points` and `aroma` changes for different values of `flavor`.
 
 ## CS 140
 

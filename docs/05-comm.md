@@ -365,7 +365,6 @@ head(hpi_df)
 #> #   and abbreviated variable names ¹​LifeExpectancy,
 #> #   ²​Wellbeing, ³​HappyLifeYears, ⁴​Footprint,
 #> #   ⁵​HappyPlanetIndex
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Let's look at the relationship between `HappyLifeYears` and `Footprint` for countries of different `Region`s of the world.

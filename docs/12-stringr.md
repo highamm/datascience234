@@ -54,7 +54,6 @@ beyonce_unnest
 #>  9   50396 1+1             498 Beyoncé             2 if     
 #> 10   50396 1+1             498 Beyoncé             2 i      
 #> # … with 164,730 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 We'll want to make sure that either all words are capitalized or no words are capitalized, for consistency (remember that `R` is case-sensitive). To that end, we'll modify the `word` variable and use `stringr`'s `str_to_lower()` to change all letters to lower-case:
@@ -85,7 +84,6 @@ beyonce_unnest |> group_by(word) |>
 #>  9 and    2385
 #> 10 on     2344
 #> # … with 6,459 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 What's the issue here?
@@ -150,7 +148,6 @@ beyonce_sum <- beyonce_stop |> group_by(word) |>
 #> 24 beyoncé   238
 #> 25 night     213
 #> # … with 5,912 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 beyonce_sum
 #> # A tibble: 5,937 × 2
 #>    word      n
@@ -166,7 +163,6 @@ beyonce_sum
 #>  9 time    452
 #> 10 uh      408
 #> # … with 5,927 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 Looking through the list, there are __still__ some stop words in there that were not picked up on in the `stop_words` data set. We will address these, as well as make a plot, in the exercises.
@@ -253,7 +249,6 @@ head(med_djok_df)
 #> #   isAce <lgl>, isUnret <lgl>, isRallyWinner <lgl>,
 #> #   isForced <lgl>, isUnforced <lgl>, isDouble <lgl>,
 #> #   PtWinner <dbl>, isSvrWinner <dbl>, rallyCount <dbl>, …
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 The observations of the data set correspond to points played (so there is one row per point). There are a ton of variables in this data set, but the most important variable is the first variable, `point`, which contains a string with information about the types of shots that were played during the point. The coding of the `point` variable includes:
@@ -369,7 +364,6 @@ med_djok_df |> filter(str_detect(point, pattern = "@") == TRUE)
 #> #   `2ndIn` <dbl>, isAce <lgl>, isUnret <lgl>,
 #> #   isRallyWinner <lgl>, isForced <lgl>, isUnforced <lgl>,
 #> #   isDouble <lgl>, PtWinner <dbl>, isSvrWinner <dbl>, …
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 We can then use `mutate()` with `case_when()` to create a variable corresponding to error type and then `summarise()` the error types made from the two players.

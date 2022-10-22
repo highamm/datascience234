@@ -34,7 +34,6 @@ head(cars_df)
 #> # … with 2 more variables: ...10 <chr>, ...11 <chr>, and
 #> #   abbreviated variable name
 #> #   ¹​`This is a data set about cars.`
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of `R`.
@@ -58,7 +57,6 @@ head(cars_df)
 #> 5   22.8     4   108    93  3.85  2.32  18.6     1     1
 #> 6   21.4     6   258   110  3.08  3.22  19.4     1     0
 #> # … with 2 more variables: gear <dbl>, carb <dbl>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 That looks better, but there are still a couple of problems. What do you notice?
@@ -79,7 +77,6 @@ head(cars_df)
 #> 5  22.8     4   108    93  3.85  2.32  18.6     1     1
 #> 6  21.4     6   258   110  3.08  3.22  19.4     1     0
 #> # … with 2 more variables: gear <dbl>, carb <dbl>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 Now look at the classes of each variable. Which classes look like they are incorrect?
@@ -163,7 +160,6 @@ head(cars_df)
 #> 5  NA   8       360   175  3.15  3.44  17.0 0         0
 #> 6  18.1 6       225   105  2.76  3.46  20.2 1         0
 #> # … with 2 more variables: gear <dbl>, carb <dbl>
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 There are __many__ other possible file formats for data storage. For example, there is a data set called `oscars.tsv`, which is a tab-separated file. You can read it in with `read_tsv()` instead of `read_csv()`. 
@@ -188,7 +184,6 @@ head(oscars_df)
 #> #   Budget <chr>, DomesticBoxOffice <dbl>,
 #> #   WorldwideRevised <dbl>, WorldwideBoxOffice <dbl>,
 #> #   DomesticPercent <dbl>, LimitedOpeningWnd <dbl>, …
-#> # ℹ Use `colnames()` to see all variable names
 ```
 
 You'll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet. 

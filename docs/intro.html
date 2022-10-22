@@ -240,8 +240,7 @@ format:
 <span><span class="co">#&gt; 10 Austria                     279        75     191     9.7</span></span>
 <span><span class="co">#&gt; # … with 183 more rows, and abbreviated variable names</span></span>
 <span><span class="co">#&gt; #   ¹​spirit_servings, ²​wine_servings,</span></span>
-<span><span class="co">#&gt; #   ³​total_litres_of_pure_alcohol</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; #   ³​total_litres_of_pure_alcohol</span></span></code></pre></div>
 <p>What’s in this data set? We see a few <em>variables</em> on the columns:</p>
 <ul>
 <li>
@@ -341,8 +340,7 @@ We might be able to better answer the original question numerically by computing
 <span><span class="co">#&gt;  8 Italy                          85           237    2.79</span></span>
 <span><span class="co">#&gt;  9 Equatorial Guinea              92           233    2.53</span></span>
 <span><span class="co">#&gt; 10 Sao Tome &amp; Principe            56           140    2.5 </span></span>
-<span><span class="co">#&gt; # … with 183 more rows</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 183 more rows</span></span></code></pre></div>
 <p>Why is one of the ratios <code>Inf</code>?</p>
 <div id="exercise-1-1" class="section level3" number="2.4.1">
 <h3>
@@ -401,8 +399,7 @@ We might be able to better answer the original question numerically by computing
 <span><span class="co">#&gt; 5     5 Alfonso So…    93 Base…   50000  1.80e7 1.8 e7    38</span></span>
 <span><span class="co">#&gt; 6     6 Amar'e Sto…    27 Bask… 5000000  2.67e7 2.17e7    32</span></span>
 <span><span class="co">#&gt; # … with 1 more variable: Gender &lt;chr&gt;, and abbreviated</span></span>
-<span><span class="co">#&gt; #   variable names ¹​endorsements, ²​totalpay</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   variable names ¹​endorsements, ²​totalpay</span></span></code></pre></div>
 <p>There are many different interesting questions to answer with this data set. First, we might be interested in the relationship between athlete age and salary for the top 100 athletes. Recall from an earlier stat course that one appropriate graphic to examine this relationship is a scatterplot:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">athletes</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">age</span>, y <span class="op">=</span> <span class="va">salary</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -434,8 +431,7 @@ We might be able to better answer the original question numerically by computing
 <span><span class="co">#&gt; 5    60 Li Na          41 Tenn…   1.8e7  2.36e7 5.6 e6    32</span></span>
 <span><span class="co">#&gt; 6    89 Serena Wil…    55 Tenn…   1.1e7  2.2 e7 1.1 e7    33</span></span>
 <span><span class="co">#&gt; # … with 1 more variable: Gender &lt;chr&gt;, and abbreviated</span></span>
-<span><span class="co">#&gt; #   variable names ¹​endorsements, ²​totalpay</span></span>
-<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<span><span class="co">#&gt; #   variable names ¹​endorsements, ²​totalpay</span></span></code></pre></div>
 <p>Finally, let’s see if we can compare the ratio of endorsements (from commercials and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">football_basketball</span> <span class="op">&lt;-</span> <span class="va">athletes</span> <span class="op">|&gt;</span></span>
@@ -610,7 +606,7 @@ format:
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-18.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
