@@ -733,7 +733,7 @@ Combine the two data sets with `bind_cols()`. What are you assuming about the da
 
 
 
-5. \* Use a join function to combine the mortality data set (`all_df`) __with__ D.C. with the states data set from Exercise 3 (`states_df`). For this exercise, keep the row with Washington D.C., having it take on `NA` values for any variable not observed in the states data.
+5. \* Use a join function to combine the mortality data set (`all_df` from Exercise 1) __with__ D.C. with the states data set from Exercise 3 (`states_df`). For this exercise, keep the row with Washington D.C., having it take on `NA` values for any variable not observed in the states data.
 
 
 
@@ -741,7 +741,7 @@ Combine the two data sets with `bind_cols()`. What are you assuming about the da
 
 
 
-7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` first to contain only states in the `NE` region.
+7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` from Exercise 1 first to contain only states in the `NE` region.
 
 
 

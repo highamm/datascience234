@@ -414,7 +414,7 @@ states_df <- bind_cols(df1, df2)
 bind_cols(mortality_df, states_df)
 ```
 
-5. \* Use a join function to combine the mortality data set (`all_df`) __with__ D.C. with the states data set from Exercise 3 (`states_df`). For this exercise, keep the row with Washington D.C., having it take on `NA` values for any variable not observed in the states data.
+5. \* Use a join function to combine the mortality data set (`all_df` from Exercise 1) __with__ D.C. with the states data set from Exercise 3 (`states_df`). For this exercise, keep the row with Washington D.C., having it take on `NA` values for any variable not observed in the states data.
 
 ```{r, echo = FALSE, message = FALSE, results = "hide"}
 left_join(all_df, states_df, by = c("state" = "value"))
@@ -430,7 +430,7 @@ inner_join(all_df, states_df, by = c("state" = "value"))
 left_join(states_df, all_df, by = c("value" = "state"))
 ```
 
-7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` first to contain only states in the `NE` region.
+7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` from Exercise 1 first to contain only states in the `NE` region.
 
 ```{r, echo = FALSE, message = FALSE, results = "hide"}
 ne_df <- all_df |> filter(region == "NE")

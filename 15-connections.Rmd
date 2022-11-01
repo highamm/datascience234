@@ -146,6 +146,8 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 3. For the categorical variable that you chose, conduct a Chi-square test of association to see if there is statistical evidence that the variable is associated with `received_callback`. In your test, (a), write the null and alternative hypotheses, run the test in `chisq.test()` and make a note of whether or not you get a warning about assumptions for the test, and write a conclusion in context of the problem.
 
+4. Write a short, one paragraph summary on your major take-aways from this section.
+
 ## STAT 213
 
 Much of the same concepts in connecting STAT 113 to this course hold for connecting STAT 213 with this course. We can still use what we have learned to explore a data set, conduct a hypothesis test, and perform further analysis and exploration on the data set.
@@ -371,7 +373,9 @@ Exercises marked with an \* indicate that the exercise has a solution at the end
 
 3. Make a table of the 5 coffees that have the highest __predicted__ coffee rating, according to one of your models.
 
-4. Re-examine the interaction model plot that had `total_cup_points` on the y-axis, `flavor` on the x-axis, and coloured liens for `aroma`. Change the plotso that, `aroma` is on the x-axis and the five coloured lines correspond to the quantiles of `flavor`. This allows us to explore how the association between `total_cup_points` and `aroma` changes for different values of `flavor`.
+4. Re-examine the interaction model plot that had `total_cup_points` on the y-axis, `flavor` on the x-axis, and coloured lines for `aroma`. Change the plotso that, `aroma` is on the x-axis and the five coloured lines correspond to the quantiles of `flavor`. This allows us to explore how the association between `total_cup_points` and `aroma` changes for different values of `flavor`.
+
+5. Write a short, one paragraph summary on your major take-aways from this section.
 
 ## CS 140
 
@@ -578,6 +582,8 @@ combined_df |> group_by(`Artist(s)`) |>
 ```
 
 4. \* Note that your solution to Exercise 3 is likely imperfect because of songs that feature another musical artist. Why would such songs present a problem in counting the number of songs for each artist?
+
+5. Write a short, one paragraph summary on your major take-aways from this section.
 
 ## Chapter Exercises {#chapexercise-15}
 

@@ -786,9 +786,9 @@
 <p>Combine the two data sets with <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code>. What are you assuming about the data sets in order to use this function?</p>
 <ol start="4" style="list-style-type: decimal">
 <li><p>* Combine the columns of the states data set you made in Exercise 3 with the mortality data set <strong>without</strong> Washington D.C.</p></li>
-<li><p>* Use a join function to combine the mortality data set (<code>all_df</code>) <strong>with</strong> D.C. with the states data set from Exercise 3 (<code>states_df</code>). For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</p></li>
+<li><p>* Use a join function to combine the mortality data set (<code>all_df</code> from Exercise 1) <strong>with</strong> D.C. with the states data set from Exercise 3 (<code>states_df</code>). For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</p></li>
 <li><p>* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>-ing it out explicitly).</p></li>
-<li><p>* Use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> first to contain only states in the <code>NE</code> region.</p></li>
+<li><p>* Use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> from Exercise 1 first to contain only states in the <code>NE</code> region.</p></li>
 <li><p>* Do the same thing as Exercise 7, but this time, use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>. <strong>Hint</strong>: You’ll need to filter <code>all_df</code> in a different way to achieve this.</p></li>
 </ol>
 <p><br></p>
@@ -1128,7 +1128,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-11-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -242,6 +242,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <li><p>Construct a graphic or make a table that explores whether one of the other variables in the data set is associated with whether the applicant receives a callback for the job. Other variables include <code>gender</code>, <code>years_college</code>, <code>college_degree</code>, <code>honors</code>, <code>worked_during_school</code>, <code>years_experience</code>, <code>computer_skills</code>, <code>special_skills</code>, <code>volunteer</code>, <code>military</code>, <code>employment_holes</code>, and <code>resume_quality</code>.</p></li>
 <li><p>Construct a graphic or make a table that explores one of the other variables in the data set is associated with whether the applicant receives a callback for the job. If your variable in Exercise 1 was categorical, choose a quantitative variable for this exercise. If your variable in Exercise 1 was quantitative, choose a categorical variable for this exercise.</p></li>
 <li><p>For the categorical variable that you chose, conduct a Chi-square test of association to see if there is statistical evidence that the variable is associated with <code>received_callback</code>. In your test, (a), write the null and alternative hypotheses, run the test in <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> and make a note of whether or not you get a warning about assumptions for the test, and write a conclusion in context of the problem.</p></li>
+<li><p>Write a short, one paragraph summary on your major take-aways from this section.</p></li>
 </ol>
 </div>
 </div>
@@ -582,7 +583,8 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <li><p>Add a couple of more predictors to the linear model that we fit earlier. Then, use <code><a href="https://generics.r-lib.org/reference/glance.html">glance()</a></code> to obtain some model fit statistics. Which model is “better” according to some of the metrics you learned about in STAT 213?</p></li>
 <li><p>For one of your fitted models, construct a histogram of the residuals to assess the normality assumption (using <code>ggplot2</code> and <code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code>).</p></li>
 <li><p>Make a table of the 5 coffees that have the highest <strong>predicted</strong> coffee rating, according to one of your models.</p></li>
-<li><p>Re-examine the interaction model plot that had <code>total_cup_points</code> on the y-axis, <code>flavor</code> on the x-axis, and coloured liens for <code>aroma</code>. Change the plotso that, <code>aroma</code> is on the x-axis and the five coloured lines correspond to the quantiles of <code>flavor</code>. This allows us to explore how the association between <code>total_cup_points</code> and <code>aroma</code> changes for different values of <code>flavor</code>.</p></li>
+<li><p>Re-examine the interaction model plot that had <code>total_cup_points</code> on the y-axis, <code>flavor</code> on the x-axis, and coloured lines for <code>aroma</code>. Change the plotso that, <code>aroma</code> is on the x-axis and the five coloured lines correspond to the quantiles of <code>flavor</code>. This allows us to explore how the association between <code>total_cup_points</code> and <code>aroma</code> changes for different values of <code>flavor</code>.</p></li>
+<li><p>Write a short, one paragraph summary on your major take-aways from this section.</p></li>
 </ol>
 </div>
 </div>
@@ -874,7 +876,8 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_appear <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n_appear</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li>* Note that your solution to Exercise 3 is likely imperfect because of songs that feature another musical artist. Why would such songs present a problem in counting the number of songs for each artist?</li>
+<li><p>* Note that your solution to Exercise 3 is likely imperfect because of songs that feature another musical artist. Why would such songs present a problem in counting the number of songs for each artist?</p></li>
+<li><p>Write a short, one paragraph summary on your major take-aways from this section.</p></li>
 </ol>
 </div>
 </div>
@@ -1140,7 +1143,7 @@ The arguments to <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.t
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-10-22.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-11-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
