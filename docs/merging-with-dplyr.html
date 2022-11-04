@@ -278,7 +278,7 @@
 <h3>
 <span class="header-section-number">12.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code><a class="anchor" aria-label="anchor" href="#keep-all-rows-of-both-data-sets-with-full_join"><i class="fas fa-link"></i></a>
 </h3>
-<p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> will keep all rows in data set 1 that don’t have a matching key in data set 2, and will also keep all rows in data set 2 that don’t have a matching key in data set 1, filling in <code>NA</code> for missing values when necessary. For our example of merging <code>babynames_df</code> with <code>birth_df</code>,</p>
+<p>In addition to keeping any rows with a matching key in the other data frame, a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> will keep all rows in data set 1 that don’t have a matching key in data set 2, and will also keep all rows in data set 2 that don’t have a matching key in data set 1, filling in <code>NA</code> for missing values when necessary. For our example of merging <code>babynames_df</code> with <code>birth_df</code>,</p>
 <div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -1128,7 +1128,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-11-01.</p>
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-11-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

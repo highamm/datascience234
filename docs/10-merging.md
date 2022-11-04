@@ -243,7 +243,7 @@ Therefore, it's usually easier to just always use `left_join()` and ignore `righ
 
 ### Keep All Rows of Both Data Sets with `full_join()`
 
-A `full_join()` will keep all rows in data set 1 that don't have a matching key in data set 2, and will also keep all rows in data set 2 that don't have a matching key in data set 1, filling in `NA` for missing values when necessary. For our example of merging `babynames_df` with `birth_df`,
+In addition to keeping any rows with a matching key in the other data frame, a `full_join()` will keep all rows in data set 1 that don't have a matching key in data set 2, and will also keep all rows in data set 2 that don't have a matching key in data set 1, filling in `NA` for missing values when necessary. For our example of merging `babynames_df` with `birth_df`,
 
 
 ```r
